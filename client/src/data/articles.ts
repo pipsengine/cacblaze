@@ -1380,6 +1380,131 @@ export const articles: Record<string, Article> = {
         answer: 'Yes, most major Nigerian insurers (AXA Mansard, Leadway, AIICO) allow you to buy policies instantly on their websites or apps.'
       }
     ]
+  },
+  'tax': {
+    id: 'guide_tax',
+    slug: 'tax',
+    title: 'Tax Education: TIN, VAT, and Why You Should Pay',
+    excerpt: 'Confused by FIRS, TIN, and VAT? We break down the Nigerian tax system for individuals and small business owners in simple English.',
+    category: 'Personal Finance',
+    readTime: '14 min',
+    publishDate: 'Feb 21, 2026',
+    lastUpdated: 'Feb 21, 2026',
+    author: {
+      name: 'Musa Ibrahim',
+      title: 'Tax Consultant',
+      bio: 'Musa is a chartered accountant who specializes in helping SMEs navigate the Nigerian tax landscape without tears.',
+      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Musa Ibrahim',
+      rating: 4.8,
+      articlesCount: 31,
+      verified: true,
+      expertise: ['SME Tax', 'FIRS Compliance', 'Tax Planning'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Calculator and financial documents',
+    tableOfContents: [
+      { id: 'why-pay', title: 'Why Pay Tax?', level: 2 },
+      { id: 'tin', title: 'The Mighty TIN (Tax Identification Number)', level: 2 },
+      { id: 'paye', title: 'PAYE (For Employees)', level: 2 },
+      { id: 'vat', title: 'VAT (Value Added Tax)', level: 2 },
+      { id: 'cit', title: 'Company Income Tax (Small Business Exemption)', level: 2 },
+      { id: 'tcc', title: 'Tax Clearance Certificate (TCC)', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'why-pay',
+        title: 'Why Pay Tax?',
+        content: `Nobody likes paying tax. But in Nigeria, it is becoming impossible to avoid if you want to grow.
+        <br><br>
+        <strong>The "Carrot":</strong> You need a Tax Clearance Certificate (TCC) to get government contracts, visa applications, or even appoint directors.
+        <br>
+        <strong>The "Stick":</strong> The FIRS (Federal Inland Revenue Service) now links your bank account to your TIN. They can freeze your account if they suspect massive tax evasion.`,
+        level: 2
+      },
+      {
+        id: 'tin',
+        title: 'The Mighty TIN (Tax Identification Number)',
+        content: `Your TIN is your identity in the tax world.
+        <br><br>
+        <strong>Who needs it?</strong>
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li><strong>Individuals:</strong> Automatically generated when you register for BVN (in most cases), but you may need to validate it at the JTB (Joint Tax Board) website.</li>
+          <li><strong>Businesses:</strong> Mandatory for opening a corporate bank account.</li>
+        </ul>
+        <br>
+        <strong>How to get it:</strong> It is free! Visit any FIRS office or apply online at <strong>jtb.gov.ng</strong>.`,
+        level: 2
+      },
+      {
+        id: 'paye',
+        title: 'PAYE (For Employees)',
+        content: `If you earn a salary, your employer automatically deducts tax. This is called <strong>Pay As You Earn (PAYE)</strong>.
+        <br><br>
+        <strong>The Math:</strong> It is a progressive tax.
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li>First ₦300k: 7%</li>
+          <li>Next ₦300k: 11%</li>
+          <li>...and it goes up to 24% for high earners.</li>
+        </ul>
+        <br>
+        <strong>Important:</strong> Ensure your employer actually remits this money to the State Internal Revenue Service (e.g., LIRS in Lagos), otherwise, you won't get your Tax Clearance.`,
+        level: 2
+      },
+      {
+        id: 'vat',
+        title: 'VAT (Value Added Tax)',
+        content: `<strong>Rate: 7.5%</strong>
+        <br><br>
+        VAT is a consumption tax. If you buy a phone, you pay VAT. If you eat at a fancy restaurant, you pay VAT.
+        <br><br>
+        <strong>For Business Owners:</strong> You must charge 7.5% VAT on your goods/services and remit it to the FIRS by the 21st of every month.
+        <br>
+        <em>Exemption:</em> Basic food items (yam, rice, beans), medical supplies, and books are VAT-free.`,
+        level: 2
+      },
+      {
+        id: 'cit',
+        title: 'Company Income Tax (Small Business Exemption)',
+        content: `Good news for small businesses! Under the Finance Act:
+        <br><br>
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li><strong>Small Company (Turnover under ₦25m):</strong> 0% CIT. You pay NOTHING. (But you must still file returns on time!).</li>
+          <li><strong>Medium Company (Turnover ₦25m - ₦100m):</strong> 20% CIT.</li>
+          <li><strong>Large Company (Turnover over ₦100m):</strong> 30% CIT.</li>
+        </ul>`,
+        level: 2
+      },
+      {
+        id: 'tcc',
+        title: 'Tax Clearance Certificate (TCC)',
+        content: `This is the "Golden Ticket." It proves you have paid your taxes for the last 3 years.
+        <br><br>
+        <strong>Why you need it:</strong>
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li>To apply for government tenders/contracts.</li>
+          <li>To process some visas (embassies look at it).</li>
+          <li>To run for political office.</li>
+        </ul>
+        <br>
+        <strong>Tip:</strong> Apply for it at the start of every year (January/February) to avoid the rush.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Do I pay tax if I am a freelancer/remote worker?',
+        answer: 'Yes. You are required to file Personal Income Tax (Direct Assessment) with your State Internal Revenue Service.'
+      },
+      {
+        question: 'Is TIN the same as BVN?',
+        answer: 'No. BVN is for banking identity. TIN is for tax identity. However, the systems are linked.'
+      },
+      {
+        question: 'What happens if I don\'t file returns for my small business?',
+        answer: 'You will pay a penalty for late filing (usually ₦25,000 for the first month + amounts for subsequent months), even if your tax liability was Zero.'
+      }
+    ]
   }
 };
 
