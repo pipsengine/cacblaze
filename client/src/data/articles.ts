@@ -1134,6 +1134,252 @@ export const articles: Record<string, Article> = {
         answer: 'Log a dispense error with your bank immediately. If not resolved in 72 hours, report to CBN Consumer Protection.'
       }
     ]
+  },
+  'crypto': {
+    id: 'guide_crypto',
+    slug: 'crypto',
+    title: 'Crypto Education: Bitcoin, Stablecoins, and Safety in Nigeria',
+    excerpt: 'Navigating the world of Cryptocurrency in Nigeria. Understand P2P, USDT, and how to keep your digital assets safe from scams and bans.',
+    category: 'Personal Finance',
+    readTime: '15 min',
+    publishDate: 'Feb 19, 2026',
+    lastUpdated: 'Feb 19, 2026',
+    author: {
+      name: 'Chinedu Okafor',
+      title: 'Blockchain Educator',
+      bio: 'Chinedu has been teaching Nigerians about Bitcoin since 2016. He runs a community dedicated to safe crypto adoption.',
+      image: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Chinedu Okafor',
+      rating: 4.9,
+      articlesCount: 42,
+      verified: true,
+      expertise: ['Cryptocurrency', 'DeFi', 'Wallet Security'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1518546305927-5a555bb7020d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Bitcoin and blockchain technology visualization',
+    tableOfContents: [
+      { id: 'basics', title: 'Crypto 101: Bitcoin vs. USDT', level: 2 },
+      { id: 'nigeria-context', title: 'The Nigerian Situation (CBN & SEC)', level: 2 },
+      { id: 'buying-selling', title: 'How to Buy (P2P Trading)', level: 2 },
+      { id: 'storage', title: 'Hot Wallets vs. Cold Wallets', level: 2 },
+      { id: 'scams', title: 'Spotting Crypto Scams', level: 2 },
+      { id: 'future', title: 'The Future (e-Naira & Regulation)', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'basics',
+        title: 'Crypto 101: Bitcoin vs. USDT',
+        content: `Cryptocurrency is digital money. But not all crypto is the same.
+        <br><br>
+        <strong>Bitcoin (BTC):</strong> The "Digital Gold." Its price goes up and down (volatile). You buy this if you want to invest for the long term.
+        <br>
+        <strong>USDT / USDC (Stablecoins):</strong> These are pegged to the US Dollar. 1 USDT is always roughly equal to $1. Nigerians use this to hedge against Naira inflation or to send money abroad easily.`,
+        level: 2
+      },
+      {
+        id: 'nigeria-context',
+        title: 'The Nigerian Situation (CBN & SEC)',
+        content: `Nigeria is one of the world's largest crypto markets.
+        <br><br>
+        <strong>The Rules:</strong>
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li><strong>CBN:</strong> While the strict ban on banks servicing crypto exchanges has eased, direct bank transfers to exchanges are still restricted.</li>
+          <li><strong>SEC:</strong> The Securities and Exchange Commission is now issuing licenses to exchanges (VASPs) to make the space safer.</li>
+          <li><strong>P2P Restrictions:</strong> Government crackdown on P2P (Peer-to-Peer) trading on platforms like Binance was aimed at stabilizing the Naira.</li>
+        </ul>`,
+        level: 2
+      },
+      {
+        id: 'buying-selling',
+        title: 'How to Buy (P2P Trading)',
+        content: `Since you cannot simply transfer Naira to an exchange, most Nigerians use <strong>P2P (Peer-to-Peer)</strong>.
+        <br><br>
+        <strong>How it works:</strong>
+        <ol class="list-decimal pl-6 space-y-2 mt-4">
+          <li>You go to a P2P platform (e.g., Bybit, KuCoin, Noones).</li>
+          <li>You find a seller who wants to sell USDT.</li>
+          <li>You transfer Naira to their bank account.</li>
+          <li>The platform "escrows" (holds) the crypto until the seller confirms receipt.</li>
+          <li>The crypto is released to your wallet.</li>
+        </ol>
+        <br>
+        <strong>Safety Tip:</strong> NEVER include crypto-related words (Bitcoin, USDT, Crypto) in the bank transfer narration. It can get your account flagged!`,
+        level: 2
+      },
+      {
+        id: 'storage',
+        title: 'Hot Wallets vs. Cold Wallets',
+        content: `<strong>"Not your keys, not your coins."</strong> If you leave your money on an exchange, you don't truly own it.
+        <br><br>
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li><strong>Hot Wallets (Trust Wallet, MetaMask):</strong> Apps on your phone. You control the "seed phrase" (12 words). Good for daily use.</li>
+          <li><strong>Cold Wallets (Ledger, Trezor):</strong> Physical USB devices. The safest way to store large amounts.</li>
+        </ul>
+        <br>
+        <strong>Warning:</strong> If you lose your 12-word seed phrase, your money is gone FOREVER. There is no "Forgot Password" button.`,
+        level: 2
+      },
+      {
+        id: 'scams',
+        title: 'Spotting Crypto Scams',
+        content: `<strong>Red Flags:</strong>
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li><strong>"Doubling" Schemes:</strong> "Send 1 BTC, get 2 BTC back." This is ALWAYS a scam.</li>
+          <li><strong>Fake Airdrops:</strong> Sites asking you to connect your wallet to claim free tokens. They will drain your wallet.</li>
+          <li><strong>WhatsApp Groups:</strong> "Investment Managers" who promise 50% weekly returns.</li>
+        </ul>`,
+        level: 2
+      },
+      {
+        id: 'future',
+        title: 'The Future (e-Naira & Regulation)',
+        content: `The <strong>e-Naira</strong> is the CBN's digital currency (CBDC). It is different from crypto because it is centralized and controlled by the government. As regulation improves, we may see more integration between traditional banks and crypto exchanges in Nigeria.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Is Crypto illegal in Nigeria?',
+        answer: 'No, it is not illegal to own or trade crypto. However, banks are restricted in how they interact with crypto exchanges.'
+      },
+      {
+        question: 'How do I turn my Crypto back to Cash?',
+        answer: 'You use the P2P Sell option. You sell your USDT to someone who transfers Naira to your bank account.'
+      },
+      {
+        question: 'Can I use Crypto to pay for things?',
+        answer: 'Some online vendors accept it, but it is not legal tender in Nigeria. You usually need to convert to Naira first.'
+      }
+    ]
+  },
+  'insurance': {
+    id: 'guide_insurance',
+    slug: 'insurance',
+    title: 'Insurance in Nigeria: Why "God Forbid" Is Not a Strategy',
+    excerpt: 'From Third Party car papers to Health HMOs. Learn which insurance policies are mandatory, which are essential, and how to verify if yours is fake.',
+    category: 'Personal Finance',
+    readTime: '13 min',
+    publishDate: 'Feb 20, 2026',
+    lastUpdated: 'Feb 20, 2026',
+    author: {
+      name: 'Funke Adebayo',
+      title: 'Chartered Insurance Broker',
+      bio: 'Funke helps Nigerians navigate the complex world of insurance claims. She believes financial protection is the foundation of wealth.',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Funke Adebayo',
+      rating: 4.7,
+      articlesCount: 18,
+      verified: true,
+      expertise: ['Auto Insurance', 'HMOs', 'Claims Advocacy'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Car driving on a road representing vehicle insurance',
+    tableOfContents: [
+      { id: 'god-forbid', title: 'The "God Forbid" Mentality', level: 2 },
+      { id: 'vehicle-insurance', title: 'Vehicle Insurance (Third Party vs Comprehensive)', level: 2 },
+      { id: 'fake-papers', title: 'How to Spot Fake Papers (NIID)', level: 2 },
+      { id: 'health-insurance', title: 'Health Insurance (HMOs)', level: 2 },
+      { id: 'life-insurance', title: 'Life Insurance Explained', level: 2 },
+      { id: 'claims', title: 'How to File a Claim', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'god-forbid',
+        title: 'The "God Forbid" Mentality',
+        content: `In Nigeria, when you mention insurance, the most common response is "God forbid!" or "It is not my portion."
+        <br><br>
+        While faith is important, it is not a financial strategy. Accidents, illnesses, and theft happen to good people too. Insurance transfers the financial burden of these disasters from your pocket to an insurance company.`,
+        level: 2
+      },
+      {
+        id: 'vehicle-insurance',
+        title: 'Vehicle Insurance (Third Party vs Comprehensive)',
+        content: `If you drive in Nigeria, you MUST have insurance. But there are two main types:
+        <br><br>
+        <strong>1. Third Party (Mandatory):</strong>
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li><strong>Cost:</strong> Approx. ₦15,000 - ₦20,000 per year.</li>
+          <li><strong>What it covers:</strong> Damage you cause to <em>other people's</em> cars or property.</li>
+          <li><strong>What it DOES NOT cover:</strong> Your own car. If you bash your bumper, you fix it yourself.</li>
+        </ul>
+        <br>
+        <strong>2. Comprehensive:</strong>
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li><strong>Cost:</strong> Usually 3-5% of your car's value.</li>
+          <li><strong>What it covers:</strong> Everything. Fire, theft, vandalism, and accidents (even if it's your fault).</li>
+        </ul>`,
+        level: 2
+      },
+      {
+        id: 'fake-papers',
+        title: 'How to Spot Fake Papers (NIID)',
+        content: `Many Nigerians unknowingly drive with fake insurance papers bought at licensing offices.
+        <br><br>
+        <strong>The Test:</strong>
+        <ol class="list-decimal pl-6 space-y-2 mt-4">
+          <li>Go to <strong>www.askniid.org</strong> (Nigerian Insurance Industry Database).</li>
+          <li>Click "Check Policy Status".</li>
+          <li>Enter your Car Plate Number or VIN.</li>
+        </ol>
+        <br>
+        If your details do not appear, your insurance is FAKE. You have no coverage, and VIO can impound your car.`,
+        level: 2
+      },
+      {
+        id: 'health-insurance',
+        title: 'Health Insurance (HMOs)',
+        content: `One major illness can wipe out your savings.
+        <br><br>
+        <strong>NHIS (National Health Insurance Scheme):</strong> Mostly for federal workers, but also has voluntary contributors. Very cheap, but limited hospital choice.
+        <br><br>
+        <strong>Private HMOs (AXA, Reliance, Hygeia):</strong>
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li><strong>Cost:</strong> Plans start from as low as ₦4,000/month.</li>
+          <li><strong>Benefits:</strong> Access to private hospitals, surgeries, and maternity care.</li>
+        </ul>
+        <br>
+        <strong>Tip:</strong> If you run a business, getting HMO for your staff is a great way to retain talent.`,
+        level: 2
+      },
+      {
+        id: 'life-insurance',
+        title: 'Life Insurance Explained',
+        content: `Life insurance is not just about death. Many policies are <strong>Savings + Protection</strong> plans.
+        <br><br>
+        For example, you can contribute monthly for 5 years. If you survive (which we hope you do!), you get your money back with interest. If you pass away, your family gets a large lump sum to pay for school fees and rent.`,
+        level: 2
+      },
+      {
+        id: 'claims',
+        title: 'How to File a Claim',
+        content: `<strong>Scenario:</strong> You hit someone's car.
+        <br><br>
+        <strong>What to do:</strong>
+        <ol class="list-decimal pl-6 space-y-2 mt-4">
+          <li><strong>Do NOT fight:</strong> Stay calm.</li>
+          <li><strong>Take Photos:</strong> Snap the damage on both cars and the scene.</li>
+          <li><strong>Exchange Info:</strong> Get their number and insurance details.</li>
+          <li><strong>Call your Insurer:</strong> Report the incident immediately.</li>
+        </ol>
+        <br>
+        <strong>Note:</strong> Most insurers require you to report within 24-48 hours.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Will insurance companies actually pay?',
+        answer: 'Yes. If you have a valid policy with a reputable company and legitimate proof of the incident, they are required by law to pay. Using a registered Insurance Broker can help speed this up.'
+      },
+      {
+        question: 'Is Third Party insurance enough?',
+        answer: 'It keeps you legal with the Police/VIO, but it leaves you financially exposed if your own car is stolen or damaged.'
+      },
+      {
+        question: 'Can I buy insurance online?',
+        answer: 'Yes, most major Nigerian insurers (AXA Mansard, Leadway, AIICO) allow you to buy policies instantly on their websites or apps.'
+      }
+    ]
   }
 };
 
