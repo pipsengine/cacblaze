@@ -1,0 +1,142 @@
+import { Metadata } from 'next';
+import Link from 'next/link';
+import Icon from '@/components/ui/AppIcon';
+import Breadcrumb from '@/components/common/Breadcrumb';
+import Header from '@/components/common/Header';
+import Footer from '@/components/common/Footer';
+
+export const metadata: Metadata = {
+  title: 'How-To Guides - CACBLAZE',
+  description: 'Step-by-step instructions for technology, business, home maintenance, and cooking. Learn how to do anything.',
+  keywords: 'how to, tutorials, diy, instructions, step by step',
+};
+
+const howtoCategories = [
+  {
+    id: 'howto_tech',
+    title: 'Technology & Digital Life',
+    items: [
+      { id: 'howto_smartphones', label: 'Use Smartphones', href: '/howto/smartphones', icon: 'DevicePhoneMobileIcon', description: 'Master your iPhone or Android.' },
+      { id: 'howto_fix_phone', label: 'Fix Common Phone Issues', href: '/howto/fix-phone', icon: 'WrenchScrewdriverIcon', description: 'Save money on repairs.' },
+      { id: 'howto_install_apps', label: 'Install Apps', href: '/howto/install-apps', icon: 'ArrowDownTrayIcon', description: 'Get the best apps safely.' },
+      { id: 'howto_software', label: 'Use Software', href: '/howto/software', icon: 'CommandLineIcon', description: 'Guides for Windows & Mac tools.' },
+      { id: 'howto_website', label: 'Build a Website', href: '/howto/build-website', icon: 'GlobeAltIcon', description: 'Launch your site in minutes.' },
+      { id: 'howto_secure', label: 'Secure Accounts', href: '/howto/secure-accounts', icon: 'LockClosedIcon', description: 'Protect yourself from hackers.' },
+      { id: 'howto_productivity_tools', label: 'Use Productivity Tools', href: '/howto/productivity-tools', icon: 'BoltIcon', description: 'Work smarter, not harder.' },
+    ],
+  },
+  {
+    id: 'howto_business',
+    title: 'Business & Entrepreneurship',
+    items: [
+      { id: 'howto_start_business', label: 'Start a Business', href: '/howto/start-business', icon: 'RocketLaunchIcon', description: 'From idea to launch.' },
+      { id: 'howto_register', label: 'Register a Business', href: '/howto/register-business', icon: 'DocumentCheckIcon', description: 'CAC registration explained.' },
+      { id: 'howto_market', label: 'Market Online', href: '/howto/market-online', icon: 'MegaphoneIcon', description: 'Get customers on social media.' },
+      { id: 'howto_sell', label: 'Sell Online', href: '/howto/sell-online', icon: 'ShoppingCartIcon', description: 'E-commerce setup guide.' },
+      { id: 'howto_manage_finances', label: 'Manage Finances', href: '/howto/manage-finances', icon: 'BanknotesIcon', description: 'Keep your books balanced.' },
+      { id: 'howto_grow_customers', label: 'Grow Customers', href: '/howto/grow-customers', icon: 'UserGroupIcon', description: 'Increase your customer base.' },
+      { id: 'howto_pricing', label: 'Price Products', href: '/howto/pricing', icon: 'TagIcon', description: 'Maximize your profits.' },
+    ],
+  },
+  {
+    id: 'howto_home',
+    title: 'Home & Daily Life',
+    items: [
+      { id: 'howto_organize', label: 'Home Organization', href: '/howto/home-organization', icon: 'HomeIcon', description: 'Declutter your space.' },
+      { id: 'howto_cleaning', label: 'Cleaning Guides', href: '/howto/cleaning', icon: 'SparklesIcon', description: 'Tips for a sparkling home.' },
+      { id: 'howto_maintenance', label: 'Home Maintenance', href: '/howto/home-maintenance', icon: 'WrenchIcon', description: 'Fix leaks and squeaks.' },
+      { id: 'howto_energy', label: 'Energy Saving Tips', href: '/howto/energy-saving', icon: 'LightBulbIcon', description: 'Lower your electricity bills.' },
+      { id: 'howto_safety', label: 'Home Safety Tips', href: '/howto/home-safety', icon: 'ShieldCheckIcon', description: 'Keep your family safe.' },
+    ],
+  },
+  {
+    id: 'howto_food',
+    title: 'Food & Cooking',
+    items: [
+      { id: 'howto_african_recipes', label: 'African Recipes', href: '/howto/african-recipes', icon: 'FireIcon', description: 'Cook authentic local dishes.' },
+      { id: 'howto_international', label: 'International Recipes', href: '/howto/international-recipes', icon: 'GlobeAmericasIcon', description: 'Try flavors from abroad.' },
+      { id: 'howto_cooking_beginners', label: 'Cooking for Beginners', href: '/howto/cooking-beginners', icon: 'AcademicCapIcon', description: 'Learn the basics of cooking.' },
+      { id: 'howto_meal_prep', label: 'Meal Prep', href: '/howto/meal-prep', icon: 'ClockIcon', description: 'Save time on weeknights.' },
+      { id: 'howto_kitchen_tips', label: 'Kitchen Tips', href: '/howto/kitchen-tips', icon: 'LightBulbIcon', description: 'Hacks for better cooking.' },
+      { id: 'howto_food_storage', label: 'Food Storage', href: '/howto/food-storage', icon: 'ArchiveBoxIcon', description: 'Keep ingredients fresh.' },
+    ],
+  },
+  {
+    id: 'howto_digital',
+    title: 'Digital Skills',
+    items: [
+      { id: 'howto_coding', label: 'Learn Coding', href: '/howto/learn-coding', icon: 'CodeBracketIcon', description: 'Start your tech career.' },
+      { id: 'howto_design_tools', label: 'Use Design Tools', href: '/howto/design-tools', icon: 'PaintBrushIcon', description: 'Create stunning graphics.' },
+      { id: 'howto_office_tools', label: 'Use Office Tools', href: '/howto/office-tools', icon: 'BriefcaseIcon', description: 'Master Word, Excel, PowerPoint.' },
+      { id: 'howto_digital_content', label: 'Create Digital Content', href: '/howto/digital-content', icon: 'VideoCameraIcon', description: 'Start a YouTube channel or blog.' },
+      { id: 'howto_learn_online', label: 'Learn Online', href: '/howto/learn-online', icon: 'ComputerDesktopIcon', description: 'Find the best free courses.' },
+    ],
+  },
+];
+
+export default function HowToPage() {
+  const breadcrumbItems = [
+    { name: 'Home', href: '/homepage' },
+    { name: 'How-To', href: '/howto' },
+  ];
+
+  return (
+    <>
+      <Header />
+      <main className="min-h-screen pt-20">
+        {/* Page Header */}
+        <section className="py-16 bg-gradient-to-br from-green-50 to-emerald-50">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <Breadcrumb items={breadcrumbItems} className="mb-6" />
+              <span className="inline-block px-4 py-2 rounded-full bg-green-100 text-green-700 text-sm font-semibold uppercase tracking-wide mb-4">
+                Step-by-Step Guides
+              </span>
+              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                How To Do Anything
+              </h1>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                Practical, easy-to-follow instructions for technology, business, cooking, and daily life challenges.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Categories Grid */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="grid gap-16">
+              {howtoCategories.map((category) => (
+                <div key={category.id}>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8 pb-4 border-b border-gray-100">
+                    {category.title}
+                  </h2>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {category.items.map((item) => (
+                      <Link 
+                        key={item.id} 
+                        href={item.href}
+                        className="group block bg-gray-50 rounded-2xl p-6 hover:bg-green-50 transition-colors border border-gray-100 hover:border-green-100"
+                      >
+                        <div className="w-12 h-12 rounded-xl bg-white shadow-sm text-green-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                          <Icon name={item.icon as any} size={24} />
+                        </div>
+                        <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-700 transition-colors">
+                          {item.label}
+                        </h3>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          {item.description}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}

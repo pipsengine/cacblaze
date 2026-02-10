@@ -1,0 +1,21 @@
+# Client Dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+COPY client/package*.json ./client/
+COPY shared/package*.json ./shared/
+
+# Install dependencies
+RUN npm install
+
+COPY client ./client
+COPY shared ./shared
+
+WORKDIR /app/client
+RUN npm run build
+
+EXPOSE 4028
+
+CMD ["npm", "start"]

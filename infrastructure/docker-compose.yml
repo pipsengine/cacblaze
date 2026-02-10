@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: ../
+      dockerfile: infrastructure/Dockerfile.server
+    ports:
+      - "3001:3001"
+    volumes:
+      - ../server/database:/app/server/database
+    environment:
+      - PORT=3001
+      - NODE_ENV=production
+
+  client:
+    build:
+      context: ../
+      dockerfile: infrastructure/Dockerfile.client
+    ports:
+      - "4028:4028"
+    depends_on:
+      - server
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3001/api
