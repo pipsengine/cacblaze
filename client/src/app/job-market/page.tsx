@@ -107,36 +107,36 @@ const JobMarketPage = () => {
 
   const financialGuides = [
     {
-      id: 'budgeting',
-      title: 'Budgeting with Your Naira Salary',
-      excerpt: 'Practical budgeting strategies for Nigerian salaries with inflation considerations.',
-      category: 'Financial Planning',
-      readTime: '10 min',
-      href: '/guides/budgeting'
+      id: 'remote-work',
+      title: 'Remote Work: Earning Global, Living Local',
+      excerpt: 'The definitive guide to securing USD/GBP roles from Nigeria, setting up infrastructure, and handling FX payments.',
+      category: 'Remote Work',
+      readTime: '35 min',
+      href: '/guides/remote-work'
     },
     {
-      id: 'savings',
-      title: 'Building Emergency Fund in Nigeria',
-      excerpt: 'How to save 6 months of expenses despite economic challenges.',
-      category: 'Savings',
-      readTime: '8 min',
-      href: '/guides/emergency-funds'
+      id: 'freelancing',
+      title: 'High-Ticket Freelancing Masterclass',
+      excerpt: 'Move beyond $5 gigs. Learn to command premium rates on Upwork and Toptal as a Nigerian professional.',
+      category: 'Freelancing',
+      readTime: '40 min',
+      href: '/guides/freelancing'
     },
     {
-      id: 'investment',
-      title: 'Investment Options for Naira Earners',
-      excerpt: 'Smart investment strategies to grow your wealth in Nigeria.',
-      category: 'Investment',
-      readTime: '12 min',
-      href: '/guides/investing'
+      id: 'job-search',
+      title: 'Mastering the Nigerian Job Market',
+      excerpt: 'ATS optimization secrets, hidden job markets, and LinkedIn strategies for the modern Nigerian career.',
+      category: 'Career Growth',
+      readTime: '25 min',
+      href: '/guides/job-search'
     },
     {
-      id: 'side-income',
-      title: 'Side Hustles to Supplement Your Income',
-      excerpt: 'Proven side hustles that work for Nigerian professionals.',
-      category: 'Income',
-      readTime: '15 min',
-      href: '/guides/side-hustles'
+      id: 'workplace-skills',
+      title: 'The Professional\'s Toolkit',
+      excerpt: 'Essential soft and hard skills to survive and thrive in the Nigerian corporate jungle.',
+      category: 'Skills',
+      readTime: '30 min',
+      href: '/guides/workplace-skills'
     }
   ];
 
@@ -251,7 +251,7 @@ const JobMarketPage = () => {
         {/* Financial Planning Guides */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Naira-Focused Financial Planning</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8">Strategic Career Guides for the Global Nigerian</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {financialGuides.map((guide) => (
                 <Link
