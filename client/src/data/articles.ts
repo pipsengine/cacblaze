@@ -1505,6 +1505,322 @@ export const articles: Record<string, Article> = {
         answer: 'You will pay a penalty for late filing (usually ₦25,000 for the first month + amounts for subsequent months), even if your tax liability was Zero.'
       }
     ]
+  },
+  'career-planning': {
+    id: 'guide_career_planning',
+    slug: 'career-planning',
+    title: 'Career Planning: CVs, Interviews, and Climbing the Ladder',
+    excerpt: 'Navigate the Nigerian job market with confidence. From crafting the perfect CV to acing interviews in Lagos and Abuja.',
+    category: 'Career & Work',
+    readTime: '15 min',
+    publishDate: 'Feb 22, 2026',
+    lastUpdated: 'Feb 22, 2026',
+    author: {
+      name: 'Chinyere Okeke',
+      title: 'HR Specialist',
+      bio: 'Chinyere is a seasoned HR professional who has recruited for top banks and tech startups in Nigeria. She is passionate about youth employment.',
+      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Chinyere Okeke',
+      rating: 4.9,
+      articlesCount: 42,
+      verified: true,
+      expertise: ['Recruitment', 'CV Writing', 'Career Coaching'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'People shaking hands at a meeting',
+    tableOfContents: [
+      { id: 'cv-vs-resume', title: 'The Nigerian CV: It is NOT a Resume', level: 2 },
+      { id: 'cv-structure', title: 'Structure of a Winning CV', level: 2 },
+      { id: 'interview-tips', title: 'Acing the Interview (Lagos & Abuja Style)', level: 2 },
+      { id: 'soft-skills', title: 'Soft Skills That Get You Hired', level: 2 },
+      { id: 'networking', title: 'Networking & Professional Bodies', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'cv-vs-resume',
+        title: 'The Nigerian CV: It is NOT a Resume',
+        content: `In the US, they use a 1-page "Resume". In Nigeria, we use a <strong>Curriculum Vitae (CV)</strong>.
+        <br><br>
+        <strong>What is the difference?</strong>
+        <br>
+        A Nigerian CV is more detailed. It tells the story of your education, skills, and experience. While you should still keep it concise (2-3 pages max for experienced hires), you have more room to explain your achievements than a standard American resume.
+        <br><br>
+        <strong>Golden Rule:</strong> tailored your CV for <em>every</em> job application. Sending the same generic CV to 50 companies is a waste of time.`,
+        level: 2
+      },
+      {
+        id: 'cv-structure',
+        title: 'Structure of a Winning CV',
+        content: `Recruiters spend about 6 seconds scanning your CV. Make it count.
+        <br><br>
+        <strong>1. Personal Details:</strong> Name, Phone, Email, Location (e.g., "Lagos, Nigeria"). <em>Do not include:</em> State of Origin, Religion, or Date of Birth (unless requested).
+        <br>
+        <strong>2. Professional Summary:</strong> A 3-line pitch. "Experienced Digital Marketer with 5 years driving sales for Fintech startups..."
+        <br>
+        <strong>3. Work Experience (Reverse Chronological):</strong>
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li><strong>Role & Company:</strong> e.g., "Sales Manager at Dangote Group"</li>
+          <li><strong>Date:</strong> "Jan 2020 – Present"</li>
+          <li><strong>Achievements (Not just duties):</strong> "Increased sales by 40% in Q3" is better than "Responsible for sales".</li>
+        </ul>
+        <br>
+        <strong>4. Education:</strong> Degree, School, Year.
+        <br>
+        <strong>5. Skills:</strong> List hard skills (Python, Excel) and soft skills (Communication).`,
+        level: 2
+      },
+      {
+        id: 'interview-tips',
+        title: 'Acing the Interview (Lagos & Abuja Style)',
+        content: `<strong>The "Tell me about yourself" Question:</strong>
+        <br>
+        This is not an invitation to tell your life history. Use the <strong>PAST-PRESENT-FUTURE</strong> model:
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li><strong>Past:</strong> "I have a background in..."</li>
+          <li><strong>Present:</strong> "Currently, I am working on..."</li>
+          <li><strong>Future:</strong> "I am interested in this role because..."</li>
+        </ul>
+        <br>
+        <strong>Dress Code:</strong>
+        <br>
+        Nigeria is corporate. Even if it is a tech startup, dress smart-casual. For banks or oil companies, wear a suit. It is better to be overdressed than underdressed.
+        <br><br>
+        <strong>Virtual Interviews:</strong>
+        <br>
+        With high fuel prices, many first rounds are on Zoom/Teams. Ensure you have data (have a backup MiFi) and a quiet background. "Network is bad" is a valid excuse, but being unprepared is not.`,
+        level: 2
+      },
+      {
+        id: 'soft-skills',
+        title: 'Soft Skills That Get You Hired',
+        content: `Technical skills get you the interview; soft skills get you the job.
+        <br><br>
+        <strong>Top Skills Employers Want:</strong>
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li><strong>Communication:</strong> Can you write a clear email without "SMS language"?</li>
+          <li><strong>Problem Solving:</strong> Can you think on your feet?</li>
+          <li><strong>Emotional Intelligence (EQ):</strong> Can you work with difficult people?</li>
+          <li><strong>Adaptability:</strong> Things change fast in Nigeria (policies, market trends). Can you adjust?</li>
+        </ul>`,
+        level: 2
+      },
+      {
+        id: 'networking',
+        title: 'Networking & Professional Bodies',
+        content: `Many jobs in Nigeria are filled via referrals ("Who you know").
+        <br><br>
+        <strong>Where to Network:</strong>
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li><strong>LinkedIn:</strong> Optimize your profile. Comment on posts by industry leaders.</li>
+          <li><strong>Professional Bodies:</strong> Join CIPM (HR), ICAN (Accounting), NSE (Engineering), or NIM (Management). Being a member adds credibility.</li>
+          <li><strong>Events:</strong> Attend industry conferences in Victoria Island or Abuja.</li>
+        </ul>`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Should I include my picture on my CV?',
+        answer: 'Generally, No. Unless you are applying for a modeling or acting role, a photo is not necessary and can lead to bias.'
+      },
+      {
+        question: 'How many pages should my CV be?',
+        answer: 'For fresh graduates: 1-2 pages. For experienced professionals: 2-3 pages. Keep it concise.'
+      },
+      {
+        question: 'What is the best job site in Nigeria?',
+        answer: 'Jobberman, LinkedIn, and MyJobMag are the most popular. Also, check company websites directly.'
+      }
+    ]
+  },
+  'side-hustles': {
+    id: 'guide_side_hustles',
+    slug: 'side-hustles',
+    title: 'Top Side Hustles in Nigeria: Earn Extra Cash in 2026',
+    excerpt: 'Beat inflation with these profitable side hustles. From VTU reselling to freelance writing, discover legitimate ways to make money online and offline.',
+    category: 'Income',
+    readTime: '10 min',
+    publishDate: 'Feb 23, 2026',
+    lastUpdated: 'Feb 23, 2026',
+    author: {
+      name: 'Tunde Bakare',
+      title: 'Digital Entrepreneur',
+      bio: 'Tunde started 5 businesses before finding success. He now teaches others how to start lean businesses with little capital.',
+      image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Tunde Bakare',
+      rating: 4.8,
+      articlesCount: 30,
+      verified: true,
+      expertise: ['E-commerce', 'Digital Marketing', 'Gig Economy'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Person working on laptop with notebook',
+    tableOfContents: [
+      { id: 'why-side-hustle', title: 'Why You Need a Side Hustle', level: 2 },
+      { id: 'online-hustles', title: 'Online Side Hustles (Work from Home)', level: 2 },
+      { id: 'offline-hustles', title: 'Offline / Service-Based Hustles', level: 2 },
+      { id: 'getting-paid', title: 'How to Get Paid (USD/NGN)', level: 2 },
+      { id: 'avoiding-scams', title: 'Avoiding "Bring 2 People" Scams', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'why-side-hustle',
+        title: 'Why You Need a Side Hustle',
+        content: `In 2026, a single salary is rarely enough. With rising fuel prices and inflation, a side hustle acts as a buffer. It can pay for your data, fuel, or even your rent, allowing your main salary to go towards savings and investments.`,
+        level: 2
+      },
+      {
+        id: 'online-hustles',
+        title: 'Online Side Hustles (Work from Home)',
+        content: `<strong>1. Freelancing (Upwork/Fiverr):</strong>
+        <br>
+        If you can write, design, or code, you can earn dollars.
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li><strong>Skills in Demand:</strong> Content Writing, UI/UX Design, Virtual Assistant.</li>
+          <li><strong>Tip:</strong> Optimize your profile. Don't just say "I write". Say "I write SEO blog posts for Fintechs".</li>
+        </ul>
+        <br>
+        <strong>2. VTU Reselling:</strong>
+        <br>
+        Selling Airtime and Data is big business. You can register on platforms like Clubkonnect or similar to buy data cheap and resell to friends/family at a profit.
+        <br><br>
+        <strong>3. Content Creation / Influencing:</strong>
+        <br>
+        You don't need 1 million followers. Micro-influencers (5k-10k followers) get paid by brands to review products. TikTok and Instagram Reels are the hottest platforms right now.`,
+        level: 2
+      },
+      {
+        id: 'offline-hustles',
+        title: 'Offline / Service-Based Hustles',
+        content: `<strong>1. POS Business:</strong>
+        <br>
+        Despite saturation, busy areas still need POS agents. It requires capital (₦50k-₦100k) but generates daily cash flow.
+        <br><br>
+        <strong>2. Event Planning / Ushering:</strong>
+        <br>
+        Lagosians love to party (Owambe). Weekends are for weddings. You can offer ushering services or coordinate small vendors.
+        <br><br>
+        <strong>3. Uber/Bolt Driving:</strong>
+        <br>
+        If you have a car (or can get one on hire-purchase), driving on weekends or after work can net you an extra ₦50k-₦100k weekly, though fuel costs must be factored in.`,
+        level: 2
+      },
+      {
+        id: 'getting-paid',
+        title: 'How to Get Paid (USD/NGN)',
+        content: `If you earn in Dollars (Freelancing):
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li><strong>Geegpay / Grey.co:</strong> Create a foreign bank account to receive USD/GBP/EUR and swap to Naira.</li>
+          <li><strong>Domiciliary Account:</strong> Open one with your local bank (GTB, Zenith) if you want to hold the dollars.</li>
+        </ul>`,
+        level: 2
+      },
+      {
+        id: 'avoiding-scams',
+        title: 'Avoiding "Bring 2 People" Scams',
+        content: `If a "business" requires you to pay money to join and your only job is to recruit others, <strong>IT IS A PONZI SCHEME</strong>. Real businesses sell a product or service. Run from "MMM" rebrands.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Can I combine a side hustle with a 9-5?',
+        answer: 'Yes, but it requires time management. Use your weekends and evenings. Don\'t let it affect your main job performance.'
+      },
+      {
+        question: 'Do I need capital to start?',
+        answer: 'Not for all. Freelancing and Content Creation require zero capital (just your phone/laptop and data).'
+      }
+    ]
+  },
+  'negotiation': {
+    id: 'guide_negotiation',
+    slug: 'negotiation',
+    title: 'Salary Negotiation: How to Ask for More (and Get It)',
+    excerpt: 'Don\'t leave money on the table. Learn the art of salary negotiation in the Nigerian context. Scripts, timing, and tips for fresh grads and experienced hires.',
+    category: 'Career & Work',
+    readTime: '8 min',
+    publishDate: 'Feb 23, 2026',
+    lastUpdated: 'Feb 23, 2026',
+    author: {
+      name: 'Chinyere Okeke',
+      title: 'HR Specialist',
+      bio: 'Chinyere is a seasoned HR professional who has recruited for top banks and tech startups in Nigeria. She is passionate about youth employment.',
+      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Chinyere Okeke',
+      rating: 4.9,
+      articlesCount: 43,
+      verified: true,
+      expertise: ['Recruitment', 'CV Writing', 'Negotiation'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Two people shaking hands over a desk',
+    tableOfContents: [
+      { id: 'mindset', title: 'The Negotiation Mindset', level: 2 },
+      { id: 'research', title: 'Do Your Research', level: 2 },
+      { id: 'timing', title: 'When to Negotiate', level: 2 },
+      { id: 'scripts', title: 'What to Say (Scripts)', level: 2 },
+      { id: 'benefits', title: 'Negotiating Benefits', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'mindset',
+        title: 'The Negotiation Mindset',
+        content: `Many Nigerians are afraid to negotiate because they fear the offer will be withdrawn. <strong>This rarely happens.</strong> If a company wants you, they expect you to negotiate. Not negotiating can actually signal a lack of confidence, especially for senior roles.`,
+        level: 2
+      },
+      {
+        id: 'research',
+        title: 'Do Your Research',
+        content: `You can't just pick a number from the air.
+        <br><br>
+        <strong>1. Know the Market Rate:</strong> Use sites like MySalaryScale or Glassdoor (filtered for Nigeria) to check what your role pays.
+        <br>
+        <strong>2. Factor in Inflation:</strong> ₦200k in 2023 is not ₦200k in 2026. Ensure your ask covers your living expenses plus savings.`,
+        level: 2
+      },
+      {
+        id: 'timing',
+        title: 'When to Negotiate',
+        content: `<strong>The best time is AFTER you have the offer but BEFORE you sign.</strong>
+        <br>
+        Do not discuss salary in the first interview if you can avoid it. If asked, say: "I am open to a competitive market rate, but I'd love to learn more about the role first."`,
+        level: 2
+      },
+      {
+        id: 'scripts',
+        title: 'What to Say (Scripts)',
+        content: `<strong>Scenario 1: The offer is too low.</strong>
+        <br>
+        <em>"Thank you for the offer. I am really excited about the team. However, based on my experience and market research, I was looking at a range of ₦X - ₦Y. Is there any flexibility in the budget?"</em>
+        <br><br>
+        <strong>Scenario 2: They say "That's our best offer".</strong>
+        <br>
+        <em>"I understand. If the base salary is fixed, can we discuss a sign-on bonus, performance review after 3 months, or a transport allowance?"</em>`,
+        level: 2
+      },
+      {
+        id: 'benefits',
+        title: 'Negotiating Benefits',
+        content: `Salary is not everything. In Nigeria, benefits matter huge.
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li><strong>HMO (Health Insurance):</strong> Crucial. Ensure it covers your family if you are married.</li>
+          <li><strong>Remote Work:</strong> Asking for 2 days WFH saves you money on fuel/transport.</li>
+          <li><strong>13th Month Pay:</strong> Ask if this is standard policy.</li>
+        </ul>`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Will they rescind the offer if I ask for more?',
+        answer: 'Highly unlikely. The worst they usually say is "No, the budget is fixed."'
+      },
+      {
+        question: 'Should I disclose my current salary?',
+        answer: 'Try not to. It anchors the negotiation to your past, not your future value. Focus on the market rate for the NEW role.'
+      }
+    ]
   }
 };
 

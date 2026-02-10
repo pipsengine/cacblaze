@@ -94,7 +94,7 @@ const JobMarketPage = () => {
       title: 'Negotiation Guide',
       description: 'Learn how to negotiate better salary packages',
       icon: 'ChatBubbleLeftRightIcon',
-      href: '/job-market/negotiation-guide'
+      href: '/guides/negotiation'
     },
     {
       id: 'benefits',
@@ -112,7 +112,7 @@ const JobMarketPage = () => {
       excerpt: 'Practical budgeting strategies for Nigerian salaries with inflation considerations.',
       category: 'Financial Planning',
       readTime: '10 min',
-      href: '/job-market/budgeting-guide'
+      href: '/guides/budgeting'
     },
     {
       id: 'savings',
@@ -120,7 +120,7 @@ const JobMarketPage = () => {
       excerpt: 'How to save 6 months of expenses despite economic challenges.',
       category: 'Savings',
       readTime: '8 min',
-      href: '/job-market/emergency-fund'
+      href: '/guides/emergency-funds'
     },
     {
       id: 'investment',
@@ -128,7 +128,7 @@ const JobMarketPage = () => {
       excerpt: 'Smart investment strategies to grow your wealth in Nigeria.',
       category: 'Investment',
       readTime: '12 min',
-      href: '/job-market/investment-guide'
+      href: '/guides/investing'
     },
     {
       id: 'side-income',
@@ -136,7 +136,7 @@ const JobMarketPage = () => {
       excerpt: 'Proven side hustles that work for Nigerian professionals.',
       category: 'Income',
       readTime: '15 min',
-      href: '/job-market/side-hustles'
+      href: '/guides/side-hustles'
     }
   ];
 
