@@ -72,12 +72,11 @@ function AppImage({
 
     const commonClassName = `${className} ${isLoading ? 'bg-gray-200' : ''} ${onClick ? 'cursor-pointer hover:opacity-90 transition-opacity' : ''}`;
 
-    // For external URLs that are NOT optimized domains, use regular img tag
-    if (isExternal && !isLocal && !isOptimizedDomain) {
-        const imgStyle: React.CSSProperties = {};
-
-        if (width) imgStyle.width = width;
-        if (height) imgStyle.height = height;
+    // For external URLs, prefer standard img tag unless strictly required otherwise
+    // This improves reliability when Next.js Image Optimization fails or is misconfigured
+    if (isExternal && !isLocal) {
+        // Extract props that shouldn't be passed to standard img tag
+        const { priority, quality, placeholder, blurDataURL, unoptimized, ...validImgProps } = props;
 
         if (fill) {
             return (
@@ -89,8 +88,7 @@ function AppImage({
                         onError={handleError}
                         onLoad={handleLoad}
                         onClick={onClick}
-                        style={imgStyle}
-                        {...props}
+                        {...validImgProps}
                     />
                 </div>
             );
@@ -100,12 +98,14 @@ function AppImage({
             <img
                 src={imageSrc}
                 alt={alt}
+                width={width}
+                height={height}
                 className={commonClassName}
                 onError={handleError}
                 onLoad={handleLoad}
                 onClick={onClick}
-                style={imgStyle}
-                {...props}
+                loading={priority ? 'eager' : 'lazy'}
+                {...validImgProps}
             />
         );
     }
@@ -119,7 +119,7 @@ function AppImage({
         quality,
         placeholder,
         blurDataURL,
-        unoptimized: true,
+        unoptimized: false,
         onError: handleError,
         onLoad: handleLoad,
         onClick,

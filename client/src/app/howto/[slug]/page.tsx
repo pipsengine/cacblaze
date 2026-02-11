@@ -2,16 +2,17 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import TableOfContents from './components/TableOfContents';
-import ArticleContent from './components/ArticleContent';
-import AuthorBox from './components/AuthorBox';
-import FAQSection from './components/FAQSection';
-import RelatedContent from './components/RelatedContent';
+// Reuse components from guides
+import TableOfContents from '../../guides/[slug]/components/TableOfContents';
+import ArticleContent from '../../guides/[slug]/components/ArticleContent';
+import AuthorBox from '../../guides/[slug]/components/AuthorBox';
+import FAQSection from '../../guides/[slug]/components/FAQSection';
+import RelatedContent from '../../guides/[slug]/components/RelatedContent';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
-import CommentsSection from './components/CommentsSection';
-import ModerationPanel from './components/ModerationPanel';
-import ArticleAnalytics from './components/ArticleAnalytics';
+import CommentsSection from '../../guides/[slug]/components/CommentsSection';
+import ModerationPanel from '../../guides/[slug]/components/ModerationPanel';
+import ArticleAnalytics from '../../guides/[slug]/components/ArticleAnalytics';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import ReadingProgressTracker from '@/components/common/ReadingProgressTracker';
 import BookmarkButton from '@/components/common/BookmarkButton';
@@ -19,24 +20,26 @@ import ShareButton from '@/components/common/ShareButton';
 import { generateArticleSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/utils/schemaMarkup';
 import { articles } from '@/data/articles';
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const article = articles[params.slug];
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const article = articles[slug];
   
   if (!article) {
     return {
-      title: 'Article Not Found',
+      title: 'Guide Not Found',
     };
   }
 
   return {
-    title: `${article.title} - CACBLAZE`,
+    title: `${article.title} - CACBLAZE How-To`,
     description: article.excerpt,
-    keywords: `${article.category}, guide, tutorial, ${article.title}`,
+    keywords: `${article.category}, how-to, guide, tutorial, ${article.title}`,
   };
 }
 
-export default function ArticlePage({ params }: { params: { slug: string } }) {
-  const article = articles[params.slug];
+export default async function HowToPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const article = articles[slug];
 
   if (!article) {
     notFound();
@@ -44,8 +47,8 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
 
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
-    { name: 'Guides', href: '/guides' },
-    { name: article.title, href: `/guides/${article.slug}` },
+    { name: 'How-To', href: '/howto' },
+    { name: article.title, href: `/howto/${article.slug}` },
   ];
 
   const breadcrumbSchemaItems = breadcrumbItems.map(item => ({
@@ -62,7 +65,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     category: article.category,
     heroImage: article.heroImage,
     heroImageAlt: article.heroImageAlt,
-    slug: params.slug,
+    slug: slug,
   });
 
   const faqSchema = generateFAQSchema(article.faqs);
@@ -86,13 +89,13 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
       
       <main className="min-h-screen pt-20 pb-20 bg-white">
         {/* Hero Section */}
-        <section className="bg-gray-50 border-b border-gray-100">
+        <section className="bg-green-50 border-b border-green-100">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
             <div className="max-w-4xl mx-auto text-center">
               <Breadcrumb items={breadcrumbItems} className="justify-center mb-8" />
               
               <div className="flex items-center justify-center gap-3 mb-6">
-                <span className="px-3 py-1 bg-indigo-100 text-indigo-700 text-sm font-semibold rounded-full">
+                <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-semibold rounded-full">
                   {article.category}
                 </span>
                 <span className="text-gray-500 text-sm flex items-center gap-1">
@@ -120,7 +123,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                   <div className="text-left">
                     <div className="font-bold text-gray-900 flex items-center gap-1">
                       {article.author.name}
-                      {article.author.verified && <Icon name="CheckBadgeIcon" size={16} className="text-blue-500" />}
+                      {article.author.verified && <Icon name="CheckBadgeIcon" size={16} className="text-green-500" />}
                     </div>
                     <div className="text-sm text-gray-500">
                       Updated {article.lastUpdated}
@@ -145,7 +148,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                     <ShareButton 
                       articleId={article.id} 
                       articleTitle={article.title} 
-                      articleUrl={`https://cacblaze.com/guides/${article.slug}`} 
+                      articleUrl={`https://cacblaze.com/howto/${article.slug}`} 
                     />
                     <BookmarkButton 
                       articleId={article.id} 
@@ -171,7 +174,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
               </div>
 
               {/* Mobile Table of Contents */}
-              <div className="lg:hidden mb-10 bg-gray-50 p-6 rounded-xl border border-gray-100">
+              <div className="lg:hidden mb-10 bg-green-50 p-6 rounded-xl border border-green-100">
                 <TableOfContents items={article.tableOfContents} />
               </div>
 

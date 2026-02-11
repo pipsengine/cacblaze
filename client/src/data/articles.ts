@@ -3674,9 +3674,9 @@ export const articles: Record<string, Article> = {
     title: 'FAQ: The Unwritten Rules of the Nigerian Tech Workplace',
     excerpt: 'A comprehensive survival guide for the modern Nigerian employee. We cover everything HR won\'t tell you about salary negotiations, tax breakdowns, remote work politics, "culture fit", and how to resign without burning bridges.',
     category: 'Workplace Culture',
-    readTime: '45 min',
+    readTime: '55 min',
     publishDate: 'May 5, 2026',
-    lastUpdated: 'May 6, 2026',
+    lastUpdated: 'May 10, 2026',
     author: {
       name: 'Chidi "The HR Whisperer" Okeke',
       title: 'People Operations Lead',
@@ -3688,19 +3688,21 @@ export const articles: Record<string, Article> = {
       verified: true,
       expertise: ['Labor Law', 'Salary Negotiation', 'Conflict Resolution', 'Contract Review'],
     },
-    heroImage: 'https://images.unsplash.com/photo-1521791136064-7985c2d1103b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-    heroImageAlt: 'A group of colleagues having a serious discussion in a modern office, representing the complexity of workplace dynamics',
+    heroImage: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'A diverse group of professionals working together in a modern office environment',
     tableOfContents: [
-      { id: 'salary-myths', title: 'Salary: The "Gross" Trap & Tax Reality', level: 2 },
+      { id: 'salary-myths', title: 'Salary: The "Gross" Trap, Tax & ESOPs', level: 2 },
       { id: 'remote-reality', title: 'Remote vs. Hybrid: The True Cost of Commuting', level: 2 },
-      { id: 'contract-flags', title: 'Contract Red Flags: "Training Bonds" & "Family"', level: 2 },
+      { id: 'hmo-benefits', title: 'HMOs: Reading the Fine Print Before You Fall Ill', level: 2 },
+      { id: 'contract-flags', title: 'Contract Red Flags: IP Theft & "Training Bonds"', level: 2 },
+      { id: 'black-tax', title: 'Black Tax: Managing Family Expectations', level: 2 },
       { id: 'japa-plans', title: 'The Japa Protocol: Resigning Safely', level: 2 },
       { id: 'probation-traps', title: 'Probation: The 6-Month Interview', level: 2 },
     ],
     sections: [
       {
         id: 'salary-myths',
-        title: 'Salary: The "Gross" Trap & Tax Reality',
+        title: 'Salary: The "Gross" Trap, Tax & ESOPs',
         content: `<strong>The Golden Rule: Negotiate Net, Sign Gross.</strong>
         <br>
         In Nigerian tech, recruiters love to quote <strong>Gross Annual Salary</strong> because it sounds impressive. "We are offering ₦7.2 Million per annum!" sounds great until you receive your first alert and it is ₦430k, not ₦600k.
@@ -3729,7 +3731,19 @@ export const articles: Record<string, Article> = {
         <br><br>
         <strong>The "13th Month" Myth:</strong>
         <br>
-        This is <em>not</em> mandatory by Nigerian Labor Law. It is a discretionary bonus. Do not budget your December Detty December spending on it unless it is explicitly written in your contract as "Guaranteed 13th Month Salary."`,
+        This is <em>not</em> mandatory by Nigerian Labor Law. It is a discretionary bonus. Do not budget your December Detty December spending on it unless it is explicitly written in your contract as "Guaranteed 13th Month Salary."
+        <br><br>
+        <strong>ESOPs (Employee Stock Options): Paper Wealth?</strong>
+        <br>
+        Startups will often offer lower salary + Equity.
+        <br>
+        <em>The Reality:</em> Equity in a Nigerian startup is a lottery ticket, not a savings account.
+        <br>
+        - <strong>Vesting:</strong> Usually 4 years with a 1-year "cliff". If you leave in Month 11, you get NOTHING.
+        <br>
+        - <strong>Liquidity:</strong> You can only sell if the company is acquired or goes public (IPO). This is rare.
+        <br>
+        <em>Rule:</em> Never trade significant salary (rent/feeding money) for equity. Equity is the cherry; salary is the cake.`,
         level: 2
       },
       {
@@ -3763,8 +3777,28 @@ export const articles: Record<string, Article> = {
         level: 2
       },
       {
+        id: 'hmo-benefits',
+        title: 'HMOs: Reading the Fine Print Before You Fall Ill',
+        content: `<strong>"We have comprehensive health insurance."</strong>
+        <br>
+        This phrase is meaningless until you see the plan tier. In Nigeria, HMOs (Health Maintenance Organizations) have tiers like Bronze, Silver, Gold, and Platinum.
+        <br><br>
+        <strong>The "Roam" Trap:</strong>
+        <br>
+        Ask if the plan allows "Roaming" (accessing any hospital on their list) or if you are restricted to ONE registered hospital. If you live in Ikorodu but work in VI, you need Roaming. If you fall sick at work and your registered hospital is 3 hours away, you are in trouble.
+        <br><br>
+        <strong>Dental & Optical Limits:</strong>
+        <br>
+        Most "standard" plans have a limit of ~₦15k-₦20k per year for dental/optical. That barely covers a consultation and one filling. Do not assume your glasses are covered.
+        <br><br>
+        <strong>Pre-Existing Conditions:</strong>
+        <br>
+        Many corporate plans have a 1-year waiting period for pre-existing conditions (like asthma or hypertension) unless the company has paid a "waiver" premium. Ask this specifically during onboarding.`,
+        level: 2
+      },
+      {
         id: 'contract-flags',
-        title: 'Contract Red Flags: "Training Bonds" & "Family"',
+        title: 'Contract Red Flags: IP Theft & "Training Bonds"',
         content: `<strong>"We are a family here."</strong>
         <br>
         <em>Translation:</em> We have no boundaries, we will call you on Sunday, and we expect you to work overtime for free because "family helps family."
@@ -3779,9 +3813,37 @@ export const articles: Record<string, Article> = {
         <br>
         <em>Advice:</em> Refuse to sign bonds for generic training. Only sign if it is an expensive, recognized certification (like a customized SAP course or flight training).
         <br><br>
-        <strong>"Salary is Confidential":</strong>
+        <strong>Intellectual Property (IP) Overreach:</strong>
         <br>
-        This is designed to stop you from realizing that the new guy they just hired is earning 30% more than you for doing the same job. Discussing salary is not illegal in Nigeria, though it is "frowned upon" by HR.`,
+        Watch out for clauses that say: <em>"Any invention, code, or idea created by the Employee during the term of employment belongs to the Company."</em>
+        <br>
+        This means if you build a side project on your own laptop on a Sunday, they own it.
+        <br>
+        <em>The Fix:</em> Ask to amend it to: "Any invention created <strong>during working hours</strong> or <strong>using company resources</strong>."`,
+        level: 2
+      },
+      {
+        id: 'black-tax',
+        title: 'Black Tax: Managing Family Expectations',
+        content: `<strong>The Silent Salary Killer.</strong>
+        <br>
+        In Nigeria, as your salary increases, your "family responsibilities" increase exponentially. Cousins suddenly need school fees, uncles need hospital bills, and neighbors need "small 2k."
+        <br><br>
+        <strong>The "Loud Budgeting" Strategy:</strong>
+        <br>
+        Do not be afraid to say: "I am saving for rent/masters/investment."
+        <br>
+        <em>The Trick:</em> Automate your savings immediately when your salary hits. If the money is not in your main account, you cannot spend it.
+        <br><br>
+        <strong>The "Urgency" Filter:</strong>
+        <br>
+        Adopt a policy: "I do not lend money for emergencies unless it is life or death."
+        <br>
+        Many "emergencies" (like a wedding aso-ebi or a birthday) are actually poor planning. If you bail them out every time, you become the emergency fund.
+        <br><br>
+        <strong>Setting a Cap:</strong>
+        <br>
+        Allocate a fixed percentage (e.g., 10%) of your income to "Black Tax." Once that budget is exhausted for the month, the answer is "I don't have it right now" (which is technically true, you don't have it *for them*).`,
         level: 2
       },
       {
@@ -3845,6 +3907,1115 @@ export const articles: Record<string, Article> = {
       {
         question: 'What if they refuse to pay my final salary?',
         answer: 'This is common. Keep all company property safe and document its return (get a receipt!). If they withhold salary, write a formal demand letter. If the amount is significant, a lawyer can write a "Pre-Action Notice" for a small fee (₦20k-₦50k), which usually scares them into paying. Dragging them on Twitter (tactfully) is also a nuclear option that often works for consumer-facing brands.'
+      }
+    ]
+  },
+  'troubleshooting': {
+    id: 'guide_troubleshooting',
+    slug: 'troubleshooting',
+    title: 'Troubleshooting Nigeria: The Systems Survival Guide',
+    excerpt: 'When the bank app crashes on Friday night, the prepaid meter rejects your token, and the internet dies during a meeting. This is your manual for fixing the unfixable.',
+    category: 'Life Hacks',
+    readTime: '60 min',
+    publishDate: 'May 12, 2026',
+    lastUpdated: 'May 12, 2026',
+    author: {
+      name: 'Engr. Tunde "The Fixer" Balogun',
+      title: 'Systems Reliability Engineer',
+      bio: 'Tunde runs a 24/7 support agency for "Nigeria Problems." He has fixed generators via video call, recovered "trapped" funds from banks, and knows every ISP coverage map in Lagos by heart.',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Tunde Balogun',
+      rating: 5.0,
+      articlesCount: 15,
+      verified: true,
+      expertise: ['Power Systems', 'Banking Resolution', 'Connectivity', 'Logistics'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Electronic circuit board close-up representing technical troubleshooting',
+    tableOfContents: [
+      { id: 'banking-failures', title: 'Banking: Dispense Errors & USSD Blackouts', level: 2 },
+      { id: 'power-systems', title: 'Power: Inverters, Gens & The "Token Reject" Error', level: 2 },
+      { id: 'internet-connectivity', title: 'Internet: Fiber Cuts & Router Placement', level: 2 },
+      { id: 'logistics-delivery', title: 'Logistics: The "Rider is Not Picking" Crisis', level: 2 },
+      { id: 'tech-repair', title: 'Hardware: Surviving Computer Village', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'banking-failures',
+        title: 'Banking: Dispense Errors & USSD Blackouts',
+        content: `<strong>Scenario:</strong> It is Friday, 7 PM. You try to transfer ₦50k. The app spins. You get a debit alert. The receiver gets nothing.
+        <br><br>
+        <strong>The "Dispense Error" Protocol:</strong>
+        <br>
+        1. <strong>Do Not Panic (Yet):</strong> Most reversals happen within 24 hours automatically.
+        <br>
+        2. <strong>Log It Immediately:</strong> Do not wait. Send an email to the bank's official support address (e.g., help@gtbank.com) with the subject: "FAILED TRANSACTION - [Your Account Number]". Copy CBN's consumer protection email (cpd@cbn.gov.ng) if you want them to sit up.
+        <br>
+        3. <strong>The "Flutterwave/Paystack" Trick:</strong> If you are paying a merchant and it fails, ask for a "Session ID." This is the tracking number that banks use to trace the money.
+        <br><br>
+        <strong>USSD Blackouts:</strong>
+        <br>
+        When the bank app is down (usually end of the month), USSD (*737#, *901#) often still works because it uses a different infrastructure (Telco rails). Memorize your bank's code.`,
+        level: 2
+      },
+      {
+        id: 'power-systems',
+        title: 'Power: Inverters, Gens & The "Token Reject" Error',
+        content: `<strong>The "Token Reject" Error:</strong>
+        <br>
+        You bought ₦10k units. You punch it in. The meter says "REJECT." You try again. "REJECT." Darkness looms.
+        <br>
+        <em>The Fix:</em> Your meter software is likely outdated (KCT rollover). You need two "Key Change Tokens" (20 digits each) from your Disco (IKEDC/EKEDC) before the credit token will work. Visit their website, enter your meter number, and generate the KCT.
+        <br><br>
+        <strong>Generator Maintenance (The 100-Hour Rule):</strong>
+        <br>
+        If you run a "Mikano" or standard petrol gen, change the oil every 100 hours of runtime.
+        <br>
+        <em>The Cheat Code:</em> Use "Synthetic Oil" (5W-30 or 5W-40). It costs 2x more but lasts 3x longer and protects the engine from the extreme heat of Nigerian afternoons.
+        <br><br>
+        <strong>Inverter Battery Health:</strong>
+        <br>
+        Never drain your tubular batteries below 50%. If you drain them to 0% (total blackout), you reduce their lifespan by 20% instantly. Set your inverter's "Low Cutoff" voltage higher to protect them.`,
+        level: 2
+      },
+      {
+        id: 'internet-connectivity',
+        title: 'Internet: Fiber Cuts & Router Placement',
+        content: `<strong>The Myth of "Unlimited" Data:</strong>
+        <br>
+        Most "Unlimited" plans in Nigeria have a Fair Usage Policy (FUP). After 500GB, they throttle you to 512kbps (useless). Read the fine print.
+        <br><br>
+        <strong>Fiber vs. Starlink vs. 5G:</strong>
+        <br>
+        - <strong>Fiber (ipNX, FiberOne):</strong> Best for latency (Ping < 20ms). Essential for gamers and remote workers. <em>Risk:</em> Physical cuts by road construction workers.
+        <br>
+        - <strong>5G (MTN/Airtel):</strong> Fastest speeds (500Mbps+) but highly location-dependent. If you move the router 2 inches to the left, you might drop to 3G.
+        <br>
+        - <strong>Starlink:</strong> The ultimate backup. Works in the village. <em>Downside:</em> Rain fade. Heavy Lagos rain will cut the signal for 10-15 minutes.
+        <br><br>
+        <strong>The "Concrete Wall" Problem:</strong>
+        <br>
+        Nigerian houses are built with thick concrete blocks. Wi-Fi signals cannot penetrate them effectively.
+        <br>
+        <em>Solution:</em> Do not buy a "Range Extender" (they halve your speed). Buy a "Mesh System" (Deco, Eero) to blanket the house.`,
+        level: 2
+      },
+      {
+        id: 'logistics-delivery',
+        title: 'Logistics: The "Rider is Not Picking" Crisis',
+        content: `<strong>The Saturday Morning Logistics Hell:</strong>
+        <br>
+        You have a customer waiting. You booked a rider. He is not moving on the map. He is not picking calls.
+        <br><br>
+        <strong>The Protocol:</strong>
+        <br>
+        1. <strong>Diversify:</strong> Never rely on one app (Gokada/Uber/Bolt). Have 3 logistics apps installed.
+        <br>
+        2. <strong>The "Waybill" Scam:</strong> If sending inter-state, never send expensive items via "unregistered" park drivers. They have no tracking. Use registered logistics firms (GIG, ABC) even if they cost ₦2k more. The peace of mind is worth it.
+        <br>
+        3. <strong>Insurance:</strong> If sending a MacBook or iPhone, DECLARE the value. Pay the extra 1% insurance premium. If the rider vanishes (it happens), the company is liable only if you declared the value.`,
+        level: 2
+      },
+      {
+        id: 'tech-repair',
+        title: 'Hardware: Surviving Computer Village',
+        content: `<strong>The Valley of the Shadow of Death (Otigba Street):</strong>
+        <br>
+        Computer Village (Ikeja) is where devices go to be resurrected or stripped for parts.
+        <br><br>
+        <strong>Rules of Engagement:</strong>
+        <br>
+        1. <strong>Never "Follow" a Tout:</strong> The guys catcalling you at the entrance ("Phone repair! Laptop charger!") are middlemen. They will take your device to a shop, add ₦10k to the bill, and delay you. Walk past them with a frown.
+        <br>
+        2. <strong>Mark Your Parts:</strong> Unscrupulous engineers swap original batteries/screens for fakes. Before you hand over your laptop, take a photo of the serial number. If possible, ask to watch them while they work.
+        <br>
+        3. <strong>The "London Used" Myth:</strong> 90% of "London Used" phones are refurbished units from China. Check the battery health and True Tone (for iPhones) immediately.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'What is the best ISP in Lagos?',
+        answer: 'There is no "best" ISP, only the best ISP for *your street*. FiberOne might be excellent in Surulere and terrible in Yaba. Ask your immediate neighbors what they use before you pay for installation.'
+      },
+      {
+        question: 'How do I report a fake bank transfer?',
+        answer: 'If someone sends you a fake alert (money not in balance), do not release the goods. Wait for the "Credit Alert" SMS to be backed up by a balance update in your mobile app. SMS can be spoofed; app balances cannot.'
+      },
+      {
+        question: 'My inverter batteries are swelling. Why?',
+        answer: 'Overcharging. Your inverter\'s charging current is too high for the battery bank, or the batteries are old and "gassing." Disconnect them immediately to prevent an explosion risk. Call a technician.'
+      }
+    ]
+  },
+  'beginner-help': {
+    id: 'guide_beginner_help',
+    slug: 'beginner-help',
+    title: 'Beginner Help Center: Where Do I Even Start?',
+    excerpt: 'Overwhelmed by jargon? Confused by roadmaps? This is your safe space. We break down the absolute basics of the Nigerian tech scene, from "What is code?" to "Do I need a laptop?"',
+    category: 'Getting Started',
+    readTime: '30 min',
+    publishDate: 'May 15, 2026',
+    lastUpdated: 'May 15, 2026',
+    author: {
+      name: 'Simi "The First Step" Adebayo',
+      title: 'Community Manager',
+      bio: 'Simi specializes in onboarding absolute beginners. She remembers what it felt like to not know what "API" meant and has dedicated her career to making tech accessible.',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Simi Adebayo',
+      rating: 4.8,
+      articlesCount: 25,
+      verified: true,
+      expertise: ['Tech Literacy', 'Bootcamp Selection', 'Digital Basics'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'A laptop and notebook on a clean desk, representing the start of a learning journey',
+    tableOfContents: [
+      { id: 'laptop-specs', title: 'The Laptop Question: What Do You Actually Need?', level: 2 },
+      { id: 'power-internet', title: 'Infrastructure: Power & Data for Learners', level: 2 },
+      { id: 'tech-jargon', title: 'Terminology Decoder: Speaking the Language', level: 2 },
+      { id: 'learning-path', title: 'Free vs. Paid: Choosing Your Classroom', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'laptop-specs',
+        title: 'The Laptop Question: What Do You Actually Need?',
+        content: `<strong>Do I need a MacBook?</strong>
+        <br>
+        Short answer: No.
+        <br>
+        Long answer: While MacBooks are great, a used Dell Latitude or HP EliteBook (Core i5, 8th Gen, 16GB RAM) will cost you ₦250k instead of ₦1.5M and will do the job perfectly for the first 2 years.
+        <br><br>
+        <strong>Minimum Specs for 2026:</strong>
+        <br>
+        - <strong>RAM:</strong> 16GB (Do not compromise here. Chrome + VS Code eats RAM).
+        <br>
+        - <strong>Storage:</strong> 256GB SSD (HDD is too slow).
+        <br>
+        - <strong>Processor:</strong> Intel Core i5 (8th Gen+) or AMD Ryzen 5.`,
+        level: 2
+      },
+      {
+        id: 'power-internet',
+        title: 'Infrastructure: Power & Data for Learners',
+        content: `<strong>The "Up NEPA" Reality:</strong>
+        <br>
+        You cannot code if your laptop is dead.
+        <br>
+        <em>Budget Setup:</em> A 20,000mAh Power Bank (for your router) + a laptop with a healthy battery.
+        <br>
+        <em>Pro Setup:</em> A small "Generator" (Lithium Power Station) like EcoFlow or Bluetti. It costs ₦300k but keeps you online for 6 hours.
+        <br><br>
+        <strong>Data Plans:</strong>
+        <br>
+        Do not use your main line for data. Buy a dedicated Mifi. MTN 5G is great, but Airtel 4G is often more stable in residential areas. Test both.`,
+        level: 2
+      },
+      {
+        id: 'tech-jargon',
+        title: 'Terminology Decoder: Speaking the Language',
+        content: `<strong>Frontend vs. Backend:</strong>
+        <br>
+        <em>Frontend:</em> The part of the website you see (Buttons, Colors).
+        <br>
+        <em>Backend:</em> The part you don't see (Databases, Servers).
+        <br><br>
+        <strong>Full Stack:</strong> Someone who does both. (Jack of all trades).
+        <br><br>
+        <strong>Bug:</strong> An error in your code. You will spend 50% of your time fixing these.`,
+        level: 2
+      },
+      {
+        id: 'learning-path',
+        title: 'Free vs. Paid: Choosing Your Classroom',
+        content: `<strong>YouTube (Free):</strong>
+        <br>
+        Pros: Free. Cons: No structure. You can get lost in "Tutorial Hell."
+        <br><br>
+        <strong>Bootcamps (Paid - AltSchool, Decagon):</strong>
+        <br>
+        Pros: Structure, Mentorship, Community. Cons: Expensive (₦300k+).
+        <br><br>
+        <strong>Recommendation:</strong> Start with FreeCodeCamp (Free). If you stick with it for 1 month, <em>then</em> consider paying for a bootcamp.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Can I learn on my phone?',
+        answer: 'You can watch tutorials on your phone, but you cannot *code* effectively on a phone. You need a keyboard and a proper screen. Get a cheap laptop.'
+      },
+      {
+        question: 'Is it too late to start?',
+        answer: 'No. The best time to plant a tree was 20 years ago. The second best time is now. Tech is a skill-based industry; nobody cares about your age if you can write the code.'
+      },
+      {
+        question: 'Do I need a degree?',
+        answer: 'For most remote jobs and startups? No. They want to see your GitHub (Portfolio). For traditional Nigerian banks? Sometimes, yes. But the trend is changing.'
+      }
+    ]
+  },
+  'smartphones': {
+    id: 'howto_smartphones',
+    slug: 'smartphones',
+    title: 'The Nigerian Smartphone Survival Guide: Buying, Security & Data',
+    excerpt: 'Your phone is your life—your bank, your office, and your connection to the world. Learn how to buy the right one without getting scammed, protect your bank account from thieves, and manage data like a pro.',
+    category: 'Technology & Digital Life',
+    readTime: '45 min',
+    publishDate: 'May 20, 2026',
+    lastUpdated: 'May 20, 2026',
+    author: {
+      name: 'Fisayo "The Gadget King" Olayinka',
+      title: 'Tech Reviewer & Security Consultant',
+      bio: 'Fisayo has reviewed over 500 smartphones for the Nigerian market. He knows the difference between "UK Used" and "Stolen", and teaches people how to secure their digital lives against street theft.',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Fisayo Olayinka',
+      rating: 4.9,
+      articlesCount: 88,
+      verified: true,
+      expertise: ['Mobile Security', 'Consumer Electronics', 'Data Management'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1556656793-02715d8dd6f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'A person holding a modern smartphone with a blurred city background, representing connectivity',
+    tableOfContents: [
+      { id: 'buying-guide', title: 'Buying: Brand New vs. "London Used"', level: 2 },
+      { id: 'android-vs-ios', title: 'The Great Debate: Android vs. iOS in Nigeria', level: 2 },
+      { id: 'theft-protection', title: 'Security: Preventing the "Empty Bank Account" Nightmare', level: 2 },
+      { id: 'data-management', title: 'Data: How to Stop Burning Airtime', level: 2 },
+      { id: 'essential-apps', title: 'The Survival Kit: Must-Have Apps', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'buying-guide',
+        title: 'Buying: Brand New vs. "London Used"',
+        content: `<strong>The Market Reality:</strong>
+        <br>
+        In Nigeria, buying a phone is an investment. You are not just buying a device; you are buying reliability.
+        <br><br>
+        <strong>1. Brand New (Boxed):</strong>
+        <br>
+        <em>Where to buy:</em> Slot, Pointek, Jumia (Official Stores), or Authorized Resellers.
+        <br>
+        <em>Pros:</em> 12-month warranty, peace of mind, pristine battery.
+        <br>
+        <em>Cons:</em> Most expensive option. Depreciates by 30% the moment you open the box.
+        <br><br>
+        <strong>2. "London Used" (UK Used):</strong>
+        <br>
+        This is the most popular category. These are pre-owned phones imported from Europe/US.
+        <br>
+        <em>The Good:</em> You can get a flagship phone (like an iPhone 13 Pro) for the price of a mid-range new phone.
+        <br>
+        <em>The Bad:</em> Battery health is often degraded (80-85%). Screens might have been replaced with non-original parts (True Tone missing).
+        <br>
+        <em>The Ugly:</em> Some "UK Used" phones are actually stolen or refurbished in China with low-quality parts.
+        <br><br>
+        <strong>3. Computer Village Protocols:</strong>
+        <br>
+        If you must buy from Computer Village (Ikeja):
+        <br>
+        - Go with a referral.
+        <br>
+        - <strong>Check the IMEI:</strong> Dial *#06# and check the number on an IMEI checker site to ensure it's not blacklisted.
+        <br>
+        - <strong>Test EVERYTHING:</strong> FaceID, Cameras, Speakers, Charging Port, and Network Reception before you pay.`,
+        level: 2
+      },
+      {
+        id: 'android-vs-ios',
+        title: 'The Great Debate: Android vs. iOS in Nigeria',
+        content: `It is not just about preference; it is about utility in the Nigerian context.
+        <br><br>
+        <strong>The Case for iPhone (iOS):</strong>
+        <br>
+        - <strong>Resale Value:</strong> An iPhone is liquid cash. You can buy an iPhone 11 today and sell it for nearly the same price in 6 months.
+        <br>
+        - <strong>Social Capital:</strong> Sadly, in some Nigerian circles, blue bubbles and FaceTime matter for business and networking.
+        <br>
+        - <strong>Accessories:</strong> Cases and screen guards are available on every street corner.
+        <br><br>
+        <strong>The Case for Android (Samsung, Xiaomi, Transsion):</strong>
+        <br>
+        - <strong>Battery Life:</strong> Many Androids come with 5000mAh+ batteries, which is essential when NEPA takes the light.
+        <br>
+        - <strong>File Management:</strong> Easier to transfer files to/from Windows laptops without iTunes headaches.
+        <br>
+        - <strong>Dual SIM:</strong> Physical Dual SIM support is standard, unlike iPhones which often require e-SIM for the second line (which can be tricky to set up).`,
+        level: 2
+      },
+      {
+        id: 'theft-protection',
+        title: 'Security: Preventing the "Empty Bank Account" Nightmare',
+        content: `<strong>The Threat:</strong>
+        <br>
+        Thieves do not just want your phone hardware anymore; they want your SIM card. With your SIM, they can reset your bank app passwords and empty your account in minutes.
+        <br><br>
+        <strong>Mandatory Security Steps:</strong>
+        <br>
+        1. <strong>SIM PIN (Critical):</strong>
+        <br>
+        Go to Settings > Mobile Data > SIM PIN. Set a 4-digit PIN.
+        <br>
+        <em>Why?</em> If your phone is stolen and they put your SIM in another phone, it will ask for the PIN. They cannot receive OTPs without it.
+        <br><br>
+        2. <strong>App Lock:</strong>
+        <br>
+        Use "App Lock" (Android) or "Screen Time" restrictions (iOS) to lock your Banking, Email, and Photos apps. They should require FaceID/Fingerprint to open.
+        <br><br>
+        3. <strong>Disable Control Center on Lock Screen:</strong>
+        <br>
+        Thieves put stolen phones in "Airplane Mode" immediately to stop tracking. Disable access to Control Center when the phone is locked.
+        <br><br>
+        4. <strong>Link a Backup Number:</strong>
+        <br>
+        Ensure your bank alerts also go to an email address or a backup phone number that is kept safe at home.`,
+        level: 2
+      },
+      {
+        id: 'data-management',
+        title: 'Data: How to Stop Burning Airtime',
+        content: `<strong>The "Data Disappearance" Mystery:</strong>
+        <br>
+        "I just loaded 10GB and it finished in 2 days!" Here is why and how to fix it.
+        <br><br>
+        <strong>1. Turn Off Wi-Fi Assist (iOS):</strong>
+        <br>
+        This feature silently uses your mobile data when Wi-Fi is poor. Turn it OFF in Mobile Data settings.
+        <br><br>
+        <strong>2. Restrict Background Data:</strong>
+        <br>
+        Instagram and TikTok pre-load videos in the background. Go to Settings and turn off "Background App Refresh" for social media apps.
+        <br><br>
+        <strong>3. Offline Maps:</strong>
+        <br>
+        Download the map of your city (e.g., Lagos) on Google Maps while on Wi-Fi. This saves data when navigating and works even when the network is bad.
+        <br><br>
+        <strong>4. Updates:</strong>
+        <br>
+        Set App Store and Play Store to "Auto-update over Wi-Fi only". A single iOS update can be 2GB.`,
+        level: 2
+      },
+      {
+        id: 'essential-apps',
+        title: 'The Survival Kit: Must-Have Apps',
+        content: `<strong>Fintech Backups:</strong>
+        <br>
+        Have at least two bank apps. If GTBank is down, use OPay or PalmPay. They are often faster and more reliable for transfers.
+        <br><br>
+        <strong>Logistics:</strong>
+        <br>
+        Install Uber, Bolt, and Indrive. Compare prices. Indrive allows you to negotiate, which is useful during surges.
+        <br><br>
+        <strong>Utility:</strong>
+        <br>
+        - <strong>Truecaller:</strong> Essential for identifying spam calls and scammers.
+        <br>
+        - <strong>Google Photos:</strong> Backup your photos automatically. If your phone is stolen, your memories are safe.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'What is the best phone under ₦200k?',
+        answer: 'Markets change weekly, but generally, a clean "UK Used" iPhone X/XR or a new Xiaomi Redmi Note series offers the best value in this range. Check battery health first.'
+      },
+      {
+        question: 'My phone fell in water. What do I do?',
+        answer: 'DO NOT put it in rice (it is a myth and dust damages the ports). Turn it off immediately. Do not charge it. Take it to a professional repairer to open and dry it out with alcohol.'
+      },
+      {
+        question: 'How do I spot a fake charger?',
+        answer: 'Fake chargers are lighter and often get extremely hot. They can damage your battery controller chip (U2 IC on iPhone). Buy from reputable brands like Anker, Oraimo, or original box accessories.'
+      }
+    ]
+  },
+  'fix-phone': {
+    id: 'howto_fix_phone',
+    slug: 'fix-phone',
+    title: 'DIY Phone Repair: Fix It Yourself or Pay a Pro?',
+    excerpt: 'Screen shattered? Battery draining fast? Charging port loose? Before you rush to Computer Village, learn what you can fix at home and how to avoid being cheated by repair technicians.',
+    category: 'Technology & Digital Life',
+    readTime: '35 min',
+    publishDate: 'May 22, 2026',
+    lastUpdated: 'May 22, 2026',
+    author: {
+      name: 'Chuka "The Engineer" Obi',
+      title: 'Hardware Repair Specialist',
+      bio: 'Chuka started fixing phones in Yaba market 10 years ago. He now runs a certified repair lab and teaches people how to distinguish between original screens and "copy" screens.',
+      image: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Chuka Obi',
+      rating: 4.8,
+      articlesCount: 30,
+      verified: true,
+      expertise: ['Hardware Repair', 'Soldering', 'Component Sourcing'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'A technician repairing a smartphone with precision tools',
+    tableOfContents: [
+      { id: 'diagnosis-101', title: 'Diagnosis: Is it Hardware or Software?', level: 2 },
+      { id: 'charging-woes', title: 'Charging Issues: It Might Just Be Dust', level: 2 },
+      { id: 'broken-screens', title: 'Screens: Glass Only vs. Full Assembly', level: 2 },
+      { id: 'water-damage', title: 'Water Damage: Stop Using Rice!', level: 2 },
+      { id: 'choosing-technician', title: 'The Repair Shop Survival Guide', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'diagnosis-101',
+        title: 'Diagnosis: Is it Hardware or Software?',
+        content: `<strong>The "Restart" Rule:</strong>
+        <br>
+        Before you panic, restart the phone. 30% of "glitches" (frozen screen, app crashes, no network) are solved by a simple reboot.
+        <br><br>
+        <strong>Safe Mode (Android):</strong>
+        <br>
+        If your phone is acting crazy (ads popping up, overheating), boot into Safe Mode.
+        <br>
+        <em>How:</em> Hold Power > Long press "Power Off" on the screen > Tap "Safe Mode".
+        <br>
+        If the problem stops in Safe Mode, a bad app is causing it. Uninstall the last 3 apps you downloaded.
+        <br><br>
+        <strong>Factory Reset:</strong>
+        <br>
+        The nuclear option. If the phone is slow or buggy, back up your data and reset. If the problem persists after a reset, it is definitely hardware.`,
+        level: 2
+      },
+      {
+        id: 'charging-woes',
+        title: 'Charging Issues: It Might Just Be Dust',
+        content: `<strong>The Lint Problem:</strong>
+        <br>
+        You plug in your charger, and it doesn't click. Or it only charges at a specific angle.
+        <br>
+        <em>The Fix:</em> 90% of the time, this is pocket lint compacted in the port.
+        <br>
+        1. Turn off the phone.
+        <br>
+        2. Use a wooden toothpick (NOT metal - metal shorts the pins).
+        <br>
+        3. Gently scrape the bottom of the port. You will be shocked at how much lint comes out.
+        <br><br>
+        <strong>The Cable Test:</strong>
+        <br>
+        Always try a different cable and brick before condemning the phone. Nigerian voltage fluctuations often kill the charging brick, not the phone.`,
+        level: 2
+      },
+      {
+        id: 'broken-screens',
+        title: 'Screens: Glass Only vs. Full Assembly',
+        content: `<strong>Know the Difference:</strong>
+        <br>
+        1. <strong>Glass Only:</strong> The screen is cracked, but the picture is perfect and touch works everywhere.
+        <br>
+        <em>Repair Cost:</em> Cheap (₦15k - ₦30k). The technician just slices off the top glass.
+        <br><br>
+        2. <strong>LCD/OLED Panel (Full Assembly):</strong> There are black spots (ink), vertical lines, or parts of the screen don't respond to touch.
+        <br>
+        <em>Repair Cost:</em> Expensive (₦40k - ₦300k). You need a whole new screen module.
+        <br><br>
+        <strong>The "Copy" Screen Trap:</strong>
+        <br>
+        Technicians will offer you "Original" or "Copy".
+        <br>
+        - <em>Copy (OLED/LCD):</em> Cheaper, but colors look washed out, battery drains faster, and it breaks easily.
+        <br>
+        - <em>Original (Pull-out):</em> Taken from a dead phone. Best quality but expensive. Always insist on "Pull-out" if you can afford it.`,
+        level: 2
+      },
+      {
+        id: 'water-damage',
+        title: 'Water Damage: Stop Using Rice!',
+        content: `<strong>The Rice Myth:</strong>
+        <br>
+        Rice does <strong>NOT</strong> dry your phone fast enough. It also introduces starch dust into the charging port, creating a cement-like paste.
+        <br><br>
+        <strong>The Correct Protocol:</strong>
+        <br>
+        1. <strong>Turn it OFF immediately.</strong> Do not check if it works. Electricity + Water = Corrosion.
+        <br>
+        2. Remove SIM and SD card.
+        <br>
+        3. <strong>Dry it:</strong> Place it in front of a fan (cool air, not hot blow dryer) for 24 hours.
+        <br>
+        4. <strong>Silica Gel:</strong> If you have those little packets from shoe boxes, put the phone in a sealed bag with them. They actually absorb moisture.
+        <br>
+        5. <strong>The Shop:</strong> Even if it turns on, take it to a shop for an "Alcohol Bath" to clean the motherboard corrosion.`,
+        level: 2
+      },
+      {
+        id: 'choosing-technician',
+        title: 'The Repair Shop Survival Guide',
+        content: `<strong>Where to Go:</strong>
+        <br>
+        1. <strong>Carlcare (Transsion):</strong> The only place for Tecno/Infinix/Itel. Do not take these to random shops if under warranty.
+        <br>
+        2. <strong>Slot/Pointek:</strong> More expensive, but they have a reputation to protect.
+        <br>
+        3. <strong>Computer Village (The Wild West):</strong>
+        <br>
+        - <strong>Stand and Watch:</strong> NEVER leave your phone. "Come back in 1 hour" means "I am swapping your original battery for a fake one."
+        <br>
+        - <strong>Mark Your Parts:</strong> Use a marker to put a dot on your battery or internal components if they open it in front of you.
+        <br>
+        - <strong>Test Before Pay:</strong> Check the proximity sensor (does screen go dark during calls?), FaceID, and True Tone after a screen replacement.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'My battery drains fast. Do I need a new one?',
+        answer: 'Check Battery Health (iOS) or use AccuBattery (Android). If health is below 80%, change it. If it is above 85%, the issue is likely a rogue app (Facebook, TikTok) running in the background.'
+      },
+      {
+        question: 'How much is iPhone 12 screen?',
+        answer: 'Prices fluctuate with the Dollar. As of 2026, an original OLED is approx ₦120k. A "copy" is ₦60k. We strongly recommend the original for OLED iphones.'
+      },
+      {
+        question: 'Can I unlock a cloud-locked phone?',
+        answer: 'No. Anyone promising to unlock an iCloud/Google locked phone for ₦5k is a scammer. They will take your money and block you. These locks are server-side security.'
+      }
+    ]
+  },
+  'install-apps': {
+    id: 'howto_install_apps',
+    slug: 'install-apps',
+    title: 'The Safe App Guide: APKs, Xender, and Avoiding Malware',
+    excerpt: 'Stop! Before you Xender that app from your friend or download a "Free Netflix" APK, read this. We explain how to install apps safely, avoid loan shark spyware, and save data with Lite versions.',
+    category: 'Technology & Digital Life',
+    readTime: '30 min',
+    publishDate: 'May 24, 2026',
+    lastUpdated: 'May 24, 2026',
+    author: {
+      name: 'Zainab "The Firewall" Ahmed',
+      title: 'Cybersecurity Analyst',
+      bio: 'Zainab specializes in mobile privacy and digital rights. She has reverse-engineered dozens of "Quick Loan" apps to expose how they scrape your contact lists and gallery without permission.',
+      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Zainab Ahmed',
+      rating: 4.9,
+      articlesCount: 45,
+      verified: true,
+      expertise: ['Mobile Security', 'Privacy Law', 'Malware Analysis'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Smartphone screen displaying various application icons',
+    tableOfContents: [
+      { id: 'xender-risk', title: 'The Xender/FlashShare Risk: Stop Sharing Viruses', level: 2 },
+      { id: 'loan-sharks', title: 'Spyware Alert: How Loan Apps Steal Your Data', level: 2 },
+      { id: 'lite-apps', title: 'Data Saving: The Magic of "Lite" Apps', level: 2 },
+      { id: 'sideloading', title: 'Sideloading: How to Install APKs Safely', level: 2 },
+      { id: 'bloatware', title: 'Bloatware: Cleaning Your Tecno/Infinix', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'xender-risk',
+        title: 'The Xender/FlashShare Risk: Stop Sharing Viruses',
+        content: `<strong>The "Pass Me That App" Culture:</strong>
+        <br>
+        In Nigeria, data is expensive. So, we use Xender or FlashShare to send apps to each other.
+        <br>
+        <em>The Danger:</em> When you receive an app via Xender, you are trusting not just the app developer, but also the person sending it. If their phone is infected, yours will be too.
+        <br><br>
+        <strong>The Rule:</strong>
+        <br>
+        Only Xender large files (Movies, Videos). <strong>NEVER</strong> Xender executable apps (.apk). Always download fresh from the Play Store or App Store. It costs 50MB of data, but it saves you from formatting your phone later.`,
+        level: 2
+      },
+      {
+        id: 'loan-sharks',
+        title: 'Spyware Alert: How Loan Apps Steal Your Data',
+        content: `<strong>The "Quick Cash" Trap:</strong>
+        <br>
+        You see an ad: "Get ₦50,000 in 5 minutes! No collateral!" You install the app. It asks for permission to access your "Contacts" and "Gallery".
+        <br><br>
+        <strong>What Happens Next:</strong>
+        <br>
+        The moment you click "Allow", the app uploads your entire contact list and your photos to their server.
+        <br>
+        If you are one day late on repayment, they will send defamatory messages ("This person is a chronic debtor/criminal") to your boss, your mother, and your pastor.
+        <br><br>
+        <strong>Protection:</strong>
+        <br>
+        Never grant "Contacts" permission to a finance app unless it is a registered bank (GTB, Kuda, etc.). If a loan app demands your contacts, uninstall it immediately. It is illegal under NDPR regulations.`,
+        level: 2
+      },
+      {
+        id: 'lite-apps',
+        title: 'Data Saving: The Magic of "Lite" Apps',
+        content: `<strong>Why Your Data Finishes Fast:</strong>
+        <br>
+        Standard apps (Facebook, Instagram, Uber) are data vampires. They run in the background, auto-play videos, and track your location constantly.
+        <br><br>
+        <strong>The Solution: Go Lite.</strong>
+        <br>
+        Most major companies have "Lite" versions built specifically for markets like Nigeria with slow internet and expensive data.
+        <br>
+        - <strong>Facebook Lite:</strong> Uses 80% less data. Works on 2G.
+        <br>
+        - <strong>Uber Lite:</strong> Loads maps faster.
+        <br>
+        - <strong>YouTube Go:</strong> Allows you to download videos at specific resolutions (low quality) to watch later.
+        <br>
+        <em>Bonus:</em> They take up less space on your phone (2MB vs 100MB).`,
+        level: 2
+      },
+      {
+        id: 'sideloading',
+        title: 'Sideloading: How to Install APKs Safely',
+        content: `<strong>When the Play Store Says "Not Available in Your Country":</strong>
+        <br>
+        Sometimes you need an app (like Spotify before it launched here, or a specific game) that isn't in the Nigerian store.
+        <br><br>
+        <strong>The Safe Way (APKMirror):</strong>
+        <br>
+        Do not Google "Free Minecraft APK". You will get a virus.
+        <br>
+        Use <strong>APKMirror.com</strong>. It is verified and safe. They check the cryptographic signature of every app to ensure it hasn't been tampered with.
+        <br><br>
+        <strong>The Protocol:</strong>
+        <br>
+        1. Download the APK from APKMirror.
+        <br>
+        2. Scan it with an antivirus (or upload to VirusTotal.com) just to be sure.
+        <br>
+        3. Install.
+        <br>
+        4. Turn off "Install from Unknown Sources" immediately after you are done.`,
+        level: 2
+      },
+      {
+        id: 'bloatware',
+        title: 'Bloatware: Cleaning Your Tecno/Infinix',
+        content: `<strong>The Ad Nightmare:</strong>
+        <br>
+        Transsion phones (Tecno, Infinix, Itel) are great value, but they come with a lot of "Bloatware" - apps you didn't ask for (Palm Store, AHA Games, Phoenix Browser) that send spam notifications.
+        <br><br>
+        <strong>How to Silence Them:</strong>
+        <br>
+        You often cannot uninstall them, but you can <strong>Disable</strong> them.
+        <br>
+        1. Go to Settings > Apps.
+        <br>
+        2. Find the annoying app (e.g., Palm Store).
+        <br>
+        3. Click "Disable".
+        <br>
+        4. If you can't disable it, click "Notifications" and turn them OFF. Peace at last.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Is GBWhatsApp safe?',
+        answer: 'Short answer: No. GBWhatsApp violates WhatsApp\'s Terms of Service. WhatsApp can (and does) permanently ban phone numbers using it. Also, your messages are not end-to-end encrypted, meaning the developer could technically read them.'
+      },
+      {
+        question: 'Why does my phone say "App not installed"?',
+        answer: 'This usually means the APK is corrupt, or it is not compatible with your Android version (e.g., trying to install an Android 14 app on Android 10). Download a compatible version.'
+      },
+      {
+        question: 'Do I need an Antivirus on Android?',
+        answer: 'If you only download from Play Store, no. Google Play Protect handles it. If you download APKs or use Xender often, yes. Malwarebytes is a good option.'
+      }
+    ]
+  },
+  'software': {
+    id: 'howto_software',
+    slug: 'software',
+    title: 'Essential Software Survival Kit: Windows, Office, and Free Alternatives',
+    excerpt: 'Stop using cracked software that fills your PC with malware. Discover the best free alternatives to Microsoft Office, how to handle PDFs like a pro, and why "SmadAV" is not enough.',
+    category: 'Technology & Digital Life',
+    readTime: '35 min',
+    publishDate: 'May 26, 2026',
+    lastUpdated: 'May 26, 2026',
+    author: {
+      name: 'Emeka "The SysAdmin" Nwachukwu',
+      title: 'IT Support Lead',
+      bio: 'Emeka has spent 15 years cleaning viruses off office laptops in Lagos. He is on a crusade to stop people from using "KMS Pico" and believes that Windows Defender is underrated.',
+      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Emeka Nwachukwu',
+      rating: 4.7,
+      articlesCount: 60,
+      verified: true,
+      expertise: ['Windows Administration', 'Open Source Software', 'Cyber Hygiene'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Code on a computer screen representing software development',
+    tableOfContents: [
+      { id: 'windows-activation', title: 'Windows: The "Activate Windows" Watermark', level: 2 },
+      { id: 'office-alternatives', title: 'Office 365 vs. WPS vs. Google Docs', level: 2 },
+      { id: 'pdf-tools', title: 'PDFs: Stop Paying for Acrobat', level: 2 },
+      { id: 'antivirus-myth', title: 'Antivirus: Why SmadAV is Not Enough', level: 2 },
+      { id: 'video-calls', title: 'Zoom vs. Teams: Saving Your Data', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'windows-activation',
+        title: 'Windows: The "Activate Windows" Watermark',
+        content: `<strong>The "KMS Pico" Trap:</strong>
+        <br>
+        Many Nigerian technicians will "crack" your Windows using a tool called KMS Pico.
+        <br>
+        <em>The Danger:</em> 90% of these activators contain "botnet" malware. They use your laptop's power to mine crypto or attack other computers in the background. This is why your laptop fan is always screaming.
+        <br><br>
+        <strong>The Solution:</strong>
+        <br>
+        1. <strong>Ignore the Watermark:</strong> You can use Windows 10/11 forever without activating. You just can't change your wallpaper. It is better than a virus.
+        <br>
+        2. <strong>OEM Keys:</strong> You can buy cheap "OEM" keys (₦5k-₦10k) from reputable sites. These are legal grey-market keys from scrapped corporate PCs.`,
+        level: 2
+      },
+      {
+        id: 'office-alternatives',
+        title: 'Office 365 vs. WPS vs. Google Docs',
+        content: `<strong>Microsoft Office is Expensive:</strong>
+        <br>
+        Paying ₦40k/year for Word/Excel is hard for students and freelancers.
+        <br><br>
+        <strong>1. WPS Office (The Nigerian Favorite):</strong>
+        <br>
+        <em>Pros:</em> It looks exactly like Word. Opens everything.
+        <br>
+        <em>Cons:</em> The ADS! Every time you save, it tries to sell you premium.
+        <br><br>
+        <strong>2. Google Docs/Sheets (The Professional Choice):</strong>
+        <br>
+        <em>Pros:</em> Free. Autosaves to the cloud (never lose work to NEPA again). Real-time collaboration.
+        <br>
+        <em>Cons:</em> Needs internet to start (but can work offline if set up).
+        <br><br>
+        <strong>3. LibreOffice:</strong>
+        <br>
+        The open-source hero. Totally free, no ads, but the interface looks like it is from 2005.`,
+        level: 2
+      },
+      {
+        id: 'pdf-tools',
+        title: 'PDFs: Stop Paying for Acrobat',
+        content: `<strong>The Scenario:</strong>
+        <br>
+        You need to merge two PDFs, sign a contract, or convert Word to PDF. Adobe wants a monthly subscription.
+        <br><br>
+        <strong>Free Tools:</strong>
+        <br>
+        - <strong>iLovePDF.com:</strong> The holy grail. Merge, Split, Compress, Sign. All free.
+        <br>
+        - <strong>Microsoft Edge:</strong> Surprisingly, Edge is the best free PDF reader. You can draw, highlight, and read aloud.
+        <br>
+        - <strong>Google Drive:</strong> Upload a PDF, right-click > "Open with Google Docs". It converts the PDF text to editable text. Magic.`,
+        level: 2
+      },
+      {
+        id: 'antivirus-myth',
+        title: 'Antivirus: Why SmadAV is Not Enough',
+        content: `<strong>The USB Virus Era:</strong>
+        <br>
+        SmadAV was great in 2010 for shortcut viruses on flash drives. In 2026, it is useless against ransomware and modern trojans.
+        <br><br>
+        <strong>Windows Defender (Security):</strong>
+        <br>
+        It comes free with Windows. It is now one of the best antiviruses in the world.
+        <br>
+        <em>Rule:</em> You do NOT need a 3rd party antivirus (Avast, Norton) if you keep Windows updated. They just slow down your PC.
+        <br><br>
+        <strong>Malwarebytes:</strong>
+        <br>
+        Keep the free version installed. Run a scan once a month to catch "Adware" (annoying browser popups) that Defender might miss.`,
+        level: 2
+      },
+      {
+        id: 'video-calls',
+        title: 'Zoom vs. Teams: Saving Your Data',
+        content: `<strong>The Data Consumption Leaderboard (1 Hour Call):</strong>
+        <br>
+        1. <strong>Zoom (HD):</strong> ~1.5GB. (Data Hog)
+        <br>
+        2. <strong>Microsoft Teams:</strong> ~1.2GB. (Heavy)
+        <br>
+        3. <strong>Google Meet:</strong> ~800MB. (Efficient)
+        <br>
+        4. <strong>WhatsApp Video:</strong> ~300MB. (Potato Quality but cheap)
+        <br><br>
+        <strong>Optimization Tip:</strong>
+        <br>
+        Turn off your video if you are just listening. It reduces data usage by 90%. Use a virtual background to hide your unmade bed, but be aware it uses more CPU (battery).`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Is it safe to use cracked software?',
+        answer: 'No. "Nothing goes for nothing." The person who cracked that software put something inside it. Usually a keylogger (to steal passwords) or a miner. Use free open-source alternatives instead.'
+      },
+      {
+        question: 'How do I unzip files without WinRAR?',
+        answer: 'Windows 11 handles .zip and .rar files natively now. You do not need WinRAR anymore. If you need a power tool, use 7-Zip. It is free, open-source, and does not nag you to buy it.'
+      },
+      {
+        question: 'My laptop is slow. Should I install a "Cleaner"?',
+        answer: 'No! "PC Cleaners" (like CCleaner) are mostly snake oil today. Windows manages its own RAM and registry fine. To speed up a PC, uninstall unused apps and disable "Startup Apps" in Task Manager.'
+      }
+    ]
+  },
+  'build-website': {
+    id: 'howto_build_website',
+    slug: 'build-website',
+    title: 'Building a Website in Nigeria: Domains, Hosting & Payments',
+    excerpt: 'Want to launch your business online? Learn how to buy a .ng domain, choose between local and international hosting without a dollar card, and accept payments via Paystack.',
+    category: 'Technology & Digital Life',
+    readTime: '40 min',
+    publishDate: 'May 28, 2026',
+    lastUpdated: 'May 28, 2026',
+    author: {
+      name: 'Tola "The Web" Adegoke',
+      title: 'Senior Web Developer',
+      bio: 'Tola helps Nigerian SMEs get online. She knows which hosting companies have 24/7 support that actually answers, and how to set up an e-commerce store with zero coding knowledge.',
+      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Tola Adegoke',
+      rating: 4.9,
+      articlesCount: 55,
+      verified: true,
+      expertise: ['WordPress', 'E-commerce', 'SEO'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Laptop displaying website code and design interface',
+    tableOfContents: [
+      { id: 'domain-names', title: 'Domains: .com vs .ng', level: 2 },
+      { id: 'hosting-choices', title: 'Hosting: Paying in Naira vs. Dollars', level: 2 },
+      { id: 'cms-options', title: 'The Engine: WordPress vs. Wix', level: 2 },
+      { id: 'payments', title: 'Getting Paid: Paystack & Flutterwave', level: 2 },
+      { id: 'mobile-first', title: 'Design: The "Opera Mini" Reality', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'domain-names',
+        title: 'Domains: .com vs .ng',
+        content: `<strong>The .com Standard:</strong>
+        <br>
+        It is global, recognized everywhere, and costs about $10-$15/year (approx ₦15k-₦25k).
+        <br>
+        <em>Pros:</em> Trust. Everyone assumes a website ends in .com.
+        <br>
+        <em>Cons:</em> You usually need a Dollar card to buy it from major registrars like Namecheap or GoDaddy.
+        <br><br>
+        <strong>The .ng Advantage (NiRA):</strong>
+        <br>
+        The Nigerian identity. You can buy .ng or .com.ng.
+        <br>
+        - <strong>.com.ng:</strong> Very cheap (approx ₦1,500/year). Perfect for small businesses and personal blogs.
+        <br>
+        - <strong>.ng:</strong> Premium (approx ₦15k-₦20k). Shows you are a serious Nigerian corporate entity.
+        <br>
+        <em>Where to buy:</em> Use accredited registrars like WhoGoHost, QServers, or DomainKing. They accept Naira cards.`,
+        level: 2
+      },
+      {
+        id: 'hosting-choices',
+        title: 'Hosting: Paying in Naira vs. Dollars',
+        content: `<strong>The "Dollar Card" Barrier:</strong>
+        <br>
+        International hosts (Bluehost, SiteGround, HostGator) are excellent, but they charge in Dollars. With the CBN limits on Naira cards, paying $15/month is a headache. You might need a virtual dollar card (Chipper, Payday).
+        <br><br>
+        <strong>Local Hosting (Naira Payment):</strong>
+        <br>
+        Companies like WhoGoHost and QServers allow you to pay via bank transfer or USSD.
+        <br>
+        <em>The Latency Factor:</em> If your customers are in Lagos, a local server (or one in Europe) is faster than one in California.
+        <br>
+        <em>The Support Reality:</em> Local support is in your timezone. However, response times can vary. Test their live chat *before* you buy.`,
+        level: 2
+      },
+      {
+        id: 'cms-options',
+        title: 'The Engine: WordPress vs. Wix',
+        content: `<strong>WordPress (The King):</strong>
+        <br>
+        Powers 40% of the internet.
+        <br>
+        <em>Pros:</em> Free software (you only pay for hosting). Thousands of free plugins. Total control.
+        <br>
+        <em>Cons:</em> You need to update it regularly to avoid being hacked.
+        <br><br>
+        <strong>Wix / Squarespace (The luxury options):</strong>
+        <br>
+        Drag-and-drop builders. Beautiful templates.
+        <br>
+        <em>The Catch:</em> Very expensive in Naira (can be ₦30k+ per month). You don't own the site; if you stop paying, your site disappears.`,
+        level: 2
+      },
+      {
+        id: 'payments',
+        title: 'Getting Paid: Paystack & Flutterwave',
+        content: `<strong>No More "DM for Price":</strong>
+        <br>
+        If you sell online, you need a payment gateway.
+        <br><br>
+        <strong>Paystack vs. Flutterwave:</strong>
+        <br>
+        Both are fantastic Nigerian unicorns.
+        <br>
+        - <strong>Setup:</strong> Free. No monthly fees.
+        <br>
+        - <strong>Cost:</strong> They take 1.5% of local transactions (capped at ₦2,000).
+        <br>
+        - <strong>Integration:</strong> Both have free WordPress/WooCommerce plugins. You just copy-paste your API keys.
+        <br>
+        - <strong>Storefronts:</strong> Don't have a website yet? Use "Paystack Storefront" or "Flutterwave Store" to sell products for free.`,
+        level: 2
+      },
+      {
+        id: 'mobile-first',
+        title: 'Design: The "Opera Mini" Reality',
+        content: `<strong>The 90% Rule:</strong>
+        <br>
+        90% of your Nigerian visitors are on mobile phones. Many are using slow 3G/4G or data-saving browsers like Opera Mini.
+        <br><br>
+        <strong>Optimization Tips:</strong>
+        <br>
+        1. <strong>Compress Images:</strong> Never upload a 5MB photo. Use TinyPNG to shrink it to 100KB.
+        <br>
+        2. <strong>Avoid Heavy Animations:</strong> They kill battery and eat data. Keep it clean.
+        <br>
+        3. <strong>Test on Real Devices:</strong> Don't just resize your browser window. Open the site on a Tecno or Infinix phone to see the real experience.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Do I need to learn coding?',
+        answer: 'No. With WordPress + Elementor (a page builder), you can build a professional site by dragging and dropping elements. If you want a custom web app (like Uber), then yes, you need code.'
+      },
+      {
+        question: 'How much does a website cost in total?',
+        answer: 'Budget Breakdown (Year 1): Domain (.com.ng) ₦1,500 + Hosting (Local) ₦15,000 + WordPress (Free) = Approx ₦16,500. This is the cheapest route.'
+      },
+      {
+        question: 'Can I use a free domain?',
+        answer: 'Avoid free domains (like .tk). They look like scams, and Google hates them (bad SEO). Spend the ₦1,500 for a .com.ng.'
+      }
+    ]
+  },
+  'secure-accounts': {
+    id: 'howto_secure_accounts',
+    slug: 'secure-accounts',
+    title: 'Protect Your Digital Life: Securing Accounts & Preventing Hacks',
+    excerpt: 'In an age of digital banking and social media, your online identity is a target. Learn how to set up 2FA, create unbreakable passwords, and spot phishing scams before they bite.',
+    category: 'Security & Privacy',
+    readTime: '25 min',
+    publishDate: 'Jun 10, 2026',
+    lastUpdated: 'Jun 12, 2026',
+    author: {
+      name: 'Ibrahim "Cyber" Musa',
+      title: 'Cybersecurity Consultant',
+      bio: 'Ibrahim specializes in digital hygiene for everyday Nigerians. He teaches people how to lock down their WhatsApp against hijackers and secure their bank apps from intruders.',
+      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Ibrahim Musa',
+      rating: 4.9,
+      articlesCount: 42,
+      verified: true,
+      expertise: ['Cyber Hygiene', 'Ethical Hacking', 'Fraud Prevention'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Digital padlock on a circuit board background',
+    tableOfContents: [
+      { id: 'two-factor', title: 'The First Line of Defense: 2FA', level: 2 },
+      { id: 'password-hygiene', title: 'Password 123 is Not a Password', level: 2 },
+      { id: 'phishing-scams', title: 'Spotting the "Fake Alert"', level: 2 },
+      { id: 'social-media', title: 'Locking Down WhatsApp & Instagram', level: 2 },
+      { id: 'device-security', title: 'If Your Phone is Stolen...', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'two-factor',
+        title: 'The First Line of Defense: 2FA',
+        content: `<strong>What is it?</strong>
+        <br>
+        Two-Factor Authentication (2FA) adds a second step to your login. Even if a hacker has your password, they can't get in without the second key (usually a code sent to your phone or an app).
+        <br><br>
+        <strong>Why you need it:</strong>
+        <br>
+        It stops 99% of automated attacks.
+        <br><br>
+        <strong>How to set it up:</strong>
+        <br>
+        - <strong>SMS 2FA:</strong> Better than nothing, but vulnerable to "SIM Swap" fraud.
+        <br>
+        - <strong>App 2FA (Recommended):</strong> Use Google Authenticator or Authy. These generate codes offline on your device.
+        <br>
+        - <strong>Hardware Keys (Pro):</strong> YubiKey. Physical USB keys. Unhackable unless stolen physically.`,
+        level: 2
+      },
+      {
+        id: 'password-hygiene',
+        title: 'Password 123 is Not a Password',
+        content: `<strong>The Rules of the Game:</strong>
+        <br>
+        1. <strong>Length beats Complexity:</strong> "CorrectHorseBatteryStaple" is harder to crack than "P@ssw0rd1!". Aim for 12+ characters.
+        <br>
+        2. <strong>Don't Recycle:</strong> Never use the same password for your Bank App and a random forum. If the forum gets hacked, your bank account is next.
+        <br>
+        3. <strong>Use a Password Manager:</strong> You can't remember 50 unique passwords. Use Bitwarden (Free & Open Source) or 1Password. They remember them for you.`,
+        level: 2
+      },
+      {
+        id: 'phishing-scams',
+        title: 'Spotting the "Fake Alert"',
+        content: `<strong>The "BVN Blocked" Text:</strong>
+        <br>
+        We've all seen it. "Dear Customer, your account has been blocked due to BVN issues. Click here to reactivate."
+        <br><br>
+        <strong>Red Flags:</strong>
+        <br>
+        - <strong>Urgency:</strong> "Do this NOW or lose your money!" Scammers want you to panic.
+        <br>
+        - <strong>Generic Greetings:</strong> "Dear Customer" instead of your name.
+        <br>
+        - <strong>Weird Links:</strong> "gtb-verify-ng.com" instead of "gtbank.com".
+        <br><br>
+        <strong>What to do:</strong>
+        <br>
+        Never click the link. Log in to your bank app directly or call their official number.`,
+        level: 2
+      },
+      {
+        id: 'social-media',
+        title: 'Locking Down WhatsApp & Instagram',
+        content: `<strong>WhatsApp Hijacking:</strong>
+        <br>
+        Scammers will call you, pretending to be from a "WhatsApp Group" or "Church Group," asking for a 6-digit code sent to your phone. <strong>NEVER share that code.</strong> It's your login key.
+        <br>
+        <em>Fix:</em> Enable "Two-Step Verification" in WhatsApp Settings > Account. It asks for a PIN periodically.
+        <br><br>
+        <strong>Instagram "Copyright" DMs:</strong>
+        <br>
+        "We found a copyright violation on your post. Click here to appeal." This is a lie to steal your login. Ignore it.`,
+        level: 2
+      },
+      {
+        id: 'device-security',
+        title: 'If Your Phone is Stolen...',
+        content: `In Nigeria, phone theft often leads to emptied bank accounts.
+        <br><br>
+        <strong>Protective Measures:</strong>
+        <br>
+        1. <strong>SIM PIN:</strong> Set a PIN on your SIM card. If they put your SIM in another phone, they can't receive OTPs without the PIN. (Default is usually 0000 - change it!).
+        <br>
+        2. <strong>App Locks:</strong> Use your phone's built-in "App Lock" to require a fingerprint for Banking Apps, SMS, and Email.
+        <br>
+        3. <strong>Find My Device:</strong> Enable this on Android/iOS to wipe your phone remotely if lost.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Is it safe to save passwords in my browser?',
+        answer: 'It is convenient, but risky if someone gets access to your unlocked computer. A dedicated Password Manager (like Bitwarden) is safer because it requires a master password.'
+      },
+      {
+        question: 'What is a SIM Swap?',
+        answer: 'A scammer convinces your mobile network provider to switch your phone number to a new SIM card in their possession. They then receive your OTPs. Protect yourself by setting a "SIM Lock" or "Processing PIN" with your network provider.'
+      },
+      {
+        question: 'Should I cover my webcam?',
+        answer: 'Yes. It is a low-tech solution to a high-tech problem. Hackers can access webcams via malware (RATs). A piece of tape works wonders.'
       }
     ]
   }
