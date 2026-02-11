@@ -41,8 +41,8 @@ export const articles: Record<string, Article> = {
     excerpt: 'Take control of your finances with our comprehensive guide to budgeting. Learn proven strategies like the 50/30/20 rule, zero-based budgeting, and how to stick to your plan without feeling restricted.',
     category: 'Personal Finance',
     readTime: '15 min',
-    publishDate: 'Feb 10, 2026',
-    lastUpdated: 'Feb 12, 2026',
+    publishDate: 'Feb 01, 2026',
+    lastUpdated: 'Feb 05, 2026',
     author: {
       name: 'Michael Okonkwo',
       title: 'Certified Financial Planner',
@@ -5016,6 +5016,3057 @@ export const articles: Record<string, Article> = {
       {
         question: 'Should I cover my webcam?',
         answer: 'Yes. It is a low-tech solution to a high-tech problem. Hackers can access webcams via malware (RATs). A piece of tape works wonders.'
+      }
+    ]
+  },
+  'learn-coding': {
+    id: 'howto_learn_coding',
+    slug: 'learn-coding',
+    title: 'Start Coding: A Nigerian\'s Guide to Tech Careers',
+    excerpt: 'From zero to hired. A roadmap for Nigerians who want to break into the tech industry, featuring free resources, local bootcamps, and how to land that first remote job.',
+    category: 'Career & Skills',
+    readTime: '30 min',
+    publishDate: 'Jun 15, 2026',
+    lastUpdated: 'Jun 18, 2026',
+    author: {
+      name: 'Chioma "Code" Okeke',
+      title: 'Senior Software Engineer',
+      bio: 'Chioma is a self-taught developer who transitioned from banking to tech. She mentors young women in STEM and organizes the "Lagos Code Weekend" community.',
+      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Chioma Okeke',
+      rating: 4.9,
+      articlesCount: 30,
+      verified: true,
+      expertise: ['Frontend Development', 'Career Mentoring', 'Remote Work'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Laptop screen displaying code in a modern workspace',
+    tableOfContents: [
+      { id: 'why-code', title: 'Why Tech? (It\'s Not Just Money)', level: 2 },
+      { id: 'choosing-path', title: 'Pick Your Fighter: Frontend vs Backend', level: 2 },
+      { id: 'resources', title: 'Where to Learn: ALX, AltSchool & YouTube', level: 2 },
+      { id: 'community', title: 'Never Walk Alone: Communities', level: 2 },
+      { id: 'first-job', title: 'The First Gig: Internships & Freelancing', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'why-code',
+        title: 'Why Tech? (It\'s Not Just Money)',
+        content: `<strong>The Global Opportunity:</strong>
+        <br>
+        Tech is one of the few industries where you can live in Lagos, Enugu, or Abuja and earn in Dollars, Euros, or Pounds. But beyond the money, it offers <strong>flexibility</strong> and the power to build solutions for local problems.
+        <br><br>
+        <strong>The Barrier to Entry:</strong>
+        <br>
+        You don't need a Computer Science degree. You need a laptop, internet, and grit.`,
+        level: 2
+      },
+      {
+        id: 'choosing-path',
+        title: 'Pick Your Fighter: Frontend vs Backend',
+        content: `<strong>Frontend (The Visuals):</strong>
+        <br>
+        HTML, CSS, JavaScript, React. If you like design and seeing your work come to life instantly.
+        <br><br>
+        <strong>Backend (The Logic):</strong>
+        <br>
+        Python, Node.js, Go, SQL. If you enjoy logic, databases, and how systems talk to each other.
+        <br><br>
+        <strong>Mobile (The Apps):</strong>
+        <br>
+        Flutter, React Native, Swift. Building apps for the millions of smartphones in Nigeria.
+        <br><br>
+        <strong>Product Design (No Code):</strong>
+        <br>
+        Figma, UI/UX. If you prefer designing the experience over writing the code.`,
+        level: 2
+      },
+      {
+        id: 'resources',
+        title: 'Where to Learn: ALX, AltSchool & YouTube',
+        content: `<strong>Free Resources (Self-Paced):</strong>
+        <br>
+        - <strong>freeCodeCamp:</strong> The gold standard. Completely free and covers everything.
+        <br>
+        - <strong>YouTube Channels:</strong> Traversy Media, Net Ninja, FreeCodeCamp.org.
+        <br>
+        - <strong>CS50 by Harvard:</strong> Hard but builds a solid foundation.
+        <br><br>
+        <strong>Bootcamps (Structured):</strong>
+        <br>
+        - <strong>ALX Africa:</strong> Intensive, rigorous, and often sponsored (free). Great for discipline.
+        <br>
+        - <strong>AltSchool Africa:</strong> Paid (affordable in Naira). Offers a "Diploma" approach with community support.
+        <br>
+        - <strong>SemiColon:</strong> Physical campus in Lagos. Good for immersion.`,
+        level: 2
+      },
+      {
+        id: 'community',
+        title: 'Never Walk Alone: Communities',
+        content: `Learning alone is hard. Joining a community keeps you accountable.
+        <br><br>
+        <strong>Twitter Tech (Naija Tech Twitter):</strong>
+        <br>
+        Follow hashtags like #100DaysOfCode. It's a vibrant space for support and opportunities.
+        <br><br>
+        <strong>Local Hubs:</strong>
+        <br>
+        - Google Developer Groups (GDG) - available in almost every Nigerian city.
+        <br>
+        - SheCodeAfrica (for ladies).
+        <br>
+        - Oscar (Open Source Community Africa).`,
+        level: 2
+      },
+      {
+        id: 'first-job',
+        title: 'The First Gig: Internships & Freelancing',
+        content: `<strong>The Portfolio:</strong>
+        <br>
+        Employers don't care about your certificate; they care about what you've built. Host your projects on GitHub and Netlify/Vercel.
+        <br><br>
+        <strong>Where to find work:</strong>
+        <br>
+        - <strong>HNG Internship:</strong> Brutal but effective. It simulates a high-pressure work environment.
+        <br>
+        - <strong>LinkedIn:</strong> Optimize your profile.
+        <br>
+        - <strong>Upwork/Fiverr:</strong> Good for small gigs to build confidence, but aim for long-term roles.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Do I need a powerful laptop?',
+        answer: 'For Web Development, an average laptop (Core i5, 8GB RAM) is fine. For Mobile Dev or Game Dev, you need something stronger.'
+      },
+      {
+        question: 'How long does it take to get a job?',
+        answer: 'Realistically? 6 to 12 months of consistent (daily) practice. Don\'t believe the "learn in 3 weeks" hype.'
+      },
+      {
+        question: 'Is it too late to start?',
+        answer: 'No. The tech industry is still growing, especially in Africa. There is always room for skilled people.'
+      }
+    ]
+  },
+  'design-tools': {
+    id: 'howto_design_tools',
+    slug: 'design-tools',
+    title: 'Design Like a Pro: Essential Tools for Nigerian Creatives',
+    excerpt: 'Discover the industry-standard tools for UI/UX, Graphic Design, and Video Editing. Learn how to get started with Figma, Canva, and Adobe without breaking the bank.',
+    category: 'Design & Creativity',
+    readTime: '20 min',
+    publishDate: 'Jun 20, 2026',
+    lastUpdated: 'Jun 22, 2026',
+    author: {
+      name: 'Yemi "Pixels" Adebayo',
+      title: 'Product Designer',
+      bio: 'Yemi is a lead product designer who has worked with top Nigerian fintechs. He is passionate about democratizing design education and helping young creatives build world-class portfolios.',
+      image: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Yemi Adebayo',
+      rating: 4.8,
+      articlesCount: 15,
+      verified: true,
+      expertise: ['UI/UX Design', 'Brand Identity', 'Design Systems'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Designer working on a tablet with color swatches',
+    tableOfContents: [
+      { id: 'ui-ux', title: 'UI/UX: The Figma Revolution', level: 2 },
+      { id: 'graphic-design', title: 'Graphics: Canva vs. Photoshop', level: 2 },
+      { id: 'video-editing', title: 'Video: CapCut & Premiere Pro', level: 2 },
+      { id: 'hardware', title: 'Hardware: Mac vs. PC', level: 2 },
+      { id: 'resources', title: 'Where to Learn Design', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'ui-ux',
+        title: 'UI/UX: The Figma Revolution',
+        content: `<strong>Why Figma Wins:</strong>
+        <br>
+        Figma has taken over the design world because it is browser-based (runs on any decent laptop), collaborative (multiplayer editing), and has a generous free tier.
+        <br><br>
+        <strong>Getting Started:</strong>
+        <br>
+        You don't need to pay a dime to learn. Create a free account and start cloning popular apps like Spotify or Instagram to understand layout and spacing.
+        <br><br>
+        <strong>Community:</strong>
+        <br>
+        The "Figma Community" tab offers thousands of free templates, icons, and UI kits. You never have to start from scratch.`,
+        level: 2
+      },
+      {
+        id: 'graphic-design',
+        title: 'Graphics: Canva vs. Photoshop',
+        content: `<strong>Canva (The Democratizer):</strong>
+        <br>
+        Perfect for social media managers and small business owners.
+        <br>
+        - <em>Pros:</em> Easy to use, localized Nigerian templates, affordable Pro version in Naira.
+        <br>
+        - <em>Cons:</em> Limited for advanced photo manipulation or vector work.
+        <br><br>
+        <strong>Adobe Photoshop / Illustrator (The Pro Standard):</strong>
+        <br>
+        Essential for brand identity designers and high-end retouching.
+        <br>
+        - <em>The Cost Issue:</em> Adobe Creative Cloud is expensive and billed in Dollars. Many Nigerian designers use alternatives like <strong>Affinity Designer</strong> (one-time payment) or free tools like <strong>GIMP</strong> and <strong>Inkscape</strong>.`,
+        level: 2
+      },
+      {
+        id: 'video-editing',
+        title: 'Video: CapCut & Premiere Pro',
+        content: `<strong>CapCut (Mobile & Desktop):</strong>
+        <br>
+        The king of TikTok and Reels. It is surprisingly powerful, free, and easy to learn. If you are a content creator, master this first.
+        <br><br>
+        <strong>Premiere Pro / DaVinci Resolve:</strong>
+        <br>
+        For long-form content (YouTube documentaries, films).
+        <br>
+        - <em>Tip:</em> DaVinci Resolve has a free version that is Hollywood-grade. It is a great alternative to paid Adobe software.`,
+        level: 2
+      },
+      {
+        id: 'hardware',
+        title: 'Hardware: Mac vs. PC',
+        content: `<strong>The MacBook Myth:</strong>
+        <br>
+        You do NOT need a MacBook to be a great designer. However, color accuracy matters.
+        <br><br>
+        <strong>Specs to look for:</strong>
+        <br>
+        - <strong>RAM:</strong> Minimum 16GB. Design tools eat RAM for breakfast.
+        <br>
+        - <strong>Screen:</strong> IPS panel with good color accuracy (sRGB 100%).
+        <br>
+        - <strong>Processor:</strong> Core i7 or Ryzen 7 (newer generations).
+        <br><br>
+        If you can afford a MacBook Air (M1/M2), it is the best value for money due to battery life and screen quality.`,
+        level: 2
+      },
+      {
+        id: 'resources',
+        title: 'Where to Learn Design',
+        content: `<strong>YouTube Channels:</strong>
+        <br>
+        - <strong>Flux Academy:</strong> Web Design & Strategy.
+        <br>
+        - <strong>Envato Tuts+:</strong> Tutorials for everything Adobe.
+        <br>
+        - <strong>Saptarshi Prakash:</strong> UI/UX concepts explained simply.
+        <br><br>
+        <strong>Communities:</strong>
+        <br>
+        - <strong>Untitled Designers:</strong> A great Nigerian design community.
+        <br>
+        - <strong>Dribbble & Behance:</strong> For inspiration and portfolio hosting.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Is Canva enough to call myself a Graphic Designer?',
+        answer: 'It depends. For social media roles, yes. For branding agencies, no—you need to know vector tools (Illustrator/CorelDraw).'
+      },
+      {
+        question: 'Do I need to learn to code?',
+        answer: 'As a product designer, no. But understanding basic HTML/CSS helps you communicate better with developers.'
+      },
+      {
+        question: 'Which tool should I learn first?',
+        answer: 'If you want a tech job: Figma. If you want to freelance for SMEs: Canva + Photoshop.'
+      }
+    ]
+  },
+  'office-tools': {
+    id: 'howto_office_tools',
+    slug: 'office-tools',
+    title: 'Mastering Office Productivity: A Comprehensive Guide for Nigerian Professionals',
+    excerpt: 'Whether you run a business or work 9-5, mastering Office tools is non-negotiable. Dive deep into Microsoft 365 vs. Google Workspace, discover powerful Excel hacks, and learn how to manage your office from your smartphone.',
+    category: 'Productivity & Work',
+    readTime: '25 min',
+    publishDate: 'Jun 25, 2026',
+    lastUpdated: 'Jun 28, 2026',
+    author: {
+      name: 'Nkechi "Admin" Obi',
+      title: 'Operations Manager',
+      bio: 'Nkechi optimizes business workflows for startups and SMEs. She swears by Excel macros and believes that 90% of meetings could have been an email (or a shared Doc). She has trained over 500 admin staff across Lagos and Abuja.',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Nkechi Obi',
+      rating: 4.7,
+      articlesCount: 22,
+      verified: true,
+      expertise: ['Data Analysis', 'Remote Collaboration', 'Office Management', 'Process Automation'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Modern office desk with laptop and organized stationery',
+    tableOfContents: [
+      { id: 'ms-vs-google', title: 'The Clash: Microsoft 365 vs. Google Workspace', level: 2 },
+      { id: 'free-alternatives', title: 'Zero Budget? Use LibreOffice & WPS', level: 2 },
+      { id: 'excel-power', title: 'Excel: The Skill That Gets You Hired', level: 2 },
+      { id: 'email-mastery', title: 'Email Etiquette: Stop "Replying All"', level: 2 },
+      { id: 'mobile-office', title: 'Office in Your Pocket', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'ms-vs-google',
+        title: 'The Clash: Microsoft 365 vs. Google Workspace',
+        content: `<strong>Microsoft 365 (The Corporate Standard):</strong>
+        <br>
+        If you work in banking, oil & gas, or large corporates like Dangote or MTN, this is mandatory.
+        <br>
+        - <strong>Power & Features:</strong> Excel is unmatched for heavy data. PowerPoint has "Designer" AI that makes slides look pro instantly.
+        <br>
+        - <strong>Offline Mode:</strong> The desktop apps work perfectly without internet—crucial when the network is bad.
+        <br>
+        - <strong>Cost:</strong> Approx ₦3,000/month for Personal, but Family plans (₦4,000/month for 6 people) are a steal if you share costs.
+        <br><br>
+        <strong>Google Workspace (The Startup Favorite):</strong>
+        <br>
+        Docs, Sheets, Slides. Lives in the browser. Perfect for remote teams.
+        <br>
+        - <strong>Collaboration:</strong> 10 people can type in the same document at once without "conflicted copy" errors.
+        <br>
+        - <strong>Auto-Save:</strong> You never lose work. "It didn't save" is no longer a valid excuse.
+        <br>
+        - <strong>Cost:</strong> Free 15GB for personal use. Business Starter is approx $6/user/month (paid in dollars).`,
+        level: 2
+      },
+      {
+        id: 'free-alternatives',
+        title: 'Zero Budget? Use LibreOffice & WPS',
+        content: `<strong>LibreOffice:</strong>
+        <br>
+        Open-source and completely free forever. It looks like MS Office 2007 but does everything you need.
+        <br>
+        - <em>Best for:</em> Students and NGOs who need full PC software without cracking (piracy) or paying.
+        <br>
+        - <em>Format Support:</em> Opens .docx and .xlsx files reasonably well.
+        <br><br>
+        <strong>WPS Office:</strong>
+        <br>
+        Very popular in Nigeria, especially on mobile.
+        <br>
+        - <em>The Good:</em> It handles PDFs beautifully (Edit, Merge, Sign). It's lightweight.
+        <br>
+        - <em>The Bad:</em> The free PC version has pop-up ads. The "Premium" features require a subscription.`,
+        level: 2
+      },
+      {
+        id: 'excel-power',
+        title: 'Excel: The Skill That Gets You Hired',
+        content: `Stop using Excel as a calculator. It is a database and analytics engine.
+        <br><br>
+        <strong>1. VLOOKUP / XLOOKUP (The Magic Link):</strong>
+        <br>
+        <em>Scenario:</em> You have a list of 500 Staff IDs in Sheet A and their Salaries in Sheet B.
+        <br>
+        <em>Don't:</em> Manually copy-paste 500 times.
+        <br>
+        <em>Do:</em> Use XLOOKUP to match them instantly. =XLOOKUP(lookup_value, lookup_array, return_array).
+        <br><br>
+        <strong>2. Pivot Tables (The Summarizer):</strong>
+        <br>
+        <em>Scenario:</em> You have 10,000 sales rows across 36 states. You need "Total Sales per State" for a report due in 5 minutes.
+        <br>
+        <em>Do:</em> Insert > Pivot Table. Drag "State" to Rows and "Amount" to Values. Done in 10 seconds.
+        <br><br>
+        <strong>3. Conditional Formatting (The Visualizer):</strong>
+        <br>
+        Make trends visible. Highlight all debts over ₦50,000 in Red automatically. It makes your reports "pop" and easier for your boss to read.`,
+        level: 2
+      },
+      {
+        id: 'email-mastery',
+        title: 'Email Etiquette: Stop "Replying All"',
+        content: `Your email is your professional face. Don't be messy.
+        <br><br>
+        <strong>The Subject Line:</strong>
+        <br>
+        Make it specific.
+        <br>
+        - <em>Bad:</em> "Hello" or "Urgent"
+        <br>
+        - <em>Good:</em> "Invoice #4022 - Q3 Marketing Budget - Approval Needed"
+        <br><br>
+        <strong>CC vs. BCC:</strong>
+        <br>
+        - <strong>CC (Carbon Copy):</strong> "For your information." Everyone sees everyone.
+        <br>
+        - <strong>BCC (Blind Carbon Copy):</strong> "Secret." Use this when emailing 50 people who don't know each other. It protects their privacy.
+        <br><br>
+        <strong>The "Reply All" Trap:</strong>
+        <br>
+        Only use "Reply All" if everyone on the chain truly needs to read your "Noted, thanks." Otherwise, just Reply to the sender.`,
+        level: 2
+      },
+      {
+        id: 'mobile-office',
+        title: 'Office in Your Pocket',
+        content: `Work doesn't stop when you leave the desk, especially in Lagos traffic.
+        <br><br>
+        <strong>Scanning Documents:</strong>
+        <br>
+        Don't take a blurry photo. Use <strong>Microsoft Lens</strong> or the <strong>Google Drive App</strong> scan feature. It flattens the page, removes shadows, and saves as a crisp PDF.
+        <br><br>
+        <strong>Communication:</strong>
+        <br>
+        - <strong>Slack / Teams:</strong> Keep work chat separate from personal chat.
+        <br>
+        - <strong>WhatsApp:</strong> If you MUST use it, send files as "Documents" not "Images" to prevent compression.
+        <br><br>
+        <strong>Security:</strong>
+        <br>
+        If your phone is stolen, can a thief access your company files? Use App Lock for your Drive/Outlook apps.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Can I get Microsoft Office for free?',
+        answer: 'Yes, the web version (Office.com) is free. You just need a Microsoft account. It has fewer features than the desktop app but works for basic tasks like typing letters or simple spreadsheets.'
+      },
+      {
+        question: 'Is Google Sheets as good as Excel?',
+        answer: 'For 90% of users, yes. But for heavy financial modeling, massive datasets (100k+ rows), or complex macros, Excel is still King. Banks and Auditors will always prefer Excel.'
+      },
+      {
+        question: 'How do I convert PDF to Word?',
+        answer: 'You don\'t need a sketchy website that steals your data. Just open the PDF inside Microsoft Word (Right Click > Open With > Word), and it will convert it automatically.'
+      },
+      {
+        question: 'What is the best way to learn Excel?',
+        answer: 'YouTube is your friend. Channels like "Leila Gharani" or "Kevin Stratvert" offer world-class free tutorials. Practice with your own real-life data.'
+      }
+    ]
+  },
+  'digital-content': {
+    id: 'howto_digital_content',
+    slug: 'digital-content',
+    title: 'Digital Content Creation 101: From Scroller to Creator',
+    excerpt: 'Turn your smartphone into a media powerhouse. Whether you want to be a YouTuber, a TikTok influencer, or a B2B thought leader on LinkedIn, this guide breaks down the tools, strategies, and monetization secrets for the Nigerian market.',
+    category: 'Digital Skills',
+    readTime: '30 min',
+    publishDate: 'Jan 10, 2026',
+    lastUpdated: 'Jan 12, 2026',
+    author: {
+      name: 'Tobi "Viral" Oladipo',
+      title: 'Content Strategist',
+      bio: 'Tobi started making skits on a cracked iPhone 7 and now manages content strategy for top Lagos brands. He teaches that "Storytelling > Equipment" and has helped 50+ students hit their first 10k followers.',
+      image: 'https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Tobi Oladipo',
+      rating: 4.9,
+      articlesCount: 18,
+      verified: true,
+      expertise: ['Video Editing', 'Social Media Growth', 'Personal Branding', 'Storytelling'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Content creator setup with ring light and smartphone',
+    tableOfContents: [
+      { id: 'platform-strategy', title: 'Choose Your Battlefield: TikTok vs. YouTube vs. IG', level: 2 },
+      { id: 'gear-guide', title: 'Gear: Stop Waiting for the "Perfect" Camera', level: 2 },
+      { id: 'audio-lighting', title: 'The Holy Trinity: Audio, Lighting, Stability', level: 2 },
+      { id: 'editing-magic', title: 'Editing: CapCut is All You Need', level: 2 },
+      { id: 'monetization', title: 'Show Me the Money: How to Earn Naira', level: 2 },
+      { id: 'consistency', title: 'The Secret Sauce: Consistency', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'platform-strategy',
+        title: 'Choose Your Battlefield: TikTok vs. YouTube vs. IG',
+        content: `Don't try to be everywhere at once. Pick one platform and dominate it.
+        <br><br>
+        <strong>1. TikTok (The Viral Engine):</strong>
+        <br>
+        - <em>Best for:</em> Fast growth, comedy, quick tips, trends.
+        <br>
+        - <em>Algorithm:</em> It doesn't care if you have 0 followers. If your video is good, it goes viral.
+        <br>
+        - <em>Nigerian Context:</em> Very data-intensive for viewers, so keep hooks sharp (first 3 seconds).
+        <br><br>
+        <strong>2. YouTube (The Search Engine):</strong>
+        <br>
+        - <em>Best for:</em> Educational content, tutorials, vlogs, long-term value.
+        <br>
+        - <em>Algorithm:</em> Slow growth, but videos you post today can make money for years.
+        <br>
+        - <em>Strategy:</em> Focus on "Searchable" titles (e.g., "How to cook Jollof Rice" vs. "My lunch").
+        <br><br>
+        <strong>3. Instagram (The Portfolio):</strong>
+        <br>
+        - <em>Best for:</em> Aesthetics, lifestyle, businesses selling products.
+        <br>
+        - <em>Strategy:</em> Use Reels for reach, Stories for nurturing your existing followers.
+        <br><br>
+        <strong>4. LinkedIn (The Professional):</strong>
+        <br>
+        - <em>Best for:</em> B2B, career advice, tech bros/sis.
+        <br>
+        - <em>Strategy:</em> Text posts and carousels (PDFs) work better than video here.`,
+        level: 2
+      },
+      {
+        id: 'gear-guide',
+        title: 'Gear: Stop Waiting for the "Perfect" Camera',
+        content: `<strong>"I'll start when I get an iPhone 15."</strong> No, you won't.
+        <br><br>
+        <strong>The Smartphone Rule:</strong>
+        <br>
+        If you have a phone made after 2020, your camera is good enough.
+        <br>
+        - <em>Tip:</em> Always wipe your lens before shooting. That "blurry" look is usually just finger grease.
+        <br>
+        - <em>Settings:</em> Shoot in 4K at 30fps or 60fps if your storage allows.
+        <br><br>
+        <strong>Storage:</strong>
+        <br>
+        Video files are huge. Get a Google Photos subscription (cheap) or an OTG Flash Drive to offload files from your phone.`,
+        level: 2
+      },
+      {
+        id: 'audio-lighting',
+        title: 'The Holy Trinity: Audio, Lighting, Stability',
+        content: `Viewers will forgive bad video quality, but they will click off instantly if the audio is bad.
+        <br><br>
+        <strong>1. Audio (Critical):</strong>
+        <br>
+        - <em>Budget:</em> Use your wired earphones microphone. Hold it close to your mouth.
+        <br>
+        - <em>Pro:</em> Buy a <strong>Boya BY-M1</strong> lapel mic (Approx ₦10k-₦15k). It connects to phones and cameras and sounds professional.
+        <br>
+        - <em>Wireless:</em> Cheap wireless mics (K9/K8 type) often sound robotic. Be careful.
+        <br><br>
+        <strong>2. Lighting:</strong>
+        <br>
+        - <em>Free:</em> Face a window. Natural light is the best light. Never have the window behind you (you'll be a silhouette).
+        <br>
+        - <em>Cheap:</em> A 10-inch Ring Light. Don't put it straight in your face (reflects in glasses). Put it slightly to the side and above.
+        <br><br>
+        <strong>3. Stability:</strong>
+        <br>
+        - Shaky footage makes people dizzy. Buy a cheap tripod (₦5k) or prop your phone against a stack of books.`,
+        level: 2
+      },
+      {
+        id: 'editing-magic',
+        title: 'Editing: CapCut is All You Need',
+        content: `You don't need Adobe Premiere Pro to start.
+        <br><br>
+        <strong>CapCut (Mobile/PC):</strong>
+        <br>
+        It's free, powerful, and has auto-captions.
+        <br>
+        - <strong>Auto Captions:</strong> Essential because 40% of people watch videos on mute.
+        <br>
+        - <strong>Cut the Fluff:</strong> Delete every breath, "um," and pause. This is called "Jump Cutting." It keeps the energy high.
+        <br>
+        - <strong>B-Roll:</strong> Overlay relevant images or videos while you talk to keep it visually interesting.
+        <br><br>
+        <strong>Canva:</strong>
+        <br>
+        Use this for your YouTube Thumbnails and Instagram Carousel designs.`,
+        level: 2
+      },
+      {
+        id: 'monetization',
+        title: 'Show Me the Money: How to Earn Naira',
+        content: `Don't wait for YouTube AdSense (it takes time). Start earning earlier.
+        <br><br>
+        <strong>1. Digital Products (Selar):</strong>
+        <br>
+        Package your knowledge.
+        <br>
+        - "How to bake cake" E-book.
+        <br>
+        - "Crypto for Beginners" Video Course.
+        <br>
+        - Use <strong>Selar.co</strong> to host and sell. They accept payments from Nigeria, Ghana, Kenya, and even international cards.
+        <br><br>
+        <strong>2. Affiliate Marketing:</strong>
+        <br>
+        Review a product you use. Put a link in your bio. If people buy, you get a commission. (e.g., Jumia Affiliate, Amazon Associates).
+        <br><br>
+        <strong>3. UGC (User Generated Content):</strong>
+        <br>
+        Brands pay creators to make videos for <em>their</em> page, not yours. You don't even need to post it.`,
+        level: 2
+      },
+      {
+        id: 'consistency',
+        title: 'The Secret Sauce: Consistency',
+        content: `The algorithm loves consistency.
+        <br><br>
+        - <strong>Batch Creation:</strong> Don't wake up and ask "What do I post today?" Spend Sunday shooting 5 videos. Edit them during the week.
+        <br>
+        - <strong>The 1% Rule:</strong> Try to make every video 1% better than the last one. Better lighting, better hook, better editing.
+        <br>
+        - <strong>Ignore the Views:</strong> Your first 50 videos are for practice. Don't get discouraged if they get 10 views.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Do I need a fancy camera?',
+        answer: 'No. The phone in your pocket is likely better than the cameras used to shoot movies 15 years ago. Content matters more than quality.'
+      },
+      {
+        question: 'How often should I post?',
+        answer: 'Consistency beats intensity. It is better to post 3 times a week for a year than to post every day for a week and then quit. Pick a schedule you can sustain.'
+      },
+      {
+        question: 'How do I get paid from TikTok in Nigeria?',
+        answer: 'TikTok Creator Fund is not available in Nigeria yet. Nigerian creators earn through Brand Deals, Song Promotions, or selling their own products/services using the link in bio.'
+      },
+      {
+        question: 'What if I am shy?',
+        answer: 'You don\'t have to show your face. You can make "Faceless" channels using stock footage, voiceovers, or screen recordings (great for tech tutorials).'
+      }
+    ]
+  },
+  'learn-online': {
+    id: 'howto_learn_online',
+    slug: 'learn-online',
+    title: 'The Nigerian Student\'s Guide to Online Learning: Degree to Skill',
+    excerpt: 'School is not enough anymore. Whether you want a foreign degree, a tech skill, or just want to upgrade your career, the internet is your classroom. Learn how to navigate Coursera, ALX, and "YouTube University" without wasting data.',
+    category: 'Education & Career',
+    readTime: '35 min',
+    publishDate: 'Jan 15, 2026',
+    lastUpdated: 'Jan 18, 2026',
+    author: {
+      name: 'Chinedu "Prof" Okeke',
+      title: 'EdTech Consultant',
+      bio: 'Chinedu dropped out of a generic management course to learn coding online. He now works for a US startup and mentors over 1,000 students in the "Naija Tech Study" community. He believes the internet is the great equalizer.',
+      image: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Chinedu Okeke',
+      rating: 4.8,
+      articlesCount: 12,
+      verified: true,
+      expertise: ['Self-Learning', 'Curriculum Design', 'Career Transition', 'Remote Work'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Student studying online with laptop and coffee',
+    tableOfContents: [
+      { id: 'global-platforms', title: 'Global Giants: Coursera, Udemy, & edX', level: 2 },
+      { id: 'local-bootcamps', title: 'Homegrown Heroes: ALX & AltSchool', level: 2 },
+      { id: 'youtube-uni', title: 'YouTube University: Free but Dangerous', level: 2 },
+      { id: 'data-power', title: 'Survival Skills: Data & Electricity', level: 2 },
+      { id: 'certificate-myth', title: 'The Certificate Trap', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'global-platforms',
+        title: 'Global Giants: Coursera, Udemy, & edX',
+        content: `You have access to the same education as a student in Harvard. Use it.
+        <br><br>
+        <strong>Coursera & edX (The Academic Route):</strong>
+        <br>
+        Partners with universities like Yale, Stanford, and Google.
+        <br>
+        - <em>Financial Aid:</em> Almost every course on Coursera has a "Financial Aid available" link. Click it. Write a sincere essay about your situation in Nigeria, and you will likely get the course for FREE.
+        <br>
+        - <em>Certificates:</em> Recognized globally.
+        <br><br>
+        <strong>Udemy (The Skill Route):</strong>
+        <br>
+        Anyone can teach here. It's practical and direct.
+        <br>
+        - <em>Pricing Rule:</em> NEVER pay $100 for a course. Udemy has sales every week where courses drop to $10-$12 (approx ₦15,000). Wait for the sale.
+        <br>
+        - <em>Best for:</em> Coding, Excel, Photoshop, Digital Marketing.`,
+        level: 2
+      },
+      {
+        id: 'local-bootcamps',
+        title: 'Homegrown Heroes: ALX & AltSchool',
+        content: `Sometimes you need a community that understands NEPA and MTN.
+        <br><br>
+        <strong>ALX Africa:</strong>
+        <br>
+        - <em>Model:</em> Often free or sponsored. Very rigorous (70+ hours/week for the SE program).
+        <br>
+        - <em>Pros:</em> Massive network, "The Room" fellowship, focuses on soft skills too.
+        <br><br>
+        <strong>AltSchool Africa:</strong>
+        <br>
+        - <em>Model:</em> Paid (Subscription based). "Diploma" style.
+        <br>
+        - <em>Pros:</em> Structured curriculum (Semesters), mentors, and internship pipelines.
+        <br><br>
+        <strong>Why Choose Local?</strong>
+        <br>
+        They understand your context. Deadlines might be flexible during national grid collapses. You meet peers you can physically meet in Lagos or Abuja.`,
+        level: 2
+      },
+      {
+        id: 'youtube-uni',
+        title: 'YouTube University: Free but Dangerous',
+        content: `Everything is free on YouTube. That's the problem.
+        <br><br>
+        <strong>The Danger:</strong>
+        <br>
+        "Tutorial Hell." You watch 10 videos on Python but can't write a single line of code yourself. You lack structure.
+        <br><br>
+        <strong>How to Tame It:</strong>
+        <br>
+        1. <strong>Find a Roadmap:</strong> Go to <a href="https://roadmap.sh" class="text-blue-600 hover:underline">roadmap.sh</a> to see what you actually need to learn.
+        <br>
+        2. <strong>Follow Full Courses:</strong> Don't watch 5-minute clips. Watch the "12 Hour Course" by FreeCodeCamp.
+        <br>
+        3. <strong>Build Projects:</strong> Pause the video and type the code. Break it. Fix it.`,
+        level: 2
+      },
+      {
+        id: 'data-power',
+        title: 'Survival Skills: Data & Electricity',
+        content: `Online learning in Nigeria is an extreme sport.
+        <br><br>
+        <strong>Data Strategy:</strong>
+        <br>
+        - <strong>Night Plans:</strong> MTN and Airtel Night plans (11 PM - 6 AM) are your best friend. Download heavy video lectures at night. Watch them offline during the day.
+        <br>
+        - <strong>Video Quality:</strong> You don't need 1080p to hear a lecture. 360p or 480p saves 70% of your data.
+        <br><br>
+        <strong>Power Strategy:</strong>
+        <br>
+        - <strong>Laptop:</strong> Get a laptop with good battery life (MacBook Air M1 is the holy grail, but a decent Lenovo ThinkPad is a solid budget option).
+        <br>
+        - <strong>Power Bank:</strong> Essential for your router/MiFi. If your internet dies when light goes, you can't learn.`,
+        level: 2
+      },
+      {
+        id: 'certificate-myth',
+        title: 'The Certificate Trap',
+        content: `<strong>Hard Truth:</strong> Employers don't care about your 50 Udemy certificates. They care if you can do the job.
+        <br><br>
+        <strong>The Portfolio > The Paper:</strong>
+        <br>
+        - <em>Designers:</em> Show your Behance/Dribbble link.
+        <br>
+        - <em>Coders:</em> Show your GitHub green squares and live projects.
+        <br>
+        - <em>Marketers:</em> Show a campaign you ran and the ROI.
+        <br><br>
+        Use the certificate to get past the HR filter (sometimes), but use the Portfolio to get the offer letter.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Is a Coursera certificate recognized in Nigeria?',
+        answer: 'Yes, especially from top universities. But for tech roles, your skills/portfolio matter more than the certificate.'
+      },
+      {
+        question: 'Can I get a job with just online courses?',
+        answer: 'Absolutely. The tech and creative industries care about competence. Many senior developers in Nigeria are self-taught.'
+      },
+      {
+        question: 'How do I pay for courses in Dollars?',
+        answer: 'Since naira cards often fail, use virtual dollar cards (like Geegpay, Chipper Cash, or Payday) to pay for international platforms.'
+      },
+      {
+        question: 'What is the best time to study?',
+        answer: 'If you have a 9-5, early mornings (4 AM - 6 AM) are often better than late nights when you are tired. Plus, the network is faster.'
+      }
+    ]
+  },
+  'start-business': {
+    id: 'howto_start_business',
+    slug: 'start-business',
+    title: 'Starting a Business in Nigeria: From Idea to First Customer',
+    excerpt: 'Navigating the Nigerian business landscape can be tough. From CAC registration to opening a corporate account and handling taxes, this guide covers the legal and practical steps to launch your venture successfully.',
+    category: 'Business & Entrepreneurship',
+    readTime: '40 min',
+    publishDate: 'Jul 10, 2026',
+    lastUpdated: 'Jul 12, 2026',
+    author: {
+      name: 'Tunde "Law" Balogun',
+      title: 'Corporate Consultant',
+      bio: 'Tunde is a corporate lawyer turned business consultant. He has helped over 200 startups register with the CAC and secure their first grants. He simplifies legal jargon into plain English.',
+      image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Tunde Balogun',
+      rating: 4.9,
+      articlesCount: 30,
+      verified: true,
+      expertise: ['CAC Registration', 'Tax Compliance', 'Business Strategy', 'Grant Writing'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Team brainstorming in a modern Lagos co-working space',
+    tableOfContents: [
+      { id: 'idea-validation', title: 'Step 0: Will Nigerians Buy It?', level: 2 },
+      { id: 'cac-registration', title: 'CAC: Business Name vs. Limited Company', level: 2 },
+      { id: 'tax-tin', title: 'The Taxman Cometh: TIN & VAT', level: 2 },
+      { id: 'banking', title: 'Corporate Banking: Stop Using Your Personal Account', level: 2 },
+      { id: 'funding', title: 'Funding: Bootstrapping vs. Grants', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'idea-validation',
+        title: 'Step 0: Will Nigerians Buy It?',
+        content: `Before you pay ₦1 to CAC, validate your idea.
+        <br><br>
+        <strong>The "Japa" Factor:</strong>
+        <br>
+        Are you solving a problem for people leaving or people staying?
+        <br>
+        - <em>Example:</em> A service helping people move money to Canada (High demand). A luxury spa in a low-income area (Low demand).
+        <br><br>
+        <strong>Market Research (The Nigerian Way):</strong>
+        <br>
+        Don't just do online surveys. Go to the market. Talk to real people.
+        <br>
+        - <em>Ask:</em> "How much do you currently pay for this solution?"
+        <br>
+        - <em>Test:</em> Try to sell the product before you build it. If 10 people transfer money to you, you have a business.`,
+        level: 2
+      },
+      {
+        id: 'cac-registration',
+        title: 'CAC: Business Name vs. Limited Company',
+        content: `Registration makes you legal. It builds trust.
+        <br><br>
+        <strong>1. Business Name (BN):</strong>
+        <br>
+        - <em>Best for:</em> Sole proprietors, freelancers, small shops.
+        <br>
+        - <em>Cost:</em> Cheaper (Approx ₦20k - ₦30k if you do it yourself).
+        <br>
+        - <em>Pros:</em> Easy to register.
+        <br>
+        - <em>Cons:</em> You and the business are the same entity. If the business owes money, they can seize your personal car.
+        <br><br>
+        <strong>2. Limited Liability Company (LTD):</strong>
+        <br>
+        - <em>Best for:</em> Startups, Tech companies, businesses seeking funding.
+        <br>
+        - <em>Cost:</em> Higher (Approx ₦50k+).
+        <br>
+        - <em>Pros:</em> Separate legal entity. Investors only invest in LTDs.
+        <br>
+        - <em>Note:</em> Minimum Share Capital is now ₦1 Million (on paper, you don't pay this to CAC, but you declare it).`,
+        level: 2
+      },
+      {
+        id: 'tax-tin',
+        title: 'The Taxman Cometh: TIN & VAT',
+        content: `You cannot run a corporate account without a Tax Identification Number (TIN).
+        <br><br>
+        <strong>TIN Generation:</strong>
+        <br>
+        Nowadays, your TIN is often generated automatically when you register with CAC. Check the JTB (Joint Tax Board) website to search for it.
+        <br><br>
+        <strong>VAT (Value Added Tax):</strong>
+        <br>
+        - Currently 7.5%.
+        <br>
+        - You are a collector for the government. If you sell a shoe for ₦10,000, you should charge ₦10,750 and remit the ₦750 to FIRS.
+        <br><br>
+        <strong>Tax Clearance Certificate (TCC):</strong>
+        <br>
+        You will need this for government contracts. Apply early.`,
+        level: 2
+      },
+      {
+        id: 'banking',
+        title: 'Corporate Banking: Stop Using Your Personal Account',
+        content: `Mixing personal and business funds is the #1 reason small businesses fail to scale.
+        <br><br>
+        <strong>Requirements:</strong>
+        <br>
+        - CAC Certificate (BN or RC Number).
+        <br>
+        - TIN.
+        <br>
+        - SCUML (Special Control Unit Against Money Laundering) certificate (for some sectors like Real Estate, Jewelry, etc.).
+        <br>
+        - 2 Referees (Current Account holders).
+        <br><br>
+        <strong>Digital Banks (Moniepoint, Kuda, Opay, Brass):</strong>
+        <br>
+        Often faster to set up than traditional banks and have better apps.`,
+        level: 2
+      },
+      {
+        id: 'funding',
+        title: 'Funding: Bootstrapping vs. Grants',
+        content: `Money is the blood of business.
+        <br><br>
+        <strong>1. Bootstrapping:</strong>
+        <br>
+        Using your own savings.
+        <br>
+        - <em>Pros:</em> You keep 100% equity. You answer to no one.
+        <br>
+        - <em>Cons:</em> Growth might be slow.
+        <br><br>
+        <strong>2. Grants (Free Money):</strong>
+        <br>
+        Nigeria has many grant opportunities if you look.
+        <br>
+        - <strong>Tony Elumelu Foundation (TEF):</strong> $5,000 seed capital. Application opens January 1st every year.
+        <br>
+        - <strong>LSETF (Lagos State Employment Trust Fund):</strong> Low-interest loans for Lagos residents.
+        <br>
+        - <strong>Orange Corners:</strong> Incubation and funding.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Can I register my business myself?',
+        answer: 'Yes, the CAC portal (CRP) allows individuals to register directly. However, for LTD companies, the forms can be tricky, so hiring an accredited agent (lawyer/accountant) is often safer to avoid queries.'
+      },
+      {
+        question: 'How long does registration take?',
+        answer: 'Ideally 1-2 weeks. But name reservation can take 2-3 days, and certificate issuance can take another week. Always plan for delays.'
+      },
+      {
+        question: 'Do I need a physical office?',
+        answer: 'For CAC, you need a physical address (cannot be a P.O. Box). You can use your home address if you are just starting.'
+      },
+      {
+        question: 'What is SCUML?',
+        answer: 'It is a certificate from the EFCC ensuring your business is not used for money laundering. Banks require it for certain "Designated Non-Financial Institutions" (DNFI) like car dealers, law firms, and real estate.'
+      }
+    ]
+  },
+  'register-business': {
+    id: 'howto_register_business',
+    slug: 'register-business',
+    title: 'The Ultimate CAC Registration Handbook: DIY vs. Agent',
+    excerpt: 'Stop paying agents ₦50,000 for something you can do for ₦25,000. A step-by-step, screen-by-screen guide to navigating the Corporate Affairs Commission (CAC) portal without getting queried.',
+    category: 'Legal & Compliance',
+    readTime: '45 min',
+    publishDate: 'Jan 25, 2026',
+    lastUpdated: 'Jan 28, 2026',
+    author: {
+      name: 'Barrister Funmi "CAC" Alabi',
+      title: 'Accredited Agent',
+      bio: 'Funmi is a Lagos-based corporate lawyer who has registered over 1,500 businesses. She runs a popular Twitter thread debunking CAC myths and teaching small business owners how to avoid "Query" hell.',
+      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Funmi Alabi',
+      rating: 4.9,
+      articlesCount: 42,
+      verified: true,
+      expertise: ['Company Incorporation', 'Post-Incorporation Filings', 'Trademarking', 'Legal Compliance'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Business documents and laptop on a desk',
+    tableOfContents: [
+      { id: 'prep-work', title: 'Phase 1: The Name Search (Avoid Rejection)', level: 2 },
+      { id: 'crp-portal', title: 'Phase 2: Mastering the CRP Portal', level: 2 },
+      { id: 'forms-documents', title: 'Phase 3: The Forms (BN1 vs. CAC 1.1)', level: 2 },
+      { id: 'upload-specs', title: 'Phase 4: Document Uploads (The tricky part)', level: 2 },
+      { id: 'payment-remita', title: 'Phase 5: Surviving Remita', level: 2 },
+      { id: 'queries', title: 'Phase 6: Handling Queries', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'prep-work',
+        title: 'Phase 1: The Name Search (Avoid Rejection)',
+        content: `70% of delays happen because people pick names CAC hates.
+        <br><br>
+        <strong>The "Restricted Names" List:</strong>
+        <br>
+        You cannot use these words without special permission (which takes months):
+        <br>
+        - "Government", "National", "Federal", "State".
+        <br>
+        - "Chamber of Commerce", "Cooperative", "Building Society".
+        <br>
+        - "Group", "Holding" (Unless you have 3+ subsidiary companies).
+        <br><br>
+        <strong>The "Similarity" Rule:</strong>
+        <br>
+        If "Dangote Cement" exists, you cannot register "Dangote Concrete Solutions".
+        <br>
+        - <em>Tip:</em> Use the <a href="https://search.cac.gov.ng" class="text-blue-600 hover:underline">Public Search</a> tool first. It's free. Type your proposed name. If anything looks similar, change yours. Add a unique identifier (e.g., "Kola & Sons Logistics" -> "Kola Blue-Line Logistics").`,
+        level: 2
+      },
+      {
+        id: 'crp-portal',
+        title: 'Phase 2: Mastering the CRP Portal',
+        content: `<strong>Creating an Account:</strong>
+        <br>
+        Go to <a href="https://pre.cac.gov.ng" class="text-blue-600 hover:underline">pre.cac.gov.ng</a>.
+        <br>
+        - <em>Important:</em> Use a valid email. You will receive your certificate there.
+        <br>
+        - <em>Public User vs. Accredited User:</em> Choose "Public User" if you are registering for yourself. Choose "Accredited User" only if you are a Lawyer/Accountant with a CAC Accreditation Number.
+        <br><br>
+        <strong>Name Reservation:</strong>
+        <br>
+        - Cost: ₦500.
+        <br>
+        - Submit 2 options. Option 1 is your preferred choice. Option 2 is the backup.
+        <br>
+        - <em>Wait Time:</em> 24 - 48 hours. You will get an approval code (Availability Code) starting with "RS..."`,
+        level: 2
+      },
+      {
+        id: 'forms-documents',
+        title: 'Phase 3: The Forms (BN1 vs. CAC 1.1)',
+        content: `Once your name is reserved, you have 60 days to register.
+        <br><br>
+        <strong>For Business Name (BN):</strong>
+        <br>
+        - <strong>Proprietor Details:</strong> Name, Address, Phone, Email, Gender.
+        <br>
+        - <strong>Nature of Business:</strong> Select the category carefully. "General Contracts" is vague and often queried. Be specific: "Retail of Footwear", "Digital Marketing Services".
+        <br>
+        - <strong>Business Address:</strong> Must be a physical Nigerian address.
+        <br><br>
+        <strong>For Limited Company (LTD):</strong>
+        <br>
+        - <strong>Share Capital:</strong> Minimum ₦1,000,000. (Note: You don't pay this money to CAC. It just means the company is worth that much on paper).
+        <br>
+        - <strong>Directors:</strong> Minimum of 1 (for private companies).
+        <br>
+        - <strong>Shareholders:</strong> Can be the same as directors.
+        <br>
+        - <strong>Secretary:</strong> Optional for small companies.`,
+        level: 2
+      },
+      {
+        id: 'upload-specs',
+        title: 'Phase 4: Document Uploads (The tricky part)',
+        content: `This is where 90% of "Public Users" fail.
+        <br><br>
+        <strong>The Signature:</strong>
+        <br>
+        - DO NOT digitally sign (like typing your name in a script font).
+        <br>
+        - <strong>Correct Way:</strong> Sign on a clean white piece of paper with a black or blue pen. Scan it or take a sharp photo. Crop it tightly. Upload as JPEG/PNG.
+        <br><br>
+        <strong>The ID Card:</strong>
+        <br>
+        - Accepted: International Passport, NIN Slip (The one with the QR code), Voter's Card, Driver's License.
+        <br>
+        - <em>Format:</em> PDF is safest. Ensure it is legible.
+        <br><br>
+        <strong>Passport Photo:</strong>
+        <br>
+        - White background. No glasses. Face straight. JPEG format.`,
+        level: 2
+      },
+      {
+        id: 'payment-remita',
+        title: 'Phase 5: Surviving Remita',
+        content: `The payment gateway can be... temperamental.
+        <br><br>
+        <strong>The "RRR" (Remita Retrieval Reference):</strong>
+        <br>
+        This is your transaction ID. Write it down immediately.
+        <br><br>
+        <strong>Payment Methods:</strong>
+        <br>
+        - <em>Card:</em> Fastest. Instant approval.
+        <br>
+        - <em>Bank Transfer:</em> Risky. Sometimes the money leaves your account but the portal doesn't update.
+        <br><br>
+        <strong>What if it hangs?</strong>
+        <br>
+        Do not pay twice. Go to "Check Payment Status" on Remita.net using your RRR. If successful there, go back to CAC portal and click "Check Status" to sync.`,
+        level: 2
+      },
+      {
+        id: 'queries',
+        title: 'Phase 6: Handling Queries',
+        content: `A "Query" means CAC rejected your application but is giving you a chance to fix it.
+        <br><br>
+        <strong>Common Queries:</strong>
+        <br>
+        1. <strong>"Means of ID not clear":</strong> Re-scan your ID in higher resolution.
+        <br>
+        2. <strong>"Signature irregular":</strong> Your signature on the form looks different from the one on your ID card. Sign exactly as you did on your ID.
+        <br>
+        3. <strong>"Address mismatch":</strong> The address on your utility bill (if asked) doesn't match the form.
+        <br><br>
+        <strong>How to resolve:</strong>
+        <br>
+        Click on the "Query" tab. Read the comment. Upload the corrected document. Click "Resolve Query". Do NOT start a new application.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'How much does it really cost?',
+        answer: 'For Business Name: Name Reservation (₦500) + Registration Fee (₦10,000) = ₦10,500. For Company (LTD): Name Reservation (₦500) + Filing Fees (Depends on Share Capital, approx ₦15,000 for 1M shares) + Stamp Duty (0.75% of Share Capital paid to FIRS). Total for 1M LTD is approx ₦25,000 - ₦30,000.'
+      },
+      {
+        question: 'Do I need a lawyer?',
+        answer: 'For Business Name, NO. You can do it yourself easily. For LTD, it is recommended but not mandatory if you know what you are doing. However, mistakes in LTD registration (like wrong share allotment) are expensive to fix later.'
+      },
+      {
+        question: 'Can I upgrade from Business Name to Limited Company later?',
+        answer: 'Yes, this is called "Post-Incorporation". You will effectively close the Business Name and open a new Limited Company. It involves more paperwork.'
+      },
+      {
+        question: 'Where do I get my certificate?',
+        answer: 'It will be emailed to you. You can also download it from the portal under "My Registrations". Note: CAC no longer issues physical certificates. You must print the PDF yourself (Color print recommended).'
+      }
+    ]
+  },
+  'market-online': {
+    id: 'howto_market_online',
+    slug: 'market-online',
+    title: 'Digital Marketing in Nigeria: Selling Without Shouting',
+    excerpt: 'Posting on WhatsApp Status is not a marketing strategy. Learn how to run high-converting Facebook Ads with Naira cards, use Influencers effectively, and rank your business on Google Maps.',
+    category: 'Marketing & Sales',
+    readTime: '35 min',
+    publishDate: 'Jul 20, 2026',
+    lastUpdated: 'Jul 22, 2026',
+    author: {
+      name: 'Ada "Traffic" Eze',
+      title: 'Digital Marketing Lead',
+      bio: 'Ada manages a monthly ad spend of ₦50M for top Nigerian e-commerce brands. She specializes in "Performance Marketing"—meaning she doesn\'t care about Likes, she only cares about Sales.',
+      image: 'https://images.unsplash.com/photo-1589156280159-27698a70f29e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Ada Eze',
+      rating: 4.8,
+      articlesCount: 25,
+      verified: true,
+      expertise: ['Facebook Ads', 'SEO', 'Email Marketing', 'Copywriting'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1557838923-2985c318be48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Digital marketing strategy planning on a whiteboard',
+    tableOfContents: [
+      { id: 'whatsapp-marketing', title: 'WhatsApp: The Nigerian Super App', level: 2 },
+      { id: 'social-media', title: 'Socials: Instagram vs. Facebook vs. TikTok', level: 2 },
+      { id: 'paid-ads', title: 'Paid Ads: Solving the Payment Problem', level: 2 },
+      { id: 'google-business', title: 'SEO: Get Found on Google Maps', level: 2 },
+      { id: 'influencers', title: 'Influencers: Micro vs. Macro', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'whatsapp-marketing',
+        title: 'WhatsApp: The Nigerian Super App',
+        content: `In Nigeria, if you are not on WhatsApp, you are closed for business.
+        <br><br>
+        <strong>WhatsApp Business App:</strong>
+        <br>
+        Stop using the normal WhatsApp.
+        <br>
+        - <em>Catalog:</em> Upload your products with prices. It's like a mini-website.
+        <br>
+        - <em>Quick Replies:</em> Save answers to "How much?" and "Location?" so you don't type them 50 times a day.
+        <br>
+        - <em>Labels:</em> Tag customers as "New", "Paid", "Pending Delivery".
+        <br><br>
+        <strong>The Status Strategy:</strong>
+        <br>
+        Don't just post product photos. Post value. Post reviews. Post "Behind the Scenes". The goal is to build trust, not just noise.`,
+        level: 2
+      },
+      {
+        id: 'social-media',
+        title: 'Socials: Instagram vs. Facebook vs. TikTok',
+        content: `Know your audience.
+        <br><br>
+        <strong>Instagram (The Shop Window):</strong>
+        <br>
+        - <em>Best for:</em> Fashion, Food, Skincare, anything visual.
+        <br>
+        - <em>Strategy:</em> High-quality photos are non-negotiable. Use Reels for reach.
+        <br><br>
+        <strong>Facebook (The Mass Market):</strong>
+        <br>
+        - <em>Best for:</em> Real Estate, Supplements, older demographics (40+).
+        <br>
+        - <em>Strategy:</em> Groups are powerful. Join local community groups (e.g., "Moms in Lagos") and add value before selling.
+        <br><br>
+        <strong>TikTok (The Viral Machine):</strong>
+        <br>
+        - <em>Best for:</em> Gen Z, Gadgets, quirky products.
+        <br>
+        - <em>Strategy:</em> Be entertaining. If it looks like an ad, they will scroll.`,
+        level: 2
+      },
+      {
+        id: 'paid-ads',
+        title: 'Paid Ads: Solving the Payment Problem',
+        content: `Organic reach is dead. If you want speed, you must pay.
+        <br><br>
+        <strong>The Payment Issue:</strong>
+        <br>
+        Dollar cards often fail on Facebook.
+        <br>
+        - <em>Solution:</em> Use the "PayU" option when setting up your Ad Account. It allows you to fund your wallet using a standard Naira Debit Card (Verve/Mastercard).
+        <br><br>
+        <strong>Targeting:</strong>
+        <br>
+        Don't just target "Lagos". Target by interest.
+        <br>
+        - Selling baby clothes? Target "New Parents".
+        <br>
+        - Selling luxury watches? Target "Frequent International Travelers".`,
+        level: 2
+      },
+      {
+        id: 'google-business',
+        title: 'SEO: Get Found on Google Maps',
+        content: `When someone searches "Plumber near me", do you show up?
+        <br><br>
+        <strong>Google Business Profile (formerly GMB):</strong>
+        <br>
+        - It is FREE.
+        <br>
+        - Register your business location.
+        <br>
+        - Ask every happy customer to leave a 5-star review.
+        <br>
+        - <em>Result:</em> You show up on the map when locals search for your service. This is the highest converting traffic because the intent is high.`,
+        level: 2
+      },
+      {
+        id: 'influencers',
+        title: 'Influencers: Micro vs. Macro',
+        content: `You don't need Davido to post your product.
+        <br><br>
+        <strong>Micro-Influencers (5k - 50k followers):</strong>
+        <br>
+        - <em>Pros:</em> High engagement. They reply to comments. Cheaper (sometimes just free products).
+        <br>
+        - <em>Cons:</em> Smaller reach.
+        <br><br>
+        <strong>Macro-Influencers (500k+ followers):</strong>
+        <br>
+        - <em>Pros:</em> Massive awareness.
+        <br>
+        - <em>Cons:</em> Expensive. Low conversion rate (many followers are just there for entertainment).
+        <br><br>
+        <em>Advice:</em> Use 10 Micro-influencers instead of 1 Macro-influencer.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'How much should I spend on ads?',
+        answer: 'Start small. ₦2,000 - ₦5,000 per day is enough to test. If you make sales, increase the budget. If not, kill the ad and try a new image/video.'
+      },
+      {
+        question: 'Do hashtags still work?',
+        answer: 'Yes, but don\'t spam. Use 3-5 relevant hashtags (e.g., #LagosBaker, #AbujaFashion) rather than 30 generic ones (#Love, #Happy).'
+      },
+      {
+        question: 'Why is my Facebook Ad account banned?',
+        answer: 'Facebook is strict. Common reasons: misleading claims ("Lose 10kg in 2 days"), poor landing page experience, or suspicious payment activity. Always read the Ad Policies.'
+      },
+      {
+        question: 'Is Email Marketing relevant in Nigeria?',
+        answer: 'Yes, for B2B and professional services. For B2C (selling shoes/bags), WhatsApp broadcasts often have higher open rates in Nigeria.'
+      }
+    ]
+  },
+  'sell-online': {
+    id: 'howto_sell_online',
+    slug: 'sell-online',
+    title: 'E-Commerce in Nigeria: Mastering Payments, Logistics & Trust',
+    excerpt: 'Selling online is easy. Delivering the product is the hard part. This guide covers the best platforms (Shopify vs. Jumia), how to accept payments (Paystack vs. Flutterwave), and solving the "Pay on Delivery" headache.',
+    category: 'Marketing & Sales',
+    readTime: '40 min',
+    publishDate: 'Feb 05, 2026',
+    lastUpdated: 'Feb 08, 2026',
+    author: {
+      name: 'Emeka "Logistics" Nwachukwu',
+      title: 'E-commerce Consultant',
+      bio: 'Emeka ran a failed drop-shipping business in 2018 and lost ₦2M to "Pay on Delivery" returns. He learned his lessons, rebuilt, and now helps Nigerian brands scale their operations without losing their minds.',
+      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Emeka Nwachukwu',
+      rating: 4.9,
+      articlesCount: 19,
+      verified: true,
+      expertise: ['Logistics Management', 'Payment Gateways', 'Customer Experience', 'International Shipping'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Cardboard boxes ready for shipping',
+    tableOfContents: [
+      { id: 'platform-choice', title: 'Where to Sell: Own Store vs. Marketplace', level: 2 },
+      { id: 'payment-gateways', title: 'Getting Paid: Paystack, Flutterwave, & Squad', level: 2 },
+      { id: 'logistics-hell', title: 'Logistics: The Nigerian Nightmare', level: 2 },
+      { id: 'pod-trust', title: 'The "Pay on Delivery" Dilemma', level: 2 },
+      { id: 'global-selling', title: 'Going Global: Selling to the Diaspora', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'platform-choice',
+        title: 'Where to Sell: Own Store vs. Marketplace',
+        content: `Don't build a website if you don't have traffic.
+        <br><br>
+        <strong>1. Marketplaces (Jumia, Konga, Jiji):</strong>
+        <br>
+        - <em>Pros:</em> They bring the customers. Trust is already established.
+        <br>
+        - <em>Cons:</em> High commissions (up to 15%). You compete with 1,000 other sellers on price. You don't own the customer data.
+        <br><br>
+        <strong>2. Social Commerce (IG/WhatsApp + Payment Link):</strong>
+        <br>
+        - <em>Best for:</em> Beginners.
+        <br>
+        - <em>Setup:</em> Use a Paystack/Flutterwave Storefront. It's free. Upload photos, get a link, put it in your bio.
+        <br><br>
+        <strong>3. Own Website (Shopify/WooCommerce):</strong>
+        <br>
+        - <em>Pros:</em> You own the brand. No competition on your page.
+        <br>
+        - <em>Cons:</em> You must drive your own traffic (Ads). Monthly fees ($25+ for Shopify).`,
+        level: 2
+      },
+      {
+        id: 'payment-gateways',
+        title: 'Getting Paid: Paystack, Flutterwave, & Squad',
+        content: `Gone are the days of "Send account number". Use a gateway to look professional.
+        <br><br>
+        <strong>Paystack vs. Flutterwave:</strong>
+        <br>
+        - Both charge 1.5% + ₦100 per local transaction.
+        <br>
+        - <em>Paystack:</em> Known for better success rates and simple interface. Owned by Stripe.
+        <br>
+        - <em>Flutterwave:</em> Better for international payments (collecting Dollars/Pounds).
+        <br><br>
+        <strong>Squad (by GTCo):</strong>
+        <br>
+        - Reliable and integrates deeply with GTBank. Good for USSD payments.
+        <br><br>
+        <strong>Settlement:</strong>
+        <br>
+        Usually T+1 (Next working day). Don't panic if money doesn't hit your account instantly.`,
+        level: 2
+      },
+      {
+        id: 'logistics-hell',
+        title: 'Logistics: The Nigerian Nightmare',
+        content: `You can have the best product, but if the dispatch rider is rude or late, you lose.
+        <br><br>
+        <strong>Interstate (Lagos to Abuja/PH):</strong>
+        <br>
+        - <em>Reliable:</em> GIG Logistics (GIGL). They have tracking and centers everywhere.
+        <br>
+        - <em>Budget:</em> Park loading (NURTW). Cheaper but risky. No insurance. Only use for non-fragile items.
+        <br><br>
+        <strong>Last Mile (Within the City):</strong>
+        <br>
+        - <em>Aggregators:</em> Use apps like <strong>Topship</strong> or <strong>Fez Delivery</strong>. They connect you to multiple bike riders.
+        <br>
+        - <em>Dedicated Riders:</em> Only hire your own bike if you have 10+ orders a day. Otherwise, the maintenance and police issues will kill your profit.`,
+        level: 2
+      },
+      {
+        id: 'pod-trust',
+        title: 'The "Pay on Delivery" (PoD) Dilemma',
+        content: `Customers fear scams. Sellers fear "I'm not around" returns.
+        <br><br>
+        <strong>The Compromise: "Delivery Fee First":</strong>
+        <br>
+        - Ask the customer to pay the delivery fee (e.g., ₦2,000) upfront to validate commitment.
+        <br>
+        - They pay the item cost on delivery.
+        <br>
+        - <em>Why:</em> If they refuse to pay ₦2,000, they were likely going to waste your time anyway.
+        <br><br>
+        <strong>Escrow Services:</strong>
+        <br>
+        - Use platforms like <strong>Vesicash</strong>. The customer pays Vesicash. You deliver. Vesicash releases money to you. Everyone is safe.`,
+        level: 2
+      },
+      {
+        id: 'global-selling',
+        title: 'Going Global: Selling to the Diaspora',
+        content: `Earn in Dollars. Spend in Naira.
+        <br><br>
+        <strong>Shipping:</strong>
+        <br>
+        - Use <strong>DHL Express</strong> or <strong>FedEx</strong>. Yes, it's expensive (₦30k+ for a small package to USA), but it gets there in 3-5 days.
+        <br>
+        - <em>Export Docs:</em> You need an NXP form for large commercial exports, but for small B2C parcels, DHL handles the paperwork.
+        <br><br>
+        <strong>Packaging:</strong>
+        <br>
+        - African foodstuff must be dried and properly labeled. No leaking oil. Customs will destroy it.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Do I need a corporate account to use Paystack?',
+        answer: 'No. You can start with a "Starter Business" account using just your BVN and personal account. But there is a transaction limit (usually ₦2M). To remove limits, you need a Registered Business (CAC).'
+      },
+      {
+        question: 'How do I handle returns?',
+        answer: 'Have a clear "No Refund, Exchange Only" policy unless the item is damaged. Nigerian logistics is too expensive to offer free "I changed my mind" returns.'
+      },
+      {
+        question: 'What is the best packaging material?',
+        answer: 'For fragile items, use bubble wrap generously. For clothes, branded poly mailers look professional and are waterproof/dustproof.'
+      },
+      {
+        question: 'How do I stop fake alerts?',
+        answer: 'Never release goods based on an SMS alert. Open your bank app and confirm the balance has increased. Fake alert apps are real.'
+      }
+    ]
+  },
+  'manage-finances': {
+    id: 'howto_manage_finances',
+    slug: 'manage-finances',
+    title: 'Small Business Finance 101: Profit is Not Cash',
+    excerpt: 'Your bank balance is lying to you. Learn how to separate personal and business funds, track expenses without being an accountant, and understand why your business is "profitable" but you have no cash.',
+    category: 'Business & Entrepreneurship',
+    readTime: '35 min',
+    publishDate: 'Feb 15, 2026',
+    lastUpdated: 'Feb 18, 2026',
+    author: {
+      name: 'Nkechi "Numbers" Adebayo',
+      title: 'Chartered Accountant (FCA)',
+      bio: 'Nkechi has audited everything from roadside buka joints to oil servicing firms. She specializes in helping SME owners understand their numbers without the jargon. Her motto: "If you cannot measure it, you cannot grow it."',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Nkechi Adebayo',
+      rating: 4.9,
+      articlesCount: 60,
+      verified: true,
+      expertise: ['Bookkeeping', 'Tax Planning', 'Cash Flow Management', 'SME Growth'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Calculator and financial documents on a desk',
+    tableOfContents: [
+      { id: 'separation', title: 'Rule #1: Separate Your Accounts', level: 2 },
+      { id: 'bookkeeping', title: 'Bookkeeping: Pen & Paper vs. Apps', level: 2 },
+      { id: 'profit-cash', title: 'Profit vs. Cash Flow: The Deadly Trap', level: 2 },
+      { id: 'paying-yourself', title: 'How to Pay Yourself (Salary)', level: 2 },
+      { id: 'taxes-simplified', title: 'Taxes Simplified: VAT, CIT, & WHT', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'separation',
+        title: 'Rule #1: Separate Your Accounts',
+        content: `If you buy diapers for your baby from your business account, you are killing your business.
+        <br><br>
+        <strong>The "Corporate Veil":</strong>
+        <br>
+        Legally, your Limited Liability Company (LTD) is a separate person. If you mix funds, you "pierce the corporate veil," meaning if the business gets sued, they can take your personal house/car.
+        <br><br>
+        <strong>Practical Steps:</strong>
+        <br>
+        1. Open a Corporate Bank Account (Moniepoint, GTBank, etc.).
+        <br>
+        2. All client payments go there. NO EXCEPTIONS.
+        <br>
+        3. If you need money for personal use, <em>transfer</em> it to your personal account first. Label the transfer "Salary" or "Drawings".`,
+        level: 2
+      },
+      {
+        id: 'bookkeeping',
+        title: 'Bookkeeping: Pen & Paper vs. Apps',
+        content: `You don't need QuickBooks (yet). You just need to know what came in and what went out.
+        <br><br>
+        <strong>The Spreadsheet Method:</strong>
+        <br>
+        Create a simple Google Sheet with columns: <em>Date, Description, Category (Rent, Data, Salary), Amount In, Amount Out.</em> Update it every Friday.
+        <br><br>
+        <strong>The App Method (Recommended):</strong>
+        <br>
+        Use Nigerian-focused apps like <strong>Kippa</strong> or <strong>Bumper</strong>.
+        <br>
+        - <em>Pros:</em> They work on mobile. They send invoices. They track debtors (people owing you).
+        <br>
+        - <em>Cons:</em> Requires data.
+        <br><br>
+        <strong>The "Shoebox" Method:</strong>
+        <br>
+        Keep every physical receipt in a box. It's better than nothing, but your accountant will hate you at tax time.`,
+        level: 2
+      },
+      {
+        id: 'profit-cash',
+        title: 'Profit vs. Cash Flow: The Deadly Trap',
+        content: `<strong>Scenario:</strong> You buy goods for ₦1M. You sell them for ₦1.5M on credit (customer pays next month).
+        <br><br>
+        - <strong>Profit:</strong> ₦500k. (On paper, you are rich).
+        <br>
+        - <strong>Cash Flow:</strong> -₦1M. (In reality, your bank account is empty).
+        <br><br>
+        <strong>Cash is King:</strong>
+        <br>
+        Businesses don't die because they lack profit; they die because they run out of cash.
+        <br>
+        - <em>Tip:</em> Ask for deposits (50-70%) upfront. Do not offer credit unless you have deep pockets.`,
+        level: 2
+      },
+      {
+        id: 'paying-yourself',
+        title: 'How to Pay Yourself (Salary)',
+        content: `You are an employee of your business.
+        <br><br>
+        <strong>Fixed Salary:</strong>
+        <br>
+        Set a realistic salary for yourself (e.g., ₦150,000). Transfer this on the 25th of every month. Do not touch the business account again until next month.
+        <br><br>
+        <strong>Dividends (Profit Share):</strong>
+        <br>
+        At the end of the year, if the business has excess profit <em>after</em> saving for taxes and reinvestment, you can declare a dividend. This is your "bonus".`,
+        level: 2
+      },
+      {
+        id: 'taxes-simplified',
+        title: 'Taxes Simplified: VAT, CIT, & WHT',
+        content: `Don't run from FIRS. They will catch you, and the penalty is worse than the tax.
+        <br><br>
+        <strong>1. VAT (Value Added Tax - 7.5%):</strong>
+        <br>
+        Consumer pays this, not you. You just collect and remit.
+        <br>
+        - <em>Tip:</em> If you charge ₦10,000, your invoice should read ₦10,750.
+        <br><br>
+        <strong>2. CIT (Company Income Tax - 0% / 20% / 30%):</strong>
+        <br>
+        - Small Company (Turnover < ₦25M): <strong>0% tax</strong>. (Yes, really. But you must still file returns).
+        <br>
+        - Medium Company (Turnover ₦25M - ₦100M): 20% of profits.
+        <br><br>
+        <strong>3. WHT (Withholding Tax - 5% or 10%):</strong>
+        <br>
+        Advance payment of tax. If a big company pays you, they might deduct 5% WHT. Collect the "Credit Note". You can use it to pay your CIT later.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Do I need an accountant?',
+        answer: 'If you are small (<₦25M turnover), you can do basic bookkeeping yourself. But hire a Chartered Accountant once a year to file your Annual Returns with CAC and FIRS to ensure you don\'t get fined.'
+      },
+      {
+        question: 'Can I spend business money on personal needs if I pay it back?',
+        answer: 'Avoid it. It creates bad habits and messy records. Treat the business money like it belongs to a stranger.'
+      },
+      {
+        question: 'What is "Reinvestment"?',
+        answer: 'Instead of "eating" all the profit, use it to buy better equipment, run more ads, or hire staff. This is how small businesses become big businesses.'
+      },
+      {
+        question: 'How do I track cash sales?',
+        answer: 'Write a receipt for every cash sale. Deposit the cash into the bank account at least once a week so there is a digital paper trail.'
+      }
+    ]
+  },
+  'grow-customers': {
+    id: 'howto_grow_customers',
+    slug: 'grow-customers',
+    title: 'How to Get Your First 100 Customers (and Keep Them)',
+    excerpt: 'Marketing isn\'t magic; it\'s a process. Learn actionable strategies to find customers in Nigeria using Instagram, WhatsApp, and referrals without breaking the bank.',
+    category: 'Marketing & Sales',
+    readTime: '30 min',
+    publishDate: 'Feb 16, 2026',
+    lastUpdated: 'Feb 20, 2026',
+    author: {
+      name: 'Tunde "The Growth" Oladipo',
+      title: 'Digital Marketing Strategist',
+      bio: 'Tunde has helped over 500 Nigerian SMEs go from zero to millions in monthly revenue. He believes in "Marketing that sells, not just marketing that looks good."',
+      image: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Tunde Oladipo',
+      rating: 4.8,
+      articlesCount: 42,
+      verified: true,
+      expertise: ['Social Media Marketing', 'Paid Ads', 'Sales Funnels', 'Brand Strategy'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Team brainstorming on a whiteboard',
+    tableOfContents: [
+      { id: 'target-audience', title: 'Step 1: Know Who You Are Selling To', level: 2 },
+      { id: 'organic-social', title: 'Organic Social: Instagram & WhatsApp', level: 2 },
+      { id: 'paid-ads', title: 'Paid Ads: Stop Boosting, Start Targeting', level: 2 },
+      { id: 'influencers', title: 'Micro-Influencers: The Secret Weapon', level: 2 },
+      { id: 'referrals', title: 'Referral Programs: Word of Mouth on Steroids', level: 2 },
+      { id: 'retention', title: 'Retention: Don\'t Pour Water in a Basket', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'target-audience',
+        title: 'Step 1: Know Who You Are Selling To',
+        content: `You cannot sell to "everybody." If you try to sell to everybody, you sell to nobody.
+        <br><br>
+        <strong>Create a Customer Persona:</strong>
+        <br>
+        - <strong>Who are they?</strong> (e.g., Working mums in Lagos, Students in UNILAG).
+        <br>
+        - <strong>What is their pain?</strong> (e.g., "I have no time to cook," "I need affordable data").
+        <br>
+        - <strong>Where do they hang out?</strong> (Instagram, Facebook Groups, Twitter/X).
+        <br><br>
+        <em>Example:</em> If you sell luxury wigs, don't target students. Target working class women in Lekki/Abuja who value convenience and status.`,
+        level: 2
+      },
+      {
+        id: 'organic-social',
+        title: 'Organic Social: Instagram & WhatsApp',
+        content: `You don't always need money to start.
+        <br><br>
+        <strong>Instagram Strategy:</strong>
+        <br>
+        - <strong>Reels:</strong> The fastest way to grow. Post behind-the-scenes, "How-to" videos, and customer testimonials.
+        <br>
+        - <strong>Bio:</strong> Clear value proposition. "I help [X] achieve [Y]." Link to your WhatsApp or Selar store.
+        <br><br>
+        <strong>WhatsApp Marketing:</strong>
+        <br>
+        - <strong>Status:</strong> It's your personal TV station. Post valuable content, not just "Buy my product."
+        <br>
+        - <strong>Broadcast Lists:</strong> Use sparingly. Ask for permission first. Send useful tips, then an offer.`,
+        level: 2
+      },
+      {
+        id: 'paid-ads',
+        title: 'Paid Ads: Stop Boosting, Start Targeting',
+        content: `The "Boost Post" button is often a waste of money. Use <strong>Facebook Ads Manager</strong>.
+        <br><br>
+        <strong>The Strategy:</strong>
+        <br>
+        1. <strong>Objective:</strong> Choose "Sales" or "Leads" (not just "Traffic").
+        <br>
+        2. <strong>Budget:</strong> Start with ₦2,000 - ₦5,000 per day.
+        <br>
+        3. <strong>Creative:</strong> Video ads perform better than images. Show the product in use.
+        <br>
+        4. <strong>Targeting:</strong> Don't guess. Use "Interest Targeting" related to your niche (e.g., "Skin Care" + "Lagos").`,
+        level: 2
+      },
+      {
+        id: 'influencers',
+        title: 'Micro-Influencers: The Secret Weapon',
+        content: `You don't need Davido or Wizkid. You need someone whose audience trusts them.
+        <br><br>
+        <strong>Why Micro-Influencers (5k - 50k followers)?</strong>
+        <br>
+        - They are affordable (often accept free products or small cash).
+        <br>
+        - They have higher engagement rates.
+        <br>
+        - Their audience is more niche-focused.
+        <br><br>
+        <em>Tip:</em> Look for influencers who actually reply to comments on their posts. That shows community.`,
+        level: 2
+      },
+      {
+        id: 'referrals',
+        title: 'Referral Programs: Word of Mouth on Steroids',
+        content: `A happy customer is your best marketer.
+        <br><br>
+        <strong>The Offer:</strong>
+        <br>
+        "Refer a friend and get ₦1,000 off your next order. Your friend gets ₦500 off too."
+        <br><br>
+        <strong>How to Track:</strong>
+        <br>
+        - Simple way: Ask "Who sent you?"
+        <br>
+        - Tech way: Use apps like <strong>Selar</strong> affiliates or coupon codes.`,
+        level: 2
+      },
+      {
+        id: 'retention',
+        title: 'Retention: Don\'t Pour Water in a Basket',
+        content: `Acquiring a new customer costs 5x more than keeping an old one.
+        <br><br>
+        <strong>How to Retain Customers:</strong>
+        <br>
+        1. <strong>Excellent Service:</strong> Reply fast. Deliver on time. Packaging matters.
+        <br>
+        2. <strong>Follow Up:</strong> 2 days after delivery, ask: "Did you enjoy the product?"
+        <br>
+        3. <strong>Loyalty Rewards:</strong> "Buy 5, get 1 free."
+        <br><br>
+        <em>Remember:</em> People buy from people they like and trust.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'How much should I spend on ads?',
+        answer: 'Start small. ₦2,000/day is enough to test. If you make a profit, increase the budget. If not, change the ad creative or audience.'
+      },
+      {
+        question: 'Do I need a website?',
+        answer: 'Not immediately. You can start with WhatsApp or a free store on Selar/Paystack. But a website builds credibility long-term.'
+      },
+      {
+        question: 'What if I post and nobody likes it?',
+        answer: 'Consistency is key. The algorithm needs time to understand your content. Keep improving your quality and engage with others.'
+      },
+      {
+        question: 'Is email marketing dead in Nigeria?',
+        answer: 'No! It has the highest ROI. Collect emails/phone numbers from day one. Social media can disappear; your list is yours.'
+      }
+    ]
+  },
+  'pricing': {
+    id: 'howto_pricing',
+    slug: 'pricing',
+    title: 'The Price is Right: Strategies for Maximum Profit',
+    excerpt: 'Stop guessing your prices. Learn the difference between Cost-Plus and Value-Based pricing, and how to price your products in Nigeria without scaring away customers.',
+    category: 'Marketing & Sales',
+    readTime: '25 min',
+    publishDate: 'Feb 17, 2026',
+    lastUpdated: 'Feb 21, 2026',
+    author: {
+      name: 'Chinedu "The Prof" Okeke',
+      title: 'Economics & Pricing Analyst',
+      bio: 'Chinedu advises retail brands on pricing strategies that maximize profit without hurting sales volume. He hates seeing businesses run at a loss because they "forgot" to count the cost of packaging.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Chinedu Okeke',
+      rating: 4.9,
+      articlesCount: 35,
+      verified: true,
+      expertise: ['Pricing Strategy', 'Unit Economics', 'Retail Management', 'Consumer Psychology'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Price tags and calculator',
+    tableOfContents: [
+      { id: 'cost-plus', title: 'Cost-Plus Pricing: The Safe Foundation', level: 2 },
+      { id: 'value-based', title: 'Value-Based Pricing: The Profit Maximizer', level: 2 },
+      { id: 'psychology', title: 'Psychological Pricing: ₦9,999 vs ₦10,000', level: 2 },
+      { id: 'haggling', title: 'Handling "Last Price" & Haggling', level: 2 },
+      { id: 'price-increase', title: 'How to Raise Prices During Inflation', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'cost-plus',
+        title: 'Cost-Plus Pricing: The Safe Foundation',
+        content: `Before you set a price, you MUST know your costs. If you don't, you are gambling.
+        <br><br>
+        <strong>The Formula:</strong>
+        <br>
+        <em>Total Cost + Profit Margin = Price</em>
+        <br><br>
+        <strong>What is "Total Cost"?</strong>
+        <br>
+        It's not just the cost of the item.
+        <br>
+        - <strong>COGS (Cost of Goods Sold):</strong> Purchase price + Shipping to Nigeria + Clearing.
+        <br>
+        - <strong>Overheads:</strong> Packaging (nylon/box), Data, Electricity, Transport to courier, Rent.
+        <br><br>
+        <em>Example:</em>
+        <br>
+        Shoe cost (₦5,000) + Shipping (₦2,000) + Packaging (₦500) = ₦7,500 Total Cost.
+        <br>
+        If you sell for ₦8,000, you only made ₦500 profit. Is that worth your stress?`,
+        level: 2
+      },
+      {
+        id: 'value-based',
+        title: 'Value-Based Pricing: The Profit Maximizer',
+        content: `Cost-plus ensures you don't lose money. Value-based ensures you make <em>more</em> money.
+        <br><br>
+        <strong>The Concept:</strong>
+        <br>
+        Price based on the <strong>value</strong> the customer gets, not just your cost.
+        <br><br>
+        <em>Example:</em>
+        <br>
+        A bottle of water costs ₦100 in traffic. It costs ₦500 in a 5-star hotel. Same water, different value (ambience, service, glass cup).
+        <br><br>
+        <strong>How to apply:</strong>
+        <br>
+        If you sell "Urgent Delivery" fashion, you can charge double because the value is "Speed," not just the cloth.`,
+        level: 2
+      },
+      {
+        id: 'psychology',
+        title: 'Psychological Pricing: ₦9,999 vs ₦10,000',
+        content: `Human brains are funny. We read from left to right.
+        <br><br>
+        <strong>Charm Pricing:</strong>
+        <br>
+        - ₦5,000 feels expensive.
+        <br>
+        - ₦4,950 or ₦4,900 feels like "Four thousand something."
+        <br><br>
+        <strong>Bundling:</strong>
+        <br>
+        Don't just sell a wig. Sell a "Wig Care Kit" (Wig + Stand + Spray) for a higher price. Customers love "Complete Packages" because it saves them thinking time.`,
+        level: 2
+      },
+      {
+        id: 'haggling',
+        title: 'Handling "Last Price" & Haggling',
+        content: `In Nigeria, haggling is a sport. If you say ₦10,000, they will offer ₦6,000.
+        <br><br>
+        <strong>The Strategy:</strong>
+        <br>
+        1. <strong>Add a "Haggle Margin":</strong> If you want to sell for ₦10,000, list it at ₦12,000. When they beat it down to ₦10,000, they feel like winners, and you get your target price.
+        <br>
+        2. <strong>Firm Pricing:</strong> If you run a formal website/store, put "Fixed Price" clearly. Justify it with quality guarantees.`,
+        level: 2
+      },
+      {
+        id: 'price-increase',
+        title: 'How to Raise Prices During Inflation',
+        content: `With the Naira fluctuating, you cannot keep 2024 prices in 2026.
+        <br><br>
+        <strong>How to do it without anger:</strong>
+        <br>
+        1. <strong>Announce Early:</strong> "Due to rising costs, our prices will change on March 1st. Order now at old prices!" (This also boosts sales).
+        <br>
+        2. <strong>Explain Why:</strong> "To maintain the quality you love..."
+        <br>
+        3. <strong>Add Value:</strong> "We are increasing prices, but we are also improving our packaging/delivery speed."`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Should I put "DM for Price"?',
+        answer: 'NO. It kills sales. Customers assume you are expensive or shady. Display your price proudly. It filters out non-serious buyers immediately.'
+      },
+      {
+        question: 'My competitor is selling cheaper. What should I do?',
+        answer: 'Do not lower your price. If you fight a price war, you both die. Instead, improve your service, packaging, or brand trust. People pay more for peace of mind.'
+      },
+      {
+        question: 'What is a good profit margin?',
+        answer: 'For retail, aim for 20-30% net profit. For services, aim for 50%+. If your margin is 5%, one bad delivery can wipe out your profit.'
+      },
+      {
+        question: 'How do I calculate profit?',
+        answer: 'Selling Price - (Product Cost + All Expenses) = Net Profit. Revenue is NOT Profit.'
+      }
+    ]
+  },
+  'home-organization': {
+    id: 'howto_home_organization',
+    slug: 'home-organization',
+    title: 'The Art of Home Organization: Declutter Your Space, Clear Your Mind',
+    excerpt: 'Is your room a mess? Discover practical Nigerian-friendly tips to organize your home, maximize small spaces, and create a peaceful environment that boosts your productivity.',
+    category: 'Lifestyle & Productivity',
+    readTime: '20 min',
+    publishDate: 'Feb 18, 2026',
+    lastUpdated: 'Feb 22, 2026',
+    author: {
+      name: 'Simi "Sparkle" Adeyemi',
+      title: 'Professional Organizer',
+      bio: 'Simi runs a decluttering service in Lagos. She specializes in turning "store rooms" into home offices and believes that a disorganized space leads to a disorganized life.',
+      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Simi Adeyemi',
+      rating: 4.7,
+      articlesCount: 18,
+      verified: true,
+      expertise: ['Decluttering', 'Interior Styling', 'Storage Solutions', 'Minimalism'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Organized living room with plants and shelving',
+    tableOfContents: [
+      { id: 'why-organize', title: 'Why Organization Matters (It\'s Not Just Aesthetics)', level: 2 },
+      { id: 'declutter-first', title: 'Step 1: The "Keep, Toss, Donate" Method', level: 2 },
+      { id: 'small-spaces', title: 'Maximizing Small Apartments in Lagos', level: 2 },
+      { id: 'storage-hacks', title: 'Cheap Storage Hacks You Can Buy in the Market', level: 2 },
+      { id: 'maintenance', title: 'The 15-Minute Daily Reset Rule', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'why-organize',
+        title: 'Why Organization Matters (It\'s Not Just Aesthetics)',
+        content: `Have you ever spent 20 minutes looking for your car keys or BVN slip? That is wasted life.
+        <br><br>
+        <strong>The Mental Cost of Clutter:</strong>
+        <br>
+        Psychologists say that physical clutter competes for your attention, decreases performance, and increases stress.
+        <br><br>
+        <strong>The "Broken Windows" Theory:</strong>
+        <br>
+        If you leave one pile of clothes on the chair, soon the whole room becomes a laundry basket. Fix the small mess before it becomes a big mess.`,
+        level: 2
+      },
+      {
+        id: 'declutter-first',
+        title: 'Step 1: The "Keep, Toss, Donate" Method',
+        content: `You cannot organize clutter. You must eliminate it first.
+        <br><br>
+        <strong>The 3-Box System:</strong>
+        <br>
+        1. <strong>Keep:</strong> Items you use weekly.
+        <br>
+        2. <strong>Toss:</strong> Broken items, expired creams, old receipts.
+        <br>
+        3. <strong>Donate:</strong> Clothes you haven't worn in 1 year. (Give to charity or security/cleaning staff).
+        <br><br>
+        <em>Rule:</em> If you are "saving it for a special occasion" that hasn't happened in 3 years, let it go.`,
+        level: 2
+      },
+      {
+        id: 'small-spaces',
+        title: 'Maximizing Small Apartments in Lagos',
+        content: `Living in a "Self-Con" or small flat requires creativity.
+        <br><br>
+        <strong>Go Vertical:</strong>
+        <br>
+        Don't just use the floor. Install floating shelves up to the ceiling. Use the space <em>above</em> your wardrobe for suitcases.
+        <br><br>
+        <strong>Over-the-Door Organizers:</strong>
+        <br>
+        Use shoe organizers behind your bedroom door for shoes, toiletries, or charging cables.
+        <br><br>
+        <strong>Multi-Functional Furniture:</strong>
+        <br>
+        Buy a bed frame with drawers underneath. Buy an ottoman that opens up for storage.`,
+        level: 2
+      },
+      {
+        id: 'storage-hacks',
+        title: 'Cheap Storage Hacks You Can Buy in the Market',
+        content: `You don't need expensive IKEA furniture. Visit Balogun or your local plastic market.
+        <br><br>
+        1. <strong>Plastic Baskets:</strong> Use them in your kitchen drawers to separate spoons from knives. Use them in your wardrobe for socks/underwear.
+        <br>
+        2. <strong>Shower Caddies:</strong> Great for organizing spices in the kitchen, not just soap in the bathroom.
+        <br>
+        3. <strong>Cardboard Boxes:</strong> Wrap a Indomie carton in wrapping paper. Boom, you have a stylish storage box for books.`,
+        level: 2
+      },
+      {
+        id: 'maintenance',
+        title: 'The 15-Minute Daily Reset Rule',
+        content: `Organization is a habit, not a one-time event.
+        <br><br>
+        <strong>How it works:</strong>
+        <br>
+        Every evening before bed, set a timer for 15 minutes.
+        <br>
+        - Return the remote to its place.
+        <br>
+        - Wash the few plates in the sink.
+        <br>
+        - Hang up the clothes you wore.
+        <br><br>
+        <em>Result:</em> You wake up to a clean house every morning, which sets a positive tone for your day.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'How do I stop my family from messing it up?',
+        answer: 'Label everything. If a basket says "Toys," even a child knows where the toy goes. Lead by example.'
+      },
+      {
+        question: 'Where can I donate old clothes in Nigeria?',
+        answer: 'Orphanages, Red Cross, or simply ask your domestic staff or security guards if they know anyone in need. Ensure the clothes are clean and not torn.'
+      },
+      {
+        question: 'I have sentimental attachment to items. How do I let go?',
+        answer: 'Take a picture of the item to keep the memory, then give the physical item to someone who will actually use it.'
+      },
+      {
+        question: 'How do I organize my kitchen without a pantry?',
+        answer: 'Use a bookshelf as an open pantry. Store food in matching clear jars (reuse mayonnaise jars) to reduce visual noise.'
+      }
+    ]
+  },
+  'cleaning': {
+    id: 'howto_cleaning',
+    slug: 'cleaning',
+    title: 'The Ultimate Cleaning Guide: Secrets for a Sparkling Nigerian Home',
+    excerpt: 'Tired of cleaning all weekend? Learn professional secrets to clean faster, remove stubborn stains like palm oil, and keep your home fresh despite the dust.',
+    category: 'Lifestyle & Productivity',
+    readTime: '25 min',
+    publishDate: 'Feb 19, 2026',
+    lastUpdated: 'Feb 23, 2026',
+    author: {
+      name: 'Chioma "The Scrub" Obi',
+      title: 'Professional Cleaning Consultant',
+      bio: 'Chioma started her cleaning agency with one bucket and a mop. Today, she trains hotel staff on hygiene standards. She swears by the power of Vinegar and Baking Soda.',
+      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Chioma Obi',
+      rating: 4.8,
+      articlesCount: 22,
+      verified: true,
+      expertise: ['Deep Cleaning', 'Stain Removal', 'Eco-Friendly Cleaning', 'Pest Control'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Cleaning supplies bucket and mop',
+    tableOfContents: [
+      { id: 'top-to-bottom', title: 'Rule #1: Clean Top-to-Bottom, Left-to-Right', level: 2 },
+      { id: 'kitchen', title: 'Kitchen Rescue: Palm Oil & Burnt Pots', level: 2 },
+      { id: 'bathroom', title: 'Bathroom Bliss: Tiles, Grout & Hard Water', level: 2 },
+      { id: 'dust', title: 'Winning the War Against Harmattan Dust', level: 2 },
+      { id: 'diy-cleaners', title: 'DIY Magic: Vinegar, Lemon & Baking Soda', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'top-to-bottom',
+        title: 'Rule #1: Clean Top-to-Bottom, Left-to-Right',
+        content: `Most people clean wrongly. They sweep the floor, then dust the fan.
+        <br><br>
+        <strong>Why this fails:</strong>
+        <br>
+        Gravity exists. When you dust the fan <em>after</em> sweeping, the dust falls on your clean floor.
+        <br><br>
+        <strong>The Professional Order:</strong>
+        <br>
+        1. <strong>Cobwebs/Ceiling Fans:</strong> Use a long broom.
+        <br>
+        2. <strong>Windows/Shelves:</strong> Wipe dust onto the floor.
+        <br>
+        3. <strong>Furniture:</strong> Wipe tables and chairs.
+        <br>
+        4. <strong>Floor:</strong> Sweep and mop last. This catches everything that fell down.`,
+        level: 2
+      },
+      {
+        id: 'kitchen',
+        title: 'Kitchen Rescue: Palm Oil & Burnt Pots',
+        content: `Nigerian cooking is delicious but messy.
+        <br><br>
+        <strong>Palm Oil Stains on Counters:</strong>
+        <br>
+        Do not use just water; it spreads the oil. Sprinkle <strong>Baking Soda</strong> on the stain, let it sit for 5 minutes to absorb the oil, then scrub with dish soap.
+        <br><br>
+        <strong>Burnt Pots:</strong>
+        <br>
+        Did you burn the Jollof? Don't stress.
+        <br>
+        - Fill the pot with water and add a cup of Vinegar.
+        <br>
+        - Boil it for 10 minutes.
+        <br>
+        - Add baking soda (it will fizz!).
+        <br>
+        - Scrub. The burnt part will peel off easily.`,
+        level: 2
+      },
+      {
+        id: 'bathroom',
+        title: 'Bathroom Bliss: Tiles, Grout & Hard Water',
+        content: `Brown lines between tiles (grout) make a bathroom look dirty even when it's clean.
+        <br><br>
+        <strong>The Grout Cleaner:</strong>
+        <br>
+        Mix a paste of Baking Soda + Hydrogen Peroxide (from the pharmacy). Apply to lines with an old toothbrush. Wait 10 mins. Scrub. It will be white again.
+        <br><br>
+        <strong>Hard Water Stains (White marks on taps):</strong>
+        <br>
+        Soak a cloth in Vinegar and wrap it around the tap. Leave for 30 minutes. Wipe. The acid dissolves the calcium buildup.`,
+        level: 2
+      },
+      {
+        id: 'dust',
+        title: 'Winning the War Against Harmattan Dust',
+        content: `In Nigeria, dust is inevitable, especially during Harmattan.
+        <br><br>
+        <strong>Microfiber Cloths:</strong>
+        <br>
+        Stop using old t-shirts. They just move dust around. Buy <strong>Microfiber Cloths</strong> (cheap in the market). They have a static charge that <em>grabs</em> dust.
+        <br><br>
+        <strong>Doormats:</strong>
+        <br>
+        Place a mat <em>outside</em> and <em>inside</em> the front door. 80% of dust comes in on shoes.`,
+        level: 2
+      },
+      {
+        id: 'diy-cleaners',
+        title: 'DIY Magic: Vinegar, Lemon & Baking Soda',
+        content: `Cleaning products are expensive. Make your own.
+        <br><br>
+        1. <strong>All-Purpose Cleaner:</strong> Mix 50% Water + 50% White Vinegar in a spray bottle. Add lemon peel for scent. (Note: Don't use on marble/granite).
+        <br>
+        2. <strong>Fridge Deodorizer:</strong> Keep an open box of Baking Soda in the fridge. It absorbs the smell of Ogiri and Fish.
+        <br>
+        3. <strong>Microwave Cleaner:</strong> Bowl of water + Lemon slices. Microwave for 3 mins. The steam softens the food splashes. Just wipe.`,
+        level: 2
+      }
+    ],
+    faqs: [
+       {
+         question: 'How often should I wash my bedsheets?',
+         answer: 'Every week. We sweat and shed skin cells while sleeping. Dirty sheets cause acne and allergies.'
+       },
+      {
+        question: 'How do I clean a burnt iron?',
+        answer: 'Sprinkle salt on a piece of paper. Iron over the salt while hot (no steam). The salt scrapes off the burnt fabric.'
+      },
+      {
+        question: 'My sink smells bad. What do I do?',
+        answer: 'Pour half a cup of Baking Soda down the drain, followed by a cup of Vinegar. Flush with hot water after 15 minutes.'
+      },
+      {
+        question: 'Is bleach the best cleaner?',
+        answer: 'No. Bleach disinfects (kills germs), but it is not a good cleaner (removing dirt). Clean with soap first, then use bleach to sanitize.'
+      }
+    ]
+  },
+  'home-maintenance': {
+    id: 'howto_home_maintenance',
+    slug: 'home-maintenance',
+    title: 'Home Maintenance 101: Don\'t Wait Until It Spoils',
+    excerpt: 'Generators, ACs, and plumbing issues can drain your bank account if ignored. Learn the basic maintenance checks every Nigerian homeowner or tenant should know to save money.',
+    category: 'Lifestyle & Productivity',
+    readTime: '30 min',
+    publishDate: 'Feb 20, 2026',
+    lastUpdated: 'Feb 24, 2026',
+    author: {
+      name: 'Musa "Fix-It" Ibrahim',
+      title: 'Civil Engineer & Handyman',
+      bio: 'Musa has renovated over 100 houses in Lagos and Abuja. He believes that 50% of house problems are caused by "managing it" until it completely breaks down.',
+      image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Musa Ibrahim',
+      rating: 4.9,
+      articlesCount: 45,
+      verified: true,
+      expertise: ['Electrical Repair', 'Plumbing', 'Generator Servicing', 'Roofing'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Tools and toolbox on a wooden table',
+    tableOfContents: [
+      { id: 'generator-rule', title: 'The Generator Rule: Oil & Filters', level: 2 },
+      { id: 'ac-survival', title: 'AC Survival: Why is it Blowing Hot?', level: 2 },
+      { id: 'plumbing', title: 'Plumbing: The Sound of Wasted Money', level: 2 },
+      { id: 'roof-leaks', title: 'Roof & Gutters: Prepare for Rainy Season', level: 2 },
+      { id: 'electrical', title: 'Electrical Safety & Prepaid Meters', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'generator-rule',
+        title: 'The Generator Rule: Oil & Filters',
+        content: `Your generator is the heartbeat of your home. Treat it with respect.
+        <br><br>
+        <strong>Change Oil Frequently:</strong>
+        <br>
+        Don't wait until the oil turns black and thick like tar. Change it every <strong>100 running hours</strong> (approx. every 2 weeks if you run it daily).
+        <br><br>
+        <strong>The "Small Smoke" Myth:</strong>
+        <br>
+        If your gen starts smoking "just a little," call the mechanic immediately. That is the piston ring crying for help. Fixing it now costs ₦15k. Fixing it later (new engine) costs ₦150k.`,
+        level: 2
+      },
+      {
+        id: 'ac-survival',
+        title: 'AC Survival: Why is it Blowing Hot?',
+        content: `In Nigeria, an AC is not a luxury; it is life support.
+        <br><br>
+        <strong>Clean the Filters:</strong>
+        <br>
+        Open the front cover. See those dusty nets? Wash them. Do this <strong>once a month</strong>. A blocked filter forces the compressor to work 2x harder, increasing your electricity bill.
+        <br><br>
+        <strong>Gas Refill Scam:</strong>
+        <br>
+        AC gas does not "finish" like petrol. It is a closed loop. If your gas is low, there is a <strong>leak</strong>. Don't just refill gas; find and seal the leak first.`,
+        level: 2
+      },
+      {
+        id: 'plumbing',
+        title: 'Plumbing: The Sound of Wasted Money',
+        content: `<strong>The Running Toilet:</strong>
+        <br>
+        If you hear water running in the toilet bowl after flushing has stopped, your flapper valve is bad. It costs ₦2,000 to replace, but it can waste ₦10,000 worth of water (and pumping energy) in a month.
+        <br><br>
+        <strong>The Pumping Machine (Sumo):</strong>
+        <br>
+        Never run your pumping machine when the tank is full or the well is dry. Install a <strong>Float Switch</strong> (automatic stop). It saves your pump from burning out.`,
+        level: 2
+      },
+      {
+        id: 'roof-leaks',
+        title: 'Roof & Gutters: Prepare for Rainy Season',
+        content: `The best time to fix a roof is when the sun is shining.
+        <br><br>
+        <strong>Inspect the Ceiling:</strong>
+        <br>
+        Look for brown water stains. That is a sign of a slow leak.
+        <br><br>
+        <strong>Clean the Gutters:</strong>
+        <br>
+        Before the first rain of the year, clear the leaves and sand from your roof gutters. If water cannot flow <em>off</em> the roof, it will flow <em>into</em> the house.`,
+        level: 2
+      },
+      {
+        id: 'electrical',
+        title: 'Electrical Safety & Prepaid Meters',
+        content: `<strong>Why is my meter reading so fast?</strong>
+        <br>
+        Unplug everything. Does the meter still count?
+        <br>
+        - <strong>Yes:</strong> You have a leakage (bad wiring) or someone tapped your line.
+        <br>
+        - <strong>No:</strong> Your appliances are consuming too much. Check your water heater and pressing iron.
+        <br><br>
+        <strong>Changeover Switch:</strong>
+        <br>
+        Ensure your changeover switch is quality. A loose connection causes arcing (sparks) and can burn down the house.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'How often should I service my generator?',
+        answer: 'Every 100 hours of use. If you use it every night (6pm-6am), that is roughly every 8-9 days. Yes, it is expensive, but a knocked engine is more expensive.'
+      },
+      {
+        question: 'Can I use salt and hot water to clear a blocked drain?',
+        answer: 'It helps for minor grease blocks in the kitchen sink. But for serious blocks, you need a plumbing snake or a professional. Avoid strong chemicals (acid) as they can eat your pipes.'
+      },
+      {
+        question: 'My wall paint is peeling. Can I just paint over it?',
+        answer: 'No. You must scrape off the old peeling paint, sand the wall smooth, apply a primer/undercoat, and THEN paint. Otherwise, the new paint will peel in 2 weeks.'
+      },
+      {
+        question: 'What should I have in my home toolkit?',
+        answer: 'Screwdrivers (Star and Flat), Pliers, Hammer, Tester, Teflon tape, and a Torchlight.'
+      }
+    ]
+  },
+  'energy-saving': {
+    id: 'howto_energy_saving',
+    slug: 'energy-saving',
+    title: 'Cut Your NEPA Bill in Half: The Nigerian Guide to Energy Saving',
+    excerpt: 'Prepaid meters reading too fast? Fuel price killing your vibe? Learn how to optimize your energy usage, choose the right solar setup, and stop wasting money on electricity.',
+    category: 'Lifestyle & Productivity',
+    readTime: '25 min',
+    publishDate: 'Feb 21, 2026',
+    lastUpdated: 'Feb 25, 2026',
+    author: {
+      name: 'Engr. Bode "Solar" Thomas',
+      title: 'Renewable Energy Consultant',
+      bio: 'Bode has installed over 500kW of solar power across Nigeria. He helps homeowners transition from "Generator Noise" to "Silent Solar" without breaking the bank.',
+      image: 'https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Engr. Bode Thomas',
+      rating: 4.8,
+      articlesCount: 30,
+      verified: true,
+      expertise: ['Solar Installation', 'Energy Auditing', 'Inverter Systems', 'Smart Metering'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Solar panels on a roof against a blue sky',
+    tableOfContents: [
+      { id: 'prepaid-meter', title: 'The Prepaid Meter: Friend or Enemy?', level: 2 },
+      { id: 'energy-vampires', title: 'Energy Vampires: What is Eating Your Units?', level: 2 },
+      { id: 'solar-basics', title: 'Solar 101: Monocrystalline vs. Polycrystalline', level: 2 },
+      { id: 'inverter-battery', title: 'Batteries: Tubular vs. Lithium (The Truth)', level: 2 },
+      { id: 'ac-tips', title: 'AC & Ironing: How to Stay Cool for Less', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'prepaid-meter',
+        title: 'The Prepaid Meter: Friend or Enemy?',
+        content: `Many Nigerians hate prepaid meters because they "read too fast." But they are better than estimated billing <em>if</em> you manage them.
+        <br><br>
+        <strong>Monitor Your Usage:</strong>
+        <br>
+        Don't just load credit and forget. Check your balance daily at the same time (e.g., 8 PM). If you used 10 units yesterday and 20 units today, ask yourself: "What did I turn on differently?"
+        <br><br>
+        <strong>The Red Light:</strong>
+        <br>
+        If the red light on your meter is blinking fast, you are consuming heavy power. If it blinks slowly, you are efficient.`,
+        level: 2
+      },
+      {
+        id: 'energy-vampires',
+        title: 'Energy Vampires: What is Eating Your Units?',
+        content: `Some appliances eat electricity even when you think they are off.
+        <br><br>
+        <strong>The Culprits:</strong>
+        <br>
+        - <strong>Electric Kettle:</strong> Boiling water takes huge power. Use a gas cooker instead.
+        <br>
+        - <strong>Standby Mode:</strong> Your TV, Decoder, and Sound System consume power just by being plugged in. Turn them off at the wall socket.
+        <br>
+        - <strong>Old Fridges:</strong> That 15-year-old fridge is an energy disaster. Modern fridges use 60% less energy.`,
+        level: 2
+      },
+      {
+        id: 'solar-basics',
+        title: 'Solar 101: Monocrystalline vs. Polycrystalline',
+        content: `Thinking of going solar? Know what you are buying.
+        <br><br>
+        <strong>Monocrystalline (Black Panels):</strong>
+        <br>
+        - More efficient.
+        <br>
+        - Works better in low light (cloudy days).
+        <br>
+        - More expensive.
+        <br><br>
+        <strong>Polycrystalline (Blue Panels):</strong>
+        <br>
+        - Cheaper.
+        <br>
+        - Needs more roof space to generate the same power.
+        <br>
+        - Good if you have a large roof and a tight budget.
+        <br><br>
+        <em>Verdict:</em> In Nigeria, Mono is usually better because of our rainy season cloud cover.`,
+        level: 2
+      },
+      {
+        id: 'inverter-battery',
+        title: 'Batteries: Tubular vs. Lithium (The Truth)',
+        content: `The battery is the most expensive part of your solar setup.
+        <br><br>
+        <strong>Tubular (Wet Cell):</strong>
+        <br>
+        Cheaper upfront. Needs maintenance (topping up distilled water). Lasts 2-3 years.
+        <br><br>
+        <strong>Lithium-Ion (Dry Cell):</strong>
+        <br>
+        Expensive (2x-3x price). Zero maintenance. Lasts 7-10 years.
+        <br><br>
+        <em>Advice:</em> If you can afford it, buy Lithium once and rest for a decade.`,
+        level: 2
+      },
+      {
+        id: 'ac-tips',
+        title: 'AC & Ironing: How to Stay Cool for Less',
+        content: `<strong>Inverter ACs:</strong>
+        <br>
+        They regulate their speed instead of stopping and starting. They save 40% energy compared to normal ACs.
+        <br><br>
+        <strong>Ironing:</strong>
+        <br>
+        Iron in bulk. Heating up the iron takes the most power. Once it's hot, it uses less to stay hot. Don't iron one shirt every morning.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Does turning off the switch really save money?',
+        answer: 'Yes. "Vampire load" (standby power) accounts for up to 10% of your bill. Unplugging is even better.'
+      },
+      {
+        question: 'How many solar panels do I need for a 3-bedroom flat?',
+        answer: 'It depends on your load. For basic lights, fans, and TV, a 3kVA system with 4-6 panels is a good start. For ACs and Freezers, you need 5kVA+ and 10+ panels.'
+      },
+      {
+        question: 'Is it true that prepaid meters run faster when voltage is low?',
+        answer: 'No. Meters measure power (Watts), which is Voltage x Current. If voltage drops, current often increases for some appliances, but the meter just measures the total energy used.'
+      },
+      {
+        question: 'Can I use a stabilizer with my solar inverter?',
+        answer: 'Most modern inverters have built-in stabilizers (AVR). Adding an external stabilizer is often unnecessary and just consumes extra power.'
+      }
+    ]
+  },
+  'home-safety': {
+    id: 'guide_home_safety',
+    slug: 'home-safety',
+    title: 'Home Safety: Secure Your Family & Property',
+    excerpt: 'From gas leaks to intruders, Nigerian homes face unique safety challenges. Learn how to secure your doors, check your gas cylinders, and prevent electrical fires.',
+    category: 'Home & Security',
+    readTime: '12 min',
+    publishDate: 'Feb 22, 2026',
+    lastUpdated: 'Feb 25, 2026',
+    author: {
+      name: 'CSP (Rtd.) Okon "Eagle Eye" Bassey',
+      title: 'Security Consultant',
+      bio: 'Okon served 25 years in the Police Force before starting his private security firm. He specializes in residential security audits for Lagos and Abuja estates.',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'CSP Okon Bassey',
+      rating: 4.9,
+      articlesCount: 15,
+      verified: true,
+      expertise: ['Perimeter Security', 'Crisis Management', 'Fire Safety'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Key in a door lock representing home security',
+    tableOfContents: [
+      { id: 'perimeter-defense', title: 'Perimeter Defense: First Line', level: 2 },
+      { id: 'gas-safety', title: 'Cooking Gas: The Silent Danger', level: 2 },
+      { id: 'fire-prevention', title: 'Fire Prevention & Electricals', level: 2 },
+      { id: 'emergency-plan', title: 'Your Emergency Action Plan', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'perimeter-defense',
+        title: 'Perimeter Defense: First Line',
+        content: `Security starts at the gate. In Nigeria, we rely heavily on physical barriers, but are they effective?
+        <br><br>
+        <strong>Lighting is Key:</strong>
+        <br>
+        Criminals hate light. Install motion-sensor solar lights around your perimeter. If NEPA takes light, your security shouldn't go dark.
+        <br><br>
+        <strong>"Burglary Proof" vs. Fire Trap:</strong>
+        <br>
+        We love our iron bars (burglary proofs), but they can be deadly during a fire. Ensure at least one window in each room has a key-operated release mechanism from the inside. Keep the key nearby but out of reach from the window.`,
+        level: 2
+      },
+      {
+        id: 'gas-safety',
+        title: 'Cooking Gas: The Silent Danger',
+        content: `Gas explosions are becoming too common. Most are preventable.
+        <br><br>
+        <strong>Check the Expiry Date:</strong>
+        <br>
+        Yes, cylinders expire! Look for a code on the metal strip (e.g., D26 means expires Dec 2026). If your cylinder is expired, stop using it immediately.
+        <br><br>
+        <strong>The Soap Test:</strong>
+        <br>
+        Never use a match to check for leaks. Mix soap and water, then sponge it on the hose and regulator. If it bubbles, you have a leak. Turn off the valve and open windows.`,
+        level: 2
+      },
+      {
+        id: 'fire-prevention',
+        title: 'Fire Prevention & Electricals',
+        content: `Electrical faults cause 60% of house fires in Lagos.
+        <br><br>
+        <strong>Avoid "By-Pass":</strong>
+        <br>
+        By-passing your meter or using substandard wires to "manage" is a recipe for disaster. When wires overheat, they melt and catch fire inside the walls.
+        <br><br>
+        <strong>Get a Fire Extinguisher:</strong>
+        <br>
+        Every kitchen needs a <strong>Class B (CO2 or Foam)</strong> extinguisher. Water makes grease fires worse!`,
+        level: 2
+      },
+      {
+        id: 'emergency-plan',
+        title: 'Your Emergency Action Plan',
+        content: `When trouble comes, panic is your enemy. Have a plan.
+        <br><br>
+        <strong>Important Numbers:</strong>
+        <br>
+        Memorize <strong>112</strong> or <strong>767</strong> (Lagos). Have your local police division's number saved on speed dial.
+        <br><br>
+        <strong>Neighborhood Watch:</strong>
+        <br>
+        Join your estate WhatsApp group. Your neighbors are your first responders.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'How do I know if my gas cylinder is leaking?',
+        answer: 'The smell of "rotten eggs" is the first sign. Use the soapy water test to confirm. Never strike a match.'
+      },
+      {
+        question: 'What is the best lock for a Nigerian front door?',
+        answer: 'Deadbolts are harder to shimmy than spring latches. Consider a high-quality imported lock rather than cheap knock-offs.'
+      },
+      {
+        question: 'Is it safe to leave my generator running overnight?',
+        answer: 'Only if it is far from the house and not near any windows. Carbon monoxide kills silently. Never run a gen on a balcony.'
+      }
+    ]
+  },
+  'african-recipes': {
+    id: 'guide_african_recipes',
+    slug: 'african-recipes',
+    title: 'Taste of Home: Mastering Classic Nigerian Dishes',
+    excerpt: 'Jollof Rice, Egusi Soup, and Pounded Yam are more than just food; they are an emotion. Learn the authentic secrets to cooking these Nigerian favorites.',
+    category: 'Lifestyle & Culture',
+    readTime: '20 min',
+    publishDate: 'Feb 26, 2026',
+    lastUpdated: 'Feb 28, 2026',
+    author: {
+      name: 'Chef Nneka "Mama Put" Obi',
+      title: 'Culinary Instructor',
+      bio: 'Nneka runs a popular catering school in Enugu. She insists that "if your Jollof does not burn small, it is just tomato rice."',
+      image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Chef Nneka',
+      rating: 5.0,
+      articlesCount: 62,
+      verified: true,
+      expertise: ['Nigerian Cuisine', 'Baking', 'Event Catering'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Plate of Jollof Rice with chicken and plantain',
+    tableOfContents: [
+      { id: 'jollof-wars', title: 'The Perfect Party Jollof', level: 2 },
+      { id: 'egusi-soup', title: 'Egusi: Lumpy or Frying Method?', level: 2 },
+      { id: 'swallow-guide', title: 'Pounded Yam vs. Semo', level: 2 },
+      { id: 'moi-moi', title: 'Moi-Moi: Leaf vs. Tin', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'jollof-wars',
+        title: 'The Perfect Party Jollof',
+        content: `There is rice, and then there is <strong>Nigerian Party Jollof</strong>. The secret ingredient? Smoke.
+        <br><br>
+        <strong>The Base:</strong>
+        <br>
+        Blend tatashe (red bell pepper), scotch bonnet (rodo), and onions. Boil this mixture until the water dries up <em>before</em> frying it in oil. This concentrates the flavor.
+        <br><br>
+        <strong>The "Burn":</strong>
+        <br>
+        Don't be afraid to let the bottom pot burn a little. That smoky aroma is what distinguishes authentic Jollof from "concoction rice." Cover the pot with foil to trap the steam and smoke.`,
+        level: 2
+      },
+      {
+        id: 'egusi-soup',
+        title: 'Egusi: Lumpy or Frying Method?',
+        content: `Egusi soup is versatile. Do you like lumps or a smooth sauce?
+        <br><br>
+        <strong>The Frying Method (Yoruba Style):</strong>
+        <br>
+        Fry your blended egusi in palm oil first until it is grainy. Then add your stock. This prevents lumps and gives a fried texture.
+        <br><br>
+        <strong>The Boiling Method (Igbo Style):</strong>
+        <br>
+        Mix the egusi with a little water/onion to form a thick paste. Drop balls of this paste into the boiling stock. This creates the delicious lumps that soak up the soup flavor.`,
+        level: 2
+      },
+      {
+        id: 'swallow-guide',
+        title: 'Pounded Yam vs. Semo',
+        content: `No soup is complete without "swallow."
+        <br><br>
+        <strong>Pounded Yam (Iyan):</strong>
+        <br>
+        The king of swallows. If you don't have a mortar and pestle (or the strength!), a good food processor or "Yam Pounder" machine is a worthy investment. Pounded yam should be stretchy and smooth.
+        <br><br>
+        <strong>Semo/Wheat:</strong>
+        <br>
+        Easier to make but requires technique to avoid lumps. Always mix the powder into boiling water gradually while stirring vigorously.`,
+        level: 2
+      },
+      {
+        id: 'moi-moi',
+        title: 'Moi-Moi: Leaf vs. Tin',
+        content: `Moi-Moi (steamed bean pudding) is a labor of love.
+        <br><br>
+        <strong>Leaves (Ewe Iran):</strong>
+        <br>
+        Cooking in leaves adds a distinct, earthy flavor that foil or plastic containers cannot match. It is healthier too.
+        <br><br>
+        <strong>The Secret to Softness:</strong>
+        <br>
+        Don't be stingy with oil and water. If the batter is too thick, the moi-moi will be hard. Add crayfish and corned beef for that "rich aunty" vibe.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Why is my Jollof rice soggy?',
+        answer: 'You added too much water. Jollof cooks with steam, not water. Use foil to trap steam and lower the heat.'
+      },
+      {
+        question: 'How do I peel beans for Moi-Moi quickly?',
+        answer: 'Soak the beans for 5 minutes, then use a blender on "pulse" mode to break the skins. Wash and strain. It takes 10 minutes instead of hours.'
+      },
+      {
+        question: 'Can I use olive oil for Egusi soup?',
+        answer: 'Technically yes, but Palm Oil is the soul of Egusi. Without it, the taste and color will just not be right.'
+      }
+    ]
+  },
+  'international-recipes': {
+    id: 'guide_international_recipes',
+    slug: 'international-recipes',
+    title: 'Global Flavors, Nigerian Kitchen: Shawarma, Pasta & More',
+    excerpt: 'Craving Chicken Shawarma or Chinese Fried Rice? You don\'t need to order takeout. Learn how to make these international favorites at home with ingredients you can find in any Nigerian market.',
+    category: 'Lifestyle & Culture',
+    readTime: '18 min',
+    publishDate: 'Mar 01, 2026',
+    lastUpdated: 'Mar 05, 2026',
+    author: {
+      name: 'Chef Tolu "Global" Williams',
+      title: 'Food Blogger',
+      bio: 'Tolu brings the world to your kitchen. Her viral "Homemade Shawarma" recipe has saved Nigerians millions in takeout fees.',
+      image: 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Chef Tolu',
+      rating: 4.8,
+      articlesCount: 34,
+      verified: true,
+      expertise: ['Fusion Cuisine', 'Quick Meals', 'Budget Cooking'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Delicious spread of international dishes',
+    tableOfContents: [
+      { id: 'shawarma', title: 'Chicken Shawarma: The Street Food King', level: 2 },
+      { id: 'chinese-rice', title: 'Nigerian-Style Chinese Fried Rice', level: 2 },
+      { id: 'creamy-pasta', title: 'Stir-Fry Spaghetti & Creamy Pasta', level: 2 },
+      { id: 'pancakes', title: 'Fluffy Pancakes: Breakfast of Champions', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'shawarma',
+        title: 'Chicken Shawarma: The Street Food King',
+        content: `You don't need a vertical spit to make delicious Shawarma.
+        <br><br>
+        <strong>The Marinade:</strong>
+        <br>
+        Marinate boneless chicken strips in yogurt, garlic, ginger, curry powder, thyme, and a pinch of cinnamon (the secret ingredient!). Leave it for at least 2 hours.
+        <br><br>
+        <strong>The Sauce:</strong>
+        <br>
+        Mix mayonnaise and ketchup (the classic "pink sauce"). For a kick, add a dash of chili powder or hot sauce.
+        <br><br>
+        <strong>Assembly:</strong>
+        <br>
+        Pan-fry the chicken until charred. Lay it on flatbread (available at Shoprite or local bakeries) with cabbage, carrots, and sausage. Wrap tight and toast on a dry pan.`,
+        level: 2
+      },
+      {
+        id: 'chinese-rice',
+        title: 'Nigerian-Style Chinese Fried Rice',
+        content: `Authentic Chinese rice is white; Nigerian Chinese rice is dark and rich. We like it our way!
+        <br><br>
+        <strong>Soy Sauce is King:</strong>
+        <br>
+        Use Dark Soy Sauce for color and Light Soy Sauce for saltiness. Don't add Maggi cubes if you are using plenty of soy sauce, or it will be too salty.
+        <br><br>
+        <strong>Vegetables:</strong>
+        <br>
+        Carrots, peas, sweet corn, and green peppers. Dice them small. Scramble eggs separately and mix them in at the end.`,
+        level: 2
+      },
+      {
+        id: 'creamy-pasta',
+        title: 'Stir-Fry Spaghetti & Creamy Pasta',
+        content: `Tired of plain red stew spaghetti?
+        <br><br>
+        <strong>Stir-Fry:</strong>
+        <br>
+        Boil spaghetti until <em>al dente</em> (firm to the bite). Stir fry veggies and beef strips in a wok or deep pan. Toss the pasta in and season with curry, thyme, and soy sauce.
+        <br><br>
+        <strong>Creamy Pasta:</strong>
+        <br>
+        No heavy cream? No problem. Mix evaporated milk (Peak or Three Crowns) with a little cornflour to thicken it. Add cheese if you can find it, but it's tasty even without.`,
+        level: 2
+      },
+      {
+        id: 'pancakes',
+        title: 'Fluffy Pancakes: Breakfast of Champions',
+        content: `Nigerian pancakes are usually thin (like crepes), but sometimes you want the fluffy American style.
+        <br><br>
+        <strong>The Trick:</strong>
+        <br>
+        Don't overmix the batter! Lumps are okay. And use baking powder, not yeast.
+        <br><br>
+        <strong>Cooking:</strong>
+        <br>
+        Cook on medium-low heat. Flip when you see bubbles forming on top. Serve with syrup or honey.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'Where can I buy Shawarma bread?',
+        answer: 'Most supermarkets like Shoprite, Spar, or Justrite sell packs of Lebanese flatbread or Tortilla wraps.'
+      },
+      {
+        question: 'Can I use Basmati rice for Chinese Fried Rice?',
+        answer: 'Yes! Basmati is actually better than regular rice because the grains don\'t stick together. Cook it the day before for best results.'
+      },
+      {
+        question: 'My pancakes are rubbery. Why?',
+        answer: 'You mixed the batter too much. Stir until just combined. Overmixing develops gluten, which makes it tough.'
+      }
+    ]
+  },
+  'cooking-beginners': {
+    id: 'guide_cooking_beginners',
+    slug: 'cooking-beginners',
+    title: 'Kitchen 101: A Beginner\'s Guide to Nigerian Cooking',
+    excerpt: 'First time in the kitchen? Don\'t panic. From boiling white rice to making your first pot of stew, we break it down step-by-step.',
+    category: 'Food & Drink',
+    readTime: '12 min',
+    publishDate: 'Mar 10, 2026',
+    lastUpdated: 'Mar 12, 2026',
+    author: {
+      name: 'Mama "Nkechi" Ojo',
+      title: 'Home Economics Veteran',
+      bio: 'Mama Nkechi has taught over 2,000 brides (and grooms!) how to cook. Her motto: "Cooking is patience, not magic."',
+      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Mama Nkechi',
+      rating: 4.9,
+      articlesCount: 15,
+      verified: true,
+      expertise: ['Home Cooking', 'Budget Meals', 'Traditional Spices'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Fresh cooking ingredients on a table',
+    tableOfContents: [
+      { id: 'setup', title: 'The Essential Setup', level: 2 },
+      { id: 'big-5', title: 'The "Big 5" Ingredients', level: 2 },
+      { id: 'first-dish', title: 'Your First Dish: White Rice & Stew', level: 2 },
+      { id: 'safety', title: 'Safety First', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'setup',
+        title: 'The Essential Setup',
+        content: `You don't need a fancy kitchen to cook delicious food. Start with these basics:
+        <br><br>
+        <strong>Pots & Pans:</strong>
+        <br>
+        Get one medium pot (for rice/soup) and one frying pan (for stew/eggs). Aluminum pots are standard in Nigeria because they conduct heat fast.
+        <br><br>
+        <strong>Blender vs. Mortar:</strong>
+        <br>
+        A blender is faster for pepper and tomatoes. A mortar & pestle is better for pounding yam or crushing native spices. As a beginner, buy a sturdy blender first.`,
+        level: 2
+      },
+      {
+        id: 'big-5',
+        title: 'The "Big 5" Ingredients',
+        content: `Always have these in your kitchen. They are the foundation of 90% of Nigerian meals.
+        <br><br>
+        1. <strong>Seasoning Cubes:</strong> Maggi, Knorr, or Royco. They add the "umami" taste.
+        <br>
+        2. <strong>Red Palm Oil:</strong> For soups and porridge. Good oil should be bright orange-red.
+        <br>
+        3. <strong>Crayfish:</strong> Ground dried shrimp. It gives that authentic local flavor.
+        <br>
+        4. <strong>Pepper (Rodo/Atarodo):</strong> Scotch bonnet peppers. Handle with care!
+        <br>
+        5. <strong>Onions:</strong> Both red and white. They form the base of your frying.`,
+        level: 2
+      },
+      {
+        id: 'first-dish',
+        title: 'Your First Dish: White Rice & Stew',
+        content: `The "Bachelor/Spinster" Starter Pack.
+        <br><br>
+        <strong>White Rice:</strong>
+        <br>
+        Wash the rice until the water runs clear. Parboil it first (boil for 5 mins, wash again) to remove excess starch. Then cook with fresh water and salt until soft.
+        <br><br>
+        <strong>Simple Fried Stew:</strong>
+        <br>
+        Blend tomatoes, peppers, and onions. Boil the mix until dry. Heat vegetable oil, fry sliced onions, then add the tomato paste (tin) and your boiled mix. Fry until the oil floats on top. Add seasoning cubes, curry, and thyme. Done!`,
+        level: 2
+      },
+      {
+        id: 'safety',
+        title: 'Safety First',
+        content: `<strong>Hot Oil:</strong> Never pour water into hot oil! It will splash and burn you. If oil catches fire, cover the pot with a lid—don't use water.
+        <br><br>
+        <strong>Pepper Hands:</strong> After cutting rodo, wash your hands with soap immediately. Do not touch your eyes! Rubbing oil on your hands before cutting helps protect your skin.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'My stew is sour. What did I do wrong?',
+        answer: 'You didn\'t fry the tomatoes enough. The sour taste comes from raw tomatoes. Let it fry until the oil separates from the tomato mix.'
+      },
+      {
+        question: 'How do I know when the rice is done?',
+        answer: 'Taste a grain from the top. If it\'s soft all the way through, it\'s done. If there is water left but the rice is soft, open the pot and increase heat slightly to dry it up.'
+      },
+      {
+        question: 'What is the difference between Curry and Thyme?',
+        answer: 'Curry (yellow powder) adds color and aroma. Thyme (dried leaves) adds a herbal flavor. They are best friends—usually used together.'
+      }
+    ]
+  },
+  'meal-prep': {
+    id: 'guide_meal_prep',
+    slug: 'meal-prep',
+    title: 'The Nigerian Meal Prep Guide: Survive the Week',
+    excerpt: 'Lagos traffic, 9-5 jobs, and unstable power? You need a strategy. Learn how to cook once and eat like a king all week.',
+    category: 'Lifestyle & Culture',
+    readTime: '15 min',
+    publishDate: 'Mar 15, 2026',
+    lastUpdated: 'Mar 18, 2026',
+    author: {
+      name: 'Ngozi "The Planner" Adebayo',
+      title: 'Efficiency Expert',
+      bio: 'Balancing a banking career and three kids, Ngozi mastered the art of "bulk cooking" out of necessity.',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Ngozi Adebayo',
+      rating: 4.7,
+      articlesCount: 42,
+      verified: true,
+      expertise: ['Time Management', 'Bulk Cooking', 'Kitchen Hacks'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Meal prep containers arranged on a table',
+    tableOfContents: [
+      { id: 'power-factor', title: 'The "NEPA/PHCN" Factor', level: 2 },
+      { id: 'base-stew', title: 'The Magic of "Base Stew"', level: 2 },
+      { id: 'market-runs', title: 'Market Run Strategy', level: 2 },
+      { id: 'swallow-hacks', title: 'Storing Swallow', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'power-factor',
+        title: 'The "NEPA/PHCN" Factor',
+        content: `In other countries, meal prep is about the fridge. In Nigeria, it is about the <strong>Deep Freezer</strong>.
+        <br><br>
+        <strong>Freezer is King:</strong>
+        <br>
+        If you rely on your fridge section, one day of power outage can spoil a week's worth of food. Invest in good plastic containers (custard buckets work, but clear Tupperware is better for seeing what's inside).
+        <br><br>
+        <strong>Cool Before Freezing:</strong>
+        <br>
+        Never put hot food directly into the freezer. It raises the temperature and can spoil other foods. Let it cool completely on the counter first.`,
+        level: 2
+      },
+      {
+        id: 'base-stew',
+        title: 'The Magic of "Base Stew"',
+        content: `Don't cook Jollof, Stew, and Pasta sauce separately. Cook the <strong>Base</strong>.
+        <br><br>
+        <strong>What is it?</strong>
+        <br>
+        A massive pot of blended tomatoes, tatashe, rodo, and onions, boiled down and fried in vegetable oil until dry.
+        <br><br>
+        <strong>How to use it:</strong>
+        <br>
+        - <strong>For Jollof:</strong> Take a portion, add curry, thyme, bay leaf, and rice.
+        <br>
+        - <strong>For Stew:</strong> Add meat stock and fried protein.
+        <br>
+        - <strong>For Pasta:</strong> Add minced meat and veggies.
+        <br>
+        This saves you the stress of blending and boiling pepper every time.`,
+        level: 2
+      },
+      {
+        id: 'market-runs',
+        title: 'Market Run Strategy',
+        content: `Supermarkets are for emergencies. The real prep starts at the open market (Mile 12, Bodija, Wuse).
+        <br><br>
+        <strong>Bulk Buying:</strong>
+        <br>
+        Buy a basket of tomatoes, a bag of rice, and a carton of frozen chicken/turkey. It is cheaper and lasts longer. Share with a colleague if a full basket is too much.
+        <br><br>
+        <strong>Prep Immediately:</strong>
+        <br>
+        The mistake most people make is buying bulk and resting. No! Wash, blend, and boil your peppers <em>immediately</em> when you get home. Portion your meat and freeze.`,
+        level: 2
+      },
+      {
+        id: 'swallow-hacks',
+        title: 'Storing Swallow',
+        content: `Yes, you can meal prep Pounded Yam and Amala!
+        <br><br>
+        <strong>The Cling Film Trick:</strong>
+        <br>
+        Make a big batch. While it is still hot, wrap individual portions tightly in cling film (or clear nylon). Throw them in the freezer.
+        <br><br>
+        <strong>Reheating:</strong>
+        <br>
+        Microwave the wrapped portion for 2-3 minutes. It comes out steaming hot and fresh, as if you just pounded it.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'How long can I keep stew in the freezer?',
+        answer: 'If your power supply is decent (or you have a generator), it can last up to 3 months. In the fridge section, only 3-5 days.'
+      },
+      {
+        question: 'Glass or Plastic containers?',
+        answer: 'Glass is better for health and staining (palm oil stains plastic!), but Plastic is practical for stacking in a crowded freezer. If using plastic, wait for food to cool to avoid chemical leaching.'
+      },
+      {
+        question: 'My Moi-Moi goes bad quickly. Why?',
+        answer: 'Moi-Moi ferments easily because of the beans. Freeze it immediately. Do not leave it on the counter overnight.'
+      }
+    ]
+  },
+  'kitchen-tips': {
+    id: 'guide_kitchen_tips',
+    slug: 'kitchen-tips',
+    title: 'Nigerian Kitchen Hacks: Save Time & Money',
+    excerpt: 'From reviving stale bread to removing fish smells, these "Naija-proof" tips will make your cooking life easier.',
+    category: 'Home & Living',
+    readTime: '10 min',
+    publishDate: 'Mar 20, 2026',
+    lastUpdated: 'Mar 22, 2026',
+    author: {
+      name: 'Iya Basira',
+      title: 'Canteen Owner',
+      bio: 'Running a busy canteen for 20 years taught Iya Basira that nothing in the kitchen should ever be wasted.',
+      image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Iya Basira',
+      rating: 4.9,
+      articlesCount: 56,
+      verified: true,
+      expertise: ['Waste Reduction', 'Natural Cleaning', 'Food Preservation'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Clean and organized kitchen counter',
+    tableOfContents: [
+      { id: 'smell-removal', title: 'Killing "Fish Smell"', level: 2 },
+      { id: 'knife-sharp', title: 'Sharpening Without a Stone', level: 2 },
+      { id: 'veggie-fresh', title: 'Keeping Ugwu & Ewedu Fresh', level: 2 },
+      { id: 'burnt-pot', title: 'Rescuing a Burnt Pot', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'smell-removal',
+        title: 'Killing "Fish Smell"',
+        content: `After cooking fresh fish or stockfish, your hands (and house) can smell for hours.
+        <br><br>
+        <strong>For Hands:</strong>
+        <br>
+        Rub your hands against a stainless steel spoon or your sink under running water. The steel neutralizes the sulfur molecules causing the smell. Alternatively, rub with lemon juice or vinegar.
+        <br><br>
+        <strong>For the House:</strong>
+        <br>
+        Boil water with cloves (kanafuru), cinnamon, or lemon peels. It acts as a natural air freshener better than any spray.`,
+        level: 2
+      },
+      {
+        id: 'knife-sharp',
+        title: 'Sharpening Without a Stone',
+        content: `Dull knife and no sharpener? No problem.
+        <br><br>
+        <strong>The Mug Trick:</strong>
+        <br>
+        Flip a ceramic mug or plate upside down. The rough unglazed ring at the bottom acts like a sharpening stone. Run your knife blade against it at a 20-degree angle.
+        <br><br>
+        <strong>The Car Window:</strong>
+        <br>
+        In an extreme pinch, the top edge of a car window (rolled halfway down) is also rough enough to sharpen a blade. (But maybe stick to the mug method inside!).`,
+        level: 2
+      },
+      {
+        id: 'veggie-fresh',
+        title: 'Keeping Ugwu & Ewedu Fresh',
+        content: `Market runs are tiring, so make your veggies last.
+        <br><br>
+        <strong>Don't Wash Yet:</strong>
+        <br>
+        Never wash leafy vegetables before storing them. Moisture is the enemy. Wrap them in newspaper (yes, newspaper absorbs moisture better than plastic) and put them in the fridge vegetable drawer.
+        <br><br>
+        <strong>Reviving Wilting Greens:</strong>
+        <br>
+        Soak them in ice-cold water with a pinch of sugar for 30 minutes. They will crisp up again.`,
+        level: 2
+      },
+      {
+        id: 'burnt-pot',
+        title: 'Rescuing a Burnt Pot',
+        content: `Did you burn the Jollof too much?
+        <br><br>
+        <strong>Soak with Ash (or Baking Soda):</strong>
+        <br>
+        If you have wood ash (from outdoor cooking), mix it with water to form a paste and scrub. It is the traditional way to shine pots.
+        <br><br>
+        <strong>The Vinegar Boil:</strong>
+        <br>
+        Fill the pot with water and a cup of vinegar. Boil it for 10 minutes. The burnt crust will lift right off without heavy scrubbing.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'How do I stop onions from making me cry?',
+        answer: 'Chew gum while cutting, or put the onion in the freezer for 10 minutes before slicing. It slows down the release of the irritant gas.'
+      },
+      {
+        question: 'Can I reuse frying oil?',
+        answer: 'Yes, but filter it through a cheesecloth or fine sieve to remove food particles. Store in a dark bottle. Do not reuse more than 2-3 times.'
+      },
+      {
+        question: 'How do I check if an egg is bad?',
+        answer: 'The Float Test: Put the egg in a bowl of water. If it sinks, it is fresh. If it floats, throw it away (gas has built up inside).'
+      }
+    ]
+  },
+  'food-storage': {
+    id: 'guide_food_storage',
+    slug: 'food-storage',
+    title: 'Pantry Perfection: Storing Nigerian Food for Freshness',
+    excerpt: 'Stop throwing away money! Learn the best ways to store Garri, Beans, Crayfish, and other Nigerian staples to keep them fresh and pest-free.',
+    category: 'Home & Living',
+    readTime: '12 min',
+    publishDate: 'Apr 05, 2026',
+    lastUpdated: 'Apr 08, 2026',
+    author: {
+      name: 'Nnenna "The Organizer" Obi',
+      title: 'Home Organization Coach',
+      bio: 'Nnenna turns chaotic kitchens into havens of order. She specializes in tropical climate food storage solutions.',
+      image: 'https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Nnenna Obi',
+      rating: 4.7,
+      articlesCount: 42,
+      verified: true,
+      expertise: ['Pantry Organization', 'Pest Control', 'Bulk Storage'],
+    },
+    heroImage: 'https://images.unsplash.com/photo-1584269600519-112d071b35e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImageAlt: 'Organized pantry with glass jars',
+    tableOfContents: [
+      { id: 'garri-storage', title: 'The Garri Rules', level: 2 },
+      { id: 'beans-weevils', title: 'Beans vs. Weevils', level: 2 },
+      { id: 'palm-oil', title: 'Preserving Palm Oil', level: 2 },
+      { id: 'crayfish-stockfish', title: 'Crayfish & Stockfish', level: 2 },
+      { id: 'yam-onions', title: 'Yams & Onions', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'garri-storage',
+        title: 'The Garri Rules',
+        content: `Garri is resilient, but humidity is its enemy.
+        <br><br>
+        <strong>Air-Tight is Non-Negotiable:</strong>
+        <br>
+        Never leave Garri in the nylon bag you bought it in. Transfer it immediately to an air-tight plastic or glass container. If moisture gets in, it will clump and develop mold.
+        <br><br>
+        <strong>The Salt Trick:</strong>
+        <br>
+        Some grandmas swear by putting a small knob of charcoal or a packet of silica gel (food grade) at the bottom of the container to absorb excess moisture.`,
+        level: 2
+      },
+      {
+        id: 'beans-weevils',
+        title: 'Beans vs. Weevils',
+        content: `There is nothing more heartbreaking than opening your bag of Honey Beans and seeing it moving.
+        <br><br>
+        <strong>The Freezer Method (Best):</strong>
+        <br>
+        If you have freezer space, store your beans there. No weevil can survive zero degrees. It also keeps the beans tasting fresh for over a year.
+        <br><br>
+        <strong>Dried Peppers:</strong>
+        <br>
+        If storing in a pantry, bury several dried red peppers (Atarodo) inside the beans. Weevils hate the smell. Ensure the container is sealed tight!`,
+        level: 2
+      },
+      {
+        id: 'palm-oil',
+        title: 'Preserving Palm Oil',
+        content: `Palm Oil does not need a fridge, but it hates the sun.
+        <br><br>
+        <strong>Dark and Cool:</strong>
+        <br>
+        Light causes oxidation, which makes the oil go rancid (that "old oil" taste). Store your kegs in a dark cupboard or on the floor in a cool corner.
+        <br><br>
+        <strong>Avoid Water:</strong>
+        <br>
+        Never use a wet spoon to scoop oil. Even a drop of water can promote bacteria growth and spoil the whole bottle.`,
+        level: 2
+      },
+      {
+        id: 'crayfish-stockfish',
+        title: 'Crayfish & Stockfish',
+        content: `These bring the flavor, but also the smell and the ants.
+        <br><br>
+        <strong>Crayfish:</strong>
+        <br>
+        Blend it immediately! Blended crayfish takes up less space and is easier to store in an airtight jar in the fridge or freezer. If storing whole, double bag it to contain the smell.
+        <br><br>
+        <strong>Stockfish:</strong>
+        <br>
+        Stockfish is tough, but pests love it. Keep it in the freezer if possible. If not, store in a dry place and check it regularly for "dust" (a sign of insect activity).`,
+        level: 2
+      },
+      {
+        id: 'yam-onions',
+        title: 'Yams & Onions',
+        content: `These two belong together, but not in the fridge!
+        <br><br>
+        <strong>Ventilation is Key:</strong>
+        <br>
+        Store tubers in a cool, dark, and well-ventilated area. Do not stack them directly on the floor (which can be damp); use a wooden pallet or a rack.
+        <br><br>
+        <strong>One Bad Apple...</strong>
+        <br>
+        Check your yams weekly. If one starts to rot, remove it immediately before it infects the others. Slice off the bad part and cook the rest.`,
+        level: 2
+      }
+    ],
+    faqs: [
+      {
+        question: 'How do I store Egusi?',
+        answer: 'Egusi goes rancid quickly because of its oil content. Blend it and store it in the freezer. It can last for months this way.'
+      },
+      {
+        question: 'Can I store opened tomato paste?',
+        answer: 'Never leave it in the tin! The metal reacts with the air and tomatoes. Transfer to a glass jar, cover with a thin layer of vegetable oil, and refrigerate.'
+      },
+      {
+        question: 'My Ogbono doesn\'t "draw" anymore. Why?',
+        answer: 'It likely got exposed to air or heat. Store Ogbono seeds or powder in an airtight container in the freezer to maintain its potency.'
       }
     ]
   }
