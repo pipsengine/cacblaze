@@ -30,6 +30,7 @@ const reviewsCategories = [
       { id: 'rev_productivity', label: 'Productivity Apps', href: '/reviews/productivity-apps', icon: 'BoltIcon', description: 'Tools to boost efficiency.' },
       { id: 'rev_creative', label: 'Creative Tools', href: '/reviews/creative-tools', icon: 'PaintBrushIcon', description: 'Design and editing software.' },
       { id: 'rev_security', label: 'Security Software', href: '/reviews/security-software', icon: 'ShieldCheckIcon', description: 'Antivirus and VPNs.' },
+      { id: 'rev_learning', label: 'Learning Apps', href: '/reviews/learning-apps', icon: 'BookOpenIcon', description: 'Best education platforms and courses.' },
       { id: 'rev_business', label: 'Business Tools', href: '/reviews/business-tools', icon: 'BriefcaseIcon', description: 'CRM, Accounting, and HR tools.' },
     ],
   },
