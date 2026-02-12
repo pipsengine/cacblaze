@@ -61,6 +61,18 @@ const reviewsCategories = [
       { id: 'rev_fiction', label: 'Fiction Books', href: '/reviews/fiction', icon: 'BookOpenIcon', description: 'Top novels and stories.' },
       { id: 'rev_nonfiction', label: 'Non-Fiction', href: '/reviews/non-fiction', icon: 'NewspaperIcon', description: 'Biographies and self-help.' },
       { id: 'rev_educational', label: 'Educational Resources', href: '/reviews/educational-books', icon: 'AcademicCapIcon', description: 'Textbooks and study guides.' },
+      { id: 'rev_business_books', label: 'Business Books', href: '/reviews/business-books', icon: 'BriefcaseIcon', description: 'Strategy, leadership, and startup guides.' },
+      { id: 'rev_self_dev', label: 'Self-Development', href: '/reviews/self-development', icon: 'SparklesIcon', description: 'Courses, habits, and frameworks.' },
+    ],
+  },
+  {
+    id: 'reviews_comparisons',
+    title: 'Value & Comparisons',
+    items: [
+      { id: 'rev_free_vs_paid', label: 'Free vs Paid', href: '/reviews/free-vs-paid', icon: 'ScaleIcon', description: 'Is the premium upgrade worth it?' },
+      { id: 'rev_alternatives', label: 'Best Alternatives', href: '/reviews/alternatives', icon: 'ArrowsRightLeftIcon', description: 'Better, cheaper, or faster options.' },
+      { id: 'rev_best_for_nigerians', label: 'Best for Nigerians', href: '/reviews/best-for-nigerians', icon: 'GlobeAltIcon', description: 'Top picks for the local market.' },
+      { id: 'rev_student_deals', label: 'Student Deals', href: '/reviews/student-deals', icon: 'AcademicCapIcon', description: 'Best discounts for learners.' },
     ],
   },
 ];

@@ -231,7 +231,7 @@ export const businessToolReviews: Record<string, BusinessToolReview> = {
       image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'
     },
     publishDate: 'February 5, 2026',
-    heroImage: 'https://images.unsplash.com/photo-1454165833767-027ff1e7c082?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
     specs: {
       pricingModel: 'Freemium (Paid from $10.99/user)',
       freeTrial: true,
@@ -285,7 +285,7 @@ export const businessToolReviews: Record<string, BusinessToolReview> = {
       image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'
     },
     publishDate: 'February 3, 2026',
-    heroImage: 'https://images.unsplash.com/photo-1521791136064-7986c2923216?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
     specs: {
       pricingModel: 'Paid (Subscription-based)',
       freeTrial: true,
