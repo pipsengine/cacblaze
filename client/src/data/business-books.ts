@@ -63,7 +63,7 @@ export const businessBookReviews: Record<string, BusinessBookReview> = {
       image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'
     },
     publishDate: 'February 10, 2026',
-    heroImage: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1553484771-047a44eee27b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
     keyTakeaways: [
       'Minimum Viable Product (MVP) concept',
       'The Build-Measure-Learn feedback loop',

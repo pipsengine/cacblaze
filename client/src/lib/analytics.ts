@@ -8,6 +8,9 @@ export function useGoogleAnalytics() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
+    // Only run in production to avoid polluting data and ERR_ABORTED in dev
+    if (process.env.NODE_ENV !== 'production') return;
+
     const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
     if (!measurementId || measurementId === 'your-google-analytics-id-here') return;
 
@@ -38,6 +41,11 @@ export function useGoogleAnalytics() {
 
 // Track custom events
 export function trackEvent(eventName: string, eventParams: Record<string, any> = {}) {
+  if (process.env.NODE_ENV !== 'production') {
+    console.log(`[Analytics] Event: ${eventName}`, eventParams);
+    return;
+  }
+  
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, eventParams);
   }

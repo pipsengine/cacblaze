@@ -39,6 +39,16 @@ const nextConfig = {
         destination: '/homepage',
         permanent: false,
       },
+      {
+        source: '/education/exam-preparation',
+        destination: '/education/exam-prep',
+        permanent: false,
+      },
+      {
+        source: '/education/school-resources',
+        destination: '/education',
+        permanent: false,
+      },
     ];
   }
 };

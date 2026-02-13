@@ -16,6 +16,7 @@ const educationCategories = [
     id: 'edu_academic',
     title: 'Academic Resources',
     items: [
+      { id: 'edu_study_techniques', label: 'Study Techniques', href: '/education/study-techniques', icon: 'SparklesIcon', description: 'Science-backed learning methods.' },
       { id: 'edu_exam_prep', label: 'Exam Preparation', href: '/education/exam-prep', icon: 'PencilSquareIcon', description: 'Ace your JAMB, WAEC, and more.' },
       { id: 'edu_study_guides', label: 'Study Guides', href: '/education/study-guides', icon: 'BookOpenIcon', description: 'Comprehensive notes for subjects.' },
       { id: 'edu_admissions', label: 'University Admissions', href: '/education/admissions', icon: 'BuildingLibraryIcon', description: 'Get into your dream school.' },
