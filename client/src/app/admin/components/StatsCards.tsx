@@ -67,7 +67,9 @@ export default function StatsCards({ stats }: StatsCardsProps) {
           className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
         >
           <div className="flex items-center justify-between mb-4">
-            <div className={`w-12 h-12 rounded-lg ${card.bgColor} flex items-center justify-center`}>
+            <div
+              className={`w-12 h-12 rounded-lg ${card.bgColor} flex items-center justify-center`}
+            >
               <Icon name={card.icon as any} size={24} className={card.textColor} />
             </div>
           </div>

@@ -14,7 +14,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const resource = examPrepResources[slug];
-  
+
   if (!resource) return { title: 'Resource Not Found' };
 
   return {
@@ -47,7 +47,7 @@ export default async function ExamPrepDetailPage({ params }: PageProps) {
           </div>
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <Breadcrumb items={breadcrumbItems} className="mb-8 text-amber-400" />
-            
+
             <div className="grid lg:grid-cols-2 gap-20 items-center">
               <div>
                 <div className="flex items-center gap-4 mb-8">
@@ -65,7 +65,7 @@ export default async function ExamPrepDetailPage({ params }: PageProps) {
                 <p className="text-2xl text-amber-100/80 leading-relaxed mb-12 italic border-l-8 border-amber-500 pl-10">
                   "{resource.description}"
                 </p>
-                
+
                 <div className="flex items-center gap-6 p-8 bg-white/5 backdrop-blur-xl rounded-[2.5rem] border border-white/10 shadow-2xl">
                   <div className="relative w-16 h-16 rounded-2xl overflow-hidden ring-4 ring-amber-500/50 shadow-inner">
                     <AppImage
@@ -77,7 +77,9 @@ export default async function ExamPrepDetailPage({ params }: PageProps) {
                   </div>
                   <div>
                     <p className="font-black text-white text-xl">{resource.author.name}</p>
-                    <p className="text-amber-400 text-sm font-bold uppercase tracking-widest">{resource.author.role}</p>
+                    <p className="text-amber-400 text-sm font-bold uppercase tracking-widest">
+                      {resource.author.role}
+                    </p>
                   </div>
                   <div className="ml-auto text-[10px] text-amber-500/60 font-black uppercase tracking-[0.2em] vertical-rl">
                     Updated {resource.publishDate}
@@ -112,7 +114,10 @@ export default async function ExamPrepDetailPage({ params }: PageProps) {
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-6">
                   {resource.keyInformation.map((info, index) => (
-                    <div key={index} className="bg-white p-8 rounded-[2rem] border border-amber-100 shadow-sm flex items-start gap-5 hover:shadow-md transition-all">
+                    <div
+                      key={index}
+                      className="bg-white p-8 rounded-[2rem] border border-amber-100 shadow-sm flex items-start gap-5 hover:shadow-md transition-all"
+                    >
                       <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600 shrink-0">
                         <Icon name="CheckCircleIcon" size={20} />
                       </div>
@@ -131,7 +136,10 @@ export default async function ExamPrepDetailPage({ params }: PageProps) {
                 </h2>
                 <div className="space-y-8">
                   {resource.tips.map((tip, index) => (
-                    <div key={index} className="group bg-white p-10 rounded-[2.5rem] border border-amber-100 shadow-sm hover:shadow-xl transition-all duration-500 relative overflow-hidden">
+                    <div
+                      key={index}
+                      className="group bg-white p-10 rounded-[2.5rem] border border-amber-100 shadow-sm hover:shadow-xl transition-all duration-500 relative overflow-hidden"
+                    >
                       <div className="absolute top-0 right-0 w-32 h-32 bg-amber-50 rounded-bl-[5rem] -mr-16 -mt-16 group-hover:bg-amber-100 transition-colors" />
                       <div className="relative z-10">
                         <div className="flex items-center gap-6 mb-6">
@@ -140,9 +148,7 @@ export default async function ExamPrepDetailPage({ params }: PageProps) {
                           </span>
                           <h3 className="text-2xl font-bold text-gray-900">{tip.title}</h3>
                         </div>
-                        <p className="text-gray-600 text-lg leading-relaxed pl-16">
-                          {tip.content}
-                        </p>
+                        <p className="text-gray-600 text-lg leading-relaxed pl-16">{tip.content}</p>
                       </div>
                     </div>
                   ))}
@@ -157,15 +163,21 @@ export default async function ExamPrepDetailPage({ params }: PageProps) {
                 <h3 className="text-2xl font-black mb-8 relative z-10">Quick Facts</h3>
                 <div className="space-y-6 relative z-10">
                   <div className="flex items-center justify-between py-4 border-b border-white/10">
-                    <span className="text-amber-400 font-bold uppercase tracking-widest text-xs">Difficulty</span>
+                    <span className="text-amber-400 font-bold uppercase tracking-widest text-xs">
+                      Difficulty
+                    </span>
                     <span className="font-black text-lg">{resource.difficulty}</span>
                   </div>
                   <div className="flex items-center justify-between py-4 border-b border-white/10">
-                    <span className="text-amber-400 font-bold uppercase tracking-widest text-xs">Category</span>
+                    <span className="text-amber-400 font-bold uppercase tracking-widest text-xs">
+                      Category
+                    </span>
                     <span className="font-black text-lg">{resource.category}</span>
                   </div>
                   <div className="flex items-center justify-between py-4 border-b border-white/10">
-                    <span className="text-amber-400 font-bold uppercase tracking-widest text-xs">User Rating</span>
+                    <span className="text-amber-400 font-bold uppercase tracking-widest text-xs">
+                      User Rating
+                    </span>
                     <div className="flex items-center gap-2">
                       <Icon name="StarIcon" size={16} className="text-yellow-400 fill-current" />
                       <span className="font-black text-lg">{resource.rating} / 5.0</span>
@@ -181,11 +193,11 @@ export default async function ExamPrepDetailPage({ params }: PageProps) {
                 <h3 className="text-2xl font-black text-gray-900 mb-8">Related Exams</h3>
                 <div className="space-y-6">
                   {Object.values(examPrepResources)
-                    .filter(r => r.id !== resource.id)
+                    .filter((r) => r.id !== resource.id)
                     .slice(0, 3)
-                    .map(related => (
-                      <a 
-                        key={related.id} 
+                    .map((related) => (
+                      <a
+                        key={related.id}
                         href={`/education/exam-prep/${related.slug}`}
                         className="flex items-center gap-5 group"
                       >
@@ -198,8 +210,12 @@ export default async function ExamPrepDetailPage({ params }: PageProps) {
                           />
                         </div>
                         <div>
-                          <h4 className="font-bold text-gray-900 group-hover:text-amber-600 transition-colors line-clamp-1">{related.name}</h4>
-                          <p className="text-xs text-gray-500 uppercase tracking-widest font-bold mt-1">{related.category}</p>
+                          <h4 className="font-bold text-gray-900 group-hover:text-amber-600 transition-colors line-clamp-1">
+                            {related.name}
+                          </h4>
+                          <p className="text-xs text-gray-500 uppercase tracking-widest font-bold mt-1">
+                            {related.category}
+                          </p>
                         </div>
                       </a>
                     ))}

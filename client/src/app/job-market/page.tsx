@@ -7,8 +7,10 @@ import Footer from '@/components/common/Footer';
 
 export const metadata: Metadata = {
   title: 'Nigerian Job Market & Salary Guide - CACBLAZE',
-  description: 'Comprehensive salary benchmarks, career guides, and Naira-focused financial planning for Nigerian professionals.',
-  keywords: 'Nigeria salary guide, job market Nigeria, salary benchmarks, career planning Nigeria, financial planning Naira',
+  description:
+    'Comprehensive salary benchmarks, career guides, and Naira-focused financial planning for Nigerian professionals.',
+  keywords:
+    'Nigeria salary guide, job market Nigeria, salary benchmarks, career planning Nigeria, financial planning Naira',
 };
 
 const JobMarketPage = () => {
@@ -25,7 +27,7 @@ const JobMarketPage = () => {
       avgSalary: '₦350k - ₦2.5M',
       growth: '+25%',
       roles: ['Software Engineer', 'Product Manager', 'Data Analyst', 'UI/UX Designer'],
-      href: '/job-market/technology'
+      href: '/job-market/technology',
     },
     {
       id: 'finance',
@@ -34,7 +36,7 @@ const JobMarketPage = () => {
       avgSalary: '₦250k - ₦1.8M',
       growth: '+12%',
       roles: ['Financial Analyst', 'Accountant', 'Investment Banker', 'Risk Manager'],
-      href: '/job-market/finance'
+      href: '/job-market/finance',
     },
     {
       id: 'oil-gas',
@@ -43,7 +45,7 @@ const JobMarketPage = () => {
       avgSalary: '₦400k - ₦3M',
       growth: '+8%',
       roles: ['Petroleum Engineer', 'Geologist', 'HSE Officer', 'Operations Manager'],
-      href: '/job-market/oil-gas'
+      href: '/job-market/oil-gas',
     },
     {
       id: 'healthcare',
@@ -52,7 +54,7 @@ const JobMarketPage = () => {
       avgSalary: '₦200k - ₦1.5M',
       growth: '+15%',
       roles: ['Doctor', 'Nurse', 'Pharmacist', 'Medical Lab Scientist'],
-      href: '/job-market/healthcare'
+      href: '/job-market/healthcare',
     },
     {
       id: 'education',
@@ -61,7 +63,7 @@ const JobMarketPage = () => {
       avgSalary: '₦120k - ₦800k',
       growth: '+10%',
       roles: ['Teacher', 'Lecturer', 'Education Consultant', 'School Administrator'],
-      href: '/job-market/education'
+      href: '/job-market/education',
     },
     {
       id: 'marketing',
@@ -70,8 +72,8 @@ const JobMarketPage = () => {
       avgSalary: '₦180k - ₦1.2M',
       growth: '+18%',
       roles: ['Digital Marketer', 'Sales Manager', 'Brand Manager', 'Content Strategist'],
-      href: '/job-market/marketing'
-    }
+      href: '/job-market/marketing',
+    },
   ];
 
   const salaryTools = [
@@ -80,64 +82,68 @@ const JobMarketPage = () => {
       title: 'Salary Calculator',
       description: 'Calculate your take-home pay after taxes and deductions',
       icon: 'CalculatorIcon',
-      href: '/job-market/salary-calculator'
+      href: '/job-market/salary-calculator',
     },
     {
       id: 'comparison',
       title: 'City Comparison',
       description: 'Compare salaries and cost of living across Nigerian cities',
       icon: 'MapPinIcon',
-      href: '/job-market/city-comparison'
+      href: '/job-market/city-comparison',
     },
     {
       id: 'negotiation',
       title: 'Negotiation Guide',
       description: 'Learn how to negotiate better salary packages',
       icon: 'ChatBubbleLeftRightIcon',
-      href: '/guides/negotiation'
+      href: '/guides/negotiation',
     },
     {
       id: 'benefits',
       title: 'Benefits Calculator',
       description: 'Understand the value of your total compensation package',
       icon: 'GiftIcon',
-      href: '/job-market/benefits-calculator'
-    }
+      href: '/job-market/benefits-calculator',
+    },
   ];
 
   const financialGuides = [
     {
       id: 'remote-work',
       title: 'Remote Work: Earning Global, Living Local',
-      excerpt: 'The definitive guide to securing USD/GBP roles from Nigeria, setting up infrastructure, and handling FX payments.',
+      excerpt:
+        'The definitive guide to securing USD/GBP roles from Nigeria, setting up infrastructure, and handling FX payments.',
       category: 'Remote Work',
       readTime: '35 min',
-      href: '/guides/remote-work'
+      href: '/guides/remote-work',
     },
     {
       id: 'freelancing',
       title: 'High-Ticket Freelancing Masterclass',
-      excerpt: 'Move beyond $5 gigs. Learn to command premium rates on Upwork and Toptal as a Nigerian professional.',
+      excerpt:
+        'Move beyond $5 gigs. Learn to command premium rates on Upwork and Toptal as a Nigerian professional.',
       category: 'Freelancing',
       readTime: '40 min',
-      href: '/guides/freelancing'
+      href: '/guides/freelancing',
     },
     {
       id: 'job-search',
       title: 'Mastering the Nigerian Job Market',
-      excerpt: 'ATS optimization secrets, hidden job markets, and LinkedIn strategies for the modern Nigerian career.',
+      excerpt:
+        'ATS optimization secrets, hidden job markets, and LinkedIn strategies for the modern Nigerian career.',
       category: 'Career Growth',
       readTime: '25 min',
-      href: '/guides/job-search'
+      href: '/guides/job-search',
     },
     {
       id: 'workplace-skills',
-      title: 'The Professional\'s Toolkit',
-      excerpt: 'Essential soft and hard skills to survive and thrive in the Nigerian corporate jungle.',
+      title: "The Professional's Toolkit",
+      excerpt:
+        'Essential soft and hard skills to survive and thrive in the Nigerian corporate jungle.',
       category: 'Skills',
       readTime: '30 min',
-      href: '/guides/workplace-skills'
-    }
+      href: '/guides/workplace-skills',
+    },
   ];
 
   return (
@@ -148,7 +154,7 @@ const JobMarketPage = () => {
         <section className="py-16 bg-gradient-to-br from-primary/5 to-accent/5">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <Breadcrumb items={breadcrumbItems} className="mb-6" />
-            
+
             <div className="max-w-3xl">
               <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold uppercase tracking-wide mb-4">
                 Career Intelligence
@@ -157,7 +163,8 @@ const JobMarketPage = () => {
                 Nigerian Job Market Guide
               </h1>
               <p className="text-xl text-secondary mb-8 leading-relaxed">
-                Real salary data, career insights, and financial planning strategies for Nigerian professionals.
+                Real salary data, career insights, and financial planning strategies for Nigerian
+                professionals.
               </p>
             </div>
 
@@ -196,7 +203,11 @@ const JobMarketPage = () => {
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all">
-                      <Icon name={industry.icon as any} size={24} className="text-primary group-hover:text-white transition-colors" />
+                      <Icon
+                        name={industry.icon as any}
+                        size={24}
+                        className="text-primary group-hover:text-white transition-colors"
+                      />
                     </div>
                     <span className="px-3 py-1 rounded-full bg-success/10 text-success text-xs font-semibold">
                       {industry.growth} YoY
@@ -234,14 +245,16 @@ const JobMarketPage = () => {
                   className="group block p-6 rounded-2xl border border-gray-200 bg-white hover:border-primary transition-all hover-lift"
                 >
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all">
-                    <Icon name={tool.icon as any} size={24} className="text-primary group-hover:text-white transition-colors" />
+                    <Icon
+                      name={tool.icon as any}
+                      size={24}
+                      className="text-primary group-hover:text-white transition-colors"
+                    />
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                     {tool.title}
                   </h3>
-                  <p className="text-sm text-secondary">
-                    {tool.description}
-                  </p>
+                  <p className="text-sm text-secondary">{tool.description}</p>
                 </Link>
               ))}
             </div>
@@ -251,7 +264,9 @@ const JobMarketPage = () => {
         {/* Financial Planning Guides */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Strategic Career Guides for the Global Nigerian</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8">
+              Strategic Career Guides for the Global Nigerian
+            </h2>
             <div className="grid md:grid-cols-2 gap-6">
               {financialGuides.map((guide) => (
                 <Link
@@ -265,9 +280,7 @@ const JobMarketPage = () => {
                   <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                     {guide.title}
                   </h3>
-                  <p className="text-secondary text-sm mb-4 leading-relaxed">
-                    {guide.excerpt}
-                  </p>
+                  <p className="text-secondary text-sm mb-4 leading-relaxed">{guide.excerpt}</p>
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <Icon name="ClockIcon" size={14} />
                     <span className="text-xs">{guide.readTime}</span>
@@ -285,9 +298,7 @@ const JobMarketPage = () => {
               <div className="w-16 h-16 rounded-2xl bg-primary text-white flex items-center justify-center mx-auto mb-6">
                 <Icon name="BriefcaseIcon" size={32} className="text-white" />
               </div>
-              <h2 className="text-3xl font-bold text-foreground mb-4">
-                Know Your Worth
-              </h2>
+              <h2 className="text-3xl font-bold text-foreground mb-4">Know Your Worth</h2>
               <p className="text-xl text-secondary mb-8 max-w-2xl mx-auto">
                 Get personalized salary insights based on your role, experience, and location.
               </p>

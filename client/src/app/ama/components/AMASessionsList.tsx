@@ -40,7 +40,7 @@ export default function AMASessionsList() {
     try {
       const response = await fetch(`/api/ama/sessions?status=${filter}&limit=20`);
       const data = await response.json();
-      
+
       if (data.success) {
         const formatted = data.sessions.map((s: any) => ({
           id: s.id,
@@ -79,8 +79,12 @@ export default function AMASessionsList() {
     };
     const badge = badges[status as keyof typeof badges] || badges.upcoming;
     return (
-      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${badge.bg} ${badge.text}`}>
-        {status === 'live' && <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>}
+      <span
+        className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${badge.bg} ${badge.text}`}
+      >
+        {status === 'live' && (
+          <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+        )}
         {badge.label}
       </span>
     );
@@ -109,8 +113,7 @@ export default function AMASessionsList() {
             key={tab}
             onClick={() => setFilter(tab)}
             className={`flex-1 px-4 py-2 rounded-lg font-medium transition-colors ${
-              filter === tab
-                ? 'bg-primary text-white' :'text-secondary hover:bg-gray-100'
+              filter === tab ? 'bg-primary text-white' : 'text-secondary hover:bg-gray-100'
             }`}
           >
             {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -128,7 +131,10 @@ export default function AMASessionsList() {
       ) : (
         <div className="space-y-6">
           {sessions.map((session) => (
-            <div key={session.id} className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+            <div
+              key={session.id}
+              className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+            >
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
@@ -153,7 +159,9 @@ export default function AMASessionsList() {
                     className="rounded-full"
                   />
                   <div className="flex-1">
-                    <p className="text-lg font-semibold text-foreground">{session.userProfiles.fullName}</p>
+                    <p className="text-lg font-semibold text-foreground">
+                      {session.userProfiles.fullName}
+                    </p>
                     {session.expertTitle && (
                       <p className="text-sm text-primary font-medium">{session.expertTitle}</p>
                     )}
@@ -167,19 +175,24 @@ export default function AMASessionsList() {
                 <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-secondary">
                   <div className="flex items-center gap-2">
                     <Icon name="CalendarIcon" size={16} />
-                    <span>{new Date(session.scheduledAt).toLocaleDateString('en-US', { 
-                      weekday: 'long', 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
-                    })}</span>
+                    <span>
+                      {new Date(session.scheduledAt).toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Icon name="ClockIcon" size={16} />
-                    <span>{new Date(session.scheduledAt).toLocaleTimeString('en-US', { 
-                      hour: '2-digit', 
-                      minute: '2-digit' 
-                    })} ({session.durationMinutes} mins)</span>
+                    <span>
+                      {new Date(session.scheduledAt).toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}{' '}
+                      ({session.durationMinutes} mins)
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Icon name="UserGroupIcon" size={16} />

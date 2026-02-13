@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
@@ -111,10 +111,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
 
       {/* Backdrop */}
       {showSuggestions && query && (
-        <div
-          className="fixed inset-0 bg-black/20 z-40"
-          onClick={() => setShowSuggestions(false)}
-        />
+        <div className="fixed inset-0 bg-black/20 z-40" onClick={() => setShowSuggestions(false)} />
       )}
     </div>
   );

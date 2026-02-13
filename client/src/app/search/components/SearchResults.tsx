@@ -78,7 +78,9 @@ const SearchResults = ({ query, results }: SearchResultsProps) => {
                   </p>
                 </div>
                 <div className="flex items-center gap-1 bg-success/10 text-success px-3 py-1 rounded-full flex-shrink-0">
-                  <span className="text-xs font-semibold">{Math.round(result.matchScore * 100)}%</span>
+                  <span className="text-xs font-semibold">
+                    {Math.round(result.matchScore * 100)}%
+                  </span>
                   <span className="text-xs">match</span>
                 </div>
               </div>

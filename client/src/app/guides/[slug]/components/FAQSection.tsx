@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
@@ -21,15 +21,17 @@ const FAQSection = ({ faqs }: FAQSectionProps) => {
   };
 
   return (
-    <section className="py-12 px-8 rounded-3xl border border-gray-200 bg-muted" itemScope itemType="https://schema.org/FAQPage">
+    <section
+      className="py-12 px-8 rounded-3xl border border-gray-200 bg-muted"
+      itemScope
+      itemType="https://schema.org/FAQPage"
+    >
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-3">
           <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
             <Icon name="QuestionMarkCircleIcon" size={24} className="text-white" />
           </div>
-          <h2 className="text-3xl font-bold text-foreground">
-            Frequently Asked Questions
-          </h2>
+          <h2 className="text-3xl font-bold text-foreground">Frequently Asked Questions</h2>
         </div>
         <p className="text-base text-secondary">
           Find answers to common questions about this topic.
@@ -39,7 +41,7 @@ const FAQSection = ({ faqs }: FAQSectionProps) => {
       <div className="space-y-4">
         {faqs.map((faq) => {
           const isOpen = openId === faq.id;
-          
+
           return (
             <div
               key={faq.id}
@@ -64,8 +66,16 @@ const FAQSection = ({ faqs }: FAQSectionProps) => {
                 />
               </button>
               {isOpen && (
-                <div className="px-6 pb-6 pt-0" itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
-                  <p className="text-base text-secondary leading-relaxed text-justify" itemProp="text">
+                <div
+                  className="px-6 pb-6 pt-0"
+                  itemScope
+                  itemProp="acceptedAnswer"
+                  itemType="https://schema.org/Answer"
+                >
+                  <p
+                    className="text-base text-secondary leading-relaxed text-justify"
+                    itemProp="text"
+                  >
                     {faq.answer}
                   </p>
                 </div>

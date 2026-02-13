@@ -14,13 +14,12 @@ export async function POST(request: Request) {
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { data, error } = await supabase
@@ -41,10 +40,7 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('Q&A upvote error:', error);
-    return NextResponse.json(
-      { error: 'Failed to upvote' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to upvote' }, { status: 500 });
   }
 }
 
@@ -62,19 +58,15 @@ export async function DELETE(request: Request) {
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    let query = supabase
-      .from('qa_upvotes')
-      .delete()
-      .eq('user_id', user.id);
+    let query = supabase.from('qa_upvotes').delete().eq('user_id', user.id);
 
     if (questionId) {
       query = query.eq('question_id', questionId);
@@ -92,9 +84,6 @@ export async function DELETE(request: Request) {
     });
   } catch (error) {
     console.error('Q&A upvote removal error:', error);
-    return NextResponse.json(
-      { error: 'Failed to remove upvote' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to remove upvote' }, { status: 500 });
   }
 }

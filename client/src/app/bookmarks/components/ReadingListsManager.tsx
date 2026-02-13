@@ -39,7 +39,7 @@ export default function ReadingListsManager() {
     try {
       const response = await fetch('/api/reading-lists');
       const data = await response.json();
-      
+
       if (data.success) {
         const formatted = data.lists.map((list: any) => ({
           id: list.id,
@@ -47,12 +47,13 @@ export default function ReadingListsManager() {
           description: list.description,
           isPublic: list.is_public,
           createdAt: list.created_at,
-          items: list.reading_list_items?.map((item: any) => ({
-            id: item.id,
-            articleId: item.article_id,
-            articleTitle: item.article_title,
-            articleCategory: item.article_category,
-          })) || [],
+          items:
+            list.reading_list_items?.map((item: any) => ({
+              id: item.id,
+              articleId: item.article_id,
+              articleTitle: item.article_title,
+              articleCategory: item.article_category,
+            })) || [],
         }));
         setLists(formatted);
       }
@@ -76,7 +77,7 @@ export default function ReadingListsManager() {
           is_public: false,
         }),
       });
-      
+
       setNewListName('');
       setNewListDescription('');
       setShowCreateModal(false);
@@ -134,12 +135,17 @@ export default function ReadingListsManager() {
           <div className="text-center py-12">
             <Icon name="ListBulletIcon" size={48} className="mx-auto text-secondary mb-4" />
             <p className="text-secondary">No reading lists yet</p>
-            <p className="text-sm text-secondary mt-2">Create lists to organize your favorite articles</p>
+            <p className="text-sm text-secondary mt-2">
+              Create lists to organize your favorite articles
+            </p>
           </div>
         ) : (
           <div className="space-y-4">
             {lists.map((list) => (
-              <div key={list.id} className="p-4 border border-gray-200 rounded-lg hover:border-primary transition-colors">
+              <div
+                key={list.id}
+                className="p-4 border border-gray-200 rounded-lg hover:border-primary transition-colors"
+              >
                 <div className="flex items-start justify-between mb-2">
                   <h3 className="text-lg font-semibold text-foreground">{list.name}</h3>
                   <span className="text-sm text-secondary">{list.items.length} articles</span>
@@ -175,14 +181,19 @@ export default function ReadingListsManager() {
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-xl font-bold text-foreground">Create Reading List</h3>
-              <button onClick={() => setShowCreateModal(false)} className="text-secondary hover:text-foreground">
+              <button
+                onClick={() => setShowCreateModal(false)}
+                className="text-secondary hover:text-foreground"
+              >
                 <Icon name="XMarkIcon" size={24} />
               </button>
             </div>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">List Name *</label>
+                <label className="block text-sm font-semibold text-foreground mb-2">
+                  List Name *
+                </label>
                 <input
                   type="text"
                   value={newListName}
@@ -193,7 +204,9 @@ export default function ReadingListsManager() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">Description</label>
+                <label className="block text-sm font-semibold text-foreground mb-2">
+                  Description
+                </label>
                 <textarea
                   value={newListDescription}
                   onChange={(e) => setNewListDescription(e.target.value)}

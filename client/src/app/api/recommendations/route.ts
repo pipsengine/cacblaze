@@ -4,13 +4,12 @@ import { createClient } from '@/lib/supabase/server';
 export async function GET() {
   try {
     const supabase = await createClient();
-    const { data: { user } } = await supabase?.auth?.getUser();
+    const {
+      data: { user },
+    } = await supabase?.auth?.getUser();
 
     if (!user) {
-      return NextResponse?.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse?.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     // Get personalized recommendations using database function
@@ -27,9 +26,6 @@ export async function GET() {
     });
   } catch (error) {
     console.error('Recommendations fetch error:', error);
-    return NextResponse?.json(
-      { error: 'Failed to fetch recommendations' },
-      { status: 500 }
-    );
+    return NextResponse?.json({ error: 'Failed to fetch recommendations' }, { status: 500 });
   }
 }

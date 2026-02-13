@@ -32,7 +32,7 @@ const ContinueReading = () => {
     try {
       const response = await fetch('/api/reading-progress/list');
       if (!response.ok) throw new Error('Failed to fetch progress');
-      
+
       const data = await response.json();
       setProgressItems(data.progress || []);
     } catch (error) {
@@ -96,7 +96,10 @@ const ContinueReading = () => {
                 </div>
                 <div className="p-4">
                   <h3 className="text-sm font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                    {item.article_id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                    {item.article_id
+                      .split('-')
+                      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                      .join(' ')}
                   </h3>
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
                     <span>{item.progress_percentage}% complete</span>

@@ -14,7 +14,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const comparison = freeVsPaidComparisons[slug];
-  
+
   if (!comparison) {
     return {
       title: 'Comparison Not Found - CACBLAZE',
@@ -82,7 +82,9 @@ export default async function FreeVsPaidDetailPage({ params }: PageProps) {
                 </div>
                 <div className="text-white">
                   <p className="font-bold">{comparison.author.name}</p>
-                  <p className="text-sm text-white/70">{comparison.author.role} • {comparison.publishDate}</p>
+                  <p className="text-sm text-white/70">
+                    {comparison.author.role} • {comparison.publishDate}
+                  </p>
                 </div>
               </div>
             </div>
@@ -101,7 +103,7 @@ export default async function FreeVsPaidDetailPage({ params }: PageProps) {
                   <p className="text-gray-600 text-lg leading-relaxed mb-8">
                     {comparison.description}
                   </p>
-                  
+
                   <div className="grid md:grid-cols-2 gap-8">
                     {/* Free Tier */}
                     <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
@@ -113,22 +115,40 @@ export default async function FreeVsPaidDetailPage({ params }: PageProps) {
                       </div>
                       <div className="space-y-6">
                         <div>
-                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">What You Get</p>
+                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">
+                            What You Get
+                          </p>
                           <ul className="space-y-3">
                             {comparison.freeTier.features.map((feature, idx) => (
-                              <li key={idx} className="flex items-start gap-3 text-gray-600 text-sm">
-                                <Icon name="CheckCircleIcon" size={18} className="text-emerald-500 shrink-0" />
+                              <li
+                                key={idx}
+                                className="flex items-start gap-3 text-gray-600 text-sm"
+                              >
+                                <Icon
+                                  name="CheckCircleIcon"
+                                  size={18}
+                                  className="text-emerald-500 shrink-0"
+                                />
                                 {feature}
                               </li>
                             ))}
                           </ul>
                         </div>
                         <div>
-                          <p className="text-xs font-bold text-red-400 uppercase tracking-wider mb-3">Key Limitations</p>
+                          <p className="text-xs font-bold text-red-400 uppercase tracking-wider mb-3">
+                            Key Limitations
+                          </p>
                           <ul className="space-y-3">
                             {comparison.freeTier.limitations.map((limit, idx) => (
-                              <li key={idx} className="flex items-start gap-3 text-gray-500 text-sm italic">
-                                <Icon name="XCircleIcon" size={18} className="text-red-400 shrink-0" />
+                              <li
+                                key={idx}
+                                className="flex items-start gap-3 text-gray-500 text-sm italic"
+                              >
+                                <Icon
+                                  name="XCircleIcon"
+                                  size={18}
+                                  className="text-red-400 shrink-0"
+                                />
                                 {limit}
                               </li>
                             ))}
@@ -152,22 +172,40 @@ export default async function FreeVsPaidDetailPage({ params }: PageProps) {
                       </div>
                       <div className="space-y-6">
                         <div>
-                          <p className="text-xs font-bold text-emerald-600 uppercase tracking-wider mb-3">Premium Features</p>
+                          <p className="text-xs font-bold text-emerald-600 uppercase tracking-wider mb-3">
+                            Premium Features
+                          </p>
                           <ul className="space-y-3">
                             {comparison.paidTier.features.map((feature, idx) => (
-                              <li key={idx} className="flex items-start gap-3 text-gray-700 text-sm font-medium">
-                                <Icon name="StarIcon" size={18} className="text-emerald-600 fill-current shrink-0" />
+                              <li
+                                key={idx}
+                                className="flex items-start gap-3 text-gray-700 text-sm font-medium"
+                              >
+                                <Icon
+                                  name="StarIcon"
+                                  size={18}
+                                  className="text-emerald-600 fill-current shrink-0"
+                                />
                                 {feature}
                               </li>
                             ))}
                           </ul>
                         </div>
                         <div>
-                          <p className="text-xs font-bold text-emerald-600 uppercase tracking-wider mb-3">Value Add</p>
+                          <p className="text-xs font-bold text-emerald-600 uppercase tracking-wider mb-3">
+                            Value Add
+                          </p>
                           <ul className="space-y-3">
                             {comparison.paidTier.benefits.map((benefit, idx) => (
-                              <li key={idx} className="flex items-start gap-3 text-gray-700 text-sm">
-                                <Icon name="BoltIcon" size={18} className="text-emerald-500 shrink-0" />
+                              <li
+                                key={idx}
+                                className="flex items-start gap-3 text-gray-700 text-sm"
+                              >
+                                <Icon
+                                  name="BoltIcon"
+                                  size={18}
+                                  className="text-emerald-500 shrink-0"
+                                />
                                 {benefit}
                               </li>
                             ))}
@@ -189,9 +227,11 @@ export default async function FreeVsPaidDetailPage({ params }: PageProps) {
                   <p className="text-xl text-gray-300 mb-10 leading-relaxed italic">
                     "{comparison.verdict}"
                   </p>
-                  
+
                   <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/10">
-                    <h3 className="text-emerald-400 font-bold uppercase tracking-widest text-sm mb-4">Who Should Upgrade?</h3>
+                    <h3 className="text-emerald-400 font-bold uppercase tracking-widest text-sm mb-4">
+                      Who Should Upgrade?
+                    </h3>
                     <p className="text-lg text-white leading-relaxed">
                       {comparison.whoShouldUpgrade}
                     </p>
@@ -204,7 +244,9 @@ export default async function FreeVsPaidDetailPage({ params }: PageProps) {
                 <div className="sticky top-24 space-y-8">
                   {/* Quick Stats */}
                   <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-                    <h3 className="text-xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">Quick Stats</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">
+                      Quick Stats
+                    </h3>
                     <div className="space-y-6">
                       <div className="flex items-center justify-between">
                         <span className="text-gray-500">Category</span>
@@ -235,12 +277,13 @@ export default async function FreeVsPaidDetailPage({ params }: PageProps) {
                   <div className="bg-emerald-600 rounded-3xl p-8 text-white">
                     <h3 className="text-xl font-bold mb-4">Save Money Every Month</h3>
                     <p className="text-emerald-100 text-sm mb-6 leading-relaxed">
-                      Join 50,000+ subscribers getting weekly software value hacks and pricing alerts.
+                      Join 50,000+ subscribers getting weekly software value hacks and pricing
+                      alerts.
                     </p>
                     <div className="space-y-3">
-                      <input 
-                        type="email" 
-                        placeholder="your@email.com" 
+                      <input
+                        type="email"
+                        placeholder="your@email.com"
                         className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder:text-emerald-200 outline-none focus:bg-white/20 transition-all"
                       />
                       <button className="w-full bg-white text-emerald-600 font-bold py-3 rounded-xl hover:bg-emerald-50 transition-colors">

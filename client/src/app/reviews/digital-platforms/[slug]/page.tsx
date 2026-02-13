@@ -14,7 +14,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const review = digitalPlatformReviews[slug];
-  
+
   if (!review) return { title: 'Review Not Found' };
 
   return {
@@ -47,7 +47,7 @@ export default async function DigitalPlatformDetailPage({ params }: PageProps) {
           </div>
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <Breadcrumb items={breadcrumbItems} className="mb-8 text-violet-300" />
-            
+
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <div className="flex items-center gap-4 mb-8">
@@ -65,7 +65,7 @@ export default async function DigitalPlatformDetailPage({ params }: PageProps) {
                 <p className="text-xl text-violet-100/80 leading-relaxed mb-10 border-l-4 border-violet-500 pl-8 italic">
                   "{review.description}"
                 </p>
-                
+
                 <div className="flex items-center gap-6 p-6 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10">
                   <div className="relative w-14 h-14 rounded-2xl overflow-hidden ring-2 ring-violet-500/50">
                     <AppImage
@@ -107,7 +107,11 @@ export default async function DigitalPlatformDetailPage({ params }: PageProps) {
               {/* Platform Performance */}
               <section className="bg-white rounded-[2.5rem] p-10 border border-slate-200 shadow-sm relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-violet-50 rounded-bl-[5rem] -mr-8 -mt-8 flex items-center justify-center">
-                  <Icon name="PresentationChartLineIcon" size={32} className="text-violet-300 ml-4 mt-4" />
+                  <Icon
+                    name="PresentationChartLineIcon"
+                    size={32}
+                    className="text-violet-300 ml-4 mt-4"
+                  />
                 </div>
                 <h2 className="text-3xl font-bold text-slate-900 mb-10 flex items-center gap-4">
                   <div className="w-10 h-10 bg-violet-100 text-violet-600 rounded-2xl flex items-center justify-center">
@@ -117,11 +121,15 @@ export default async function DigitalPlatformDetailPage({ params }: PageProps) {
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-8">
                   <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">User Base</p>
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                      User Base
+                    </p>
                     <p className="text-xl font-bold text-slate-900">{review.userBase}</p>
                   </div>
                   <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Market Dominance</p>
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                      Market Dominance
+                    </p>
                     <p className="text-xl font-bold text-slate-900">{review.marketShare}</p>
                   </div>
                 </div>
@@ -188,18 +196,24 @@ export default async function DigitalPlatformDetailPage({ params }: PageProps) {
                       <Icon name="BanknotesIcon" size={24} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Revenue Engine</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                        Revenue Engine
+                      </p>
                       <p className="text-slate-900 font-bold">{review.revenueModel}</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-5">
                     <div className="w-12 h-12 bg-violet-50 text-violet-600 rounded-2xl flex items-center justify-center">
                       <Icon name="UserGroupIcon" size={24} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Primary Audience</p>
-                      <p className="text-slate-900 font-bold truncate max-w-[150px]">{review.bestFor}</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                        Primary Audience
+                      </p>
+                      <p className="text-slate-900 font-bold truncate max-w-[150px]">
+                        {review.bestFor}
+                      </p>
                     </div>
                   </div>
 
@@ -208,7 +222,9 @@ export default async function DigitalPlatformDetailPage({ params }: PageProps) {
                       <Icon name="ShieldCheckIcon" size={24} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Ecosystem Status</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                        Ecosystem Status
+                      </p>
                       <div className="flex items-center gap-2">
                         <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
                         <p className="text-slate-900 font-bold">Market Leader</p>
@@ -217,7 +233,9 @@ export default async function DigitalPlatformDetailPage({ params }: PageProps) {
                   </div>
 
                   <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Strategic Fit</p>
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">
+                      Strategic Fit
+                    </p>
                     <p className="text-slate-700 font-medium leading-relaxed italic">
                       "{review.bestFor}"
                     </p>
@@ -225,7 +243,11 @@ export default async function DigitalPlatformDetailPage({ params }: PageProps) {
 
                   <button className="w-full bg-violet-600 text-white font-bold py-5 rounded-[1.5rem] hover:bg-violet-700 transition-all flex items-center justify-center gap-3 group shadow-lg shadow-violet-100 hover:-translate-y-1">
                     Visit Platform
-                    <Icon name="ArrowTopRightOnSquareIcon" size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <Icon
+                      name="ArrowTopRightOnSquareIcon"
+                      size={20}
+                      className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                    />
                   </button>
                 </div>
               </div>

@@ -10,7 +10,8 @@ import { onlineServiceReviews } from '@/data/online-services';
 
 export const metadata: Metadata = {
   title: 'Online Service Reviews | Best Digital Solutions - CACBLAZE',
-  description: 'In-depth reviews of the world\'s top online services, from streaming and cloud storage to VPNs and productivity tools.',
+  description:
+    "In-depth reviews of the world's top online services, from streaming and cloud storage to VPNs and productivity tools.",
 };
 
 export default function OnlineServicesListingPage() {
@@ -42,7 +43,8 @@ export default function OnlineServicesListingPage() {
                 Online <span className="text-sky-400">Services</span>
               </h1>
               <p className="text-xl text-sky-100/80 leading-relaxed">
-                From the tools that power your work to the services that entertain you, we break down pricing, privacy, and performance.
+                From the tools that power your work to the services that entertain you, we break
+                down pricing, privacy, and performance.
               </p>
             </div>
           </div>
@@ -53,7 +55,7 @@ export default function OnlineServicesListingPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {reviews.map((review) => (
-                <Link 
+                <Link
                   key={review.id}
                   href={`/reviews/online-services/${review.slug}`}
                   className="group bg-white rounded-3xl overflow-hidden border border-slate-200 hover:border-sky-300 transition-all hover:shadow-2xl hover:shadow-sky-100 flex flex-col h-full"
@@ -75,7 +77,7 @@ export default function OnlineServicesListingPage() {
                       {review.rating}
                     </div>
                   </div>
-                  
+
                   <div className="p-8 flex flex-col flex-grow">
                     <h2 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-sky-600 transition-colors">
                       {review.name}
@@ -83,15 +85,23 @@ export default function OnlineServicesListingPage() {
                     <p className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3 flex-grow">
                       {review.description}
                     </p>
-                    
+
                     <div className="space-y-4 pt-6 border-t border-slate-100">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-slate-400 font-medium uppercase tracking-widest">Pricing</span>
-                        <span className="text-slate-900 font-bold bg-slate-100 px-2 py-1 rounded">{review.pricing}</span>
+                        <span className="text-slate-400 font-medium uppercase tracking-widest">
+                          Pricing
+                        </span>
+                        <span className="text-slate-900 font-bold bg-slate-100 px-2 py-1 rounded">
+                          {review.pricing}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-slate-400 font-medium uppercase tracking-widest">Best For</span>
-                        <span className="text-slate-900 font-bold truncate max-w-[150px]">{review.bestFor}</span>
+                        <span className="text-slate-400 font-medium uppercase tracking-widest">
+                          Best For
+                        </span>
+                        <span className="text-slate-900 font-bold truncate max-w-[150px]">
+                          {review.bestFor}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
@@ -103,7 +113,9 @@ export default function OnlineServicesListingPage() {
                               className="object-cover"
                             />
                           </div>
-                          <span className="text-xs text-slate-500 font-medium">{review.author.name}</span>
+                          <span className="text-xs text-slate-500 font-medium">
+                            {review.author.name}
+                          </span>
                         </div>
                         <div className="text-sky-600 font-bold text-xs flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                           Read Review
@@ -124,11 +136,14 @@ export default function OnlineServicesListingPage() {
             <div className="bg-sky-50 rounded-[3rem] p-12 lg:p-20 relative overflow-hidden flex flex-col lg:flex-row items-center gap-12">
               <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-sky-100 rounded-full blur-3xl opacity-50" />
               <div className="relative z-10 lg:w-2/3">
-                <h2 className="text-4xl font-bold text-slate-900 mb-6">Manage your digital subscriptions better</h2>
+                <h2 className="text-4xl font-bold text-slate-900 mb-6">
+                  Manage your digital subscriptions better
+                </h2>
                 <p className="text-xl text-slate-600 mb-8">
-                  Learn how to find hidden discounts, manage multiple accounts, and protect your privacy while using global online services.
+                  Learn how to find hidden discounts, manage multiple accounts, and protect your
+                  privacy while using global online services.
                 </p>
-                <Link 
+                <Link
                   href="/guides/subscription-management"
                   className="inline-flex items-center gap-2 bg-sky-600 text-white font-bold px-8 py-4 rounded-2xl hover:bg-sky-700 transition-all shadow-xl shadow-sky-200 hover:-translate-y-1"
                 >
@@ -138,7 +153,10 @@ export default function OnlineServicesListingPage() {
               </div>
               <div className="lg:w-1/3 grid grid-cols-2 gap-4">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="bg-white p-4 rounded-2xl shadow-sm border border-sky-100 aspect-square flex items-center justify-center">
+                  <div
+                    key={i}
+                    className="bg-white p-4 rounded-2xl shadow-sm border border-sky-100 aspect-square flex items-center justify-center"
+                  >
                     <Icon name="CloudIcon" size={40} className="text-sky-200" />
                   </div>
                 ))}

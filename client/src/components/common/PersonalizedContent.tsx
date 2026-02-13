@@ -31,7 +31,7 @@ const PersonalizedContent = () => {
     try {
       const response = await fetch('/api/recommendations');
       if (!response.ok) throw new Error('Failed to fetch recommendations');
-      
+
       const data = await response.json();
       setRecommendations(data.recommendations || []);
     } catch (error) {
@@ -74,9 +74,7 @@ const PersonalizedContent = () => {
                 Personalized for You
               </span>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
-              Recommended Content
-            </h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground">Recommended Content</h2>
           </div>
           <Link
             href="/preferences"

@@ -14,13 +14,12 @@ export async function POST(request: Request) {
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { data, error } = await supabase
@@ -42,10 +41,7 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('Reading list item creation error:', error);
-    return NextResponse.json(
-      { error: 'Failed to add item to reading list' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to add item to reading list' }, { status: 500 });
   }
 }
 
@@ -55,26 +51,19 @@ export async function DELETE(request: Request) {
     const itemId = searchParams.get('item_id');
 
     if (!itemId) {
-      return NextResponse.json(
-        { error: 'item_id is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'item_id is required' }, { status: 400 });
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { error } = await supabase
-      .from('reading_list_items')
-      .delete()
-      .eq('id', itemId);
+    const { error } = await supabase.from('reading_list_items').delete().eq('id', itemId);
 
     if (error) throw error;
 
@@ -84,9 +73,6 @@ export async function DELETE(request: Request) {
     });
   } catch (error) {
     console.error('Reading list item deletion error:', error);
-    return NextResponse.json(
-      { error: 'Failed to remove item from reading list' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to remove item from reading list' }, { status: 500 });
   }
 }

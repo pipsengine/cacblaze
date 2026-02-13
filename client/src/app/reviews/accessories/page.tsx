@@ -9,8 +9,10 @@ import { accessoryReviews } from '@/data/accessories';
 
 export const metadata: Metadata = {
   title: 'Tech Accessory Reviews in Nigeria (2026) - CACBLAZE',
-  description: 'In-depth reviews of the latest headphones, earbuds, chargers, and tech accessories available in Nigeria. Find the best value for your setup.',
-  keywords: 'airpods pro price nigeria, sony xm5 review, oraimo freepods 4 price, best earbuds nigeria, bluetooth headphones review'
+  description:
+    'In-depth reviews of the latest headphones, earbuds, chargers, and tech accessories available in Nigeria. Find the best value for your setup.',
+  keywords:
+    'airpods pro price nigeria, sony xm5 review, oraimo freepods 4 price, best earbuds nigeria, bluetooth headphones review',
 };
 
 export default function AccessoriesListingPage() {
@@ -19,7 +21,7 @@ export default function AccessoriesListingPage() {
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Reviews', href: '/reviews' },
-    { name: 'Accessories', href: '/reviews/accessories' }
+    { name: 'Accessories', href: '/reviews/accessories' },
   ];
 
   return (
@@ -28,24 +30,25 @@ export default function AccessoriesListingPage() {
       <main className="min-h-screen pt-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
           <Breadcrumb items={breadcrumbItems} className="mb-8" />
-          
+
           <div className="mb-12">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">Accessory Reviews</h1>
             <p className="text-xl text-gray-600 max-w-3xl">
-              From premium noise-canceling headphones to budget-friendly earbuds, we review the essential gear that completes your tech ecosystem in Nigeria.
+              From premium noise-canceling headphones to budget-friendly earbuds, we review the
+              essential gear that completes your tech ecosystem in Nigeria.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {reviews.map((review) => (
-              <Link 
+              <Link
                 key={review.id}
                 href={`/reviews/accessories/${review.slug}`}
                 className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col"
               >
                 <div className="aspect-[16/10] relative overflow-hidden">
-                  <AppImage 
-                    src={review.heroImage} 
+                  <AppImage
+                    src={review.heroImage}
                     alt={review.name}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -57,7 +60,7 @@ export default function AccessoriesListingPage() {
                     {review.category}
                   </div>
                 </div>
-                
+
                 <div className="p-6 flex-grow flex flex-col">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-xs font-bold text-indigo-500 uppercase tracking-wider">
@@ -66,17 +69,19 @@ export default function AccessoriesListingPage() {
                     <span className="text-gray-300">•</span>
                     <span className="text-xs text-gray-500">{review.publishDate}</span>
                   </div>
-                  
+
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors">
                     {review.name}
                   </h3>
-                  
+
                   <p className="text-gray-600 text-sm mb-4 line-clamp-2 italic">
                     "{review.tagline}"
                   </p>
-                  
+
                   <div className="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
-                    <span className="text-lg font-bold text-gray-900">{review.price.split(' ')[0]}</span>
+                    <span className="text-lg font-bold text-gray-900">
+                      {review.price.split(' ')[0]}
+                    </span>
                     <span className="text-indigo-600 font-semibold text-sm flex items-center group-hover:gap-2 transition-all">
                       Read Review <Icon name="ArrowRightIcon" className="h-4 w-4 ml-1" />
                     </span>

@@ -9,8 +9,10 @@ import { cafeReviews } from '@/data/cafes';
 
 export const metadata: Metadata = {
   title: 'Best Cafe Reviews in Nigeria (2026) - CACBLAZE',
-  description: 'Expert reviews of the best cafes and coffee shops in Lagos, Abuja, and more. Find the perfect spot for work, brunch, or a quiet cup of coffee.',
-  keywords: 'best cafes in lagos, coffee shops abuja, work-friendly cafes nigeria, art cafe review, vibe waterfront lekki, slot price list'
+  description:
+    'Expert reviews of the best cafes and coffee shops in Lagos, Abuja, and more. Find the perfect spot for work, brunch, or a quiet cup of coffee.',
+  keywords:
+    'best cafes in lagos, coffee shops abuja, work-friendly cafes nigeria, art cafe review, vibe waterfront lekki, slot price list',
 };
 
 export default function CafesListingPage() {
@@ -19,7 +21,7 @@ export default function CafesListingPage() {
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Reviews', href: '/reviews' },
-    { name: 'Cafes', href: '/reviews/cafes' }
+    { name: 'Cafes', href: '/reviews/cafes' },
   ];
 
   return (
@@ -28,24 +30,25 @@ export default function CafesListingPage() {
       <main className="min-h-screen pt-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
           <Breadcrumb items={breadcrumbItems} className="mb-8" />
-          
+
           <div className="mb-12">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">Cafe & Coffee Shop Reviews</h1>
             <p className="text-xl text-gray-600 max-w-3xl">
-              Whether you're looking for the best artisan brew, a quiet place to work with fast WiFi, or a vibrant brunch spot, we review Nigeria's top caffeine destinations.
+              Whether you're looking for the best artisan brew, a quiet place to work with fast
+              WiFi, or a vibrant brunch spot, we review Nigeria's top caffeine destinations.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {reviews.map((review) => (
-              <Link 
+              <Link
                 key={review.id}
                 href={`/reviews/cafes/${review.slug}`}
                 className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col"
               >
                 <div className="aspect-[16/10] relative overflow-hidden">
-                  <AppImage 
-                    src={review.heroImage} 
+                  <AppImage
+                    src={review.heroImage}
                     alt={review.name}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -57,7 +60,7 @@ export default function CafesListingPage() {
                     {review.specialty}
                   </div>
                 </div>
-                
+
                 <div className="p-6 flex-grow flex flex-col">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-xs font-bold text-indigo-500 uppercase tracking-wider">
@@ -66,15 +69,13 @@ export default function CafesListingPage() {
                     <span className="text-gray-300">•</span>
                     <span className="text-xs text-gray-500">{review.publishDate}</span>
                   </div>
-                  
+
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors">
                     {review.name}
                   </h3>
-                  
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                    {review.description}
-                  </p>
-                  
+
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">{review.description}</p>
+
                   <div className="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
                     <span className="text-lg font-bold text-gray-900">{review.priceLevel}</span>
                     <span className="text-indigo-600 font-semibold text-sm flex items-center group-hover:gap-2 transition-all">

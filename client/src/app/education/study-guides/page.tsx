@@ -9,7 +9,8 @@ import { studyGuides } from '@/data/study-guides';
 
 export const metadata: Metadata = {
   title: 'Comprehensive Study Guides - CACBLAZE',
-  description: 'Detailed subject-specific study guides to help you master complex topics and excel in your academics.',
+  description:
+    'Detailed subject-specific study guides to help you master complex topics and excel in your academics.',
 };
 
 export default function StudyGuidesListingPage() {
@@ -39,7 +40,8 @@ export default function StudyGuidesListingPage() {
                 Academic <span className="text-blue-400">Study Guides</span>
               </h1>
               <p className="text-xl text-blue-100/80 leading-relaxed mb-10">
-                Deep dive into your subjects with structured notes, summaries, and key concepts designed by expert educators.
+                Deep dive into your subjects with structured notes, summaries, and key concepts
+                designed by expert educators.
               </p>
             </div>
           </div>
@@ -49,7 +51,7 @@ export default function StudyGuidesListingPage() {
         <section className="max-w-7xl mx-auto px-6 lg:px-8 py-24">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {guides.map((guide) => (
-              <Link 
+              <Link
                 key={guide.id}
                 href={`/education/study-guides/${guide.slug}`}
                 className="group bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-blue-100 flex flex-col h-full"
@@ -79,7 +81,7 @@ export default function StudyGuidesListingPage() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="p-10 flex flex-col flex-grow">
                   <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
                     {guide.name}
@@ -87,7 +89,7 @@ export default function StudyGuidesListingPage() {
                   <p className="text-gray-600 line-clamp-3 mb-8 leading-relaxed">
                     {guide.description}
                   </p>
-                  
+
                   <div className="mt-auto pt-8 border-t border-gray-100 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-blue-100">
@@ -98,7 +100,9 @@ export default function StudyGuidesListingPage() {
                           className="object-cover"
                         />
                       </div>
-                      <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">{guide.author.name}</span>
+                      <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
+                        {guide.author.name}
+                      </span>
                     </div>
                     <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
                       <Icon name="ArrowRightIcon" size={18} />

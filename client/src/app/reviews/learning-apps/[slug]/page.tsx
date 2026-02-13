@@ -14,7 +14,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const review = learningAppReviews[slug];
-  
+
   if (!review) {
     return {
       title: 'App Not Found - CACBLAZE',
@@ -39,7 +39,7 @@ export default async function LearningAppDetailPage({ params }: PageProps) {
     { name: 'Home', href: '/homepage' },
     { name: 'Reviews', href: '/reviews' },
     { name: 'Learning Apps', href: '/reviews/learning-apps' },
-    { name: review.name, href: `/reviews/learning-apps/${slug}` }
+    { name: review.name, href: `/reviews/learning-apps/${slug}` },
   ];
 
   return (
@@ -48,16 +48,11 @@ export default async function LearningAppDetailPage({ params }: PageProps) {
       <main className="min-h-screen pt-20 bg-gray-50 pb-16">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 py-12">
           <Breadcrumb items={breadcrumbItems} className="mb-8" />
-          
+
           <article className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
             {/* Hero Section */}
             <div className="relative h-[400px]">
-              <AppImage 
-                src={review.heroImage}
-                alt={review.name}
-                fill
-                className="object-cover"
-              />
+              <AppImage src={review.heroImage} alt={review.name} fill className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 p-8 text-white">
                 <div className="flex items-center gap-3 mb-4">
@@ -74,11 +69,18 @@ export default async function LearningAppDetailPage({ params }: PageProps) {
                 </h1>
                 <div className="flex items-center gap-4">
                   <div className="relative h-10 w-10 rounded-full overflow-hidden border-2 border-white/50">
-                    <AppImage src={review.author.image} alt={review.author.name} fill className="object-cover" />
+                    <AppImage
+                      src={review.author.image}
+                      alt={review.author.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   <div>
                     <p className="text-sm font-bold">{review.author.name}</p>
-                    <p className="text-[10px] text-white/70 uppercase tracking-widest">{review.publishDate} • {review.author.role}</p>
+                    <p className="text-[10px] text-white/70 uppercase tracking-widest">
+                      {review.publishDate} • {review.author.role}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -93,21 +95,26 @@ export default async function LearningAppDetailPage({ params }: PageProps) {
                       <Icon name="DocumentTextIcon" className="h-6 w-6 text-blue-600" />
                       The Overview
                     </h2>
-                    <p className="text-gray-600 leading-relaxed text-lg">
-                      {review.description}
-                    </p>
+                    <p className="text-gray-600 leading-relaxed text-lg">{review.description}</p>
                   </section>
 
                   <section className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
-                    <h3 className="font-bold text-gray-900 mb-4 uppercase tracking-widest text-xs">Platform Availability</h3>
+                    <h3 className="font-bold text-gray-900 mb-4 uppercase tracking-widest text-xs">
+                      Platform Availability
+                    </h3>
                     <p className="text-gray-700 font-medium">{review.platform}</p>
                   </section>
 
                   <section>
-                    <h3 className="font-bold text-gray-900 mb-4 uppercase tracking-widest text-xs">Subjects Covered</h3>
+                    <h3 className="font-bold text-gray-900 mb-4 uppercase tracking-widest text-xs">
+                      Subjects Covered
+                    </h3>
                     <div className="flex flex-wrap gap-2">
                       {review.subjects.map((subject, idx) => (
-                        <span key={idx} className="bg-blue-50 text-blue-700 px-4 py-2 rounded-xl text-sm font-bold">
+                        <span
+                          key={idx}
+                          className="bg-blue-50 text-blue-700 px-4 py-2 rounded-xl text-sm font-bold"
+                        >
                           {subject}
                         </span>
                       ))}
@@ -122,7 +129,10 @@ export default async function LearningAppDetailPage({ params }: PageProps) {
                       </h3>
                       <ul className="space-y-3">
                         {review.pros.map((pro, i) => (
-                          <li key={i} className="flex gap-2 text-sm text-emerald-800 leading-relaxed">
+                          <li
+                            key={i}
+                            className="flex gap-2 text-sm text-emerald-800 leading-relaxed"
+                          >
                             <span className="text-emerald-500 font-bold">•</span>
                             {pro}
                           </li>
@@ -167,34 +177,55 @@ export default async function LearningAppDetailPage({ params }: PageProps) {
                       </h3>
                       <div className="space-y-6">
                         <div>
-                          <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest block mb-1">Pricing Model</span>
-                          <span className="text-xs font-bold text-gray-900">{review.specs.pricingModel}</span>
+                          <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest block mb-1">
+                            Pricing Model
+                          </span>
+                          <span className="text-xs font-bold text-gray-900">
+                            {review.specs.pricingModel}
+                          </span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Offline Mode</span>
-                          <span className={`text-xs font-bold ${review.specs.offlineMode ? 'text-emerald-600' : 'text-rose-500'}`}>
+                          <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
+                            Offline Mode
+                          </span>
+                          <span
+                            className={`text-xs font-bold ${review.specs.offlineMode ? 'text-emerald-600' : 'text-rose-500'}`}
+                          >
                             {review.specs.offlineMode ? 'Supported' : 'No'}
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Certificates</span>
-                          <span className={`text-xs font-bold ${review.specs.certificateAvailable ? 'text-emerald-600' : 'text-rose-500'}`}>
+                          <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
+                            Certificates
+                          </span>
+                          <span
+                            className={`text-xs font-bold ${review.specs.certificateAvailable ? 'text-emerald-600' : 'text-rose-500'}`}
+                          >
                             {review.specs.certificateAvailable ? 'Available' : 'None'}
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Interactive</span>
-                          <span className={`text-xs font-bold ${review.specs.interactiveLessons ? 'text-emerald-600' : 'text-rose-500'}`}>
+                          <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
+                            Interactive
+                          </span>
+                          <span
+                            className={`text-xs font-bold ${review.specs.interactiveLessons ? 'text-emerald-600' : 'text-rose-500'}`}
+                          >
                             {review.specs.interactiveLessons ? 'Yes' : 'Video/Text only'}
                           </span>
                         </div>
                       </div>
-                      
+
                       <div className="mt-8 pt-6 border-t border-gray-50">
-                        <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">Core Features</h4>
+                        <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">
+                          Core Features
+                        </h4>
                         <div className="flex flex-wrap gap-2">
                           {review.specs.features.map((feature, i) => (
-                            <span key={i} className="bg-gray-100 text-gray-600 px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-tighter">
+                            <span
+                              key={i}
+                              className="bg-gray-100 text-gray-600 px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-tighter"
+                            >
                               {feature}
                             </span>
                           ))}

@@ -40,12 +40,12 @@ export default function AdminDashboard() {
 
     // Apply role filter
     if (roleFilter !== 'all') {
-      filteredUsers = filteredUsers.filter(u => u.role === roleFilter);
+      filteredUsers = filteredUsers.filter((u) => u.role === roleFilter);
     }
 
     // Apply status filter
     if (statusFilter !== 'all') {
-      filteredUsers = filteredUsers.filter(u => 
+      filteredUsers = filteredUsers.filter((u) =>
         statusFilter === 'active' ? u.isActive : !u.isActive
       );
     }
@@ -123,7 +123,9 @@ export default function AdminDashboard() {
             <Icon name="ShieldExclamationIcon" size={64} className="mx-auto text-red-500 mb-4" />
             <h1 className="text-3xl font-bold text-foreground mb-4">Access Denied</h1>
             <p className="text-secondary mb-8">You don't have permission to access this page.</p>
-            <a href="/homepage" className="text-primary hover:underline">Return to Homepage</a>
+            <a href="/homepage" className="text-primary hover:underline">
+              Return to Homepage
+            </a>
           </div>
         </main>
         <Footer />
@@ -225,7 +227,9 @@ export default function AdminDashboard() {
                     {/* Status Filter */}
                     <select
                       value={statusFilter}
-                      onChange={(e) => setStatusFilter(e.target.value as 'all' | 'active' | 'inactive')}
+                      onChange={(e) =>
+                        setStatusFilter(e.target.value as 'all' | 'active' | 'inactive')
+                      }
                       className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                     >
                       <option value="all">All Status</option>
@@ -270,9 +274,7 @@ export default function AdminDashboard() {
       )}
 
       {/* Permissions View */}
-      {isPermissionsOpen && (
-        <PermissionsView onClose={() => setIsPermissionsOpen(false)} />
-      )}
+      {isPermissionsOpen && <PermissionsView onClose={() => setIsPermissionsOpen(false)} />}
 
       <Footer />
     </>

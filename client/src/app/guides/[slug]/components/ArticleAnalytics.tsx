@@ -48,7 +48,8 @@ export default function ArticleAnalytics({ article }: ArticleAnalyticsProps) {
     // Track engagement time on unmount
     const trackEngagementTime = () => {
       const timeSpent = Math.round((Date.now() - startTimeRef.current) / 1000);
-      if (timeSpent > 5) { // Only track if spent more than 5 seconds
+      if (timeSpent > 5) {
+        // Only track if spent more than 5 seconds
         trackEngagement(article.id, timeSpent);
       }
     };
@@ -73,7 +74,14 @@ export default function ArticleAnalytics({ article }: ArticleAnalyticsProps) {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       trackEngagementTime();
     };
-  }, [article.id, article.title, article.category, article.author.name, article.readTime, scrollMilestones]);
+  }, [
+    article.id,
+    article.title,
+    article.category,
+    article.author.name,
+    article.readTime,
+    scrollMilestones,
+  ]);
 
   return null; // This component doesn't render anything
 }

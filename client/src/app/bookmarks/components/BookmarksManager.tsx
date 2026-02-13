@@ -31,7 +31,7 @@ export default function BookmarksManager() {
     try {
       const response = await fetch('/api/bookmarks');
       const data = await response.json();
-      
+
       if (data.success) {
         const formatted = data.bookmarks.map((b: any) => ({
           id: b.id,
@@ -103,7 +103,9 @@ export default function BookmarksManager() {
           <div className="text-center py-12">
             <Icon name="BookmarkIcon" size={48} className="mx-auto text-secondary mb-4" />
             <p className="text-secondary">No bookmarks yet</p>
-            <p className="text-sm text-secondary mt-2">Start bookmarking articles to build your library</p>
+            <p className="text-sm text-secondary mt-2">
+              Start bookmarking articles to build your library
+            </p>
           </div>
         ) : (
           <div className="space-y-4">

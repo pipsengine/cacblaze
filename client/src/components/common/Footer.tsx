@@ -26,9 +26,24 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { id: 'social_twitter', icon: 'XMarkIcon' as const, href: 'https://twitter.com', label: 'Twitter' },
-    { id: 'social_linkedin', icon: 'LinkIcon' as const, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { id: 'social_github', icon: 'CodeBracketIcon' as const, href: 'https://github.com', label: 'GitHub' },
+    {
+      id: 'social_twitter',
+      icon: 'XMarkIcon' as const,
+      href: 'https://twitter.com',
+      label: 'Twitter',
+    },
+    {
+      id: 'social_linkedin',
+      icon: 'LinkIcon' as const,
+      href: 'https://linkedin.com',
+      label: 'LinkedIn',
+    },
+    {
+      id: 'social_github',
+      icon: 'CodeBracketIcon' as const,
+      href: 'https://github.com',
+      label: 'GitHub',
+    },
   ];
 
   return (
@@ -45,7 +60,8 @@ const Footer = () => {
               <span className="text-2xl font-bold text-foreground">CACBLAZE</span>
             </Link>
             <p className="text-sm text-secondary leading-relaxed max-w-xs mb-6">
-              Human-centered knowledge for the AI era. Empowering learners with authoritative, verified content across every domain.
+              Human-centered knowledge for the AI era. Empowering learners with authoritative,
+              verified content across every domain.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (

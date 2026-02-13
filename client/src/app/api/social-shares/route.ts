@@ -7,14 +7,13 @@ export async function POST(request: Request) {
     const { article_id, platform } = body;
 
     if (!article_id || !platform) {
-      return NextResponse.json(
-        { error: 'article_id and platform are required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'article_id and platform are required' }, { status: 400 });
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     const { data, error } = await supabase
       .from('social_shares')
@@ -34,10 +33,7 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('Social share tracking error:', error);
-    return NextResponse.json(
-      { error: 'Failed to track social share' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to track social share' }, { status: 500 });
   }
 }
 
@@ -47,10 +43,7 @@ export async function GET(request: Request) {
     const articleId = searchParams.get('article_id');
 
     if (!articleId) {
-      return NextResponse.json(
-        { error: 'article_id is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'article_id is required' }, { status: 400 });
     }
 
     const supabase = await createClient();
@@ -74,9 +67,6 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error('Social share stats error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch social share stats' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch social share stats' }, { status: 500 });
   }
 }

@@ -4,13 +4,12 @@ import { createClient } from '@/lib/supabase/server';
 export async function GET() {
   try {
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { data, error } = await supabase
@@ -31,10 +30,7 @@ export async function GET() {
     });
   } catch (error) {
     console.error('Notifications fetch error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch notifications' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch notifications' }, { status: 500 });
   }
 }
 
@@ -51,13 +47,12 @@ export async function POST(request: Request) {
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { data, error } = await supabase
@@ -81,10 +76,7 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('Notification creation error:', error);
-    return NextResponse.json(
-      { error: 'Failed to create notification' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to create notification' }, { status: 500 });
   }
 }
 
@@ -101,13 +93,12 @@ export async function PATCH(request: Request) {
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const updateData: any = { status };
@@ -131,10 +122,7 @@ export async function PATCH(request: Request) {
     });
   } catch (error) {
     console.error('Notification update error:', error);
-    return NextResponse.json(
-      { error: 'Failed to update notification' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to update notification' }, { status: 500 });
   }
 }
 
@@ -144,20 +132,16 @@ export async function DELETE(request: Request) {
     const notificationId = searchParams.get('notification_id');
 
     if (!notificationId) {
-      return NextResponse.json(
-        { error: 'notification_id is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'notification_id is required' }, { status: 400 });
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { error } = await supabase
@@ -174,9 +158,6 @@ export async function DELETE(request: Request) {
     });
   } catch (error) {
     console.error('Notification deletion error:', error);
-    return NextResponse.json(
-      { error: 'Failed to delete notification' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to delete notification' }, { status: 500 });
   }
 }

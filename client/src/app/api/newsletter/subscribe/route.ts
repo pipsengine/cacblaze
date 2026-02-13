@@ -7,16 +7,15 @@ export async function POST(request: Request) {
     const { email, topics, frequency = 'weekly' } = body;
 
     if (!email || !topics || !Array.isArray(topics)) {
-      return NextResponse.json(
-        { error: 'Email and topics array are required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Email and topics array are required' }, { status: 400 });
     }
 
     const supabase = await createClient();
-    
+
     // Get current user if authenticated
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     // Create or update subscription
     const { data, error } = await supabase
@@ -43,23 +42,19 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('Newsletter subscription error:', error);
-    return NextResponse.json(
-      { error: 'Failed to subscribe to newsletter' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to subscribe to newsletter' }, { status: 500 });
   }
 }
 
 export async function GET() {
   try {
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     // Get user's subscription
@@ -76,10 +71,7 @@ export async function GET() {
     });
   } catch (error) {
     console.error('Newsletter fetch error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch subscription' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch subscription' }, { status: 500 });
   }
 }
 
@@ -89,13 +81,12 @@ export async function PATCH(request: Request) {
     const { topics, frequency, status } = body;
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     // Update subscription
@@ -120,23 +111,19 @@ export async function PATCH(request: Request) {
     });
   } catch (error) {
     console.error('Newsletter update error:', error);
-    return NextResponse.json(
-      { error: 'Failed to update subscription' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to update subscription' }, { status: 500 });
   }
 }
 
 export async function DELETE() {
   try {
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     // Unsubscribe
@@ -153,9 +140,6 @@ export async function DELETE() {
     });
   } catch (error) {
     console.error('Newsletter unsubscribe error:', error);
-    return NextResponse.json(
-      { error: 'Failed to unsubscribe' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to unsubscribe' }, { status: 500 });
   }
 }

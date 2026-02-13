@@ -14,7 +14,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const tech = studyTechniques[slug];
-  
+
   if (!tech) return { title: 'Technique Not Found' };
 
   return {
@@ -47,7 +47,7 @@ export default async function StudyTechniqueDetailPage({ params }: PageProps) {
           </div>
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <Breadcrumb items={breadcrumbItems} className="mb-8 text-emerald-400" />
-            
+
             <div className="grid lg:grid-cols-2 gap-20 items-center">
               <div>
                 <div className="flex items-center gap-4 mb-8">
@@ -65,7 +65,7 @@ export default async function StudyTechniqueDetailPage({ params }: PageProps) {
                 <p className="text-2xl text-emerald-100/80 leading-relaxed mb-12 italic border-l-8 border-emerald-500 pl-10">
                   "{tech.description}"
                 </p>
-                
+
                 <div className="flex items-center gap-6 p-8 bg-white/5 backdrop-blur-xl rounded-[2.5rem] border border-white/10 shadow-2xl">
                   <div className="relative w-16 h-16 rounded-2xl overflow-hidden ring-4 ring-emerald-500/50 shadow-inner">
                     <AppImage
@@ -77,7 +77,9 @@ export default async function StudyTechniqueDetailPage({ params }: PageProps) {
                   </div>
                   <div>
                     <p className="font-black text-white text-xl">{tech.author.name}</p>
-                    <p className="text-emerald-400 text-sm font-bold uppercase tracking-widest">{tech.author.role}</p>
+                    <p className="text-emerald-400 text-sm font-bold uppercase tracking-widest">
+                      {tech.author.role}
+                    </p>
                   </div>
                   <div className="ml-auto text-[10px] text-emerald-500/60 font-black uppercase tracking-[0.2em] vertical-rl">
                     Updated {tech.publishDate}
@@ -112,9 +114,11 @@ export default async function StudyTechniqueDetailPage({ params }: PageProps) {
                     <div className="w-16 h-16 bg-emerald-600 rounded-[1.5rem] flex items-center justify-center text-white shadow-xl shadow-emerald-200">
                       <Icon name="ListBulletIcon" size={32} />
                     </div>
-                    <h2 className="text-4xl font-black text-slate-900 tracking-tight">Step-by-Step Execution</h2>
+                    <h2 className="text-4xl font-black text-slate-900 tracking-tight">
+                      Step-by-Step Execution
+                    </h2>
                   </div>
-                  
+
                   <div className="space-y-10">
                     {tech.steps.map((step, i) => (
                       <div key={i} className="group flex gap-8">
@@ -130,9 +134,7 @@ export default async function StudyTechniqueDetailPage({ params }: PageProps) {
                           <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-emerald-600 transition-colors">
                             {step.title}
                           </h3>
-                          <p className="text-lg text-slate-600 leading-relaxed">
-                            {step.content}
-                          </p>
+                          <p className="text-lg text-slate-600 leading-relaxed">{step.content}</p>
                         </div>
                       </div>
                     ))}
@@ -150,9 +152,18 @@ export default async function StudyTechniqueDetailPage({ params }: PageProps) {
                   </h3>
                   <div className="grid sm:grid-cols-2 gap-8">
                     {tech.benefits.map((benefit, i) => (
-                      <div key={i} className="flex items-start gap-4 p-6 bg-white/5 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors">
-                        <Icon name="CheckCircleIcon" size={24} className="text-emerald-400 shrink-0 mt-0.5" />
-                        <span className="text-lg font-bold text-emerald-50 leading-tight">{benefit}</span>
+                      <div
+                        key={i}
+                        className="flex items-start gap-4 p-6 bg-white/5 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors"
+                      >
+                        <Icon
+                          name="CheckCircleIcon"
+                          size={24}
+                          className="text-emerald-400 shrink-0 mt-0.5"
+                        />
+                        <span className="text-lg font-bold text-emerald-50 leading-tight">
+                          {benefit}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -166,19 +177,27 @@ export default async function StudyTechniqueDetailPage({ params }: PageProps) {
                 <h3 className="text-xl font-black text-slate-900 mb-10 border-b border-emerald-50 pb-6 uppercase tracking-widest">
                   Quick Stats
                 </h3>
-                
+
                 <div className="space-y-10">
                   <div className="flex items-center gap-6">
                     <div className="w-14 h-14 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600">
                       <Icon name="ChartBarIcon" size={24} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Difficulty</p>
-                      <p className={`text-lg font-black ${
-                        tech.difficulty === 'Beginner' ? 'text-emerald-600' :
-                        tech.difficulty === 'Intermediate' ? 'text-amber-600' :
-                        'text-rose-600'
-                      }`}>{tech.difficulty}</p>
+                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">
+                        Difficulty
+                      </p>
+                      <p
+                        className={`text-lg font-black ${
+                          tech.difficulty === 'Beginner'
+                            ? 'text-emerald-600'
+                            : tech.difficulty === 'Intermediate'
+                              ? 'text-amber-600'
+                              : 'text-rose-600'
+                        }`}
+                      >
+                        {tech.difficulty}
+                      </p>
                     </div>
                   </div>
 
@@ -187,7 +206,9 @@ export default async function StudyTechniqueDetailPage({ params }: PageProps) {
                       <Icon name="ClockIcon" size={24} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Implementation</p>
+                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">
+                        Implementation
+                      </p>
                       <p className="text-lg font-black text-slate-900">Instant Access</p>
                     </div>
                   </div>
@@ -197,7 +218,9 @@ export default async function StudyTechniqueDetailPage({ params }: PageProps) {
                       <Icon name="GlobeAltIcon" size={24} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Success Rate</p>
+                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">
+                        Success Rate
+                      </p>
                       <p className="text-lg font-black text-slate-900">92% High Retention</p>
                     </div>
                   </div>
@@ -217,9 +240,12 @@ export default async function StudyTechniqueDetailPage({ params }: PageProps) {
 
               {/* Related Section */}
               <div className="bg-emerald-50 rounded-[3rem] p-10 border border-emerald-100">
-                <h4 className="text-lg font-black text-emerald-900 mb-6 uppercase tracking-widest">Scientific Fact</h4>
+                <h4 className="text-lg font-black text-emerald-900 mb-6 uppercase tracking-widest">
+                  Scientific Fact
+                </h4>
                 <p className="text-emerald-800/80 leading-relaxed font-medium italic">
-                  "Research shows that testing yourself (active recall) is up to 50% more effective than re-reading notes or highlighting text."
+                  "Research shows that testing yourself (active recall) is up to 50% more effective
+                  than re-reading notes or highlighting text."
                 </p>
               </div>
             </div>

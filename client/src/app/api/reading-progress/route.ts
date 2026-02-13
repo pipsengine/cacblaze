@@ -7,20 +7,16 @@ export async function GET(request: Request) {
     const articleId = searchParams.get('article_id');
 
     if (!articleId) {
-      return NextResponse.json(
-        { error: 'article_id is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'article_id is required' }, { status: 400 });
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { data, error } = await supabase
@@ -37,10 +33,7 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error('Reading progress fetch error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch reading progress' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch reading progress' }, { status: 500 });
   }
 }
 
@@ -57,13 +50,12 @@ export async function POST(request: Request) {
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { data, error } = await supabase
@@ -90,10 +82,7 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('Reading progress save error:', error);
-    return NextResponse.json(
-      { error: 'Failed to save reading progress' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to save reading progress' }, { status: 500 });
   }
 }
 
@@ -103,20 +92,16 @@ export async function DELETE(request: Request) {
     const articleId = searchParams.get('article_id');
 
     if (!articleId) {
-      return NextResponse.json(
-        { error: 'article_id is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'article_id is required' }, { status: 400 });
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { error } = await supabase
@@ -133,9 +118,6 @@ export async function DELETE(request: Request) {
     });
   } catch (error) {
     console.error('Reading progress delete error:', error);
-    return NextResponse.json(
-      { error: 'Failed to delete reading progress' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to delete reading progress' }, { status: 500 });
   }
 }

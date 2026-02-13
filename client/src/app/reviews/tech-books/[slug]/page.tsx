@@ -14,7 +14,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const review = techBookReviews[slug];
-  
+
   if (!review) return { title: 'Review Not Found' };
 
   return {
@@ -38,10 +38,14 @@ export default async function TechBookDetailPage({ params }: PageProps) {
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case 'Beginner': return 'text-emerald-500';
-      case 'Intermediate': return 'text-amber-500';
-      case 'Advanced': return 'text-rose-500';
-      default: return 'text-slate-500';
+      case 'Beginner':
+        return 'text-emerald-500';
+      case 'Intermediate':
+        return 'text-amber-500';
+      case 'Advanced':
+        return 'text-rose-500';
+      default:
+        return 'text-slate-500';
     }
   };
 
@@ -56,7 +60,7 @@ export default async function TechBookDetailPage({ params }: PageProps) {
           </div>
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <Breadcrumb items={breadcrumbItems} className="mb-8 text-slate-400" />
-            
+
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <div className="flex items-center gap-3 mb-6">
@@ -68,13 +72,11 @@ export default async function TechBookDetailPage({ params }: PageProps) {
                     <span className="ml-1.5 font-bold">{review.rating} / 5.0</span>
                   </div>
                 </div>
-                <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-                  {review.name}
-                </h1>
+                <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">{review.name}</h1>
                 <p className="text-xl text-slate-300 leading-relaxed italic mb-8 border-l-4 border-indigo-500 pl-6">
                   {review.description}
                 </p>
-                
+
                 <div className="flex items-center gap-4">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-slate-700">
                     <Image
@@ -120,7 +122,10 @@ export default async function TechBookDetailPage({ params }: PageProps) {
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {review.keyConcepts.map((concept, index) => (
-                    <div key={index} className="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-indigo-100 hover:bg-indigo-50/30 transition-colors">
+                    <div
+                      key={index}
+                      className="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-indigo-100 hover:bg-indigo-50/30 transition-colors"
+                    >
                       <div className="mt-1 flex-shrink-0 w-5 h-5 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-[10px] font-bold">
                         {index + 1}
                       </div>
@@ -184,27 +189,41 @@ export default async function TechBookDetailPage({ params }: PageProps) {
                 </h3>
                 <div className="space-y-6">
                   <div>
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Primary Author</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                      Primary Author
+                    </p>
                     <p className="text-slate-900 font-semibold">{review.author_book}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Target Difficulty</p>
-                    <div className={`flex items-center gap-2 font-bold ${getDifficultyColor(review.difficulty)}`}>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                      Target Difficulty
+                    </p>
+                    <div
+                      className={`flex items-center gap-2 font-bold ${getDifficultyColor(review.difficulty)}`}
+                    >
                       <Icon name="SignalIcon" size={18} />
                       {review.difficulty}
                     </div>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Best Suited For</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                      Best Suited For
+                    </p>
                     <p className="text-slate-700 text-sm leading-relaxed">{review.bestFor}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Technical Breadth</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                      Technical Breadth
+                    </p>
                     <p className="text-slate-900 font-semibold">{review.pages} Pages</p>
                   </div>
                   <button className="w-full bg-slate-900 text-white font-bold py-4 rounded-xl hover:bg-slate-800 transition-colors flex items-center justify-center gap-2 group shadow-lg shadow-slate-200">
                     Get the Book
-                    <Icon name="ArrowTopRightOnSquareIcon" size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    <Icon
+                      name="ArrowTopRightOnSquareIcon"
+                      size={18}
+                      className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                    />
                   </button>
                 </div>
               </div>

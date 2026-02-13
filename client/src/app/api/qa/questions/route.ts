@@ -9,10 +9,11 @@ export async function GET(request: Request) {
     const limit = parseInt(searchParams.get('limit') || '20');
 
     const supabase = await createClient();
-    
+
     let query = supabase
       .from('qa_questions')
-      .select(`
+      .select(
+        `
         *,
         user_profiles:user_profiles!qa_questions_user_id_fkey(
           full_name,
@@ -31,7 +32,8 @@ export async function GET(request: Request) {
             role
           )
         )
-      `)
+      `
+      )
       .order('created_at', { ascending: false })
       .limit(limit);
 
@@ -53,10 +55,7 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error('Q&A questions fetch error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch Q&A questions' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch Q&A questions' }, { status: 500 });
   }
 }
 
@@ -73,13 +72,12 @@ export async function POST(request: Request) {
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { data, error } = await supabase
@@ -90,14 +88,16 @@ export async function POST(request: Request) {
         title,
         content,
       })
-      .select(`
+      .select(
+        `
         *,
         user_profiles:user_profiles!qa_questions_user_id_fkey(
           full_name,
           avatar_url,
           role
         )
-      `)
+      `
+      )
       .single();
 
     if (error) throw error;
@@ -108,9 +108,6 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('Q&A question creation error:', error);
-    return NextResponse.json(
-      { error: 'Failed to create Q&A question' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to create Q&A question' }, { status: 500 });
   }
 }

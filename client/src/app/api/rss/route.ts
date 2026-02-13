@@ -5,7 +5,7 @@ import { createClient } from '@/lib/supabase/server';
 export async function GET() {
   try {
     const supabase = await createClient();
-    
+
     // Fetch all content metadata
     const { data: articles, error } = await supabase
       .from('content_metadata')
@@ -19,7 +19,8 @@ export async function GET() {
     // Create feed
     const feed = new Feed({
       title: 'CACBLAZE - Knowledge That Empowers',
-      description: 'Human-centered content for the AI era. Discover verified guides, tutorials, and insights across every domain.',
+      description:
+        'Human-centered content for the AI era. Discover verified guides, tutorials, and insights across every domain.',
       id: 'https://cacblaze.com/',
       link: 'https://cacblaze.com/',
       language: 'en',
@@ -62,9 +63,6 @@ export async function GET() {
     });
   } catch (error) {
     console.error('RSS feed generation error:', error);
-    return NextResponse.json(
-      { error: 'Failed to generate RSS feed' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to generate RSS feed' }, { status: 500 });
   }
 }

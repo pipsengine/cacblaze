@@ -52,7 +52,11 @@ export default function LoginPage() {
 
           {error && (
             <div className="mb-4 p-4 bg-destructive/10 border border-destructive/20 rounded-lg flex items-start gap-3">
-              <Icon name="ExclamationTriangleIcon" size={20} className="text-destructive flex-shrink-0 mt-0.5" />
+              <Icon
+                name="ExclamationTriangleIcon"
+                size={20}
+                className="text-destructive flex-shrink-0 mt-0.5"
+              />
               <p className="text-sm text-destructive">{error}</p>
             </div>
           )}

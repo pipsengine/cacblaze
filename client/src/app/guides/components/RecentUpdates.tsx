@@ -22,7 +22,7 @@ const RecentUpdates = () => {
       date: 'Updated 2 days ago',
       readTime: '8 min',
       href: '/guides/nextjs-15',
-      isNew: true
+      isNew: true,
     },
     {
       id: 'update_2',
@@ -31,7 +31,7 @@ const RecentUpdates = () => {
       date: 'Updated 5 days ago',
       readTime: '6 min',
       href: '/guides/healthy-eating',
-      isNew: false
+      isNew: false,
     },
     {
       id: 'update_3',
@@ -40,8 +40,8 @@ const RecentUpdates = () => {
       date: 'Updated 1 week ago',
       readTime: '12 min',
       href: '/guides/cryptocurrency',
-      isNew: false
-    }
+      isNew: false,
+    },
   ];
 
   return (
@@ -58,7 +58,7 @@ const RecentUpdates = () => {
             title: update.title,
             width: 400,
             height: 300,
-            preferCurated: true
+            preferCurated: true,
           });
 
           return (

@@ -46,7 +46,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const fetchUser = async (authToken: string) => {
     try {
       const res = await fetch(`${API_URL}/auth/me`, {
-        headers: { Authorization: `Bearer ${authToken}` }
+        headers: { Authorization: `Bearer ${authToken}` },
       });
       if (res.ok) {
         const userData = await res.json();
@@ -68,12 +68,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const res = await fetch(`${API_URL}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ email, password }),
     });
-    
+
     const data = await res.json();
     if (!res.ok) throw new Error(data.message || 'Login failed');
-    
+
     localStorage.setItem('token', data.token);
     setToken(data.token);
     setUser(data.user);
@@ -84,12 +84,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const res = await fetch(`${API_URL}/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password, fullName })
+      body: JSON.stringify({ email, password, fullName }),
     });
-    
+
     const data = await res.json();
     if (!res.ok) throw new Error(data.message || 'Registration failed');
-    
+
     localStorage.setItem('token', data.token);
     setToken(data.token);
     setUser(data.user);
@@ -105,7 +105,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, userRole: user?.role || null, token, signIn, signUp, signOut }}>
+    <AuthContext.Provider
+      value={{ user, loading, userRole: user?.role || null, token, signIn, signUp, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );

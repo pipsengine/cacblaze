@@ -9,12 +9,13 @@ import { alternatives } from '@/data/alternatives';
 
 export const metadata: Metadata = {
   title: 'Best Software Alternatives: Top Picks for 2026 - CACBLAZE',
-  description: 'Looking for a better, cheaper, or more private alternative to your current software? We compare the best alternatives to Jira, Notion, Photoshop, and more.',
+  description:
+    'Looking for a better, cheaper, or more private alternative to your current software? We compare the best alternatives to Jira, Notion, Photoshop, and more.',
 };
 
 export default function AlternativesListingPage() {
   const alternativeList = Object.values(alternatives);
-  
+
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Reviews', href: '/reviews' },
@@ -37,7 +38,8 @@ export default function AlternativesListingPage() {
                 Best Software Alternatives
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Tired of high costs or privacy concerns? We've vetted the best alternatives to the world's most popular apps. Find your next favorite tool today.
+                Tired of high costs or privacy concerns? We've vetted the best alternatives to the
+                world's most popular apps. Find your next favorite tool today.
               </p>
             </div>
           </div>
@@ -48,8 +50,8 @@ export default function AlternativesListingPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {alternativeList.map((item) => (
-                <Link 
-                  key={item.id} 
+                <Link
+                  key={item.id}
                   href={`/reviews/alternatives/${item.slug}`}
                   className="group flex flex-col bg-white rounded-3xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                 >
@@ -75,20 +77,24 @@ export default function AlternativesListingPage() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="p-8 flex flex-col flex-grow">
                     <h2 className="text-2xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors mb-4">
                       {item.name}
                     </h2>
-                    
+
                     <p className="text-gray-600 text-sm mb-6 line-clamp-3 leading-relaxed">
                       {item.description}
                     </p>
 
                     <div className="mt-auto space-y-4">
                       <div className="bg-purple-50 p-4 rounded-2xl">
-                        <p className="text-[10px] font-bold text-purple-400 uppercase tracking-widest mb-1">Key Advantage</p>
-                        <p className="text-purple-700 text-sm font-semibold truncate">{item.keyDifferences[0]}</p>
+                        <p className="text-[10px] font-bold text-purple-400 uppercase tracking-widest mb-1">
+                          Key Advantage
+                        </p>
+                        <p className="text-purple-700 text-sm font-semibold truncate">
+                          {item.keyDifferences[0]}
+                        </p>
                       </div>
                       <div className="flex items-center text-purple-600 font-bold text-sm group-hover:gap-2 transition-all">
                         Compare with {item.targetApp}

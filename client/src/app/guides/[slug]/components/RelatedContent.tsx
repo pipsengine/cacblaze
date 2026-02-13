@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
@@ -26,7 +26,12 @@ interface RelatedContentProps {
 
 const EMPTY_TAGS: string[] = [];
 
-const RelatedContent = ({ currentArticleId, category, title = '', tags = EMPTY_TAGS }: RelatedContentProps) => {
+const RelatedContent = ({
+  currentArticleId,
+  category,
+  title = '',
+  tags = EMPTY_TAGS,
+}: RelatedContentProps) => {
   const [relatedArticles, setRelatedArticles] = useState<RelatedArticle[]>([]);
 
   useEffect(() => {
@@ -35,7 +40,8 @@ const RelatedContent = ({ currentArticleId, category, title = '', tags = EMPTY_T
       {
         id: 'guide_budgeting',
         title: 'Master Your Money: The Ultimate Guide to Budgeting',
-        excerpt: 'Take control of your finances with our comprehensive guide to budgeting strategies.',
+        excerpt:
+          'Take control of your finances with our comprehensive guide to budgeting strategies.',
         category: 'Personal Finance',
         readTime: '15 min',
         href: '/guides/budgeting',
@@ -44,7 +50,8 @@ const RelatedContent = ({ currentArticleId, category, title = '', tags = EMPTY_T
       {
         id: 'guide_saving',
         title: 'The Art of Saving: Strategies to Build Wealth',
-        excerpt: 'Discover actionable strategies to cut costs and build a robust financial safety net.',
+        excerpt:
+          'Discover actionable strategies to cut costs and build a robust financial safety net.',
         category: 'Personal Finance',
         readTime: '12 min',
         href: '/guides/saving',
@@ -62,7 +69,8 @@ const RelatedContent = ({ currentArticleId, category, title = '', tags = EMPTY_T
       {
         id: 'guide_debt',
         title: 'Crushing Debt: A Step-by-Step Plan',
-        excerpt: 'Strategies to pay off loans and credit card debt faster than you thought possible.',
+        excerpt:
+          'Strategies to pay off loans and credit card debt faster than you thought possible.',
         category: 'Personal Finance',
         readTime: '10 min',
         href: '/guides/debt-management',
@@ -89,14 +97,7 @@ const RelatedContent = ({ currentArticleId, category, title = '', tags = EMPTY_T
     ];
 
     // Use the related content engine to get smart recommendations
-    const recommended = getRelatedArticles(
-      currentArticleId,
-      category,
-      title,
-      allArticles,
-      tags,
-      3
-    );
+    const recommended = getRelatedArticles(currentArticleId, category, title, allArticles, tags, 3);
 
     setRelatedArticles(recommended);
   }, [currentArticleId, category, title, tags]);
@@ -108,12 +109,8 @@ const RelatedContent = ({ currentArticleId, category, title = '', tags = EMPTY_T
   return (
     <section className="mt-16 pt-16 border-t border-gray-200">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-foreground mb-2">
-          Related Articles
-        </h2>
-        <p className="text-secondary">
-          Continue your learning journey with these related guides
-        </p>
+        <h2 className="text-3xl font-bold text-foreground mb-2">Related Articles</h2>
+        <p className="text-secondary">Continue your learning journey with these related guides</p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
@@ -123,7 +120,7 @@ const RelatedContent = ({ currentArticleId, category, title = '', tags = EMPTY_T
             title: article.title,
             width: 600,
             height: 400,
-            preferCurated: true
+            preferCurated: true,
           });
 
           return (
@@ -150,9 +147,7 @@ const RelatedContent = ({ currentArticleId, category, title = '', tags = EMPTY_T
                 <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
                   {article.title}
                 </h3>
-                <p className="text-secondary text-sm mb-4 line-clamp-2">
-                  {article.excerpt}
-                </p>
+                <p className="text-secondary text-sm mb-4 line-clamp-2">{article.excerpt}</p>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <Icon name="ClockIcon" size={16} />
                   <span className="text-xs">{article.readTime}</span>

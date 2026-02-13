@@ -1,4 +1,12 @@
-import { Article, WithContext, FAQPage, BreadcrumbList, Organization, Review, HowTo } from 'schema-dts';
+import {
+  Article,
+  WithContext,
+  FAQPage,
+  BreadcrumbList,
+  Organization,
+  Review,
+  HowTo,
+} from 'schema-dts';
 
 interface ArticleData {
   title: string;
@@ -128,7 +136,8 @@ export function generateOrganizationSchema(): WithContext<Organization> {
     name: 'CACBLAZE',
     url: baseUrl,
     logo: `${baseUrl}/assets/images/logo.png`,
-    description: 'Nigerian knowledge platform providing comprehensive guides across technology, education, lifestyle, and more.',
+    description:
+      'Nigerian knowledge platform providing comprehensive guides across technology, education, lifestyle, and more.',
     sameAs: [
       'https://twitter.com/cacblaze',
       'https://facebook.com/cacblaze',

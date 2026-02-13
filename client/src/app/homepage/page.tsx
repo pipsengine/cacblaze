@@ -11,7 +11,8 @@ import ContinueReading from '@/components/common/ContinueReading';
 
 export const metadata: Metadata = {
   title: 'CACBLAZE - Knowledge That Empowers',
-  description: 'Human-centered content for the AI era. Discover verified guides, tutorials, and insights across every domain.',
+  description:
+    'Human-centered content for the AI era. Discover verified guides, tutorials, and insights across every domain.',
   keywords: 'guides, tutorials, how-to, reviews, education, technology, lifestyle',
 };
 

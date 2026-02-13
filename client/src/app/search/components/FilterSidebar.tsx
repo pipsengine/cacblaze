@@ -1,7 +1,6 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
-
 
 interface FilterSidebarProps {
   onFilterChange: (filters: any) => void;
@@ -36,10 +35,14 @@ const FilterSidebar = ({ onFilterChange }: FilterSidebarProps) => {
 
   const handleCategoryToggle = (category: string) => {
     const newCategories = selectedCategories.includes(category)
-      ? selectedCategories.filter(c => c !== category)
+      ? selectedCategories.filter((c) => c !== category)
       : [...selectedCategories, category];
     setSelectedCategories(newCategories);
-    onFilterChange({ categories: newCategories, difficulty: selectedDifficulty, readTime: readTimeRange });
+    onFilterChange({
+      categories: newCategories,
+      difficulty: selectedDifficulty,
+      readTime: readTimeRange,
+    });
   };
 
   const handleClearFilters = () => {
@@ -54,7 +57,9 @@ const FilterSidebar = ({ onFilterChange }: FilterSidebarProps) => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-bold text-foreground">Filters</h3>
-        {(selectedCategories.length > 0 || selectedDifficulty !== 'all' || readTimeRange !== 'all') && (
+        {(selectedCategories.length > 0 ||
+          selectedDifficulty !== 'all' ||
+          readTimeRange !== 'all') && (
           <button
             onClick={handleClearFilters}
             className="text-sm text-primary hover:text-primary/80 transition-colors font-medium"
@@ -69,10 +74,7 @@ const FilterSidebar = ({ onFilterChange }: FilterSidebarProps) => {
         <h4 className="text-sm font-semibold text-foreground mb-4">Categories</h4>
         <div className="space-y-3">
           {categories.map((category) => (
-            <label
-              key={category.id}
-              className="flex items-center gap-3 cursor-pointer group"
-            >
+            <label key={category.id} className="flex items-center gap-3 cursor-pointer group">
               <input
                 type="checkbox"
                 checked={selectedCategories.includes(category.value)}
@@ -82,9 +84,7 @@ const FilterSidebar = ({ onFilterChange }: FilterSidebarProps) => {
               <span className="flex-1 text-sm text-foreground group-hover:text-primary transition-colors">
                 {category.label}
               </span>
-              <span className="text-xs text-muted-foreground">
-                {category.count}
-              </span>
+              <span className="text-xs text-muted-foreground">{category.count}</span>
             </label>
           ))}
         </div>
@@ -95,10 +95,7 @@ const FilterSidebar = ({ onFilterChange }: FilterSidebarProps) => {
         <h4 className="text-sm font-semibold text-foreground mb-4">Difficulty Level</h4>
         <div className="space-y-3">
           {difficulties.map((difficulty) => (
-            <label
-              key={difficulty.id}
-              className="flex items-center gap-3 cursor-pointer group"
-            >
+            <label key={difficulty.id} className="flex items-center gap-3 cursor-pointer group">
               <input
                 type="radio"
                 name="difficulty"
@@ -106,7 +103,11 @@ const FilterSidebar = ({ onFilterChange }: FilterSidebarProps) => {
                 checked={selectedDifficulty === difficulty.value}
                 onChange={(e) => {
                   setSelectedDifficulty(e.target.value);
-                  onFilterChange({ categories: selectedCategories, difficulty: e.target.value, readTime: readTimeRange });
+                  onFilterChange({
+                    categories: selectedCategories,
+                    difficulty: e.target.value,
+                    readTime: readTimeRange,
+                  });
                 }}
                 className="w-5 h-5 border-2 border-gray-300 text-primary focus:ring-primary focus:ring-offset-0"
               />
@@ -123,10 +124,7 @@ const FilterSidebar = ({ onFilterChange }: FilterSidebarProps) => {
         <h4 className="text-sm font-semibold text-foreground mb-4">Read Time</h4>
         <div className="space-y-3">
           {readTimes.map((time) => (
-            <label
-              key={time.id}
-              className="flex items-center gap-3 cursor-pointer group"
-            >
+            <label key={time.id} className="flex items-center gap-3 cursor-pointer group">
               <input
                 type="radio"
                 name="readTime"
@@ -134,7 +132,11 @@ const FilterSidebar = ({ onFilterChange }: FilterSidebarProps) => {
                 checked={readTimeRange === time.value}
                 onChange={(e) => {
                   setReadTimeRange(e.target.value);
-                  onFilterChange({ categories: selectedCategories, difficulty: selectedDifficulty, readTime: e.target.value });
+                  onFilterChange({
+                    categories: selectedCategories,
+                    difficulty: selectedDifficulty,
+                    readTime: e.target.value,
+                  });
                 }}
                 className="w-5 h-5 border-2 border-gray-300 text-primary focus:ring-primary focus:ring-offset-0"
               />

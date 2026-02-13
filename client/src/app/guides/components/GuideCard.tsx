@@ -43,7 +43,7 @@ const GuideCard = ({
     alt: imageAlt,
     width: 800,
     height: 600,
-    preferCurated: true
+    preferCurated: true,
   });
 
   // Get author avatar
@@ -62,7 +62,7 @@ const GuideCard = ({
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-        
+
         {/* Category Badge */}
         <div className="absolute top-4 left-4">
           <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-semibold text-foreground">
@@ -85,9 +85,7 @@ const GuideCard = ({
         <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
           {title}
         </h3>
-        <p className="text-secondary text-sm mb-4 line-clamp-2 leading-relaxed">
-          {excerpt}
-        </p>
+        <p className="text-secondary text-sm mb-4 line-clamp-2 leading-relaxed">{excerpt}</p>
 
         {/* Author & Rating */}
         <div className="flex items-center justify-between mb-4">
@@ -97,15 +95,11 @@ const GuideCard = ({
               alt={`${author} profile picture`}
               className="w-8 h-8 rounded-full object-cover"
             />
-            <span className="text-sm font-medium text-foreground">
-              {author}
-            </span>
+            <span className="text-sm font-medium text-foreground">{author}</span>
           </div>
           <div className="flex items-center gap-1">
             <Icon name="StarIcon" size={16} className="text-warning fill-current" />
-            <span className="text-sm font-semibold text-foreground">
-              {rating}
-            </span>
+            <span className="text-sm font-semibold text-foreground">{rating}</span>
           </div>
         </div>
 

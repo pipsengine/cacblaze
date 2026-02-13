@@ -48,7 +48,7 @@ export default function AMASessionDetail({ sessionId }: AMASessionDetailProps) {
     try {
       const response = await fetch(`/api/ama/questions?session_id=${sessionId}`);
       const data = await response.json();
-      
+
       if (data.success) {
         const formatted = data.questions.map((q: any) => ({
           id: q.id,
@@ -60,15 +60,16 @@ export default function AMASessionDetail({ sessionId }: AMASessionDetailProps) {
             fullName: q.user_profiles?.full_name || 'Anonymous',
             avatarUrl: q.user_profiles?.avatar_url,
           },
-          amaAnswers: q.ama_answers?.map((a: any) => ({
-            id: a.id,
-            answer: a.answer,
-            createdAt: a.created_at,
-            userProfiles: {
-              fullName: a.user_profiles?.full_name || 'Expert',
-              avatarUrl: a.user_profiles?.avatar_url,
-            },
-          })) || [],
+          amaAnswers:
+            q.ama_answers?.map((a: any) => ({
+              id: a.id,
+              answer: a.answer,
+              createdAt: a.created_at,
+              userProfiles: {
+                fullName: a.user_profiles?.full_name || 'Expert',
+                avatarUrl: a.user_profiles?.avatar_url,
+              },
+            })) || [],
         }));
         setQuestions(formatted);
       }
@@ -92,7 +93,7 @@ export default function AMASessionDetail({ sessionId }: AMASessionDetailProps) {
           question: newQuestion,
         }),
       });
-      
+
       setNewQuestion('');
       fetchQuestions();
     } catch (error) {
@@ -142,7 +143,7 @@ export default function AMASessionDetail({ sessionId }: AMASessionDetailProps) {
       {/* Questions List */}
       <div className="bg-white rounded-lg shadow-sm p-6">
         <h3 className="text-xl font-bold text-foreground mb-6">Questions ({questions.length})</h3>
-        
+
         {questions.length === 0 ? (
           <div className="text-center py-12">
             <Icon name="ChatBubbleLeftIcon" size={48} className="mx-auto text-secondary mb-4" />
@@ -159,7 +160,9 @@ export default function AMASessionDetail({ sessionId }: AMASessionDetailProps) {
                     <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                       <Icon name="ArrowUpIcon" size={20} className="text-secondary" />
                     </button>
-                    <span className="text-sm font-semibold text-foreground">{question.upvotes}</span>
+                    <span className="text-sm font-semibold text-foreground">
+                      {question.upvotes}
+                    </span>
                   </div>
 
                   {/* Question Content */}
@@ -174,7 +177,9 @@ export default function AMASessionDetail({ sessionId }: AMASessionDetailProps) {
                       />
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <p className="font-medium text-foreground">{question.userProfiles.fullName}</p>
+                          <p className="font-medium text-foreground">
+                            {question.userProfiles.fullName}
+                          </p>
                           {question.isAnswered && (
                             <span className="flex items-center gap-1 text-xs px-2 py-0.5 bg-green-100 text-green-700 rounded">
                               <Icon name="CheckIcon" size={12} />

@@ -28,9 +28,7 @@ const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) 
 
   const toggleTopic = (topic: string) => {
     setSelectedTopics((prev) =>
-      prev.includes(topic)
-        ? prev.filter((t) => t !== topic)
-        : [...prev, topic]
+      prev.includes(topic) ? prev.filter((t) => t !== topic) : [...prev, topic]
     );
   };
 
@@ -72,12 +70,8 @@ const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) 
     return (
       <div className="bg-success/10 border border-success rounded-2xl p-6 text-center">
         <Icon name="CheckCircleIcon" size={48} className="text-success mx-auto mb-3" />
-        <h3 className="text-xl font-bold text-foreground mb-2">
-          Successfully Subscribed!
-        </h3>
-        <p className="text-secondary">
-          Check your email to confirm your subscription.
-        </p>
+        <h3 className="text-xl font-bold text-foreground mb-2">Successfully Subscribed!</h3>
+        <p className="text-secondary">Check your email to confirm your subscription.</p>
       </div>
     );
   }
@@ -113,7 +107,8 @@ const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) 
               onClick={() => toggleTopic(topic.id)}
               className={`flex items-center gap-2 px-4 py-3 rounded-xl border-2 transition-all ${
                 selectedTopics.includes(topic.id)
-                  ? 'border-primary bg-primary/5 text-primary' :'border-gray-200 text-secondary hover:border-gray-300'
+                  ? 'border-primary bg-primary/5 text-primary'
+                  : 'border-gray-200 text-secondary hover:border-gray-300'
               }`}
             >
               <Icon name={topic.icon as any} size={20} />
@@ -125,9 +120,7 @@ const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) 
 
       {/* Frequency Selection */}
       <div>
-        <label className="block text-sm font-semibold text-foreground mb-3">
-          Email Frequency
-        </label>
+        <label className="block text-sm font-semibold text-foreground mb-3">Email Frequency</label>
         <div className="flex gap-3">
           {(['daily', 'weekly', 'monthly'] as const).map((freq) => (
             <button
@@ -136,7 +129,8 @@ const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) 
               onClick={() => setFrequency(freq)}
               className={`flex-1 px-4 py-3 rounded-xl border-2 transition-all capitalize ${
                 frequency === freq
-                  ? 'border-primary bg-primary/5 text-primary font-semibold' :'border-gray-200 text-secondary hover:border-gray-300'
+                  ? 'border-primary bg-primary/5 text-primary font-semibold'
+                  : 'border-gray-200 text-secondary hover:border-gray-300'
               }`}
             >
               {freq}
@@ -148,7 +142,11 @@ const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) 
       {/* Error Message */}
       {error && (
         <div className="bg-warning/10 border border-warning rounded-xl p-4 flex items-start gap-3">
-          <Icon name="ExclamationTriangleIcon" size={20} className="text-warning flex-shrink-0 mt-0.5" />
+          <Icon
+            name="ExclamationTriangleIcon"
+            size={20}
+            className="text-warning flex-shrink-0 mt-0.5"
+          />
           <p className="text-sm text-warning">{error}</p>
         </div>
       )}

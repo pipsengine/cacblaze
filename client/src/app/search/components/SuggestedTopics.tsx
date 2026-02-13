@@ -6,12 +6,42 @@ interface SuggestedTopicsProps {
 
 const SuggestedTopics = ({ onTopicClick }: SuggestedTopicsProps) => {
   const topics = [
-    { id: 'topic_1', text: 'Web Development', icon: 'CodeBracketIcon' as const, color: 'bg-blue-50 text-blue-600' },
-    { id: 'topic_2', text: 'Machine Learning', icon: 'CpuChipIcon' as const, color: 'bg-purple-50 text-purple-600' },
-    { id: 'topic_3', text: 'Productivity', icon: 'LightBulbIcon' as const, color: 'bg-amber-50 text-amber-600' },
-    { id: 'topic_4', text: 'Urban Gardening', icon: 'HomeIcon' as const, color: 'bg-green-50 text-green-600' },
-    { id: 'topic_5', text: 'Blockchain', icon: 'CubeIcon' as const, color: 'bg-indigo-50 text-indigo-600' },
-    { id: 'topic_6', text: 'Time Management', icon: 'ClockIcon' as const, color: 'bg-rose-50 text-rose-600' },
+    {
+      id: 'topic_1',
+      text: 'Web Development',
+      icon: 'CodeBracketIcon' as const,
+      color: 'bg-blue-50 text-blue-600',
+    },
+    {
+      id: 'topic_2',
+      text: 'Machine Learning',
+      icon: 'CpuChipIcon' as const,
+      color: 'bg-purple-50 text-purple-600',
+    },
+    {
+      id: 'topic_3',
+      text: 'Productivity',
+      icon: 'LightBulbIcon' as const,
+      color: 'bg-amber-50 text-amber-600',
+    },
+    {
+      id: 'topic_4',
+      text: 'Urban Gardening',
+      icon: 'HomeIcon' as const,
+      color: 'bg-green-50 text-green-600',
+    },
+    {
+      id: 'topic_5',
+      text: 'Blockchain',
+      icon: 'CubeIcon' as const,
+      color: 'bg-indigo-50 text-indigo-600',
+    },
+    {
+      id: 'topic_6',
+      text: 'Time Management',
+      icon: 'ClockIcon' as const,
+      color: 'bg-rose-50 text-rose-600',
+    },
   ];
 
   return (

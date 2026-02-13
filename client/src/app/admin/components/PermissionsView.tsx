@@ -69,10 +69,7 @@ export default function PermissionsView({ onClose }: PermissionsViewProps) {
             <h2 className="text-2xl font-bold text-foreground">Roles & Permissions</h2>
             <p className="text-sm text-secondary mt-1">Understanding user roles in CACBLAZE</p>
           </div>
-          <button
-            onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-          >
+          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <Icon name="XMarkIcon" size={24} className="text-secondary" />
           </button>
         </div>
@@ -82,7 +79,9 @@ export default function PermissionsView({ onClose }: PermissionsViewProps) {
           {rolePermissions.map((item, index) => (
             <div key={index} className="border border-gray-200 rounded-lg p-6">
               <div className="flex items-center gap-3 mb-4">
-                <div className={`w-10 h-10 rounded-lg ${item.color} flex items-center justify-center`}>
+                <div
+                  className={`w-10 h-10 rounded-lg ${item.color} flex items-center justify-center`}
+                >
                   <Icon name={item.icon as any} size={20} />
                 </div>
                 <div>
@@ -92,7 +91,11 @@ export default function PermissionsView({ onClose }: PermissionsViewProps) {
               <ul className="space-y-2">
                 {item.permissions.map((permission, idx) => (
                   <li key={idx} className="flex items-start gap-2 text-sm text-secondary">
-                    <Icon name="CheckCircleIcon" size={16} className="text-green-600 mt-0.5 flex-shrink-0" />
+                    <Icon
+                      name="CheckCircleIcon"
+                      size={16}
+                      className="text-green-600 mt-0.5 flex-shrink-0"
+                    />
                     <span>{permission}</span>
                   </li>
                 ))}
@@ -103,7 +106,11 @@ export default function PermissionsView({ onClose }: PermissionsViewProps) {
           {/* Quick Tips */}
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
             <div className="flex items-start gap-3">
-              <Icon name="InformationCircleIcon" size={24} className="text-blue-600 flex-shrink-0" />
+              <Icon
+                name="InformationCircleIcon"
+                size={24}
+                className="text-blue-600 flex-shrink-0"
+              />
               <div>
                 <h4 className="font-bold text-foreground mb-2">Quick Tips</h4>
                 <ul className="space-y-1 text-sm text-secondary">

@@ -14,7 +14,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const review = gadgetReviews[slug];
-  
+
   if (!review) {
     return {
       title: 'Review Not Found - CACBLAZE',
@@ -39,7 +39,7 @@ export default async function GadgetReviewPage({ params }: PageProps) {
     { name: 'Home', href: '/homepage' },
     { name: 'Reviews', href: '/reviews' },
     { name: 'Gadgets', href: '/reviews/gadgets' },
-    { name: review.name, href: `/reviews/gadgets/${review.slug}` }
+    { name: review.name, href: `/reviews/gadgets/${review.slug}` },
   ];
 
   return (
@@ -50,7 +50,7 @@ export default async function GadgetReviewPage({ params }: PageProps) {
         <div className="bg-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
             <Breadcrumb items={breadcrumbItems} className="mb-8" />
-            
+
             <div className="grid lg:grid-cols-12 gap-12 items-start">
               <div className="lg:col-span-7">
                 <div className="flex items-center gap-3 mb-4">
@@ -62,18 +62,16 @@ export default async function GadgetReviewPage({ params }: PageProps) {
                     {review.publishDate}
                   </span>
                 </div>
-                
+
                 <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
                   {review.name} Review
                 </h1>
-                <p className="text-xl text-gray-600 mb-6 font-medium italic">
-                  "{review.tagline}"
-                </p>
+                <p className="text-xl text-gray-600 mb-6 font-medium italic">"{review.tagline}"</p>
 
                 <div className="flex items-center gap-4 mb-8 pb-8 border-b border-gray-100">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden border border-gray-200">
-                    <AppImage 
-                      src={review.author.image} 
+                    <AppImage
+                      src={review.author.image}
                       alt={review.author.name}
                       fill
                       className="object-cover"
@@ -93,17 +91,15 @@ export default async function GadgetReviewPage({ params }: PageProps) {
                       <span className="font-bold text-gray-900">{review.rating}/5.0</span>
                     </div>
                   </div>
-                  <p className="text-gray-700 leading-relaxed">
-                    {review.verdict}
-                  </p>
+                  <p className="text-gray-700 leading-relaxed">{review.verdict}</p>
                 </div>
               </div>
 
               <div className="lg:col-span-5 sticky top-24">
                 <div className="bg-gray-900 rounded-3xl overflow-hidden shadow-2xl">
                   <div className="aspect-[4/3] relative">
-                    <AppImage 
-                      src={review.heroImage} 
+                    <AppImage
+                      src={review.heroImage}
                       alt={review.name}
                       fill
                       className="object-cover"
@@ -116,14 +112,19 @@ export default async function GadgetReviewPage({ params }: PageProps) {
                     </h4>
                     <div className="space-y-3">
                       {Object.entries(review.specs).map(([key, value]) => (
-                        <div key={key} className="flex justify-between border-b border-gray-800 pb-2 last:border-0">
+                        <div
+                          key={key}
+                          className="flex justify-between border-b border-gray-800 pb-2 last:border-0"
+                        >
                           <span className="text-gray-400 text-sm capitalize">{key}</span>
                           <span className="text-white text-sm font-medium text-right">{value}</span>
                         </div>
                       ))}
                     </div>
                     <div className="mt-8">
-                      <div className="text-gray-400 text-xs uppercase tracking-widest mb-1">Estimated Price in Nigeria</div>
+                      <div className="text-gray-400 text-xs uppercase tracking-widest mb-1">
+                        Estimated Price in Nigeria
+                      </div>
                       <div className="text-2xl font-bold text-white">{review.price}</div>
                     </div>
                   </div>
@@ -141,7 +142,9 @@ export default async function GadgetReviewPage({ params }: PageProps) {
                 {review.content.map((section, index) => (
                   <div key={index} className="mb-12">
                     <h2 className="text-2xl font-bold text-gray-900 mb-4">{section.title}</h2>
-                    <p className="text-gray-600 leading-relaxed whitespace-pre-line">{section.body}</p>
+                    <p className="text-gray-600 leading-relaxed whitespace-pre-line">
+                      {section.body}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -151,9 +154,12 @@ export default async function GadgetReviewPage({ params }: PageProps) {
                 <h2 className="text-2xl font-bold text-gray-900 mb-8">Gallery</h2>
                 <div className="grid grid-cols-2 gap-4">
                   {review.gallery.map((img, i) => (
-                    <div key={i} className="relative aspect-video rounded-xl overflow-hidden shadow-sm border border-gray-100">
-                      <AppImage 
-                        src={img} 
+                    <div
+                      key={i}
+                      className="relative aspect-video rounded-xl overflow-hidden shadow-sm border border-gray-100"
+                    >
+                      <AppImage
+                        src={img}
                         alt={`${review.name} view ${i + 1}`}
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-500"
@@ -172,7 +178,7 @@ export default async function GadgetReviewPage({ params }: PageProps) {
                     <Icon name="CheckCircleIcon" className="h-5 w-5 mr-2 text-green-500" />
                     Pros & Cons
                   </h3>
-                  
+
                   <div className="space-y-4 mb-8">
                     {review.pros.map((pro, i) => (
                       <div key={i} className="flex gap-3 text-sm">
@@ -199,7 +205,9 @@ export default async function GadgetReviewPage({ params }: PageProps) {
                     Buyer's Note (Nigeria)
                   </h3>
                   <p className="text-indigo-100 text-sm mb-6 leading-relaxed">
-                    Always verify the exchange rate before purchase as prices for imported gadgets can fluctuate daily. We recommend buying from vendors who offer local testing and warranty.
+                    Always verify the exchange rate before purchase as prices for imported gadgets
+                    can fluctuate daily. We recommend buying from vendors who offer local testing
+                    and warranty.
                   </p>
                   <button className="w-full bg-white text-indigo-600 font-bold py-3 rounded-xl hover:bg-indigo-50 transition-colors">
                     Find Local Sellers

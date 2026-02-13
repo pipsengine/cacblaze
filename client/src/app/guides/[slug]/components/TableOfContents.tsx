@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/AppIcon';
@@ -61,14 +61,15 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
           {items.map((item) => {
             const isActive = activeId === item.id;
             const paddingLeft = (item.level - 2) * 12;
-            
+
             return (
               <button
                 key={item.id}
                 onClick={() => handleClick(item.id)}
                 className={`w-full text-left text-sm py-2 px-3 rounded-lg transition-all ${
                   isActive
-                    ? 'bg-primary/10 text-primary font-semibold' :'text-secondary hover:text-foreground hover:bg-muted'
+                    ? 'bg-primary/10 text-primary font-semibold'
+                    : 'text-secondary hover:text-foreground hover:bg-muted'
                 }`}
                 style={{ paddingLeft: `${paddingLeft + 12}px` }}
               >

@@ -22,11 +22,10 @@ const LocalResourcesPage = () => {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mb-6">
             <Icon name="MapPinIcon" size={32} className="text-primary" />
           </div>
-          <h1 className="text-5xl font-bold text-foreground mb-4">
-            Local Resources
-          </h1>
+          <h1 className="text-5xl font-bold text-foreground mb-4">Local Resources</h1>
           <p className="text-xl text-secondary max-w-2xl mx-auto">
-            Nigerian-specific guides for government services, local businesses, and community resources.
+            Nigerian-specific guides for government services, local businesses, and community
+            resources.
           </p>
         </div>
 
@@ -37,9 +36,7 @@ const LocalResourcesPage = () => {
               key={category?.id}
               className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-shadow"
             >
-              <h2 className="text-xl font-semibold text-foreground mb-4">
-                {category?.label}
-              </h2>
+              <h2 className="text-xl font-semibold text-foreground mb-4">{category?.label}</h2>
               <ul className="space-y-3">
                 {category?.items?.map((item) => (
                   <li key={item?.id}>

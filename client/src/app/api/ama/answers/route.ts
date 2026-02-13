@@ -7,20 +7,16 @@ export async function POST(request: Request) {
     const { question_id, answer } = body;
 
     if (!question_id || !answer) {
-      return NextResponse.json(
-        { error: 'question_id and answer are required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'question_id and answer are required' }, { status: 400 });
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { data, error } = await supabase
@@ -30,14 +26,16 @@ export async function POST(request: Request) {
         expert_id: user.id,
         answer,
       })
-      .select(`
+      .select(
+        `
         *,
         user_profiles:user_profiles!ama_answers_expert_id_fkey(
           full_name,
           avatar_url,
           role
         )
-      `)
+      `
+      )
       .single();
 
     if (error) throw error;
@@ -48,9 +46,6 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('AMA answer creation error:', error);
-    return NextResponse.json(
-      { error: 'Failed to create AMA answer' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to create AMA answer' }, { status: 500 });
   }
 }

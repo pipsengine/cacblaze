@@ -9,7 +9,8 @@ import { coursePlatformReviews } from '@/data/course-platforms';
 
 export const metadata: Metadata = {
   title: 'Course Platform Reviews | Best Online Learning - CACBLAZE',
-  description: 'In-depth reviews of the world\'s top online learning platforms, from university degrees to creative skill building.',
+  description:
+    "In-depth reviews of the world's top online learning platforms, from university degrees to creative skill building.",
 };
 
 export default function CoursePlatformsListingPage() {
@@ -41,7 +42,8 @@ export default function CoursePlatformsListingPage() {
                 Course <span className="text-emerald-400">Platforms</span>
               </h1>
               <p className="text-xl text-emerald-100/80 leading-relaxed">
-                Whether you're looking for an Ivy League degree, a creative hobby, or a career in tech, we've reviewed the platforms that deliver real value.
+                Whether you're looking for an Ivy League degree, a creative hobby, or a career in
+                tech, we've reviewed the platforms that deliver real value.
               </p>
             </div>
           </div>
@@ -52,7 +54,7 @@ export default function CoursePlatformsListingPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {reviews.map((review) => (
-                <Link 
+                <Link
                   key={review.id}
                   href={`/reviews/course-platforms/${review.slug}`}
                   className="group bg-white rounded-3xl overflow-hidden border border-slate-200 hover:border-emerald-300 transition-all hover:shadow-2xl hover:shadow-emerald-100 flex flex-col h-full"
@@ -74,7 +76,7 @@ export default function CoursePlatformsListingPage() {
                       {review.rating}
                     </div>
                   </div>
-                  
+
                   <div className="p-8 flex flex-col flex-grow">
                     <h2 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-emerald-600 transition-colors">
                       {review.name}
@@ -82,14 +84,20 @@ export default function CoursePlatformsListingPage() {
                     <p className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3 flex-grow">
                       {review.description}
                     </p>
-                    
+
                     <div className="space-y-4 pt-6 border-t border-slate-100">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-slate-400 font-medium uppercase tracking-widest">Pricing</span>
-                        <span className="text-slate-900 font-bold bg-slate-100 px-2 py-1 rounded">{review.pricing}</span>
+                        <span className="text-slate-400 font-medium uppercase tracking-widest">
+                          Pricing
+                        </span>
+                        <span className="text-slate-900 font-bold bg-slate-100 px-2 py-1 rounded">
+                          {review.pricing}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-slate-400 font-medium uppercase tracking-widest">Courses</span>
+                        <span className="text-slate-400 font-medium uppercase tracking-widest">
+                          Courses
+                        </span>
                         <span className="text-slate-900 font-bold">{review.courseCount}</span>
                       </div>
                       <div className="flex items-center justify-between">
@@ -102,7 +110,9 @@ export default function CoursePlatformsListingPage() {
                               className="object-cover"
                             />
                           </div>
-                          <span className="text-xs text-slate-500 font-medium">{review.author.name}</span>
+                          <span className="text-xs text-slate-500 font-medium">
+                            {review.author.name}
+                          </span>
                         </div>
                         <div className="text-emerald-600 font-bold text-xs flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                           Read Review
@@ -123,11 +133,14 @@ export default function CoursePlatformsListingPage() {
             <div className="bg-emerald-50 rounded-[3rem] p-12 lg:p-20 relative overflow-hidden flex flex-col lg:flex-row items-center gap-12">
               <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-emerald-100 rounded-full blur-3xl opacity-50" />
               <div className="relative z-10 lg:w-2/3">
-                <h2 className="text-4xl font-bold text-slate-900 mb-6">Not sure which one to choose?</h2>
+                <h2 className="text-4xl font-bold text-slate-900 mb-6">
+                  Not sure which one to choose?
+                </h2>
                 <p className="text-xl text-slate-600 mb-8">
-                  Compare platforms side-by-side based on certificate accreditation, instructor quality, and real student ROI.
+                  Compare platforms side-by-side based on certificate accreditation, instructor
+                  quality, and real student ROI.
                 </p>
-                <Link 
+                <Link
                   href="/reviews/comparisons"
                   className="inline-flex items-center gap-2 bg-emerald-600 text-white font-bold px-8 py-4 rounded-2xl hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-200 hover:-translate-y-1"
                 >
@@ -137,7 +150,10 @@ export default function CoursePlatformsListingPage() {
               </div>
               <div className="lg:w-1/3 grid grid-cols-2 gap-4">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="bg-white p-4 rounded-2xl shadow-sm border border-emerald-100 aspect-square flex items-center justify-center">
+                  <div
+                    key={i}
+                    className="bg-white p-4 rounded-2xl shadow-sm border border-emerald-100 aspect-square flex items-center justify-center"
+                  >
                     <Icon name="AcademicCapIcon" size={40} className="text-emerald-200" />
                   </div>
                 ))}

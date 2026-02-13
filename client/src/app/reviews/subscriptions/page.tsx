@@ -9,7 +9,8 @@ import { subscriptionReviews } from '@/data/subscriptions';
 
 export const metadata: Metadata = {
   title: 'Subscription Reviews | Best Digital Memberships - CACBLAZE',
-  description: 'Analysis of the world\'s most popular subscriptions, from entertainment and gaming to productivity and news.',
+  description:
+    "Analysis of the world's most popular subscriptions, from entertainment and gaming to productivity and news.",
 };
 
 export default function SubscriptionsListingPage() {
@@ -41,7 +42,8 @@ export default function SubscriptionsListingPage() {
                 Premium <span className="text-indigo-400">Subscriptions</span>
               </h1>
               <p className="text-xl text-indigo-100/80 leading-relaxed">
-                Stop the subscription fatigue. We analyze value, ease of cancelation, and feature depth to help you decide what's worth your monthly spend.
+                Stop the subscription fatigue. We analyze value, ease of cancelation, and feature
+                depth to help you decide what's worth your monthly spend.
               </p>
             </div>
           </div>
@@ -52,7 +54,7 @@ export default function SubscriptionsListingPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {reviews.map((review) => (
-                <Link 
+                <Link
                   key={review.id}
                   href={`/reviews/subscriptions/${review.slug}`}
                   className="group bg-white rounded-3xl overflow-hidden border border-slate-200 hover:border-indigo-300 transition-all hover:shadow-2xl hover:shadow-indigo-100 flex flex-col h-full"
@@ -74,7 +76,7 @@ export default function SubscriptionsListingPage() {
                       {review.rating}
                     </div>
                   </div>
-                  
+
                   <div className="p-8 flex flex-col flex-grow">
                     <h2 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">
                       {review.name}
@@ -82,14 +84,20 @@ export default function SubscriptionsListingPage() {
                     <p className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3 flex-grow">
                       {review.description}
                     </p>
-                    
+
                     <div className="space-y-4 pt-6 border-t border-slate-100">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-slate-400 font-medium uppercase tracking-widest">Price Point</span>
-                        <span className="text-slate-900 font-bold bg-slate-100 px-2 py-1 rounded">{review.price}</span>
+                        <span className="text-slate-400 font-medium uppercase tracking-widest">
+                          Price Point
+                        </span>
+                        <span className="text-slate-900 font-bold bg-slate-100 px-2 py-1 rounded">
+                          {review.price}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-slate-400 font-medium uppercase tracking-widest">Billing</span>
+                        <span className="text-slate-400 font-medium uppercase tracking-widest">
+                          Billing
+                        </span>
                         <span className="text-slate-900 font-bold">{review.billingCycle}</span>
                       </div>
                       <div className="flex items-center justify-between">
@@ -102,7 +110,9 @@ export default function SubscriptionsListingPage() {
                               className="object-cover"
                             />
                           </div>
-                          <span className="text-xs text-slate-500 font-medium">{review.author.name}</span>
+                          <span className="text-xs text-slate-500 font-medium">
+                            {review.author.name}
+                          </span>
                         </div>
                         <div className="text-indigo-600 font-bold text-xs flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                           Read Review
@@ -125,9 +135,10 @@ export default function SubscriptionsListingPage() {
               <div className="relative z-10 lg:w-2/3">
                 <h2 className="text-4xl font-bold text-slate-900 mb-6">Master Your Monthly Burn</h2>
                 <p className="text-xl text-slate-600 mb-8">
-                  Learn how to audit your subscriptions, find hidden discounts, and maximize the value of every digital membership you own.
+                  Learn how to audit your subscriptions, find hidden discounts, and maximize the
+                  value of every digital membership you own.
                 </p>
-                <Link 
+                <Link
                   href="/guides/subscription-management"
                   className="inline-flex items-center gap-2 bg-indigo-600 text-white font-bold px-8 py-4 rounded-2xl hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-200 hover:-translate-y-1"
                 >
@@ -137,7 +148,10 @@ export default function SubscriptionsListingPage() {
               </div>
               <div className="lg:w-1/3 grid grid-cols-2 gap-4">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="bg-white p-4 rounded-2xl shadow-sm border border-indigo-100 aspect-square flex items-center justify-center">
+                  <div
+                    key={i}
+                    className="bg-white p-4 rounded-2xl shadow-sm border border-indigo-100 aspect-square flex items-center justify-center"
+                  >
                     <Icon name="CreditCardIcon" size={40} className="text-indigo-200" />
                   </div>
                 ))}

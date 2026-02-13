@@ -26,8 +26,8 @@ export default function UserProfile({ userId }: UserProfileProps) {
   const [formData, setFormData] = useState({
     full_name: '',
     bio: '',
-    role: 'user\' as \'admin\' | \'author\' | \'user',
-    is_active: true
+    role: "user' as 'admin' | 'author' | 'user",
+    is_active: true,
   });
   const supabase = createClient();
 
@@ -55,7 +55,7 @@ export default function UserProfile({ userId }: UserProfileProps) {
         full_name: data.full_name,
         bio: data.bio || '',
         role: data.role,
-        is_active: data.is_active
+        is_active: data.is_active,
       });
     } catch (error) {
       console.error('Error fetching user profile:', error);
@@ -74,7 +74,7 @@ export default function UserProfile({ userId }: UserProfileProps) {
           full_name: formData.full_name,
           bio: formData.bio,
           role: formData.role,
-          is_active: formData.is_active
+          is_active: formData.is_active,
         })
         .eq('id', userId);
 
@@ -84,7 +84,7 @@ export default function UserProfile({ userId }: UserProfileProps) {
       await supabase.rpc('log_admin_action', {
         p_action_type: 'user_updated',
         p_target_user_id: userId,
-        p_details: { fields_updated: Object.keys(formData) }
+        p_details: { fields_updated: Object.keys(formData) },
       });
 
       setEditing(false);
@@ -141,7 +141,7 @@ export default function UserProfile({ userId }: UserProfileProps) {
                   full_name: user.full_name,
                   bio: user.bio || '',
                   role: user.role,
-                  is_active: user.is_active
+                  is_active: user.is_active,
                 });
               }}
               className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
@@ -161,9 +161,7 @@ export default function UserProfile({ userId }: UserProfileProps) {
       {/* Profile Form */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-foreground mb-2">
-            Full Name
-          </label>
+          <label className="block text-sm font-medium text-foreground mb-2">Full Name</label>
           {editing ? (
             <input
               type="text"
@@ -177,16 +175,12 @@ export default function UserProfile({ userId }: UserProfileProps) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-foreground mb-2">
-            Email
-          </label>
+          <label className="block text-sm font-medium text-foreground mb-2">Email</label>
           <p className="text-secondary">{user.email}</p>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-foreground mb-2">
-            Role
-          </label>
+          <label className="block text-sm font-medium text-foreground mb-2">Role</label>
           {editing ? (
             <select
               value={formData.role}
@@ -198,19 +192,22 @@ export default function UserProfile({ userId }: UserProfileProps) {
               <option value="admin">Admin</option>
             </select>
           ) : (
-            <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-              user.role === 'admin' ? 'bg-red-100 text-red-700' :
-              user.role === 'author'? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-700'
-            }`}>
+            <span
+              className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+                user.role === 'admin'
+                  ? 'bg-red-100 text-red-700'
+                  : user.role === 'author'
+                    ? 'bg-blue-100 text-blue-700'
+                    : 'bg-gray-100 text-gray-700'
+              }`}
+            >
               {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
             </span>
           )}
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-foreground mb-2">
-            Status
-          </label>
+          <label className="block text-sm font-medium text-foreground mb-2">Status</label>
           {editing ? (
             <select
               value={formData.is_active ? 'active' : 'inactive'}
@@ -221,18 +218,18 @@ export default function UserProfile({ userId }: UserProfileProps) {
               <option value="inactive">Inactive</option>
             </select>
           ) : (
-            <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-              user.is_active ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
-            }`}>
+            <span
+              className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+                user.is_active ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
+              }`}
+            >
               {user.is_active ? 'Active' : 'Inactive'}
             </span>
           )}
         </div>
 
         <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-foreground mb-2">
-            Bio
-          </label>
+          <label className="block text-sm font-medium text-foreground mb-2">Bio</label>
           {editing ? (
             <textarea
               value={formData.bio}
@@ -247,16 +244,12 @@ export default function UserProfile({ userId }: UserProfileProps) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-foreground mb-2">
-            Joined
-          </label>
+          <label className="block text-sm font-medium text-foreground mb-2">Joined</label>
           <p className="text-secondary">{new Date(user.created_at).toLocaleString()}</p>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-foreground mb-2">
-            Last Updated
-          </label>
+          <label className="block text-sm font-medium text-foreground mb-2">Last Updated</label>
           <p className="text-secondary">{new Date(user.updated_at).toLocaleString()}</p>
         </div>
       </div>

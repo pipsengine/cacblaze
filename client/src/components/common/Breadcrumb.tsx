@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
@@ -34,11 +34,7 @@ const Breadcrumb = ({ items, className = '' }: BreadcrumbProps) => {
           >
             {isLast ? (
               <>
-                <span
-                  className="text-foreground font-medium"
-                  itemProp="name"
-                  aria-current="page"
-                >
+                <span className="text-foreground font-medium" itemProp="name" aria-current="page">
                   {item.name}
                 </span>
                 <meta itemProp="position" content={String(index + 1)} />

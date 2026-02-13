@@ -48,7 +48,7 @@ export default function ActivityLog() {
     if (diffMins < 60) return `${diffMins} minute${diffMins > 1 ? 's' : ''} ago`;
     if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
     if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
-    
+
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
@@ -59,7 +59,11 @@ export default function ActivityLog() {
   };
 
   const handleClearLogs = () => {
-    if (window.confirm('Are you sure you want to clear all activity logs? This action cannot be undone.')) {
+    if (
+      window.confirm(
+        'Are you sure you want to clear all activity logs? This action cannot be undone.'
+      )
+    ) {
       userManagementService.clearActivityLogs();
       loadLogs();
     }
@@ -125,9 +129,7 @@ export default function ActivityLog() {
                         </>
                       )}
                     </p>
-                    {log.details && (
-                      <p className="text-xs text-secondary mt-1">{log.details}</p>
-                    )}
+                    {log.details && <p className="text-xs text-secondary mt-1">{log.details}</p>}
                   </div>
                   <span className="text-xs text-secondary whitespace-nowrap">
                     {formatTimestamp(log.timestamp)}

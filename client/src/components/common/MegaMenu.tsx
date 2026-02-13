@@ -21,7 +21,7 @@ const MegaMenu = ({ item, isActive }: MegaMenuProps) => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 1024);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -115,8 +115,7 @@ const MegaMenu = ({ item, isActive }: MegaMenuProps) => {
       {/* Dropdown Menu */}
       <div
         className={`absolute left-0 top-full w-full bg-white border-t border-gray-200 shadow-lg z-50 transition-all duration-150 ease-out ${
-          isOpen
-            ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
+          isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
         }`}
         role="menu"
         aria-label={`${item?.label} submenu`}
@@ -127,7 +126,8 @@ const MegaMenu = ({ item, isActive }: MegaMenuProps) => {
               item?.categories?.length <= 2
                 ? 'grid-cols-2'
                 : item?.categories?.length === 3
-                ? 'grid-cols-3' : 'grid-cols-4'
+                  ? 'grid-cols-3'
+                  : 'grid-cols-4'
             }`}
           >
             {item?.categories?.map((category) => (

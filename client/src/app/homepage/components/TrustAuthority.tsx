@@ -65,7 +65,8 @@ const TrustAuthority = () => {
             Built on Trust & Expertise
           </h2>
           <p className="text-xl text-secondary max-w-2xl mx-auto">
-            Every piece of content is verified, structured, and optimized for accuracy and discoverability.
+            Every piece of content is verified, structured, and optimized for accuracy and
+            discoverability.
           </p>
         </div>
 
@@ -76,15 +77,13 @@ const TrustAuthority = () => {
               key={stat.id}
               className="p-8 rounded-3xl border border-gray-200 bg-white text-center hover-lift"
             >
-              <div className={`w-16 h-16 rounded-2xl ${stat.color} flex items-center justify-center mx-auto mb-4`}>
+              <div
+                className={`w-16 h-16 rounded-2xl ${stat.color} flex items-center justify-center mx-auto mb-4`}
+              >
                 <Icon name={stat.icon} size={32} />
               </div>
-              <div className="text-4xl font-bold text-foreground mb-2">
-                {stat.value}
-              </div>
-              <div className="text-sm text-secondary font-medium">
-                {stat.label}
-              </div>
+              <div className="text-4xl font-bold text-foreground mb-2">{stat.value}</div>
+              <div className="text-sm text-secondary font-medium">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -99,12 +98,8 @@ const TrustAuthority = () => {
               <div className="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center mx-auto mb-4">
                 <Icon name={badge.icon} size={24} className="text-white" />
               </div>
-              <h3 className="text-lg font-bold text-foreground mb-2">
-                {badge.title}
-              </h3>
-              <p className="text-sm text-secondary">
-                {badge.description}
-              </p>
+              <h3 className="text-lg font-bold text-foreground mb-2">{badge.title}</h3>
+              <p className="text-sm text-secondary">{badge.description}</p>
             </div>
           ))}
         </div>

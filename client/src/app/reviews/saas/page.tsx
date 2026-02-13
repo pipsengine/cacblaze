@@ -9,7 +9,8 @@ import { saasReviews } from '@/data/saas';
 
 export const metadata: Metadata = {
   title: 'SaaS Reviews | Software as a Service Analysis - CACBLAZE',
-  description: 'In-depth reviews and comparisons of the leading SaaS platforms for communication, CRM, DevOps, and more.',
+  description:
+    'In-depth reviews and comparisons of the leading SaaS platforms for communication, CRM, DevOps, and more.',
 };
 
 export default function SaaSListingPage() {
@@ -36,7 +37,8 @@ export default function SaaSListingPage() {
                 Modern <span className="text-sky-400">SaaS</span> Solutions
               </h1>
               <p className="text-xl text-sky-100/80 leading-relaxed mb-8">
-                Detailed analysis of the software powering the digital economy. From CRM to DevOps, we break down pricing, features, and performance.
+                Detailed analysis of the software powering the digital economy. From CRM to DevOps,
+                we break down pricing, features, and performance.
               </p>
               <div className="flex flex-wrap gap-4">
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
@@ -60,7 +62,7 @@ export default function SaaSListingPage() {
         <section className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {reviews.map((review) => (
-              <Link 
+              <Link
                 key={review.id}
                 href={`/reviews/saas/${review.slug}`}
                 className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-100 flex flex-col h-full"
@@ -91,7 +93,7 @@ export default function SaaSListingPage() {
                   <p className="text-slate-600 line-clamp-3 mb-6 flex-grow leading-relaxed">
                     {review.description}
                   </p>
-                  
+
                   <div className="flex items-center justify-between pt-6 border-t border-slate-50">
                     <div className="flex items-center gap-3">
                       <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-sky-100">
@@ -102,11 +104,17 @@ export default function SaaSListingPage() {
                           className="object-cover"
                         />
                       </div>
-                      <span className="text-xs font-semibold text-slate-500">{review.author.name}</span>
+                      <span className="text-xs font-semibold text-slate-500">
+                        {review.author.name}
+                      </span>
                     </div>
                     <div className="flex items-center text-sky-600 font-bold text-sm">
                       Read Analysis
-                      <Icon name="ArrowRightIcon" size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                      <Icon
+                        name="ArrowRightIcon"
+                        size={16}
+                        className="ml-2 group-hover:translate-x-1 transition-transform"
+                      />
                     </div>
                   </div>
                 </div>
@@ -121,13 +129,14 @@ export default function SaaSListingPage() {
             <div className="bg-gradient-to-r from-sky-600 to-blue-700 rounded-[3rem] p-12 lg:p-20 text-center relative overflow-hidden shadow-2xl shadow-sky-200">
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl" />
               <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-400/10 rounded-full -ml-32 -mb-32 blur-3xl" />
-              
+
               <div className="relative z-10">
                 <h2 className="text-3xl lg:text-5xl font-bold text-white mb-8">
                   Need a custom SaaS evaluation?
                 </h2>
                 <p className="text-xl text-sky-100 mb-10 max-w-2xl mx-auto">
-                  Our experts provide deep-dive technical analysis and ROI projections for enterprise software implementations.
+                  Our experts provide deep-dive technical analysis and ROI projections for
+                  enterprise software implementations.
                 </p>
                 <button className="bg-white text-sky-600 font-bold px-10 py-5 rounded-2xl hover:bg-sky-50 transition-colors shadow-xl text-lg">
                   Request Consultation

@@ -10,7 +10,8 @@ import { digitalPlatformReviews } from '@/data/digital-platforms';
 
 export const metadata: Metadata = {
   title: 'Digital Platform Reviews | Economy & Social - CACBLAZE',
-  description: 'Analysis of the world\'s most influential digital platforms, from e-commerce giants to social media and payment systems.',
+  description:
+    "Analysis of the world's most influential digital platforms, from e-commerce giants to social media and payment systems.",
 };
 
 export default function DigitalPlatformsListingPage() {
@@ -42,7 +43,8 @@ export default function DigitalPlatformsListingPage() {
                 Digital <span className="text-violet-400">Platforms</span>
               </h1>
               <p className="text-xl text-violet-100/80 leading-relaxed">
-                We analyze the giants that shape our economy, social interactions, and digital lives. In-depth looks at scale, impact, and value.
+                We analyze the giants that shape our economy, social interactions, and digital
+                lives. In-depth looks at scale, impact, and value.
               </p>
             </div>
           </div>
@@ -53,7 +55,7 @@ export default function DigitalPlatformsListingPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {reviews.map((review) => (
-                <Link 
+                <Link
                   key={review.id}
                   href={`/reviews/digital-platforms/${review.slug}`}
                   className="group bg-white rounded-3xl overflow-hidden border border-slate-200 hover:border-violet-300 transition-all hover:shadow-2xl hover:shadow-violet-100 flex flex-col h-full"
@@ -75,7 +77,7 @@ export default function DigitalPlatformsListingPage() {
                       {review.rating}
                     </div>
                   </div>
-                  
+
                   <div className="p-8 flex flex-col flex-grow">
                     <h2 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-violet-600 transition-colors">
                       {review.name}
@@ -83,14 +85,20 @@ export default function DigitalPlatformsListingPage() {
                     <p className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3 flex-grow">
                       {review.description}
                     </p>
-                    
+
                     <div className="space-y-4 pt-6 border-t border-slate-100">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-slate-400 font-medium uppercase tracking-widest">Revenue Model</span>
-                        <span className="text-slate-900 font-bold truncate max-w-[150px]">{review.revenueModel}</span>
+                        <span className="text-slate-400 font-medium uppercase tracking-widest">
+                          Revenue Model
+                        </span>
+                        <span className="text-slate-900 font-bold truncate max-w-[150px]">
+                          {review.revenueModel}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between text-xs">
-                        <span className="text-slate-400 font-medium uppercase tracking-widest">Market Share</span>
+                        <span className="text-slate-400 font-medium uppercase tracking-widest">
+                          Market Share
+                        </span>
                         <span className="text-slate-900 font-bold">{review.marketShare}</span>
                       </div>
                       <div className="flex items-center justify-between">
@@ -103,7 +111,9 @@ export default function DigitalPlatformsListingPage() {
                               className="object-cover"
                             />
                           </div>
-                          <span className="text-xs text-slate-500 font-medium">{review.author.name}</span>
+                          <span className="text-xs text-slate-500 font-medium">
+                            {review.author.name}
+                          </span>
                         </div>
                         <div className="text-violet-600 font-bold text-xs flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                           Read Review
@@ -124,11 +134,14 @@ export default function DigitalPlatformsListingPage() {
             <div className="bg-violet-50 rounded-[3rem] p-12 lg:p-20 relative overflow-hidden flex flex-col lg:flex-row items-center gap-12">
               <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-violet-100 rounded-full blur-3xl opacity-50" />
               <div className="relative z-10 lg:w-2/3">
-                <h2 className="text-4xl font-bold text-slate-900 mb-6">Understand Platform Economics</h2>
+                <h2 className="text-4xl font-bold text-slate-900 mb-6">
+                  Understand Platform Economics
+                </h2>
                 <p className="text-xl text-slate-600 mb-8">
-                  Discover how network effects, winner-take-all markets, and digital moats define the success of today's tech giants.
+                  Discover how network effects, winner-take-all markets, and digital moats define
+                  the success of today's tech giants.
                 </p>
-                <Link 
+                <Link
                   href="/guides/platform-economics"
                   className="inline-flex items-center gap-2 bg-violet-600 text-white font-bold px-8 py-4 rounded-2xl hover:bg-violet-700 transition-all shadow-xl shadow-violet-200 hover:-translate-y-1"
                 >
@@ -138,7 +151,10 @@ export default function DigitalPlatformsListingPage() {
               </div>
               <div className="lg:w-1/3 grid grid-cols-2 gap-4">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="bg-white p-4 rounded-2xl shadow-sm border border-violet-100 aspect-square flex items-center justify-center">
+                  <div
+                    key={i}
+                    className="bg-white p-4 rounded-2xl shadow-sm border border-violet-100 aspect-square flex items-center justify-center"
+                  >
                     <Icon name="ChartBarIcon" size={40} className="text-violet-200" />
                   </div>
                 ))}

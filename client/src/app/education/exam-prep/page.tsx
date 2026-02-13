@@ -9,7 +9,8 @@ import { examPrepResources } from '@/data/exam-prep';
 
 export const metadata: Metadata = {
   title: 'Exam Preparation & Study Guides - CACBLAZE',
-  description: 'Comprehensive guides and strategies for JAMB, WAEC, IELTS, GRE, and other major examinations.',
+  description:
+    'Comprehensive guides and strategies for JAMB, WAEC, IELTS, GRE, and other major examinations.',
 };
 
 export default function ExamPrepListingPage() {
@@ -39,7 +40,8 @@ export default function ExamPrepListingPage() {
                 Master Your <span className="text-amber-400">Exams</span>
               </h1>
               <p className="text-xl text-amber-100/80 leading-relaxed mb-10">
-                Don't just study hard, study smart. Get expert tips, comprehensive guides, and proven strategies to ace your national and international examinations.
+                Don't just study hard, study smart. Get expert tips, comprehensive guides, and
+                proven strategies to ace your national and international examinations.
               </p>
               <div className="flex flex-wrap gap-6">
                 <div className="flex items-center gap-3">
@@ -69,7 +71,7 @@ export default function ExamPrepListingPage() {
         <section className="max-w-7xl mx-auto px-6 lg:px-8 py-24">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {resources.map((resource) => (
-              <Link 
+              <Link
                 key={resource.id}
                 href={`/education/exam-prep/${resource.slug}`}
                 className="group bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-amber-100 flex flex-col h-full"
@@ -93,11 +95,15 @@ export default function ExamPrepListingPage() {
                         <Icon name="StarIcon" size={16} className="text-yellow-400 fill-current" />
                         <span className="ml-1.5">{resource.rating}</span>
                       </div>
-                      <span className={`text-[10px] font-bold px-3 py-1 rounded-md uppercase tracking-wider ${
-                        resource.difficulty === 'Standard' ? 'bg-amber-400/20 text-amber-200' :
-                        resource.difficulty === 'Challenging' ? 'bg-orange-400/20 text-orange-200' :
-                        'bg-rose-400/20 text-rose-200'
-                      }`}>
+                      <span
+                        className={`text-[10px] font-bold px-3 py-1 rounded-md uppercase tracking-wider ${
+                          resource.difficulty === 'Standard'
+                            ? 'bg-amber-400/20 text-amber-200'
+                            : resource.difficulty === 'Challenging'
+                              ? 'bg-orange-400/20 text-orange-200'
+                              : 'bg-rose-400/20 text-rose-200'
+                        }`}
+                      >
                         {resource.difficulty}
                       </span>
                     </div>
@@ -111,20 +117,24 @@ export default function ExamPrepListingPage() {
                   <p className="text-gray-600 line-clamp-3 mb-8 flex-grow leading-relaxed text-sm">
                     {resource.description}
                   </p>
-                  
+
                   <div className="pt-6 border-t border-amber-50 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <div className="relative w-8 h-8 rounded-full overflow-hidden border border-amber-100">
-                        <AppImage 
-                          src={resource.author.image} 
+                        <AppImage
+                          src={resource.author.image}
                           alt={resource.author.name}
                           fill
                           className="object-cover"
                         />
                       </div>
                       <div className="flex flex-col">
-                        <span className="text-[11px] font-bold text-gray-900">{resource.author.name}</span>
-                        <span className="text-[9px] text-gray-400 uppercase tracking-tighter">{resource.author.role}</span>
+                        <span className="text-[11px] font-bold text-gray-900">
+                          {resource.author.name}
+                        </span>
+                        <span className="text-[9px] text-gray-400 uppercase tracking-tighter">
+                          {resource.author.role}
+                        </span>
                       </div>
                     </div>
                     <div className="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center text-amber-600 group-hover:bg-amber-600 group-hover:text-white transition-all duration-300">

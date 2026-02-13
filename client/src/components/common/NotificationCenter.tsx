@@ -84,9 +84,7 @@ const NotificationCenter = () => {
         method: 'POST',
       });
 
-      setNotifications((prev) =>
-        prev.map((n) => ({ ...n, status: 'read' as const }))
-      );
+      setNotifications((prev) => prev.map((n) => ({ ...n, status: 'read' as const })));
       setUnreadCount(0);
     } catch (error) {
       console.error('Error marking all as read:', error);
@@ -171,7 +169,11 @@ const NotificationCenter = () => {
           <div className="overflow-y-auto flex-1">
             {notifications.length === 0 ? (
               <div className="p-8 text-center">
-                <Icon name="BellSlashIcon" size={48} className="text-muted-foreground mx-auto mb-3" />
+                <Icon
+                  name="BellSlashIcon"
+                  size={48}
+                  className="text-muted-foreground mx-auto mb-3"
+                />
                 <p className="text-secondary">No notifications yet</p>
               </div>
             ) : (
@@ -185,10 +187,15 @@ const NotificationCenter = () => {
                   <div className="flex gap-3">
                     <div
                       className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
-                        notification.status === 'unread' ?'bg-primary/10 text-primary' :'bg-gray-100 text-muted-foreground'
+                        notification.status === 'unread'
+                          ? 'bg-primary/10 text-primary'
+                          : 'bg-gray-100 text-muted-foreground'
                       }`}
                     >
-                      <Icon name={getNotificationIcon(notification.notification_type) as any} size={20} />
+                      <Icon
+                        name={getNotificationIcon(notification.notification_type) as any}
+                        size={20}
+                      />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h4 className="text-sm font-semibold text-foreground mb-1">

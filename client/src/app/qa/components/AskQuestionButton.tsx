@@ -31,7 +31,7 @@ export default function AskQuestionButton() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ category, title, content }),
       });
-      
+
       setTitle('');
       setContent('');
       setShowModal(false);
@@ -57,27 +57,36 @@ export default function AskQuestionButton() {
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full p-6">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-2xl font-bold text-foreground">Ask a Question</h3>
-              <button onClick={() => setShowModal(false)} className="text-secondary hover:text-foreground">
+              <button
+                onClick={() => setShowModal(false)}
+                className="text-secondary hover:text-foreground"
+              >
                 <Icon name="XMarkIcon" size={24} />
               </button>
             </div>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">Category *</label>
+                <label className="block text-sm font-semibold text-foreground mb-2">
+                  Category *
+                </label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e?.target?.value)}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 >
                   {categories?.map((cat) => (
-                    <option key={cat} value={cat}>{cat}</option>
+                    <option key={cat} value={cat}>
+                      {cat}
+                    </option>
                   ))}
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">Question Title *</label>
+                <label className="block text-sm font-semibold text-foreground mb-2">
+                  Question Title *
+                </label>
                 <input
                   type="text"
                   value={title}
@@ -88,7 +97,9 @@ export default function AskQuestionButton() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">Details *</label>
+                <label className="block text-sm font-semibold text-foreground mb-2">
+                  Details *
+                </label>
                 <textarea
                   value={content}
                   onChange={(e) => setContent(e?.target?.value)}

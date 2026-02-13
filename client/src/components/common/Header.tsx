@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -27,7 +27,9 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-200' : 'bg-transparent'
+        scrolled
+          ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-200'
+          : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -37,19 +39,13 @@ const Header = () => {
             <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
               <Icon name="BookOpenIcon" size={24} className="text-white" />
             </div>
-            <span className="text-2xl font-bold text-foreground tracking-tight">
-              CACBLAZE
-            </span>
+            <span className="text-2xl font-bold text-foreground tracking-tight">CACBLAZE</span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex h-full gap-5">
             {menuData?.mainMenu?.map((item) => (
-              <MegaMenu
-                key={item?.id}
-                item={item}
-                isActive={pathname === item?.href}
-              />
+              <MegaMenu key={item?.id} item={item} isActive={pathname === item?.href} />
             ))}
           </nav>
 
@@ -111,7 +107,8 @@ const Header = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`px-4 py-2 text-sm font-semibold transition-colors block ${
                       pathname === item?.href
-                        ? 'text-primary bg-muted' :'text-secondary hover:text-foreground'
+                        ? 'text-primary bg-muted'
+                        : 'text-secondary hover:text-foreground'
                     }`}
                   >
                     {item?.label}

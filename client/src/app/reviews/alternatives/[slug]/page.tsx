@@ -14,7 +14,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const review = alternatives[slug];
-  
+
   if (!review) {
     return {
       title: 'Alternative Not Found - CACBLAZE',
@@ -82,7 +82,9 @@ export default async function AlternativeDetailPage({ params }: PageProps) {
                 </div>
                 <div className="text-white">
                   <p className="font-bold">{review.author.name}</p>
-                  <p className="text-sm text-white/70">{review.author.role} • {review.publishDate}</p>
+                  <p className="text-sm text-white/70">
+                    {review.author.role} • {review.publishDate}
+                  </p>
                 </div>
               </div>
             </div>
@@ -98,15 +100,16 @@ export default async function AlternativeDetailPage({ params }: PageProps) {
                 {/* Introduction */}
                 <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100">
                   <h2 className="text-3xl font-bold text-gray-900 mb-6">The Breakdown</h2>
-                  <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                    {review.description}
-                  </p>
-                  
+                  <p className="text-gray-600 text-lg leading-relaxed mb-8">{review.description}</p>
+
                   <div className="space-y-6">
                     <h3 className="text-xl font-bold text-gray-900">Key Differences</h3>
                     <div className="grid gap-4">
                       {review.keyDifferences.map((diff, idx) => (
-                        <div key={idx} className="flex items-start gap-4 p-4 bg-purple-50 rounded-2xl border border-purple-100">
+                        <div
+                          key={idx}
+                          className="flex items-start gap-4 p-4 bg-purple-50 rounded-2xl border border-purple-100"
+                        >
                           <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center text-white text-sm font-bold shrink-0">
                             {idx + 1}
                           </div>
@@ -125,12 +128,20 @@ export default async function AlternativeDetailPage({ params }: PageProps) {
                   </h2>
                   <div className="grid md:grid-cols-2 gap-8">
                     <div className="p-6 rounded-2xl border border-gray-100 bg-gray-50">
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">{review.targetApp} Cost</p>
-                      <p className="text-2xl font-bold text-gray-900">{review.pricingComparison.targetAppPrice}</p>
+                      <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
+                        {review.targetApp} Cost
+                      </p>
+                      <p className="text-2xl font-bold text-gray-900">
+                        {review.pricingComparison.targetAppPrice}
+                      </p>
                     </div>
                     <div className="p-6 rounded-2xl border border-purple-200 bg-purple-50">
-                      <p className="text-xs font-bold text-purple-400 uppercase tracking-widest mb-2">{review.name} Cost</p>
-                      <p className="text-2xl font-bold text-purple-700">{review.pricingComparison.alternativePrice}</p>
+                      <p className="text-xs font-bold text-purple-400 uppercase tracking-widest mb-2">
+                        {review.name} Cost
+                      </p>
+                      <p className="text-2xl font-bold text-purple-700">
+                        {review.pricingComparison.alternativePrice}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -144,7 +155,10 @@ export default async function AlternativeDetailPage({ params }: PageProps) {
                     </h3>
                     <ul className="space-y-4">
                       {review.pros.map((pro, idx) => (
-                        <li key={idx} className="flex items-start gap-3 text-emerald-800 text-sm font-medium">
+                        <li
+                          key={idx}
+                          className="flex items-start gap-3 text-emerald-800 text-sm font-medium"
+                        >
                           <Icon name="PlusIcon" size={16} className="mt-0.5" />
                           {pro}
                         </li>
@@ -158,7 +172,10 @@ export default async function AlternativeDetailPage({ params }: PageProps) {
                     </h3>
                     <ul className="space-y-4">
                       {review.cons.map((con, idx) => (
-                        <li key={idx} className="flex items-start gap-3 text-red-800 text-sm font-medium">
+                        <li
+                          key={idx}
+                          className="flex items-start gap-3 text-red-800 text-sm font-medium"
+                        >
                           <Icon name="MinusIcon" size={16} className="mt-0.5" />
                           {con}
                         </li>
@@ -174,7 +191,9 @@ export default async function AlternativeDetailPage({ params }: PageProps) {
                     "{review.verdict}"
                   </p>
                   <div className="p-6 bg-white/10 rounded-2xl border border-white/10">
-                    <p className="text-purple-400 font-bold uppercase tracking-widest text-xs mb-2">Best For</p>
+                    <p className="text-purple-400 font-bold uppercase tracking-widest text-xs mb-2">
+                      Best For
+                    </p>
                     <p className="text-lg text-white font-medium">{review.bestFor}</p>
                   </div>
                 </div>
@@ -207,7 +226,8 @@ export default async function AlternativeDetailPage({ params }: PageProps) {
                   <div className="bg-gradient-to-br from-purple-600 to-indigo-700 rounded-3xl p-8 text-white shadow-xl">
                     <h3 className="text-xl font-bold mb-4">Find More Alternatives</h3>
                     <p className="text-purple-100 text-sm mb-6 leading-relaxed">
-                      We're constantly vetting new tools. Get notified when we find a better alternative to your favorite app.
+                      We're constantly vetting new tools. Get notified when we find a better
+                      alternative to your favorite app.
                     </p>
                     <button className="w-full bg-white text-purple-600 font-bold py-3 rounded-xl hover:bg-purple-50 transition-colors">
                       Join the Waitlist

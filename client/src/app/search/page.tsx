@@ -5,7 +5,8 @@ import SearchInteractive from './components/SearchInteractive';
 
 export const metadata: Metadata = {
   title: 'Search - CACBLAZE',
-  description: 'Search 10,000+ verified articles across all domains. Find guides, tutorials, reviews, and resources with our AI-powered search.',
+  description:
+    'Search 10,000+ verified articles across all domains. Find guides, tutorials, reviews, and resources with our AI-powered search.',
   keywords: 'search, find guides, knowledge search, article search',
 };
 

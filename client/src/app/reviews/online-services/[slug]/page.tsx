@@ -14,7 +14,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const review = onlineServiceReviews[slug];
-  
+
   if (!review) return { title: 'Review Not Found' };
 
   return {
@@ -47,7 +47,7 @@ export default async function OnlineServiceDetailPage({ params }: PageProps) {
           </div>
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <Breadcrumb items={breadcrumbItems} className="mb-8 text-sky-300" />
-            
+
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <div className="flex items-center gap-4 mb-8">
@@ -65,7 +65,7 @@ export default async function OnlineServiceDetailPage({ params }: PageProps) {
                 <p className="text-xl text-sky-100/80 leading-relaxed mb-10 border-l-4 border-sky-500 pl-8 italic">
                   "{review.description}"
                 </p>
-                
+
                 <div className="flex items-center gap-6 p-6 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10">
                   <div className="relative w-14 h-14 rounded-2xl overflow-hidden ring-2 ring-sky-500/50">
                     <AppImage
@@ -117,8 +117,13 @@ export default async function OnlineServiceDetailPage({ params }: PageProps) {
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-6">
                   {review.features.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:border-sky-200 hover:bg-sky-50/50 transition-all group">
-                      <span className="text-2xl group-hover:scale-110 transition-transform">⚡</span>
+                    <div
+                      key={index}
+                      className="flex items-center gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:border-sky-200 hover:bg-sky-50/50 transition-all group"
+                    >
+                      <span className="text-2xl group-hover:scale-110 transition-transform">
+                        ⚡
+                      </span>
                       <span className="text-slate-700 font-bold">{feature}</span>
                     </div>
                   ))}
@@ -186,18 +191,24 @@ export default async function OnlineServiceDetailPage({ params }: PageProps) {
                       <Icon name="CurrencyDollarIcon" size={24} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Pricing Model</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                        Pricing Model
+                      </p>
                       <p className="text-slate-900 font-bold">{review.pricing}</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-5">
                     <div className="w-12 h-12 bg-sky-50 text-sky-600 rounded-2xl flex items-center justify-center">
                       <Icon name="UserGroupIcon" size={24} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Best For</p>
-                      <p className="text-slate-900 font-bold truncate max-w-[150px]">{review.bestFor}</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                        Best For
+                      </p>
+                      <p className="text-slate-900 font-bold truncate max-w-[150px]">
+                        {review.bestFor}
+                      </p>
                     </div>
                   </div>
 
@@ -206,7 +217,9 @@ export default async function OnlineServiceDetailPage({ params }: PageProps) {
                       <Icon name="ShieldCheckIcon" size={24} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Status</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                        Status
+                      </p>
                       <div className="flex items-center gap-2">
                         <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
                         <p className="text-slate-900 font-bold">Verified Service</p>
@@ -215,7 +228,9 @@ export default async function OnlineServiceDetailPage({ params }: PageProps) {
                   </div>
 
                   <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Target Audience</p>
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">
+                      Target Audience
+                    </p>
                     <p className="text-slate-700 font-medium leading-relaxed italic">
                       "{review.bestFor}"
                     </p>
@@ -223,7 +238,11 @@ export default async function OnlineServiceDetailPage({ params }: PageProps) {
 
                   <button className="w-full bg-sky-600 text-white font-bold py-5 rounded-[1.5rem] hover:bg-sky-700 transition-all flex items-center justify-center gap-3 group shadow-lg shadow-sky-100 hover:-translate-y-1">
                     Visit Website
-                    <Icon name="ArrowTopRightOnSquareIcon" size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <Icon
+                      name="ArrowTopRightOnSquareIcon"
+                      size={20}
+                      className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                    />
                   </button>
                 </div>
               </div>

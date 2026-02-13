@@ -107,7 +107,7 @@ export function generateInternalLinks(
   // Find articles with matching keywords
   allArticles.forEach((article) => {
     const articleKeywords = article.title.toLowerCase().split(/\s+/);
-    
+
     articleKeywords.forEach((keyword) => {
       if (keyword.length > 4 && wordFrequency.has(keyword)) {
         const matches = wordFrequency.get(keyword) || 0;
@@ -139,9 +139,7 @@ export function calculateLinkingStrength(article: Article, linkedArticles: Artic
 
     // Tag overlap increases strength
     if (article.tags && linked.tags) {
-      const commonTags = article.tags.filter((tag) =>
-        linked.tags?.includes(tag)
-      );
+      const commonTags = article.tags.filter((tag) => linked.tags?.includes(tag));
       strength += commonTags.length * 3;
     }
   });

@@ -7,20 +7,16 @@ export async function POST(request: Request) {
     const { question_id, content } = body;
 
     if (!question_id || !content) {
-      return NextResponse.json(
-        { error: 'question_id and content are required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'question_id and content are required' }, { status: 400 });
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { data, error } = await supabase
@@ -30,14 +26,16 @@ export async function POST(request: Request) {
         user_id: user.id,
         content,
       })
-      .select(`
+      .select(
+        `
         *,
         user_profiles:user_profiles!qa_answers_user_id_fkey(
           full_name,
           avatar_url,
           role
         )
-      `)
+      `
+      )
       .single();
 
     if (error) throw error;
@@ -48,9 +46,6 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('Q&A answer creation error:', error);
-    return NextResponse.json(
-      { error: 'Failed to create Q&A answer' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to create Q&A answer' }, { status: 500 });
   }
 }

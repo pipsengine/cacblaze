@@ -9,12 +9,13 @@ import { selfDevelopmentReviews } from '@/data/self-development';
 
 export const metadata: Metadata = {
   title: 'Self-Development Reviews: Courses, Tools & Habits - CACBLAZE',
-  description: 'In-depth reviews of the best self-development resources, including courses, productivity tools, and personal growth frameworks.',
+  description:
+    'In-depth reviews of the best self-development resources, including courses, productivity tools, and personal growth frameworks.',
 };
 
 export default function SelfDevelopmentListingPage() {
   const reviews = Object.values(selfDevelopmentReviews);
-  
+
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Reviews', href: '/reviews' },
@@ -37,7 +38,8 @@ export default function SelfDevelopmentListingPage() {
                 Master Your Growth
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Expert reviews of life-changing courses, productivity apps, and mental frameworks to help you reach your full potential.
+                Expert reviews of life-changing courses, productivity apps, and mental frameworks to
+                help you reach your full potential.
               </p>
             </div>
           </div>
@@ -48,8 +50,8 @@ export default function SelfDevelopmentListingPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {reviews.map((review) => (
-                <Link 
-                  key={review.id} 
+                <Link
+                  key={review.id}
                   href={`/reviews/self-development/${review.slug}`}
                   className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                 >
@@ -70,10 +72,14 @@ export default function SelfDevelopmentListingPage() {
                     <div className="flex items-center gap-2 mb-3">
                       <div className="flex items-center text-yellow-500">
                         <Icon name="StarIcon" size={16} className="fill-current" />
-                        <span className="ml-1 text-sm font-bold text-gray-900">{review.rating}</span>
+                        <span className="ml-1 text-sm font-bold text-gray-900">
+                          {review.rating}
+                        </span>
                       </div>
                       <span className="text-gray-300">•</span>
-                      <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">{review.category}</span>
+                      <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        {review.category}
+                      </span>
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors">
                       {review.name}
@@ -91,11 +97,17 @@ export default function SelfDevelopmentListingPage() {
                             className="object-cover"
                           />
                         </div>
-                        <span className="text-xs font-medium text-gray-700">{review.author.name}</span>
+                        <span className="text-xs font-medium text-gray-700">
+                          {review.author.name}
+                        </span>
                       </div>
                       <div className="flex items-center text-orange-600 font-bold text-sm">
                         Read Review
-                        <Icon name="ArrowRightIcon" size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                        <Icon
+                          name="ArrowRightIcon"
+                          size={16}
+                          className="ml-1 group-hover:translate-x-1 transition-transform"
+                        />
                       </div>
                     </div>
                   </div>

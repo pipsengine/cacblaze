@@ -5,27 +5,33 @@ import { createClient } from '@/lib/supabase/server';
 const CATEGORY_METADATA: Record<string, { title: string; description: string }> = {
   technology: {
     title: 'CACBLAZE - Technology Guides',
-    description: 'Latest technology guides, tutorials, and insights on web development, programming, and tech trends.',
+    description:
+      'Latest technology guides, tutorials, and insights on web development, programming, and tech trends.',
   },
   education: {
     title: 'CACBLAZE - Education Resources',
-    description: 'Educational content, learning strategies, and academic resources for students and lifelong learners.',
+    description:
+      'Educational content, learning strategies, and academic resources for students and lifelong learners.',
   },
   lifestyle: {
     title: 'CACBLAZE - Lifestyle Guides',
-    description: 'Lifestyle tips, productivity hacks, wellness advice, and personal development guides.',
+    description:
+      'Lifestyle tips, productivity hacks, wellness advice, and personal development guides.',
   },
   guides: {
     title: 'CACBLAZE - Comprehensive Guides',
-    description: 'In-depth guides covering finance, career, productivity, and essential life skills.',
+    description:
+      'In-depth guides covering finance, career, productivity, and essential life skills.',
   },
   howto: {
     title: 'CACBLAZE - How-To Tutorials',
-    description: 'Step-by-step tutorials and practical how-to guides for everyday tasks and skills.',
+    description:
+      'Step-by-step tutorials and practical how-to guides for everyday tasks and skills.',
   },
   reviews: {
     title: 'CACBLAZE - Product Reviews',
-    description: 'Honest reviews of technology, software, books, and services to help you make informed decisions.',
+    description:
+      'Honest reviews of technology, software, books, and services to help you make informed decisions.',
   },
   'local-resources': {
     title: 'CACBLAZE - Local Resources',
@@ -33,23 +39,17 @@ const CATEGORY_METADATA: Record<string, { title: string; description: string }> 
   },
 };
 
-export async function GET(
-  request: Request,
-  { params }: { params: { category: string } }
-) {
+export async function GET(request: Request, { params }: { params: { category: string } }) {
   try {
     const category = params.category;
     const metadata = CATEGORY_METADATA[category];
 
     if (!metadata) {
-      return NextResponse.json(
-        { error: 'Invalid category' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Invalid category' }, { status: 404 });
     }
 
     const supabase = await createClient();
-    
+
     // Fetch content for specific category
     const { data: articles, error } = await supabase
       .from('content_metadata')
@@ -107,9 +107,6 @@ export async function GET(
     });
   } catch (error) {
     console.error('Category RSS feed generation error:', error);
-    return NextResponse.json(
-      { error: 'Failed to generate category RSS feed' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to generate category RSS feed' }, { status: 500 });
   }
 }

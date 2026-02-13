@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
@@ -60,7 +60,8 @@ const FilterBar = ({ onFilterChange }: FilterBarProps) => {
                 onClick={() => handleFilterChange('category', category.value)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                   filters.category === category.value
-                    ? 'bg-primary text-white' :'bg-muted text-foreground hover:bg-primary/10'
+                    ? 'bg-primary text-white'
+                    : 'bg-muted text-foreground hover:bg-primary/10'
                 }`}
               >
                 {category.label}

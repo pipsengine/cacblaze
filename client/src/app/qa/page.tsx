@@ -13,7 +13,7 @@ export default function QAPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      
+
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
@@ -29,14 +29,16 @@ export default function QAPage() {
           <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
             <h2 className="text-lg font-semibold text-foreground mb-4">Browse by Category</h2>
             <div className="flex flex-wrap gap-2">
-              {['Technology', 'Education', 'Finance', 'Lifestyle', 'Business', 'Career'].map((cat) => (
-                <button
-                  key={cat}
-                  className="px-4 py-2 bg-gray-100 text-foreground rounded-lg hover:bg-primary hover:text-white transition-colors"
-                >
-                  {cat}
-                </button>
-              ))}
+              {['Technology', 'Education', 'Finance', 'Lifestyle', 'Business', 'Career'].map(
+                (cat) => (
+                  <button
+                    key={cat}
+                    className="px-4 py-2 bg-gray-100 text-foreground rounded-lg hover:bg-primary hover:text-white transition-colors"
+                  >
+                    {cat}
+                  </button>
+                )
+              )}
             </div>
           </div>
 

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
@@ -13,14 +13,7 @@ interface AuthorBoxProps {
   verified: boolean;
 }
 
-const AuthorBox = ({
-  name,
-  role,
-  bio,
-  expertise,
-  articlesCount,
-  verified
-}: AuthorBoxProps) => {
+const AuthorBox = ({ name, role, bio, expertise, articlesCount, verified }: AuthorBoxProps) => {
   const authorAvatar = getAuthorAvatar(name);
 
   return (
@@ -44,9 +37,7 @@ const AuthorBox = ({
         <div className="flex-1">
           <div className="flex items-start justify-between mb-3">
             <div>
-              <h3 className="text-2xl font-bold text-foreground mb-1">
-                {name}
-              </h3>
+              <h3 className="text-2xl font-bold text-foreground mb-1">{name}</h3>
               <p className="text-sm text-secondary font-medium">{role}</p>
             </div>
             <div className="flex items-center gap-1 px-3 py-1 rounded-full bg-white border border-gray-200">
@@ -57,9 +48,7 @@ const AuthorBox = ({
             </div>
           </div>
 
-          <p className="text-base text-secondary leading-relaxed mb-4 text-justify">
-            {bio}
-          </p>
+          <p className="text-base text-secondary leading-relaxed mb-4 text-justify">{bio}</p>
 
           {/* Stats */}
           <div className="flex items-center gap-6">

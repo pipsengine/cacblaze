@@ -9,12 +9,13 @@ import { freeVsPaidComparisons } from '@/data/free-vs-paid';
 
 export const metadata: Metadata = {
   title: 'Free vs Paid Comparisons: Is it Worth the Upgrade? - CACBLAZE',
-  description: 'In-depth comparisons between free and premium versions of popular software and apps. We help you decide when to stick with free and when to pay.',
+  description:
+    'In-depth comparisons between free and premium versions of popular software and apps. We help you decide when to stick with free and when to pay.',
 };
 
 export default function FreeVsPaidListingPage() {
   const comparisons = Object.values(freeVsPaidComparisons);
-  
+
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Reviews', href: '/reviews' },
@@ -37,7 +38,8 @@ export default function FreeVsPaidListingPage() {
                 Free vs Paid: The Ultimate Guide
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Stop guessing. We break down the real differences between free tiers and premium subscriptions to help you spend your money wisely.
+                Stop guessing. We break down the real differences between free tiers and premium
+                subscriptions to help you spend your money wisely.
               </p>
             </div>
           </div>
@@ -48,8 +50,8 @@ export default function FreeVsPaidListingPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {comparisons.map((item) => (
-                <Link 
-                  key={item.id} 
+                <Link
+                  key={item.id}
                   href={`/reviews/free-vs-paid/${item.slug}`}
                   className="group flex flex-col bg-white rounded-3xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                 >
@@ -66,7 +68,7 @@ export default function FreeVsPaidListingPage() {
                       </span>
                     </div>
                   </div>
-                  
+
                   <div className="p-8 flex flex-col flex-grow">
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-2xl font-bold text-gray-900 group-hover:text-emerald-600 transition-colors">
@@ -77,7 +79,7 @@ export default function FreeVsPaidListingPage() {
                         <span className="text-emerald-700 font-bold text-sm">{item.rating}</span>
                       </div>
                     </div>
-                    
+
                     <p className="text-gray-600 text-sm mb-6 line-clamp-3 leading-relaxed">
                       {item.description}
                     </p>

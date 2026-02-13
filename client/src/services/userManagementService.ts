@@ -6,23 +6,78 @@ const CURRENT_USER_KEY = 'cacblaze_current_user';
 
 // Default permissions configuration
 const PERMISSIONS: Permission[] = [
-  { id: 'content.create', name: 'Create Content', description: 'Create new articles and guides', category: 'content' },
-  { id: 'content.edit', name: 'Edit Content', description: 'Edit existing content', category: 'content' },
-  { id: 'content.delete', name: 'Delete Content', description: 'Delete content', category: 'content' },
-  { id: 'content.publish', name: 'Publish Content', description: 'Publish content to live site', category: 'content' },
-  { id: 'users.view', name: 'View Users', description: 'View user list and profiles', category: 'users' },
-  { id: 'users.create', name: 'Create Users', description: 'Create new user accounts', category: 'users' },
-  { id: 'users.edit', name: 'Edit Users', description: 'Edit user profiles and roles', category: 'users' },
-  { id: 'users.delete', name: 'Delete Users', description: 'Delete user accounts', category: 'users' },
-  { id: 'settings.view', name: 'View Settings', description: 'View system settings', category: 'settings' },
-  { id: 'settings.edit', name: 'Edit Settings', description: 'Modify system settings', category: 'settings' },
-  { id: 'analytics.view', name: 'View Analytics', description: 'View analytics and reports', category: 'analytics' },
+  {
+    id: 'content.create',
+    name: 'Create Content',
+    description: 'Create new articles and guides',
+    category: 'content',
+  },
+  {
+    id: 'content.edit',
+    name: 'Edit Content',
+    description: 'Edit existing content',
+    category: 'content',
+  },
+  {
+    id: 'content.delete',
+    name: 'Delete Content',
+    description: 'Delete content',
+    category: 'content',
+  },
+  {
+    id: 'content.publish',
+    name: 'Publish Content',
+    description: 'Publish content to live site',
+    category: 'content',
+  },
+  {
+    id: 'users.view',
+    name: 'View Users',
+    description: 'View user list and profiles',
+    category: 'users',
+  },
+  {
+    id: 'users.create',
+    name: 'Create Users',
+    description: 'Create new user accounts',
+    category: 'users',
+  },
+  {
+    id: 'users.edit',
+    name: 'Edit Users',
+    description: 'Edit user profiles and roles',
+    category: 'users',
+  },
+  {
+    id: 'users.delete',
+    name: 'Delete Users',
+    description: 'Delete user accounts',
+    category: 'users',
+  },
+  {
+    id: 'settings.view',
+    name: 'View Settings',
+    description: 'View system settings',
+    category: 'settings',
+  },
+  {
+    id: 'settings.edit',
+    name: 'Edit Settings',
+    description: 'Modify system settings',
+    category: 'settings',
+  },
+  {
+    id: 'analytics.view',
+    name: 'View Analytics',
+    description: 'View analytics and reports',
+    category: 'analytics',
+  },
 ];
 
 const ROLE_PERMISSIONS: RolePermissions[] = [
   {
     role: 'admin',
-    permissions: PERMISSIONS.map(p => p.id), // All permissions
+    permissions: PERMISSIONS.map((p) => p.id), // All permissions
   },
   {
     role: 'editor',
@@ -37,11 +92,7 @@ const ROLE_PERMISSIONS: RolePermissions[] = [
   },
   {
     role: 'author',
-    permissions: [
-      'content.create',
-      'content.edit',
-      'analytics.view',
-    ],
+    permissions: ['content.create', 'content.edit', 'analytics.view'],
   },
   {
     role: 'user',
@@ -92,12 +143,12 @@ class UserManagementService {
 
   getUserById(id: string): User | null {
     const users = this.getAllUsers();
-    return users.find(user => user.id === id) || null;
+    return users.find((user) => user.id === id) || null;
   }
 
   getUserByEmail(email: string): User | null {
     const users = this.getAllUsers();
-    return users.find(user => user.email.toLowerCase() === email.toLowerCase()) || null;
+    return users.find((user) => user.email.toLowerCase() === email.toLowerCase()) || null;
   }
 
   private saveUsers(users: User[]): void {
@@ -111,7 +162,7 @@ class UserManagementService {
 
   createUser(userData: Omit<User, 'id' | 'createdAt'>): User {
     const users = this.getAllUsers();
-    
+
     // Check if email already exists
     if (this.getUserByEmail(userData.email)) {
       throw new Error('User with this email already exists');
@@ -145,7 +196,7 @@ class UserManagementService {
 
   updateUser(id: string, updates: Partial<User>): User {
     const users = this.getAllUsers();
-    const index = users.findIndex(user => user.id === id);
+    const index = users.findIndex((user) => user.id === id);
 
     if (index === -1) {
       throw new Error('User not found');
@@ -177,21 +228,21 @@ class UserManagementService {
 
   deleteUser(id: string): boolean {
     const users = this.getAllUsers();
-    const user = users.find(u => u.id === id);
-    
+    const user = users.find((u) => u.id === id);
+
     if (!user) {
       throw new Error('User not found');
     }
 
     // Prevent deleting the last admin
     if (user.role === 'admin') {
-      const adminCount = users.filter(u => u.role === 'admin').length;
+      const adminCount = users.filter((u) => u.role === 'admin').length;
       if (adminCount <= 1) {
         throw new Error('Cannot delete the last admin user');
       }
     }
 
-    const filteredUsers = users.filter(u => u.id !== id);
+    const filteredUsers = users.filter((u) => u.id !== id);
     this.saveUsers(filteredUsers);
 
     const currentUser = this.getCurrentUser();
@@ -216,7 +267,7 @@ class UserManagementService {
     // Prevent changing the last admin's role
     if (user.role === 'admin' && newRole !== 'admin') {
       const users = this.getAllUsers();
-      const adminCount = users.filter(u => u.role === 'admin').length;
+      const adminCount = users.filter((u) => u.role === 'admin').length;
       if (adminCount <= 1) {
         throw new Error('Cannot change role of the last admin user');
       }
@@ -243,7 +294,7 @@ class UserManagementService {
     // Prevent deactivating the last admin
     if (user.role === 'admin' && user.isActive) {
       const users = this.getAllUsers();
-      const activeAdminCount = users.filter(u => u.role === 'admin' && u.isActive).length;
+      const activeAdminCount = users.filter((u) => u.role === 'admin' && u.isActive).length;
       if (activeAdminCount <= 1) {
         throw new Error('Cannot deactivate the last active admin user');
       }
@@ -267,7 +318,7 @@ class UserManagementService {
   }
 
   getRolePermissions(role: UserRole): string[] {
-    const rolePerms = ROLE_PERMISSIONS.find(rp => rp.role === role);
+    const rolePerms = ROLE_PERMISSIONS.find((rp) => rp.role === role);
     return rolePerms?.permissions || [];
   }
 
@@ -282,7 +333,7 @@ class UserManagementService {
   // Activity Logging
   logActivity(activity: Omit<ActivityLog, 'id' | 'timestamp'>): void {
     if (typeof window === 'undefined') return;
-    
+
     try {
       const logs = this.getActivityLogs();
       const newLog: ActivityLog = {
@@ -292,7 +343,7 @@ class UserManagementService {
       };
 
       logs.unshift(newLog); // Add to beginning
-      
+
       // Keep only last 1000 logs
       const trimmedLogs = logs.slice(0, 1000);
       localStorage.setItem(ACTIVITY_LOG_KEY, JSON.stringify(trimmedLogs));
@@ -303,7 +354,7 @@ class UserManagementService {
 
   getActivityLogs(limit?: number): ActivityLog[] {
     if (typeof window === 'undefined') return [];
-    
+
     try {
       const data = localStorage.getItem(ACTIVITY_LOG_KEY);
       const logs = data ? JSON.parse(data) : [];
@@ -316,7 +367,7 @@ class UserManagementService {
 
   getUserActivityLogs(userId: string, limit?: number): ActivityLog[] {
     const allLogs = this.getActivityLogs();
-    const userLogs = allLogs.filter(log => log.userId === userId);
+    const userLogs = allLogs.filter((log) => log.userId === userId);
     return limit ? userLogs.slice(0, limit) : userLogs;
   }
 
@@ -333,12 +384,12 @@ class UserManagementService {
 
     return {
       totalUsers: users.length,
-      activeUsers: users.filter(u => u.isActive).length,
-      adminCount: users.filter(u => u.role === 'admin').length,
-      authorCount: users.filter(u => u.role === 'author').length,
-      editorCount: users.filter(u => u.role === 'editor').length,
-      regularUserCount: users.filter(u => u.role === 'user').length,
-      newUsersThisMonth: users.filter(u => new Date(u.createdAt) >= firstDayOfMonth).length,
+      activeUsers: users.filter((u) => u.isActive).length,
+      adminCount: users.filter((u) => u.role === 'admin').length,
+      authorCount: users.filter((u) => u.role === 'author').length,
+      editorCount: users.filter((u) => u.role === 'editor').length,
+      regularUserCount: users.filter((u) => u.role === 'user').length,
+      newUsersThisMonth: users.filter((u) => new Date(u.createdAt) >= firstDayOfMonth).length,
     };
   }
 
@@ -368,22 +419,23 @@ class UserManagementService {
   searchUsers(query: string): User[] {
     const users = this.getAllUsers();
     const lowerQuery = query.toLowerCase();
-    
-    return users.filter(user => 
-      user.fullName.toLowerCase().includes(lowerQuery) ||
-      user.email.toLowerCase().includes(lowerQuery) ||
-      user.role.toLowerCase().includes(lowerQuery)
+
+    return users.filter(
+      (user) =>
+        user.fullName.toLowerCase().includes(lowerQuery) ||
+        user.email.toLowerCase().includes(lowerQuery) ||
+        user.role.toLowerCase().includes(lowerQuery)
     );
   }
 
   filterUsersByRole(role: UserRole): User[] {
     const users = this.getAllUsers();
-    return users.filter(user => user.role === role);
+    return users.filter((user) => user.role === role);
   }
 
   filterUsersByStatus(isActive: boolean): User[] {
     const users = this.getAllUsers();
-    return users.filter(user => user.isActive === isActive);
+    return users.filter((user) => user.isActive === isActive);
   }
 }
 

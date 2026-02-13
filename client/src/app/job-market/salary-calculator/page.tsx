@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -25,12 +24,12 @@ export default function SalaryCalculatorPage() {
     const pension = annualGross * 0.08;
 
     // 2. NHF (2.5% of Basic - Basic is usually 40% of Gross)
-    const nhf = (annualGross * 0.4) * 0.025;
+    const nhf = annualGross * 0.4 * 0.025;
 
     // 3. CRA (Consolidated Relief Allowance)
     // Higher of 200k or 1% of Gross... PLUS 20% of Gross
     const craFixed = Math.max(200000, annualGross * 0.01);
-    const craVariable = annualGross * 0.20;
+    const craVariable = annualGross * 0.2;
     const cra = craFixed + craVariable;
 
     // 4. Taxable Income
@@ -83,7 +82,7 @@ export default function SalaryCalculatorPage() {
       nhf,
       tax,
       net: annualNet,
-      monthlyNet: annualNet / 12
+      monthlyNet: annualNet / 12,
     });
   };
 
@@ -97,7 +96,10 @@ export default function SalaryCalculatorPage() {
       <main className="min-h-screen pt-20 bg-gray-50">
         <div className="bg-primary/5 py-12">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <Link href="/job-market" className="text-sm text-secondary hover:text-primary mb-4 inline-block">
+            <Link
+              href="/job-market"
+              className="text-sm text-secondary hover:text-primary mb-4 inline-block"
+            >
               ← Back to Job Market
             </Link>
             <h1 className="text-4xl font-bold text-foreground mb-4">Nigerian Salary Calculator</h1>
@@ -116,7 +118,9 @@ export default function SalaryCalculatorPage() {
                     Gross Income (Salary + Allowances)
                   </label>
                   <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">₦</span>
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                      ₦
+                    </span>
                     <input
                       type="number"
                       value={grossSalary}
@@ -128,12 +132,16 @@ export default function SalaryCalculatorPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Payment Period</label>
+                  <label className="block text-sm font-medium text-foreground mb-2">
+                    Payment Period
+                  </label>
                   <div className="flex p-1 bg-gray-100 rounded-xl">
                     <button
                       onClick={() => setPeriod('monthly')}
                       className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
-                        period === 'monthly' ? 'bg-white shadow-sm text-primary' : 'text-secondary hover:text-foreground'
+                        period === 'monthly'
+                          ? 'bg-white shadow-sm text-primary'
+                          : 'text-secondary hover:text-foreground'
                       }`}
                     >
                       Monthly
@@ -141,7 +149,9 @@ export default function SalaryCalculatorPage() {
                     <button
                       onClick={() => setPeriod('annual')}
                       className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
-                        period === 'annual' ? 'bg-white shadow-sm text-primary' : 'text-secondary hover:text-foreground'
+                        period === 'annual'
+                          ? 'bg-white shadow-sm text-primary'
+                          : 'text-secondary hover:text-foreground'
                       }`}
                     >
                       Annual
@@ -162,7 +172,9 @@ export default function SalaryCalculatorPage() {
               <div className="bg-gray-50 p-8 border-t border-gray-100">
                 <div className="text-center mb-8">
                   <div className="text-sm text-secondary mb-1">Estimated Monthly Take-Home</div>
-                  <div className="text-4xl font-bold text-green-600">{formatCurrency(result.monthlyNet)}</div>
+                  <div className="text-4xl font-bold text-green-600">
+                    {formatCurrency(result.monthlyNet)}
+                  </div>
                 </div>
 
                 <div className="space-y-4">
@@ -187,9 +199,10 @@ export default function SalaryCalculatorPage() {
                     <span>{formatCurrency(result.net)}</span>
                   </div>
                 </div>
-                
+
                 <p className="mt-6 text-xs text-gray-400 text-center">
-                  *Disclaimer: This is an estimate based on the Finance Act 2020. Actual deductions may vary based on your specific contract and state of residence.
+                  *Disclaimer: This is an estimate based on the Finance Act 2020. Actual deductions
+                  may vary based on your specific contract and state of residence.
                 </p>
               </div>
             )}

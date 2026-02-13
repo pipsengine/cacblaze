@@ -6,7 +6,14 @@ interface Domain {
   title: string;
   description: string;
   count: string;
-  icon: 'BookOpenIcon' | 'WrenchScrewdriverIcon' | 'StarIcon' | 'AcademicCapIcon' | 'CodeBracketIcon' | 'HeartIcon' | 'MapPinIcon';
+  icon:
+    | 'BookOpenIcon'
+    | 'WrenchScrewdriverIcon'
+    | 'StarIcon'
+    | 'AcademicCapIcon'
+    | 'CodeBracketIcon'
+    | 'HeartIcon'
+    | 'MapPinIcon';
   color: string;
   href: string;
 }
@@ -90,7 +97,8 @@ const DomainShowcase = () => {
             Knowledge Across Every Domain
           </h2>
           <p className="text-xl text-secondary max-w-2xl mx-auto">
-            From technology to lifestyle, find authoritative content on the topics that matter to you.
+            From technology to lifestyle, find authoritative content on the topics that matter to
+            you.
           </p>
         </div>
 
@@ -102,15 +110,15 @@ const DomainShowcase = () => {
               href={domain.href}
               className="group relative p-8 rounded-3xl border-2 bg-white hover:border-primary transition-all hover-lift"
             >
-              <div className={`w-16 h-16 rounded-2xl ${domain.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+              <div
+                className={`w-16 h-16 rounded-2xl ${domain.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}
+              >
                 <Icon name={domain.icon} size={32} />
               </div>
               <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                 {domain.title}
               </h3>
-              <p className="text-secondary mb-4 leading-relaxed">
-                {domain.description}
-              </p>
+              <p className="text-secondary mb-4 leading-relaxed">{domain.description}</p>
               <div className="flex items-center justify-between">
                 <span className="text-sm font-semibold text-muted-foreground">
                   {domain.count} Articles

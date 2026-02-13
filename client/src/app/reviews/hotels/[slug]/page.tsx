@@ -14,7 +14,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const review = hotelReviews[slug];
-  
+
   if (!review) {
     return {
       title: 'Review Not Found - CACBLAZE',
@@ -39,7 +39,7 @@ export default async function HotelReviewPage({ params }: PageProps) {
     { name: 'Home', href: '/homepage' },
     { name: 'Reviews', href: '/reviews' },
     { name: 'Hotels', href: '/reviews/hotels' },
-    { name: review.name, href: `/reviews/hotels/${review.slug}` }
+    { name: review.name, href: `/reviews/hotels/${review.slug}` },
   ];
 
   return (
@@ -50,7 +50,7 @@ export default async function HotelReviewPage({ params }: PageProps) {
         <div className="bg-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
             <Breadcrumb items={breadcrumbItems} className="mb-8" />
-            
+
             <div className="grid lg:grid-cols-12 gap-12 items-start">
               <div className="lg:col-span-7">
                 <div className="flex items-center gap-3 mb-4">
@@ -62,18 +62,16 @@ export default async function HotelReviewPage({ params }: PageProps) {
                     {review.publishDate}
                   </span>
                 </div>
-                
+
                 <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
                   {review.name} Review
                 </h1>
-                <p className="text-xl text-gray-600 mb-6">
-                  {review.description}
-                </p>
+                <p className="text-xl text-gray-600 mb-6">{review.description}</p>
 
                 <div className="flex items-center gap-4 mb-8 pb-8 border-b border-gray-100">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden border border-gray-200">
-                    <AppImage 
-                      src={review.author.image} 
+                    <AppImage
+                      src={review.author.image}
                       alt={review.author.name}
                       fill
                       className="object-cover"
@@ -93,17 +91,15 @@ export default async function HotelReviewPage({ params }: PageProps) {
                       <span className="font-bold text-gray-900">{review.rating}/5.0</span>
                     </div>
                   </div>
-                  <p className="text-gray-700 leading-relaxed">
-                    {review.verdict}
-                  </p>
+                  <p className="text-gray-700 leading-relaxed">{review.verdict}</p>
                 </div>
               </div>
 
               <div className="lg:col-span-5">
                 <div className="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden sticky top-24">
                   <div className="aspect-[4/3] relative">
-                    <AppImage 
-                      src={review.heroImage} 
+                    <AppImage
+                      src={review.heroImage}
                       alt={review.name}
                       fill
                       className="object-cover"
@@ -111,7 +107,9 @@ export default async function HotelReviewPage({ params }: PageProps) {
                   </div>
                   <div className="p-8">
                     <div className="mb-6">
-                      <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Hotel Information</h4>
+                      <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">
+                        Hotel Information
+                      </h4>
                       <div className="space-y-4">
                         <div className="flex items-start gap-3">
                           <Icon name="MapPinIcon" className="h-5 w-5 text-indigo-500 mt-0.5" />
@@ -124,7 +122,9 @@ export default async function HotelReviewPage({ params }: PageProps) {
                           <Icon name="ClockIcon" className="h-5 w-5 text-indigo-500 mt-0.5" />
                           <div>
                             <div className="text-sm font-bold text-gray-900">Check-in / Out</div>
-                            <div className="text-sm text-gray-600">{review.specs.checkIn} / {review.specs.checkOut}</div>
+                            <div className="text-sm text-gray-600">
+                              {review.specs.checkIn} / {review.specs.checkOut}
+                            </div>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
@@ -138,17 +138,24 @@ export default async function HotelReviewPage({ params }: PageProps) {
                           <Icon name="BanknotesIcon" className="h-5 w-5 text-indigo-500 mt-0.5" />
                           <div>
                             <div className="text-sm font-bold text-gray-900">Price Range</div>
-                            <div className="text-sm text-gray-600 font-medium">{review.priceRange}</div>
+                            <div className="text-sm text-gray-600 font-medium">
+                              {review.priceRange}
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     <div>
-                      <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Key Amenities</h4>
+                      <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">
+                        Key Amenities
+                      </h4>
                       <div className="flex flex-wrap gap-2">
                         {review.specs.amenities.map((amenity, idx) => (
-                          <span key={idx} className="px-3 py-1 bg-gray-50 text-gray-600 rounded-full text-xs font-medium border border-gray-100">
+                          <span
+                            key={idx}
+                            className="px-3 py-1 bg-gray-50 text-gray-600 rounded-full text-xs font-medium border border-gray-100"
+                          >
                             {amenity}
                           </span>
                         ))}
@@ -174,7 +181,10 @@ export default async function HotelReviewPage({ params }: PageProps) {
               <ul className="space-y-4">
                 {review.pros.map((pro, index) => (
                   <li key={index} className="flex items-start gap-3 text-emerald-800">
-                    <Icon name="CheckIcon" className="h-5 w-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                    <Icon
+                      name="CheckIcon"
+                      className="h-5 w-5 text-emerald-500 mt-0.5 flex-shrink-0"
+                    />
                     <span className="font-medium">{pro}</span>
                   </li>
                 ))}

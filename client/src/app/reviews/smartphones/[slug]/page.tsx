@@ -15,7 +15,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const review = smartphoneReviews[slug];
-  
+
   if (!review) {
     return {
       title: 'Review Not Found - CACBLAZE',
@@ -40,7 +40,7 @@ export default async function SmartphoneReviewPage({ params }: PageProps) {
     { name: 'Home', href: '/homepage' },
     { name: 'Reviews', href: '/reviews' },
     { name: 'Smartphones', href: '/reviews/smartphones' },
-    { name: review.name, href: `/reviews/smartphones/${review.slug}` }
+    { name: review.name, href: `/reviews/smartphones/${review.slug}` },
   ];
 
   return (
@@ -51,7 +51,7 @@ export default async function SmartphoneReviewPage({ params }: PageProps) {
         <div className="bg-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
             <Breadcrumb items={breadcrumbItems} className="mb-8" />
-            
+
             <div className="grid lg:grid-cols-12 gap-12 items-start">
               {/* Left Column: Header & Verdict */}
               <div className="lg:col-span-7">
@@ -64,18 +64,16 @@ export default async function SmartphoneReviewPage({ params }: PageProps) {
                     {review.publishDate}
                   </span>
                 </div>
-                
+
                 <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
                   {review.name} Review
                 </h1>
-                <p className="text-xl text-gray-600 mb-6 font-medium">
-                  {review.tagline}
-                </p>
+                <p className="text-xl text-gray-600 mb-6 font-medium">{review.tagline}</p>
 
                 <div className="flex items-center gap-4 mb-8 pb-8 border-b border-gray-100">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden border border-gray-200">
-                    <AppImage 
-                      src={review.author.image} 
+                    <AppImage
+                      src={review.author.image}
                       alt={review.author.name}
                       fill
                       className="object-cover"
@@ -95,9 +93,7 @@ export default async function SmartphoneReviewPage({ params }: PageProps) {
                       <span className="font-bold text-gray-900">{review.rating}/5.0</span>
                     </div>
                   </div>
-                  <p className="text-gray-700 leading-relaxed">
-                    {review.verdict}
-                  </p>
+                  <p className="text-gray-700 leading-relaxed">{review.verdict}</p>
                 </div>
               </div>
 
@@ -133,7 +129,10 @@ export default async function SmartphoneReviewPage({ params }: PageProps) {
                   <ul className="space-y-3">
                     {review.pros.map((pro, idx) => (
                       <li key={idx} className="flex items-start text-gray-700 text-sm">
-                        <Icon name="CheckIcon" className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <Icon
+                          name="CheckIcon"
+                          className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                        />
                         {pro}
                       </li>
                     ))}
@@ -147,7 +146,10 @@ export default async function SmartphoneReviewPage({ params }: PageProps) {
                   <ul className="space-y-3">
                     {review.cons.map((con, idx) => (
                       <li key={idx} className="flex items-start text-gray-700 text-sm">
-                        <Icon name="XMarkIcon" className="h-4 w-4 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <Icon
+                          name="XMarkIcon"
+                          className="h-4 w-4 text-red-500 mr-2 mt-0.5 flex-shrink-0"
+                        />
                         {con}
                       </li>
                     ))}
@@ -161,9 +163,7 @@ export default async function SmartphoneReviewPage({ params }: PageProps) {
                   {review.content.map((section, idx) => (
                     <div key={idx} className="mb-8 last:mb-0">
                       <h2 className="text-2xl font-bold text-gray-900 mb-4">{section.title}</h2>
-                      <p className="text-gray-600 leading-relaxed text-lg">
-                        {section.body}
-                      </p>
+                      <p className="text-gray-600 leading-relaxed text-lg">{section.body}</p>
                     </div>
                   ))}
                 </div>
@@ -173,7 +173,10 @@ export default async function SmartphoneReviewPage({ params }: PageProps) {
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Gallery</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
                 {review.gallery.map((img, idx) => (
-                  <div key={idx} className="aspect-square relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                  <div
+                    key={idx}
+                    className="aspect-square relative rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                  >
                     <AppImage
                       src={img}
                       alt={`${review.name} gallery image ${idx + 1}`}
@@ -202,8 +205,8 @@ export default async function SmartphoneReviewPage({ params }: PageProps) {
                   ))}
                 </div>
                 <div className="p-6 bg-gray-50 border-t border-gray-100">
-                  <a 
-                    href="#" 
+                  <a
+                    href="#"
                     className="block w-full text-center bg-indigo-600 text-white font-bold py-3 rounded-xl hover:bg-indigo-700 transition-colors shadow-sm"
                   >
                     Check Price on Jumia

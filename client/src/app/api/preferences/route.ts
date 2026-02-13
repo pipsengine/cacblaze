@@ -4,13 +4,12 @@ import { createClient } from '@/lib/supabase/server';
 export async function GET() {
   try {
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { data, error } = await supabase
@@ -32,31 +31,23 @@ export async function GET() {
     });
   } catch (error) {
     console.error('Preferences fetch error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch preferences' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch preferences' }, { status: 500 });
   }
 }
 
 export async function PATCH(request: Request) {
   try {
     const body = await request.json();
-    const {
-      favorite_categories,
-      favorite_topics,
-      notification_enabled,
-      email_notifications,
-    } = body;
+    const { favorite_categories, favorite_topics, notification_enabled, email_notifications } =
+      body;
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const updateData: any = {};
@@ -86,10 +77,7 @@ export async function PATCH(request: Request) {
     });
   } catch (error) {
     console.error('Preferences update error:', error);
-    return NextResponse.json(
-      { error: 'Failed to update preferences' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to update preferences' }, { status: 500 });
   }
 }
 
@@ -99,20 +87,16 @@ export async function POST(request: Request) {
     const { article_id, category } = body;
 
     if (!article_id || !category) {
-      return NextResponse.json(
-        { error: 'article_id and category are required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'article_id and category are required' }, { status: 400 });
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     // Call the database function to update reading history
@@ -130,9 +114,6 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('Reading history update error:', error);
-    return NextResponse.json(
-      { error: 'Failed to update reading history' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to update reading history' }, { status: 500 });
   }
 }

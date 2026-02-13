@@ -22,7 +22,9 @@ export function useGoogleAnalytics() {
       document.head.appendChild(script);
 
       window.dataLayer = window.dataLayer || [];
-      window.gtag = function() { window.dataLayer.push(arguments); };
+      window.gtag = function () {
+        window.dataLayer.push(arguments);
+      };
       window.gtag('js', new Date());
       window.gtag('config', measurementId, {
         page_path: pathname,
@@ -45,7 +47,7 @@ export function trackEvent(eventName: string, eventParams: Record<string, any> =
     console.log(`[Analytics] Event: ${eventName}`, eventParams);
     return;
   }
-  
+
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, eventParams);
   }
@@ -87,11 +89,14 @@ export function trackScrollDepth(articleId: string, depth: number) {
 }
 
 // Track comment interactions
-export function trackCommentAction(action: 'post' | 'reply' | 'edit' | 'delete' | 'reaction', data: {
-  articleId: string;
-  commentId?: string;
-  reactionType?: string;
-}) {
+export function trackCommentAction(
+  action: 'post' | 'reply' | 'edit' | 'delete' | 'reaction',
+  data: {
+    articleId: string;
+    commentId?: string;
+    reactionType?: string;
+  }
+) {
   trackEvent('comment_action', {
     action_type: action,
     article_id: data.articleId,

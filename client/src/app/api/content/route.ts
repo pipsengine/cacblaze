@@ -10,7 +10,7 @@ export async function GET(request: Request) {
     const featured = searchParams.get('featured') === 'true';
 
     const supabase = await createClient();
-    
+
     let query = supabase
       .from('content_metadata')
       .select('*', { count: 'exact' })
@@ -30,26 +30,26 @@ export async function GET(request: Request) {
 
     if (error) throw error;
 
-    return NextResponse.json({
-      success: true,
-      data: data || [],
-      pagination: {
-        total: count || 0,
-        limit,
-        offset,
-        hasMore: (count || 0) > offset + limit,
+    return NextResponse.json(
+      {
+        success: true,
+        data: data || [],
+        pagination: {
+          total: count || 0,
+          limit,
+          offset,
+          hasMore: (count || 0) > offset + limit,
+        },
       },
-    }, {
-      headers: {
-        'Cache-Control': 'public, max-age=300, s-maxage=600',
-      },
-    });
+      {
+        headers: {
+          'Cache-Control': 'public, max-age=300, s-maxage=600',
+        },
+      }
+    );
   } catch (error) {
     console.error('Content API error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch content' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch content' }, { status: 500 });
   }
 }
 
@@ -75,13 +75,12 @@ export async function POST(request: Request) {
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     // Check if user is admin or author
@@ -92,10 +91,7 @@ export async function POST(request: Request) {
       .single();
 
     if (!profile || !['admin', 'author'].includes(profile.role)) {
-      return NextResponse.json(
-        { error: 'Forbidden: Insufficient permissions' },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: 'Forbidden: Insufficient permissions' }, { status: 403 });
     }
 
     // Create content metadata
@@ -128,9 +124,6 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('Content creation error:', error);
-    return NextResponse.json(
-      { error: 'Failed to create content metadata' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to create content metadata' }, { status: 500 });
   }
 }

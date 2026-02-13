@@ -21,7 +21,8 @@ const sharePlatforms = [
     name: 'Facebook',
     icon: 'ShareIcon',
     color: 'bg-blue-600',
-    action: (url: string) => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+    action: (url: string) =>
+      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
   },
   {
     name: 'LinkedIn',
@@ -90,7 +91,10 @@ export default function ShareButton({ articleId, articleTitle, articleUrl }: Sha
         <div className="absolute top-full right-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 p-4 z-50 min-w-[250px]">
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-sm font-semibold text-foreground">Share this article</h3>
-            <button onClick={() => setShowMenu(false)} className="text-secondary hover:text-foreground">
+            <button
+              onClick={() => setShowMenu(false)}
+              className="text-secondary hover:text-foreground"
+            >
               <Icon name="XMarkIcon" size={20} />
             </button>
           </div>

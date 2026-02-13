@@ -5,7 +5,8 @@ import PreferencesManager from './components/PreferencesManager';
 
 export const metadata: Metadata = {
   title: 'Preferences - CACBLAZE',
-  description: 'Manage your content preferences, notification settings, and personalized recommendations.',
+  description:
+    'Manage your content preferences, notification settings, and personalized recommendations.',
 };
 
 export default function PreferencesPage() {

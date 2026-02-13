@@ -9,7 +9,8 @@ import { studyTechniques } from '@/data/study-techniques';
 
 export const metadata: Metadata = {
   title: 'Study Techniques & Learning Methods - CACBLAZE',
-  description: 'Master the art of learning with proven study techniques like Pomodoro, Feynman, and Spaced Repetition.',
+  description:
+    'Master the art of learning with proven study techniques like Pomodoro, Feynman, and Spaced Repetition.',
 };
 
 export default function StudyTechniquesListingPage() {
@@ -39,7 +40,8 @@ export default function StudyTechniquesListingPage() {
                 Study <span className="text-emerald-400">Smarter</span>, Not Harder
               </h1>
               <p className="text-xl text-emerald-100/80 leading-relaxed mb-10">
-                Unlock your brain's potential with science-backed learning methods. From memory optimization to focus management, discover the tools for academic excellence.
+                Unlock your brain's potential with science-backed learning methods. From memory
+                optimization to focus management, discover the tools for academic excellence.
               </p>
               <div className="flex flex-wrap gap-6">
                 <div className="flex items-center gap-3">
@@ -69,7 +71,7 @@ export default function StudyTechniquesListingPage() {
         <section className="max-w-7xl mx-auto px-6 lg:px-8 py-24">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {techniques.map((tech) => (
-              <Link 
+              <Link
                 key={tech.id}
                 href={`/education/study-techniques/${tech.slug}`}
                 className="group bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-emerald-100 flex flex-col h-full"
@@ -93,11 +95,15 @@ export default function StudyTechniquesListingPage() {
                         <Icon name="StarIcon" size={16} className="text-yellow-400 fill-current" />
                         <span className="ml-1.5">{tech.rating}</span>
                       </div>
-                      <span className={`text-[10px] font-bold px-3 py-1 rounded-md uppercase tracking-wider ${
-                        tech.difficulty === 'Beginner' ? 'bg-emerald-400/20 text-emerald-200' :
-                        tech.difficulty === 'Intermediate' ? 'bg-amber-400/20 text-amber-200' :
-                        'bg-rose-400/20 text-rose-200'
-                      }`}>
+                      <span
+                        className={`text-[10px] font-bold px-3 py-1 rounded-md uppercase tracking-wider ${
+                          tech.difficulty === 'Beginner'
+                            ? 'bg-emerald-400/20 text-emerald-200'
+                            : tech.difficulty === 'Intermediate'
+                              ? 'bg-amber-400/20 text-amber-200'
+                              : 'bg-rose-400/20 text-rose-200'
+                        }`}
+                      >
                         {tech.difficulty}
                       </span>
                     </div>
@@ -111,7 +117,7 @@ export default function StudyTechniquesListingPage() {
                   <p className="text-slate-600 line-clamp-3 mb-8 flex-grow leading-relaxed italic">
                     "{tech.description}"
                   </p>
-                  
+
                   <div className="flex items-center justify-between pt-8 border-t border-emerald-50">
                     <div className="flex items-center gap-3">
                       <div className="relative w-10 h-10 rounded-xl overflow-hidden ring-2 ring-emerald-50">
@@ -124,7 +130,9 @@ export default function StudyTechniquesListingPage() {
                       </div>
                       <div className="flex flex-col">
                         <span className="text-xs font-bold text-slate-900">{tech.author.name}</span>
-                        <span className="text-[10px] text-emerald-600 font-medium uppercase tracking-tight">{tech.author.role}</span>
+                        <span className="text-[10px] text-emerald-600 font-medium uppercase tracking-tight">
+                          {tech.author.role}
+                        </span>
                       </div>
                     </div>
                     <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300">
@@ -142,7 +150,7 @@ export default function StudyTechniquesListingPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="relative rounded-[3rem] overflow-hidden aspect-video shadow-2xl">
-                <AppImage 
+                <AppImage
                   src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
                   alt="Students studying together"
                   fill
@@ -150,16 +158,19 @@ export default function StudyTechniquesListingPage() {
                 />
               </div>
               <div>
-                <h2 className="text-4xl font-bold text-slate-900 mb-6">Join the Community of High Achievers</h2>
+                <h2 className="text-4xl font-bold text-slate-900 mb-6">
+                  Join the Community of High Achievers
+                </h2>
                 <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                  Learning is a lifelong journey. We provide the latest research-based strategies to help you navigate through complex subjects and competitive exams with confidence.
+                  Learning is a lifelong journey. We provide the latest research-based strategies to
+                  help you navigate through complex subjects and competitive exams with confidence.
                 </p>
                 <div className="space-y-4">
                   {[
                     'Weekly study marathons',
                     'Expert-led masterclasses',
                     'Resource sharing network',
-                    'Progress tracking tools'
+                    'Progress tracking tools',
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <Icon name="CheckIcon" size={20} className="text-emerald-500" />

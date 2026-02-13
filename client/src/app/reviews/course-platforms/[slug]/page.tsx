@@ -14,7 +14,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const review = coursePlatformReviews[slug];
-  
+
   if (!review) return { title: 'Review Not Found' };
 
   return {
@@ -47,7 +47,7 @@ export default async function CoursePlatformDetailPage({ params }: PageProps) {
           </div>
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <Breadcrumb items={breadcrumbItems} className="mb-8 text-emerald-300" />
-            
+
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <div className="flex items-center gap-4 mb-8">
@@ -65,7 +65,7 @@ export default async function CoursePlatformDetailPage({ params }: PageProps) {
                 <p className="text-xl text-emerald-100/80 leading-relaxed mb-10 border-l-4 border-emerald-500 pl-8 italic">
                   "{review.description}"
                 </p>
-                
+
                 <div className="flex items-center gap-6 p-6 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10">
                   <div className="relative w-14 h-14 rounded-2xl overflow-hidden ring-2 ring-emerald-500/50">
                     <Image
@@ -117,8 +117,13 @@ export default async function CoursePlatformDetailPage({ params }: PageProps) {
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-6">
                   {review.topSubjects.map((subject, index) => (
-                    <div key={index} className="flex items-center gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all group">
-                      <span className="text-2xl group-hover:scale-110 transition-transform">🎓</span>
+                    <div
+                      key={index}
+                      className="flex items-center gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all group"
+                    >
+                      <span className="text-2xl group-hover:scale-110 transition-transform">
+                        🎓
+                      </span>
                       <span className="text-slate-700 font-bold">{subject}</span>
                     </div>
                   ))}
@@ -186,17 +191,21 @@ export default async function CoursePlatformDetailPage({ params }: PageProps) {
                       <Icon name="CurrencyDollarIcon" size={24} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Pricing Model</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                        Pricing Model
+                      </p>
                       <p className="text-slate-900 font-bold">{review.pricing}</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-5">
                     <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center">
                       <Icon name="Square3Stack3DIcon" size={24} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Content Volume</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                        Content Volume
+                      </p>
                       <p className="text-slate-900 font-bold">{review.courseCount}</p>
                     </div>
                   </div>
@@ -206,16 +215,24 @@ export default async function CoursePlatformDetailPage({ params }: PageProps) {
                       <Icon name="IdentificationIcon" size={24} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Certificates</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                        Certificates
+                      </p>
                       <div className="flex items-center gap-2">
-                        <span className={`w-2.5 h-2.5 rounded-full ${review.certificates ? 'bg-emerald-500' : 'bg-rose-500'}`} />
-                        <p className="text-slate-900 font-bold">{review.certificates ? 'Accredited' : 'No Official Certs'}</p>
+                        <span
+                          className={`w-2.5 h-2.5 rounded-full ${review.certificates ? 'bg-emerald-500' : 'bg-rose-500'}`}
+                        />
+                        <p className="text-slate-900 font-bold">
+                          {review.certificates ? 'Accredited' : 'No Official Certs'}
+                        </p>
                       </div>
                     </div>
                   </div>
 
                   <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Ideal Learner</p>
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">
+                      Ideal Learner
+                    </p>
                     <p className="text-slate-700 font-medium leading-relaxed italic">
                       "{review.bestFor}"
                     </p>
@@ -223,7 +240,11 @@ export default async function CoursePlatformDetailPage({ params }: PageProps) {
 
                   <button className="w-full bg-emerald-600 text-white font-bold py-5 rounded-[1.5rem] hover:bg-emerald-700 transition-all flex items-center justify-center gap-3 group shadow-lg shadow-emerald-100 hover:-translate-y-1">
                     Visit Platform
-                    <Icon name="ArrowTopRightOnSquareIcon" size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <Icon
+                      name="ArrowTopRightOnSquareIcon"
+                      size={20}
+                      className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                    />
                   </button>
                 </div>
               </div>

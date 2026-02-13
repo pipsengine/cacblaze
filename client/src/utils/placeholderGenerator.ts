@@ -24,50 +24,50 @@ const categoryThemes: Record<string, CategoryTheme> = {
     colors: ['#008751', '#FDB913', '#00A86B'], // Nigerian green, gold, emerald
     gradient: 'linear-gradient(135deg, #008751 0%, #00A86B 100%)',
     icon: '💻',
-    textColor: '#FFFFFF'
+    textColor: '#FFFFFF',
   },
   education: {
     colors: ['#E31B23', '#FDB913', '#FF6B35'], // Nigerian red, gold, coral
     gradient: 'linear-gradient(135deg, #E31B23 0%, #FF6B35 100%)',
     icon: '📚',
-    textColor: '#FFFFFF'
+    textColor: '#FFFFFF',
   },
   lifestyle: {
     colors: ['#FDB913', '#FF8C42', '#FFD700'], // Gold, warm orange, bright gold
     gradient: 'linear-gradient(135deg, #FDB913 0%, #FF8C42 100%)',
     icon: '🌍',
-    textColor: '#1A1A1A'
+    textColor: '#1A1A1A',
   },
   guides: {
     colors: ['#008751', '#00A86B', '#20B2AA'], // Green spectrum
     gradient: 'linear-gradient(135deg, #008751 0%, #20B2AA 100%)',
     icon: '📖',
-    textColor: '#FFFFFF'
+    textColor: '#FFFFFF',
   },
   reviews: {
     colors: ['#6B46C1', '#9333EA', '#A855F7'], // Purple spectrum
     gradient: 'linear-gradient(135deg, #6B46C1 0%, #A855F7 100%)',
     icon: '⭐',
-    textColor: '#FFFFFF'
+    textColor: '#FFFFFF',
   },
   howto: {
     colors: ['#0EA5E9', '#06B6D4', '#22D3EE'], // Cyan/blue spectrum
     gradient: 'linear-gradient(135deg, #0EA5E9 0%, #22D3EE 100%)',
     icon: '🔧',
-    textColor: '#FFFFFF'
+    textColor: '#FFFFFF',
   },
   'local-resources': {
     colors: ['#008751', '#FDB913', '#E31B23'], // Nigerian flag colors
     gradient: 'linear-gradient(135deg, #008751 0%, #FDB913 50%, #E31B23 100%)',
     icon: '🏛️',
-    textColor: '#FFFFFF'
+    textColor: '#FFFFFF',
   },
   default: {
     colors: ['#008751', '#FDB913', '#00A86B'],
     gradient: 'linear-gradient(135deg, #008751 0%, #00A86B 100%)',
     icon: '📄',
-    textColor: '#FFFFFF'
-  }
+    textColor: '#FFFFFF',
+  },
 };
 
 /**
@@ -86,26 +86,21 @@ function generateColorFromSeed(seed: string): string {
  * Generate SVG placeholder with narrative-driven design
  */
 export function generatePlaceholderSVG(config: PlaceholderConfig): string {
-  const {
-    width = 800,
-    height = 600,
-    category = 'default',
-    text = '',
-    seed = ''
-  } = config;
+  const { width = 800, height = 600, category = 'default', text = '', seed = '' } = config;
 
   const theme = categoryThemes[category.toLowerCase()] || categoryThemes.default;
   const displayText = text || category.charAt(0).toUpperCase() + category.slice(1);
-  
+  const accentColor = seed ? generateColorFromSeed(seed) : theme.colors[1] || theme.colors[0];
+
   // Add pattern overlay for visual interest
   const patternColor = theme.textColor === '#FFFFFF' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
-  
+
   const svg = `
     <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="grad-${category}" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" style="stop-color:${theme.colors[0]};stop-opacity:1" />
-          <stop offset="100%" style="stop-color:${theme.colors[1] || theme.colors[0]};stop-opacity:1" />
+          <stop offset="100%" style="stop-color:${accentColor};stop-opacity:1" />
         </linearGradient>
         <pattern id="pattern-${category}" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
           <circle cx="20" cy="20" r="2" fill="${patternColor}" />
@@ -155,12 +150,7 @@ export function generatePlaceholderCanvas(
   canvas: HTMLCanvasElement,
   config: PlaceholderConfig
 ): void {
-  const {
-    width = 800,
-    height = 600,
-    category = 'default',
-    text = '',
-  } = config;
+  const { width = 800, height = 600, category = 'default', text = '' } = config;
 
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
@@ -195,7 +185,7 @@ export function generatePlaceholderCanvas(
   ctx.beginPath();
   ctx.arc(width * 0.1, height * 0.1, 60, 0, Math.PI * 2);
   ctx.fill();
-  
+
   ctx.fillStyle = theme.textColor === '#FFFFFF' ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
   ctx.beginPath();
   ctx.arc(width * 0.9, height * 0.9, 80, 0, Math.PI * 2);
@@ -223,18 +213,19 @@ export function getPlaceholderDataURL(config: PlaceholderConfig): string {
   const svg = generatePlaceholderSVG(config);
   // Extract the SVG content from the data URL
   const svgContent = svg.replace(/^data:image\/svg\+xml;base64,/, '');
-  
+
   // Decode base64 to get original SVG, then use URI encoding
   try {
     const decodedSVG = atob(svgContent);
     return `data:image/svg+xml,${encodeURIComponent(decodedSVG)}`;
-  } catch (e) {
+  } catch (_e) {
     // If base64 decode fails, generate SVG directly with URI encoding
-    const { width = 800, height = 600, category = 'default', text = '', seed = '' } = config;
+    const { width = 800, height = 600, category = 'default', text = '' } = config;
     const theme = categoryThemes[category.toLowerCase()] || categoryThemes.default;
     const displayText = text || category.charAt(0).toUpperCase() + category.slice(1);
-    const patternColor = theme.textColor === '#FFFFFF' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
-    
+    const patternColor =
+      theme.textColor === '#FFFFFF' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
+
     const svgString = `
       <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -278,7 +269,7 @@ export function getPlaceholderDataURL(config: PlaceholderConfig): string {
         <circle cx="90%" cy="90%" r="80" fill="${theme.textColor}" opacity="0.08" />
       </svg>
     `;
-    
+
     return `data:image/svg+xml,${encodeURIComponent(svgString)}`;
   }
 }
@@ -288,14 +279,22 @@ export function getPlaceholderDataURL(config: PlaceholderConfig): string {
  */
 export function extractCategoryFromPath(path: string): string {
   const segments = path.split('/');
-  const possibleCategories = ['technology', 'education', 'lifestyle', 'guides', 'reviews', 'howto', 'local-resources'];
-  
+  const possibleCategories = [
+    'technology',
+    'education',
+    'lifestyle',
+    'guides',
+    'reviews',
+    'howto',
+    'local-resources',
+  ];
+
   for (const segment of segments) {
     const normalized = segment.toLowerCase().replace(/-/g, '');
     if (possibleCategories.includes(normalized)) {
       return normalized;
     }
   }
-  
+
   return 'default';
 }

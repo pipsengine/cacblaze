@@ -9,17 +9,19 @@ export async function GET(request: Request) {
     const limit = parseInt(searchParams.get('limit') || '20');
 
     const supabase = await createClient();
-    
+
     let query = supabase
       .from('ama_sessions')
-      .select(`
+      .select(
+        `
         *,
         user_profiles:user_profiles!ama_sessions_expert_id_fkey(
           full_name,
           avatar_url,
           role
         )
-      `)
+      `
+      )
       .order('scheduled_at', { ascending: status === 'upcoming' })
       .limit(limit);
 
@@ -41,17 +43,22 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error('AMA sessions fetch error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch AMA sessions' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch AMA sessions' }, { status: 500 });
   }
 }
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { title, description, expert_bio, expert_title, category, scheduled_at, duration_minutes } = body;
+    const {
+      title,
+      description,
+      expert_bio,
+      expert_title,
+      category,
+      scheduled_at,
+      duration_minutes,
+    } = body;
 
     if (!title || !description || !category || !scheduled_at) {
       return NextResponse.json(
@@ -61,13 +68,12 @@ export async function POST(request: Request) {
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { data, error } = await supabase
@@ -82,14 +88,16 @@ export async function POST(request: Request) {
         scheduled_at,
         duration_minutes: duration_minutes || 60,
       })
-      .select(`
+      .select(
+        `
         *,
         user_profiles:user_profiles!ama_sessions_expert_id_fkey(
           full_name,
           avatar_url,
           role
         )
-      `)
+      `
+      )
       .single();
 
     if (error) throw error;
@@ -100,9 +108,6 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('AMA session creation error:', error);
-    return NextResponse.json(
-      { error: 'Failed to create AMA session' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to create AMA session' }, { status: 500 });
   }
 }

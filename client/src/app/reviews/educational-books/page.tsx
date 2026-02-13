@@ -9,12 +9,13 @@ import { educationalBooks } from '@/data/educational-books';
 
 export const metadata: Metadata = {
   title: 'Best Educational Books: Top Picks for Self-Improvement - CACBLAZE',
-  description: 'Looking to level up your skills? We review the best educational books on productivity, business, software engineering, and more.',
+  description:
+    'Looking to level up your skills? We review the best educational books on productivity, business, software engineering, and more.',
 };
 
 export default function EducationalBooksListingPage() {
   const bookList = Object.values(educationalBooks);
-  
+
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Reviews', href: '/reviews' },
@@ -37,7 +38,8 @@ export default function EducationalBooksListingPage() {
                 Best Educational Books
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Unlock your potential with our curated selection of must-read books. From productivity hacks to deep dives into human history, we've reviewed them all.
+                Unlock your potential with our curated selection of must-read books. From
+                productivity hacks to deep dives into human history, we've reviewed them all.
               </p>
             </div>
           </div>
@@ -48,8 +50,8 @@ export default function EducationalBooksListingPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {bookList.map((item) => (
-                <Link 
-                  key={item.id} 
+                <Link
+                  key={item.id}
                   href={`/reviews/educational-books/${item.slug}`}
                   className="group flex flex-col bg-white rounded-3xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                 >
@@ -75,20 +77,24 @@ export default function EducationalBooksListingPage() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="p-8 flex flex-col flex-grow">
                     <h2 className="text-2xl font-bold text-gray-900 group-hover:text-emerald-600 transition-colors mb-4">
                       {item.title}
                     </h2>
-                    
+
                     <p className="text-gray-600 text-sm mb-6 line-clamp-3 leading-relaxed">
                       {item.description}
                     </p>
 
                     <div className="mt-auto space-y-4">
                       <div className="bg-emerald-50 p-4 rounded-2xl">
-                        <p className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-1">Key Takeaway</p>
-                        <p className="text-emerald-700 text-sm font-semibold truncate">{item.keyTakeaways[0]}</p>
+                        <p className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-1">
+                          Key Takeaway
+                        </p>
+                        <p className="text-emerald-700 text-sm font-semibold truncate">
+                          {item.keyTakeaways[0]}
+                        </p>
                       </div>
                       <div className="flex items-center text-emerald-600 font-bold text-sm group-hover:gap-2 transition-all">
                         Read Full Review

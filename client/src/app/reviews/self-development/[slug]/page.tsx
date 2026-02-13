@@ -14,7 +14,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const review = selfDevelopmentReviews[slug];
-  
+
   if (!review) {
     return {
       title: 'Review Not Found - CACBLAZE',
@@ -48,13 +48,7 @@ export default async function SelfDevelopmentDetailPage({ params }: PageProps) {
       <main className="min-h-screen pt-20">
         {/* Hero Section */}
         <section className="relative h-[60vh] min-h-[500px] w-full">
-          <Image
-            src={review.heroImage}
-            alt={review.name}
-            fill
-            className="object-cover"
-            priority
-          />
+          <Image src={review.heroImage} alt={review.name} fill className="object-cover" priority />
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent" />
           <div className="absolute inset-0 flex items-end">
             <div className="max-w-7xl mx-auto px-6 lg:px-8 pb-16 w-full">
@@ -85,7 +79,9 @@ export default async function SelfDevelopmentDetailPage({ params }: PageProps) {
                 </div>
                 <div className="text-white">
                   <p className="font-bold">{review.author.name}</p>
-                  <p className="text-sm text-white/70">{review.author.role} • {review.publishDate}</p>
+                  <p className="text-sm text-white/70">
+                    {review.author.role} • {review.publishDate}
+                  </p>
                 </div>
               </div>
             </div>
@@ -101,18 +97,23 @@ export default async function SelfDevelopmentDetailPage({ params }: PageProps) {
                 {/* Introduction */}
                 <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100">
                   <h2 className="text-3xl font-bold text-gray-900 mb-6">Deep Dive</h2>
-                  <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                    {review.description}
-                  </p>
-                  
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Key Features & Highlights</h3>
+                  <p className="text-lg text-gray-600 leading-relaxed mb-8">{review.description}</p>
+
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                    Key Features & Highlights
+                  </h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     {review.keyFeatures.map((feature, index) => (
-                      <div key={index} className="flex gap-4 p-4 rounded-2xl bg-orange-50 border border-orange-100">
+                      <div
+                        key={index}
+                        className="flex gap-4 p-4 rounded-2xl bg-orange-50 border border-orange-100"
+                      >
                         <div className="flex-shrink-0 w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-sm">
                           {index + 1}
                         </div>
-                        <p className="text-gray-700 font-medium leading-tight self-center">{feature}</p>
+                        <p className="text-gray-700 font-medium leading-tight self-center">
+                          {feature}
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -128,7 +129,11 @@ export default async function SelfDevelopmentDetailPage({ params }: PageProps) {
                     <ul className="space-y-4">
                       {review.pros.map((pro, index) => (
                         <li key={index} className="flex items-start gap-3 text-gray-600">
-                          <Icon name="CheckIcon" size={18} className="text-emerald-500 mt-1 flex-shrink-0" />
+                          <Icon
+                            name="CheckIcon"
+                            size={18}
+                            className="text-emerald-500 mt-1 flex-shrink-0"
+                          />
                           <span>{pro}</span>
                         </li>
                       ))}
@@ -142,7 +147,11 @@ export default async function SelfDevelopmentDetailPage({ params }: PageProps) {
                     <ul className="space-y-4">
                       {review.cons.map((con, index) => (
                         <li key={index} className="flex items-start gap-3 text-gray-600">
-                          <Icon name="XMarkIcon" size={18} className="text-red-500 mt-1 flex-shrink-0" />
+                          <Icon
+                            name="XMarkIcon"
+                            size={18}
+                            className="text-red-500 mt-1 flex-shrink-0"
+                          />
                           <span>{con}</span>
                         </li>
                       ))}
@@ -162,7 +171,12 @@ export default async function SelfDevelopmentDetailPage({ params }: PageProps) {
                   <div className="flex items-center gap-2">
                     <div className="flex text-yellow-400">
                       {[...Array(5)].map((_, i) => (
-                        <Icon key={i} name="StarIcon" size={20} className={i < Math.floor(review.rating) ? 'fill-current' : 'opacity-30'} />
+                        <Icon
+                          key={i}
+                          name="StarIcon"
+                          size={20}
+                          className={i < Math.floor(review.rating) ? 'fill-current' : 'opacity-30'}
+                        />
                       ))}
                     </div>
                     <span className="font-bold text-lg">{review.rating} / 5.0</span>
@@ -177,19 +191,23 @@ export default async function SelfDevelopmentDetailPage({ params }: PageProps) {
                   <h3 className="text-xl font-bold text-gray-900 mb-6">At a Glance</h3>
                   <div className="space-y-6">
                     <div>
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Best For</p>
-                      <p className="text-gray-700 leading-relaxed">
-                        {review.bestFor}
+                      <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
+                        Best For
                       </p>
+                      <p className="text-gray-700 leading-relaxed">{review.bestFor}</p>
                     </div>
                     {review.pricing && (
                       <div className="pt-6 border-t border-gray-100">
-                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Pricing</p>
+                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
+                          Pricing
+                        </p>
                         <p className="text-gray-900 font-bold">{review.pricing}</p>
                       </div>
                     )}
                     <div className="pt-6 border-t border-gray-100">
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Type</p>
+                      <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
+                        Type
+                      </p>
                       <span className="inline-block px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-xs font-bold uppercase">
                         {review.type}
                       </span>

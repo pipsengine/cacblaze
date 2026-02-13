@@ -70,7 +70,7 @@ export default function UserList({ onUserSelect }: UserListProps) {
       await supabase.rpc('log_admin_action', {
         p_action_type: 'user_role_changed',
         p_target_user_id: userId,
-        p_details: { new_role: newRole }
+        p_details: { new_role: newRole },
       });
 
       fetchUsers();
@@ -92,7 +92,7 @@ export default function UserList({ onUserSelect }: UserListProps) {
       await supabase.rpc('log_admin_action', {
         p_action_type: 'user_status_changed',
         p_target_user_id: userId,
-        p_details: { new_status: !currentStatus }
+        p_details: { new_status: !currentStatus },
       });
 
       fetchUsers();
@@ -101,16 +101,20 @@ export default function UserList({ onUserSelect }: UserListProps) {
     }
   };
 
-  const filteredUsers = users.filter(user =>
-    user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    user.full_name.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredUsers = users.filter(
+    (user) =>
+      user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.full_name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const getRoleBadgeColor = (role: string) => {
     switch (role) {
-      case 'admin': return 'bg-red-100 text-red-700';
-      case 'author': return 'bg-blue-100 text-blue-700';
-      default: return 'bg-gray-100 text-gray-700';
+      case 'admin':
+        return 'bg-red-100 text-red-700';
+      case 'author':
+        return 'bg-blue-100 text-blue-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
     }
   };
 
@@ -128,7 +132,11 @@ export default function UserList({ onUserSelect }: UserListProps) {
       <div className="flex flex-col md:flex-row gap-4">
         <div className="flex-1">
           <div className="relative">
-            <Icon name="MagnifyingGlassIcon" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary" />
+            <Icon
+              name="MagnifyingGlassIcon"
+              size={20}
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary"
+            />
             <input
               type="text"
               placeholder="Search by name or email..."
@@ -202,8 +210,7 @@ export default function UserList({ onUserSelect }: UserListProps) {
                     <button
                       onClick={() => handleStatusToggle(user.id, user.is_active)}
                       className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        user.is_active
-                          ? 'bg-green-100 text-green-700' :'bg-gray-100 text-gray-700'
+                        user.is_active ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
                       }`}
                     >
                       {user.is_active ? 'Active' : 'Inactive'}

@@ -4,18 +4,18 @@ import { createClient } from '@/lib/supabase/server';
 export async function GET() {
   try {
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { data, error } = await supabase
       .from('reading_lists')
-      .select(`
+      .select(
+        `
         *,
         reading_list_items(
           id,
@@ -24,7 +24,8 @@ export async function GET() {
           article_category,
           added_at
         )
-      `)
+      `
+      )
       .eq('user_id', user.id)
       .order('created_at', { ascending: false });
 
@@ -36,10 +37,7 @@ export async function GET() {
     });
   } catch (error) {
     console.error('Reading lists fetch error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch reading lists' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch reading lists' }, { status: 500 });
   }
 }
 
@@ -49,20 +47,16 @@ export async function POST(request: Request) {
     const { name, description, is_public } = body;
 
     if (!name) {
-      return NextResponse.json(
-        { error: 'name is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'name is required' }, { status: 400 });
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { data, error } = await supabase
@@ -84,9 +78,6 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('Reading list creation error:', error);
-    return NextResponse.json(
-      { error: 'Failed to create reading list' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to create reading list' }, { status: 500 });
   }
 }

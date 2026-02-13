@@ -64,7 +64,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
     try {
       const res = await fetch(`${API_URL}/comments/${articleId}`);
       if (!res.ok) throw new Error('Failed to fetch comments');
-      
+
       const data = await res.json();
 
       // Convert backend data to frontend Comment interface
@@ -83,17 +83,20 @@ export default function CommentsSection({ articleId }: CommentsProps) {
           avatarUrl: null, // Placeholder
           role: comment.user?.role || 'user',
         },
-        reactions: comment.reactions?.map((r: any) => ({
-          id: String(r.id),
-          commentId: String(r.commentId),
-          userId: String(r.userId),
-          reactionType: r.reactionType,
-        })) || [],
+        reactions:
+          comment.reactions?.map((r: any) => ({
+            id: String(r.id),
+            commentId: String(r.commentId),
+            userId: String(r.userId),
+            reactionType: r.reactionType,
+          })) || [],
       }));
 
       // Organize into threads
       const topLevelComments = formattedComments.filter((c: Comment) => !c.parentId);
-      const commentMap = new Map(formattedComments.map((c: Comment) => [c.id, { ...c, replies: [] }]));
+      const commentMap = new Map(
+        formattedComments.map((c: Comment) => [c.id, { ...c, replies: [] }])
+      );
 
       formattedComments.forEach((comment: Comment) => {
         if (comment.parentId) {
@@ -122,19 +125,19 @@ export default function CommentsSection({ articleId }: CommentsProps) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           articleId,
           content: newComment.trim(),
-        })
+        }),
       });
 
       if (!res.ok) throw new Error('Failed to post comment');
-      
+
       // Track comment post
       trackCommentAction('post', { articleId });
-      
+
       setNewComment('');
       fetchComments(); // Refresh comments
     } catch (error) {
@@ -150,20 +153,20 @@ export default function CommentsSection({ articleId }: CommentsProps) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           articleId,
           parentId,
           content: replyContent.trim(),
-        })
+        }),
       });
 
       if (!res.ok) throw new Error('Failed to post reply');
-      
+
       // Track reply
       trackCommentAction('reply', { articleId, commentId: parentId });
-      
+
       setReplyContent('');
       setReplyingTo(null);
       fetchComments(); // Refresh comments
@@ -180,18 +183,18 @@ export default function CommentsSection({ articleId }: CommentsProps) {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           content: editContent.trim(),
-        })
+        }),
       });
 
       if (!res.ok) throw new Error('Failed to edit comment');
-      
+
       // Track edit
       trackCommentAction('edit', { articleId, commentId });
-      
+
       setEditingId(null);
       setEditContent('');
       fetchComments(); // Refresh comments
@@ -207,12 +210,12 @@ export default function CommentsSection({ articleId }: CommentsProps) {
       const res = await fetch(`${API_URL}/comments/${commentId}`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       if (!res.ok) throw new Error('Failed to delete comment');
-      
+
       // Track deletion
       trackCommentAction('delete', { articleId, commentId });
       fetchComments(); // Refresh comments
@@ -229,13 +232,13 @@ export default function CommentsSection({ articleId }: CommentsProps) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ reactionType })
+        body: JSON.stringify({ reactionType }),
       });
 
       if (!res.ok) throw new Error('Failed to toggle reaction');
-        
+
       // Track reaction
       trackCommentAction('reaction', { articleId, commentId, reactionType });
       fetchComments(); // Refresh comments
@@ -259,13 +262,18 @@ export default function CommentsSection({ articleId }: CommentsProps) {
           {/* Comment Header */}
           <div className="flex items-start gap-4 mb-4">
             <AppImage
-              src={comment.userProfiles?.avatarUrl || getAuthorAvatar(comment.userProfiles?.fullName || 'User')}
+              src={
+                comment.userProfiles?.avatarUrl ||
+                getAuthorAvatar(comment.userProfiles?.fullName || 'User')
+              }
               alt={`${comment.userProfiles?.fullName} avatar`}
               className="w-10 h-10 rounded-full object-cover"
             />
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
-                <span className="font-semibold text-foreground">{comment.userProfiles?.fullName}</span>
+                <span className="font-semibold text-foreground">
+                  {comment.userProfiles?.fullName}
+                </span>
                 {comment.isAuthorResponse && (
                   <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold">
                     Author
@@ -353,7 +361,8 @@ export default function CommentsSection({ articleId }: CommentsProps) {
                     disabled={!user}
                     className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-sm transition-colors ${
                       userReacted
-                        ? 'bg-primary/10 text-primary' :'bg-gray-100 text-secondary hover:bg-gray-200'
+                        ? 'bg-primary/10 text-primary'
+                        : 'bg-gray-100 text-secondary hover:bg-gray-200'
                     } ${!user ? 'opacity-50 cursor-not-allowed' : ''}`}
                     title={label}
                   >
@@ -473,7 +482,9 @@ export default function CommentsSection({ articleId }: CommentsProps) {
         {comments.length === 0 ? (
           <div className="text-center py-12">
             <Icon name="ChatBubbleLeftRightIcon" size={48} className="text-gray-300 mx-auto mb-4" />
-            <p className="text-secondary text-lg">No comments yet. Be the first to share your thoughts!</p>
+            <p className="text-secondary text-lg">
+              No comments yet. Be the first to share your thoughts!
+            </p>
           </div>
         ) : (
           comments.map((comment) => renderComment(comment))

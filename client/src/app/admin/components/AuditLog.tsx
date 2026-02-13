@@ -33,7 +33,8 @@ export default function AuditLog() {
     try {
       let query = supabase
         .from('admin_audit_logs')
-        .select(`
+        .select(
+          `
           *,
           admin_profiles:user_profiles!admin_audit_logs_admin_id_fkey(
             full_name,
@@ -43,12 +44,19 @@ export default function AuditLog() {
             full_name,
             email
           )
-        `)
+        `
+        )
         .order('created_at', { ascending: false })
         .limit(50);
 
       if (filter === 'user_actions') {
-        query = query.in('action_type', ['user_created', 'user_updated', 'user_deleted', 'user_role_changed', 'user_status_changed']);
+        query = query.in('action_type', [
+          'user_created',
+          'user_updated',
+          'user_deleted',
+          'user_role_changed',
+          'user_status_changed',
+        ]);
       } else if (filter === 'content_actions') {
         query = query.in('action_type', ['comment_moderated', 'content_deleted']);
       }
@@ -81,7 +89,7 @@ export default function AuditLog() {
   const formatActionType = (actionType: string) => {
     return actionType
       .split('_')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
   };
 
@@ -100,7 +108,9 @@ export default function AuditLog() {
         <button
           onClick={() => setFilter('all')}
           className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-            filter === 'all' ?'bg-primary text-white' :'bg-gray-100 text-secondary hover:bg-gray-200'
+            filter === 'all'
+              ? 'bg-primary text-white'
+              : 'bg-gray-100 text-secondary hover:bg-gray-200'
           }`}
         >
           All Actions
@@ -108,7 +118,9 @@ export default function AuditLog() {
         <button
           onClick={() => setFilter('user_actions')}
           className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-            filter === 'user_actions' ?'bg-primary text-white' :'bg-gray-100 text-secondary hover:bg-gray-200'
+            filter === 'user_actions'
+              ? 'bg-primary text-white'
+              : 'bg-gray-100 text-secondary hover:bg-gray-200'
           }`}
         >
           User Actions
@@ -116,7 +128,9 @@ export default function AuditLog() {
         <button
           onClick={() => setFilter('content_actions')}
           className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-            filter === 'content_actions' ?'bg-primary text-white' :'bg-gray-100 text-secondary hover:bg-gray-200'
+            filter === 'content_actions'
+              ? 'bg-primary text-white'
+              : 'bg-gray-100 text-secondary hover:bg-gray-200'
           }`}
         >
           Content Actions

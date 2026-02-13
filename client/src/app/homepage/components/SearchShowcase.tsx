@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
@@ -45,11 +45,11 @@ const SearchShowcase = () => {
               Powerful Search
             </span>
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Find What You Need in{' '}
-              <span className="gradient-text">Milliseconds</span>
+              Find What You Need in <span className="gradient-text">Milliseconds</span>
             </h2>
             <p className="text-xl text-secondary mb-8 leading-relaxed">
-              Our AI-powered search engine understands context and delivers precise results from 10,000+ articles instantly.
+              Our AI-powered search engine understands context and delivers precise results from
+              10,000+ articles instantly.
             </p>
 
             {/* Search Bar Demo */}

@@ -7,8 +7,18 @@ interface EmptyStateProps {
 
 const EmptyState = ({ query }: EmptyStateProps) => {
   const popularGuides = [
-    { id: 'pop_1', title: 'Getting Started with React', category: 'Technology', href: '/guides/react' },
-    { id: 'pop_2', title: 'Time Management Strategies', category: 'Lifestyle', href: '/guides/time-management' },
+    {
+      id: 'pop_1',
+      title: 'Getting Started with React',
+      category: 'Technology',
+      href: '/guides/react',
+    },
+    {
+      id: 'pop_2',
+      title: 'Time Management Strategies',
+      category: 'Lifestyle',
+      href: '/guides/time-management',
+    },
     { id: 'pop_3', title: 'Introduction to Python', category: 'Education', href: '/guides/python' },
   ];
 
@@ -17,9 +27,7 @@ const EmptyState = ({ query }: EmptyStateProps) => {
       <div className="w-24 h-24 rounded-3xl bg-muted flex items-center justify-center mx-auto mb-8">
         <Icon name="MagnifyingGlassIcon" size={48} className="text-muted-foreground" />
       </div>
-      <h3 className="text-3xl font-bold text-foreground mb-4">
-        No results found for "{query}"
-      </h3>
+      <h3 className="text-3xl font-bold text-foreground mb-4">No results found for "{query}"</h3>
       <p className="text-xl text-secondary mb-12 max-w-2xl mx-auto">
         Try adjusting your search terms or explore our popular guides below.
       </p>

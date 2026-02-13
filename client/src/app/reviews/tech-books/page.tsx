@@ -9,12 +9,13 @@ import { techBookReviews } from '@/data/tech-books';
 
 export const metadata: Metadata = {
   title: 'Tech Book Reviews: Programming, Architecture & Cloud - CACBLAZE',
-  description: 'Unbiased reviews of the most important technical books for developers, architects, and data scientists.',
+  description:
+    'Unbiased reviews of the most important technical books for developers, architects, and data scientists.',
 };
 
 export default function TechBooksListingPage() {
   const reviews = Object.values(techBookReviews);
-  
+
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Reviews', href: '/reviews' },
@@ -23,10 +24,14 @@ export default function TechBooksListingPage() {
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case 'Beginner': return 'bg-emerald-100 text-emerald-700';
-      case 'Intermediate': return 'bg-amber-100 text-amber-700';
-      case 'Advanced': return 'bg-rose-100 text-rose-700';
-      default: return 'bg-slate-100 text-slate-700';
+      case 'Beginner':
+        return 'bg-emerald-100 text-emerald-700';
+      case 'Intermediate':
+        return 'bg-amber-100 text-amber-700';
+      case 'Advanced':
+        return 'bg-rose-100 text-rose-700';
+      default:
+        return 'bg-slate-100 text-slate-700';
     }
   };
 
@@ -45,11 +50,10 @@ export default function TechBooksListingPage() {
               <span className="inline-block px-4 py-2 rounded-full bg-indigo-500/20 text-indigo-300 text-sm font-semibold uppercase tracking-wide mb-4 border border-indigo-500/30">
                 Engineering Library
               </span>
-              <h1 className="text-5xl lg:text-6xl font-bold mb-6">
-                Code Better.
-              </h1>
+              <h1 className="text-5xl lg:text-6xl font-bold mb-6">Code Better.</h1>
               <p className="text-xl text-slate-300 mb-8 leading-relaxed">
-                Deep dives into the technical manuals, architectural guides, and engineering manifestos that define the industry.
+                Deep dives into the technical manuals, architectural guides, and engineering
+                manifestos that define the industry.
               </p>
             </div>
           </div>
@@ -60,8 +64,8 @@ export default function TechBooksListingPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {reviews.map((review) => (
-                <Link 
-                  key={review.id} 
+                <Link
+                  key={review.id}
                   href={`/reviews/tech-books/${review.slug}`}
                   className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                 >
@@ -82,17 +86,23 @@ export default function TechBooksListingPage() {
                     <div className="flex items-center gap-2 mb-3">
                       <div className="flex items-center text-yellow-500">
                         <Icon name="StarIcon" size={16} className="fill-current" />
-                        <span className="ml-1 text-sm font-bold text-slate-900">{review.rating}</span>
+                        <span className="ml-1 text-sm font-bold text-slate-900">
+                          {review.rating}
+                        </span>
                       </div>
                       <span className="text-slate-200">|</span>
-                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-tighter ${getDifficultyColor(review.difficulty)}`}>
+                      <span
+                        className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-tighter ${getDifficultyColor(review.difficulty)}`}
+                      >
                         {review.difficulty}
                       </span>
                     </div>
                     <h3 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors">
                       {review.name}
                     </h3>
-                    <p className="text-sm font-medium text-slate-400 mb-3">by {review.author_book}</p>
+                    <p className="text-sm font-medium text-slate-400 mb-3">
+                      by {review.author_book}
+                    </p>
                     <p className="text-slate-600 text-sm line-clamp-2 mb-6 flex-grow italic leading-relaxed">
                       "{review.description}"
                     </p>
@@ -106,11 +116,17 @@ export default function TechBooksListingPage() {
                             className="object-cover"
                           />
                         </div>
-                        <span className="text-xs font-medium text-slate-700">{review.author.name}</span>
+                        <span className="text-xs font-medium text-slate-700">
+                          {review.author.name}
+                        </span>
                       </div>
                       <div className="flex items-center text-indigo-600 font-bold text-sm">
                         View Specs
-                        <Icon name="CommandLineIcon" size={16} className="ml-1.5 group-hover:translate-x-0.5 transition-transform" />
+                        <Icon
+                          name="CommandLineIcon"
+                          size={16}
+                          className="ml-1.5 group-hover:translate-x-0.5 transition-transform"
+                        />
                       </div>
                     </div>
                   </div>

@@ -14,7 +14,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const guide = studyGuides[slug];
-  
+
   if (!guide) return { title: 'Guide Not Found' };
 
   return {
@@ -47,7 +47,7 @@ export default async function StudyGuideDetailPage({ params }: PageProps) {
           </div>
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <Breadcrumb items={breadcrumbItems} className="mb-8 text-blue-400" />
-            
+
             <div className="grid lg:grid-cols-2 gap-20 items-center">
               <div>
                 <div className="flex items-center gap-4 mb-8">
@@ -65,7 +65,7 @@ export default async function StudyGuideDetailPage({ params }: PageProps) {
                 <p className="text-2xl text-blue-100/80 leading-relaxed mb-12 italic border-l-8 border-blue-500 pl-10">
                   "{guide.description}"
                 </p>
-                
+
                 <div className="flex items-center gap-6 p-8 bg-white/5 backdrop-blur-xl rounded-[2.5rem] border border-white/10 shadow-2xl">
                   <div className="relative w-16 h-16 rounded-2xl overflow-hidden ring-4 ring-blue-500/50 shadow-inner">
                     <AppImage
@@ -77,7 +77,9 @@ export default async function StudyGuideDetailPage({ params }: PageProps) {
                   </div>
                   <div>
                     <p className="font-black text-white text-xl">{guide.author.name}</p>
-                    <p className="text-blue-400 text-sm font-bold uppercase tracking-widest">{guide.author.role}</p>
+                    <p className="text-blue-400 text-sm font-bold uppercase tracking-widest">
+                      {guide.author.role}
+                    </p>
                   </div>
                   <div className="ml-auto text-[10px] text-blue-500/60 font-black uppercase tracking-[0.2em] vertical-rl">
                     Updated {guide.publishDate}
@@ -112,7 +114,10 @@ export default async function StudyGuideDetailPage({ params }: PageProps) {
                 </h2>
                 <div className="grid gap-8">
                   {guide.topics.map((topic, index) => (
-                    <div key={index} className="bg-white p-10 rounded-[2.5rem] shadow-sm border border-blue-50 hover:shadow-xl transition-shadow duration-500">
+                    <div
+                      key={index}
+                      className="bg-white p-10 rounded-[2.5rem] shadow-sm border border-blue-50 hover:shadow-xl transition-shadow duration-500"
+                    >
                       <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
                         <span className="text-blue-600 font-black">0{index + 1}.</span>
                         {topic.title}
@@ -134,18 +139,24 @@ export default async function StudyGuideDetailPage({ params }: PageProps) {
                 </h3>
                 <div className="space-y-6">
                   <div className="flex items-center justify-between p-4 bg-blue-50 rounded-2xl">
-                    <span className="text-sm font-bold text-blue-900/60 uppercase tracking-wider">Level</span>
+                    <span className="text-sm font-bold text-blue-900/60 uppercase tracking-wider">
+                      Level
+                    </span>
                     <span className="font-black text-blue-900">{guide.level}</span>
                   </div>
                   <div className="flex items-center justify-between p-4 bg-amber-50 rounded-2xl">
-                    <span className="text-sm font-bold text-amber-900/60 uppercase tracking-wider">Rating</span>
+                    <span className="text-sm font-bold text-amber-900/60 uppercase tracking-wider">
+                      Rating
+                    </span>
                     <div className="flex items-center text-amber-600 font-black">
                       <Icon name="StarIcon" size={16} className="fill-current mr-1" />
                       {guide.rating}
                     </div>
                   </div>
                   <div className="flex items-center justify-between p-4 bg-emerald-50 rounded-2xl">
-                    <span className="text-sm font-bold text-emerald-900/60 uppercase tracking-wider">Subject</span>
+                    <span className="text-sm font-bold text-emerald-900/60 uppercase tracking-wider">
+                      Subject
+                    </span>
                     <span className="font-black text-emerald-900">{guide.subject}</span>
                   </div>
                 </div>

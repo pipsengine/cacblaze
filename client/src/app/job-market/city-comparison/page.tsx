@@ -1,4 +1,3 @@
-
 'use client';
 
 import Header from '@/components/common/Header';
@@ -61,10 +60,15 @@ export default function CityComparisonPage() {
       <main className="min-h-screen pt-20 bg-gray-50">
         <div className="bg-primary/5 py-12">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <Link href="/job-market" className="text-sm text-secondary hover:text-primary mb-4 inline-block">
+            <Link
+              href="/job-market"
+              className="text-sm text-secondary hover:text-primary mb-4 inline-block"
+            >
               ← Back to Job Market
             </Link>
-            <h1 className="text-4xl font-bold text-foreground mb-4">City Cost of Living Comparison</h1>
+            <h1 className="text-4xl font-bold text-foreground mb-4">
+              City Cost of Living Comparison
+            </h1>
             <p className="text-xl text-secondary max-w-2xl">
               Compare the cost of living and earning potential across major Nigerian cities.
             </p>
@@ -91,20 +95,32 @@ export default function CityComparisonPage() {
                       <td className="p-6 font-bold text-foreground">{city.name}</td>
                       <td className="p-6">
                         <div className="font-medium text-foreground">{city.rentPrice}</div>
-                        <span className={`text-xs px-2 py-1 rounded-full ${
-                          city.rent === 'Very High' ? 'bg-red-100 text-red-700' :
-                          city.rent === 'High' ? 'bg-orange-100 text-orange-700' :
-                          'bg-green-100 text-green-700'
-                        }`}>{city.rent}</span>
+                        <span
+                          className={`text-xs px-2 py-1 rounded-full ${
+                            city.rent === 'Very High'
+                              ? 'bg-red-100 text-red-700'
+                              : city.rent === 'High'
+                                ? 'bg-orange-100 text-orange-700'
+                                : 'bg-green-100 text-green-700'
+                          }`}
+                        >
+                          {city.rent}
+                        </span>
                       </td>
                       <td className="p-6 text-secondary">{city.transport}</td>
                       <td className="p-6 text-secondary">{city.food}</td>
                       <td className="p-6">
-                        <span className={`font-medium ${
-                          city.salary === 'Highest' ? 'text-green-600' :
-                          city.salary === 'High' ? 'text-blue-600' :
-                          'text-gray-600'
-                        }`}>{city.salary}</span>
+                        <span
+                          className={`font-medium ${
+                            city.salary === 'Highest'
+                              ? 'text-green-600'
+                              : city.salary === 'High'
+                                ? 'text-blue-600'
+                                : 'text-gray-600'
+                          }`}
+                        >
+                          {city.salary}
+                        </span>
                       </td>
                       <td className="p-6 text-secondary">{city.vibe}</td>
                     </tr>

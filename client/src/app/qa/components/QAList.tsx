@@ -52,7 +52,7 @@ export default function QAList() {
     try {
       const response = await fetch('/api/qa/questions?limit=20');
       const data = await response.json();
-      
+
       if (data.success) {
         const formatted = data.questions.map((q: any) => ({
           id: q.id,
@@ -69,18 +69,19 @@ export default function QAList() {
             avatarUrl: q.user_profiles?.avatar_url,
             role: q.user_profiles?.role || 'user',
           },
-          qaAnswers: q.qa_answers?.map((a: any) => ({
-            id: a.id,
-            content: a.content,
-            isAccepted: a.is_accepted,
-            upvotes: a.upvotes,
-            createdAt: a.created_at,
-            userProfiles: {
-              fullName: a.user_profiles?.full_name || 'Anonymous',
-              avatarUrl: a.user_profiles?.avatar_url,
-              role: a.user_profiles?.role || 'user',
-            },
-          })) || [],
+          qaAnswers:
+            q.qa_answers?.map((a: any) => ({
+              id: a.id,
+              content: a.content,
+              isAccepted: a.is_accepted,
+              upvotes: a.upvotes,
+              createdAt: a.created_at,
+              userProfiles: {
+                fullName: a.user_profiles?.full_name || 'Anonymous',
+                avatarUrl: a.user_profiles?.avatar_url,
+                role: a.user_profiles?.role || 'user',
+              },
+            })) || [],
         }));
         setQuestions(formatted);
       }
@@ -103,7 +104,7 @@ export default function QAList() {
           content: answerContent,
         }),
       });
-      
+
       setAnswerContent('');
       setSelectedQuestion(null);
       fetchQuestions();
@@ -147,7 +148,10 @@ export default function QAList() {
   return (
     <div className="space-y-4">
       {questions.map((question) => (
-        <div key={question.id} className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+        <div
+          key={question.id}
+          className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow"
+        >
           <div className="flex gap-4">
             {/* Upvote Section */}
             <div className="flex flex-col items-center gap-2">
@@ -172,9 +176,7 @@ export default function QAList() {
                     <span className="text-xs text-secondary">
                       {question.qaAnswers.length} answers
                     </span>
-                    <span className="text-xs text-secondary">
-                      {question.viewCount} views
-                    </span>
+                    <span className="text-xs text-secondary">{question.viewCount} views</span>
                   </div>
                 </div>
                 {question.status === 'answered' && (
@@ -197,7 +199,9 @@ export default function QAList() {
                   className="rounded-full"
                 />
                 <div>
-                  <p className="text-sm font-medium text-foreground">{question.userProfiles.fullName}</p>
+                  <p className="text-sm font-medium text-foreground">
+                    {question.userProfiles.fullName}
+                  </p>
                   <p className="text-xs text-secondary">
                     {new Date(question.createdAt).toLocaleDateString()}
                   </p>
@@ -218,7 +222,9 @@ export default function QAList() {
                       />
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <p className="text-sm font-medium text-foreground">{answer.userProfiles.fullName}</p>
+                          <p className="text-sm font-medium text-foreground">
+                            {answer.userProfiles.fullName}
+                          </p>
                           {answer.isAccepted && (
                             <span className="flex items-center gap-1 text-xs px-2 py-0.5 bg-green-100 text-green-700 rounded">
                               <Icon name="CheckIcon" size={12} />
@@ -261,7 +267,10 @@ export default function QAList() {
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-xl font-bold text-foreground">Your Answer</h3>
-              <button onClick={() => setSelectedQuestion(null)} className="text-secondary hover:text-foreground">
+              <button
+                onClick={() => setSelectedQuestion(null)}
+                className="text-secondary hover:text-foreground"
+              >
                 <Icon name="XMarkIcon" size={24} />
               </button>
             </div>

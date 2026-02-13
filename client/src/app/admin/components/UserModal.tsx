@@ -36,9 +36,11 @@ export default function UserModal({ user, onClose, onSave }: UserModalProps) {
     onSave(formData);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     const { name, value, type } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
     }));
@@ -52,10 +54,7 @@ export default function UserModal({ user, onClose, onSave }: UserModalProps) {
           <h2 className="text-2xl font-bold text-foreground">
             {user ? 'Edit User' : 'Create New User'}
           </h2>
-          <button
-            onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-          >
+          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <Icon name="XMarkIcon" size={24} className="text-secondary" />
           </button>
         </div>

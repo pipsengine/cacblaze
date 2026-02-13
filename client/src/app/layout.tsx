@@ -16,8 +16,17 @@ export const metadata: Metadata = {
     default: 'CACBLAZE - Nigerian Knowledge Platform',
     template: '%s | CACBLAZE',
   },
-  description: 'Comprehensive guides across technology, education, lifestyle, finance, and more. Expert-verified content for Nigerians.',
-  keywords: ['guides', 'tutorials', 'how-to', 'education', 'technology', 'Nigeria', 'knowledge platform'],
+  description:
+    'Comprehensive guides across technology, education, lifestyle, finance, and more. Expert-verified content for Nigerians.',
+  keywords: [
+    'guides',
+    'tutorials',
+    'how-to',
+    'education',
+    'technology',
+    'Nigeria',
+    'knowledge platform',
+  ],
   authors: [{ name: 'CACBLAZE Team' }],
   creator: 'CACBLAZE',
   publisher: 'CACBLAZE',
@@ -70,7 +79,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
-</head>
+      </head>
       <body>
         <Suspense fallback={null}>
           <GoogleAnalytics />

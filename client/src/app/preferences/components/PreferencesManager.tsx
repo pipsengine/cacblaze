@@ -95,9 +95,7 @@ const PreferencesManager = () => {
 
   const toggleCategory = (category: string) => {
     setFavoriteCategories((prev) =>
-      prev.includes(category)
-        ? prev.filter((c) => c !== category)
-        : [...prev, category]
+      prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category]
     );
   };
 
@@ -144,7 +142,8 @@ const PreferencesManager = () => {
               onClick={() => toggleCategory(category.id)}
               className={`flex items-center gap-2 px-4 py-3 rounded-xl border-2 transition-all ${
                 favoriteCategories.includes(category.id)
-                  ? 'border-primary bg-primary/5 text-primary' :'border-gray-200 text-secondary hover:border-gray-300'
+                  ? 'border-primary bg-primary/5 text-primary'
+                  : 'border-gray-200 text-secondary hover:border-gray-300'
               }`}
             >
               <Icon name={category.icon as any} size={20} />
@@ -160,9 +159,7 @@ const PreferencesManager = () => {
           <Icon name="TagIcon" size={24} className="text-primary" />
           <h2 className="text-xl font-bold text-foreground">Favorite Topics</h2>
         </div>
-        <p className="text-sm text-secondary mb-4">
-          Choose specific topics you want to follow
-        </p>
+        <p className="text-sm text-secondary mb-4">Choose specific topics you want to follow</p>
         <div className="flex flex-wrap gap-2">
           {AVAILABLE_TOPICS.map((topic) => (
             <button
@@ -170,7 +167,8 @@ const PreferencesManager = () => {
               onClick={() => toggleTopic(topic)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                 favoriteTopics.includes(topic)
-                  ? 'bg-primary text-white' :'bg-gray-100 text-secondary hover:bg-gray-200'
+                  ? 'bg-primary text-white'
+                  : 'bg-gray-100 text-secondary hover:bg-gray-200'
               }`}
             >
               {topic.replace('-', ' ')}
@@ -209,9 +207,7 @@ const PreferencesManager = () => {
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-sm font-semibold text-foreground">Email Notifications</h3>
-              <p className="text-xs text-secondary">
-                Receive email updates about new content
-              </p>
+              <p className="text-xs text-secondary">Receive email updates about new content</p>
             </div>
             <button
               onClick={() => setEmailNotifications(!emailNotifications)}

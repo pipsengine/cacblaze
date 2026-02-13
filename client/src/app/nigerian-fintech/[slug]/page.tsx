@@ -15,7 +15,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const fintech = nigerianFintechData[slug];
-  
+
   if (!fintech) {
     return {
       title: 'Fintech Not Found - CACBLAZE',
@@ -39,13 +39,13 @@ const FintechDetailPage = async ({ params }: PageProps) => {
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Nigerian Fintech', href: '/nigerian-fintech' },
-    { name: fintech.name, href: `/nigerian-fintech/${fintech.slug}` }
+    { name: fintech.name, href: `/nigerian-fintech/${fintech.slug}` },
   ];
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
-      
+
       <main className="flex-grow pt-24 pb-12">
         <div className="container mx-auto px-4">
           <Breadcrumb items={breadcrumbItems} />
@@ -68,9 +68,7 @@ const FintechDetailPage = async ({ params }: PageProps) => {
                   {fintech.name} Review
                 </h1>
 
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  {fintech.description}
-                </p>
+                <p className="text-xl text-gray-600 mb-8 leading-relaxed">{fintech.description}</p>
 
                 <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
@@ -83,7 +81,9 @@ const FintechDetailPage = async ({ params }: PageProps) => {
                   </div>
                   <div>
                     <div className="text-gray-900 font-bold">{fintech.author.name}</div>
-                    <div className="text-gray-500 text-sm">{fintech.author.role} • {fintech.publishDate}</div>
+                    <div className="text-gray-500 text-sm">
+                      {fintech.author.role} • {fintech.publishDate}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -114,7 +114,9 @@ const FintechDetailPage = async ({ params }: PageProps) => {
                     <div className="text-gray-900 font-medium">{fintech.founded}</div>
                   </div>
                   <div>
-                    <div className="text-gray-400 text-sm uppercase font-bold mb-1">Headquarters</div>
+                    <div className="text-gray-400 text-sm uppercase font-bold mb-1">
+                      Headquarters
+                    </div>
                     <div className="text-gray-900 font-medium">{fintech.headquarters}</div>
                   </div>
                   <div>
@@ -122,16 +124,22 @@ const FintechDetailPage = async ({ params }: PageProps) => {
                     <div className="text-gray-900 font-medium">{fintech.specs.valuation}</div>
                   </div>
                   <div>
-                    <div className="text-gray-400 text-sm uppercase font-bold mb-1">Regulatory Reach</div>
+                    <div className="text-gray-400 text-sm uppercase font-bold mb-1">
+                      Regulatory Reach
+                    </div>
                     <div className="text-gray-900 font-medium">{fintech.specs.reach}</div>
                   </div>
                   <div>
-                    <div className="text-gray-400 text-sm uppercase font-bold mb-1">License Type</div>
+                    <div className="text-gray-400 text-sm uppercase font-bold mb-1">
+                      License Type
+                    </div>
                     <div className="text-gray-900 font-medium">{fintech.specs.license}</div>
                   </div>
                   <div>
                     <div className="text-gray-400 text-sm uppercase font-bold mb-1">API Access</div>
-                    <div className="text-gray-900 font-medium">{fintech.specs.apiAvailable ? 'Available' : 'Limited/Private'}</div>
+                    <div className="text-gray-900 font-medium">
+                      {fintech.specs.apiAvailable ? 'Available' : 'Limited/Private'}
+                    </div>
                   </div>
                 </div>
               </section>
@@ -188,11 +196,16 @@ const FintechDetailPage = async ({ params }: PageProps) => {
                 <h3 className="text-xl font-bold text-gray-900 mb-6">Key Products</h3>
                 <div className="space-y-4">
                   {fintech.specs.keyProducts.map((product, idx) => (
-                    <div key={idx} className="flex items-center p-4 bg-gray-50 rounded-xl group hover:bg-blue-50 transition-colors">
+                    <div
+                      key={idx}
+                      className="flex items-center p-4 bg-gray-50 rounded-xl group hover:bg-blue-50 transition-colors"
+                    >
                       <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center shadow-sm text-blue-600 font-bold mr-4">
                         {idx + 1}
                       </div>
-                      <span className="font-bold text-gray-700 group-hover:text-blue-700">{product}</span>
+                      <span className="font-bold text-gray-700 group-hover:text-blue-700">
+                        {product}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -201,8 +214,10 @@ const FintechDetailPage = async ({ params }: PageProps) => {
               {/* Related Links */}
               <div className="bg-gradient-to-br from-blue-600 to-indigo-700 p-8 rounded-3xl text-white shadow-lg">
                 <h3 className="text-xl font-bold mb-4">Compare Fintechs</h3>
-                <p className="text-blue-100 mb-6">See how {fintech.name} stacks up against other Nigerian fintech giants.</p>
-                <Link 
+                <p className="text-blue-100 mb-6">
+                  See how {fintech.name} stacks up against other Nigerian fintech giants.
+                </p>
+                <Link
                   href="/nigerian-fintech"
                   className="inline-flex items-center justify-center w-full py-4 bg-white text-blue-600 font-black rounded-xl hover:bg-blue-50 transition-colors"
                 >

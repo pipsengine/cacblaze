@@ -5,7 +5,6 @@ import { createClient } from '@/lib/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import Icon from '@/components/ui/AppIcon';
 
-
 interface Bookmark {
   id: string;
   articleId: string;
@@ -21,7 +20,11 @@ interface BookmarkButtonProps {
   articleCategory: string;
 }
 
-export default function BookmarkButton({ articleId, articleTitle, articleCategory }: BookmarkButtonProps) {
+export default function BookmarkButton({
+  articleId,
+  articleTitle,
+  articleCategory,
+}: BookmarkButtonProps) {
   const { user } = useAuth();
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -96,8 +99,7 @@ export default function BookmarkButton({ articleId, articleTitle, articleCategor
       onClick={toggleBookmark}
       disabled={loading}
       className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-        isBookmarked
-          ? 'bg-primary text-white' :'bg-gray-100 text-foreground hover:bg-gray-200'
+        isBookmarked ? 'bg-primary text-white' : 'bg-gray-100 text-foreground hover:bg-gray-200'
       } disabled:opacity-50`}
     >
       <Icon
@@ -105,9 +107,7 @@ export default function BookmarkButton({ articleId, articleTitle, articleCategor
         size={20}
         className={isBookmarked ? 'fill-current' : ''}
       />
-      <span className="text-sm font-medium">
-        {isBookmarked ? 'Bookmarked' : 'Bookmark'}
-      </span>
+      <span className="text-sm font-medium">{isBookmarked ? 'Bookmarked' : 'Bookmark'}</span>
     </button>
   );
 }

@@ -14,7 +14,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const review = saasReviews[slug];
-  
+
   if (!review) return { title: 'Review Not Found' };
 
   return {
@@ -47,7 +47,7 @@ export default async function SaaSDetailPage({ params }: PageProps) {
           </div>
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <Breadcrumb items={breadcrumbItems} className="mb-8 text-sky-400" />
-            
+
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <div className="flex items-center gap-4 mb-8">
@@ -65,7 +65,7 @@ export default async function SaaSDetailPage({ params }: PageProps) {
                 <p className="text-xl text-slate-300 leading-relaxed mb-10 border-l-4 border-sky-500 pl-8">
                   {review.description}
                 </p>
-                
+
                 <div className="flex items-center gap-6 p-6 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10">
                   <div className="relative w-14 h-14 rounded-2xl overflow-hidden ring-2 ring-sky-500/50">
                     <AppImage
@@ -115,7 +115,9 @@ export default async function SaaSDetailPage({ params }: PageProps) {
                   "{review.verdict}"
                 </p>
                 <div className="bg-sky-50 rounded-2xl p-6 border border-sky-100">
-                  <p className="font-bold text-sky-900 mb-2 uppercase tracking-widest text-xs">Best For</p>
+                  <p className="font-bold text-sky-900 mb-2 uppercase tracking-widest text-xs">
+                    Best For
+                  </p>
                   <p className="text-sky-800 text-lg">{review.bestFor}</p>
                 </div>
               </div>
@@ -128,7 +130,10 @@ export default async function SaaSDetailPage({ params }: PageProps) {
                 </h3>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {review.keyFeatures.map((feature, i) => (
-                    <div key={i} className="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div
+                      key={i}
+                      className="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100"
+                    >
                       <div className="w-2 h-2 rounded-full bg-sky-400" />
                       <span className="font-semibold text-slate-700">{feature}</span>
                     </div>
@@ -146,7 +151,11 @@ export default async function SaaSDetailPage({ params }: PageProps) {
                   <ul className="space-y-4">
                     {review.pros.map((pro, i) => (
                       <li key={i} className="flex gap-3 text-emerald-800 leading-snug">
-                        <Icon name="CheckIcon" size={18} className="text-emerald-500 shrink-0 mt-0.5" />
+                        <Icon
+                          name="CheckIcon"
+                          size={18}
+                          className="text-emerald-500 shrink-0 mt-0.5"
+                        />
                         {pro}
                       </li>
                     ))}
@@ -160,7 +169,11 @@ export default async function SaaSDetailPage({ params }: PageProps) {
                   <ul className="space-y-4">
                     {review.cons.map((con, i) => (
                       <li key={i} className="flex gap-3 text-rose-800 leading-snug">
-                        <Icon name="XMarkIcon" size={18} className="text-rose-500 shrink-0 mt-0.5" />
+                        <Icon
+                          name="XMarkIcon"
+                          size={18}
+                          className="text-rose-500 shrink-0 mt-0.5"
+                        />
                         {con}
                       </li>
                     ))}
@@ -172,35 +185,49 @@ export default async function SaaSDetailPage({ params }: PageProps) {
             {/* Sidebar Specs */}
             <div className="space-y-8">
               <div className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-slate-100 sticky top-28">
-                <h3 className="text-xl font-bold text-slate-900 mb-8 border-b border-slate-100 pb-4">Platform Specs</h3>
+                <h3 className="text-xl font-bold text-slate-900 mb-8 border-b border-slate-100 pb-4">
+                  Platform Specs
+                </h3>
                 <div className="space-y-8">
                   <div>
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Pricing Model</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+                      Pricing Model
+                    </p>
                     <p className="text-lg font-bold text-slate-900 flex items-center gap-2">
                       <Icon name="TagIcon" size={18} className="text-sky-500" />
                       {review.pricingModel}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Price Range</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+                      Price Range
+                    </p>
                     <p className="text-lg font-bold text-slate-900 flex items-center gap-2">
                       <Icon name="CurrencyDollarIcon" size={18} className="text-sky-500" />
                       {review.priceRange}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Deployment</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+                      Deployment
+                    </p>
                     <p className="text-lg font-bold text-slate-900 flex items-center gap-2">
                       <Icon name="CloudIcon" size={18} className="text-sky-500" />
                       {review.deployment}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Free Plan Available</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+                      Free Plan Available
+                    </p>
                     <div className="flex items-center gap-2">
-                      <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                        review.freePlan ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'
-                      }`}>
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-bold ${
+                          review.freePlan
+                            ? 'bg-emerald-100 text-emerald-700'
+                            : 'bg-rose-100 text-rose-700'
+                        }`}
+                      >
                         {review.freePlan ? 'Yes' : 'No'}
                       </span>
                     </div>

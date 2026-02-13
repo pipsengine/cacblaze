@@ -25,9 +25,7 @@ const ReadingProgressTracker = ({ articleId, category }: ReadingProgressTrackerP
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       const scrollTop = window.scrollY;
-      const scrollPercentage = Math.round(
-        (scrollTop / (documentHeight - windowHeight)) * 100
-      );
+      const scrollPercentage = Math.round((scrollTop / (documentHeight - windowHeight)) * 100);
 
       setProgress(Math.min(100, Math.max(0, scrollPercentage)));
     };

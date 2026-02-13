@@ -70,7 +70,8 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
     try {
       let query = supabase
         .from('comments')
-        .select(`
+        .select(
+          `
           *,
           user_profiles:user_profiles!comments_user_id_fkey(
             full_name,
@@ -83,7 +84,8 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
               full_name
             )
           )
-        `)
+        `
+        )
         .eq('article_id', articleId)
         .order('created_at', { ascending: false });
 
@@ -97,23 +99,25 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
 
       if (error) throw error;
 
-      const formattedComments = data?.map((comment: any) => ({
-        id: comment.id,
-        content: comment.content,
-        status: comment.status,
-        createdAt: comment.created_at,
-        userProfiles: {
-          fullName: comment.user_profiles?.full_name || 'Anonymous',
-          email: comment.user_profiles?.email || '',
-        },
-        flags: comment.flags?.map((f: any) => ({
-          id: f.id,
-          reason: f.reason,
+      const formattedComments =
+        data?.map((comment: any) => ({
+          id: comment.id,
+          content: comment.content,
+          status: comment.status,
+          createdAt: comment.created_at,
           userProfiles: {
-            fullName: f.user_profiles?.full_name || 'Anonymous',
+            fullName: comment.user_profiles?.full_name || 'Anonymous',
+            email: comment.user_profiles?.email || '',
           },
-        })) || [],
-      })) || [];
+          flags:
+            comment.flags?.map((f: any) => ({
+              id: f.id,
+              reason: f.reason,
+              userProfiles: {
+                fullName: f.user_profiles?.full_name || 'Anonymous',
+              },
+            })) || [],
+        })) || [];
 
       setComments(formattedComments);
     } catch (error) {
@@ -141,10 +145,7 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
     if (!confirm('Are you sure you want to permanently delete this comment?')) return;
 
     try {
-      const { error } = await supabase
-        .from('comments')
-        .delete()
-        .eq('id', commentId);
+      const { error } = await supabase.from('comments').delete().eq('id', commentId);
 
       if (error) throw error;
       fetchComments();
@@ -156,10 +157,7 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
   const handleDismissFlag = async (flagId: string, commentId: string) => {
     try {
       // Delete the flag
-      const { error: flagError } = await supabase
-        .from('comment_flags')
-        .delete()
-        .eq('id', flagId);
+      const { error: flagError } = await supabase.from('comment_flags').delete().eq('id', flagId);
 
       if (flagError) throw flagError;
 
@@ -170,10 +168,7 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
         .eq('comment_id', commentId);
 
       if (!remainingFlags || remainingFlags.length === 0) {
-        await supabase
-          .from('comments')
-          .update({ status: 'approved' })
-          .eq('id', commentId);
+        await supabase.from('comments').update({ status: 'approved' }).eq('id', commentId);
       }
 
       fetchComments();
@@ -206,7 +201,9 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
           <button
             onClick={() => setFilter('all')}
             className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-              filter === 'all' ?'bg-primary text-white' :'bg-gray-100 text-secondary hover:bg-gray-200'
+              filter === 'all'
+                ? 'bg-primary text-white'
+                : 'bg-gray-100 text-secondary hover:bg-gray-200'
             }`}
           >
             All
@@ -214,7 +211,9 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
           <button
             onClick={() => setFilter('pending')}
             className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-              filter === 'pending' ?'bg-primary text-white' :'bg-gray-100 text-secondary hover:bg-gray-200'
+              filter === 'pending'
+                ? 'bg-primary text-white'
+                : 'bg-gray-100 text-secondary hover:bg-gray-200'
             }`}
           >
             Pending
@@ -222,7 +221,9 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
           <button
             onClick={() => setFilter('flagged')}
             className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-              filter === 'flagged' ?'bg-primary text-white' :'bg-gray-100 text-secondary hover:bg-gray-200'
+              filter === 'flagged'
+                ? 'bg-primary text-white'
+                : 'bg-gray-100 text-secondary hover:bg-gray-200'
             }`}
           >
             Flagged
@@ -251,9 +252,13 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
                 </div>
                 <span
                   className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                    comment.status === 'approved' ?'bg-success/10 text-success'
-                      : comment.status === 'pending' ?'bg-warning/10 text-warning'
-                      : comment.status === 'flagged' ?'bg-destructive/10 text-destructive' :'bg-gray-200 text-gray-600'
+                    comment.status === 'approved'
+                      ? 'bg-success/10 text-success'
+                      : comment.status === 'pending'
+                        ? 'bg-warning/10 text-warning'
+                        : comment.status === 'flagged'
+                          ? 'bg-destructive/10 text-destructive'
+                          : 'bg-gray-200 text-gray-600'
                   }`}
                 >
                   {comment.status.toUpperCase()}
@@ -267,13 +272,15 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
               {comment.flags && comment.flags.length > 0 && (
                 <div className="mb-4 p-4 bg-destructive/5 rounded-lg border border-destructive/20">
                   <p className="text-sm font-semibold text-destructive mb-2">
-                    Flagged by {comment.flags.length} {comment.flags.length === 1 ? 'user' : 'users'}:
+                    Flagged by {comment.flags.length}{' '}
+                    {comment.flags.length === 1 ? 'user' : 'users'}:
                   </p>
                   {comment.flags.map((flag) => (
                     <div key={flag.id} className="flex items-start justify-between mb-2 last:mb-0">
                       <div>
                         <p className="text-sm text-foreground">
-                          <span className="font-medium">{flag.userProfiles.fullName}:</span> {flag.reason}
+                          <span className="font-medium">{flag.userProfiles.fullName}:</span>{' '}
+                          {flag.reason}
                         </p>
                       </div>
                       <button

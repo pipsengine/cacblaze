@@ -4,13 +4,12 @@ import { createClient } from '@/lib/supabase/server';
 export async function GET() {
   try {
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { data, error } = await supabase
@@ -27,10 +26,7 @@ export async function GET() {
     });
   } catch (error) {
     console.error('Bookmarks fetch error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch bookmarks' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch bookmarks' }, { status: 500 });
   }
 }
 
@@ -47,13 +43,12 @@ export async function POST(request: Request) {
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { data, error } = await supabase
@@ -76,10 +71,7 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('Bookmark creation error:', error);
-    return NextResponse.json(
-      { error: 'Failed to create bookmark' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to create bookmark' }, { status: 500 });
   }
 }
 
@@ -89,20 +81,16 @@ export async function DELETE(request: Request) {
     const bookmarkId = searchParams.get('bookmark_id');
 
     if (!bookmarkId) {
-      return NextResponse.json(
-        { error: 'bookmark_id is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'bookmark_id is required' }, { status: 400 });
     }
 
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { error } = await supabase
@@ -119,9 +107,6 @@ export async function DELETE(request: Request) {
     });
   } catch (error) {
     console.error('Bookmark deletion error:', error);
-    return NextResponse.json(
-      { error: 'Failed to delete bookmark' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to delete bookmark' }, { status: 500 });
   }
 }

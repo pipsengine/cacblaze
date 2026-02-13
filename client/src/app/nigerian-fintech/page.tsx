@@ -9,38 +9,41 @@ import { nigerianFintechData } from '@/data/nigerian-fintech';
 
 export const metadata: Metadata = {
   title: 'Nigerian Fintech Reviews: Best Companies & Services 2026 - CACBLAZE',
-  description: 'Expert reviews of Nigeria\'s top fintech companies including Flutterwave, Paystack, Interswitch, and more. We analyze their impact, services, and reliability.',
-  keywords: 'Nigerian fintech, Flutterwave review, Paystack, Interswitch, Paga, fintech companies Nigeria, payment gateways Nigeria'
+  description:
+    "Expert reviews of Nigeria's top fintech companies including Flutterwave, Paystack, Interswitch, and more. We analyze their impact, services, and reliability.",
+  keywords:
+    'Nigerian fintech, Flutterwave review, Paystack, Interswitch, Paga, fintech companies Nigeria, payment gateways Nigeria',
 };
 
 const NigerianFintechListingPage = () => {
   const fintechs = Object.values(nigerianFintechData);
-  
+
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
-    { name: 'Nigerian Fintech', href: '/nigerian-fintech' }
+    { name: 'Nigerian Fintech', href: '/nigerian-fintech' },
   ];
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
-      
+
       <main className="flex-grow pt-24 pb-12">
         <div className="container mx-auto px-4">
           <Breadcrumb items={breadcrumbItems} />
-          
+
           <header className="mb-12 mt-8">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Nigerian Fintech Reviews
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl">
-              In-depth analysis of the companies driving Nigeria's financial revolution. From payment gateways to wealth management, we review the best in the business.
+              In-depth analysis of the companies driving Nigeria's financial revolution. From
+              payment gateways to wealth management, we review the best in the business.
             </p>
           </header>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {fintechs.map((fintech) => (
-              <Link 
+              <Link
                 key={fintech.id}
                 href={`/nigerian-fintech/${fintech.slug}`}
                 className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col border border-gray-100"
@@ -67,13 +70,14 @@ const NigerianFintechListingPage = () => {
                   <h2 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                     {fintech.name}
                   </h2>
-                  <p className="text-gray-600 line-clamp-3 mb-6 flex-grow">
-                    {fintech.description}
-                  </p>
+                  <p className="text-gray-600 line-clamp-3 mb-6 flex-grow">{fintech.description}</p>
 
                   <div className="flex flex-wrap gap-2 mb-6">
                     {fintech.specs.keyProducts.slice(0, 3).map((product, idx) => (
-                      <span key={idx} className="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded">
+                      <span
+                        key={idx}
+                        className="text-xs font-medium bg-gray-100 text-gray-600 px-2 py-1 rounded"
+                      >
                         {product}
                       </span>
                     ))}
@@ -89,7 +93,9 @@ const NigerianFintechListingPage = () => {
                           className="object-cover"
                         />
                       </div>
-                      <span className="text-sm text-gray-500 font-medium">{fintech.author.name}</span>
+                      <span className="text-sm text-gray-500 font-medium">
+                        {fintech.author.name}
+                      </span>
                     </div>
                     <span className="text-blue-600 font-bold text-sm group-hover:translate-x-1 transition-transform flex items-center">
                       Read Review <Icon name="ArrowRight" className="w-4 h-4 ml-1" />
