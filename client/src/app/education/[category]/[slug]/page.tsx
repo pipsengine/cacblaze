@@ -102,16 +102,30 @@ export default async function EducationResourceDetailPage({ params }: Props) {
                 </p>
 
                 <h2 className="text-3xl font-bold text-slate-900 mb-8">What You'll Learn</h2>
-                <ul className="space-y-6 list-none p-0">
-                  {resource.content.map((item, index) => (
-                    <li key={index} className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-sm">
-                        {index + 1}
+                <div className="space-y-12">
+                  {resource.content.map((item, index) => {
+                    const isStructured = typeof item === 'object' && item !== null && 'title' in item;
+                    return (
+                      <div key={index} className="relative pl-12">
+                        <div className="absolute left-0 top-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-lg shadow-blue-200">
+                          {index + 1}
+                        </div>
+                        {isStructured ? (
+                          <>
+                            <h3 className="text-xl font-bold text-slate-900 mb-3 leading-tight">
+                              {item.title}
+                            </h3>
+                            <div className="text-slate-700 text-lg leading-relaxed prose prose-slate max-w-none">
+                              {item.body}
+                            </div>
+                          </>
+                        ) : (
+                          <span className="text-slate-700 text-lg leading-relaxed">{item}</span>
+                        )}
                       </div>
-                      <span className="text-slate-700 text-lg leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                    );
+                  })}
+                </div>
 
                 {resource.tips && resource.tips.length > 0 && (
                   <div className="mt-16 bg-blue-50 rounded-3xl p-8 lg:p-12 border border-blue-100">
