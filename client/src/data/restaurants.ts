@@ -14,6 +14,7 @@ export interface RestaurantReview {
   };
   publishDate: string;
   heroImage: string;
+  gallery: string[];
   specs: {
     address: string;
     openingHours: string;
@@ -45,6 +46,11 @@ export const restaurants: Record<string, RestaurantReview> = {
     publishDate: 'Feb 12, 2026',
     heroImage:
       'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1526318472351-c75aa2c7b117?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1523983301210-94cb5df1a9ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1525755662778-989d0524087e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    ],
     specs: {
       address: '35 Joel Ogunnaike St, Ikeja GRA, Lagos',
       openingHours: '12:00 PM - 11:00 PM',
@@ -75,6 +81,11 @@ export const restaurants: Record<string, RestaurantReview> = {
     publishDate: 'Feb 10, 2026',
     heroImage:
       'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1553532435-9347b7c1d66e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1555398293-4b0b9d5bdbd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    ],
     specs: {
       address: 'Plot 1392 Tiamiyu Savage St, Victoria Island, Lagos',
       openingHours: '11:00 AM - 10:30 PM',
@@ -104,6 +115,11 @@ export const restaurants: Record<string, RestaurantReview> = {
     publishDate: 'Feb 08, 2026',
     heroImage:
       'https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1533777324565-a040eb52fac1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1541542684-4a0b5f0c55c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1533777324565-6e59f1e3a836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    ],
     specs: {
       address: 'Plot 1376 Tiamiyu Savage St, Victoria Island, Lagos',
       openingHours: '9:00 AM - 10:00 PM',

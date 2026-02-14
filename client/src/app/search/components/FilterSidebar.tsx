@@ -1,15 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface FilterSidebarProps {
   onFilterChange: (filters: any) => void;
+  initialCategories?: string[];
 }
 
-const FilterSidebar = ({ onFilterChange }: FilterSidebarProps) => {
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+const FilterSidebar = ({ onFilterChange, initialCategories = [] }: FilterSidebarProps) => {
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(initialCategories);
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
   const [readTimeRange, setReadTimeRange] = useState<string>('all');
+  const initialized = useRef(false);
 
   const categories = [
     { id: 'cat_tech', value: 'technology', label: 'Technology', count: 2400 },
@@ -32,6 +34,17 @@ const FilterSidebar = ({ onFilterChange }: FilterSidebarProps) => {
     { id: 'time_medium', value: 'medium', label: 'Medium (5-15 min)' },
     { id: 'time_long', value: 'long', label: 'In-Depth (15+ min)' },
   ];
+
+  useEffect(() => {
+    if (!initialized.current && initialCategories.length > 0) {
+      initialized.current = true;
+      onFilterChange({
+        categories: initialCategories,
+        difficulty: selectedDifficulty,
+        readTime: readTimeRange,
+      });
+    }
+  }, [initialCategories, selectedDifficulty, readTimeRange, onFilterChange]);
 
   const handleCategoryToggle = (category: string) => {
     const newCategories = selectedCategories.includes(category)

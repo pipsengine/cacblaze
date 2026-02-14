@@ -93,6 +93,18 @@ export default async function HotelReviewPage({ params }: PageProps) {
                   </div>
                   <p className="text-gray-700 leading-relaxed">{review.verdict}</p>
                 </div>
+
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Highlights</h3>
+                  <ul className="space-y-3">
+                    {review.pros.slice(0, 3).map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-gray-700">
+                        <Icon name="SparklesIcon" className="h-5 w-5 text-indigo-500 mt-0.5 flex-shrink-0" />
+                        <span className="font-medium">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
               <div className="lg:col-span-5">
@@ -167,6 +179,20 @@ export default async function HotelReviewPage({ params }: PageProps) {
             </div>
           </div>
         </div>
+
+        {/* Gallery */}
+        {review.gallery?.length ? (
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 pb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Gallery</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {review.gallery.map((img, idx) => (
+                <div key={idx} className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                  <AppImage src={img} alt={`${review.name} photo ${idx + 1}`} fill className="object-cover" />
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : null}
 
         {/* Pros & Cons */}
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24">

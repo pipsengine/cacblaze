@@ -14,6 +14,7 @@ export interface HotelReview {
   };
   publishDate: string;
   heroImage: string;
+  gallery: string[];
   specs: {
     address: string;
     checkIn: string;
@@ -46,6 +47,11 @@ export const hotelReviews: Record<string, HotelReview> = {
     publishDate: 'Feb 12, 2026',
     heroImage:
       'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    ],
     specs: {
       address: 'Plot 1415 Adetokunbo Ademola Street, Victoria Island, Lagos',
       checkIn: '3:00 PM',
@@ -83,6 +89,11 @@ export const hotelReviews: Record<string, HotelReview> = {
     publishDate: 'Feb 10, 2026',
     heroImage:
       'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    ],
     specs: {
       address: '1 Aguiyi Ironsi St, Maitama, Abuja',
       checkIn: '2:00 PM',
@@ -113,6 +124,11 @@ export const hotelReviews: Record<string, HotelReview> = {
     publishDate: 'Feb 08, 2026',
     heroImage:
       'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    ],
     specs: {
       address: '38-40 Isaac John St, Ikeja GRA, Lagos',
       checkIn: '3:00 PM',
@@ -143,6 +159,11 @@ export const hotelReviews: Record<string, HotelReview> = {
     publishDate: 'Feb 05, 2026',
     heroImage:
       'https://images.unsplash.com/photo-1551882547-ff43c63efe81?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    ],
     specs: {
       address: '4 Onitolo Rd, Ikoyi, Lagos',
       checkIn: '2:00 PM',
@@ -174,6 +195,11 @@ export const hotelReviews: Record<string, HotelReview> = {
     publishDate: 'Feb 01, 2026',
     heroImage:
       'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    ],
     specs: {
       address: '1 Protea Road, GRA Phase 2, Port Harcourt',
       checkIn: '2:00 PM',

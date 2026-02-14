@@ -14,6 +14,7 @@ export interface CafeReview {
   };
   publishDate: string;
   heroImage: string;
+  gallery: string[];
   specs: {
     address: string;
     openingHours: string;
@@ -45,6 +46,11 @@ export const cafeReviews: Record<string, CafeReview> = {
     publishDate: 'Feb 12, 2026',
     heroImage:
       'https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    ],
     specs: {
       address: '282 Akin Olugbade St, Victoria Island, Lagos',
       openingHours: '8:00 AM - 9:00 PM',
@@ -75,6 +81,11 @@ export const cafeReviews: Record<string, CafeReview> = {
     publishDate: 'Feb 10, 2026',
     heroImage:
       'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    ],
     specs: {
       address: 'Admiralty Way, Lekki Phase 1, Lagos',
       openingHours: '9:00 AM - 11:00 PM',
@@ -104,6 +115,11 @@ export const cafeReviews: Record<string, CafeReview> = {
     publishDate: 'Feb 05, 2026',
     heroImage:
       'https://images.unsplash.com/photo-1442512595331-e89e73853f31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1442512595331-e89e73853f31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1455270294621-129f9b3892b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+    ],
     specs: {
       address: 'Adetokunbo Ademola Crescent, Wuse 2, Abuja',
       openingHours: '7:30 AM - 10:00 PM',

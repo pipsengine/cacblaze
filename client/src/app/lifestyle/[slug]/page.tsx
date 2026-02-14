@@ -2108,160 +2108,860 @@ export default function LifestyleCategoryPage({ params }: { params: { slug: stri
       description:
         'Curated resources for parents: clinics, hotlines, books, apps, groups, courses, programs, and templates.',
       sections: [
-        { title: 'Clinics & Professionals', items: ['List trusted local clinics.', 'Note specialties and hours.', 'Keep contacts updated.'] },
-        { title: 'Hotlines', items: ['Emergency and support numbers.', 'Store visibly and digitally.', 'Practice usage scenarios.'] },
-        { title: 'Books & Guides', items: ['Evidence‑based titles.', 'Summaries and key ideas.', 'Library and online options.'] },
-        { title: 'Apps', items: ['Trackers and education apps.', 'Privacy and safety checks.', 'Share setup tips.'] },
-        { title: 'Support Groups', items: ['Local/community groups.', 'Online moderated spaces.', 'Meeting schedules.'] },
-        { title: 'Courses', items: ['Parenting classes or webinars.', 'Age‑specific modules.', 'Certificates and follow‑ups.'] },
-        { title: 'Government Programs', items: ['Health and education support.', 'Documentation requirements.', 'Application timelines.'] },
-        { title: 'Checklists', items: ['Emergency kits.', 'Care logs and schedules.', 'School readiness lists.'] },
-        { title: 'Templates', items: ['Budget sheets.', 'Routine planners.', 'Meal plans and chore charts.'] },
-        { title: 'Curation Process', items: ['Review and update quarterly.', 'Gather feedback from users.', 'Archive outdated resources.'] },
+        {
+          title: 'Clinics & Professionals',
+          items: [
+            { text: 'List trusted local clinics.', detail: 'Compile verified providers with addresses and contact details for quick access.' },
+            { text: 'Note specialties and hours.', detail: 'Record areas of expertise and opening times to match needs efficiently.' },
+            { text: 'Keep contacts updated.', detail: 'Review entries quarterly; remove outdated info and add new options.' },
+          ],
+        },
+        {
+          title: 'Hotlines',
+          items: [
+            { text: 'Emergency and support numbers.', detail: 'Store national/local emergency and counseling lines prominently.' },
+            { text: 'Store visibly and digitally.', detail: 'Post on the fridge and save in phones for immediate retrieval.' },
+            { text: 'Practice usage scenarios.', detail: 'Discuss when and how to call so family members feel prepared.' },
+          ],
+        },
+        {
+          title: 'Books & Guides',
+          items: [
+            { text: 'Evidence‑based titles.', detail: 'Favor resources aligned with reputable organizations and current research.' },
+            { text: 'Summaries and key ideas.', detail: 'Create brief notes to recall concepts without re‑reading entire books.' },
+            { text: 'Library and online options.', detail: 'Use library holds and credible online repositories to reduce costs.' },
+          ],
+        },
+        {
+          title: 'Apps',
+          items: [
+            { text: 'Trackers and education apps.', detail: 'Choose tools that simplify routines or teach skills without heavy ads.' },
+            { text: 'Privacy and safety checks.', detail: 'Review permissions, data policies, and content ratings before adoption.' },
+            { text: 'Share setup tips.', detail: 'Document configurations and usage best practices for caregivers.' },
+          ],
+        },
+        {
+          title: 'Support Groups',
+          items: [
+            { text: 'Local/community groups.', detail: 'Join nearby meetups or community centers for in‑person support.' },
+            { text: 'Online moderated spaces.', detail: 'Prefer moderated forums to maintain safety and constructive dialogue.' },
+            { text: 'Meeting schedules.', detail: 'Track times, locations, and agendas to plan attendance smoothly.' },
+          ],
+        },
+        {
+          title: 'Courses',
+          items: [
+            { text: 'Parenting classes or webinars.', detail: 'Select courses with clear outcomes and practical exercises.' },
+            { text: 'Age‑specific modules.', detail: 'Match material to developmental stages for relevance.' },
+            { text: 'Certificates and follow‑ups.', detail: 'Save completion records and schedule refreshers if offered.' },
+          ],
+        },
+        {
+          title: 'Government Programs',
+          items: [
+            { text: 'Health and education support.', detail: 'Identify benefits, screenings, and services available locally.' },
+            { text: 'Documentation requirements.', detail: 'List required IDs, forms, and proofs to prevent application delays.' },
+            { text: 'Application timelines.', detail: 'Note deadlines and processing windows to plan appropriately.' },
+          ],
+        },
+        {
+          title: 'Checklists',
+          items: [
+            { text: 'Emergency kits.', detail: 'Prepare supplies, contacts, and plans; review seasonally.' },
+            { text: 'Care logs and schedules.', detail: 'Use simple templates to coordinate caregivers and track routines.' },
+            { text: 'School readiness lists.', detail: 'Organize documents, supplies, and health checks ahead of term.' },
+          ],
+        },
+        {
+          title: 'Templates',
+          items: [
+            { text: 'Budget sheets.', detail: 'Provide simple tables for income, expenses, and goals.' },
+            { text: 'Routine planners.', detail: 'Offer daily/weekly layouts to standardize blocks and transitions.' },
+            { text: 'Meal plans and chore charts.', detail: 'Use clear grids to assign tasks and plan balanced menus.' },
+          ],
+        },
+        {
+          title: 'Curation Process',
+          items: [
+            { text: 'Review and update quarterly.', detail: 'Audit links and materials; verify accuracy and relevance.' },
+            { text: 'Gather feedback from users.', detail: 'Ask caregivers what helped and what needs improvement.' },
+            { text: 'Archive outdated resources.', detail: 'Retire obsolete content to keep the library clean and trusted.' },
+          ],
+        },
       ],
     },
     'travel-planning': {
       description:
         'Plan smooth trips with clear goals, documents, budgets, itineraries, safety steps, and review routines.',
       sections: [
-        { title: 'Trip Goals', items: ['Define purpose and must‑see items.', 'Estimate time windows.', 'Align with companions.'] },
-        { title: 'Documents', items: ['Check passport validity.', 'Visas and entry requirements.', 'Travel insurance confirmation.'] },
-        { title: 'Packing', items: ['Create a checklist.', 'Pack light and versatile.', 'Include basic meds and chargers.'] },
-        { title: 'Itinerary', items: ['Map daily highlights.', 'Group nearby attractions.', 'Add buffer time.'] },
-        { title: 'Budget', items: ['Set caps per category.', 'Track real‑time spend.', 'Keep emergency buffer.'] },
-        { title: 'Safety', items: ['Register emergency contacts.', 'Save local hotlines.', 'Share itinerary with someone.'] },
-        { title: 'Transport', items: ['Book flights or routes early.', 'Compare options for value.', 'Plan airport/city transfers.'] },
-        { title: 'Accommodation', items: ['Pick location near transit.', 'Check reviews and safety.', 'Confirm cancellation policies.'] },
-        { title: 'Local Tips', items: ['Learn basic phrases.', 'Know customs and etiquette.', 'Understand tipping and fees.'] },
-        { title: 'Post‑Trip', items: ['Review what worked.', 'Archive receipts.', 'Note improvements for next time.'] },
+        {
+          title: 'Trip Goals',
+          items: [
+            { text: 'Define purpose and must‑see items.', detail: 'Choose themes and top experiences to guide route, pacing, and budget.' },
+            { text: 'Estimate time windows.', detail: 'Plan realistic days with rest; avoid over‑stacking activities.' },
+            { text: 'Align with companions.', detail: 'Capture preferences, constraints, and energy levels for shared buy‑in.' },
+          ],
+        },
+        {
+          title: 'Documents',
+          items: [
+            { text: 'Check passport validity.', detail: 'Confirm at least 6 months remaining beyond your return date.' },
+            { text: 'Visas and entry requirements.', detail: 'Use official sources to verify visas, e‑visas, and permits.' },
+            { text: 'Travel insurance confirmation.', detail: 'Ensure medical, cancellation, and baggage coverage are active.' },
+          ],
+        },
+        {
+          title: 'Packing',
+          items: [
+            { text: 'Create a checklist.', detail: 'List essentials by category and climate to prevent last‑minute stress.' },
+            { text: 'Pack light and versatile.', detail: 'Favor layers and multi‑use items; keep bag size within easy carry limits.' },
+            { text: 'Include basic meds and chargers.', detail: 'Add first‑aid basics, prescriptions, adapters, and power banks.' },
+          ],
+        },
+        {
+          title: 'Itinerary',
+          items: [
+            { text: 'Map daily highlights.', detail: 'Choose 1–2 anchors per day and let extras be optional.' },
+            { text: 'Group nearby attractions.', detail: 'Cluster by neighborhoods to reduce transit time and fatigue.' },
+            { text: 'Add buffer time.', detail: 'Leave 20–30% flexible time for delays or spontaneous finds.' },
+          ],
+        },
+        {
+          title: 'Budget',
+          items: [
+            { text: 'Set caps per category.', detail: 'Assign limits for lodging, food, transport, and activities.' },
+            { text: 'Track real‑time spend.', detail: 'Use an app or shared sheet to update costs daily.' },
+            { text: 'Keep emergency buffer.', detail: 'Hold a small reserve for unexpected expenses or changes.' },
+          ],
+        },
+        {
+          title: 'Safety',
+          items: [
+            { text: 'Register emergency contacts.', detail: 'Save embassy, local clinics, and trusted contacts in phones.' },
+            { text: 'Save local hotlines.', detail: 'Record police, medical, and tourist assistance numbers.' },
+            { text: 'Share itinerary with someone.', detail: 'Provide check‑in times and route changes to a contact at home.' },
+          ],
+        },
+        {
+          title: 'Transport',
+          items: [
+            { text: 'Book flights or routes early.', detail: 'Secure better schedules and pricing with advance booking.' },
+            { text: 'Compare options for value.', detail: 'Balance cost against time and convenience for each leg.' },
+            { text: 'Plan airport/city transfers.', detail: 'Decide on trains, buses, or rides; note pickup points and timings.' },
+          ],
+        },
+        {
+          title: 'Accommodation',
+          items: [
+            { text: 'Pick location near transit.', detail: 'Choose walkable areas or close to lines for easy movement.' },
+            { text: 'Check reviews and safety.', detail: 'Read recent, balanced reviews; verify neighborhood safety.' },
+            { text: 'Confirm cancellation policies.', detail: 'Prefer flexible options if plans may change.' },
+          ],
+        },
+        {
+          title: 'Local Tips',
+          items: [
+            { text: 'Learn basic phrases.', detail: 'Practice greetings, directions, and polite forms for smoother interactions.' },
+            { text: 'Know customs and etiquette.', detail: 'Understand dress, table manners, and public behavior norms.' },
+            { text: 'Understand tipping and fees.', detail: 'Check expected gratuities and typical service charges.' },
+          ],
+        },
+        {
+          title: 'Post‑Trip',
+          items: [
+            { text: 'Review what worked.', detail: 'Note highlights and friction points to refine future plans.' },
+            { text: 'Archive receipts.', detail: 'Store records for budgeting, reimbursements, or claims.' },
+            { text: 'Note improvements for next time.', detail: 'Update packing lists, routes, and vendor choices based on experience.' },
+          ],
+        },
       ],
     },
     'budget-travel': {
       description:
         'Travel well on a budget using smart booking, flexible dates, local food, affordable stays, and free activities.',
       sections: [
-        { title: 'Budgeting', items: ['Set total cap.', 'Allocate by category.', 'Track daily spend.'] },
-        { title: 'Flights', items: ['Flexible dates for deals.', 'Use alerts and points.', 'Avoid peak seasons.'] },
-        { title: 'Accommodation', items: ['Compare hostels and rentals.', 'Choose shared spaces or kitchens.', 'Check weekly rates.'] },
-        { title: 'Food', items: ['Local markets and street food.', 'Cook simple meals.', 'Avoid tourist traps.'] },
-        { title: 'Transport', items: ['Use public transit.', 'Walk or cycle when possible.', 'Buy passes to save.'] },
-        { title: 'Activities', items: ['Free museums and parks.', 'City walking tours.', 'Bundle tickets.'] },
-        { title: 'Off‑Peak', items: ['Travel shoulder seasons.', 'Visit weekdays.', 'Time visits early or late.'] },
-        { title: 'Rewards', items: ['Use loyalty programs.', 'Collect miles/points.', 'Leverage cashback.'] },
-        { title: 'Safety', items: ['Protect documents and cash.', 'Beware common scams.', 'Keep emergency numbers.'] },
-        { title: 'Review', items: ['Track savings.', 'Note best value tips.', 'Plan future optimizations.'] },
+        {
+          title: 'Budgeting',
+          items: [
+            { text: 'Set total cap.', detail: 'Define an overall trip limit and stick to it with daily guardrails.' },
+            { text: 'Allocate by category.', detail: 'Distribute funds across lodging, food, transport, and activities.' },
+            { text: 'Track daily spend.', detail: 'Log costs each day to adjust quickly when a category runs hot.' },
+          ],
+        },
+        {
+          title: 'Flights',
+          items: [
+            { text: 'Flexible dates for deals.', detail: 'Search ±3–7 days; use fare calendars to spot cheaper windows.' },
+            { text: 'Use alerts and points.', detail: 'Set price alerts; redeem miles or flexible points for big savings.' },
+            { text: 'Avoid peak seasons.', detail: 'Prefer shoulder periods and midweek departures to cut costs.' },
+          ],
+        },
+        {
+          title: 'Accommodation',
+          items: [
+            { text: 'Compare hostels and rentals.', detail: 'Balance privacy, location, and shared amenities for value.' },
+            { text: 'Choose shared spaces or kitchens.', detail: 'Access to kitchens reduces food costs and increases flexibility.' },
+            { text: 'Check weekly rates.', detail: 'Longer stays often unlock discounted nightly pricing.' },
+          ],
+        },
+        {
+          title: 'Food',
+          items: [
+            { text: 'Local markets and street food.', detail: 'Eat where locals eat; prioritize fresh, simple dishes.' },
+            { text: 'Cook simple meals.', detail: 'Prepare breakfasts or one meal daily to trim expenses.' },
+            { text: 'Avoid tourist traps.', detail: 'Skip venues near main attractions; compare menus a block away.' },
+          ],
+        },
+        {
+          title: 'Transport',
+          items: [
+            { text: 'Use public transit.', detail: 'Buy day passes or reloadable cards for predictable, low fares.' },
+            { text: 'Walk or cycle when possible.', detail: 'Plan short routes to save money and discover neighborhoods.' },
+            { text: 'Buy passes to save.', detail: 'Weekly or multi‑ride tickets reduce per‑trip costs.' },
+          ],
+        },
+        {
+          title: 'Activities',
+          items: [
+            { text: 'Free museums and parks.', detail: 'Target free days and public spaces for rich experiences.' },
+            { text: 'City walking tours.', detail: 'Use tip‑based tours to learn history affordably.' },
+            { text: 'Bundle tickets.', detail: 'City passes or combo tickets can lower total spend.' },
+          ],
+        },
+        {
+          title: 'Off‑Peak',
+          items: [
+            { text: 'Travel shoulder seasons.', detail: 'Lower prices, fewer crowds, and better availability.' },
+            { text: 'Visit weekdays.', detail: 'Aim for Tuesday–Thursday to avoid weekend premiums.' },
+            { text: 'Time visits early or late.', detail: 'Arrive off hours to reduce lines and dynamic pricing.' },
+          ],
+        },
+        {
+          title: 'Rewards',
+          items: [
+            { text: 'Use loyalty programs.', detail: 'Enroll in airline, hotel, and transit schemes for perks.' },
+            { text: 'Collect miles/points.', detail: 'Pay with cards that earn transferable points for flexibility.' },
+            { text: 'Leverage cashback.', detail: 'Stack cashback portals and card offers on bookings.' },
+          ],
+        },
+        {
+          title: 'Safety',
+          items: [
+            { text: 'Protect documents and cash.', detail: 'Carry copies and split storage; use money belts discreetly.' },
+            { text: 'Beware common scams.', detail: 'Research local tactics; confirm prices before service.' },
+            { text: 'Keep emergency numbers.', detail: 'Save medical, police, and embassy contacts offline.' },
+          ],
+        },
+        {
+          title: 'Review',
+          items: [
+            { text: 'Track savings.', detail: 'Compare planned vs actual costs; note standout wins.' },
+            { text: 'Note best value tips.', detail: 'Record tactics that worked to reuse on future trips.' },
+            { text: 'Plan future optimizations.', detail: 'Refine packing, routes, and booking strategies iteratively.' },
+          ],
+        },
       ],
     },
     'travel-safety': {
       description:
         'Reduce risks with preparation, health steps, secure bookings, careful transit, local awareness, and contingency planning.',
       sections: [
-        { title: 'Preparation', items: ['Research local risks.', 'Share plans with contacts.', 'Backup documents digitally.'] },
-        { title: 'Health', items: ['Vaccinations and meds.', 'Travel clinic advice.', 'Pack first‑aid essentials.'] },
-        { title: 'Documents', items: ['Copies of ID and visas.', 'Emergency contacts list.', 'Secure storage.'] },
-        { title: 'Transport', items: ['Choose reputable providers.', 'Avoid risky routes/times.', 'Seatbelts and helmets.'] },
-        { title: 'Accommodation', items: ['Well‑reviewed areas.', 'Locks and safes.', 'Know exits and rules.'] },
-        { title: 'Money', items: ['Limit cash carry.', 'Use cards carefully.', 'Hide backups and split storage.'] },
-        { title: 'Communication', items: ['Local SIM or eSIM.', 'Emergency dialing codes.', 'Share live location.'] },
-        { title: 'Local Laws', items: ['Understand restrictions.', 'Respect customs.', 'Avoid prohibited items.'] },
-        { title: 'Emergencies', items: ['Nearest clinics and police.', 'Insurance claim steps.', 'Contingency contacts.'] },
-        { title: 'Post‑Trip', items: ['Debrief incidents.', 'Update checklists.', 'Adjust future plans.'] },
+        {
+          title: 'Preparation',
+          items: [
+            { text: 'Research local risks.', detail: 'Check government advisories and recent news on safety, weather, and events.' },
+            { text: 'Share plans with contacts.', detail: 'Provide itinerary and check‑in schedule to someone you trust.' },
+            { text: 'Backup documents digitally.', detail: 'Store scans of passports, visas, and policies in secure cloud storage.' },
+          ],
+        },
+        {
+          title: 'Health',
+          items: [
+            { text: 'Vaccinations and meds.', detail: 'Confirm required shots and carry prescriptions with generic names.' },
+            { text: 'Travel clinic advice.', detail: 'Consult professionals for region‑specific precautions and kits.' },
+            { text: 'Pack first‑aid essentials.', detail: 'Include pain relief, bandages, antiseptic, rehydration salts, and allergy meds.' },
+          ],
+        },
+        {
+          title: 'Documents',
+          items: [
+            { text: 'Copies of ID and visas.', detail: 'Keep printed and digital copies separate from originals.' },
+            { text: 'Emergency contacts list.', detail: 'Record embassy, local health providers, and personal contacts.' },
+            { text: 'Secure storage.', detail: 'Use hotel safes or hidden pouches; avoid carrying all documents at once.' },
+          ],
+        },
+        {
+          title: 'Transport',
+          items: [
+            { text: 'Choose reputable providers.', detail: 'Book verified taxis, trains, and buses; check ratings and licenses.' },
+            { text: 'Avoid risky routes/times.', detail: 'Prefer daylight travel; ask locals about safer paths.' },
+            { text: 'Seatbelts and helmets.', detail: 'Buckle up and wear helmets; decline unsafe vehicles.' },
+          ],
+        },
+        {
+          title: 'Accommodation',
+          items: [
+            { text: 'Well‑reviewed areas.', detail: 'Pick neighborhoods with consistent positive feedback on safety.' },
+            { text: 'Locks and safes.', detail: 'Check room locks; use safes for valuables or lockable bags.' },
+            { text: 'Know exits and rules.', detail: 'Locate exits, alarms, and house rules upon arrival.' },
+          ],
+        },
+        {
+          title: 'Money',
+          items: [
+            { text: 'Limit cash carry.', detail: 'Carry only what you need; keep reserves in separate places.' },
+            { text: 'Use cards carefully.', detail: 'Enable transaction alerts; avoid public Wi‑Fi for banking.' },
+            { text: 'Hide backups and split storage.', detail: 'Separate cards/cash across bags and pockets to reduce single‑point loss.' },
+          ],
+        },
+        {
+          title: 'Communication',
+          items: [
+            { text: 'Local SIM or eSIM.', detail: 'Stay reachable and access maps and translation on the go.' },
+            { text: 'Emergency dialing codes.', detail: 'Note country‑specific codes and quick‑dial contacts.' },
+            { text: 'Share live location.', detail: 'Use trusted apps to let contacts track your movements when needed.' },
+          ],
+        },
+        {
+          title: 'Local Laws',
+          items: [
+            { text: 'Understand restrictions.', detail: 'Check rules on medications, drones, and photography.' },
+            { text: 'Respect customs.', detail: 'Adapt dress and behavior to local norms to avoid conflict.' },
+            { text: 'Avoid prohibited items.', detail: 'Confirm bans on foods, plants, or cultural artifacts.' },
+          ],
+        },
+        {
+          title: 'Emergencies',
+          items: [
+            { text: 'Nearest clinics and police.', detail: 'Map locations and routes before you need them.' },
+            { text: 'Insurance claim steps.', detail: 'Know documentation required and the process to file quickly.' },
+            { text: 'Contingency contacts.', detail: 'Keep backups for transportation, lodging, and local assistance.' },
+          ],
+        },
+        {
+          title: 'Post‑Trip',
+          items: [
+            { text: 'Debrief incidents.', detail: 'Record what happened and lessons learned to improve future safety.' },
+            { text: 'Update checklists.', detail: 'Revise packing and procedures based on real‑world gaps.' },
+            { text: 'Adjust future plans.', detail: 'Change routes, vendors, or policies to reduce similar risks next time.' },
+          ],
+        },
       ],
     },
     accommodation: {
       description:
         'Choose safe, convenient stays with the right location, amenities, policies, and reviews for your trip goals.',
       sections: [
-        { title: 'Types', items: ['Hotels and hostels.', 'Apartments and homestays.', 'Unique stays.'] },
-        { title: 'Booking', items: ['Compare platforms.', 'Check policies and fees.', 'Use filters wisely.'] },
-        { title: 'Location', items: ['Near transit and attractions.', 'Safe neighborhoods.', 'Noise considerations.'] },
-        { title: 'Amenities', items: ['Kitchen and laundry.', 'Wi‑Fi reliability.', 'Workspace needs.'] },
-        { title: 'Safety', items: ['Locks and security.', 'Emergency exits.', 'Host verification.'] },
-        { title: 'Budget', items: ['Total cost and deposits.', 'Weekly/monthly discounts.', 'Hidden fees.'] },
-        { title: 'Check‑In', items: ['Arrival times and access.', 'ID requirements.', 'House rules.'] },
-        { title: 'House Rules', items: ['Guests and noise.', 'Cleaning expectations.', 'Local regulations.'] },
-        { title: 'Reviews', items: ['Recent, balanced feedback.', 'Read negatives.', 'Photos vs reality.'] },
-        { title: 'Troubleshooting', items: ['Contact host early.', 'Document issues.', 'Relocation options.'] },
+        {
+          title: 'Types',
+          items: [
+            { text: 'Hotels and hostels.', detail: 'Pick based on budget, privacy, and services; hostels suit social, low‑cost travel.' },
+            { text: 'Apartments and homestays.', detail: 'Gain kitchens and space; confirm building rules and access details.' },
+            { text: 'Unique stays.', detail: 'Consider cabins or boutique options; verify amenities match your needs.' },
+          ],
+        },
+        {
+          title: 'Booking',
+          items: [
+            { text: 'Compare platforms.', detail: 'Check multiple sites for price, policies, and included services.' },
+            { text: 'Check policies and fees.', detail: 'Read cancellation, deposits, and cleaning fees to avoid surprises.' },
+            { text: 'Use filters wisely.', detail: 'Filter for location, rating, and essentials (Wi‑Fi, kitchen, AC).' },
+          ],
+        },
+        {
+          title: 'Location',
+          items: [
+            { text: 'Near transit and attractions.', detail: 'Reduce commute time; pick walkable areas aligned with itinerary.' },
+            { text: 'Safe neighborhoods.', detail: 'Scan recent reviews and local guidance for safety signals.' },
+            { text: 'Noise considerations.', detail: 'Ask about street noise, clubs, or construction; request quiet rooms.' },
+          ],
+        },
+        {
+          title: 'Amenities',
+          items: [
+            { text: 'Kitchen and laundry.', detail: 'Save on food and packing; confirm appliances and availability.' },
+            { text: 'Wi‑Fi reliability.', detail: 'Check speed reports; contact host for typical speeds and outages.' },
+            { text: 'Workspace needs.', detail: 'Ensure desk space, outlets, and lighting if you plan to work.' },
+          ],
+        },
+        {
+          title: 'Safety',
+          items: [
+            { text: 'Locks and security.', detail: 'Verify door locks, secondary latches, and building access controls.' },
+            { text: 'Emergency exits.', detail: 'Locate exits and alarms; know procedures in case of incident.' },
+            { text: 'Host verification.', detail: 'Prefer verified hosts and platforms with strong fraud protections.' },
+          ],
+        },
+        {
+          title: 'Budget',
+          items: [
+            { text: 'Total cost and deposits.', detail: 'Calculate full stay cost including cleaning, taxes, and deposits.' },
+            { text: 'Weekly/monthly discounts.', detail: 'Longer bookings often reduce nightly rates significantly.' },
+            { text: 'Hidden fees.', detail: 'Ask about parking, resort, or key replacement fees before booking.' },
+          ],
+        },
+        {
+          title: 'Check‑In',
+          items: [
+            { text: 'Arrival times and access.', detail: 'Confirm check‑in windows and keys, codes, or staff availability.' },
+            { text: 'ID requirements.', detail: 'Carry necessary identification per platform or local regulation.' },
+            { text: 'House rules.', detail: 'Understand guest limits, noise, smoking, and pet policies in advance.' },
+          ],
+        },
+        {
+          title: 'House Rules',
+          items: [
+            { text: 'Guests and noise.', detail: 'Respect quiet hours and capacity limits to avoid penalties.' },
+            { text: 'Cleaning expectations.', detail: 'Clarify chores and checkout steps to prevent extra fees.' },
+            { text: 'Local regulations.', detail: 'Follow building and city rules for short‑term stays.' },
+          ],
+        },
+        {
+          title: 'Reviews',
+          items: [
+            { text: 'Recent, balanced feedback.', detail: 'Read multiple recent reviews to catch changes in quality.' },
+            { text: 'Read negatives.', detail: 'Assess consistent complaints (noise, cleanliness) before committing.' },
+            { text: 'Photos vs reality.', detail: 'Compare traveler photos with listings to spot misleading angles.' },
+          ],
+        },
+        {
+          title: 'Troubleshooting',
+          items: [
+            { text: 'Contact host early.', detail: 'Report issues promptly to allow fixes or adjustments.' },
+            { text: 'Document issues.', detail: 'Take photos and notes; communicate through the platform for records.' },
+            { text: 'Relocation options.', detail: 'Know backup stays or platform support if problems persist.' },
+          ],
+        },
       ],
     },
     transportation: {
       description:
         'Navigate cities efficiently using public transit, safe rides, walking, cycling, and smart booking strategies.',
       sections: [
-        { title: 'Modes', items: ['Transit, rides, bikes.', 'Compare options.', 'Accessibility needs.'] },
-        { title: 'Booking', items: ['Apps and passes.', 'Advance tickets.', 'Flexible options.'] },
-        { title: 'Safety', items: ['Stay alert.', 'Verified providers.', 'Night travel rules.'] },
-        { title: 'Local Transit', items: ['Maps and lines.', 'Peak times.', 'Etiquette.'] },
-        { title: 'Rides & Taxis', items: ['Official stands.', 'License checks.', 'Upfront pricing.'] },
-        { title: 'Driving', items: ['Permits and insurance.', 'Local laws.', 'Parking and tolls.'] },
-        { title: 'Walk & Cycle', items: ['Routes and paths.', 'Lights and helmets.', 'Secure storage.'] },
-        { title: 'Accessibility', items: ['Elevators and ramps.', 'Priority seating.', 'Service availability.'] },
-        { title: 'Luggage', items: ['Storage options.', 'Weight and size limits.', 'Label bags.'] },
-        { title: 'Contingency', items: ['Alternate routes.', 'Delay buffers.', 'Local contacts.'] },
+        {
+          title: 'Modes',
+          items: [
+            { text: 'Transit, rides, bikes.', detail: 'Choose modes per distance, cost, and safety; mix for efficiency.' },
+            { text: 'Compare options.', detail: 'Balance price vs time; consider transfers and wait times.' },
+            { text: 'Accessibility needs.', detail: 'Verify lifts, ramps, and accessible vehicles before travel.' },
+          ],
+        },
+        {
+          title: 'Booking',
+          items: [
+            { text: 'Apps and passes.', detail: 'Install local apps; buy day or weekly passes for savings.' },
+            { text: 'Advance tickets.', detail: 'Reserve intercity routes early for schedules and better fares.' },
+            { text: 'Flexible options.', detail: 'Prefer refundable or changeable tickets when plans may shift.' },
+          ],
+        },
+        {
+          title: 'Safety',
+          items: [
+            { text: 'Stay alert.', detail: 'Keep valuables secured; avoid distraction in crowded areas.' },
+            { text: 'Verified providers.', detail: 'Use licensed rides and official stations to reduce risk.' },
+            { text: 'Night travel rules.', detail: 'Choose well‑lit routes; sit near staff or exits when possible.' },
+          ],
+        },
+        {
+          title: 'Local Transit',
+          items: [
+            { text: 'Maps and lines.', detail: 'Learn key lines and transfer points to simplify navigation.' },
+            { text: 'Peak times.', detail: 'Avoid rush hours when possible; plan buffers for delays.' },
+            { text: 'Etiquette.', detail: 'Follow local norms for queuing, seating, and noise.' },
+          ],
+        },
+        {
+          title: 'Rides & Taxis',
+          items: [
+            { text: 'Official stands.', detail: 'Board at marked areas; confirm driver and car details.' },
+            { text: 'License checks.', detail: 'Verify permit and meter; agree on fare for non‑metered rides.' },
+            { text: 'Upfront pricing.', detail: 'Use apps with upfront fares; avoid cash‑only surprises.' },
+          ],
+        },
+        {
+          title: 'Driving',
+          items: [
+            { text: 'Permits and insurance.', detail: 'Check license requirements and ensure proper coverage.' },
+            { text: 'Local laws.', detail: 'Learn speed limits, alcohol rules, and right‑of‑way norms.' },
+            { text: 'Parking and tolls.', detail: 'Plan for parking costs and toll routes to avoid fines.' },
+          ],
+        },
+        {
+          title: 'Walk & Cycle',
+          items: [
+            { text: 'Routes and paths.', detail: 'Pick pedestrian‑friendly areas and protected bike lanes.' },
+            { text: 'Lights and helmets.', detail: 'Carry lights at night and wear helmets for safety.' },
+            { text: 'Secure storage.', detail: 'Lock bikes properly; keep personal items close.' },
+          ],
+        },
+        {
+          title: 'Accessibility',
+          items: [
+            { text: 'Elevators and ramps.', detail: 'Confirm station and vehicle accessibility features.' },
+            { text: 'Priority seating.', detail: 'Know policies and ask staff for assistance when needed.' },
+            { text: 'Service availability.', detail: 'Check for outages or reduced services before setting out.' },
+          ],
+        },
+        {
+          title: 'Luggage',
+          items: [
+            { text: 'Storage options.', detail: 'Use lockers or hotel storage to reduce burden in city visits.' },
+            { text: 'Weight and size limits.', detail: 'Follow carrier rules to avoid extra fees and delays.' },
+            { text: 'Label bags.', detail: 'Add contact info and markers to speed identification.' },
+          ],
+        },
+        {
+          title: 'Contingency',
+          items: [
+            { text: 'Alternate routes.', detail: 'Prepare backups for closures or delays to maintain schedule.' },
+            { text: 'Delay buffers.', detail: 'Add time between connections to absorb disruptions.' },
+            { text: 'Local contacts.', detail: 'Save numbers for stations, vendors, or friends who can assist.' },
+          ],
+        },
       ],
     },
     'living-abroad': {
       description:
         'Adapt to life overseas with visas, housing, banking, healthcare, community, language, safety, and logistics.',
       sections: [
-        { title: 'Visa & Legal', items: ['Right to reside.', 'Work/study permits.', 'Renewals and compliance.'] },
-        { title: 'Housing', items: ['Neighborhood research.', 'Lease terms.', 'Utilities and setup.'] },
-        { title: 'Banking', items: ['Local accounts.', 'Transfers & fees.', 'Emergency funds.'] },
-        { title: 'Healthcare', items: ['Insurance and clinics.', 'Registration steps.', 'Pharmacies.'] },
-        { title: 'Language', items: ['Classes and apps.', 'Local practice.', 'Key survival phrases.'] },
-        { title: 'Work/Study', items: ['Contracts and rules.', 'Schedules and holidays.', 'Support offices.'] },
-        { title: 'Community', items: ['Clubs and groups.', 'Mentors and support.', 'Events.'] },
-        { title: 'Safety', items: ['Local risks.', 'Secure habits.', 'Emergency plans.'] },
-        { title: 'Culture', items: ['Etiquette and norms.', 'Food and festivals.', 'Dress and customs.'] },
-        { title: 'Logistics', items: ['Transport and phones.', 'Mailing and IDs.', 'Cost of living.'] },
+        {
+          title: 'Visa & Legal',
+          items: [
+            { text: 'Right to reside.', detail: 'Confirm residency status and permitted activities before arrival.' },
+            { text: 'Work/study permits.', detail: 'Apply early; track requirements and processing times.' },
+            { text: 'Renewals and compliance.', detail: 'Set reminders; keep copies of filings and approvals.' },
+          ],
+        },
+        {
+          title: 'Housing',
+          items: [
+            { text: 'Neighborhood research.', detail: 'Assess safety, transit, and grocery access; visit at different times.' },
+            { text: 'Lease terms.', detail: 'Review deposits, notice periods, and maintenance responsibilities.' },
+            { text: 'Utilities and setup.', detail: 'Arrange power, water, internet, and waste services quickly.' },
+          ],
+        },
+        {
+          title: 'Banking',
+          items: [
+            { text: 'Local accounts.', detail: 'Open checking and savings; confirm ID and address requirements.' },
+            { text: 'Transfers & fees.', detail: 'Compare wire, ACH, and card fees; use low‑cost providers.' },
+            { text: 'Emergency funds.', detail: 'Keep a backup reserve in accessible accounts.' },
+          ],
+        },
+        {
+          title: 'Healthcare',
+          items: [
+            { text: 'Insurance and clinics.', detail: 'Enroll in appropriate plans; list nearby clinics and hospitals.' },
+            { text: 'Registration steps.', detail: 'Complete local health registrations if required.' },
+            { text: 'Pharmacies.', detail: 'Locate reliable pharmacies; learn prescription transfer rules.' },
+          ],
+        },
+        {
+          title: 'Language',
+          items: [
+            { text: 'Classes and apps.', detail: 'Use formal courses and daily practice apps for acceleration.' },
+            { text: 'Local practice.', detail: 'Join conversation groups; practice in low‑stakes settings.' },
+            { text: 'Key survival phrases.', detail: 'Master basics for directions, shopping, and emergencies.' },
+          ],
+        },
+        {
+          title: 'Work/Study',
+          items: [
+            { text: 'Contracts and rules.', detail: 'Understand terms, probation periods, and grievance processes.' },
+            { text: 'Schedules and holidays.', detail: 'Map public holidays and typical work hours to plan well.' },
+            { text: 'Support offices.', detail: 'Identify HR/international offices for onboarding help.' },
+          ],
+        },
+        {
+          title: 'Community',
+          items: [
+            { text: 'Clubs and groups.', detail: 'Join local communities for interests and support.' },
+            { text: 'Mentors and support.', detail: 'Find guides who share practical advice and connections.' },
+            { text: 'Events.', detail: 'Attend fairs and meetups to expand networks.' },
+          ],
+        },
+        {
+          title: 'Safety',
+          items: [
+            { text: 'Local risks.', detail: 'Research neighborhood‑specific risks and emergency services.' },
+            { text: 'Secure habits.', detail: 'Adopt routines for locking, lighting, and travel awareness.' },
+            { text: 'Emergency plans.', detail: 'Create contacts, meeting points, and backup housing options.' },
+          ],
+        },
+        {
+          title: 'Culture',
+          items: [
+            { text: 'Etiquette and norms.', detail: 'Learn greetings, queue rules, and social expectations.' },
+            { text: 'Food and festivals.', detail: 'Explore local cuisine and calendar events respectfully.' },
+            { text: 'Dress and customs.', detail: 'Adapt attire to context; understand religious considerations.' },
+          ],
+        },
+        {
+          title: 'Logistics',
+          items: [
+            { text: 'Transport and phones.', detail: 'Choose plans and passes; set up local SIM or eSIM.' },
+            { text: 'Mailing and IDs.', detail: 'Register addresses; obtain resident IDs as required.' },
+            { text: 'Cost of living.', detail: 'Track expenses and adjust budgets to local prices.' },
+          ],
+        },
       ],
     },
     'cultural-tips': {
       description:
         'Respect local customs with etiquette, communication, food practices, dress codes, gifts, and punctuality.',
       sections: [
-        { title: 'Etiquette', items: ['Greetings and gestures.', 'Queueing and lines.', 'Dining manners.'] },
-        { title: 'Communication', items: ['Direct vs indirect styles.', 'Volume and space.', 'Honorifics.'] },
-        { title: 'Food', items: ['Common staples.', 'Religious rules.', 'Allergies and substitutions.'] },
-        { title: 'Religion & Customs', items: ['Places of worship rules.', 'Dress expectations.', 'Photography guidance.'] },
-        { title: 'Dress', items: ['Modesty norms.', 'Event attire.', 'Practical choices.'] },
-        { title: 'Gifts', items: ['Receiving and giving.', 'Avoid faux pas.', 'Wrapping styles.'] },
-        { title: 'Photography', items: ['Ask permission.', 'Restricted sites.', 'Discretion and respect.'] },
-        { title: 'Negotiation', items: ['Bargaining norms.', 'Fair pricing.', 'Polite refusals.'] },
-        { title: 'Punctuality', items: ['Time expectations.', 'Grace periods.', 'Communicate delays.'] },
-        { title: 'Respect', items: ['Learn local phrases.', 'Avoid stereotypes.', 'Be curious and humble.'] },
+        {
+          title: 'Etiquette',
+          items: [
+            { text: 'Greetings and gestures.', detail: 'Use local forms of address and respectful body language.' },
+            { text: 'Queueing and lines.', detail: 'Follow local norms for order and spacing; avoid cutting.' },
+            { text: 'Dining manners.', detail: 'Learn utensil use, hand rules, and serving customs.' },
+          ],
+        },
+        {
+          title: 'Communication',
+          items: [
+            { text: 'Direct vs indirect styles.', detail: 'Adjust tone to local preference; avoid confrontational phrasing.' },
+            { text: 'Volume and space.', detail: 'Match typical speaking volume and personal distance.' },
+            { text: 'Honorifics.', detail: 'Use titles and polite forms appropriately, especially with elders.' },
+          ],
+        },
+        {
+          title: 'Food',
+          items: [
+            { text: 'Common staples.', detail: 'Learn typical dishes to order confidently and respectfully.' },
+            { text: 'Religious rules.', detail: 'Respect dietary restrictions and preparation customs.' },
+            { text: 'Allergies and substitutions.', detail: 'Communicate needs clearly; carry translations if necessary.' },
+          ],
+        },
+        {
+          title: 'Religion & Customs',
+          items: [
+            { text: 'Places of worship rules.', detail: 'Follow dress, entry, and photography guidelines; remain discreet.' },
+            { text: 'Dress expectations.', detail: 'Adapt attire to modesty and occasion standards.' },
+            { text: 'Photography guidance.', detail: 'Ask permission and avoid restricted areas or sacred objects.' },
+          ],
+        },
+        {
+          title: 'Dress',
+          items: [
+            { text: 'Modesty norms.', detail: 'Understand local modesty rules to avoid offense.' },
+            { text: 'Event attire.', detail: 'Choose appropriate outfits for ceremonies and formal events.' },
+            { text: 'Practical choices.', detail: 'Prioritize comfort and climate‑appropriate fabrics.' },
+          ],
+        },
+        {
+          title: 'Gifts',
+          items: [
+            { text: 'Receiving and giving.', detail: 'Use both hands where customary; avoid opening immediately if not expected.' },
+            { text: 'Avoid faux pas.', detail: 'Check items or colors considered unlucky or inappropriate.' },
+            { text: 'Wrapping styles.', detail: 'Follow local wrapping traditions and presentation etiquette.' },
+          ],
+        },
+        {
+          title: 'Photography',
+          items: [
+            { text: 'Ask permission.', detail: 'Gain consent for portraits; respect privacy and cultural norms.' },
+            { text: 'Restricted sites.', detail: 'Follow rules at government or religious locations.' },
+            { text: 'Discretion and respect.', detail: 'Avoid disruption and remain sensitive to context.' },
+          ],
+        },
+        {
+          title: 'Negotiation',
+          items: [
+            { text: 'Bargaining norms.', detail: 'Learn where haggling is expected and typical discount ranges.' },
+            { text: 'Fair pricing.', detail: 'Aim for reasonable outcomes; avoid aggressive tactics.' },
+            { text: 'Polite refusals.', detail: 'Decline courteously and firmly when needed.' },
+          ],
+        },
+        {
+          title: 'Punctuality',
+          items: [
+            { text: 'Time expectations.', detail: 'Understand local flexibility versus strict schedules.' },
+            { text: 'Grace periods.', detail: 'Offer and expect small buffers; communicate proactively.' },
+            { text: 'Communicate delays.', detail: 'Notify hosts promptly with revised ETAs.' },
+          ],
+        },
+        {
+          title: 'Respect',
+          items: [
+            { text: 'Learn local phrases.', detail: 'Use basic language to show effort and build goodwill.' },
+            { text: 'Avoid stereotypes.', detail: 'Stay curious and open; ask questions rather than assume.' },
+            { text: 'Be curious and humble.', detail: 'Listen actively and follow local leads on behavior.' },
+          ],
+        },
       ],
     },
     'nigerian-culture': {
       description:
         'Understand Nigerian culture: greetings, food, markets, music, festivals, dress, transport, safety, and language.',
       sections: [
-        { title: 'Greetings', items: ['Respectful forms of address.', 'Handshakes and bows.', 'Elders first.'] },
-        { title: 'Food', items: ['Staples and dishes.', 'Street food etiquette.', 'Regional flavors.'] },
-        { title: 'Markets', items: ['Bargaining norms.', 'Cash vs transfers.', 'Safety tips.'] },
-        { title: 'Music & Arts', items: ['Popular genres.', 'Local venues.', 'Etiquette at events.'] },
-        { title: 'Festivals', items: ['Major celebrations.', 'Dress expectations.', 'Community roles.'] },
-        { title: 'Dress', items: ['Traditional attire.', 'Modesty and comfort.', 'Occasion specifics.'] },
-        { title: 'Transport', items: ['Danfo and keke tips.', 'Routes and hubs.', 'Safety at night.'] },
-        { title: 'Safety', items: ['Stay aware.', 'Local contacts.', 'Emergency numbers.'] },
-        { title: 'Language', items: ['Common phrases.', 'Regional languages.', 'Polite forms.'] },
-        { title: 'Tipping & Negotiation', items: ['When and how.', 'Fair pricing.', 'Polite refusals.'] },
+        {
+          title: 'Greetings',
+          items: [
+            { text: 'Respectful forms of address.', detail: 'Use titles and honorifics; greet elders first with deference.' },
+            { text: 'Handshakes and bows.', detail: 'Offer firm but polite handshakes; slight bows show respect in some contexts.' },
+            { text: 'Elders first.', detail: 'Prioritize elders in greetings and seating; avoid interrupting.' },
+          ],
+        },
+        {
+          title: 'Food',
+          items: [
+            { text: 'Staples and dishes.', detail: 'Know jollof, suya, pounded yam, egusi; try local variations.' },
+            { text: 'Street food etiquette.', detail: 'Buy from busy, clean vendors; watch handling and reheating.' },
+            { text: 'Regional flavors.', detail: 'Explore differences across regions for spice levels and ingredients.' },
+          ],
+        },
+        {
+          title: 'Markets',
+          items: [
+            { text: 'Bargaining norms.', detail: 'Expect negotiation; start low, remain friendly, and settle fairly.' },
+            { text: 'Cash vs transfers.', detail: 'Carry small bills; many vendors accept mobile transfers.' },
+            { text: 'Safety tips.', detail: 'Keep valuables hidden; travel with companions where possible.' },
+          ],
+        },
+        {
+          title: 'Music & Arts',
+          items: [
+            { text: 'Popular genres.', detail: 'Afrobeats, highlife, and fuji are widely enjoyed; check local charts.' },
+            { text: 'Local venues.', detail: 'Attend open‑air shows or cultural centers for authentic experiences.' },
+            { text: 'Etiquette at events.', detail: 'Respect performance space; ask before filming or photographing.' },
+          ],
+        },
+        {
+          title: 'Festivals',
+          items: [
+            { text: 'Major celebrations.', detail: 'Note Eyo, Durbar, and cultural harvests; confirm schedules and routes.' },
+            { text: 'Dress expectations.', detail: 'Wear comfortable, respectful attire; consider traditional fabrics.' },
+            { text: 'Community roles.', detail: 'Observe roles and protocols; follow local guidance during processions.' },
+          ],
+        },
+        {
+          title: 'Dress',
+          items: [
+            { text: 'Traditional attire.', detail: 'Ankara, agbada, and gele feature prominently; ask for styling help.' },
+            { text: 'Modesty and comfort.', detail: 'Adapt to climate and setting; carry light layers for sun.' },
+            { text: 'Occasion specifics.', detail: 'Match attire to weddings, church, or official events appropriately.' },
+          ],
+        },
+        {
+          title: 'Transport',
+          items: [
+            { text: 'Danfo and keke tips.', detail: 'Learn routes and fares; board at official stops when possible.' },
+            { text: 'Routes and hubs.', detail: 'Identify major terminals and typical interchange points.' },
+            { text: 'Safety at night.', detail: 'Prefer ride‑hailing and well‑lit roads; share trips with contacts.' },
+          ],
+        },
+        {
+          title: 'Safety',
+          items: [
+            { text: 'Stay aware.', detail: 'Watch surroundings; avoid displaying valuables; plan routes in advance.' },
+            { text: 'Local contacts.', detail: 'Save trusted numbers for quick assistance or advice.' },
+            { text: 'Emergency numbers.', detail: 'Record police, medical, and fire services for your area.' },
+          ],
+        },
+        {
+          title: 'Language',
+          items: [
+            { text: 'Common phrases.', detail: 'Learn greetings in Yoruba, Igbo, Hausa, and Pidgin for connection.' },
+            { text: 'Regional languages.', detail: 'Expect multilingual environments; ask politely which language to use.' },
+            { text: 'Polite forms.', detail: 'Use courteous expressions; avoid slang until you understand context.' },
+          ],
+        },
+        {
+          title: 'Tipping & Negotiation',
+          items: [
+            { text: 'When and how.', detail: 'Tip for good service where customary; ask locals for norms.' },
+            { text: 'Fair pricing.', detail: 'Negotiate respectfully; accept small overages as goodwill when needed.' },
+            { text: 'Polite refusals.', detail: 'Decline extra purchases with warm but firm language.' },
+          ],
+        },
       ],
     },
     'local-tourism': {
       description:
         'Explore nearby attractions with smart planning, safety, budget awareness, and respectful local engagement.',
       sections: [
-        { title: 'Research', items: ['Attractions and hours.', 'Best times.', 'Local rules.'] },
-        { title: 'Itinerary', items: ['Routes and clusters.', 'Buffer times.', 'Reservations.'] },
-        { title: 'Transport', items: ['Transit and rides.', 'Parking options.', 'Walking routes.'] },
-        { title: 'Tickets', items: ['Buy online.', 'Combo passes.', 'Student/senior discounts.'] },
-        { title: 'Weather', items: ['Check forecasts.', 'Sun and rain gear.', 'Heat and cold plans.'] },
-        { title: 'Packing', items: ['Day bag essentials.', 'Water and snacks.', 'Power banks.'] },
-        { title: 'Safety', items: ['Stay aware.', 'Group options.', 'Emergency contacts.'] },
-        { title: 'Photography', items: ['Respect rules.', 'Ask permission.', 'Avoid blocking paths.'] },
-        { title: 'Budget', items: ['Track small spends.', 'Avoid tourist traps.', 'Use local deals.'] },
-        { title: 'Review', items: ['Favorite spots.', 'Improvements.', 'Share tips.'] },
+        {
+          title: 'Research',
+          items: [
+            { text: 'Attractions and hours.', detail: 'Confirm opening times and closures; check seasonal highlights.' },
+            { text: 'Best times.', detail: 'Visit early or late to avoid crowds and heat.' },
+            { text: 'Local rules.', detail: 'Learn restrictions on food, pets, and drones before visiting.' },
+          ],
+        },
+        {
+          title: 'Itinerary',
+          items: [
+            { text: 'Routes and clusters.', detail: 'Group nearby sites to maximize time at attractions.' },
+            { text: 'Buffer times.', detail: 'Add breaks and transit margins to keep the day calm.' },
+            { text: 'Reservations.', detail: 'Book timed entries where required to skip lines.' },
+          ],
+        },
+        {
+          title: 'Transport',
+          items: [
+            { text: 'Transit and rides.', detail: 'Use public transit or ride‑hailing; check route availability in advance.' },
+            { text: 'Parking options.', detail: 'Identify lots or street parking and payment methods.' },
+            { text: 'Walking routes.', detail: 'Plan safe paths with shade and rest spots.' },
+          ],
+        },
+        {
+          title: 'Tickets',
+          items: [
+            { text: 'Buy online.', detail: 'Purchase ahead for discounts and guaranteed entry.' },
+            { text: 'Combo passes.', detail: 'Bundle multiple sites to reduce total costs.' },
+            { text: 'Student/senior discounts.', detail: 'Carry ID to access local concession pricing.' },
+          ],
+        },
+        {
+          title: 'Weather',
+          items: [
+            { text: 'Check forecasts.', detail: 'Review updates on rain, heat, and wind; adjust plans accordingly.' },
+            { text: 'Sun and rain gear.', detail: 'Pack sunscreen, hats, and compact umbrellas.' },
+            { text: 'Heat and cold plans.', detail: 'Schedule indoor breaks or warm‑up stops when needed.' },
+          ],
+        },
+        {
+          title: 'Packing',
+          items: [
+            { text: 'Day bag essentials.', detail: 'Carry maps, small first‑aid, and basic hygiene items.' },
+            { text: 'Water and snacks.', detail: 'Stay hydrated; avoid overpriced tourist options.' },
+            { text: 'Power banks.', detail: 'Charge phones and cameras for navigation and photos.' },
+          ],
+        },
+        {
+          title: 'Safety',
+          items: [
+            { text: 'Stay aware.', detail: 'Keep belongings secure; avoid isolated areas after dark.' },
+            { text: 'Group options.', detail: 'Join guided tours for added safety and local insight.' },
+            { text: 'Emergency contacts.', detail: 'Save local assistance numbers and nearest clinic locations.' },
+          ],
+        },
+        {
+          title: 'Photography',
+          items: [
+            { text: 'Respect rules.', detail: 'Follow signs and staff guidance on restricted areas.' },
+            { text: 'Ask permission.', detail: 'Be courteous with portraits and private spaces.' },
+            { text: 'Avoid blocking paths.', detail: 'Stay aware of traffic flow and other visitors.' },
+          ],
+        },
+        {
+          title: 'Budget',
+          items: [
+            { text: 'Track small spends.', detail: 'Log snacks and souvenirs; small costs add up quickly.' },
+            { text: 'Avoid tourist traps.', detail: 'Compare prices off main streets; ask locals for recommendations.' },
+            { text: 'Use local deals.', detail: 'Seek resident rates, weekday discounts, and free days.' },
+          ],
+        },
+        {
+          title: 'Review',
+          items: [
+            { text: 'Favorite spots.', detail: 'Note highlights to revisit or recommend to friends.' },
+            { text: 'Improvements.', detail: 'Record friction points and better alternatives for next time.' },
+            { text: 'Share tips.', detail: 'Post concise guidance to help others navigate efficiently.' },
+          ],
+        },
       ],
     },
   };

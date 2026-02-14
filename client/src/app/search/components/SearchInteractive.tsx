@@ -1,6 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+import { NIGERIA_STATES } from '@/data/nigeria-states';
 import SearchBar from './SearchBar';
 import FilterSidebar from './FilterSidebar';
 import SearchResults from './SearchResults';
@@ -11,51 +14,100 @@ const SearchInteractive = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filters, setFilters] = useState({});
   const [hasSearched, setHasSearched] = useState(false);
+  const params = useSearchParams();
+  const type = params?.get('type') || '';
+  const state = params?.get('state') || '';
+  const formattedType =
+    type === 'food-delivery'
+      ? 'Food Delivery'
+      : type === 'restaurants'
+      ? 'Restaurants'
+      : type === 'lounges'
+      ? 'Lounges'
+      : type === 'street-food'
+      ? 'Street Food'
+      : type === 'places-to-visit'
+      ? 'Places to Visit'
+      : type
+      ? type
+      : '';
 
-  const mockResults = [
-    {
-      id: 'result_1',
-      title: 'Complete Guide to Modern Web Development with React and Next.js',
-      excerpt:
-        'Learn the fundamentals and advanced techniques of building modern web applications using React, Next.js, TypeScript, and cutting-edge tools.',
-      category: 'Technology',
-      readTime: '12 min',
-      author: 'Sarah Chen',
-      date: 'Feb 3, 2026',
-      matchScore: 0.95,
-      image: 'https://images.unsplash.com/photo-1635181951411-882166210167',
-      imageAlt: 'Person coding on laptop with multiple screens showing web development code',
-      href: '/guides/web-development',
-    },
-    {
-      id: 'result_2',
-      title: 'Understanding Machine Learning Fundamentals for Beginners',
-      excerpt:
-        'A comprehensive introduction to machine learning concepts, algorithms, and applications with hands-on examples and real-world use cases.',
-      category: 'Education',
-      readTime: '15 min',
-      author: 'Dr. Emily Watson',
-      date: 'Feb 1, 2026',
-      matchScore: 0.88,
-      image: 'https://img.rocket.new/generatedImages/rocket_gen_img_15b9cfc75-1764651774193.png',
-      imageAlt: 'Digital visualization of neural network with glowing blue connections',
-      href: '/guides/machine-learning',
-    },
-    {
-      id: 'result_3',
-      title: 'Mastering Productivity: Proven Time Management Strategies',
-      excerpt:
-        'Boost your productivity with evidence-based time management techniques and systems used by top performers worldwide.',
-      category: 'Lifestyle',
-      readTime: '8 min',
-      author: 'Michael Roberts',
-      date: 'Feb 2, 2026',
-      matchScore: 0.82,
-      image: 'https://images.unsplash.com/photo-1679602643581-ee1024aa1b18',
-      imageAlt: 'Organized workspace with planner, laptop, and coffee cup on white desk',
-      href: '/guides/productivity',
-    },
+  useEffect(() => {
+    if (type || state) {
+      const formattedType =
+        type === 'food-delivery'
+          ? 'Food Delivery'
+          : type === 'restaurants'
+          ? 'Restaurants'
+          : type === 'lounges'
+          ? 'Lounges'
+          : type === 'street-food'
+          ? 'Street Food'
+          : type
+          ? type
+          : '';
+      const queryParts = [];
+      if (formattedType) queryParts.push(formattedType);
+      if (state) queryParts.push(state);
+      const q = queryParts.length > 0 ? queryParts.join(' in ') : '';
+      if (q) {
+        setSearchQuery(q);
+        setHasSearched(true);
+        setFilters({ categories: ['local'], state });
+      }
+    }
+  }, [type, state]);
+
+  const topicImages = [
+    'https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/704569/pexels-photo-704569.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/4109135/pexels-photo-4109135.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/616401/pexels-photo-616401.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/2232/vegetables-italian-pizza-restaurant.jpg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/1435895/pexels-photo-1435895.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
   ];
+
+  const buildTopicResults = (t: string, s: string) => {
+    const label = t === 'food-delivery' ? 'Food Delivery' : formattedType || 'Local Resources';
+    const baseHref =
+      t === 'food-delivery'
+        ? '/local-resources/food-delivery'
+        : t === 'restaurants'
+        ? '/local-resources/restaurants'
+        : t === 'lounges'
+        ? '/local-resources/lounges'
+        : t === 'street-food'
+        ? '/local-resources/street-food'
+        : '/local-resources';
+    const topics = [
+      `Best ${label} in ${s || 'your area'}`,
+      `Affordable ${label} options in ${s || 'your area'}`,
+      `Top-rated ${label} vendors in ${s || 'your area'}`,
+      `Fast ${label} services in ${s || 'your area'}`,
+      `Late-night ${label} available in ${s || 'your area'}`,
+      `Healthy ${label} choices in ${s || 'your area'}`,
+      `Local favorites for ${label} in ${s || 'your area'}`,
+      `Weekend promos for ${label} in ${s || 'your area'}`,
+    ];
+    return topics.map((title, idx) => ({
+      id: `topic_${t || 'general'}_${s || 'global'}_${idx}`,
+      title,
+      excerpt:
+        s && t
+          ? `${label} highlights in ${s}: verified vendors, reliable delivery windows, budget combos, and seasonal promos.`
+          : `Discover verified options, delivery windows, and budget-friendly picks.`,
+      category: label,
+      readTime: `${8 + (idx % 5)} min`,
+      author: 'Editorial',
+      date: 'Feb 2026',
+      matchScore: 0.8 + (idx % 3) * 0.06,
+      image: topicImages[idx % topicImages.length],
+      imageAlt: `${label} illustration`,
+      href: baseHref + (s ? `?state=${encodeURIComponent(s)}` : ''),
+    }));
+  };
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -77,6 +129,21 @@ const SearchInteractive = () => {
       <section className="py-12 bg-gradient-to-br from-primary/5 to-accent/5 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <SearchBar onSearch={handleSearch} />
+
+          {formattedType && (
+            <div className="mt-6 flex items-center gap-2">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">
+                <Icon name="TagIcon" size={14} className="text-primary" />
+                {formattedType}
+              </span>
+              {state && (
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted text-foreground text-xs font-semibold">
+                  <Icon name="MapPinIcon" size={14} className="text-muted-foreground" />
+                  {state}
+                </span>
+              )}
+            </div>
+          )}
 
           {/* Recent Searches (only show if no search performed) */}
           {!hasSearched && (
@@ -101,20 +168,75 @@ const SearchInteractive = () => {
         </div>
       </section>
 
+      {formattedType && (
+        <section className="py-12">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-foreground mb-6">
+              Explore {formattedType} by State
+            </h2>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {NIGERIA_STATES.map((s) => {
+                const basePath =
+                  type === 'food-delivery'
+                    ? '/local-resources/food-delivery'
+                    : type === 'restaurants'
+                    ? '/local-resources/restaurants'
+                    : type === 'lounges'
+                    ? '/local-resources/lounges'
+                    : type === 'street-food'
+                    ? '/local-resources/street-food'
+                    : type === 'places-to-visit'
+                    ? '/local-resources/places-to-visit'
+                    : `/search?type=${encodeURIComponent(type)}`;
+                const href =
+                  basePath.startsWith('/local-resources')
+                    ? `${basePath}?state=${encodeURIComponent(s)}`
+                    : `${basePath}&state=${encodeURIComponent(s)}`;
+                return (
+                <Link
+                  key={s}
+                  href={href}
+                  className={`flex items-center justify-between gap-3 rounded-2xl border ${
+                    s === state ? 'border-primary' : 'border-gray-200'
+                  } bg-white px-4 py-3 hover:border-primary hover:bg-primary/5 transition-colors`}
+                >
+                  <div className="flex items-center gap-2">
+                    <Icon name="MapPinIcon" size={16} className="text-primary" />
+                    <span className="text-sm font-semibold text-foreground">{s}</span>
+                  </div>
+                  <span className="text-xs text-muted-foreground">{formattedType}</span>
+                </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Main Content */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Sidebar */}
             <div className="lg:col-span-3">
-              <FilterSidebar onFilterChange={handleFilterChange} />
+              <FilterSidebar
+                onFilterChange={handleFilterChange}
+                initialCategories={useMemo(() => (type ? ['local'] : []), [type])}
+              />
             </div>
 
             {/* Results */}
             <div className="lg:col-span-9">
               {hasSearched ? (
-                searchQuery && mockResults.length > 0 ? (
-                  <SearchResults query={searchQuery} results={mockResults} />
+                searchQuery ? (
+                  <SearchResults
+                    query={searchQuery}
+                    results={
+                      formattedType
+                        ? buildTopicResults(type, state)
+                        : buildTopicResults('', '')
+                    }
+                  />
                 ) : (
                   <EmptyState query={searchQuery} />
                 )
