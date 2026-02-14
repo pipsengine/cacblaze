@@ -71,6 +71,86 @@ const FoodDeliveryPage = ({
         'https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
       highlights: ['Grills & rice bowls', 'Afternoon peak', 'Cash & POS'],
     },
+    {
+      id: 'kaduna_city',
+      city: 'Kaduna',
+      area: 'Kaduna Central & Barnawa',
+      image:
+        'https://images.pexels.com/photos/704569/pexels-photo-704569.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      highlights: ['Local grills', 'Evening orders', 'Reliable transfers'],
+    },
+    {
+      id: 'enugu_city',
+      city: 'Enugu',
+      area: 'Independence Layout & GRA',
+      image:
+        'https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      highlights: ['Soups & swallow', 'Office lunches', 'Rider updates'],
+    },
+    {
+      id: 'awka_anambra',
+      city: 'Awka',
+      area: 'Awka Central & Ifite',
+      image:
+        'https://images.pexels.com/photos/317115/pexels-photo-317115.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      highlights: ['Quick shawarma', 'Student packs', 'Budget combos'],
+    },
+    {
+      id: 'warri_delta',
+      city: 'Warri',
+      area: 'Effurun & Airport Road',
+      image:
+        'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      highlights: ['Seafood bowls', 'Late deliveries', 'POS & cash'],
+    },
+    {
+      id: 'benin_edo',
+      city: 'Benin City',
+      area: 'GRA & New Benin',
+      image:
+        'https://images.pexels.com/photos/317115/pexels-photo-317115.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      highlights: ['Traditional meals', 'Group trays', 'Reliable riders'],
+    },
+    {
+      id: 'abeokuta_ogun',
+      city: 'Abeokuta',
+      area: 'Ibara & Oke-Ilewo',
+      image:
+        'https://images.pexels.com/photos/704569/pexels-photo-704569.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      highlights: ['Local soups', 'Fast pickup', 'Affordable fees'],
+    },
+    {
+      id: 'osogbo_osun',
+      city: 'Osogbo',
+      area: 'Olaiya & Odi Olowo',
+      image:
+        'https://images.pexels.com/photos/317115/pexels-photo-317115.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      highlights: ['Native dishes', 'Midday rush', 'Transfers accepted'],
+    },
+    {
+      id: 'ilorin_kwara',
+      city: 'Ilorin',
+      area: 'Tanke & GRA',
+      image:
+        'https://images.pexels.com/photos/704569/pexels-photo-704569.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      highlights: ['Budget plates', 'Student-friendly', 'Cash/transfer'],
+    },
+    {
+      id: 'jos_plateau',
+      city: 'Jos',
+      area: 'Old Airport & Rayfield',
+      image:
+        'https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      highlights: ['Grills & soups', 'Cool evenings', 'POS available'],
+    },
+    {
+      id: 'owerri_imo',
+      city: 'Owerri',
+      area: 'New Owerri & Ikenegbu',
+      image:
+        'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      highlights: ['Swallow packs', 'Office lunch', 'Rider tracking'],
+    },
   ];
 
   const cityToState: Record<string, string> = {
@@ -79,6 +159,16 @@ const FoodDeliveryPage = ({
     'Port Harcourt': 'Rivers',
     Ibadan: 'Oyo',
     Kano: 'Kano',
+    Kaduna: 'Kaduna',
+    Enugu: 'Enugu',
+    Awka: 'Anambra',
+    Warri: 'Delta',
+    'Benin City': 'Edo',
+    Abeokuta: 'Ogun',
+    Osogbo: 'Osun',
+    Ilorin: 'Kwara',
+    Jos: 'Plateau',
+    Owerri: 'Imo',
   };
 
   const filteredAreas =

@@ -8,212 +8,214 @@ import Footer from '@/components/common/Footer';
 import StateFilterSidebar from '@/components/common/StateFilterSidebar';
 
 export const metadata: Metadata = {
-  title: 'Concerts in Nigeria - CACBLAZE',
-  description: 'Discover live music concerts across Nigerian states with dates and venues.',
-  keywords: 'Nigeria concerts, live music, shows, events, states',
+  title: 'Business Services in Nigeria - CACBLAZE',
+  description:
+    'Find accounting, legal, printing, courier, consulting, marketing, and office services across Nigerian states.',
+  keywords:
+    'Nigeria business services, accounting, legal, printing, courier, consulting, marketing, office supplies, states',
 };
 
-type ConcertItem = {
+type BusinessService = {
   id: string;
   state: string;
   city: string;
   name: string;
   image: string;
-  date: string;
-  venue: string;
+  serviceType: string;
+  availability: string;
   highlights: string[];
 };
 
-const CONCERTS: ConcertItem[] = [
+const BUSINESS_SERVICES: BusinessService[] = [
   {
-    id: 'lagos_victoria_island_show',
+    id: 'lagos_vi_accounting',
     state: 'Lagos',
     city: 'Lagos',
-    name: 'Victoria Island Live',
+    name: 'VI Accounting Hub',
     image:
-      'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    date: '2026-03-28',
-    venue: 'VI Arena',
-    highlights: ['Afrobeats headliners', 'DJ sets', 'Late-night vibes'],
+      'https://images.pexels.com/photos/669493/pexels-photo-669493.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    serviceType: 'Accounting & Bookkeeping',
+    availability: 'Weekdays · 9:00 AM – 6:00 PM',
+    highlights: ['Financial statements', 'Tax filing', 'Payroll'],
   },
   {
-    id: 'abuja_city_concert',
+    id: 'abuja_wuse_legal',
     state: 'FCT Abuja',
     city: 'Abuja',
-    name: 'Abuja City Sounds',
+    name: 'Wuse Legal Partners',
     image:
-      'https://images.pexels.com/photos/11963165/pexels-photo-11963165.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    date: '2026-04-12',
-    venue: 'Eagle Square',
-    highlights: ['Live bands', 'Open-air stage', 'Food courts'],
+      'https://images.pexels.com/photos/442781/pexels-photo-442781.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    serviceType: 'Legal Services',
+    availability: 'By appointment',
+    highlights: ['Business registration', 'Contracts', 'Compliance'],
   },
   {
-    id: 'ph_rivers_night',
+    id: 'rivers_ph_print_center',
     state: 'Rivers',
     city: 'Port Harcourt',
-    name: 'Rivers Night Live',
+    name: 'PH Print Center',
     image:
-      'https://images.pexels.com/photos/964016/pexels-photo-964016.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    date: '2026-03-16',
-    venue: 'GRA Concert Hall',
-    highlights: ['Local artists', 'Dance segments', 'Community stage'],
+      'https://images.pexels.com/photos/4792491/pexels-photo-4792491.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    serviceType: 'Printing & Design',
+    availability: 'Daily · 8:00 AM – 7:00 PM',
+    highlights: ['Business cards', 'Posters', 'Brand kits'],
   },
   {
-    id: 'ibadan_oyo_music_fest',
+    id: 'oyo_ibadan_courier',
     state: 'Oyo',
     city: 'Ibadan',
-    name: 'Ibadan Music Fest',
+    name: 'Ibadan Courier & Logistics',
     image:
-      'https://images.pexels.com/photos/154147/pexels-photo-154147.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    date: '2026-05-03',
-    venue: 'Mapo Hall Grounds',
-    highlights: ['Cultural acts', 'Afro-fusion', 'Family-friendly'],
+      'https://images.pexels.com/photos/4246117/pexels-photo-4246117.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    serviceType: 'Courier & Logistics',
+    availability: 'Same-day · 9:00 AM – 6:00 PM',
+    highlights: ['City-wide delivery', 'Packaging', 'Tracking'],
   },
   {
-    id: 'kano_city_stage',
+    id: 'kano_business_consult',
     state: 'Kano',
     city: 'Kano',
-    name: 'Kano City Stage',
+    name: 'Kano Business Consult',
     image:
-      'https://images.pexels.com/photos/964016/pexels-photo-964016.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    date: '2026-06-10',
-    venue: 'Sani Abacha Indoor Arena',
-    highlights: ['Highlife bands', 'Dance troupes', 'Local DJs'],
+      'https://images.pexels.com/photos/3183165/pexels-photo-3183165.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    serviceType: 'Consulting',
+    availability: 'Weekdays · 10:00 AM – 4:00 PM',
+    highlights: ['Strategy', 'Operations', 'Process improvement'],
   },
   {
-    id: 'kaduna_lights_show',
+    id: 'kaduna_brand_marketing',
     state: 'Kaduna',
     city: 'Kaduna',
-    name: 'Kaduna Lights Show',
+    name: 'Kaduna Brand & Marketing',
     image:
-      'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    date: '2026-06-24',
-    venue: 'Murtala Square',
-    highlights: ['Live sets', 'Open-air', 'Evening performances'],
+      'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    serviceType: 'Marketing',
+    availability: 'Weekdays · 9:00 AM – 5:00 PM',
+    highlights: ['Social media', 'Campaigns', 'Content'],
   },
   {
-    id: 'enugu_hills_live',
+    id: 'enugu_hr_services',
     state: 'Enugu',
     city: 'Enugu',
-    name: 'Enugu Hills Live',
+    name: 'Enugu HR Services',
     image:
-      'https://images.pexels.com/photos/11963165/pexels-photo-11963165.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    date: '2026-07-05',
-    venue: 'Michael Okpara Square',
-    highlights: ['Afro-soul', 'Community stage', 'Food vendors'],
+      'https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    serviceType: 'HR & Staffing',
+    availability: 'By appointment',
+    highlights: ['Recruitment', 'Policies', 'Payroll support'],
   },
   {
-    id: 'awka_anambra_vibes',
+    id: 'anambra_awka_office_supplies',
     state: 'Anambra',
     city: 'Awka',
-    name: 'Awka Vibes',
+    name: 'Awka Office Supplies',
     image:
-      'https://images.pexels.com/photos/154147/pexels-photo-154147.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    date: '2026-07-19',
-    venue: 'Awka City Arena',
-    highlights: ['Local talents', 'Hip-hop acts', 'Night shows'],
+      'https://images.pexels.com/photos/461077/pexels-photo-461077.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    serviceType: 'Office Supplies',
+    availability: 'Daily · 8:00 AM – 8:00 PM',
+    highlights: ['Stationery', 'Printers', 'Accessories'],
   },
   {
-    id: 'warri_delta_sound',
+    id: 'delta_tax_advisors',
     state: 'Delta',
-    city: 'Warri',
-    name: 'Warri Soundscape',
+    city: 'Asaba',
+    name: 'Asaba Tax Advisors',
     image:
-      'https://images.pexels.com/photos/964016/pexels-photo-964016.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    date: '2026-08-02',
-    venue: 'Warri Township Stadium',
-    highlights: ['Afrobeats', 'Highlife', 'Community performances'],
+      'https://images.pexels.com/photos/669493/pexels-photo-669493.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    serviceType: 'Tax Advisory',
+    availability: 'Weekdays · 9:00 AM – 5:00 PM',
+    highlights: ['Tax planning', 'Year-end filing', 'Compliance'],
   },
   {
-    id: 'benin_edo_live',
+    id: 'edo_benin_corporate_law',
     state: 'Edo',
     city: 'Benin City',
-    name: 'Benin Live Sessions',
+    name: 'Benin Corporate Law',
     image:
-      'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    date: '2026-08-16',
-    venue: 'Samuel Ogbemudia Stadium',
-    highlights: ['Live bands', 'Open-air stage', 'Cultural displays'],
+      'https://images.pexels.com/photos/442781/pexels-photo-442781.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    serviceType: 'Corporate Legal',
+    availability: 'By appointment',
+    highlights: ['Company formation', 'Contracts', 'IP basics'],
   },
   {
-    id: 'abeokuta_ogun_groove',
+    id: 'ogun_abeokuta_print_shop',
     state: 'Ogun',
     city: 'Abeokuta',
-    name: 'Abeokuta Groove',
+    name: 'Abeokuta Print Shop',
     image:
-      'https://images.pexels.com/photos/154147/pexels-photo-154147.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    date: '2026-08-30',
-    venue: 'MKO Abiola Stadium',
-    highlights: ['Afro-fusion', 'Street performances', 'Family-friendly'],
+      'https://images.pexels.com/photos/4792491/pexels-photo-4792491.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    serviceType: 'Printing',
+    availability: 'Daily · 9:00 AM – 7:00 PM',
+    highlights: ['Flyers', 'Banners', 'Branding'],
   },
   {
-    id: 'osogbo_osun_tune',
+    id: 'osun_osogbo_courier',
     state: 'Osun',
     city: 'Osogbo',
-    name: 'Osogbo Tune Fest',
+    name: 'Osogbo City Courier',
     image:
-      'https://images.pexels.com/photos/964016/pexels-photo-964016.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    date: '2026-09-13',
-    venue: 'Freedom Park',
-    highlights: ['Local choirs', 'Live bands', 'Evening chill'],
+      'https://images.pexels.com/photos/4246117/pexels-photo-4246117.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    serviceType: 'Courier',
+    availability: 'Same-day · 9:00 AM – 6:00 PM',
+    highlights: ['City delivery', 'Packaging', 'Tracking'],
   },
   {
-    id: 'ilorin_kwara_beats',
+    id: 'kwara_ilorin_business_center',
     state: 'Kwara',
     city: 'Ilorin',
-    name: 'Ilorin City Beats',
+    name: 'Ilorin Business Center',
     image:
-      'https://images.pexels.com/photos/11963165/pexels-photo-11963165.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    date: '2026-09-27',
-    venue: 'Stadium Grounds',
-    highlights: ['Hip-hop sets', 'DJ nights', 'Open grounds'],
+      'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    serviceType: 'Consulting & Training',
+    availability: 'Weekdays · 10:00 AM – 4:00 PM',
+    highlights: ['Workshops', 'Mentorship', 'Strategy'],
   },
   {
-    id: 'jos_plateau_sound',
+    id: 'plateau_jos_brand_house',
     state: 'Plateau',
     city: 'Jos',
-    name: 'Jos Plateau Sound',
+    name: 'Jos Brand House',
     image:
-      'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    date: '2026-10-11',
-    venue: 'City Park Arena',
-    highlights: ['Cool evening shows', 'Local artists', 'Acoustic sessions'],
+      'https://images.pexels.com/photos/3183132/pexels-photo-3183132.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    serviceType: 'Brand & Design',
+    availability: 'Weekdays · 9:00 AM – 5:00 PM',
+    highlights: ['Logos', 'Guidelines', 'Packaging'],
   },
   {
-    id: 'owerri_imo_rhythm',
+    id: 'imo_owerri_business_support',
     state: 'Imo',
     city: 'Owerri',
-    name: 'Owerri Rhythm Night',
+    name: 'Owerri Business Support',
     image:
-      'https://images.pexels.com/photos/154147/pexels-photo-154147.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    date: '2026-10-25',
-    venue: 'Hero Square',
-    highlights: ['Afro-pop', 'Dance troupes', 'Food courts'],
+      'https://images.pexels.com/photos/3183186/pexels-photo-3183186.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    serviceType: 'Admin & Support',
+    availability: 'By appointment',
+    highlights: ['Documentation', 'Scheduling', 'Virtual assistance'],
   },
 ];
 
 const buildStateCards = (state: string) => {
   const imgs = [
-    'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    'https://images.pexels.com/photos/964016/pexels-photo-964016.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    'https://images.pexels.com/photos/11963165/pexels-photo-11963165.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    'https://images.pexels.com/photos/154147/pexels-photo-154147.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/669493/pexels-photo-669493.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/3183165/pexels-photo-3183165.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/4792491/pexels-photo-4792491.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/4246117/pexels-photo-4246117.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
   ];
   const titles = [
-    `Upcoming concerts in ${state}`,
-    `Live bands and shows in ${state}`,
-    `City night events in ${state}`,
-    `Open-air music in ${state}`,
+    `Accounting & tax in ${state}`,
+    `Legal & compliance in ${state}`,
+    `Printing & branding in ${state}`,
+    `Courier & logistics in ${state}`,
   ];
   return titles.map((t, i) => ({
     id: `state_${state}_${i}`,
     title: t,
     image: imgs[i % imgs.length],
-    points: ['Dates and venues', 'Tickets info', 'Artist lineups'],
+    points: ['Availability', 'Service types', 'Rates info'],
   }));
 };
 
-const ConcertsPage = ({
+const BusinessServicesPage = ({
   searchParams,
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
@@ -225,13 +227,13 @@ const ConcertsPage = ({
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Local Resources', href: '/local-resources' },
-    { name: 'Concerts', href: '/local-resources/concerts' },
+    { name: 'Business Services', href: '/local-resources/business-services' },
   ];
 
   const filtered =
     selectedState && selectedState.length > 0
-      ? CONCERTS.filter((e) => e.state === selectedState)
-      : CONCERTS;
+      ? BUSINESS_SERVICES.filter((e) => e.state === selectedState)
+      : BUSINESS_SERVICES;
 
   return (
     <>
@@ -245,24 +247,24 @@ const ConcertsPage = ({
                 Local Resources
               </span>
               <h1 className="text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                {selectedState ? `Concerts in ${selectedState}` : 'Concerts'}
+                {selectedState ? `Business Services in ${selectedState}` : 'Business Services'}
               </h1>
               <p className="text-xl text-secondary mb-8 leading-relaxed">
-                See live shows across Nigerian states with dates, venues, and highlights.
+                Find trusted local providers for accounting, legal, printing, courier, consulting, and office needs.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
-                  href={`/search?type=concerts${selectedState ? `&state=${encodeURIComponent(selectedState)}` : ''}`}
+                  href={`/search?type=business-services${selectedState ? `&state=${encodeURIComponent(selectedState)}` : ''}`}
                   className="inline-flex items-center gap-2 px-5 py-3 bg-primary text-white rounded-2xl font-semibold hover:bg-primary/90 transition-all hover-lift"
                 >
-                  Find Concerts Near Me
+                  Find Business Services Near Me
                   <Icon name="ArrowRightIcon" size={18} className="text-white" />
                 </Link>
                 <Link
-                  href="/local-resources/events-calendar"
+                  href="/local-resources"
                   className="inline-flex items-center gap-2 px-5 py-3 bg-white text-primary rounded-2xl font-semibold border border-primary/20 hover:bg-primary/5 transition-all"
                 >
-                  See Events Calendar
+                  Browse Local Resources
                 </Link>
               </div>
             </div>
@@ -271,11 +273,11 @@ const ConcertsPage = ({
 
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Upcoming Concerts</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8">Featured Business Services</h2>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
               <div className="lg:col-span-3">
                 <StateFilterSidebar
-                  basePath="/local-resources/concerts"
+                  basePath="/local-resources/business-services"
                   selectedState={selectedState}
                   header="Explore by State"
                 />
@@ -297,10 +299,10 @@ const ConcertsPage = ({
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                       <div className="absolute bottom-5 left-5 right-5">
                         <div className="text-white text-xs">
-                          {e.city}, {e.state} · {new Date(e.date).toLocaleDateString()}
+                          {e.city}, {e.state} · {e.availability}
                         </div>
                         <h3 className="text-2xl font-bold text-white">{e.name}</h3>
-                        <div className="text-white text-xs mt-1">{e.venue}</div>
+                        <div className="text-white text-xs mt-1">{e.serviceType}</div>
                       </div>
                     </div>
                     <div className="p-6">
@@ -361,4 +363,4 @@ const ConcertsPage = ({
   );
 };
 
-export default ConcertsPage;
+export default BusinessServicesPage;

@@ -36,13 +36,13 @@ const ATTRACTIONS: Attraction[] = [
     highlights: ['Boat-access beach', 'Family-friendly', 'Surf spots'],
   },
   {
-    id: 'lagos_lekki_conservation',
-    state: 'Lagos',
-    city: 'Lekki',
-    name: 'Lekki Conservation Centre',
+    id: 'ogun_olumo_rock',
+    state: 'Ogun',
+    city: 'Abeokuta',
+    name: 'Olumo Rock',
     image:
-      'https://images.pexels.com/photos/245240/pexels-photo-245240.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Canopy walkway', 'Wildlife', 'Guided tours'],
+      'https://images.pexels.com/photos/247478/pexels-photo-247478.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Rock climb', 'City panoramas', 'Historic tunnels'],
   },
   {
     id: 'abuja_millennium_park',
@@ -54,13 +54,13 @@ const ATTRACTIONS: Attraction[] = [
     highlights: ['Picnic lawns', 'Fountain paths', 'City views'],
   },
   {
-    id: 'abuja_aso_rock',
-    state: 'FCT Abuja',
-    city: 'Abuja',
-    name: 'Aso Rock Views',
+    id: 'osun_osogbo_grove',
+    state: 'Osun',
+    city: 'Osogbo',
+    name: 'Osun-Osogbo Sacred Grove',
     image:
-      'https://images.pexels.com/photos/35600/road-sun-rays-path.jpg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Rock formations', 'Sunset vistas', 'Photo spots'],
+      'https://images.pexels.com/photos/1083896/pexels-photo-1083896.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['UNESCO site', 'Forest shrine', 'Sculpture trails'],
   },
   {
     id: 'rivers_ph_pleasure_park',
@@ -72,22 +72,22 @@ const ATTRACTIONS: Attraction[] = [
     highlights: ['Jogging trails', 'Boating', 'Kids zone'],
   },
   {
-    id: 'rivers_bonny_island',
-    state: 'Rivers',
-    city: 'Bonny',
-    name: 'Bonny Island Beaches',
-    image:
-      'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Pristine beaches', 'Quiet escapes', 'Local seafood'],
-  },
-  {
-    id: 'cross_river_obudu',
-    state: 'Cross River',
-    city: 'Obudu',
-    name: 'Obudu Mountain Resort',
+    id: 'plateau_jos_park',
+    state: 'Plateau',
+    city: 'Jos',
+    name: 'Jos Wildlife Park',
     image:
       'https://images.pexels.com/photos/1083896/pexels-photo-1083896.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Cable cars', 'Cool climate', 'Mountain trails'],
+    highlights: ['Wildlife enclosures', 'Nature trails', 'Picnic areas'],
+  },
+  {
+    id: 'imo_oguta_lake',
+    state: 'Imo',
+    city: 'Oguta',
+    name: 'Oguta Lake Resort',
+    image:
+      'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Lakeside views', 'Boat rides', 'Relax zones'],
   },
   {
     id: 'kano_dye_pits',
@@ -99,7 +99,61 @@ const ATTRACTIONS: Attraction[] = [
     highlights: ['Historic craft', 'Indigo dyeing', 'Cultural heritage'],
   },
   {
-    id: 'enugu_ngwo_cave',
+    id: 'kwara_asa_dam',
+    state: 'Kwara',
+    city: 'Ilorin',
+    name: 'Asa Dam Park',
+    image:
+      'https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Lake views', 'Jogging paths', 'Family spots'],
+  },
+  {
+    id: 'oyo_agodi_gardens',
+    state: 'Oyo',
+    city: 'Ibadan',
+    name: 'Agodi Gardens',
+    image:
+      'https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Lush park', 'Picnic zones', 'Lake views'],
+  },
+  {
+    id: 'kaduna_gamji_gate',
+    state: 'Kaduna',
+    city: 'Kaduna',
+    name: 'Gamji Gate Park',
+    image:
+      'https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Green lawns', 'Walking paths', 'City outlook'],
+  },
+  {
+    id: 'anambra_ogbunike_caves',
+    state: 'Anambra',
+    city: 'Ogbunike',
+    name: 'Ogbunike Caves',
+    image:
+      'https://images.pexels.com/photos/245240/pexels-photo-245240.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Cave network', 'Nature trail', 'Heritage site'],
+  },
+  {
+    id: 'delta_osa_beach',
+    state: 'Delta',
+    city: 'Warri',
+    name: 'Warri Waterfront',
+    image:
+      'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Riverside strolls', 'Sunset views', 'Quiet spots'],
+  },
+  {
+    id: 'edo_igun_street',
+    state: 'Edo',
+    city: 'Benin City',
+    name: 'Igun Street Bronze Works',
+    image:
+      'https://images.pexels.com/photos/302902/pexels-photo-302902.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Bronze craft', 'Artisan shops', 'Cultural heritage'],
+  },
+  {
+    id: 'enugu_ngwo_cave_return',
     state: 'Enugu',
     city: 'Ngwo',
     name: 'Ngwo Pine Forest & Cave',

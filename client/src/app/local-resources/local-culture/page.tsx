@@ -79,6 +79,87 @@ const CULTURE_ITEMS: CultureItem[] = [
       'https://images.pexels.com/photos/1838920/pexels-photo-1838920.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     highlights: ['Parades', 'Costumes', 'Street performances'],
   },
+  {
+    id: 'oyo_crafts_market',
+    state: 'Oyo',
+    city: 'Ibadan',
+    name: 'Mokola Crafts Market',
+    image:
+      'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Local textiles', 'Handmade goods', 'Community shops'],
+  },
+  {
+    id: 'kaduna_kulture_square',
+    state: 'Kaduna',
+    city: 'Kaduna',
+    name: 'Kulture Square',
+    image:
+      'https://images.pexels.com/photos/204154/pexels-photo-204154.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Craft workshops', 'Music nights', 'Art fairs'],
+  },
+  {
+    id: 'enugu_ngwo_art',
+    state: 'Enugu',
+    city: 'Enugu',
+    name: 'Ngwo Art & Heritage',
+    image:
+      'https://images.pexels.com/photos/2235130/pexels-photo-2235130.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Forest crafts', 'Community exhibits', 'Photo-friendly'],
+  },
+  {
+    id: 'anambra_ogbunike_culture',
+    state: 'Anambra',
+    city: 'Ogbunike',
+    name: 'Ogbunike Cultural Center',
+    image:
+      'https://images.pexels.com/photos/10593880/pexels-photo-10593880.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Folklore shows', 'Craft markets', 'Guided tours'],
+  },
+  {
+    id: 'delta_warri_cuisine',
+    state: 'Delta',
+    city: 'Warri',
+    name: 'Warri Cuisine & Crafts',
+    image:
+      'https://images.pexels.com/photos/317115/pexels-photo-317115.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Seafood culture', 'Local artisans', 'Evening fairs'],
+  },
+  {
+    id: 'edo_benin_bronze',
+    state: 'Edo',
+    city: 'Benin City',
+    name: 'Benin Bronze Street',
+    image:
+      'https://images.pexels.com/photos/302902/pexels-photo-302902.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Bronze casting', 'Artisan lineage', 'Heritage tours'],
+  },
+  {
+    id: 'ogun_abeokuta_textiles',
+    state: 'Ogun',
+    city: 'Abeokuta',
+    name: 'Abeokuta Adire Center',
+    image:
+      'https://images.pexels.com/photos/2235130/pexels-photo-2235130.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Adire fabrics', 'Dye workshops', 'Local designers'],
+  },
+  {
+    id: 'osun_osogbo_arts',
+    state: 'Osun',
+    city: 'Osogbo',
+    name: 'Osogbo Art Village',
+    image:
+      'https://images.pexels.com/photos/10593880/pexels-photo-10593880.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Traditional arts', 'Festival crafts', 'Community studio'],
+  },
+  {
+    id: 'imo_owerri_culture',
+    state: 'Imo',
+    city: 'Owerri',
+    name: 'Owerri Culture Hub',
+    image:
+      'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Dance and music', 'Handmade goods', 'Local food'],
+  },
 ];
 
 const buildStateCards = (state: string) => {

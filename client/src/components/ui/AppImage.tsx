@@ -88,8 +88,14 @@ function AppImage({
         className={`relative ${className}`}
         style={{ width: width || '100%', height: height || '100%' }}
       >
+        {(() => {
+          const resolvedSrc =
+            isExternal && imageSrc !== fallbackSrc
+              ? `/api/image-proxy?url=${encodeURIComponent(imageSrc)}`
+              : imageSrc;
+          return (
         <img
-          src={imageSrc}
+          src={resolvedSrc}
           alt={alt}
           className={`${commonClassName} absolute inset-0 w-full h-full object-cover`}
           onError={handleError}
@@ -97,13 +103,21 @@ function AppImage({
           onClick={onClick}
           {...validImgProps}
         />
+          );
+        })()}
       </div>
     );
   }
 
   return (
+    (() => {
+      const resolvedSrc =
+        isExternal && imageSrc !== fallbackSrc
+          ? `/api/image-proxy?url=${encodeURIComponent(imageSrc)}`
+          : imageSrc;
+      return (
     <img
-      src={imageSrc}
+      src={resolvedSrc}
       alt={alt}
       width={width || 400}
       height={height || 300}
@@ -114,6 +128,8 @@ function AppImage({
       loading={priority ? 'eager' : 'lazy'}
       {...validImgProps}
     />
+      );
+    })()
   );
 }
 

@@ -71,6 +71,127 @@ const EVENTS: EventItem[] = [
     venue: 'City Center',
     highlights: ['Parades', 'Costumes', 'Street performances'],
   },
+  {
+    id: 'kano_culture_fair',
+    state: 'Kano',
+    city: 'Kano',
+    name: 'Kano Culture Fair',
+    image:
+      'https://images.pexels.com/photos/3184636/pexels-photo-3184636.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    date: '2026-05-08',
+    venue: 'City Arena',
+    highlights: ['Crafts', 'Performances', 'Food stalls'],
+  },
+  {
+    id: 'kaduna_book_fair',
+    state: 'Kaduna',
+    city: 'Kaduna',
+    name: 'Kaduna Book Fair',
+    image:
+      'https://images.pexels.com/photos/3184636/pexels-photo-3184636.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    date: '2026-05-22',
+    venue: 'Murtala Square',
+    highlights: ['Readings', 'Workshops', 'Local authors'],
+  },
+  {
+    id: 'enugu_art_week',
+    state: 'Enugu',
+    city: 'Enugu',
+    name: 'Enugu Art Week',
+    image:
+      'https://images.pexels.com/photos/2235130/pexels-photo-2235130.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    date: '2026-06-05',
+    venue: 'Michael Okpara Square',
+    highlights: ['Galleries', 'Live art', 'Community events'],
+  },
+  {
+    id: 'awka_startup_day',
+    state: 'Anambra',
+    city: 'Awka',
+    name: 'Awka Startup Day',
+    image:
+      'https://images.pexels.com/photos/3184636/pexels-photo-3184636.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    date: '2026-06-19',
+    venue: 'City Hall',
+    highlights: ['Talks', 'Pitch sessions', 'Networking'],
+  },
+  {
+    id: 'warri_food_market',
+    state: 'Delta',
+    city: 'Warri',
+    name: 'Warri Food Market',
+    image:
+      'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    date: '2026-07-03',
+    venue: 'Town Square',
+    highlights: ['Local dishes', 'Seafood', 'Vendors'],
+  },
+  {
+    id: 'benin_edo_expo',
+    state: 'Edo',
+    city: 'Benin City',
+    name: 'Benin Expo',
+    image:
+      'https://images.pexels.com/photos/2235130/pexels-photo-2235130.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    date: '2026-07-17',
+    venue: 'Exhibition Center',
+    highlights: ['Crafts', 'Textiles', 'Bronze art'],
+  },
+  {
+    id: 'abeokuta_ogun_crafts',
+    state: 'Ogun',
+    city: 'Abeokuta',
+    name: 'Abeokuta Crafts Day',
+    image:
+      'https://images.pexels.com/photos/2235130/pexels-photo-2235130.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    date: '2026-07-31',
+    venue: 'City Park',
+    highlights: ['Adire fabrics', 'Dye demos', 'Market stalls'],
+  },
+  {
+    id: 'osogbo_osun_festival',
+    state: 'Osun',
+    city: 'Osogbo',
+    name: 'Osogbo Art Festival',
+    image:
+      'https://images.pexels.com/photos/1838920/pexels-photo-1838920.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    date: '2026-08-14',
+    venue: 'Art Village',
+    highlights: ['Performances', 'Workshops', 'Market'],
+  },
+  {
+    id: 'ilorin_kwara_market',
+    state: 'Kwara',
+    city: 'Ilorin',
+    name: 'Ilorin Culture Market',
+    image:
+      'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    date: '2026-08-28',
+    venue: 'Town Square',
+    highlights: ['Food', 'Crafts', 'Live shows'],
+  },
+  {
+    id: 'jos_plateau_fair',
+    state: 'Plateau',
+    city: 'Jos',
+    name: 'Jos Plateau Fair',
+    image:
+      'https://images.pexels.com/photos/3184636/pexels-photo-3184636.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    date: '2026-09-11',
+    venue: 'City Arena',
+    highlights: ['Cool weather vibes', 'Crafts', 'Music'],
+  },
+  {
+    id: 'owerri_imo_heritage',
+    state: 'Imo',
+    city: 'Owerri',
+    name: 'Owerri Heritage Day',
+    image:
+      'https://images.pexels.com/photos/2235130/pexels-photo-2235130.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    date: '2026-09-25',
+    venue: 'Hero Square',
+    highlights: ['Dance', 'Music', 'Food markets'],
+  },
 ];
 
 const buildStateCards = (state: string) => {

@@ -46,6 +46,10 @@ const SearchInteractive = () => {
       ? 'Family Events'
       : type === 'home-services'
       ? 'Home Services'
+      : type === 'freelancers'
+      ? 'Freelancers'
+      : type === 'business-services'
+      ? 'Business Services'
       : type === 'tech-services'
       ? 'Tech Services'
       : type
@@ -225,6 +229,10 @@ const SearchInteractive = () => {
                     ? '/local-resources/family-events'
                     : type === 'home-services'
                     ? '/local-resources/home-services'
+                  : type === 'freelancers'
+                    ? '/local-resources/freelancers'
+                  : type === 'business-services'
+                    ? '/local-resources/business-services'
                     : type === 'tech-services'
                     ? '/local-resources/tech-services'
                     : `/search?type=${encodeURIComponent(type)}`;

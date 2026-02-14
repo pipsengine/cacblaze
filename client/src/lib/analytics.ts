@@ -22,8 +22,8 @@ export function useGoogleAnalytics() {
       document.head.appendChild(script);
 
       window.dataLayer = window.dataLayer || [];
-      window.gtag = function () {
-        window.dataLayer.push(arguments);
+      window.gtag = (...args: any[]) => {
+        window.dataLayer.push(args as any);
       };
       window.gtag('js', new Date());
       window.gtag('config', measurementId, {
@@ -44,7 +44,7 @@ export function useGoogleAnalytics() {
 // Track custom events
 export function trackEvent(eventName: string, eventParams: Record<string, any> = {}) {
   if (process.env.NODE_ENV !== 'production') {
-    console.log(`[Analytics] Event: ${eventName}`, eventParams);
+    console.info(`[Analytics] Event: ${eventName}`, eventParams);
     return;
   }
 

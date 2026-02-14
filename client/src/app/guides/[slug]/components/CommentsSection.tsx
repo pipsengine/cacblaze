@@ -7,7 +7,7 @@ import Icon from '@/components/ui/AppIcon';
 import { getAuthorAvatar } from '@/utils/imageService';
 import { trackCommentAction } from '@/lib/analytics';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/$/, '');
 
 interface Comment {
   id: string;
@@ -62,6 +62,10 @@ export default function CommentsSection({ articleId }: CommentsProps) {
 
   const fetchComments = async () => {
     try {
+      if (!API_URL) {
+        setComments([]);
+        return;
+      }
       const res = await fetch(`${API_URL}/comments/${articleId}`);
       if (!res.ok) throw new Error('Failed to fetch comments');
 
@@ -94,7 +98,8 @@ export default function CommentsSection({ articleId }: CommentsProps) {
 
       // Organize into threads
       const topLevelComments = formattedComments.filter((c: Comment) => !c.parentId);
-      const commentMap = new Map(
+      type ThreadedComment = Comment & { replies: Comment[] };
+      const commentMap = new Map<string, ThreadedComment>(
         formattedComments.map((c: Comment) => [c.id, { ...c, replies: [] }])
       );
 
@@ -102,7 +107,6 @@ export default function CommentsSection({ articleId }: CommentsProps) {
         if (comment.parentId) {
           const parent = commentMap.get(comment.parentId);
           if (parent) {
-            parent.replies = parent.replies || [];
             parent.replies.push(commentMap.get(comment.id)!);
           }
         }
@@ -121,6 +125,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
     if (!user || !newComment.trim()) return;
 
     try {
+      if (!API_URL) return;
       const res = await fetch(`${API_URL}/comments`, {
         method: 'POST',
         headers: {
@@ -149,6 +154,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
     if (!user || !replyContent.trim()) return;
 
     try {
+      if (!API_URL) return;
       const res = await fetch(`${API_URL}/comments`, {
         method: 'POST',
         headers: {
@@ -179,6 +185,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
     if (!user || !editContent.trim()) return;
 
     try {
+      if (!API_URL) return;
       const res = await fetch(`${API_URL}/comments/${commentId}`, {
         method: 'PUT',
         headers: {
@@ -207,6 +214,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
     if (!user || !confirm('Are you sure you want to delete this comment?')) return;
 
     try {
+      if (!API_URL) return;
       const res = await fetch(`${API_URL}/comments/${commentId}`, {
         method: 'DELETE',
         headers: {
@@ -228,6 +236,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
     if (!user) return;
 
     try {
+      if (!API_URL) return;
       const res = await fetch(`${API_URL}/comments/${commentId}/reaction`, {
         method: 'POST',
         headers: {
