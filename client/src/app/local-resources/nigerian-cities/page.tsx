@@ -27,7 +27,8 @@ const NigerianCitiesPage = () => {
       tagline: "Nigeria's Economic Powerhouse",
       description:
         "Navigate Lagos like a pro with traffic hacks, housing guides, and business opportunities in Africa's largest city.",
-      image: 'https://images.unsplash.com/photo-1654854836161-d7ff36a5130a',
+      image:
+        'https://images.unsplash.com/photo-1654854836161-d7ff36a5130a?auto=format&fit=crop&w=1200&q=80',
       imageAlt: 'Lagos skyline with modern buildings and busy streets',
       href: '/nigerian-cities/lagos',
       stats: { population: '15M+', traffic: 'Heavy', business: 'High' },
@@ -44,7 +45,8 @@ const NigerianCitiesPage = () => {
       tagline: 'The Federal Capital Territory',
       description:
         "Discover Abuja's organized layout, government opportunities, real estate market, and quality of life advantages.",
-      image: 'https://img.rocket.new/generatedImages/rocket_gen_img_1a2f849f7-1764684653754.png',
+      image:
+        'https://source.unsplash.com/1200x800/?abuja,city',
       imageAlt: 'Abuja city center with Aso Rock in background',
       href: '/nigerian-cities/abuja',
       stats: { population: '3M+', traffic: 'Moderate', business: 'Growing' },
@@ -56,7 +58,8 @@ const NigerianCitiesPage = () => {
       tagline: 'The Garden City',
       description:
         "Explore Port Harcourt's oil & gas opportunities, business landscape, and emerging tech scene in the Niger Delta.",
-      image: 'https://img.rocket.new/generatedImages/rocket_gen_img_14b47f883-1767944531802.png',
+      image:
+        'https://source.unsplash.com/1200x800/?port-harcourt,city',
       imageAlt: 'Port Harcourt waterfront with industrial and commercial areas',
       href: '/nigerian-cities/port-harcourt',
       stats: { population: '2M+', traffic: 'Light', business: 'Oil & Gas' },

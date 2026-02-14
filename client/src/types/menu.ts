@@ -9,6 +9,7 @@ export interface MenuCategory {
   id: string;
   label: string;
   items: MenuSubItem[];
+  group?: string;
 }
 
 export interface MenuItem {

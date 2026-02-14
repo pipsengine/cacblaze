@@ -1,3 +1,7 @@
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET(req: Request) {
   const urlObj = new URL(req.url);
   const target = urlObj.searchParams.get('url');
@@ -21,7 +25,8 @@ export async function GET(req: Request) {
     return new Response(buf, {
       headers: {
         'content-type': contentType,
-        'cache-control': 'public, max-age=3600',
+        'cache-control': 'public, max-age=1800',
+        'x-proxy-source': new URL(target).hostname,
       },
     });
   } catch {

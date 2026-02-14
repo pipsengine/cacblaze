@@ -112,7 +112,6 @@ const MegaMenu = ({ item, isActive }: MegaMenuProps) => {
         />
       </button>
 
-      {/* Dropdown Menu */}
       <div
         className={`absolute left-0 top-full w-full bg-white border-t border-gray-200 shadow-lg z-50 transition-all duration-150 ease-out ${
           isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
@@ -121,37 +120,93 @@ const MegaMenu = ({ item, isActive }: MegaMenuProps) => {
         aria-label={`${item?.label} submenu`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8">
-          <div
-            className={`grid gap-x-8 gap-y-6 ${
-              item?.categories?.length <= 2
-                ? 'grid-cols-2'
-                : item?.categories?.length === 3
-                  ? 'grid-cols-3'
-                  : 'grid-cols-4'
-            }`}
-          >
-            {item?.categories?.map((category) => (
-              <div key={category?.id} className="space-y-4">
-                <h3 className="text-xs font-bold text-foreground uppercase tracking-wider border-b border-gray-100 pb-2">
-                  {category?.label}
-                </h3>
-                <ul className="space-y-2.5">
-                  {category?.items?.map((subItem) => (
-                    <li key={subItem?.id}>
-                      <Link
-                        href={subItem?.href}
-                        className="block text-sm text-secondary hover:text-primary transition-colors hover:translate-x-1 duration-200"
-                        role="menuitem"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {subItem?.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          {Array.isArray(item?.categories) &&
+          item?.categories?.some((c) => !!c?.group) ? (
+            <div className="space-y-10">
+              {Array.from(
+                new Map(
+                  item.categories
+                    .map((c) => c.group || 'Other')
+                    .map((g, i) => [g, i])
+                ).keys()
+              ).map((groupName) => {
+                const groupCats = item.categories?.filter(
+                  (c) => (c.group || 'Other') === groupName
+                );
+                const cols =
+                  (groupCats?.length || 0) <= 2
+                    ? 'grid-cols-2'
+                    : (groupCats?.length || 0) === 3
+                      ? 'grid-cols-3'
+                      : 'grid-cols-4';
+                return (
+                  <div key={`group-${groupName}`} className="space-y-6">
+                    <div className="flex items-center justify-between">
+                      <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                        {groupName}
+                      </h2>
+                      <div className="flex-1 border-t border-gray-100 ml-4" />
+                    </div>
+                    <div className={`grid gap-x-8 gap-y-6 ${cols}`}>
+                      {groupCats?.map((category) => (
+                        <div key={category?.id} className="space-y-4">
+                          <h3 className="text-xs font-bold text-foreground uppercase tracking-wider border-b border-gray-100 pb-2">
+                            {category?.label}
+                          </h3>
+                          <ul className="space-y-2.5">
+                            {category?.items?.map((subItem) => (
+                              <li key={subItem?.id}>
+                                <Link
+                                  href={subItem?.href}
+                                  className="block text-sm text-secondary hover:text-primary transition-colors hover:translate-x-1 duration-200"
+                                  role="menuitem"
+                                  onClick={() => setIsOpen(false)}
+                                >
+                                  {subItem?.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div
+              className={`grid gap-x-8 gap-y-6 ${
+                item?.categories?.length <= 2
+                  ? 'grid-cols-2'
+                  : item?.categories?.length === 3
+                    ? 'grid-cols-3'
+                    : 'grid-cols-4'
+              }`}
+            >
+              {item?.categories?.map((category) => (
+                <div key={category?.id} className="space-y-4">
+                  <h3 className="text-xs font-bold text-foreground uppercase tracking-wider border-b border-gray-100 pb-2">
+                    {category?.label}
+                  </h3>
+                  <ul className="space-y-2.5">
+                    {category?.items?.map((subItem) => (
+                      <li key={subItem?.id}>
+                        <Link
+                          href={subItem?.href}
+                          className="block text-sm text-secondary hover:text-primary transition-colors hover:translate-x-1 duration-200"
+                          role="menuitem"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {subItem?.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
