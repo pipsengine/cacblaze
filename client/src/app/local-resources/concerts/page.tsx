@@ -5,132 +5,94 @@ import AppImage from '@/components/ui/AppImage';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import { NIGERIA_STATES } from '@/data/nigeria-states';
 import StateFilterSidebar from '@/components/common/StateFilterSidebar';
 
 export const metadata: Metadata = {
-  title: 'Places to Visit in Nigeria - CACBLAZE',
-  description:
-    'Discover top attractions, parks, museums, beaches, and historic sites across Nigerian states. Plan visits and explore highlights.',
-  keywords:
-    'Nigeria attractions, Lagos beaches, Abuja parks, Kano dye pits, Cross River Obudu, places to visit Nigeria',
+  title: 'Concerts in Nigeria - CACBLAZE',
+  description: 'Discover live music concerts across Nigerian states with dates and venues.',
+  keywords: 'Nigeria concerts, live music, shows, events, states',
 };
 
-type Attraction = {
+type ConcertItem = {
   id: string;
   state: string;
   city: string;
   name: string;
   image: string;
+  date: string;
+  venue: string;
   highlights: string[];
 };
 
-const ATTRACTIONS: Attraction[] = [
+const CONCERTS: ConcertItem[] = [
   {
-    id: 'lagos_tarkwa_bay',
+    id: 'lagos_victoria_island_show',
     state: 'Lagos',
     city: 'Lagos',
-    name: 'Tarkwa Bay Beach',
+    name: 'Victoria Island Live',
     image:
-      'https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Boat-access beach', 'Family-friendly', 'Surf spots'],
+      'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    date: '2026-03-28',
+    venue: 'VI Arena',
+    highlights: ['Afrobeats headliners', 'DJ sets', 'Late-night vibes'],
   },
   {
-    id: 'lagos_lekki_conservation',
-    state: 'Lagos',
-    city: 'Lekki',
-    name: 'Lekki Conservation Centre',
-    image:
-      'https://images.pexels.com/photos/245240/pexels-photo-245240.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Canopy walkway', 'Wildlife', 'Guided tours'],
-  },
-  {
-    id: 'abuja_millennium_park',
+    id: 'abuja_city_concert',
     state: 'FCT Abuja',
     city: 'Abuja',
-    name: 'Millennium Park',
+    name: 'Abuja City Sounds',
     image:
-      'https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Picnic lawns', 'Fountain paths', 'City views'],
+      'https://images.pexels.com/photos/11963165/pexels-photo-11963165.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    date: '2026-04-12',
+    venue: 'Eagle Square',
+    highlights: ['Live bands', 'Open-air stage', 'Food courts'],
   },
   {
-    id: 'abuja_aso_rock',
-    state: 'FCT Abuja',
-    city: 'Abuja',
-    name: 'Aso Rock Views',
-    image:
-      'https://images.pexels.com/photos/35600/road-sun-rays-path.jpg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Rock formations', 'Sunset vistas', 'Photo spots'],
-  },
-  {
-    id: 'rivers_ph_pleasure_park',
+    id: 'ph_rivers_night',
     state: 'Rivers',
     city: 'Port Harcourt',
-    name: 'Pleasure Park',
+    name: 'Rivers Night Live',
     image:
-      'https://images.pexels.com/photos/602024/pexels-photo-602024.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Jogging trails', 'Boating', 'Kids zone'],
+      'https://images.pexels.com/photos/964016/pexels-photo-964016.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    date: '2026-03-16',
+    venue: 'GRA Concert Hall',
+    highlights: ['Local artists', 'Dance segments', 'Community stage'],
   },
   {
-    id: 'rivers_bonny_island',
-    state: 'Rivers',
-    city: 'Bonny',
-    name: 'Bonny Island Beaches',
+    id: 'ibadan_oyo_music_fest',
+    state: 'Oyo',
+    city: 'Ibadan',
+    name: 'Ibadan Music Fest',
     image:
-      'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Pristine beaches', 'Quiet escapes', 'Local seafood'],
-  },
-  {
-    id: 'cross_river_obudu',
-    state: 'Cross River',
-    city: 'Obudu',
-    name: 'Obudu Mountain Resort',
-    image:
-      'https://images.pexels.com/photos/1083896/pexels-photo-1083896.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Cable cars', 'Cool climate', 'Mountain trails'],
-  },
-  {
-    id: 'kano_dye_pits',
-    state: 'Kano',
-    city: 'Kano',
-    name: 'Kofar Mata Dye Pits',
-    image:
-      'https://images.pexels.com/photos/3645970/pexels-photo-3645970.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Historic craft', 'Indigo dyeing', 'Cultural heritage'],
-  },
-  {
-    id: 'enugu_ngwo_cave',
-    state: 'Enugu',
-    city: 'Ngwo',
-    name: 'Ngwo Pine Forest & Cave',
-    image:
-      'https://images.pexels.com/photos/247478/pexels-photo-247478.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Pine forest', 'Cave stream', 'Hiking'],
+      'https://images.pexels.com/photos/154147/pexels-photo-154147.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    date: '2026-05-03',
+    venue: 'Mapo Hall Grounds',
+    highlights: ['Cultural acts', 'Afro-fusion', 'Family-friendly'],
   },
 ];
 
 const buildStateCards = (state: string) => {
   const imgs = [
-    'https://images.pexels.com/photos/1083896/pexels-photo-1083896.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    'https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    'https://images.pexels.com/photos/245240/pexels-photo-245240.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/964016/pexels-photo-964016.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/11963165/pexels-photo-11963165.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/154147/pexels-photo-154147.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
   ];
   const titles = [
-    `Top attractions in ${state}`,
-    `Outdoor parks and nature in ${state}`,
-    `Museums and heritage in ${state}`,
-    `Weekend getaways in ${state}`,
+    `Upcoming concerts in ${state}`,
+    `Live bands and shows in ${state}`,
+    `City night events in ${state}`,
+    `Open-air music in ${state}`,
   ];
   return titles.map((t, i) => ({
     id: `state_${state}_${i}`,
     title: t,
     image: imgs[i % imgs.length],
-    points: ['Verified highlights', 'Family-friendly options', 'Photo spots'],
+    points: ['Dates and venues', 'Tickets info', 'Artist lineups'],
   }));
 };
 
-const PlacesToVisitPage = ({
+const ConcertsPage = ({
   searchParams,
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
@@ -142,15 +104,13 @@ const PlacesToVisitPage = ({
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Local Resources', href: '/local-resources' },
-    { name: 'Places to Visit', href: '/local-resources/places-to-visit' },
+    { name: 'Concerts', href: '/local-resources/concerts' },
   ];
 
   const filtered =
     selectedState && selectedState.length > 0
-      ? ATTRACTIONS.filter((a) => a.state === selectedState)
-      : ATTRACTIONS;
-
-  const nigeriaStates = NIGERIA_STATES;
+      ? CONCERTS.filter((e) => e.state === selectedState)
+      : CONCERTS;
 
   return (
     <>
@@ -164,25 +124,24 @@ const PlacesToVisitPage = ({
                 Local Resources
               </span>
               <h1 className="text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                {selectedState ? `Places to Visit in ${selectedState}` : 'Places to Visit'}
+                {selectedState ? `Concerts in ${selectedState}` : 'Concerts'}
               </h1>
               <p className="text-xl text-secondary mb-8 leading-relaxed">
-                Explore parks, museums, beaches, and historic sites across Nigerian states. Plan
-                visits and discover highlights for great experiences.
+                See live shows across Nigerian states with dates, venues, and highlights.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
-                  href={`/search?type=places-to-visit${selectedState ? `&state=${encodeURIComponent(selectedState)}` : ''}`}
+                  href={`/search?type=concerts${selectedState ? `&state=${encodeURIComponent(selectedState)}` : ''}`}
                   className="inline-flex items-center gap-2 px-5 py-3 bg-primary text-white rounded-2xl font-semibold hover:bg-primary/90 transition-all hover-lift"
                 >
-                  Find Places Near Me
+                  Find Concerts Near Me
                   <Icon name="ArrowRightIcon" size={18} className="text-white" />
                 </Link>
                 <Link
-                  href="/local-resources/restaurants"
+                  href="/local-resources/events-calendar"
                   className="inline-flex items-center gap-2 px-5 py-3 bg-white text-primary rounded-2xl font-semibold border border-primary/20 hover:bg-primary/5 transition-all"
                 >
-                  See Restaurants
+                  See Events Calendar
                 </Link>
               </div>
             </div>
@@ -191,25 +150,25 @@ const PlacesToVisitPage = ({
 
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-foreground mb-8">Highlights</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-8">Upcoming Concerts</h2>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
               <div className="lg:col-span-3">
                 <StateFilterSidebar
-                  basePath="/local-resources/places-to-visit"
+                  basePath="/local-resources/concerts"
                   selectedState={selectedState}
                   header="Explore by State"
                 />
               </div>
               <div className="lg:col-span-9 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filtered.map((a) => (
+                {filtered.map((e) => (
                   <div
-                    key={a.id}
+                    key={e.id}
                     className="group rounded-3xl border border-gray-200 bg-white overflow-hidden hover:border-primary transition-all hover-lift"
                   >
                     <div className="relative h-56">
                       <AppImage
-                        src={a.image}
-                        alt={a.name}
+                        src={e.image}
+                        alt={e.name}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         priority
                         fallbackSrc="/assets/images/no_image.png"
@@ -217,14 +176,15 @@ const PlacesToVisitPage = ({
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                       <div className="absolute bottom-5 left-5 right-5">
                         <div className="text-white text-xs">
-                          {a.city}, {a.state}
+                          {e.city}, {e.state} · {new Date(e.date).toLocaleDateString()}
                         </div>
-                        <h3 className="text-2xl font-bold text-white">{a.name}</h3>
+                        <h3 className="text-2xl font-bold text-white">{e.name}</h3>
+                        <div className="text-white text-xs mt-1">{e.venue}</div>
                       </div>
                     </div>
                     <div className="p-6">
                       <div className="space-y-2">
-                        {a.highlights.map((h, idx) => (
+                        {e.highlights.map((h, idx) => (
                           <div key={idx} className="flex items-center gap-2 text-sm text-secondary">
                             <Icon name="CheckCircleIcon" size={16} className="text-primary" />
                             {h}
@@ -274,12 +234,10 @@ const PlacesToVisitPage = ({
             )}
           </div>
         </section>
-
-        {/* Explore by State grid removed in favor of sidebar search */}
       </main>
       <Footer />
     </>
   );
 };
 
-export default PlacesToVisitPage;
+export default ConcertsPage;

@@ -5,18 +5,17 @@ import AppImage from '@/components/ui/AppImage';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import { NIGERIA_STATES } from '@/data/nigeria-states';
 import StateFilterSidebar from '@/components/common/StateFilterSidebar';
 
 export const metadata: Metadata = {
-  title: 'Places to Visit in Nigeria - CACBLAZE',
+  title: 'Local Culture in Nigeria - CACBLAZE',
   description:
-    'Discover top attractions, parks, museums, beaches, and historic sites across Nigerian states. Plan visits and explore highlights.',
+    'Discover local crafts, festivals, cuisine hubs, and cultural centers across Nigerian states.',
   keywords:
-    'Nigeria attractions, Lagos beaches, Abuja parks, Kano dye pits, Cross River Obudu, places to visit Nigeria',
+    'Nigeria culture, festivals, crafts, cuisine, heritage, local culture, states',
 };
 
-type Attraction = {
+type CultureItem = {
   id: string;
   state: string;
   city: string;
@@ -25,112 +24,85 @@ type Attraction = {
   highlights: string[];
 };
 
-const ATTRACTIONS: Attraction[] = [
+const CULTURE_ITEMS: CultureItem[] = [
   {
-    id: 'lagos_tarkwa_bay',
+    id: 'lagos_art_market',
     state: 'Lagos',
     city: 'Lagos',
-    name: 'Tarkwa Bay Beach',
+    name: 'Lekki Arts & Crafts Market',
     image:
-      'https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Boat-access beach', 'Family-friendly', 'Surf spots'],
+      'https://images.pexels.com/photos/10593880/pexels-photo-10593880.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Handmade crafts', 'Local artists', 'Souvenirs'],
   },
   {
-    id: 'lagos_lekki_conservation',
+    id: 'lagos_nike_art_gallery',
     state: 'Lagos',
     city: 'Lekki',
-    name: 'Lekki Conservation Centre',
+    name: 'Nike Art Gallery',
     image:
-      'https://images.pexels.com/photos/245240/pexels-photo-245240.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Canopy walkway', 'Wildlife', 'Guided tours'],
+      'https://images.pexels.com/photos/2235130/pexels-photo-2235130.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Contemporary art', 'Textiles', 'Cultural exhibits'],
   },
   {
-    id: 'abuja_millennium_park',
+    id: 'abuja_cultural_center',
     state: 'FCT Abuja',
     city: 'Abuja',
-    name: 'Millennium Park',
+    name: 'Cultural Center & Museum',
     image:
-      'https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Picnic lawns', 'Fountain paths', 'City views'],
+      'https://images.pexels.com/photos/204154/pexels-photo-204154.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Traditional artifacts', 'Guided tours', 'Workshops'],
   },
   {
-    id: 'abuja_aso_rock',
-    state: 'FCT Abuja',
-    city: 'Abuja',
-    name: 'Aso Rock Views',
-    image:
-      'https://images.pexels.com/photos/35600/road-sun-rays-path.jpg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Rock formations', 'Sunset vistas', 'Photo spots'],
-  },
-  {
-    id: 'rivers_ph_pleasure_park',
+    id: 'rivers_food_hub',
     state: 'Rivers',
     city: 'Port Harcourt',
-    name: 'Pleasure Park',
+    name: 'Local Cuisine Hub',
     image:
-      'https://images.pexels.com/photos/602024/pexels-photo-602024.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Jogging trails', 'Boating', 'Kids zone'],
+      'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Native dishes', 'Food markets', 'Cooking demos'],
   },
   {
-    id: 'rivers_bonny_island',
-    state: 'Rivers',
-    city: 'Bonny',
-    name: 'Bonny Island Beaches',
-    image:
-      'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Pristine beaches', 'Quiet escapes', 'Local seafood'],
-  },
-  {
-    id: 'cross_river_obudu',
-    state: 'Cross River',
-    city: 'Obudu',
-    name: 'Obudu Mountain Resort',
-    image:
-      'https://images.pexels.com/photos/1083896/pexels-photo-1083896.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Cable cars', 'Cool climate', 'Mountain trails'],
-  },
-  {
-    id: 'kano_dye_pits',
+    id: 'kano_dye_traditions',
     state: 'Kano',
     city: 'Kano',
-    name: 'Kofar Mata Dye Pits',
+    name: 'Indigo Dye Traditions',
     image:
-      'https://images.pexels.com/photos/3645970/pexels-photo-3645970.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Historic craft', 'Indigo dyeing', 'Cultural heritage'],
+      'https://images.pexels.com/photos/302902/pexels-photo-302902.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Historic techniques', 'Local artisans', 'Textile heritage'],
   },
   {
-    id: 'enugu_ngwo_cave',
-    state: 'Enugu',
-    city: 'Ngwo',
-    name: 'Ngwo Pine Forest & Cave',
+    id: 'cross_river_festival',
+    state: 'Cross River',
+    city: 'Calabar',
+    name: 'Calabar Festival Highlights',
     image:
-      'https://images.pexels.com/photos/247478/pexels-photo-247478.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Pine forest', 'Cave stream', 'Hiking'],
+      'https://images.pexels.com/photos/1838920/pexels-photo-1838920.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    highlights: ['Parades', 'Costumes', 'Street performances'],
   },
 ];
 
 const buildStateCards = (state: string) => {
   const imgs = [
-    'https://images.pexels.com/photos/1083896/pexels-photo-1083896.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    'https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    'https://images.pexels.com/photos/245240/pexels-photo-245240.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/2235130/pexels-photo-2235130.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/10593880/pexels-photo-10593880.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    'https://images.pexels.com/photos/1838920/pexels-photo-1838920.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
   ];
   const titles = [
-    `Top attractions in ${state}`,
-    `Outdoor parks and nature in ${state}`,
-    `Museums and heritage in ${state}`,
-    `Weekend getaways in ${state}`,
+    `Festivals and events in ${state}`,
+    `Local crafts and markets in ${state}`,
+    `Cuisine and food culture in ${state}`,
+    `Cultural centers and museums in ${state}`,
   ];
   return titles.map((t, i) => ({
     id: `state_${state}_${i}`,
     title: t,
     image: imgs[i % imgs.length],
-    points: ['Verified highlights', 'Family-friendly options', 'Photo spots'],
+    points: ['Authentic experiences', 'Community-driven', 'Photo-friendly'],
   }));
 };
 
-const PlacesToVisitPage = ({
+const LocalCulturePage = ({
   searchParams,
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
@@ -142,15 +114,13 @@ const PlacesToVisitPage = ({
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Local Resources', href: '/local-resources' },
-    { name: 'Places to Visit', href: '/local-resources/places-to-visit' },
+    { name: 'Local Culture', href: '/local-resources/local-culture' },
   ];
 
   const filtered =
     selectedState && selectedState.length > 0
-      ? ATTRACTIONS.filter((a) => a.state === selectedState)
-      : ATTRACTIONS;
-
-  const nigeriaStates = NIGERIA_STATES;
+      ? CULTURE_ITEMS.filter((a) => a.state === selectedState)
+      : CULTURE_ITEMS;
 
   return (
     <>
@@ -164,25 +134,24 @@ const PlacesToVisitPage = ({
                 Local Resources
               </span>
               <h1 className="text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                {selectedState ? `Places to Visit in ${selectedState}` : 'Places to Visit'}
+                {selectedState ? `Local Culture in ${selectedState}` : 'Local Culture'}
               </h1>
               <p className="text-xl text-secondary mb-8 leading-relaxed">
-                Explore parks, museums, beaches, and historic sites across Nigerian states. Plan
-                visits and discover highlights for great experiences.
+                Explore festivals, crafts, cuisine hubs, and cultural centers across Nigerian states.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
-                  href={`/search?type=places-to-visit${selectedState ? `&state=${encodeURIComponent(selectedState)}` : ''}`}
+                  href={`/search?type=local-culture${selectedState ? `&state=${encodeURIComponent(selectedState)}` : ''}`}
                   className="inline-flex items-center gap-2 px-5 py-3 bg-primary text-white rounded-2xl font-semibold hover:bg-primary/90 transition-all hover-lift"
                 >
-                  Find Places Near Me
+                  Find Local Culture Near Me
                   <Icon name="ArrowRightIcon" size={18} className="text-white" />
                 </Link>
                 <Link
-                  href="/local-resources/restaurants"
+                  href="/local-resources/attractions"
                   className="inline-flex items-center gap-2 px-5 py-3 bg-white text-primary rounded-2xl font-semibold border border-primary/20 hover:bg-primary/5 transition-all"
                 >
-                  See Restaurants
+                  See Attractions
                 </Link>
               </div>
             </div>
@@ -195,7 +164,7 @@ const PlacesToVisitPage = ({
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
               <div className="lg:col-span-3">
                 <StateFilterSidebar
-                  basePath="/local-resources/places-to-visit"
+                  basePath="/local-resources/local-culture"
                   selectedState={selectedState}
                   header="Explore by State"
                 />
@@ -274,12 +243,10 @@ const PlacesToVisitPage = ({
             )}
           </div>
         </section>
-
-        {/* Explore by State grid removed in favor of sidebar search */}
       </main>
       <Footer />
     </>
   );
 };
 
-export default PlacesToVisitPage;
+export default LocalCulturePage;

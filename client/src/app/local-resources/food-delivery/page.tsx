@@ -6,6 +6,7 @@ import Breadcrumb from '@/components/common/Breadcrumb';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import { NIGERIA_STATES } from '@/data/nigeria-states';
+import StateFilterSidebar from '@/components/common/StateFilterSidebar';
 
 export const metadata: Metadata = {
   title: 'Food Delivery in Nigeria - CACBLAZE',
@@ -217,51 +218,13 @@ const FoodDeliveryPage = ({
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-foreground mb-8">Service Areas</h2>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-              <aside className="lg:col-span-3">
-                <div className="rounded-3xl border border-gray-200 bg-white p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <Icon name="MapPinIcon" size={20} className="text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">Explore by State</div>
-                      <div className="text-lg font-semibold text-foreground">
-                        {selectedState || 'Select a State'}
-                      </div>
-                    </div>
-                  </div>
-                  <form action="/local-resources/food-delivery" method="GET" className="space-y-3">
-                    <input
-                      type="text"
-                      name="state"
-                      defaultValue={selectedState}
-                      list="states-list"
-                      placeholder="Type a state..."
-                      className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-foreground focus:outline-none focus:border-primary"
-                    />
-                    <datalist id="states-list">
-                      {nigeriaStates.map((s) => (
-                        <option key={s} value={s} />
-                      ))}
-                    </datalist>
-                    <button
-                      type="submit"
-                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition-all"
-                    >
-                      <Icon name="MagnifyingGlassIcon" size={18} className="text-white" />
-                      Search by State
-                    </button>
-                    {selectedState && (
-                      <Link
-                        href="/local-resources/food-delivery"
-                        className="block text-center px-4 py-2.5 border border-gray-200 rounded-xl text-foreground hover:border-primary transition-all"
-                      >
-                        Clear Selection
-                      </Link>
-                    )}
-                  </form>
-                </div>
-              </aside>
+              <div className="lg:col-span-3">
+                <StateFilterSidebar
+                  basePath="/local-resources/food-delivery"
+                  selectedState={selectedState}
+                  header="Explore by State"
+                />
+              </div>
               <div className="lg:col-span-9 grid md:grid-cols-2 xl:grid-cols-3 gap-8">
                 {filteredAreas.map((area) => (
                   <div

@@ -5,15 +5,14 @@ import AppImage from '@/components/ui/AppImage';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import { NIGERIA_STATES } from '@/data/nigeria-states';
 import StateFilterSidebar from '@/components/common/StateFilterSidebar';
 
 export const metadata: Metadata = {
-  title: 'Places to Visit in Nigeria - CACBLAZE',
+  title: 'Attractions in Nigeria - CACBLAZE',
   description:
-    'Discover top attractions, parks, museums, beaches, and historic sites across Nigerian states. Plan visits and explore highlights.',
+    'Discover attractions across Nigerian states — parks, beaches, museums, and heritage sites.',
   keywords:
-    'Nigeria attractions, Lagos beaches, Abuja parks, Kano dye pits, Cross River Obudu, places to visit Nigeria',
+    'Nigeria attractions, parks, beaches, museums, heritage, tourism, places to visit, states',
 };
 
 type Attraction = {
@@ -54,15 +53,6 @@ const ATTRACTIONS: Attraction[] = [
     highlights: ['Picnic lawns', 'Fountain paths', 'City views'],
   },
   {
-    id: 'abuja_aso_rock',
-    state: 'FCT Abuja',
-    city: 'Abuja',
-    name: 'Aso Rock Views',
-    image:
-      'https://images.pexels.com/photos/35600/road-sun-rays-path.jpg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Rock formations', 'Sunset vistas', 'Photo spots'],
-  },
-  {
     id: 'rivers_ph_pleasure_park',
     state: 'Rivers',
     city: 'Port Harcourt',
@@ -70,15 +60,6 @@ const ATTRACTIONS: Attraction[] = [
     image:
       'https://images.pexels.com/photos/602024/pexels-photo-602024.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     highlights: ['Jogging trails', 'Boating', 'Kids zone'],
-  },
-  {
-    id: 'rivers_bonny_island',
-    state: 'Rivers',
-    city: 'Bonny',
-    name: 'Bonny Island Beaches',
-    image:
-      'https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Pristine beaches', 'Quiet escapes', 'Local seafood'],
   },
   {
     id: 'cross_river_obudu',
@@ -97,15 +78,6 @@ const ATTRACTIONS: Attraction[] = [
     image:
       'https://images.pexels.com/photos/3645970/pexels-photo-3645970.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     highlights: ['Historic craft', 'Indigo dyeing', 'Cultural heritage'],
-  },
-  {
-    id: 'enugu_ngwo_cave',
-    state: 'Enugu',
-    city: 'Ngwo',
-    name: 'Ngwo Pine Forest & Cave',
-    image:
-      'https://images.pexels.com/photos/247478/pexels-photo-247478.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
-    highlights: ['Pine forest', 'Cave stream', 'Hiking'],
   },
 ];
 
@@ -130,7 +102,7 @@ const buildStateCards = (state: string) => {
   }));
 };
 
-const PlacesToVisitPage = ({
+const AttractionsPage = ({
   searchParams,
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
@@ -142,15 +114,13 @@ const PlacesToVisitPage = ({
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Local Resources', href: '/local-resources' },
-    { name: 'Places to Visit', href: '/local-resources/places-to-visit' },
+    { name: 'Attractions', href: '/local-resources/attractions' },
   ];
 
   const filtered =
     selectedState && selectedState.length > 0
       ? ATTRACTIONS.filter((a) => a.state === selectedState)
       : ATTRACTIONS;
-
-  const nigeriaStates = NIGERIA_STATES;
 
   return (
     <>
@@ -164,25 +134,24 @@ const PlacesToVisitPage = ({
                 Local Resources
               </span>
               <h1 className="text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                {selectedState ? `Places to Visit in ${selectedState}` : 'Places to Visit'}
+                {selectedState ? `Attractions in ${selectedState}` : 'Attractions'}
               </h1>
               <p className="text-xl text-secondary mb-8 leading-relaxed">
-                Explore parks, museums, beaches, and historic sites across Nigerian states. Plan
-                visits and discover highlights for great experiences.
+                Explore parks, beaches, museums, and heritage sites across Nigerian states.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
-                  href={`/search?type=places-to-visit${selectedState ? `&state=${encodeURIComponent(selectedState)}` : ''}`}
+                  href={`/search?type=attractions${selectedState ? `&state=${encodeURIComponent(selectedState)}` : ''}`}
                   className="inline-flex items-center gap-2 px-5 py-3 bg-primary text-white rounded-2xl font-semibold hover:bg-primary/90 transition-all hover-lift"
                 >
-                  Find Places Near Me
+                  Find Attractions Near Me
                   <Icon name="ArrowRightIcon" size={18} className="text-white" />
                 </Link>
                 <Link
-                  href="/local-resources/restaurants"
+                  href="/local-resources/places-to-visit"
                   className="inline-flex items-center gap-2 px-5 py-3 bg-white text-primary rounded-2xl font-semibold border border-primary/20 hover:bg-primary/5 transition-all"
                 >
-                  See Restaurants
+                  See Places to Visit
                 </Link>
               </div>
             </div>
@@ -195,7 +164,7 @@ const PlacesToVisitPage = ({
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
               <div className="lg:col-span-3">
                 <StateFilterSidebar
-                  basePath="/local-resources/places-to-visit"
+                  basePath="/local-resources/attractions"
                   selectedState={selectedState}
                   header="Explore by State"
                 />
@@ -274,12 +243,10 @@ const PlacesToVisitPage = ({
             )}
           </div>
         </section>
-
-        {/* Explore by State grid removed in favor of sidebar search */}
       </main>
       <Footer />
     </>
   );
 };
 
-export default PlacesToVisitPage;
+export default AttractionsPage;
