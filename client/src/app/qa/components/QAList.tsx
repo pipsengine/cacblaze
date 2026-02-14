@@ -192,7 +192,7 @@ export default function QAList() {
               {/* Author Info */}
               <div className="flex items-center gap-3 mb-4">
                 <AppImage
-                  src={getAuthorAvatar(question.userProfiles.avatarUrl)}
+                  src={getAuthorAvatar(question.userProfiles.fullName)}
                   alt={question.userProfiles.fullName}
                   width={32}
                   height={32}
@@ -214,7 +214,7 @@ export default function QAList() {
                   {question.qaAnswers.map((answer) => (
                     <div key={answer.id} className="flex gap-3">
                       <AppImage
-                        src={getAuthorAvatar(answer.userProfiles.avatarUrl)}
+                        src={getAuthorAvatar(answer.userProfiles.fullName)}
                         alt={answer.userProfiles.fullName}
                         width={32}
                         height={32}

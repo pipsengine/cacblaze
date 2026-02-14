@@ -42,7 +42,7 @@ const ITINERARIES: Itinerary[] = [
     city: 'Abuja',
     name: 'Abuja 3-Day Itinerary',
     image:
-      'https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      'https://images.pexels.com/photos/373904/pexels-photo-373904.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     days: 3,
     highlights: ['Millennium Park', 'City viewpoints', 'Cultural sights'],
   },
@@ -62,7 +62,7 @@ const ITINERARIES: Itinerary[] = [
     city: 'Obudu',
     name: 'Obudu Mountain Escape',
     image:
-      'https://images.pexels.com/photos/1083896/pexels-photo-1083896.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      'https://images.pexels.com/photos/572897/pexels-photo-572897.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     days: 3,
     highlights: ['Cable car ride', 'Mountain trails', 'Cool climate retreat'],
   },
@@ -72,7 +72,7 @@ const ITINERARIES: Itinerary[] = [
     city: 'Kano',
     name: 'Kano Heritage Route',
     image:
-      'https://images.pexels.com/photos/3645970/pexels-photo-3645970.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      'https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     days: 2,
     highlights: ['Kofar Mata dye pits', 'Old city markets', 'Local crafts'],
   },
@@ -92,7 +92,7 @@ const ITINERARIES: Itinerary[] = [
     city: 'Kaduna',
     name: 'Kaduna City Plan',
     image:
-      'https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      'https://images.pexels.com/photos/21014/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1200&q=80',
     days: 3,
     highlights: ['Gamji Gate Park', 'Craft markets', 'Local grills'],
   },
@@ -152,7 +152,7 @@ const ITINERARIES: Itinerary[] = [
     city: 'Osogbo',
     name: 'Osogbo Grove Route',
     image:
-      'https://images.pexels.com/photos/1083896/pexels-photo-1083896.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      'https://images.pexels.com/photos/1287075/pexels-photo-1287075.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     days: 2,
     highlights: ['Sacred Grove tour', 'Art village visit', 'Local soups'],
   },
@@ -162,7 +162,7 @@ const ITINERARIES: Itinerary[] = [
     city: 'Ilorin',
     name: 'Ilorin Chill Days',
     image:
-      'https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      'https://images.pexels.com/photos/271742/pexels-photo-271742.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     days: 2,
     highlights: ['Asa Dam park', 'City cafes', 'Evening strolls'],
   },
@@ -172,7 +172,7 @@ const ITINERARIES: Itinerary[] = [
     city: 'Jos',
     name: 'Jos Cool Scapes',
     image:
-      'https://images.pexels.com/photos/1083896/pexels-photo-1083896.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      'https://images.pexels.com/photos/975771/pexels-photo-975771.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     days: 3,
     highlights: ['Wildlife park', 'City viewpoints', 'Local grills'],
   },

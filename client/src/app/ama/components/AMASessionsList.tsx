@@ -152,7 +152,7 @@ export default function AMASessionsList() {
                 {/* Expert Info */}
                 <div className="flex items-center gap-4 mb-4 p-4 bg-gray-50 rounded-lg">
                   <AppImage
-                    src={getAuthorAvatar(session.userProfiles.avatarUrl)}
+                    src={getAuthorAvatar(session.userProfiles.fullName)}
                     alt={session.userProfiles.fullName}
                     width={64}
                     height={64}

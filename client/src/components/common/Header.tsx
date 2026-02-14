@@ -44,18 +44,9 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex h-full gap-5">
-            {(() => {
-              const desiredOrder = ['guides', 'reviews', 'topics', 'local', 'community'];
-              const ordered = menuData?.mainMenu
-                ?.filter((i) => desiredOrder.includes(i?.id))
-                ?.sort(
-                  (a, b) =>
-                    desiredOrder.indexOf(a?.id) - desiredOrder.indexOf(b?.id)
-                );
-              return ordered?.map((item) => (
-                <MegaMenu key={item?.id} item={item} isActive={pathname === item?.href} />
-              ));
-            })()}
+            {menuData?.mainMenu?.map((item) => (
+              <MegaMenu key={item?.id} item={item} isActive={pathname === item?.href} />
+            ))}
           </nav>
 
           {/* CTA Buttons */}
@@ -109,15 +100,7 @@ const Header = () => {
         {mobileMenuOpen && (
           <div className="lg:hidden py-6 border-t border-gray-200 bg-white max-h-[80vh] overflow-y-auto">
             <nav className="flex flex-col gap-4">
-              {(() => {
-                const desiredOrder = ['guides', 'reviews', 'topics', 'local', 'community'];
-                const ordered = menuData?.mainMenu
-                  ?.filter((i) => desiredOrder.includes(i?.id))
-                  ?.sort(
-                    (a, b) =>
-                      desiredOrder.indexOf(a?.id) - desiredOrder.indexOf(b?.id)
-                  );
-                return ordered?.map((item) => (
+              {menuData?.mainMenu?.map((item) => (
                 <div key={item?.id} className="space-y-2">
                   <Link
                     href={item?.href}
@@ -152,8 +135,7 @@ const Header = () => {
                     </div>
                   )}
                 </div>
-                ));
-              })()}
+              ))}
               <Link
                 href="/search"
                 onClick={() => setMobileMenuOpen(false)}

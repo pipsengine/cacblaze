@@ -169,7 +169,7 @@ export default function AMASessionDetail({ sessionId }: AMASessionDetailProps) {
                   <div className="flex-1">
                     <div className="flex items-start gap-3 mb-3">
                       <AppImage
-                        src={getAuthorAvatar(question.userProfiles.avatarUrl)}
+                        src={getAuthorAvatar(question.userProfiles.fullName)}
                         alt={question.userProfiles.fullName}
                         width={40}
                         height={40}
@@ -201,7 +201,7 @@ export default function AMASessionDetail({ sessionId }: AMASessionDetailProps) {
                           <div key={answer.id}>
                             <div className="flex items-center gap-2 mb-2">
                               <AppImage
-                                src={getAuthorAvatar(answer.userProfiles.avatarUrl)}
+                                src={getAuthorAvatar(answer.userProfiles.fullName)}
                                 alt={answer.userProfiles.fullName}
                                 width={32}
                                 height={32}

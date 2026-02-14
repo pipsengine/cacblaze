@@ -8,6 +8,7 @@ export interface MenuSubItem {
 export interface MenuCategory {
   id: string;
   label: string;
+  href?: string;
   items: MenuSubItem[];
   group?: string;
 }
@@ -18,6 +19,7 @@ export interface MenuItem {
   href: string;
   hasDropdown?: boolean;
   categories?: MenuCategory[];
+  sections?: MenuCategory[];
 }
 
 export interface MenuData {
