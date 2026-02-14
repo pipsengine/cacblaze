@@ -40,7 +40,7 @@ export default async function TopicsEducationResourceDetailPage({ params }: Prop
     { name: 'Home', href: '/homepage' },
     { name: 'Education', href: '/topics/education' },
     { name: categoryData.title, href: `/topics/education/${category}` },
-    { name: resource.name, href: `/topics/education/${category}/${slug}` },
+    { name: resource.name, href: `/${slug}` },
   ];
 
   return (

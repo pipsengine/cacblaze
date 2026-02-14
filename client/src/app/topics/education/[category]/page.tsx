@@ -63,8 +63,8 @@ export default async function TopicsEducationCategoryPage({ params }: Props) {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {data.resources.map((resource) => (
                 <Link
-                  key={resource.id}
-                  href={`/topics/education/${category}/${resource.slug}`}
+                  key={resource.slug}
+                  href={`/${resource.slug}`}
                   className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col h-full"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden">
