@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 
 interface AppImageProps {
   src: string;
@@ -74,72 +73,48 @@ function AppImage({
 
   const commonClassName = `${className} ${isLoading ? 'bg-gray-200' : ''} ${onClick ? 'cursor-pointer hover:opacity-90 transition-opacity' : ''}`;
 
-  // For external URLs, prefer standard img tag unless strictly required otherwise
-  // This improves reliability when Next.js Image Optimization fails or is misconfigured
-  if (isExternal && !isLocal) {
-    // Extract props that shouldn't be passed to standard img tag
-    const { priority, quality, placeholder, blurDataURL, unoptimized, ...validImgProps } = props;
-
-    if (fill) {
-      return (
-        <div
-          className={`relative ${className}`}
-          style={{ width: width || '100%', height: height || '100%' }}
-        >
-          <img
-            src={imageSrc}
-            alt={alt}
-            className={`${commonClassName} absolute inset-0 w-full h-full object-cover`}
-            onError={handleError}
-            onLoad={handleLoad}
-            onClick={onClick}
-            {...validImgProps}
-          />
-        </div>
-      );
-    }
-
-    return (
-      <img
-        src={imageSrc}
-        alt={alt}
-        width={width}
-        height={height}
-        className={commonClassName}
-        onError={handleError}
-        onLoad={handleLoad}
-        onClick={onClick}
-        loading={priority ? 'eager' : 'lazy'}
-        {...validImgProps}
-      />
-    );
-  }
-
-  // For local images and data URLs, use Next.js Image component
-  const imageProps = {
-    src: imageSrc,
-    alt,
-    className: commonClassName,
-    priority,
-    quality,
-    placeholder,
-    blurDataURL,
-    unoptimized: false,
-    onError: handleError,
-    onLoad: handleLoad,
-    onClick,
-    ...props,
-  };
+  const {
+    priority: _priority,
+    quality: _quality,
+    placeholder: _placeholder,
+    blurDataURL: _blurDataURL,
+    unoptimized: _unoptimized,
+    ...validImgProps
+  } = props;
 
   if (fill) {
     return (
-      <div className={`relative ${className}`}>
-        <Image {...imageProps} fill sizes={sizes || '100vw'} style={{ objectFit: 'cover' }} />
+      <div
+        className={`relative ${className}`}
+        style={{ width: width || '100%', height: height || '100%' }}
+      >
+        <img
+          src={imageSrc}
+          alt={alt}
+          className={`${commonClassName} absolute inset-0 w-full h-full object-cover`}
+          onError={handleError}
+          onLoad={handleLoad}
+          onClick={onClick}
+          {...validImgProps}
+        />
       </div>
     );
   }
 
-  return <Image {...imageProps} width={width || 400} height={height || 300} />;
+  return (
+    <img
+      src={imageSrc}
+      alt={alt}
+      width={width || 400}
+      height={height || 300}
+      className={commonClassName}
+      onError={handleError}
+      onLoad={handleLoad}
+      onClick={onClick}
+      loading={priority ? 'eager' : 'lazy'}
+      {...validImgProps}
+    />
+  );
 }
 
 export default AppImage;
