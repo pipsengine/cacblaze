@@ -7,6 +7,7 @@ import Breadcrumb from '@/components/common/Breadcrumb';
 import GuidesInteractive from './components/GuidesInteractive';
 import FeaturedCategory from './components/FeaturedCategory';
 import RecentUpdates from './components/RecentUpdates';
+import ContributorCTA from './components/ContributorCTA';
 import AppImage from '@/components/ui/AppImage';
 import { getContextualImage, getCuratedImagesForCategory } from '@/utils/imageService';
 
@@ -328,6 +329,9 @@ export default function GuidesPage() {
 
         {/* Recent Updates */}
         <RecentUpdates />
+
+        {/* Contributor CTA */}
+        <ContributorCTA />
       </main>
       <Footer />
     </>

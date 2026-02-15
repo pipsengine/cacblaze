@@ -36,7 +36,6 @@ const GuideCard = ({
   href,
   isNew = false,
 }: GuideCardProps) => {
-  // Get contextual image (curated or placeholder)
   const contextualImage = getContextualImage({
     category,
     title,
@@ -45,6 +44,7 @@ const GuideCard = ({
     height: 600,
     preferCurated: true,
   });
+  const displayImage = image && image.length > 0 ? { src: image, alt: imageAlt || contextualImage.alt } : contextualImage;
 
   // Get author avatar
   const authorAvatar = getAuthorAvatar(author);
@@ -57,9 +57,10 @@ const GuideCard = ({
       {/* Image */}
       <div className="relative h-56 overflow-hidden">
         <AppImage
-          src={contextualImage.src}
-          alt={contextualImage.alt}
+          src={displayImage.src}
+          alt={displayImage.alt}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          fill
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 

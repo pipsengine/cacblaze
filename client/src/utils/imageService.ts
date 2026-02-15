@@ -486,6 +486,114 @@ const curatedImages = {
 };
 
 const titleImages: Record<string, { src: string; alt: string }> = {
+  completeguidetomodernwebdevelopment: {
+    src: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Modern web development with code on screen',
+  },
+  masteringproductivitytimemanagementstrategies: {
+    src: 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Time management and productivity workspace with planner',
+  },
+  understandingmachinelearningfundamentals: {
+    src: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Machine learning concept with data and neural network',
+  },
+  completeguidetourbangardening: {
+    src: 'https://images.pexels.com/photos/4503269/pexels-photo-4503269.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Urban gardening on a small balcony with plants',
+  },
+  savingstrategies: {
+    src: 'https://images.pexels.com/photos/3943722/pexels-photo-3943722.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Piggy bank and coins representing saving strategies',
+  },
+  investingbasics: {
+    src: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Stock chart and financial growth concept',
+  },
+  retirementplanning: {
+    src: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Beach sunset symbolizing retirement planning',
+  },
+  debtmanagement: {
+    src: 'https://images.pexels.com/photos/4386373/pexels-photo-4386373.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Bills and calculator for debt management',
+  },
+  onlinebanking: {
+    src: 'https://images.pexels.com/photos/509922/pexels-photo-509922.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Mobile phone showing online banking app',
+  },
+  jobsearchstrategies: {
+    src: 'https://images.unsplash.com/photo-1497294815431-8f0c64f2a8b3?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Searching for jobs on laptop',
+  },
+  cvresumewriting: {
+    src: 'https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Resume writing with pen and paper',
+  },
+  interviewpreparation: {
+    src: 'https://images.unsplash.com/photo-1551836022-4c4c79ecde51?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Job interview preparation in office setting',
+  },
+  remotework: {
+    src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Remote work setup with laptop and coffee',
+  },
+  freelancing: {
+    src: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Freelancer working in modern workspace',
+  },
+  productivitytools: {
+    src: 'https://images.unsplash.com/photo-1519337265831-281ec6cc8514?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Productivity tools with planner and laptop',
+  },
+  goalsetting: {
+    src: 'https://images.pexels.com/photos/175295/pexels-photo-175295.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Arrow hitting target representing goals',
+  },
+  worklifebalance: {
+    src: 'https://images.unsplash.com/photo-1502920917128-1aa500764b24?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Yoga and wellness for work-life balance',
+  },
+  whatis: {
+    src: 'https://images.pexels.com/photos/356079/pexels-photo-356079.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Question mark blocks for explainers',
+  },
+  howitworks: {
+    src: 'https://images.pexels.com/photos/414579/pexels-photo-414579.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Mechanical gears illustrating how things work',
+  },
+  proscons: {
+    src: 'https://images.pexels.com/photos/3110449/pexels-photo-3110449.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Scale of justice for pros and cons',
+  },
+  comparisons: {
+    src: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Side-by-side comparison on laptop',
+  },
+  besttools: {
+    src: 'https://images.pexels.com/photos/162553/screwdriver-screws-tool-rusty-162553.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Toolkit representing best tools',
+  },
+  stepbystepguides: {
+    src: 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Checklist and steps to follow',
+  },
+  beginnerroadmaps: {
+    src: 'https://images.pexels.com/photos/2976422/pexels-photo-2976422.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Map and route for beginner roadmaps',
+  },
+  commonquestions: {
+    src: 'https://images.pexels.com/photos/268362/pexels-photo-268362.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Question marks on board for common questions',
+  },
+  troubleshooting: {
+    src: 'https://images.pexels.com/photos/1334545/pexels-photo-1334545.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Wrenches and tools for troubleshooting',
+  },
+  beginnerhelp: {
+    src: 'https://images.pexels.com/photos/6646912/pexels-photo-6646912.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Helping hand support for beginners',
+  },
   usesmartphones: {
     src: 'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=800',
     alt: 'Using a smartphone to manage daily tasks',
@@ -867,24 +975,62 @@ export function getContextualImage(config: ImageConfig): { src: string; alt: str
     .replace(/[^a-z0-9]+/g, '')
     .trim();
   if (titleKey && titleImages[titleKey]) {
-    return titleImages[titleKey];
+    const ti = titleImages[titleKey];
+    const isExternal = ti.src.startsWith('http://') || ti.src.startsWith('https://');
+    const proxied = isExternal
+      ? `/api/image-proxy?url=${encodeURIComponent(ti.src)}`
+      : ti.src;
+    return { src: proxied, alt: ti.alt };
   }
 
   // Try to get curated image first if preferred
   if (preferCurated) {
     const curatedImage = findBestCuratedImage(normalizedCategory, title);
     if (curatedImage) {
-      return curatedImage;
+      const isExternal =
+        curatedImage.src.startsWith('http://') || curatedImage.src.startsWith('https://');
+      const proxied = isExternal
+        ? `/api/image-proxy?url=${encodeURIComponent(curatedImage.src)}`
+        : curatedImage.src;
+      return { src: proxied, alt: curatedImage.alt };
     }
   }
 
   // Fallback to dynamic placeholder
+  function storyIconForTitle(t: string): string {
+    const s = (t || '').toLowerCase();
+    if (s.includes('saving')) return '🐖';
+    if (s.includes('invest')) return '📈';
+    if (s.includes('retire')) return '🏖️';
+    if (s.includes('debt')) return '💳';
+    if (s.includes('bank')) return '🏦';
+    if (s.includes('job')) return '🔍';
+    if (s.includes('cv') || s.includes('resume')) return '📄';
+    if (s.includes('interview')) return '👥';
+    if (s.includes('remote')) return '🌐';
+    if (s.includes('freelanc')) return '💻';
+    if (s.includes('productivity')) return '⚡';
+    if (s.includes('goal')) return '🎯';
+    if (s.includes('balance')) return '⚖️';
+    if (s.includes('tools')) return '🛠️';
+    if (s.includes('step')) return '📝';
+    if (s.includes('roadmap')) return '🗺️';
+    if (s.includes('question')) return '❓';
+    if (s.includes('troubleshoot')) return '🛠️';
+    if (s.includes('beginner')) return '✋';
+    if (s.includes('blockchain')) return '⛓️';
+    if (s.includes('machine learning')) return '🤖';
+    if (s.includes('communication')) return '🗣️';
+    if (s.includes('urban') || s.includes('garden')) return '🌱';
+    return '📖';
+  }
   const placeholderSrc = getPlaceholderDataURL({
     width,
     height,
     category: normalizedCategory,
     text: title || category,
     seed: title || category,
+    icon: storyIconForTitle(title || category),
   });
 
   const placeholderAlt = alt || `${category} - ${title || 'Visual representation'}`;

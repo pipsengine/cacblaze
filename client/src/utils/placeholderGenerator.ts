@@ -9,6 +9,7 @@ export interface PlaceholderConfig {
   category?: string;
   text?: string;
   seed?: string;
+  icon?: string;
 }
 
 export interface CategoryTheme {
@@ -86,11 +87,12 @@ function generateColorFromSeed(seed: string): string {
  * Generate SVG placeholder with narrative-driven design
  */
 export function generatePlaceholderSVG(config: PlaceholderConfig): string {
-  const { width = 800, height = 600, category = 'default', text = '', seed = '' } = config;
+  const { width = 800, height = 600, category = 'default', text = '', seed = '', icon } = config;
 
   const theme = categoryThemes[category.toLowerCase()] || categoryThemes.default;
   const displayText = text || category.charAt(0).toUpperCase() + category.slice(1);
   const accentColor = seed ? generateColorFromSeed(seed) : theme.colors[1] || theme.colors[0];
+  const iconToUse = icon || theme.icon;
 
   // Add pattern overlay for visual interest
   const patternColor = theme.textColor === '#FFFFFF' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
@@ -115,7 +117,7 @@ export function generatePlaceholderSVG(config: PlaceholderConfig): string {
       
       <!-- Icon -->
       <text x="50%" y="40%" font-size="80" text-anchor="middle" dominant-baseline="middle" opacity="0.9">
-        ${theme.icon}
+        ${iconToUse}
       </text>
       
       <!-- Category text -->
@@ -150,7 +152,7 @@ export function generatePlaceholderCanvas(
   canvas: HTMLCanvasElement,
   config: PlaceholderConfig
 ): void {
-  const { width = 800, height = 600, category = 'default', text = '' } = config;
+  const { width = 800, height = 600, category = 'default', text = '', icon } = config;
 
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
@@ -160,6 +162,7 @@ export function generatePlaceholderCanvas(
 
   const theme = categoryThemes[category.toLowerCase()] || categoryThemes.default;
   const displayText = text || category.charAt(0).toUpperCase() + category.slice(1);
+  const iconToUse = icon || theme.icon;
 
   // Create gradient
   const gradient = ctx.createLinearGradient(0, 0, width, height);
@@ -197,7 +200,7 @@ export function generatePlaceholderCanvas(
   ctx.textBaseline = 'middle';
   ctx.fillStyle = theme.textColor;
   ctx.globalAlpha = 0.9;
-  ctx.fillText(theme.icon, width / 2, height * 0.4);
+  ctx.fillText(iconToUse, width / 2, height * 0.4);
 
   // Draw text
   ctx.font = 'bold 32px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
@@ -220,11 +223,12 @@ export function getPlaceholderDataURL(config: PlaceholderConfig): string {
     return `data:image/svg+xml,${encodeURIComponent(decodedSVG)}`;
   } catch (_e) {
     // If base64 decode fails, generate SVG directly with URI encoding
-    const { width = 800, height = 600, category = 'default', text = '' } = config;
+    const { width = 800, height = 600, category = 'default', text = '', icon } = config;
     const theme = categoryThemes[category.toLowerCase()] || categoryThemes.default;
     const displayText = text || category.charAt(0).toUpperCase() + category.slice(1);
     const patternColor =
       theme.textColor === '#FFFFFF' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
+    const iconToUse = icon || theme.icon;
 
     const svgString = `
       <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
@@ -246,7 +250,7 @@ export function getPlaceholderDataURL(config: PlaceholderConfig): string {
         
         <!-- Icon -->
         <text x="50%" y="40%" font-size="80" text-anchor="middle" dominant-baseline="middle" opacity="0.9">
-          ${theme.icon}
+          ${iconToUse}
         </text>
         
         <!-- Category text -->

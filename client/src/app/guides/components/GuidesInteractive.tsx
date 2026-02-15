@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import FilterBar from './FilterBar';
 import GuideCard from './GuideCard';
+import { getCuratedImagesForCategory, getContextualImage } from '@/utils/imageService';
 
 interface FilterState {
   category: string;
@@ -148,9 +149,42 @@ const GuidesInteractive = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {guides.map((guide) => (
-              <GuideCard key={guide.id} {...guide} />
-            ))}
+            {(() => {
+              const used = new Set<string>();
+              return guides.map((guide) => {
+                const curated = getCuratedImagesForCategory(guide.category);
+                const titleLower = guide.title.toLowerCase();
+                let best: { src: string; alt: string } | null = null;
+                let bestScore = -1;
+                for (const img of curated as any[]) {
+                  const kws: string[] = Array.isArray(img.keywords) ? img.keywords : [];
+                  let score = 0;
+                  for (const k of kws) {
+                    if (titleLower.includes(k)) score++;
+                  }
+                  const src = img.src.startsWith('http')
+                    ? `/api/image-proxy?url=${encodeURIComponent(img.src)}`
+                    : img.src;
+                  if (!used.has(src) && score > bestScore) {
+                    best = { src, alt: img.alt };
+                    bestScore = score;
+                  }
+                }
+                if (!best) {
+                  const ctx = getContextualImage({
+                    category: guide.category,
+                    title: guide.title,
+                    alt: guide.imageAlt,
+                    width: 800,
+                    height: 600,
+                    preferCurated: false,
+                  });
+                  best = ctx;
+                }
+                used.add(best.src);
+                return <GuideCard key={guide.id} {...guide} image={best.src} imageAlt={best.alt} />;
+              });
+            })()}
           </div>
 
           {/* Load More */}

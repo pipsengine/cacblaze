@@ -23,10 +23,15 @@ export default function UserProfile({ userId }: UserProfileProps) {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(false);
   const [editing, setEditing] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    full_name: string;
+    bio: string;
+    role: 'admin' | 'author' | 'user';
+    is_active: boolean;
+  }>({
     full_name: '',
     bio: '',
-    role: "user' as 'admin' | 'author' | 'user",
+    role: 'user',
     is_active: true,
   });
   const supabase = createClient();

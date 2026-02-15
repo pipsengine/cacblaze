@@ -35,8 +35,7 @@ const RelatedContent = ({
   const [relatedArticles, setRelatedArticles] = useState<RelatedArticle[]>([]);
 
   useEffect(() => {
-    // Mock articles database - in production, fetch from Supabase
-    const allArticles: RelatedArticle[] = [
+    const allArticles = [
       {
         id: 'guide_budgeting',
         title: 'Master Your Money: The Ultimate Guide to Budgeting',
@@ -44,7 +43,8 @@ const RelatedContent = ({
           'Take control of your finances with our comprehensive guide to budgeting strategies.',
         category: 'Personal Finance',
         readTime: '15 min',
-        href: '/guides/budgeting',
+        slug: 'budgeting',
+        publishDate: '2025-01-01',
         tags: ['budgeting', 'finance', 'money management'],
       },
       {
@@ -54,7 +54,8 @@ const RelatedContent = ({
           'Discover actionable strategies to cut costs and build a robust financial safety net.',
         category: 'Personal Finance',
         readTime: '12 min',
-        href: '/guides/saving',
+        slug: 'saving',
+        publishDate: '2025-01-01',
         tags: ['saving', 'wealth', 'emergency fund'],
       },
       {
@@ -63,7 +64,8 @@ const RelatedContent = ({
         excerpt: 'Learn how to invest in stocks, real estate, and bonds to build lasting wealth.',
         category: 'Personal Finance',
         readTime: '18 min',
-        href: '/guides/investing',
+        slug: 'investing',
+        publishDate: '2025-01-01',
         tags: ['investing', 'stocks', 'real estate', 'crypto'],
       },
       {
@@ -73,7 +75,8 @@ const RelatedContent = ({
           'Strategies to pay off loans and credit card debt faster than you thought possible.',
         category: 'Personal Finance',
         readTime: '10 min',
-        href: '/guides/debt-management',
+        slug: 'debt-management',
+        publishDate: '2025-01-01',
         tags: ['debt', 'loans', 'freedom'],
       },
       {
@@ -82,7 +85,8 @@ const RelatedContent = ({
         excerpt: 'Legitimate ways to make money online and offline alongside your 9-5.',
         category: 'Entrepreneurship',
         readTime: '14 min',
-        href: '/guides/side-hustles',
+        slug: 'side-hustles',
+        publishDate: '2025-01-01',
         tags: ['business', 'income', 'freelancing'],
       },
       {
@@ -91,15 +95,23 @@ const RelatedContent = ({
         excerpt: 'How to ensure you can retire comfortably and maintain your lifestyle.',
         category: 'Personal Finance',
         readTime: '11 min',
-        href: '/guides/retirement-planning',
+        slug: 'retirement-planning',
+        publishDate: '2025-01-01',
         tags: ['retirement', 'pension', 'future'],
       },
     ];
 
-    // Use the related content engine to get smart recommendations
-    const recommended = getRelatedArticles(currentArticleId, category, title, allArticles, tags, 3);
-
-    setRelatedArticles(recommended);
+    const recommended = getRelatedArticles(currentArticleId, category, title, allArticles as any, tags, 3);
+    const transformed = recommended.map((a: any) => ({
+      id: a.id,
+      title: a.title,
+      excerpt: a.excerpt,
+      category: a.category,
+      readTime: a.readTime,
+      href: `/guides/${a.slug}`,
+      tags: a.tags,
+    }));
+    setRelatedArticles(transformed);
   }, [currentArticleId, category, title, tags]);
 
   if (relatedArticles.length === 0) {

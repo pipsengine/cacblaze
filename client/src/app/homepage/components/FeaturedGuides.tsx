@@ -123,6 +123,14 @@ const FeaturedGuides = () => {
                 height: 600,
                 preferCurated: true,
               });
+              const placeholderSrc = getContextualImage({
+                category: guide.category,
+                title: guide.title,
+                alt: guide.alt,
+                width: 800,
+                height: 600,
+                preferCurated: false,
+              }).src;
 
               return (
                 <Link
@@ -135,6 +143,9 @@ const FeaturedGuides = () => {
                       src={contextualImage.src}
                       alt={contextualImage.alt}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      fill
+                      fallbackSrc={placeholderSrc}
+                      secondaryFallbackSrc={placeholderSrc}
                     />
 
                     <div className="absolute top-4 left-4">
