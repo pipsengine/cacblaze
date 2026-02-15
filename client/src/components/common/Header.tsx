@@ -120,7 +120,7 @@ const Header = () => {
                           <p className="px-4 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                             {category?.label}
                           </p>
-                          {category?.items?.slice(0, 5)?.map((subItem) => (
+                          {category?.items?.map((subItem) => (
                             <Link
                               key={subItem?.id}
                               href={subItem?.href}

@@ -16,6 +16,7 @@ import Breadcrumb from '@/components/common/Breadcrumb';
 import ReadingProgressTracker from '@/components/common/ReadingProgressTracker';
 import BookmarkButton from '@/components/common/BookmarkButton';
 import ShareButton from '@/components/common/ShareButton';
+import { getContextualImage, getAuthorAvatar } from '@/utils/imageService';
 import {
   generateArticleSchema,
   generateFAQSchema,
@@ -83,6 +84,17 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     answer: faq.answer,
   }));
 
+  const heroFallback = getContextualImage({
+    category: article.category,
+    title: article.title,
+    alt: article.heroImageAlt,
+    width: 1200,
+    height: 630,
+    preferCurated: false,
+  });
+
+  const authorFallback = getAuthorAvatar(article.author.name);
+
   return (
     <>
       <script
@@ -122,6 +134,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                     width={48}
                     height={48}
                     className="rounded-full border-2 border-white shadow-sm"
+                    fallbackSrc={authorFallback}
                   />
                   <div className="text-left">
                     <div className="font-bold text-gray-900 flex items-center gap-1">
@@ -174,6 +187,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                   height={630}
                   className="w-full h-auto object-cover"
                   priority
+                  fallbackSrc={heroFallback.src}
                 />
               </div>
 

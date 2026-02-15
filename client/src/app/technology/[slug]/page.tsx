@@ -3,6 +3,8 @@ import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import { menuData } from '@/data/menuData';
+import AppImage from '@/components/ui/AppImage';
+import { getContextualImage, getCuratedImagesForCategory } from '@/utils/imageService';
 
 function formatSlug(slug: string) {
   return slug
@@ -2548,6 +2550,32 @@ export default function TechCategoryPage({ params }: { params: { slug: string } 
               <span className="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold uppercase tracking-wide mb-4">
                 Topic
               </span>
+              {(() => {
+                const primary = getContextualImage({
+                  category: 'technology',
+                  title,
+                  alt: title,
+                  width: 1200,
+                  height: 640,
+                  preferCurated: true,
+                });
+                const curatedList = getCuratedImagesForCategory('technology') || [];
+                const fallback = curatedList[0]?.src || '/assets/images/no_image.png';
+                const secondaryFallback = curatedList[1]?.src || '/assets/images/no_image.png';
+                return (
+                  <div className="relative aspect-[16/8] rounded-2xl overflow-hidden mb-6">
+                    <AppImage
+                      src={primary.src}
+                      alt={primary.alt}
+                      fill
+                      className="object-cover"
+                      fallbackSrc={fallback}
+                      secondaryFallbackSrc={secondaryFallback}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                  </div>
+                );
+              })()}
               <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">{title}</h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">{description}</p>
             </div>
@@ -2562,8 +2590,35 @@ export default function TechCategoryPage({ params }: { params: { slug: string } 
                   {sections.slice(0, 4).map((section, idx) => (
                     <div
                       key={section.title}
-                      className="p-6 rounded-2xl bg-gray-50 border border-gray-200"
+                      className="p-0 rounded-2xl bg-gray-50 border border-gray-200 overflow-hidden"
                     >
+                      {(() => {
+                        const primary = getContextualImage({
+                          category: 'technology',
+                          title: section.title,
+                          alt: section.title,
+                          width: 1000,
+                          height: 560,
+                          preferCurated: true,
+                        });
+                        const curatedList = getCuratedImagesForCategory('technology') || [];
+                        const fallback = curatedList[0]?.src || '/assets/images/no_image.png';
+                        const secondaryFallback = curatedList[1]?.src || '/assets/images/no_image.png';
+                        return (
+                          <div className="relative aspect-[16/9]">
+                            <AppImage
+                              src={primary.src}
+                              alt={primary.alt}
+                              fill
+                              className="object-cover"
+                              fallbackSrc={fallback}
+                              secondaryFallbackSrc={secondaryFallback}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/15 to-transparent" />
+                          </div>
+                        );
+                      })()}
+                      <div className="p-6">
                       <div className="flex items-center justify-between mb-4">
                         <h2 className="text-2xl font-bold text-gray-900">{section.title}</h2>
                         <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold shadow-sm">
@@ -2578,6 +2633,7 @@ export default function TechCategoryPage({ params }: { params: { slug: string } 
                           </li>
                         ))}
                       </ul>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -2586,8 +2642,35 @@ export default function TechCategoryPage({ params }: { params: { slug: string } 
                   {sections.slice(4, 8).map((section, idx) => (
                     <div
                       key={section.title}
-                      className="p-6 rounded-2xl bg-gray-50 border border-gray-200"
+                      className="p-0 rounded-2xl bg-gray-50 border border-gray-200 overflow-hidden"
                     >
+                      {(() => {
+                        const primary = getContextualImage({
+                          category: 'technology',
+                          title: section.title,
+                          alt: section.title,
+                          width: 1000,
+                          height: 560,
+                          preferCurated: true,
+                        });
+                        const curatedList = getCuratedImagesForCategory('technology') || [];
+                        const fallback = curatedList[0]?.src || '/assets/images/no_image.png';
+                        const secondaryFallback = curatedList[1]?.src || '/assets/images/no_image.png';
+                        return (
+                          <div className="relative aspect-[16/9]">
+                            <AppImage
+                              src={primary.src}
+                              alt={primary.alt}
+                              fill
+                              className="object-cover"
+                              fallbackSrc={fallback}
+                              secondaryFallbackSrc={secondaryFallback}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/15 to透明" />
+                          </div>
+                        );
+                      })()}
+                      <div className="p-6">
                       <div className="flex items-center justify-between mb-4">
                         <h2 className="text-2xl font-bold text-gray-900">{section.title}</h2>
                         <div className="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-semibold shadow-sm">
@@ -2602,6 +2685,7 @@ export default function TechCategoryPage({ params }: { params: { slug: string } 
                           </li>
                         ))}
                       </ul>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -2610,8 +2694,35 @@ export default function TechCategoryPage({ params }: { params: { slug: string } 
                   {sections.slice(8).map((section, idx) => (
                     <div
                       key={section.title}
-                      className="p-6 rounded-2xl bg-gray-50 border border-gray-200"
+                      className="p-0 rounded-2xl bg-gray-50 border border-gray-200 overflow-hidden"
                     >
+                      {(() => {
+                        const primary = getContextualImage({
+                          category: 'technology',
+                          title: section.title,
+                          alt: section.title,
+                          width: 1000,
+                          height: 560,
+                          preferCurated: true,
+                        });
+                        const curatedList = getCuratedImagesForCategory('technology') || [];
+                        const fallback = curatedList[0]?.src || '/assets/images/no_image.png';
+                        const secondaryFallback = curatedList[1]?.src || '/assets/images/no_image.png';
+                        return (
+                          <div className="relative aspect-[16/9]">
+                            <AppImage
+                              src={primary.src}
+                              alt={primary.alt}
+                              fill
+                              className="object-cover"
+                              fallbackSrc={fallback}
+                              secondaryFallbackSrc={secondaryFallback}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/15 to-transparent" />
+                          </div>
+                        );
+                      })()}
+                      <div className="p-6">
                       <div className="flex items-center justify-between mb-4">
                         <h2 className="text-2xl font-bold text-gray-900">{section.title}</h2>
                         <div className="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center font-semibold shadow-sm">
@@ -2626,6 +2737,7 @@ export default function TechCategoryPage({ params }: { params: { slug: string } 
                           </li>
                         ))}
                       </ul>
+                      </div>
                     </div>
                   ))}
                 </div>

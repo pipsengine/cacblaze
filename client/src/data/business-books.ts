@@ -69,7 +69,7 @@ export const businessBookReviews: Record<string, BusinessBookReview> = {
     },
     publishDate: 'February 10, 2026',
     heroImage:
-      'https://images.unsplash.com/photo-1553484771-047a44eee27b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     keyTakeaways: [
       'Minimum Viable Product (MVP) concept',
       'The Build-Measure-Learn feedback loop',
@@ -219,7 +219,7 @@ export const businessBookReviews: Record<string, BusinessBookReview> = {
     },
     publishDate: 'January 31, 2026',
     heroImage:
-      'https://images.unsplash.com/photo-1454165833767-027ffea9e77b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     keyTakeaways: [
       'Radical Truth and Radical Transparency',
       'Idea Meritocracy',

@@ -4,6 +4,8 @@ import Icon from '@/components/ui/AppIcon';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import AppImage from '@/components/ui/AppImage';
+import { getContextualImage, getCuratedImagesForCategory } from '@/utils/imageService';
 
 export const metadata: Metadata = {
   title: 'How-To Guides - CACBLAZE',
@@ -298,8 +300,34 @@ export default function HowToPage() {
                       <Link
                         key={item.id}
                         href={item.href}
-                        className="group block bg-gray-50 rounded-2xl p-6 hover:bg-green-50 transition-colors border border-gray-100 hover:border-green-100"
+                        className="group block bg-gray-50 rounded-2xl overflow-hidden hover:bg-purple-50 transition-colors border border-gray-100 hover:border-purple-100"
                       >
+                        {(() => {
+                          const primary = getContextualImage({
+                            category: 'howto',
+                            title: item.label,
+                            alt: item.label,
+                            width: 800,
+                            height: 500,
+                            preferCurated: true,
+                          });
+                          const curatedList = getCuratedImagesForCategory('howto') || [];
+                          const fallback = curatedList[0]?.src || '/assets/images/no_image.png';
+                          const secondaryFallback = curatedList[1]?.src || '/assets/images/no_image.png';
+                          return (
+                            <div className="relative aspect-[16/10] bg-white">
+                              <AppImage
+                                src={primary.src}
+                                alt={primary.alt}
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                fallbackSrc={fallback}
+                                secondaryFallbackSrc={secondaryFallback}
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+                            </div>
+                          );
+                        })()}
                         <div className="w-12 h-12 rounded-xl bg-white shadow-sm text-green-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                           <Icon name={item.icon as any} size={24} />
                         </div>

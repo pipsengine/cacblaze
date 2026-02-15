@@ -5,21 +5,52 @@ import { useState, useEffect, useRef } from 'react';
 interface FilterSidebarProps {
   onFilterChange: (filters: any) => void;
   initialCategories?: string[];
+  contextType?: string;
 }
 
-const FilterSidebar = ({ onFilterChange, initialCategories = [] }: FilterSidebarProps) => {
+const FilterSidebar = ({
+  onFilterChange,
+  initialCategories = [],
+  contextType = '',
+}: FilterSidebarProps) => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>(initialCategories);
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
   const [readTimeRange, setReadTimeRange] = useState<string>('all');
   const initialized = useRef(false);
 
-  const categories = [
-    { id: 'cat_tech', value: 'technology', label: 'Technology', count: 2400 },
-    { id: 'cat_edu', value: 'education', label: 'Education', count: 1800 },
-    { id: 'cat_life', value: 'lifestyle', label: 'Lifestyle', count: 1500 },
-    { id: 'cat_local', value: 'local', label: 'Local Resources', count: 800 },
-    { id: 'cat_reviews', value: 'reviews', label: 'Reviews', count: 650 },
-  ];
+  const LOCAL_TYPES = new Set([
+    'restaurants',
+    'lounges',
+    'street-food',
+    'places-to-visit',
+    'events-calendar',
+    'concerts',
+    'festivals',
+    'nightlife',
+    'family-events',
+    'home-services',
+    'freelancers',
+    'professionals',
+    'business-services',
+    'tech-services',
+    'transportation',
+    'housing',
+    'cost-of-living',
+  ]);
+  const isLocalContext = LOCAL_TYPES.has((contextType || '').toLowerCase());
+
+  const categories = isLocalContext
+    ? [
+        { id: 'cat_local', value: 'local', label: 'Local Resources', count: 800 },
+        { id: 'cat_reviews', value: 'reviews', label: 'Reviews', count: 650 },
+      ]
+    : [
+        { id: 'cat_tech', value: 'technology', label: 'Technology', count: 2400 },
+        { id: 'cat_edu', value: 'education', label: 'Education', count: 1800 },
+        { id: 'cat_life', value: 'lifestyle', label: 'Lifestyle', count: 1500 },
+        { id: 'cat_local', value: 'local', label: 'Local Resources', count: 800 },
+        { id: 'cat_reviews', value: 'reviews', label: 'Reviews', count: 650 },
+      ];
 
   const difficulties = [
     { id: 'diff_all', value: 'all', label: 'All Levels' },
@@ -104,33 +135,35 @@ const FilterSidebar = ({ onFilterChange, initialCategories = [] }: FilterSidebar
       </div>
 
       {/* Difficulty */}
-      <div>
-        <h4 className="text-sm font-semibold text-foreground mb-4">Difficulty Level</h4>
-        <div className="space-y-3">
-          {difficulties.map((difficulty) => (
-            <label key={difficulty.id} className="flex items-center gap-3 cursor-pointer group">
-              <input
-                type="radio"
-                name="difficulty"
-                value={difficulty.value}
-                checked={selectedDifficulty === difficulty.value}
-                onChange={(e) => {
-                  setSelectedDifficulty(e.target.value);
-                  onFilterChange({
-                    categories: selectedCategories,
-                    difficulty: e.target.value,
-                    readTime: readTimeRange,
-                  });
-                }}
-                className="w-5 h-5 border-2 border-gray-300 text-primary focus:ring-primary focus:ring-offset-0"
-              />
-              <span className="text-sm text-foreground group-hover:text-primary transition-colors">
-                {difficulty.label}
-              </span>
-            </label>
-          ))}
+      {!isLocalContext && (
+        <div>
+          <h4 className="text-sm font-semibold text-foreground mb-4">Difficulty Level</h4>
+          <div className="space-y-3">
+            {difficulties.map((difficulty) => (
+              <label key={difficulty.id} className="flex items-center gap-3 cursor-pointer group">
+                <input
+                  type="radio"
+                  name="difficulty"
+                  value={difficulty.value}
+                  checked={selectedDifficulty === difficulty.value}
+                  onChange={(e) => {
+                    setSelectedDifficulty(e.target.value);
+                    onFilterChange({
+                      categories: selectedCategories,
+                      difficulty: e.target.value,
+                      readTime: readTimeRange,
+                    });
+                  }}
+                  className="w-5 h-5 border-2 border-gray-300 text-primary focus:ring-primary focus:ring-offset-0"
+                />
+                <span className="text-sm text-foreground group-hover:text-primary transition-colors">
+                  {difficulty.label}
+                </span>
+              </label>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Read Time */}
       <div>

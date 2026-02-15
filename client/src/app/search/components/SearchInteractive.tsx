@@ -153,6 +153,29 @@ const SearchInteractive = () => {
     setHasSearched(true);
   };
 
+  const applyFilters = (items: any[], f: any) => {
+    const cats: string[] = Array.isArray(f?.categories) ? f.categories : [];
+    const time: string = f?.readTime || 'all';
+    const normalizeGroup = (label: string) => {
+      const l = (label || '').toLowerCase();
+      return 'local';
+    };
+    const passesCategory =
+      cats.length === 0 || cats.includes('local') || cats.includes(normalizeGroup(formattedType));
+    const parseMinutes = (rt: string) => {
+      const m = parseInt(String(rt).replace(/[^0-9]/g, ''), 10);
+      return isNaN(m) ? 8 : m;
+    };
+    return items.filter((it) => {
+      if (!passesCategory) return false;
+      const mins = parseMinutes(it.readTime);
+      if (time === 'short') return mins < 5;
+      if (time === 'medium') return mins >= 5 && mins <= 15;
+      if (time === 'long') return mins > 15;
+      return true;
+    });
+  };
+
   return (
     <>
       {/* Search Header */}
@@ -278,6 +301,7 @@ const SearchInteractive = () => {
               <FilterSidebar
                 onFilterChange={handleFilterChange}
                 initialCategories={useMemo(() => (type ? ['local'] : []), [type])}
+                contextType={type}
               />
             </div>
 
@@ -287,11 +311,12 @@ const SearchInteractive = () => {
                 searchQuery ? (
                   <SearchResults
                     query={searchQuery}
-                    results={
+                    results={applyFilters(
                       formattedType
                         ? buildTopicResults(type, state)
-                        : buildTopicResults('', '')
-                    }
+                        : buildTopicResults('', ''),
+                      filters
+                    )}
                   />
                 ) : (
                   <EmptyState query={searchQuery} />

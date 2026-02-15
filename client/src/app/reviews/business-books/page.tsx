@@ -1,11 +1,12 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
+import AppImage from '@/components/ui/AppImage';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import Icon from '@/components/ui/AppIcon';
 import { businessBookReviews } from '@/data/business-books';
+import { getCuratedImagesForCategory, getAuthorAvatar } from '@/utils/imageService';
 
 export const metadata: Metadata = {
   title: 'Business Book Reviews: Strategy, Leadership & Startups - CACBLAZE',
@@ -54,12 +55,28 @@ export default function BusinessBooksListingPage() {
                   className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                 >
                   <div className="relative h-48 w-full overflow-hidden">
-                    <Image
-                      src={review.heroImage}
-                      alt={review.name}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
+                    {(() => {
+                      const curated = getCuratedImagesForCategory('reviews');
+                      const hash =
+                        review.name.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0) +
+                        review.id.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+                      const idx = curated.length ? hash % curated.length : 0;
+                      const fallback = curated[idx]?.src || '/assets/images/no_image.png';
+                      const secondary =
+                        curated.length > 1
+                          ? curated[(idx + 1) % curated.length]?.src || '/assets/images/no_image.png'
+                          : '/assets/images/no_image.png';
+                      return (
+                        <AppImage
+                          src={review.heroImage}
+                          alt={review.name}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-500"
+                          fallbackSrc={fallback}
+                          secondaryFallbackSrc={secondary}
+                        />
+                      );
+                    })()}
                     <div className="absolute top-4 left-4 flex gap-2">
                       <span className="bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider shadow-sm">
                         {review.category}
@@ -91,11 +108,13 @@ export default function BusinessBooksListingPage() {
                     <div className="flex items-center justify-between pt-4 border-t border-gray-50">
                       <div className="flex items-center gap-2">
                         <div className="relative w-8 h-8 rounded-full overflow-hidden border border-blue-100">
-                          <Image
+                          <AppImage
                             src={review.author.image}
                             alt={review.author.name}
-                            fill
-                            className="object-cover"
+                            width={32}
+                            height={32}
+                            className="object-cover w-full h-full"
+                            fallbackSrc={getAuthorAvatar(review.author.name)}
                           />
                         </div>
                         <span className="text-xs font-medium text-gray-700">

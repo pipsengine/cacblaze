@@ -1,49 +1,61 @@
-export const runtime = 'nodejs';
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+import { NextResponse } from 'next/server';
 
-export async function GET(req: Request) {
-  const urlObj = new URL(req.url);
-  const target = urlObj.searchParams.get('url');
-  if (!target) {
-    return new Response('Missing url', { status: 400 });
-  }
+const ALLOWED_HOSTS = new Set([
+  'images.unsplash.com',
+  'images.pexels.com',
+  'images.pixabay.com',
+  'img.rocket.new',
+]);
+
+export async function GET(request: Request) {
   try {
-    const origin = new URL(target).hostname;
-    const referer =
-      origin.includes('images.unsplash.com')
-        ? 'https://unsplash.com/'
-        : origin.includes('images.pexels.com')
-          ? 'https://www.pexels.com/'
-          : origin.includes('images.pixabay.com')
-            ? 'https://pixabay.com/'
-            : 'https://cacblaze.local/';
-    const upstream = await fetch(target, {
+    const { searchParams } = new URL(request.url);
+    const urlParam = searchParams.get('url');
+    if (!urlParam) {
+      return NextResponse.json({ error: 'Missing url parameter' }, { status: 400 });
+    }
+
+    let target: URL;
+    try {
+      target = new URL(urlParam);
+    } catch {
+      return NextResponse.json({ error: 'Invalid URL' }, { status: 400 });
+    }
+
+    if (target.protocol !== 'http:' && target.protocol !== 'https:') {
+      return NextResponse.json({ error: 'Unsupported protocol' }, { status: 400 });
+    }
+
+    if (!ALLOWED_HOSTS.has(target.hostname)) {
+      return NextResponse.json({ error: 'Host not allowed' }, { status: 403 });
+    }
+
+    const resp = await fetch(target.toString(), {
       headers: {
         'User-Agent':
-          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0 Safari/537.36',
         Accept: 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.9',
-        Referer: referer,
+        Referer: request.headers.get('referer') || '',
       },
       cache: 'no-store',
-      redirect: 'follow',
     });
-    if (!upstream.ok) {
-      return new Response('Upstream error', { status: upstream.status });
+
+    if (!resp.ok) {
+      return NextResponse.json({ error: 'Upstream fetch failed' }, { status: resp.status });
     }
-    const contentType = upstream.headers.get('content-type') || 'image/jpeg';
-    const buf = await upstream.arrayBuffer();
-    return new Response(buf, {
+
+    const contentType = resp.headers.get('content-type') || 'application/octet-stream';
+    const arrayBuf = await resp.arrayBuffer();
+
+    return new Response(arrayBuf, {
+      status: 200,
       headers: {
-        'content-type': contentType,
-        'cache-control': 'public, max-age=1800',
-        'x-proxy-source': origin,
-        'access-control-allow-origin': '*',
-        'cross-origin-resource-policy': 'cross-origin',
+        'Content-Type': contentType,
+        'Cache-Control': 'public, max-age=3600, s-maxage=3600',
+        'Cross-Origin-Resource-Policy': 'cross-origin',
       },
     });
-  } catch {
-    return new Response('Proxy error', { status: 502 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Proxy error' }, { status: 500 });
   }
 }

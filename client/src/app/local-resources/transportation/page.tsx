@@ -25,32 +25,96 @@ type TransportItem = {
   points: string[];
 };
 
-const T1 = 'https://images.pexels.com/photos/3671142/pexels-photo-3671142.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const T2 = 'https://images.pexels.com/photos/3860258/pexels-photo-3860258.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const T3 = 'https://images.pexels.com/photos/21014/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const T4 = 'https://images.pexels.com/photos/144429/pexels-photo-144429.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const T5 = 'https://images.pexels.com/photos/949193/pexels-photo-949193.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const T1 = 'https://images.pexels.com/photos/14946382/pexels-photo-14946382.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80'; // Lagos danfo bus
+const T2 = 'https://images.pexels.com/photos/20453360/pexels-photo-20453360.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80'; // Abuja street/cars
+const T3 = 'https://images.pexels.com/photos/1321252/pexels-photo-1321252.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80'; // Keke tricycle
+const T4 = 'https://images.pexels.com/photos/3860258/pexels-photo-3860258.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80'; // Intercity coach
+const T5 = 'https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80'; // Taxi/road
 
+const IMG_CITY_BUS =
+  'https://images.pexels.com/photos/144429/pexels-photo-144429.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const IMG_TAXI =
+  'https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const IMG_INTERCITY_COACH =
+  'https://images.pexels.com/photos/3860258/pexels-photo-3860258.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const IMG_KEKE =
+  'https://images.pexels.com/photos/165943/pexels-photo-165943.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+
+const SVG_BUS = '/assets/images/local-resources/transport-bus.svg';
+const SVG_TAXI = '/assets/images/local-resources/transport-taxi.svg';
+const SVG_COACH = '/assets/images/local-resources/transport-coach.svg';
+const SVG_KEKE = '/assets/images/local-resources/transport-keke.svg';
+
+const PHOTO_CITY_BUS =
+  'https://images.pexels.com/photos/144429/pexels-photo-144429.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const PHOTO_TAXI =
+  'https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const PHOTO_COACH =
+  'https://images.pexels.com/photos/3860258/pexels-photo-3860258.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const PHOTO_KEKE =
+  'https://images.pexels.com/photos/1321252/pexels-photo-1321252.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+
+const PHOTO_DANFO =
+  'https://images.pexels.com/photos/14946382/pexels-photo-14946382.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const PHOTO_STREET_CARS =
+  'https://images.pexels.com/photos/20453360/pexels-photo-20453360.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+
+const OVERRIDES: Record<string, string> = {
+  lagos_commute: PHOTO_DANFO,
+  abuja_commute: PHOTO_STREET_CARS,
+  ph_commute: PHOTO_KEKE,
+  ibadan_commute: PHOTO_CITY_BUS,
+  kano_commute: PHOTO_TAXI,
+  kaduna_commute: PHOTO_CITY_BUS,
+  enugu_commute: PHOTO_KEKE,
+  edo_commute: PHOTO_TAXI,
+  plateau_commute: PHOTO_CITY_BUS,
+  kwara_commute: PHOTO_TAXI,
+  crossriver_intercity: PHOTO_COACH,
+  akwaibom_intercity: PHOTO_COACH,
+  imo_commute: PHOTO_KEKE,
+  ogun_commute: PHOTO_CITY_BUS,
+  anambra_commute: PHOTO_KEKE,
+};
 const ITEMS: TransportItem[] = [
-  { id: 'lagos_commute', state: 'Lagos', city: 'Lagos', title: 'Commuting in Lagos', image: T1, category: 'City Transport', summary: 'BRT, danfo, taxis and rideshare.', points: ['Peak hours 6:30–9:30, 4:30–8:30', 'Use BRT for island–mainland', 'Confirm surge pricing in apps'] },
-  { id: 'abuja_commute', state: 'FCT Abuja', city: 'Abuja', title: 'Commuting in Abuja', image: T2, category: 'City Transport', summary: 'Taxis, shuttle buses, rideshare.', points: ['Plan around ministries closing time', 'Check Wuse/Area 1 routes', 'Ride‑hail for late evenings'] },
-  { id: 'ph_commute', state: 'Rivers', city: 'Port Harcourt', title: 'PH Transport', image: T3, category: 'City Transport', summary: 'Shuttles, keke, taxis.', points: ['Cash ready for short trips', 'Night routes limited', 'Confirm fares before boarding'] },
-  { id: 'ibadan_commute', state: 'Oyo', city: 'Ibadan', title: 'Ibadan Transport', image: T4, category: 'City Transport', summary: 'Taxis, buses, keke.', points: ['Bodija–UI shuttles common', 'Avoid peak Ring Road traffic', 'Use rideshare during rain'] },
-  { id: 'kano_commute', state: 'Kano', city: 'Kano', title: 'Kano Transport', image: T5, category: 'City Transport', summary: 'Keke, taxis, buses.', points: ['Confirm routes in Hausa/English', 'Carry small change', 'Check heat times for comfort'] },
-  { id: 'kaduna_commute', state: 'Kaduna', city: 'Kaduna', title: 'Kaduna Transport', image: T1, category: 'City Transport', summary: 'Buses, taxis.', points: ['Barnawa shuttles frequent', 'Verify POS availability', 'Plan for evening safety'] },
-  { id: 'enugu_commute', state: 'Enugu', city: 'Enugu', title: 'Enugu Transport', image: T2, category: 'City Transport', summary: 'Keke, taxis.', points: ['Independence Layout routes', 'Night transport limited', 'Carry cash or transfers'] },
-  { id: 'edo_commute', state: 'Edo', city: 'Benin City', title: 'Benin Transport', image: T3, category: 'City Transport', summary: 'Buses, taxis.', points: ['GRA and Ugbowo shuttles', 'Agree price beforehand', 'Avoid flood‑prone routes'] },
-  { id: 'plateau_commute', state: 'Plateau', city: 'Jos', title: 'Jos Transport', image: T4, category: 'City Transport', summary: 'Buses, taxis.', points: ['Cold weather prep', 'Early closures in some areas', 'Use rideshare where available'] },
-  { id: 'kwara_commute', state: 'Kwara', city: 'Ilorin', title: 'Ilorin Transport', image: T5, category: 'City Transport', summary: 'Taxis, keke.', points: ['Tanke student routes busy', 'Transfers accepted widely', 'Confirm destination landmarks'] },
-  { id: 'crossriver_intercity', state: 'Cross River', city: 'Calabar', title: 'Intercity from Calabar', image: T1, category: 'Intercity', summary: 'Coach to Uyo/PH.', points: ['Book earlier on weekends', 'Check luggage policies', 'Arrive 30–45 min early'] },
-  { id: 'akwaibom_intercity', state: 'Akwa Ibom', city: 'Uyo', title: 'Intercity from Uyo', image: T2, category: 'Intercity', summary: 'Coach to Calabar/PH.', points: ['Confirm seat type', 'Bring snacks/water', 'Use verified terminals'] },
-  { id: 'imo_commute', state: 'Imo', city: 'Owerri', title: 'Owerri Transport', image: T3, category: 'City Transport', summary: 'Taxis, keke.', points: ['New Owerri routes', 'Agree pricing in advance', 'Prefer transfers over cash at night'] },
-  { id: 'ogun_commute', state: 'Ogun', city: 'Abeokuta', title: 'Abeokuta Transport', image: T4, category: 'City Transport', summary: 'Taxis, buses.', points: ['GRA and Oke‑Ilewo routes', 'Check evening schedules', 'Carry small change'] },
-  { id: 'anambra_commute', state: 'Anambra', city: 'Awka', title: 'Awka Transport', image: T5, category: 'City Transport', summary: 'Shuttles, keke.', points: ['Student term crowds', 'Use landmarks when directing', 'Confirm fares'] },
+  { id: 'lagos_commute', state: 'Lagos', city: 'Lagos', title: 'Commuting in Lagos', image: IMG_CITY_BUS, category: 'City Transport', summary: 'BRT, danfo, taxis and rideshare.', points: ['Peak hours 6:30–9:30, 4:30–8:30', 'Use BRT for island–mainland', 'Confirm surge pricing in apps'] },
+  { id: 'abuja_commute', state: 'FCT Abuja', city: 'Abuja', title: 'Commuting in Abuja', image: IMG_CITY_BUS, category: 'City Transport', summary: 'Taxis, shuttle buses, rideshare.', points: ['Plan around ministries closing time', 'Check Wuse/Area 1 routes', 'Ride‑hail for late evenings'] },
+  { id: 'ph_commute', state: 'Rivers', city: 'Port Harcourt', title: 'PH Transport', image: IMG_CITY_BUS, category: 'City Transport', summary: 'Shuttles, keke, taxis.', points: ['Cash ready for short trips', 'Night routes limited', 'Confirm fares before boarding'] },
+  { id: 'ibadan_commute', state: 'Oyo', city: 'Ibadan', title: 'Ibadan Transport', image: IMG_CITY_BUS, category: 'City Transport', summary: 'Taxis, buses, keke.', points: ['Bodija–UI shuttles common', 'Avoid peak Ring Road traffic', 'Use rideshare during rain'] },
+  { id: 'kano_commute', state: 'Kano', city: 'Kano', title: 'Kano Transport', image: IMG_CITY_BUS, category: 'City Transport', summary: 'Keke, taxis, buses.', points: ['Confirm routes in Hausa/English', 'Carry small change', 'Check heat times for comfort'] },
+  { id: 'kaduna_commute', state: 'Kaduna', city: 'Kaduna', title: 'Kaduna Transport', image: IMG_CITY_BUS, category: 'City Transport', summary: 'Buses, taxis.', points: ['Barnawa shuttles frequent', 'Verify POS availability', 'Plan for evening safety'] },
+  { id: 'enugu_commute', state: 'Enugu', city: 'Enugu', title: 'Enugu Transport', image: IMG_CITY_BUS, category: 'City Transport', summary: 'Keke, taxis.', points: ['Independence Layout routes', 'Night transport limited', 'Carry cash or transfers'] },
+  { id: 'edo_commute', state: 'Edo', city: 'Benin City', title: 'Benin Transport', image: IMG_CITY_BUS, category: 'City Transport', summary: 'Buses, taxis.', points: ['GRA and Ugbowo shuttles', 'Agree price beforehand', 'Avoid flood‑prone routes'] },
+  { id: 'plateau_commute', state: 'Plateau', city: 'Jos', title: 'Jos Transport', image: IMG_CITY_BUS, category: 'City Transport', summary: 'Buses, taxis.', points: ['Cold weather prep', 'Early closures in some areas', 'Use rideshare where available'] },
+  { id: 'kwara_commute', state: 'Kwara', city: 'Ilorin', title: 'Ilorin Transport', image: IMG_CITY_BUS, category: 'City Transport', summary: 'Taxis, keke.', points: ['Tanke student routes busy', 'Transfers accepted widely', 'Confirm destination landmarks'] },
+  { id: 'crossriver_intercity', state: 'Cross River', city: 'Calabar', title: 'Intercity from Calabar', image: IMG_INTERCITY_COACH, category: 'Intercity', summary: 'Coach to Uyo/PH.', points: ['Book earlier on weekends', 'Check luggage policies', 'Arrive 30–45 min early'] },
+  { id: 'akwaibom_intercity', state: 'Akwa Ibom', city: 'Uyo', title: 'Intercity from Uyo', image: IMG_INTERCITY_COACH, category: 'Intercity', summary: 'Coach to Calabar/PH.', points: ['Confirm seat type', 'Bring snacks/water', 'Use verified terminals'] },
+  { id: 'imo_commute', state: 'Imo', city: 'Owerri', title: 'Owerri Transport', image: IMG_CITY_BUS, category: 'City Transport', summary: 'Taxis, keke.', points: ['New Owerri routes', 'Agree pricing in advance', 'Prefer transfers over cash at night'] },
+  { id: 'ogun_commute', state: 'Ogun', city: 'Abeokuta', title: 'Abeokuta Transport', image: IMG_CITY_BUS, category: 'City Transport', summary: 'Taxis, buses.', points: ['GRA and Oke‑Ilewo routes', 'Check evening schedules', 'Carry small change'] },
+  { id: 'anambra_commute', state: 'Anambra', city: 'Awka', title: 'Awka Transport', image: IMG_CITY_BUS, category: 'City Transport', summary: 'Shuttles, keke.', points: ['Student term crowds', 'Use landmarks when directing', 'Confirm fares'] },
 ];
 
+const pickImage = (e: TransportItem) => {
+  const s = `${e.title} ${e.summary} ${e.city} ${e.state}`.toLowerCase();
+  if (OVERRIDES[e.id]) return OVERRIDES[e.id];
+  if (e.category.toLowerCase().includes('intercity')) return PHOTO_COACH;
+  if (s.includes('brt') || s.includes('danfo') || e.city.toLowerCase() === 'lagos') return PHOTO_CITY_BUS;
+  if (s.includes('keke')) return PHOTO_KEKE;
+  if (s.includes('taxi')) return PHOTO_TAXI;
+  return PHOTO_CITY_BUS;
+};
+
+const fallbackFor = (e: TransportItem) => {
+  const s = `${e.title} ${e.summary} ${e.city} ${e.state}`.toLowerCase();
+  if (e.category.toLowerCase().includes('intercity')) return SVG_COACH;
+  if (s.includes('brt') || s.includes('danfo') || e.city.toLowerCase() === 'lagos') return SVG_BUS;
+  if (s.includes('keke')) return SVG_KEKE;
+  if (s.includes('taxi')) return SVG_TAXI;
+  return SVG_BUS;
+};
+
 const buildStateCards = (state: string) => {
-  const imgs = [T1, T2, T3, T4];
+  const imgs = [PHOTO_CITY_BUS, PHOTO_TAXI, PHOTO_KEKE, PHOTO_COACH];
   const titles = [
     `City routes in ${state}`,
     `Taxi and rideshare in ${state}`,
@@ -134,13 +198,14 @@ const TransportationPage = ({ searchParams }: { searchParams?: { [key: string]: 
                   >
                     <div className="relative h-56">
                       <AppImage
-                        src={e.image}
+                        src={pickImage(e)}
                         alt={e.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="w-full h-full object-cover object-center brightness-95 saturate-110 group-hover:scale-105 transition-transform duration-500"
                         priority
-                        fallbackSrc="/assets/images/no_image.png"
+                        fallbackSrc={fallbackFor(e)}
+                        secondaryFallbackSrc="/assets/images/no_image.png"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/25 to-transparent" />
                       <div className="absolute bottom-5 left-5 right-5">
                         <div className="text-white text-xs">
                           {e.city}, {e.state} · {e.category}
@@ -176,11 +241,11 @@ const TransportationPage = ({ searchParams }: { searchParams?: { [key: string]: 
                         <AppImage
                           src={c.image}
                           alt={c.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          className="w-full h-full object-cover object-center brightness-95 saturate-110 group-hover:scale-105 transition-transform duration-500"
                           priority
                           fallbackSrc="/assets/images/no_image.png"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/25 to-transparent" />
                         <div className="absolute bottom-4 left-4 right-4">
                           <h3 className="text-lg font-bold text-white">{c.title}</h3>
                         </div>

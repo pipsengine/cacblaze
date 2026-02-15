@@ -16,6 +16,7 @@ interface AppImageProps {
   sizes?: string;
   onClick?: () => void;
   fallbackSrc?: string;
+  secondaryFallbackSrc?: string;
   [key: string]: any;
 }
 
@@ -33,11 +34,13 @@ function AppImage({
   sizes,
   onClick,
   fallbackSrc = '/assets/images/no_image.png',
+  secondaryFallbackSrc = '/assets/images/no_image.png',
   ...props
 }: AppImageProps) {
   const [imageSrc, setImageSrc] = useState(src);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const [triedProxy, setTriedProxy] = useState(false);
 
   // Sync state when src prop changes
   React.useEffect(() => {
@@ -59,9 +62,22 @@ function AppImage({
     imageSrc.includes('img.rocket.new');
 
   const handleError = () => {
-    if (!hasError && imageSrc !== fallbackSrc) {
+    const isCurrentlyProxied = imageSrc.startsWith('/api/image-proxy?url=');
+    if (fallbackSrc && imageSrc !== fallbackSrc) {
       setImageSrc(fallbackSrc);
       setHasError(true);
+      return;
+    }
+    if (isExternal && !isCurrentlyProxied && !triedProxy) {
+      const proxiedCurrent = `/api/image-proxy?url=${encodeURIComponent(imageSrc)}`;
+      setImageSrc(proxiedCurrent);
+      setTriedProxy(true);
+      return;
+    }
+    if (secondaryFallbackSrc && imageSrc !== secondaryFallbackSrc) {
+      setImageSrc(secondaryFallbackSrc);
+      setHasError(true);
+      return;
     }
     setIsLoading(false);
   };
@@ -85,14 +101,13 @@ function AppImage({
   if (fill) {
     return (
       <div
-        className={`relative ${className}`}
+        className={`relative`}
         style={{ width: width || '100%', height: height || '100%' }}
       >
         {(() => {
-          const resolvedSrc =
-            isExternal && imageSrc !== fallbackSrc
-              ? `/api/image-proxy?url=${encodeURIComponent(imageSrc)}`
-              : imageSrc;
+          const resolvedSrc = isExternal
+            ? `/api/image-proxy?url=${encodeURIComponent(imageSrc)}`
+            : imageSrc;
           return (
         <img
           src={resolvedSrc}
@@ -111,10 +126,9 @@ function AppImage({
 
   return (
     (() => {
-      const resolvedSrc =
-        isExternal && imageSrc !== fallbackSrc
-          ? `/api/image-proxy?url=${encodeURIComponent(imageSrc)}`
-          : imageSrc;
+      const resolvedSrc = isExternal
+        ? `/api/image-proxy?url=${encodeURIComponent(imageSrc)}`
+        : imageSrc;
       return (
     <img
       src={resolvedSrc}

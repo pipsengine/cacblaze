@@ -6,6 +6,7 @@ import Breadcrumb from '@/components/common/Breadcrumb';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import { NIGERIA_STATES } from '@/data/nigeria-states';
+import { getCuratedImagesForCategory } from '@/utils/imageService';
 
 export const metadata: Metadata = {
   title: 'Local Restaurants in Nigeria - CACBLAZE',
@@ -41,14 +42,14 @@ const LocalRestaurantsPage = () => {
       id: 'lagos_lekki',
       city: 'Lagos',
       area: 'Lekki Phase 1',
-      image: 'https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',
       highlights: ['Trendy cafes', 'Brunch culture', 'Rooftop views'],
     },
     {
       id: 'abuja_wuse',
       city: 'FCT Abuja',
       area: 'Wuse 2',
-      image: 'https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image: 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=1200&q=80',
       highlights: ['International cuisine', 'Family-friendly', 'Dessert bars'],
     },
     {
@@ -62,7 +63,7 @@ const LocalRestaurantsPage = () => {
       id: 'ph_gra',
       city: 'Rivers',
       area: 'Port Harcourt GRA',
-      image: 'https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image: 'https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Grills & chops', 'Live music', 'Outdoor seating'],
     },
     {
@@ -90,28 +91,28 @@ const LocalRestaurantsPage = () => {
       id: 'benin_gra',
       city: 'Edo',
       area: 'Benin GRA',
-      image: 'https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image: 'https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Seafood', 'Outdoor seating', 'Live bands'],
     },
     {
       id: 'jos_rayfield',
       city: 'Plateau',
       area: 'Rayfield',
-      image: 'https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image: 'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Cold weather menus', 'Stews & teas', 'Scenic views'],
     },
     {
       id: 'ilorin_tanke',
       city: 'Kwara',
       area: 'Tanke',
-      image: 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image: 'https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=1200&q=80',
       highlights: ['Student-friendly', 'Casual bites', 'Affordable combos'],
     },
     {
       id: 'calabar_marina',
       city: 'Cross River',
       area: 'Marina',
-      image: 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image: 'https://images.pexels.com/photos/760044/pexels-photo-760044.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Sea views', 'Seafood platters', 'Tourist-friendly'],
     },
     {
@@ -229,13 +230,27 @@ const LocalRestaurantsPage = () => {
                   className="group rounded-3xl border border-gray-200 bg-white overflow-hidden hover:border-primary transition-all hover-lift"
                 >
                   <div className="relative h-56">
-                    <AppImage
-                      src={area.image}
-                      alt={`${area.area}, ${area.city}`}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      priority
-                      fallbackSrc="/assets/images/no_image.png"
-                    />
+                    {(() => {
+                      const curated = getCuratedImagesForCategory('local-resources');
+                      const hash =
+                        area.id.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0) +
+                        area.city.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+                      const idx = curated.length ? hash % curated.length : 0;
+                      const fallback = curated[idx]?.src || '/assets/images/no_image.png';
+                      const secondary =
+                        curated[(idx + 1) % Math.max(curated.length, 1)]?.src ||
+                        '/assets/images/no_image.png';
+                      return (
+                        <AppImage
+                          src={area.image}
+                          alt={`${area.area}, ${area.city}`}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          priority
+                          fallbackSrc={fallback}
+                          secondaryFallbackSrc={secondary}
+                        />
+                      );
+                    })()}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                     <div className="absolute bottom-5 left-5 right-5">
                       <div className="text-white text-xs">{area.city}</div>

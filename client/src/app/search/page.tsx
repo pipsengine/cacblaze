@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import SearchInteractive from './components/SearchInteractive';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Search - CACBLAZE',
@@ -15,7 +16,9 @@ export default function SearchPage() {
     <>
       <Header />
       <main className="min-h-screen pt-20">
-        <SearchInteractive />
+        <Suspense fallback={null}>
+          <SearchInteractive />
+        </Suspense>
       </main>
       <Footer />
     </>

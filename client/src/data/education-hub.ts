@@ -1344,7 +1344,37 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'Boost your career with these top-rated free certifications.',
         heroImage:
           'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['Coursera specs', 'EdX certs', 'Google Career Certs', 'LinkedIn Learning'],
+        content: [
+          {
+            title: 'Selection Criteria and Learning Goals',
+            body:
+              'Begin with clear outcomes and time constraints, then shortlist courses that offer rigorous curricula, credible assessments, and recognized certificates; prioritize programs that include practical projects and peer feedback so your learning converts into visible, verifiable proof of skill.',
+          },
+          {
+            title: 'Platform Landscape and Certification Signals',
+            body:
+              'Coursera and EdX partner with top universities and big tech, offering structured paths and graded assessments; Google Career Certificates focus on job‑ready tracks; LinkedIn Learning provides breadth and fast onboarding; treat certificates as conversation starters backed by tangible portfolio artifacts.',
+          },
+          {
+            title: 'Study Strategy and Cadence',
+            body:
+              'Use weekly targets, daily recall prompts, and mixed media learning; combine lectures with readings, labs, and discussions; maintain a progress journal to capture decisions, obstacles, and breakthroughs so you can iterate intelligently over time.',
+          },
+          {
+            title: 'Assessment and Portfolio Integration',
+            body:
+              'Prefer courses with capstones, peer reviews, and graded tasks; convert assignments into polished case studies with visuals, metrics, and narratives; host on a personal site or portfolio so recruiters can inspect your work.',
+          },
+          {
+            title: 'Career Alignment and Next Steps',
+            body:
+              'Map certificates to target roles and local market demand; stack learning with internships, freelance gigs, and volunteer projects; seek feedback from practitioners and escalate to advanced tracks once foundations are stable.',
+          },
+        ],
+        tips: [
+          { title: 'Audit then Upgrade', content: 'Audit courses first to test fit, then upgrade for certificates.' },
+          { title: 'Weekly Milestones', content: 'Publish a small artifact every week to show momentum.' },
+        ],
         author: {
           name: 'Kevin Hart',
           role: 'EdTech Specialist',
@@ -1362,10 +1392,35 @@ export const educationHubData: Record<string, EducationCategory> = {
         heroImage:
           'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         content: [
-          'Python for Data Science',
-          'Machine Learning models',
-          'Data visualization',
-          'Capstone project',
+          {
+            title: 'Curriculum Architecture',
+            body:
+              'Start with Python foundations, data structures, and workflow hygiene; progress to statistics, data cleaning, feature engineering, and model building; alternate theory with applied labs to create durable knowledge.',
+          },
+          {
+            title: 'Practical Labs and Tooling',
+            body:
+              'Work with notebooks, pandas, scikit‑learn, and visualization stacks; practice version control, reproducible environments, and experiment tracking so stakeholders can trust and repeat your results.',
+          },
+          {
+            title: 'Capstone Design',
+            body:
+              'Choose a problem with measurable impact; collect or simulate real data, define baselines, and iterate models; document trade‑offs, ablations, and error analysis to demonstrate professional rigor.',
+          },
+          {
+            title: 'Career Support',
+            body:
+              'Translate projects into portfolio case studies, prepare concise narratives for interviews, and engage with mentors; use mock interviews and code reviews to raise signal before applying widely.',
+          },
+          {
+            title: 'Assessment and Mastery',
+            body:
+              'Run weekly quizzes and practicals; maintain a learning log of mistakes and fixes; revisit weak areas with targeted drills and spaced repetition until your performance is consistently strong.',
+          },
+        ],
+        tips: [
+          { title: 'Notebooks to Repo', content: 'Turn notebooks into cleaned repos with READMEs and results.' },
+          { title: 'Public Datasets', content: 'Use Kaggle/open data to build recognizable projects.' },
         ],
         author: {
           name: 'Dr. Data',
@@ -1383,7 +1438,37 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'Master SEO, SEM, social media, and email marketing.',
         heroImage:
           'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['Content strategy', 'Google Ads', 'Facebook Blueprint', 'Analytics tracking'],
+        content: [
+          {
+            title: 'Content Strategy and Audience',
+            body:
+              'Define personas, pain points, and value propositions; craft editorial calendars that blend evergreen education with timely campaigns; design content to generate genuine engagement and conversion pathways.',
+          },
+          {
+            title: 'Search and Paid Channels',
+            body:
+              'Master keyword research, on‑page SEO, and technical health; design paid campaigns on Google Ads with clear structures, bidding strategies, and measurement; iterate creatives and landing pages based on data.',
+          },
+          {
+            title: 'Social Platforms and Community',
+            body:
+              'Use platform‑native formats and genuine conversation; implement testing loops for hooks, formats, and CTAs; prioritize trust and value over spam so audiences stick around.',
+          },
+          {
+            title: 'Email and Lifecycle',
+            body:
+              'Build segmented lists, automated journeys, and deliverability hygiene; write copy that respects attention and provides useful outcomes; measure retention and LTV.',
+          },
+          {
+            title: 'Analytics and Optimization',
+            body:
+              'Implement GA4, pixels, event tracking, and dashboards; define success metrics and run controlled experiments; document learnings to refine strategy continuously.',
+          },
+        ],
+        tips: [
+          { title: 'Hypothesis First', content: 'State a hypothesis before every campaign experiment.' },
+          { title: 'Creative Variants', content: 'Test multiple creatives simultaneously to learn faster.' },
+        ],
         author: {
           name: 'Marketing Guru',
           role: 'Digital Strategist',
@@ -1400,7 +1485,37 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'Learn the principles of user-centric design and prototyping.',
         heroImage:
           'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['User research', 'Wireframing', 'Visual design', 'Figma mastery'],
+        content: [
+          {
+            title: 'Research and Problem Framing',
+            body:
+              'Conduct interviews, surveys, and usability studies to uncover needs; synthesize insights into clear problem statements; define scope and success criteria to focus effort.',
+          },
+          {
+            title: 'Information Architecture and Wireframing',
+            body:
+              'Structure content and flows for clarity; build wireframes that emphasize hierarchy and affordances; iterate quickly to test assumptions before heavy visual work.',
+          },
+          {
+            title: 'Visual Systems',
+            body:
+              'Create typography, color, spacing, and component rules; apply accessibility standards and contrast ratios; ensure consistency across states and devices.',
+          },
+          {
+            title: 'Prototyping',
+            body:
+              'Use Figma and prototyping tools to simulate interactions; validate microcopy, animations, and transitions; collect qualitative and quantitative feedback.',
+          },
+          {
+            title: 'Usability and Iteration',
+            body:
+              'Run moderated sessions and measure task success; prioritize fixes, document decisions, and ship improvements with clear release notes.',
+          },
+        ],
+        tips: [
+          { title: 'Design Crits', content: 'Seek critique early; incorporate actionable feedback explicitly.' },
+          { title: 'Accessibility', content: 'Test with accessibility tools and real users where possible.' },
+        ],
         author: {
           name: 'Design Pro',
           role: 'Lead UI Designer',
@@ -1417,7 +1532,37 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'Learn to build modern web applications from scratch.',
         heroImage:
           'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['HTML/CSS/JS', 'React/Next.js', 'Node.js/Express', 'Databases (SQL/NoSQL)'],
+        content: [
+          {
+            title: 'Frontend Foundations',
+            body:
+              'Master semantic HTML, modern CSS, and accessible JS; build responsive layouts and componentized UIs; enforce performance budgets and testing to ensure quality.',
+          },
+          {
+            title: 'Frameworks and SSR',
+            body:
+              'Use React and Next.js for routing, data fetching, and server‑side rendering; design state management and error handling for resilience.',
+          },
+          {
+            title: 'Backend Services',
+            body:
+              'Implement Node.js/Express APIs with validation, authentication, and logging; design modular architectures and maintain observability.',
+          },
+          {
+            title: 'Databases',
+            body:
+              'Model relational schemas and NoSQL documents appropriately; apply indexing, migrations, and backup strategies; measure query performance.',
+          },
+          {
+            title: 'DevOps and Delivery',
+            body:
+              'Automate CI/CD, testing, and deployments; manage environments, secrets, and monitoring; write runbooks and incident processes.',
+          },
+        ],
+        tips: [
+          { title: 'Code Reviews', content: 'Request reviews with clear diffs and context.' },
+          { title: 'Deployment Logs', content: 'Capture changelogs and rollback plans for every release.' },
+        ],
         author: {
           name: 'Code Master',
           role: 'Full Stack Developer',
@@ -1435,10 +1580,35 @@ export const educationHubData: Record<string, EducationCategory> = {
         heroImage:
           'https://images.unsplash.com/photo-1454165833767-027ffea9e778?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         content: [
-          'Project lifecycle',
-          'Risk management',
-          'Stakeholder communication',
-          'Agile methodologies',
+          {
+            title: 'Exam Domains and Mindset',
+            body:
+              'Understand people, process, and business environment domains; adopt a leadership mindset that balances governance with adaptive practices; link theory to real scenarios.',
+          },
+          {
+            title: 'Study Plan and Materials',
+            body:
+              'Build a 6–10 week plan with PMBOK v7, Agile Practice Guide, and trusted question banks; schedule daily review and weekly mocks with error analysis.',
+          },
+          {
+            title: 'Question Strategies',
+            body:
+              'Practice scenario reading, elimination techniques, and time management; tag tricky areas and revisit with focused drills.',
+          },
+          {
+            title: 'Agile and Hybrid',
+            body:
+              'Integrate Scrum, Kanban, and hybrid delivery patterns; demonstrate situational judgment on when to adapt processes.',
+          },
+          {
+            title: 'Application and Eligibility',
+            body:
+              'Document experience and education accurately; prepare references and submission artifacts; plan exam logistics and retake policies.',
+          },
+        ],
+        tips: [
+          { title: 'Study Group', content: 'Join or form a study group to sustain momentum.' },
+          { title: 'Mock Cadence', content: 'Run full mocks weekly and section drills mid‑week.' },
         ],
         author: {
           name: 'PM Expert',
@@ -1457,10 +1627,35 @@ export const educationHubData: Record<string, EducationCategory> = {
         heroImage:
           'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         content: [
-          'Statistical modeling',
-          'Predictive analytics',
-          'Dashboarding with Tableau',
-          'Decision trees',
+          {
+            title: 'Decision Frameworks',
+            body:
+              'Clarify objectives, constraints, and trade‑offs; align metrics to outcomes and build governance for data‑informed decisions that respect context and risk.',
+          },
+          {
+            title: 'Modeling and Forecasts',
+            body:
+              'Use statistical models and predictive techniques to estimate outcomes; document assumptions and confidence so stakeholders understand reliability.',
+          },
+          {
+            title: 'Visualization and Dashboards',
+            body:
+              'Design dashboards that answer specific questions; apply visual best practices and access control; iterate with stakeholders to ensure usefulness.',
+          },
+          {
+            title: 'Data Governance and Ethics',
+            body:
+              'Define ownership, quality standards, privacy, and compliance; create processes for monitoring and incident management.',
+          },
+          {
+            title: 'Communicating Insights',
+            body:
+              'Tell clear stories with data, combining visuals and narratives; provide recommendations and next steps with quantified impact.',
+          },
+        ],
+        tips: [
+          { title: 'Stakeholder Map', content: 'Identify decision makers and tailor dashboards accordingly.' },
+          { title: 'Metric Trees', content: 'Link KPIs to underlying drivers to guide improvements.' },
         ],
         author: {
           name: 'Biz Analyst',
@@ -1478,7 +1673,37 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'Protect yourself and your organization from cyber threats.',
         heroImage:
           'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['Network security', 'Ethical hacking', 'Incident response', 'Security protocols'],
+        content: [
+          {
+            title: 'Threat Modeling and Risk',
+            body:
+              'Identify assets, threats, and vulnerabilities; evaluate likelihood and impact; prioritize controls that reduce real risk efficiently.',
+          },
+          {
+            title: 'Network Security Basics',
+            body:
+              'Understand segmentation, firewalls, IDS/IPS, and secure protocols; monitor logs and alerts to spot anomalies early.',
+          },
+          {
+            title: 'Incident Response Lifecycle',
+            body:
+              'Prepare, detect, contain, eradicate, recover, and learn; simulate incidents and write post‑mortems to improve resilience.',
+          },
+          {
+            title: 'Policy and Compliance',
+            body:
+              'Build practical policies for access, data handling, and acceptable use; align with standards and educate users regularly.',
+          },
+          {
+            title: 'Home Lab Practice',
+            body:
+              'Set up safe environments for learning tools and techniques; never target unauthorized systems; document findings ethically.',
+          },
+        ],
+        tips: [
+          { title: 'Patch Hygiene', content: 'Maintain updates and backups; reduce attack surface methodically.' },
+          { title: 'Least Privilege', content: 'Grant only necessary access and audit regularly.' },
+        ],
         author: {
           name: 'Security Pro',
           role: 'Cybersecurity Analyst',
@@ -1496,10 +1721,35 @@ export const educationHubData: Record<string, EducationCategory> = {
         heroImage:
           'https://images.unsplash.com/photo-1555255707-c07966088b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         content: [
-          'Neural networks',
-          'Deep learning basics',
-          'Natural language processing',
-          'AI ethics',
+          {
+            title: 'Machine Learning Concepts',
+            body:
+              'Learn supervised and unsupervised learning, evaluation metrics, and bias/variance; build intuition with simple models before advancing.',
+          },
+          {
+            title: 'Neural Networks Overview',
+            body:
+              'Understand layers, activation, loss, and optimization; experiment with small networks to see how representation learning emerges.',
+          },
+          {
+            title: 'Natural Language Processing',
+            body:
+              'Explore tokenization, embeddings, sequence models, and transformers; build mini‑projects like text classification and summarization.',
+          },
+          {
+            title: 'Responsible AI',
+            body:
+              'Consider fairness, transparency, and real‑world impact; document data provenance and risk mitigations in project notes.',
+          },
+          {
+            title: 'Learning Path',
+            body:
+              'Progress from conceptual courses to implementation; maintain reproducible code and written explanations; join communities for feedback.',
+          },
+        ],
+        tips: [
+          { title: 'Toy Datasets', content: 'Start with small datasets to learn mechanisms clearly.' },
+          { title: 'Reproducibility', content: 'Fix random seeds and log experiments consistently.' },
         ],
         author: {
           name: 'AI Researcher',
@@ -1518,10 +1768,35 @@ export const educationHubData: Record<string, EducationCategory> = {
         heroImage:
           'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         content: [
-          'Plot development',
-          'Character building',
-          'Dialogue techniques',
-          'Publishing advice',
+          {
+            title: 'Story Structure',
+            body:
+              'Explore classic and modern structures; experiment with pacing, tension, and payoff; outline arcs that support theme and reader engagement.',
+          },
+          {
+            title: 'Characters and Voice',
+            body:
+              'Craft believable motivations, contradictions, and growth; develop distinct voices through diction and rhythm; show, don’t tell.',
+          },
+          {
+            title: 'Dialogue and Scene Work',
+            body:
+              'Write dialogue that moves plot and reveals character; choreograph scenes with sensory detail and purposeful beats.',
+          },
+          {
+            title: 'Editing and Revision',
+            body:
+              'Use passes for structure, language, and continuity; adopt feedback loops with critique partners; track changes and rationale.',
+          },
+          {
+            title: 'Publishing Paths',
+            body:
+              'Research traditional and indie options; prepare query letters, synopses, and samples; build a simple author platform and pitch strategy.',
+          },
+        ],
+        tips: [
+          { title: 'Daily Pages', content: 'Write small daily; momentum beats waiting for inspiration.' },
+          { title: 'Critique Groups', content: 'Exchange honest feedback and set revision goals.' },
         ],
         author: {
           name: 'Author X',
@@ -1547,7 +1822,38 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'The most valuable IT certifications to have in 2026.',
         heroImage:
           'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['AWS Architect', 'CompTIA Security+', 'PMP', 'CCNA'],
+        content: [
+          {
+            title: 'Top Paths in 2026',
+            body:
+              'Cloud, security, networking, and project leadership remain the highest‑impact domains. Pair AWS Solutions Architect with hands‑on services, CompTIA Security+ for a security baseline, CCNA for core networking, and PMP for leadership and delivery credibility.',
+          },
+          {
+            title: 'Prerequisites and Eligibility',
+            body:
+              'Confirm exam prerequisites early: AWS SA has no formal prerequisite but benefits from 6–12 months of AWS use; Security+ is entry‑level but expects familiarity with basic IT; CCNA demands strong networking fundamentals; PMP requires documented hours and education.',
+          },
+          {
+            title: 'Study Roadmap',
+            body:
+              'Build a 10–12 week plan: official guides, structured courses, daily recall prompts, and weekly labs. Rotate domains and interleave practice questions. Use cloud free tiers and packet tracer labs to convert theory into repeatable skills.',
+          },
+          {
+            title: 'Exam Strategy',
+            body:
+              'Simulate timing weekly, flag weak domains, and practice question styles (scenario, drag‑and‑drop, performance‑based). Create a test‑day checklist and a pacing plan per section. Review answers you marked for return in the final 10 minutes.',
+          },
+          {
+            title: 'Career Outcomes',
+            body:
+              'Update CV and LinkedIn with verified credentials, attach lab projects, and map certifications to target roles (Cloud Engineer, Network Engineer, Security Analyst, Project Manager). Track interviews and compensation changes to measure ROI.',
+          },
+        ],
+        tips: [
+          { title: 'Hands‑on First', content: 'Prefer labs over passive videos; build and break small projects.' },
+          { title: 'Mock Exams', content: 'Run full‑length mocks weekly and analyze errors by domain.' },
+          { title: 'Portfolio', content: 'Publish short write‑ups of labs and architectures with diagrams.' },
+        ],
         author: {
           name: 'Michael Chen',
           role: 'Tech Recruiter',
@@ -1565,10 +1871,36 @@ export const educationHubData: Record<string, EducationCategory> = {
         heroImage:
           'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         content: [
-          'AWS Practitioner',
-          'Azure Fundamentals',
-          'Google Cloud Associate',
-          'Cloud security',
+          {
+            title: 'Choosing Your Cloud',
+            body:
+              'Pick AWS for breadth of ecosystem and hiring volume, Azure if you work with Microsoft stacks and enterprise AD/Intune, and GCP for data/ML tooling and Kubernetes leadership. Align the choice with your team stack and local market demand.',
+          },
+          {
+            title: 'AWS Track',
+            body:
+              'Start with Cloud Practitioner for foundations, then Solutions Architect Associate to design resilient architectures. Add Developer or SysOps if you focus on CI/CD or operations. Practice on free tier: S3, EC2, IAM policies, VPCs, and CloudWatch.',
+          },
+          {
+            title: 'Azure Track',
+            body:
+              'Begin with AZ‑900 then move to AZ‑104 (Administrator) or AZ‑204 (Developer). Emphasize identity, RBAC, VNets, Storage, and App Services. Use Microsoft Learn sandboxes and validate skills with small deployments and policy assignments.',
+          },
+          {
+            title: 'GCP Track',
+            body:
+              'Take Cloud Digital Leader or Associate Cloud Engineer. Focus on IAM, VPC, Cloud Storage, GKE, and monitoring. Build containerized apps, deploy to GKE, and measure cost/performance trade‑offs.',
+          },
+          {
+            title: 'Security in the Cloud',
+            body:
+              'Learn shared responsibility, encryption at rest/in transit, key management, IAM least privilege, and logging/alerting. Practice incident simulations and policy remediation.',
+          },
+        ],
+        tips: [
+          { title: 'Free Tiers', content: 'Use provider free tiers to practice daily without high costs.' },
+          { title: 'Architect Diagrams', content: 'Draw architectures; reviewers hire people who can explain trade‑offs.' },
+          { title: 'Cost Awareness', content: 'Track spend; set budgets and alerts to avoid surprise bills.' },
         ],
         author: {
           name: 'Cloud Expert',
@@ -1586,7 +1918,37 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'From CAPM to PMP: Choosing the best PM certification.',
         heroImage:
           'https://images.unsplash.com/photo-1454165833767-027ffea9e778?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['PMP vs PRINCE2', 'Agile/Scrum Master', 'Six Sigma belts', 'PMI requirements'],
+        content: [
+          {
+            title: 'PMP vs PRINCE2',
+            body:
+              'PMP emphasizes process groups and knowledge areas across industries; PRINCE2 focuses on controlled governance and stages. Choose PMP for broad global recognition, PRINCE2 where structured governance is dominant.',
+          },
+          {
+            title: 'Eligibility & Paths',
+            body:
+              'CAPM suits entry‑level PMs; PMP requires documented hours and formal education. Combine PMP with Agile/Scrum credentials for hybrid delivery in modern teams.',
+          },
+          {
+            title: 'Exam Content',
+            body:
+              'Master people, process, and business environment domains with significant Agile content. Practice scenario questions and risk/issue logs.',
+          },
+          {
+            title: 'Continuous Improvement',
+            body:
+              'Six Sigma belts develop data‑driven improvement skills. Pair with PM frameworks to optimize delivery and quality.',
+          },
+          {
+            title: 'Maintaining Credentials',
+            body:
+              'Track PDUs, submit continuing education, and align learning with your project portfolio and leadership goals.',
+          },
+        ],
+        tips: [
+          { title: 'PMBOK v7', content: 'Use PMBOK v7 and Agile Practice Guide together for the current exam mix.' },
+          { title: 'Rita Mulcahy', content: 'Practice with trusted prep books and question banks.' },
+        ],
         author: {
           name: 'Sarah PM',
           role: 'Project Director',
@@ -1603,7 +1965,33 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'Boost your HR career with professional certifications.',
         heroImage:
           'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['SHRM vs HRCI', 'PHR eligibility', 'Exam preparation', 'Recertification credits'],
+        content: [
+          {
+            title: 'SHRM vs HRCI',
+            body:
+              'SHRM focuses on behavioral competencies and HR knowledge; HRCI (PHR/SPHR) centers on technical HR practices. Choose based on employer preference and your career stage.',
+          },
+          {
+            title: 'Eligibility',
+            body:
+              'Review experience and education requirements carefully for PHR/SPHR and SHRM‑CP/SCP. Plan timelines to meet eligibility by the exam window.',
+          },
+          {
+            title: 'Preparation',
+            body:
+              'Use official learning systems, practice cases, and flashcards. Emphasize employment law, compensation, benefits, and talent management scenarios.',
+          },
+          {
+            title: 'Recertification',
+            body:
+              'Track credits via conferences, webinars, and on‑the‑job projects. Set annual targets and log evidence proactively.',
+          },
+          {
+            title: 'Career Value',
+            body:
+              'Certifications validate strategic HR capability; pair with analytics and change management to increase impact.',
+          },
+        ],
         author: {
           name: 'HR Pro',
           role: 'HR Director',
@@ -1620,7 +2008,32 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'The ultimate guide to accounting and finance certifications.',
         heroImage:
           'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['CFA levels', 'ACCA modules', 'CPA exam structure', 'Career impact'],
+        content: [
+          {
+            title: 'CFA Levels',
+            body:
+              'Level I covers foundations; Level II deepens analysis; Level III focuses on portfolio management. Expect heavy quantitative work and ethics throughout.',
+          },
+          {
+            title: 'ACCA Modules',
+            body:
+              'Progress through Applied Knowledge/Skills and Strategic Professional. Emphasize financial reporting, audit, and taxation practicals.',
+          },
+          {
+            title: 'CPA Structure',
+            body:
+              'Understand jurisdiction policies, exam sections, and the new discipline‑based model. Prepare with authoritative practice questions and simulations.',
+          },
+          {
+            title: 'Career Impact',
+            body:
+              'Map credentials to roles: investment analyst, accountant, auditor, finance manager. Build case studies and models in your portfolio.',
+          },
+        ],
+        tips: [
+          { title: 'Study Discipline', content: 'Use spaced repetition and daily problem sets to retain formulas.' },
+          { title: 'Mock Reviews', content: 'Analyze wrong answers by topic and re‑learn with targeted drills.' },
+        ],
         author: {
           name: 'Finance Expert',
           role: 'Chartered Accountant',
@@ -1637,7 +2050,28 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'Free and paid marketing certifications to validate your skills.',
         heroImage:
           'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['Google Ads certs', 'HubSpot Inbound', 'Facebook Blueprint', 'Hootsuite Social'],
+        content: [
+          {
+            title: 'Google Ads',
+            body:
+              'Master search, display, and video fundamentals. Practice campaign structures, match types, bidding strategies, and measurement with GA4.',
+          },
+          {
+            title: 'HubSpot Inbound',
+            body:
+              'Learn inbound methodology, content strategy, lead capture, and nurturing. Build sample workflows and measure conversion lift.',
+          },
+          {
+            title: 'Meta Blueprint',
+            body:
+              'Understand audience targeting, creative testing, and pixel events. Practice campaign diagnostics and scaling.',
+          },
+          {
+            title: 'Social Management',
+            body:
+              'Use Hootsuite or similar tools to schedule, listen, and report. Create a portfolio of campaigns with outcomes.',
+          },
+        ],
         author: {
           name: 'Marketer',
           role: 'Digital Strategist',
@@ -1654,7 +2088,32 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'Advanced certifications for cybersecurity professionals.',
         heroImage:
           'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['CISSP domains', 'Ethical Hacker (CEH)', 'CISM vs CISA', 'Security+ as entry'],
+        content: [
+          {
+            title: 'CISSP Domains',
+            body:
+              'Cover security and risk, asset security, engineering, communications/networking, IAM, testing, operations, and software security. Focus on management‑level thinking and trade‑offs.',
+          },
+          {
+            title: 'Ethical Hacking',
+            body:
+              'CEH teaches recon, scanning, exploitation, post‑exploitation, and reporting. Build a home lab for safe practice and document findings ethically.',
+          },
+          {
+            title: 'CISM vs CISA',
+            body:
+              'CISM targets management and governance; CISA focuses on audit and controls. Pick based on role aspirations.',
+          },
+          {
+            title: 'Entry Path',
+            body:
+              'Security+ establishes baseline knowledge. Add Blue/Red team labs, SIEM practice, and incident simulations.',
+          },
+        ],
+        tips: [
+          { title: 'Home Lab', content: 'Use VMs and safe targets to practice tools legally and ethically.' },
+          { title: 'CTFs', content: 'Participate in capture‑the‑flag events to sharpen practical skills.' },
+        ],
         author: {
           name: 'Security Expert',
           role: 'CISO',
@@ -1672,10 +2131,30 @@ export const educationHubData: Record<string, EducationCategory> = {
         heroImage:
           'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         content: [
-          'Tableau Desktop Specialist',
-          'Microsoft PL-300',
-          'Google Data Analytics',
-          'IBM Data Science',
+          {
+            title: 'Tableau Specialist',
+            body:
+              'Focus on data connections, calculations, visual best practices, and dashboards. Build portfolio dashboards with real datasets.',
+          },
+          {
+            title: 'PL‑300 (Power BI)',
+            body:
+              'Modeling, DAX, Power Query, and visualization. Practice with row‑level security and performance optimization.',
+          },
+          {
+            title: 'Google Data Analytics',
+            body:
+              'Learn spreadsheets, SQL, visualization, and case studies. Prepare job‑ready projects with clear narratives.',
+          },
+          {
+            title: 'IBM Data Science',
+            body:
+              'Cover Python, pandas, visualization, and basic ML. Document notebooks and share reproducible work.',
+          },
+        ],
+        tips: [
+          { title: 'Portfolio First', content: 'Show dashboards that answer real business questions.' },
+          { title: 'Data Sources', content: 'Use open datasets and track cleaning assumptions explicitly.' },
         ],
         author: {
           name: 'Analyst',
@@ -1693,7 +2172,28 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'Become an expert in Agile methodologies and Scrum frameworks.',
         heroImage:
           'https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['PSM vs CSM', 'Safe Agile', 'Product Owner (PSPO)', 'Agile Coaching'],
+        content: [
+          {
+            title: 'PSM vs CSM',
+            body:
+              'Both validate Scrum mastery; PSM emphasizes rigorous assessment while CSM includes training + test. Choose based on local employer recognition.',
+          },
+          {
+            title: 'SAFe Agile',
+            body:
+              'Adopt scaled roles and ceremonies. Understand PI planning, ARTs, and lean portfolio management.',
+          },
+          {
+            title: 'Product Ownership',
+            body:
+              'PSPO deepens backlog strategy, value slicing, and stakeholder alignment. Practice writing outcomes and measurable product goals.',
+          },
+          {
+            title: 'Coaching Path',
+            body:
+              'Develop facilitation, conflict resolution, and continuous improvement. Pair credentials with practical org change work.',
+          },
+        ],
         author: {
           name: 'Scrum Master',
           role: 'Agile Coach',
@@ -1710,7 +2210,33 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'Enhance your legal career with recognized paralegal certifications.',
         heroImage:
           'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['NALA CP', 'NFPA RP', 'Legal research', 'Case management'],
+        content: [
+          {
+            title: 'NALA vs NFPA',
+            body:
+              'NALA CP and NFPA RP offer recognized pathways. Compare exam content, eligibility, and local employer preferences.',
+          },
+          {
+            title: 'Eligibility and Prep',
+            body:
+              'Confirm education/experience requirements, assemble transcripts, and plan study using official outlines and mock exams.',
+          },
+          {
+            title: 'Core Skills',
+            body:
+              'Strengthen legal research, writing, evidence handling, and case file management. Practice citations and briefing.',
+          },
+          {
+            title: 'Tools',
+            body:
+              'Learn common case management systems and research platforms. Document repeatable workflows and checklists.',
+          },
+          {
+            title: 'Ethics',
+            body:
+              'Understand confidentiality, conflicts, and jurisdictional rules. Apply ethical decision trees to scenarios.',
+          },
+        ],
         author: {
           name: 'Legal Pro',
           role: 'Senior Paralegal',
@@ -1735,7 +2261,37 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'How to choose and grow in the right career for you.',
         heroImage:
           'https://images.unsplash.com/photo-1454165833767-027ffea9e778?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['Self-assessment', 'Industry research', 'Networking', 'Goal setting'],
+        content: [
+          {
+            title: 'Self-Assessment Framework',
+            body:
+              'Start with strengths, interests, and values. Use simple instruments and reflection prompts to uncover what energizes you. Map these to role archetypes and environments where you thrive.',
+          },
+          {
+            title: 'Industry Research & Market Mapping',
+            body:
+              'Identify growth sectors, common role ladders, and skill demand. Read job postings, analyst reports, and talk to practitioners. Build a shortlist of viable paths aligned with your profile.',
+          },
+          {
+            title: 'Skills Matrix & Experience Plan',
+            body:
+              'Translate target roles into skill matrices. Plan projects, internships, volunteering, or freelance work to gain evidence. Create weekly deliverables that turn learning into artifacts.',
+          },
+          {
+            title: 'Networking & Mentorship',
+            body:
+              'Conduct informational interviews, join communities, and find mentors. Prepare authentic outreach scripts and clear questions. Offer value and document insights as operating notes.',
+          },
+          {
+            title: 'Goals, Cadence, and Portfolio',
+            body:
+              'Set quarterly outcomes and weekly execution. Publish a portfolio with case studies, visuals, and measurable results. Iterate monthly using feedback and data from applications.',
+          },
+        ],
+        tips: [
+          { title: 'Informational Interviews', content: 'Speak to 5 practitioners per month; synthesize takeaways.' },
+          { title: 'Role Fit Notes', content: 'Track patterns from job descriptions to refine your target roles.' },
+        ],
         author: {
           name: 'Sarah Jenkins',
           role: 'Career Coach',
@@ -1753,10 +2309,35 @@ export const educationHubData: Record<string, EducationCategory> = {
         heroImage:
           'https://images.unsplash.com/photo-1515162305285-0293e4767cc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         content: [
-          'LinkedIn optimization',
-          'Informational interviews',
-          'Elevator pitch',
-          'Follow-up etiquette',
+          {
+            title: 'Profile & Positioning',
+            body:
+              'Optimize your headline, summary, and featured work to signal focus and credibility. Use role keywords, outcomes, and visual assets that demonstrate your value.',
+          },
+          {
+            title: 'Outbound Outreach',
+            body:
+              'Send concise, respectful messages with a clear ask: advice, feedback, or a short call. Personalize based on their work and explain your context in 2–3 sentences.',
+          },
+          {
+            title: 'Informational Interviews',
+            body:
+              'Structure 20–30 minute calls: career story, role realities, success traits, and advice. Close with requests for resources and 1–2 introductions if comfortable.',
+          },
+          {
+            title: 'Events & Communities',
+            body:
+              'Attend meetups, webinars, and conferences. Prepare a simple pitch, take notes, and follow up within 24–48 hours with a value add or summary.',
+          },
+          {
+            title: 'Relationship System',
+            body:
+              'Track contacts, last touch, and mutual interests. Share useful articles, congratulate milestones, and offer help without expectation. Build trust over time.',
+          },
+        ],
+        tips: [
+          { title: 'Give First', content: 'Lead with helpfulness; share resources or introductions freely.' },
+          { title: 'Short Asks', content: 'Keep requests specific and easy to answer in a minute or two.' },
         ],
         author: {
           name: 'John Connect',
@@ -1774,7 +2355,37 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'How to successfully pivot to a new industry or role.',
         heroImage:
           'https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['Transferable skills', 'Gap analysis', 'Retraining options', 'Personal branding'],
+        content: [
+          {
+            title: 'Transferable Skills',
+            body:
+              'Extract capabilities from past roles: problem solving, stakeholder management, tooling, and delivery. Match them to the language of your target field.',
+          },
+          {
+            title: 'Gap Analysis & Training',
+            body:
+              'Identify missing technical and domain skills. Plan short courses, project sprints, and mentorship to close gaps quickly with artifacts you can show.',
+          },
+          {
+            title: 'Transition Projects',
+            body:
+              'Build 2–3 projects that mirror real work in the target role. Document decisions, trade‑offs, and outcomes; add visuals and metrics.',
+          },
+          {
+            title: 'Pivot Narrative',
+            body:
+              'Craft a story that connects your past strengths to future impact. Use concise bullets in CV and a compelling summary in your profile.',
+          },
+          {
+            title: 'Entry Paths & Risk',
+            body:
+              'Consider apprenticeships, internal transfers, bootcamps, and freelance gigs. Plan financial runway and milestones to manage transition risk.',
+          },
+        ],
+        tips: [
+          { title: 'Talk to Practitioners', content: 'Interview 5 people in target roles to validate fit.' },
+          { title: 'Small Bets', content: 'Pilot mini‑projects before committing to a full pivot.' },
+        ],
         author: {
           name: 'Pivot Pro',
           role: 'Career Transitionist',
@@ -1791,7 +2402,37 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'Maintain your well-being while excelling in your career.',
         heroImage:
           'https://images.unsplash.com/photo-1499209974431-9dac3adaf471?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['Setting boundaries', 'Time blocking', 'Remote work hacks', 'Burnout prevention'],
+        content: [
+          {
+            title: 'Boundaries & Agreements',
+            body:
+              'Define response windows, meeting norms, and focus blocks. Document team agreements and protect deep work time.',
+          },
+          {
+            title: 'Time & Energy',
+            body:
+              'Use time blocking and plan around peak energy. Batch tasks and insert recovery breaks to sustain performance.',
+          },
+          {
+            title: 'Remote Ergonomics',
+            body:
+              'Optimize workspace, lighting, and posture. Use tools to reduce friction and automate repetitive workflows.',
+          },
+          {
+            title: 'Burnout Prevention',
+            body:
+              'Track early warning signs, workload patterns, and recovery practices. Seek support and adjust scope proactively.',
+          },
+          {
+            title: 'Communication & Care',
+            body:
+              'Coordinate with managers and family. Plan for caregiving, emergencies, and time off with clear communication.',
+          },
+        ],
+        tips: [
+          { title: 'No-Meeting Blocks', content: 'Reserve weekly focus time for high‑value work.' },
+          { title: 'Micro‑Breaks', content: 'Short movement breaks reset attention and prevent strain.' },
+        ],
         author: {
           name: 'Balance Guru',
           role: 'Wellness Coach',
@@ -1808,7 +2449,37 @@ export const educationHubData: Record<string, EducationCategory> = {
         description: 'Get paid what you are worth with these negotiation tactics.',
         heroImage:
           'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
-        content: ['Market research', 'Timing your request', 'Total compensation', 'Counter-offers'],
+        content: [
+          {
+            title: 'Market & Leveling',
+            body:
+              'Research compensation bands and leveling frameworks. Calibrate expectations using multiple sources and peer signals.',
+          },
+          {
+            title: 'Total Compensation',
+            body:
+              'Assess base, bonus, equity, benefits, and perks. Model scenarios and long‑term value rather than focusing only on base.',
+          },
+          {
+            title: 'Framing & Scripts',
+            body:
+              'Practice clear, confident language. Anchor on value and impact; ask for ranges and propose packages rather than single numbers.',
+          },
+          {
+            title: 'Timing & Leverage',
+            body:
+              'Negotiate after an offer or performance wins. Use alternatives (BATNA) and keep conversations professional and positive.',
+          },
+          {
+            title: 'Counter‑Offers & Growth',
+            body:
+              'Handle counters by revisiting priorities and risk. Align negotiations with growth path and learning opportunities.',
+          },
+        ],
+        tips: [
+          { title: 'Never First Number', content: 'Invite ranges and avoid naming a number early.' },
+          { title: 'Practice Aloud', content: 'Rehearse with a partner to build confidence and clarity.' },
+        ],
         author: {
           name: 'Negotiator',
           role: 'Compensation Analyst',
@@ -1826,10 +2497,35 @@ export const educationHubData: Record<string, EducationCategory> = {
         heroImage:
           'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         content: [
-          'Emotional intelligence',
-          'Delegation skills',
-          'Conflict resolution',
-          'Strategic thinking',
+          {
+            title: 'Emotional Intelligence',
+            body:
+              'Develop self‑awareness, self‑management, social awareness, and relationship skills. Model composure under pressure and empathy in interactions.',
+          },
+          {
+            title: 'Delegation & Empowerment',
+            body:
+              'Delegate outcomes, not tasks. Clarify constraints and support with coaching. Build autonomy and accountability.',
+          },
+          {
+            title: 'Conflict & Alignment',
+            body:
+              'Use frameworks for resolving conflict and aligning goals. Facilitate dialogue, generate options, and document agreements.',
+          },
+          {
+            title: 'Strategy & Decisions',
+            body:
+              'Define vision, choose priorities, and make trade‑offs. Use data and narratives to drive decisions and communicate clearly.',
+          },
+          {
+            title: 'Teams & Culture',
+            body:
+              'Design rituals, feedback loops, and norms. Hire for values and strengths; run retrospectives and celebrate wins.',
+          },
+        ],
+        tips: [
+          { title: 'Weekly 1:1s', content: 'Hold structured 1:1s with notes and follow‑ups.' },
+          { title: 'Outcomes First', content: 'Define expected results before planning tasks.' },
         ],
         author: {
           name: 'Leader Coach',
