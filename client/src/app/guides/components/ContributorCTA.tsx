@@ -2,7 +2,7 @@
  
  import { useRouter } from 'next/navigation';
  
- const ContributorCTA = () => {
+  const ContributorCTA = () => {
    const router = useRouter();
    const handleClick = () => {
      if (typeof window !== 'undefined') {
@@ -20,13 +20,16 @@
          <p className="text-lg text-secondary mb-6">
            Join 200+ domain experts contributing to CACBLAZE
          </p>
-         <button
-           type="button"
-           onClick={handleClick}
-           className="inline-block px-8 py-4 bg-gray-900 text-white font-bold rounded-2xl hover:bg-gray-800 transition-all relative z-50 pointer-events-auto"
-         >
-           Become a Contributor
-         </button>
+          <a
+            id="contributor_cta_anchor"
+            href="http://localhost:4100/contact?reason=contribute"
+            onMouseDown={handleClick}
+            onClick={handleClick}
+            target="_self"
+            className="inline-block px-8 py-4 bg-gray-900 text-white font-bold rounded-2xl hover:bg-gray-800 transition-all relative z-50 pointer-events-auto"
+          >
+            Become a Contributor
+          </a>
        </div>
      </section>
    );

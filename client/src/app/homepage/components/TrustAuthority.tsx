@@ -1,4 +1,5 @@
 import Icon from '@/components/ui/AppIcon';
+import Link from 'next/link';
 
 const TrustAuthority = () => {
   const stats = [
@@ -109,9 +110,12 @@ const TrustAuthority = () => {
           <p className="text-lg text-secondary mb-6">
             Join 200+ domain experts contributing to CACBLAZE
           </p>
-          <button className="px-8 py-4 bg-foreground text-white rounded-2xl font-semibold hover:bg-foreground/90 transition-all hover-lift">
+          <Link
+            href="/contact?reason=contribute"
+            className="px-8 py-4 bg-foreground text-white rounded-2xl font-semibold hover:bg-foreground/90 transition-all hover-lift inline-block"
+          >
             Become a Contributor
-          </button>
+          </Link>
         </div>
       </div>
     </section>

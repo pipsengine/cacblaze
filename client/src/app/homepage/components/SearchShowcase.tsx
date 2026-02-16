@@ -3,9 +3,12 @@
 import { useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const SearchShowcase = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeSearch, setActiveSearch] = useState('Web Development');
+  const router = useRouter();
 
   const popularSearches = [
     { id: 'search_1', text: 'Web Development', icon: 'CodeBracketIcon' as const },
@@ -97,7 +100,14 @@ const SearchShowcase = () => {
                 {popularSearches.map((search) => (
                   <button
                     key={search.id}
-                    className="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white text-foreground hover:border-primary transition-all"
+                    onClick={() => {
+                      setActiveSearch(search.text);
+                      router.push(`/search?q=${encodeURIComponent(search.text)}`);
+                    }}
+                    className={`flex items-center gap-2 px-5 py-3 rounded-full transition-all whitespace-nowrap
+                      ${activeSearch === search.text
+                        ? 'border-2 border-black bg-white text-foreground shadow-sm'
+                        : 'border border-gray-200 bg-white text-foreground hover:border-primary'}`}
                   >
                     <Icon name={search.icon} size={16} className="text-primary" />
                     <span className="text-sm font-medium">{search.text}</span>

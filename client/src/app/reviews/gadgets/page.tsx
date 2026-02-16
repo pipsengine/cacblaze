@@ -6,6 +6,7 @@ import Breadcrumb from '@/components/common/Breadcrumb';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import { gadgetReviews } from '@/data/gadgets';
+import { getContextualImage } from '@/utils/imageService';
 
 export const metadata: Metadata = {
   title: 'Latest Gadget Reviews in Nigeria (2026) - CACBLAZE',
@@ -47,12 +48,27 @@ export default function GadgetsListingPage() {
                 className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col"
               >
                 <div className="aspect-[16/10] relative overflow-hidden">
-                  <AppImage
-                    src={review.heroImage}
-                    alt={review.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                  {(() => {
+                    const contextual = getContextualImage({
+                      category: 'technology',
+                      title: review.name,
+                      alt: review.name,
+                      width: 1200,
+                      height: 630,
+                      preferCurated: true,
+                    });
+                    return (
+                      <AppImage
+                        src={contextual.src}
+                        alt={contextual.alt}
+                        width={1200}
+                        height={630}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        fallbackSrc={review.heroImage}
+                      />
+                    );
+                  })()}
                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-indigo-600 shadow-sm">
                     {review.rating} / 5.0
                   </div>

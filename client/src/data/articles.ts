@@ -571,6 +571,254 @@ export const articles: Record<string, Article> = {
       },
     ],
   },
+  productivity: {
+    id: 'guide_productivity',
+    slug: 'productivity',
+    title: 'Productivity Mastery: Systems, Tools, and Habits that Stick',
+    excerpt:
+      'Build a simple, repeatable system to get important work done without burnout. Learn deep work, task pipelines, automation, and weekly reviews tailored for Nigeria’s realities.',
+    category: 'Career & Productivity',
+    readTime: '16 min',
+    publishDate: 'Feb 14, 2026',
+    lastUpdated: 'Feb 14, 2026',
+    author: {
+      name: 'Adaeze Nwankwo',
+      title: 'Product Lead',
+      bio: 'Adaeze designs high‑leverage workflows for product teams and solo operators. She blends calm productivity, automation, and realistic constraints.',
+      image:
+        'https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Adaeze Nwankwo',
+      rating: 4.9,
+      articlesCount: 72,
+      verified: true,
+      expertise: ['Workflow Design', 'Automation', 'Focus Systems'],
+    },
+    heroImage:
+      'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    heroImageAlt: 'Focused workspace with notebook, keyboard, and coffee',
+    tableOfContents: [
+      { id: 'principles', title: 'Core Principles', level: 2 },
+      { id: 'pipeline', title: 'Task Pipeline: Capture → Prioritize → Execute', level: 2 },
+      { id: 'deep-work', title: 'Deep Work Blocks', level: 2 },
+      { id: 'automation', title: 'Automation & Templates', level: 2 },
+      { id: 'communication', title: 'Meetings & Communication Hygiene', level: 2 },
+      { id: 'weekly-review', title: 'Weekly Review & Planning', level: 2 },
+      { id: 'tools', title: 'Tools that Actually Help', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'principles',
+        title: 'Core Principles',
+        content:
+          `Productivity is not speed; it is consistent progress on the right work. Use these anchors:
+          <ul class="list-disc pl-6 space-y-2 mt-4">
+            <li><strong>Clarity beats effort:</strong> Define the outcome before starting.</li>
+            <li><strong>Constraints create focus:</strong> Work in time‑boxed blocks.</li>
+            <li><strong>Systems over willpower:</strong> Defaults, checklists, and templates reduce friction.</li>
+            <li><strong>Review cycles:</strong> Weekly reviews keep projects moving and prevent drift.</li>
+          </ul>`,
+        level: 2,
+      },
+      {
+        id: 'pipeline',
+        title: 'Task Pipeline: Capture → Prioritize → Execute',
+        content:
+          `Create one capture inbox (Notion, Obsidian, paper). Each day:
+          <ol class="list-decimal pl-6 space-y-2 mt-4">
+            <li><strong>Capture:</strong> Dump tasks and ideas without judging.</li>
+            <li><strong>Prioritize:</strong> Tag 1–3 <em>Most Important Tasks</em> (MITs) that move a project.</li>
+            <li><strong>Execute:</strong> Work MITs first in focused blocks; reschedule the rest.</li>
+          </ol>
+          Keep a simple status board: <em>Backlog → Next → Doing → Done</em>.`,
+        level: 2,
+      },
+      {
+        id: 'deep-work',
+        title: 'Deep Work Blocks',
+        content:
+          `Protect 2–3 blocks per day for work that requires concentration (design, writing, analysis).
+          <ul class="list-disc pl-6 space-y-2 mt-4">
+            <li>Use 50/10 or 45/10 sprints; longer if momentum is strong.</li>
+            <li>Phones away; notifications off; one tab per task.</li>
+            <li>Define a deliverable per block (e.g., "first draft", "diagram v1").</li>
+          </ul>`,
+        level: 2,
+      },
+      {
+        id: 'automation',
+        title: 'Automation & Templates',
+        content:
+          `Automate repeatable steps; template the rest.
+          <ul class="list-disc pl-6 space-y-2 mt-4">
+            <li>Use email filters/labels for newsletters, receipts, and approvals.</li>
+            <li>Create project kick‑off templates (scope, risks, milestones, stakeholders).</li>
+            <li>Keep reusable checklists for releases, handoffs, and reviews.</li>
+          </ul>`,
+        level: 2,
+      },
+      {
+        id: 'communication',
+        title: 'Meetings & Communication Hygiene',
+        content:
+          `Default to async. When meetings are required:
+          <ul class="list-disc pl-6 space-y-2 mt-4">
+            <li>Agenda, owner, decision required, and time limit.</li>
+            <li>Start with context; end with next actions and owners.</li>
+            <li>For chat/email, write in bullets; highlight decisions and deadlines.</li>
+          </ul>`,
+        level: 2,
+      },
+      {
+        id: 'weekly-review',
+        title: 'Weekly Review & Planning',
+        content:
+          `Every week:
+          <ol class="list-decimal pl-6 space-y-2 mt-4">
+            <li>List wins and blockers.</li>
+            <li>Update project status; remove stale tasks.</li>
+            <li>Plan next week’s MITs and deep work blocks.</li>
+            <li>Refill templates and checklists where friction appeared.</li>
+          </ol>`,
+        level: 2,
+      },
+      {
+        id: 'tools',
+        title: 'Tools that Actually Help',
+        content:
+          `Pick lightweight tools; avoid tool‑chasing.
+          <ul class="list-disc pl-6 space-y-2 mt-4">
+            <li><strong>Notes/Tasks:</strong> Notion, Obsidian, Todoist.</li>
+            <li><strong>Calendar:</strong> Block deep work; color‑code themes.</li>
+            <li><strong>Automation:</strong> Email filters, keyboard shortcuts, quick templates.</li>
+          </ul>`,
+        level: 2,
+      },
+    ],
+    faqs: [
+      {
+        question: 'How many tasks should I set per day?',
+        answer:
+          'Limit to 3 MITs. You can add small admin tasks, but protect deep work blocks for MITs.',
+      },
+      {
+        question: 'What if my day is full of meetings?',
+        answer:
+          'Schedule one deep work block early. Convert status meetings to async updates with clear templates.',
+      },
+      {
+        question: 'Which tool is best for productivity?',
+        answer:
+          'Any tool that you consistently use. Start simple: notes + task list + calendar blocks. Add automation later.',
+      },
+    ],
+  },
+  'urban-gardening': {
+    id: 'guide_urban_gardening',
+    slug: 'urban-gardening',
+    title: 'Urban Gardening: Grow Food Anywhere on a Budget',
+    excerpt:
+      'Turn balconies, small yards, and rooftops into productive gardens. Learn containers, sunlight hacks, soil mixes, and crop rotation for year‑round harvests.',
+    category: 'Lifestyle',
+    readTime: '14 min',
+    publishDate: 'Feb 14, 2026',
+    lastUpdated: 'Feb 14, 2026',
+    author: {
+      name: 'Ibrahim Musa',
+      title: 'Urban Agriculture Advocate',
+      bio: 'Ibrahim helps city dwellers grow fresh food using compact, low‑cost setups.',
+      image:
+        'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+      imageAlt: 'Ibrahim Musa',
+      rating: 4.8,
+      articlesCount: 37,
+      verified: true,
+      expertise: ['Container Gardening', 'Soil Mixes', 'Crop Rotation'],
+    },
+    heroImage:
+      'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    heroImageAlt: 'Balcony garden with container vegetables',
+    tableOfContents: [
+      { id: 'why', title: 'Why Urban Gardening', level: 2 },
+      { id: 'space', title: 'Make Any Space Work', level: 2 },
+      { id: 'containers', title: 'Containers & DIY Planters', level: 2 },
+      { id: 'soil', title: 'Soil Mixes & Fertilizing', level: 2 },
+      { id: 'sunlight', title: 'Sunlight, Watering & Climate', level: 2 },
+      { id: 'crops', title: 'Beginner‑Friendly Crops', level: 2 },
+      { id: 'rotation', title: 'Crop Rotation & Pest Control', level: 2 },
+    ],
+    sections: [
+      {
+        id: 'why',
+        title: 'Why Urban Gardening',
+        content:
+          `Fresh food, lower bills, and a calmer mind. Urban gardening adds resilience against price shocks and lets you control quality. It works even if you only have a window ledge.`,
+        level: 2,
+      },
+      {
+        id: 'space',
+        title: 'Make Any Space Work',
+        content:
+          `Use vertical shelves, railing planters, and wall hooks. Keep weight in mind for rooftops/balconies; distribute containers evenly.`,
+        level: 2,
+      },
+      {
+        id: 'containers',
+        title: 'Containers & DIY Planters',
+        content:
+          `Buckets, paint tubs, and jerrycans become planters. Drill drainage holes; add gravel at the bottom; label crops with tape.`,
+        level: 2,
+      },
+      {
+        id: 'soil',
+        title: 'Soil Mixes & Fertilizing',
+        content:
+          `Use a mix: 50% topsoil, 30% compost, 20% coco peat or rice husk. Feed monthly with compost tea; avoid over‑fertilizing leafy greens.`,
+        level: 2,
+      },
+      {
+        id: 'sunlight',
+        title: 'Sunlight, Watering & Climate',
+        content:
+          `Most crops need 4–6 hours of light. Water deeply but less often. In harmattan, shield leaves from dry winds and mulch the soil.`,
+        level: 2,
+      },
+      {
+        id: 'crops',
+        title: 'Beginner‑Friendly Crops',
+        content:
+          `<ul class="list-disc pl-6 space-y-2 mt-2">
+            <li>Leafy greens: spinach, lettuce, ugu</li>
+            <li>Herbs: basil, mint, scent leaf</li>
+            <li>Fast growers: okra, peppers, cherry tomatoes</li>
+          </ul>`,
+        level: 2,
+      },
+      {
+        id: 'rotation',
+        title: 'Crop Rotation & Pest Control',
+        content:
+          `Rotate families every season (leafy → fruiting → roots). Use neem oil spray weekly; remove diseased leaves promptly.`,
+        level: 2,
+      },
+    ],
+    faqs: [
+      {
+        question: 'Can I garden without direct sunlight?',
+        answer:
+          'Yes. Use reflective surfaces, move containers to catch morning light, and select shade‑tolerant greens.',
+      },
+      {
+        question: 'How often should I water?',
+        answer:
+          'Check soil moisture 2–3cm deep. Water when dry; avoid daily light sprinkling that encourages shallow roots.',
+      },
+      {
+        question: 'What is the cheapest starter setup?',
+        answer:
+          'Two 20L buckets, compost or topsoil mix, and 3 packs of seeds. Add a spray bottle and a simple watering can.',
+      },
+    ],
+  },
   'emergency-funds': {
     id: 'guide_emergency_funds',
     slug: 'emergency-funds',

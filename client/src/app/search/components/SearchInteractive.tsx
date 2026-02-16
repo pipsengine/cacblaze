@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { articles } from '@/data/articles';
 import { NIGERIA_STATES } from '@/data/nigeria-states';
 import SearchBar from './SearchBar';
 import FilterSidebar from './FilterSidebar';
@@ -15,6 +16,7 @@ const SearchInteractive = () => {
   const [filters, setFilters] = useState({});
   const [hasSearched, setHasSearched] = useState(false);
   const params = useSearchParams();
+  const q = params?.get('q') || '';
   const type = params?.get('type') || '';
   const state = params?.get('state') || '';
   const formattedType =
@@ -86,6 +88,12 @@ const SearchInteractive = () => {
     }
   }, [type, state]);
 
+  useEffect(() => {
+    if (q && !type && !state) {
+      setSearchQuery(q);
+      setHasSearched(true);
+    }
+  }, [q, type, state]);
   const topicImages = [
     'https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     'https://images.pexels.com/photos/704569/pexels-photo-704569.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
@@ -174,6 +182,31 @@ const SearchInteractive = () => {
       if (time === 'long') return mins > 15;
       return true;
     });
+  };
+
+  const buildArticleResults = (q: string) => {
+    const query = (q || '').toLowerCase();
+    const tokens = query.split(/\s+/).filter(Boolean);
+    const scored = Object.values(articles).map((a) => {
+      const hay = `${a.title} ${a.excerpt} ${a.category}`.toLowerCase();
+      const hits = tokens.reduce((acc, t) => (hay.includes(t) ? acc + 1 : acc), 0);
+      const score = tokens.length > 0 ? hits / tokens.length : 0.4;
+      return {
+        id: a.id,
+        title: a.title,
+        excerpt: a.excerpt,
+        category: a.category,
+        readTime: a.readTime,
+        author: a.author.name,
+        date: a.publishDate,
+        matchScore: 0.6 + Math.min(score, 0.4),
+        image: a.heroImage,
+        imageAlt: a.heroImageAlt,
+        href: `/guides/${a.slug}`,
+      };
+    });
+    const filtered = tokens.length > 0 ? scored.filter((r) => r.matchScore > 0.65) : scored;
+    return filtered.slice(0, 12);
   };
 
   return (
@@ -309,34 +342,24 @@ const SearchInteractive = () => {
             <div className="lg:col-span-9">
               {hasSearched ? (
                 searchQuery ? (
-                  <SearchResults
-                    query={searchQuery}
-                    results={applyFilters(
-                      formattedType
+                  (() => {
+                    const base =
+                      formattedType && !searchQuery
                         ? buildTopicResults(type, state)
-                        : buildTopicResults('', ''),
-                      filters
-                    )}
-                  />
+                        : buildArticleResults(searchQuery);
+                    const results = applyFilters(base as any[], filters);
+                    return <SearchResults query={searchQuery} results={results as any[]} />;
+                  })()
                 ) : (
                   <EmptyState query={searchQuery} />
                 )
               ) : (
                 <div>
                   <SuggestedTopics onTopicClick={handleTopicClick} />
-                  <div className="text-center py-16">
-                    <div className="w-24 h-24 rounded-3xl bg-muted flex items-center justify-center mx-auto mb-8">
-                      <Icon
-                        name="MagnifyingGlassIcon"
-                        size={48}
-                        className="text-muted-foreground"
-                      />
-                    </div>
-                    <h3 className="text-2xl font-bold text-foreground mb-4">Start Your Search</h3>
-                    <p className="text-lg text-secondary max-w-md mx-auto">
-                      Search through 10,000+ verified articles to find exactly what you need
-                    </p>
-                  </div>
+                  {(() => {
+                    const recs = buildArticleResults('');
+                    return <SearchResults query="Trending" results={recs as any[]} />;
+                  })()}
                 </div>
               )}
             </div>

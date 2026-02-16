@@ -999,6 +999,9 @@ export function getContextualImage(config: ImageConfig): { src: string; alt: str
   // Fallback to dynamic placeholder
   function storyIconForTitle(t: string): string {
     const s = (t || '').toLowerCase();
+    if (s.includes('lawyer') || s.includes('legal') || s.includes('contract') || s.includes('compliance')) return '⚖️';
+    if (s.includes('dentist') || s.includes('dental') || s.includes('cleaning') || s.includes('fillings') || s.includes('whitening')) return '🦷';
+    if (s.includes('builder') || s.includes('construction') || s.includes('renovation') || s.includes('supervision') || s.includes('estimates')) return '🏗️';
     if (s.includes('saving')) return '🐖';
     if (s.includes('invest')) return '📈';
     if (s.includes('retire')) return '🏖️';
