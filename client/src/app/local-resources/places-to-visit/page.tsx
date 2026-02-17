@@ -7,6 +7,7 @@ import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import { NIGERIA_STATES } from '@/data/nigeria-states';
 import StateFilterSidebar from '@/components/common/StateFilterSidebar';
+import { getContextualImage } from '@/utils/imageService';
 
 export const metadata: Metadata = {
   title: 'Places to Visit in Nigeria - CACBLAZE',
@@ -261,13 +262,55 @@ const PlacesToVisitPage = ({
                     className="group rounded-3xl border border-gray-200 bg-white overflow-hidden hover:border-primary transition-all hover-lift"
                   >
                     <div className="relative h-56">
-                      <AppImage
-                        src={a.image}
-                        alt={a.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        priority
-                        fallbackSrc="/assets/images/no_image.png"
-                      />
+                      {(() => {
+                        const needsFix =
+                          a.id === 'osun_osogbo_grove' ||
+                          a.id === 'kano_dye_pits' ||
+                          a.id === 'plateau_jos_park' ||
+                          a.id === 'rivers_ph_pleasure_park';
+                        if (needsFix) {
+                          const override =
+                            a.name === 'Osun-Osogbo Sacred Grove'
+                              ? `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=1200&q=80')}`
+                              : a.name === 'Kofar Mata Dye Pits'
+                              ? `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80')}`
+                              : a.name === 'Jos Wildlife Park'
+                              ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/602024/pexels-photo-602024.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
+                              : a.name === 'Pleasure Park'
+                              ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
+                              : a.image;
+                          return (
+                            <AppImage
+                              src={override}
+                              alt={a.name}
+                              fill
+                              className="object-cover group-hover:scale-110 transition-transform duration-500"
+                              priority
+                              fallbackSrc={
+                                a.name === 'Osun-Osogbo Sacred Grove'
+                                  ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/1083896/pexels-photo-1083896.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
+                                  : a.name === 'Jos Wildlife Park'
+                                  ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
+                                  : a.name === 'Pleasure Park'
+                                  ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
+                                  : a.name === 'Kofar Mata Dye Pits'
+                                  ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/3645970/pexels-photo-3645970.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
+                                  : a.image
+                              }
+                              secondaryFallbackSrc="/assets/images/no_image.png"
+                            />
+                          );
+                        }
+                        return (
+                          <AppImage
+                            src={a.image}
+                            alt={a.name}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            priority
+                            fallbackSrc="/assets/images/no_image.png"
+                          />
+                        );
+                      })()}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                       <div className="absolute bottom-5 left-5 right-5">
                         <div className="text-white text-xs">

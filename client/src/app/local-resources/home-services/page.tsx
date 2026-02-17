@@ -287,13 +287,31 @@ const HomeServicesPage = ({
                     className="group rounded-3xl border border-gray-200 bg-white overflow-hidden hover:border-primary transition-all hover-lift"
                   >
                     <div className="relative h-56">
-                      <AppImage
-                        src={e.image}
-                        alt={e.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        priority
-                        fallbackSrc="/assets/images/no_image.png"
-                      />
+                      {(() => {
+                        if (e.id === 'enugu_clean_team') {
+                          const override = `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/6195097/pexels-photo-6195097.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`;
+                          return (
+                            <AppImage
+                              src={override}
+                              alt={e.name}
+                              fill
+                              className="object-cover group-hover:scale-110 transition-transform duration-500"
+                              priority
+                              fallbackSrc={`/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1581579188871-45ea61f2a0c8?auto=format&fit=crop&w=1200&q=80')}`}
+                              secondaryFallbackSrc="/assets/images/no_image.png"
+                            />
+                          );
+                        }
+                        return (
+                          <AppImage
+                            src={e.image}
+                            alt={e.name}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            priority
+                            fallbackSrc="/assets/images/no_image.png"
+                          />
+                        );
+                      })()}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                       <div className="absolute bottom-5 left-5 right-5">
                         <div className="text-white text-xs">

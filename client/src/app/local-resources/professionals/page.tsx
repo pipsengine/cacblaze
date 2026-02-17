@@ -152,16 +152,12 @@ const ProfessionalsPage = ({
                             category: 'local-resources',
                             title: e.name,
                             alt: e.profession,
-                            width: 1200,
-                            height: 630,
-                            preferCurated: false,
+                            preferCurated: true,
                           });
                           return (
                             <AppImage
                               src={contextual.src}
                               alt={contextual.alt}
-                              width={1200}
-                              height={630}
                               fill
                               className="object-cover group-hover:scale-110 transition-transform duration-500"
                               priority

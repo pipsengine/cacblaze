@@ -6,6 +6,7 @@ import Breadcrumb from '@/components/common/Breadcrumb';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import StateFilterSidebar from '@/components/common/StateFilterSidebar';
+import { getContextualImage } from '@/utils/imageService';
 
 export const metadata: Metadata = {
   title: 'Local Culture in Nigeria - CACBLAZE',
@@ -257,13 +258,73 @@ const LocalCulturePage = ({
                     className="group rounded-3xl border border-gray-200 bg-white overflow-hidden hover:border-primary transition-all hover-lift"
                   >
                     <div className="relative h-56">
-                      <AppImage
-                        src={a.image}
-                        alt={a.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        priority
-                        fallbackSrc="/assets/images/no_image.png"
-                      />
+                      {(() => {
+                        if (a.id === 'abuja_cultural_center') {
+                          const override = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1519677100393-aa6b074ad2ae?auto=format&fit=crop&w=1200&q=80')}`;
+                          return (
+                            <AppImage
+                              src={override}
+                              alt={a.name}
+                              fill
+                              className="object-cover group-hover:scale-110 transition-transform duration-500"
+                              priority
+                              fallbackSrc={`/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/302902/pexels-photo-302902.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`}
+                              secondaryFallbackSrc="/assets/images/no_image.png"
+                            />
+                          );
+                        }
+                        if (a.id === 'lagos_nike_art_gallery') {
+                          const override = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1549880338-65ddcdfd017b?auto=format&fit=crop&w=1200&q=80')}`;
+                          return (
+                            <AppImage
+                              src={override}
+                              alt={a.name}
+                              fill
+                              className="object-cover group-hover:scale-110 transition-transform duration-500"
+                              priority
+                              fallbackSrc={`/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/2235130/pexels-photo-2235130.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`}
+                              secondaryFallbackSrc="/assets/images/no_image.png"
+                            />
+                          );
+                        }
+                        if (a.id === 'enugu_ngwo_art') {
+                          const override = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=1200&q=80')}`;
+                          return (
+                            <AppImage
+                              src={override}
+                              alt={a.name}
+                              fill
+                              className="object-cover group-hover:scale-110 transition-transform duration-500"
+                              priority
+                              fallbackSrc={`/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/10593880/pexels-photo-10593880.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`}
+                              secondaryFallbackSrc="/assets/images/no_image.png"
+                            />
+                          );
+                        }
+                        if (a.id === 'delta_warri_cuisine') {
+                          const override = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1200&q=80')}`;
+                          return (
+                            <AppImage
+                              src={override}
+                              alt={a.name}
+                              fill
+                              className="object-cover group-hover:scale-110 transition-transform duration-500"
+                              priority
+                              fallbackSrc={`/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/317115/pexels-photo-317115.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`}
+                              secondaryFallbackSrc="/assets/images/no_image.png"
+                            />
+                          );
+                        }
+                        return (
+                          <AppImage
+                            src={a.image}
+                            alt={a.name}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            priority
+                            fallbackSrc="/assets/images/no_image.png"
+                          />
+                        );
+                      })()}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                       <div className="absolute bottom-5 left-5 right-5">
                         <div className="text-white text-xs">

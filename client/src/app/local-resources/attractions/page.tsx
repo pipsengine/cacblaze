@@ -266,13 +266,73 @@ const AttractionsPage = ({
                     className="group rounded-3xl border border-gray-200 bg-white overflow-hidden hover:border-primary transition-all hover-lift"
                   >
                     <div className="relative h-56">
-                      <AppImage
-                        src={a.image}
-                        alt={a.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        priority
-                        fallbackSrc="/assets/images/no_image.png"
-                      />
+                      {(() => {
+                        if (a.id === 'plateau_jos_park') {
+                          const override = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=1200&q=80')}`;
+                          return (
+                            <AppImage
+                              src={override}
+                              alt={a.name}
+                              fill
+                              className="object-cover group-hover:scale-110 transition-transform duration-500"
+                              priority
+                              fallbackSrc={`/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`}
+                              secondaryFallbackSrc="/assets/images/no_image.png"
+                            />
+                          );
+                        }
+                        if (a.id === 'osun_osogbo_grove') {
+                          const override = `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/326281/pexels-photo-326281.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`;
+                          return (
+                            <AppImage
+                              src={override}
+                              alt={a.name}
+                              fill
+                              className="object-cover group-hover:scale-110 transition-transform duration-500"
+                              priority
+                              fallbackSrc={`/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=1200&q=80')}`}
+                              secondaryFallbackSrc="/assets/images/no_image.png"
+                            />
+                          );
+                        }
+                        if (a.id === 'cross_river_obudu') {
+                          const override = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1518459031867-a89b944bffe0?auto=format&fit=crop&w=1200&q=80')}`;
+                          return (
+                            <AppImage
+                              src={override}
+                              alt={a.name}
+                              fill
+                              className="object-cover group-hover:scale-110 transition-transform duration-500"
+                              priority
+                              fallbackSrc={`/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/2695616/pexels-photo-2695616.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`}
+                              secondaryFallbackSrc="/assets/images/no_image.png"
+                            />
+                          );
+                        }
+                        if (a.id === 'kano_dye_pits') {
+                          const override = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80')}`;
+                          return (
+                            <AppImage
+                              src={override}
+                              alt={a.name}
+                              fill
+                              className="object-cover group-hover:scale-110 transition-transform duration-500"
+                              priority
+                              fallbackSrc={`/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/3645970/pexels-photo-3645970.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`}
+                              secondaryFallbackSrc="/assets/images/no_image.png"
+                            />
+                          );
+                        }
+                        return (
+                          <AppImage
+                            src={a.image}
+                            alt={a.name}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            priority
+                            fallbackSrc="/assets/images/no_image.png"
+                          />
+                        );
+                      })()}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                       <div className="absolute bottom-5 left-5 right-5">
                         <div className="text-white text-xs">

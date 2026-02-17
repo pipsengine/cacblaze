@@ -486,6 +486,26 @@ const curatedImages = {
 };
 
 const titleImages: Record<string, { src: string; alt: string }> = {
+  abujacorporatelawyer: {
+    src: 'https://images.unsplash.com/photo-1555375771-14b3c1e0fa9b?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Corporate lawyer working with legal documents and scales of justice',
+  },
+  enugudentalcare: {
+    src: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267b4?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Dental care with professional tools and clinic setting',
+  },
+  osogbobuilder: {
+    src: 'https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Construction builder at work on site with safety gear',
+  },
+  osunosogbosacredgrove: {
+    src: 'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Osun-Osogbo Sacred Grove forest shrine and sculpture trails',
+  },
+  kofarmatadyepits: {
+    src: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Kofar Mata Dye Pits with traditional indigo dyeing',
+  },
   completeguidetomodernwebdevelopment: {
     src: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80',
     alt: 'Modern web development with code on screen',

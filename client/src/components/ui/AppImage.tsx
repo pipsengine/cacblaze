@@ -116,6 +116,7 @@ function AppImage({
           onError={handleError}
           onLoad={handleLoad}
           onClick={onClick}
+          loading={priority ? 'eager' : 'lazy'}
           {...validImgProps}
         />
           );
