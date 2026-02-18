@@ -41,6 +41,7 @@ function AppImage({
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [triedProxy, setTriedProxy] = useState(false);
+  const [triedRawFromProxy, setTriedRawFromProxy] = useState(false);
 
   // Sync state when src prop changes
   React.useEffect(() => {
@@ -70,13 +71,13 @@ function AppImage({
       return;
     }
     // If the proxied fetch failed, try the original source directly once
-    if (isCurrentlyProxied && !triedProxy) {
+    if (isCurrentlyProxied && !triedRawFromProxy) {
       try {
         const u = new URL(imageSrc, typeof window !== 'undefined' ? window.location.origin : 'http://localhost');
         const raw = u.searchParams.get('url');
         if (raw) {
           setImageSrc(raw);
-          setTriedProxy(true);
+          setTriedRawFromProxy(true);
           return;
         }
       } catch {

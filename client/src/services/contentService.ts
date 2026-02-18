@@ -1729,8 +1729,8 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
               height: 630,
               preferCurated: true,
             });
-            const primary = `/api/image-proxy?url=${encodeURIComponent('https://cdn.pixabay.com/photo/2015/04/09/17/33/code-716173_1280.jpg')}`;
-            const fallback = `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1200')}`;
+            const primary = 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1200';
+            const fallback = 'https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
             return React.createElement(
               'div',
               {
@@ -1773,8 +1773,8 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
               height: 630,
               preferCurated: true,
             });
-            const primary = `/api/image-proxy?url=${encodeURIComponent('https://cdn.pixabay.com/photo/2017/08/30/07/59/smartphone-2691436_1280.jpg')}`;
-            const fallback = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1525186402429-b4ff38bedbc8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')}`;
+            const primary = 'https://images.unsplash.com/photo-1525186402429-b4ff38bedbc8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
+            const fallback = 'https://images.pexels.com/photos/5082575/pexels-photo-5082575.jpeg?auto=compress&cs=tinysrgb&w=1200';
             return React.createElement(
               'div',
               {
