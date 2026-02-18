@@ -2,8 +2,13 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import { getContentBySlug } from '../../services/contentService';
+import { getContentBySlug, getMetaBySlug } from '../../services/contentService';
 import AppImage from '@/components/ui/AppImage';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
+export const runtime = 'nodejs';
 
 type PageProps = {
   params: { slug: string };
@@ -11,7 +16,7 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = params;
-  const content = await getContentBySlug(slug);
+  const content = await getMetaBySlug(slug);
 
   if (!content) {
     return {

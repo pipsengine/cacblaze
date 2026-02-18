@@ -35,6 +35,7 @@ export async function GET(request: Request) {
       'images.unsplash.com': 'https://unsplash.com',
       'images.pexels.com': 'https://www.pexels.com',
       'images.pixabay.com': 'https://pixabay.com',
+      'cdn.pixabay.com': 'https://pixabay.com',
       'img.rocket.new': '',
     };
     const mappedReferer = refererMap[target.hostname] || '';

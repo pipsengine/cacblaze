@@ -69,6 +69,20 @@ function AppImage({
       setTriedProxy(true);
       return;
     }
+    // If the proxied fetch failed, try the original source directly once
+    if (isCurrentlyProxied && !triedProxy) {
+      try {
+        const u = new URL(imageSrc, typeof window !== 'undefined' ? window.location.origin : 'http://localhost');
+        const raw = u.searchParams.get('url');
+        if (raw) {
+          setImageSrc(raw);
+          setTriedProxy(true);
+          return;
+        }
+      } catch {
+        // fall through to fallbacks
+      }
+    }
     if (fallbackSrc && imageSrc !== fallbackSrc) {
       setImageSrc(fallbackSrc);
       setHasError(true);

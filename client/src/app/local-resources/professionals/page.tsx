@@ -8,6 +8,11 @@ import Footer from '@/components/common/Footer';
 import StateFilterSidebar from '@/components/common/StateFilterSidebar';
 import { getContextualImage } from '@/utils/imageService';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
+export const runtime = 'nodejs';
+
 export const metadata: Metadata = {
   title: 'Professionals in Nigeria - CACBLAZE',
   description:

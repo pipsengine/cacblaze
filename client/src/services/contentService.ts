@@ -30,6 +30,157 @@ function buildLongExcerpt(title: string, description?: string, context?: string)
   return `${base ? base + ' ' : ''}${lead} ${follow}`;
 }
 
+export async function getMetaBySlug(
+  slug: string
+): Promise<Pick<
+  ContentRecord,
+  | 'slug'
+  | 'title'
+  | 'excerpt'
+  | 'seoTitle'
+  | 'seoDescription'
+  | 'publishedAt'
+  | 'heroImage'
+  | 'category'
+  | 'authorName'
+  | 'authorRole'
+  | 'authorImage'
+> | null> {
+  const { educationHubData } = await import('@/data/education-hub');
+  const { menuData } = await import('@/data/menuData');
+  const category = (educationHubData as any)[slug];
+  if (category) {
+    return {
+      slug,
+      title: category.title,
+      excerpt: buildLongExcerpt(category.title, category.description),
+      seoTitle: `${category.title} - CACBLAZE`,
+      seoDescription: category.description,
+      heroImage:
+        category.title.toLowerCase().includes('admissions')
+          ? 'https://images.unsplash.com/photo-1523580494863-6f3031224c33?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80'
+          : category.title.toLowerCase().includes('english')
+          ? 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80'
+          : 'https://images.unsplash.com/photo-1517433456452-f9633a875f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
+      category: 'Education',
+    };
+  }
+  type EducationCategory = { title: string; description: string; resources: any[] };
+  const hub = educationHubData as Record<string, EducationCategory>;
+  for (const cat of Object.values(hub)) {
+    const resource = cat.resources.find((r: any) => r.slug === slug);
+    if (resource) {
+      return {
+        slug,
+        title: resource.name,
+        excerpt: buildLongExcerpt(resource.name, resource.description, cat.title),
+        seoTitle: `${resource.name} - ${cat.title} - CACBLAZE`,
+        seoDescription: resource.description,
+        publishedAt: resource.publishDate,
+        heroImage: resource.heroImage,
+        category: resource.category,
+        authorName: resource.author?.name,
+        authorRole: resource.author?.role,
+        authorImage: resource.author?.image,
+      };
+    }
+  }
+  const findMenuItemBySlug = (): { label: string; description?: string } | null => {
+    const main = (menuData as any).mainMenu ?? [];
+    for (const m of main) {
+      const categories = m.categories ?? [];
+      for (const cat of categories) {
+        const items = cat.items ?? [];
+        for (const it of items) {
+          if (typeof it.href === 'string') {
+            const hrefSlug = it.href.split('/').filter(Boolean).pop();
+            if (hrefSlug === slug) {
+              return { label: it.label, description: it.description };
+            }
+          }
+        }
+      }
+    }
+    return null;
+  };
+  const menuHit = findMenuItemBySlug();
+  if (menuHit) {
+    if (slug === 'software-howto') {
+      return {
+        slug,
+        title: 'Software How‑To',
+        excerpt: buildLongExcerpt(
+          'Software How‑To',
+          'Install, configure, update, troubleshoot, and secure software with official sources, backups, automation, and disciplined documentation.'
+        ),
+        seoTitle: 'Software How‑To - CACBLAZE',
+        seoDescription:
+          'Setup/install, configuration, updates/patches, troubleshooting, performance/cleanup, security, backup/restore, automation, Nigeria tips, and checklist.',
+        heroImage:
+          `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80')}`,
+        category: 'Technology',
+        authorName: 'Software Ops',
+        authorRole: 'Systems & Tools',
+        authorImage:
+          `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1547425260-76bcadfb4f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80')}`,
+      };
+    }
+    if (slug === 'chatgpt-alternatives') {
+      return {
+        slug,
+        title: 'ChatGPT Alternatives',
+        excerpt: buildLongExcerpt(
+          'ChatGPT Alternatives',
+          'Evaluate Claude, Gemini, Llama, Mistral, Cohere and others by task fit, safety, cost, and integrations with strong governance.'
+        ),
+        seoTitle: 'ChatGPT Alternatives - CACBLAZE',
+        seoDescription:
+          'Models/providers, selection criteria, prompting differences, enterprise/privacy, integrations/APIs, evaluation, governance, Nigeria tips, and checklist.',
+      };
+    }
+    if (slug === 'ai-tools') {
+      return {
+        slug,
+        title: 'AI Tools',
+        excerpt: buildLongExcerpt(
+          'AI Tools',
+          'Select, prompt, evaluate, and safely integrate AI for support, docs, analytics, and automation with strong governance.'
+        ),
+        seoTitle: 'AI Tools - CACBLAZE',
+        seoDescription:
+          'Use cases, prompting, templates, data safety, evaluation, automation, governance, versioning, Nigeria tips, and checklist.',
+      };
+    }
+    if (slug === 'excel-tips') {
+      return {
+        slug,
+        title: 'Excel Tips',
+        excerpt: buildLongExcerpt(
+          'Excel Tips',
+          'Clean data, reliable formulas, pivots, dashboards, validation, and protected sharing aligned to locale.'
+        ),
+        seoTitle: 'Excel Tips - CACBLAZE',
+        seoDescription:
+          'Setup/formatting, data cleaning, formulas/lookups, dates/times, pivots, charts/dashboards, validation, errors, shortcuts, Nigeria tips, and checklist.',
+      };
+    }
+    if (slug === 'pos-operations') {
+      return {
+        slug,
+        title: 'POS Operations',
+        excerpt: buildLongExcerpt(
+          'POS Operations',
+          'POS operations with disciplined verification, receipt workflows, device hygiene, and strong reconciliation.'
+        ),
+        seoTitle: 'POS Operations - CACBLAZE',
+        seoDescription:
+          'Terminal setup, CVM, receipt workflow, outage handling, settlement, evidence, and operator procedures.',
+      };
+    }
+  }
+  return null;
+}
+
 export async function getContentBySlug(slug: string): Promise<ContentRecord | null> {
   const { educationHubData } = await import('@/data/education-hub');
   const React = await import('react');
