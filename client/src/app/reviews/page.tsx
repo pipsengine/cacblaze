@@ -167,7 +167,7 @@ const reviewsCategories = [
       {
         id: 'rev_fintech',
         label: 'Nigerian Fintech',
-        href: '/reviews/nigerian-fintech',
+        href: '/nigerian-fintech',
         icon: 'CurrencyDollarIcon',
         description: 'Apps like OPay, PalmPay, Moniepoint.',
       },

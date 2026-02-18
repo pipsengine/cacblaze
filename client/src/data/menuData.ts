@@ -391,7 +391,7 @@ export const menuData: MenuData = {
               href: '/reviews/productivity-apps',
             },
             { id: 'reviews_finance_apps', label: 'Finance Apps', href: '/reviews/finance-apps' },
-            { id: 'reviews_fintech', label: 'Fintech Reviews', href: '/reviews/nigerian-fintech' },
+            { id: 'reviews_fintech', label: 'Fintech Reviews', href: '/nigerian-fintech' },
             { id: 'reviews_learning_apps', label: 'Learning Apps', href: '/reviews/learning-apps' },
             {
               id: 'reviews_business_tools',
