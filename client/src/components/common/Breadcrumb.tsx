@@ -14,6 +14,15 @@ interface BreadcrumbProps {
 }
 
 const Breadcrumb = ({ items, className = '' }: BreadcrumbProps) => {
+  const normalizedItems = items.map((item) => {
+    if (item.name === 'Home') {
+      return { ...item, href: '/' };
+    }
+    if (item.href === '/homepage') {
+      return { ...item, href: '/' };
+    }
+    return item;
+  });
   return (
     <nav
       className={`flex items-center gap-2 text-sm text-secondary ${className}`}
@@ -21,8 +30,8 @@ const Breadcrumb = ({ items, className = '' }: BreadcrumbProps) => {
       itemScope
       itemType="https://schema.org/BreadcrumbList"
     >
-      {items.map((item, index) => {
-        const isLast = index === items.length - 1;
+      {normalizedItems.map((item, index) => {
+        const isLast = index === normalizedItems.length - 1;
 
         return (
           <div

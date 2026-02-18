@@ -22,7 +22,7 @@ export default function RegisterPage() {
 
     try {
       await signUp(email, password, fullName);
-      router.push('/homepage');
+      router.push('/');
     } catch (err: any) {
       setError(err.message || 'Failed to create account');
     } finally {
@@ -35,7 +35,7 @@ export default function RegisterPage() {
       <div className="max-w-md w-full">
         {/* Logo/Brand */}
         <div className="text-center mb-8">
-          <Link href="/homepage" className="inline-block">
+          <Link href="/" className="inline-block">
             <h1 className="text-4xl font-bold text-primary mb-2">CACBLAZE</h1>
           </Link>
           <p className="text-secondary">Create your account to get started</p>

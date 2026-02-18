@@ -35,7 +35,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4">
           {/* Logo */}
-          <Link href="/homepage" className="flex items-center gap-2 group shrink-0">
+          <Link href="/" className="flex items-center gap-2 group shrink-0">
             <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
               <Icon name="BookOpenIcon" size={24} className="text-white" />
             </div>

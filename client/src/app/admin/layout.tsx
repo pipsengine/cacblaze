@@ -12,7 +12,7 @@ export default async function AdminLayout({
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect('/homepage');
+    redirect('/');
   }
 
   const { data: profile } = await supabase
@@ -22,7 +22,7 @@ export default async function AdminLayout({
     .single();
 
   if (!profile || !profile.is_active || profile.role !== 'admin') {
-    redirect('/homepage');
+    redirect('/');
   }
 
   return <>{children}</>;

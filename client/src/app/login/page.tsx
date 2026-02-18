@@ -21,7 +21,7 @@ export default function LoginPage() {
 
     try {
       await signIn(email, password);
-      router.push('/homepage');
+      router.push('/');
     } catch (err: any) {
       setError(err.message || 'Failed to sign in');
     } finally {
@@ -40,7 +40,7 @@ export default function LoginPage() {
       <div className="max-w-md w-full">
         {/* Logo/Brand */}
         <div className="text-center mb-8">
-          <Link href="/homepage" className="inline-block">
+          <Link href="/" className="inline-block">
             <h1 className="text-4xl font-bold text-primary mb-2">CACBLAZE</h1>
           </Link>
           <p className="text-secondary">Sign in to join the discussion</p>

@@ -53,7 +53,7 @@ const Footer = () => {
         <div className="grid grid-cols-2 md:grid-cols-12 gap-8 mb-12">
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-4">
-            <Link href="/homepage" className="flex items-center gap-2 mb-4">
+            <Link href="/" className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
                 <Icon name="BookOpenIcon" size={24} className="text-white" />
               </div>
