@@ -6,6 +6,7 @@ import Breadcrumb from '@/components/common/Breadcrumb';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import StateFilterSidebar from '@/components/common/StateFilterSidebar';
+import { getContextualImage } from '@/utils/imageService';
 
 export const metadata: Metadata = {
   title: 'Home Services in Nigeria - CACBLAZE',
@@ -289,7 +290,50 @@ const HomeServicesPage = ({
                     <div className="relative h-56">
                       {(() => {
                         if (e.id === 'enugu_clean_team') {
-                          const override = `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/6195097/pexels-photo-6195097.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`;
+                          const contextual = getContextualImage({
+                            category: 'home',
+                            title: `${e.name} ${e.highlights.join(' ')}`,
+                            alt: 'Deep clean, eco supplies, move-in/out',
+                            preferCurated: true,
+                          });
+                          const pexelsFallback = `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/6195097/pexels-photo-6195097.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`;
+                          const unsplashFallback = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1581579188871-45ea61f2a0c8?auto=format&fit=crop&w=1200&q=80')}`;
+                          return (
+                            <AppImage
+                              src={contextual.src}
+                              alt={contextual.alt}
+                              fill
+                              className="object-cover group-hover:scale-110 transition-transform duration-500"
+                              priority
+                              fallbackSrc={unsplashFallback}
+                              secondaryFallbackSrc={pexelsFallback}
+                            />
+                          );
+                        }
+                        if (e.id === 'rivers_ph_gra_cleaners') {
+                          const svg = encodeURIComponent(
+                            `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'>
+                              <defs>
+                                <linearGradient id='g' x1='0' x2='0' y1='0' y2='1'>
+                                  <stop offset='0%' stop-color='#e6f3ff'/>
+                                  <stop offset='100%' stop-color='#cde9ff'/>
+                                </linearGradient>
+                              </defs>
+                              <rect width='1200' height='630' fill='url(#g)'/>
+                              <g fill='none' stroke='#2a6fde' stroke-width='20'>
+                                <rect x='180' y='180' rx='40' width='360' height='270' fill='#ffffff' stroke='#2a6fde'/>
+                                <path d='M540 270 L640 200 L720 260 L640 320 Z' fill='#2a6fde' stroke='#2a6fde'/>
+                                <path d='M720 260 L860 240 L880 360 L740 380 Z' fill='#6bb8ff' stroke='#2a6fde'/>
+                                <circle cx='420' cy='260' r='30' fill='#6bb8ff' stroke='#2a6fde'/>
+                                <circle cx='460' cy='220' r='18' fill='#6bb8ff' stroke='#2a6fde'/>
+                                <circle cx='380' cy='220' r='22' fill='#6bb8ff' stroke='#2a6fde'/>
+                              </g>
+                              <text x='60' y='580' fill='#1b3f8b' font-size='42' font-family='Inter, Arial, sans-serif'>
+                                Home deep clean · Move-in/out · Eco supplies
+                              </text>
+                            </svg>`
+                          );
+                          const override = `data:image/svg+xml;utf8,${svg}`;
                           return (
                             <AppImage
                               src={override}
@@ -297,7 +341,45 @@ const HomeServicesPage = ({
                               fill
                               className="object-cover group-hover:scale-110 transition-transform duration-500"
                               priority
-                              fallbackSrc={`/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1581579188871-45ea61f2a0c8?auto=format&fit=crop&w=1200&q=80')}`}
+                              fallbackSrc={`/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/6195097/pexels-photo-6195097.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`}
+                              secondaryFallbackSrc="/assets/images/no_image.png"
+                            />
+                          );
+                        }
+                        if (e.id === 'ogun_abeokuta_cleaners') {
+                          const contextual = getContextualImage({
+                            category: 'home',
+                            title: `${e.name} ${e.highlights.join(' ')}`,
+                            alt: 'Home cleaning, move-in/out, eco supplies',
+                            preferCurated: true,
+                          });
+                          return (
+                            <AppImage
+                              src={contextual.src}
+                              alt={contextual.alt}
+                              fill
+                              className="object-cover group-hover:scale-110 transition-transform duration-500"
+                              priority
+                              fallbackSrc={`/api/image-proxy?url=${encodeURIComponent(e.image)}`}
+                              secondaryFallbackSrc="/assets/images/no_image.png"
+                            />
+                          );
+                        }
+                        if (e.id === 'imo_owerri_clean_care') {
+                          const contextual = getContextualImage({
+                            category: 'home',
+                            title: `${e.name} ${e.highlights.join(' ')}`,
+                            alt: 'Home deep clean, move-in/out, eco supplies',
+                            preferCurated: true,
+                          });
+                          return (
+                            <AppImage
+                              src={contextual.src}
+                              alt={contextual.alt}
+                              fill
+                              className="object-cover group-hover:scale-110 transition-transform duration-500"
+                              priority
+                              fallbackSrc={`/api/image-proxy?url=${encodeURIComponent(e.image)}`}
                               secondaryFallbackSrc="/assets/images/no_image.png"
                             />
                           );

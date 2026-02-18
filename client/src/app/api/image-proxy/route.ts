@@ -4,6 +4,7 @@ const ALLOWED_HOSTS = new Set([
   'images.unsplash.com',
   'images.pexels.com',
   'images.pixabay.com',
+  'cdn.pixabay.com',
   'img.rocket.new',
 ]);
 
@@ -30,12 +31,20 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: 'Host not allowed' }, { status: 403 });
     }
 
+    const refererMap: Record<string, string> = {
+      'images.unsplash.com': 'https://unsplash.com',
+      'images.pexels.com': 'https://www.pexels.com',
+      'images.pixabay.com': 'https://pixabay.com',
+      'img.rocket.new': '',
+    };
+    const mappedReferer = refererMap[target.hostname] || '';
+
     const resp = await fetch(target.toString(), {
       headers: {
         'User-Agent':
           'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0 Safari/537.36',
         Accept: 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
-        Referer: request.headers.get('referer') || '',
+        Referer: mappedReferer,
       },
       cache: 'no-store',
     });

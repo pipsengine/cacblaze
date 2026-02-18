@@ -1265,6 +1265,33 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
+          (() => {
+            const contextual = getContextualImage({
+              category: 'technology',
+              title: 'Setup & Install',
+              alt: 'Setup & Install',
+              width: 1200,
+              height: 630,
+              preferCurated: true,
+            });
+            const fallback = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')}`;
+            return React.createElement(
+              'div',
+              {
+                className:
+                  'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
+              },
+              React.createElement(AppImage, {
+                src: contextual.src || fallback,
+                alt: contextual.alt,
+                fill: true,
+                className: 'object-cover',
+                priority: true,
+                fallbackSrc: fallback,
+                secondaryFallbackSrc: '/assets/images/no_image.png',
+              })
+            );
+          })(),
           React.createElement(
             'h2',
             { className: 'text-2xl font-bold text-slate-900' },
@@ -1285,6 +1312,33 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
+          (() => {
+            const contextual = getContextualImage({
+              category: 'technology',
+              title: 'Configuration',
+              alt: 'Configuration',
+              width: 1200,
+              height: 630,
+              preferCurated: true,
+            });
+            const fallback = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1517433456452-f9633a875f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')}`;
+            return React.createElement(
+              'div',
+              {
+                className:
+                  'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
+              },
+              React.createElement(AppImage, {
+                src: contextual.src || fallback,
+                alt: contextual.alt,
+                fill: true,
+                className: 'object-cover',
+                priority: true,
+                fallbackSrc: fallback,
+                secondaryFallbackSrc: '/assets/images/no_image.png',
+              })
+            );
+          })(),
           React.createElement(
             'h2',
             { className: 'text-2xl font-bold text-slate-900' },
@@ -1301,6 +1355,32 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
+          (() => {
+            const contextual = getContextualImage({
+              category: 'technology',
+              title: 'Updates & Patches',
+              alt: 'Updates & Patches',
+              width: 1200,
+              height: 630,
+              preferCurated: true,
+            });
+            const fallback = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1542831371-29bd67b3faff?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')}`;
+            return React.createElement(
+              'div',
+              {
+                className:
+                  'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
+              },
+              React.createElement(AppImage, {
+                src: contextual.src || fallback,
+                alt: contextual.alt,
+                fill: true,
+                className: 'object-cover',
+                fallbackSrc: fallback,
+                secondaryFallbackSrc: '/assets/images/no_image.png',
+              })
+            );
+          })(),
           React.createElement(
             'h2',
             { className: 'text-2xl font-bold text-slate-900' },
@@ -1321,6 +1401,32 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
+          (() => {
+            const contextual = getContextualImage({
+              category: 'technology',
+              title: 'Troubleshooting',
+              alt: 'Troubleshooting',
+              width: 1200,
+              height: 630,
+              preferCurated: true,
+            });
+            const fallback = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')}`;
+            return React.createElement(
+              'div',
+              {
+                className:
+                  'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
+              },
+              React.createElement(AppImage, {
+                src: contextual.src || fallback,
+                alt: contextual.alt,
+                fill: true,
+                className: 'object-cover',
+                fallbackSrc: fallback,
+                secondaryFallbackSrc: '/assets/images/no_image.png',
+              })
+            );
+          })(),
           React.createElement(
             'h2',
             { className: 'text-2xl font-bold text-slate-900' },
@@ -1337,6 +1443,32 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
+          (() => {
+            const contextual = getContextualImage({
+              category: 'technology',
+              title: 'Performance & Cleanup',
+              alt: 'Performance & Cleanup',
+              width: 1200,
+              height: 630,
+              preferCurated: true,
+            });
+            const fallback = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')}`;
+            return React.createElement(
+              'div',
+              {
+                className:
+                  'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
+              },
+              React.createElement(AppImage, {
+                src: contextual.src || fallback,
+                alt: contextual.alt,
+                fill: true,
+                className: 'object-cover',
+                fallbackSrc: fallback,
+                secondaryFallbackSrc: '/assets/images/no_image.png',
+              })
+            );
+          })(),
           React.createElement(
             'h2',
             { className: 'text-2xl font-bold text-slate-900' },
@@ -1353,6 +1485,32 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
+          (() => {
+            const contextual = getContextualImage({
+              category: 'technology',
+              title: 'Security Basics',
+              alt: 'Security Basics',
+              width: 1200,
+              height: 630,
+              preferCurated: true,
+            });
+            const fallback = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1489619544213-8fb9da0b7ec1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')}`;
+            return React.createElement(
+              'div',
+              {
+                className:
+                  'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
+              },
+              React.createElement(AppImage, {
+                src: contextual.src || fallback,
+                alt: contextual.alt,
+                fill: true,
+                className: 'object-cover',
+                fallbackSrc: fallback,
+                secondaryFallbackSrc: '/assets/images/no_image.png',
+              })
+            );
+          })(),
           React.createElement(
             'h2',
             { className: 'text-2xl font-bold text-slate-900' },
@@ -1369,6 +1527,32 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
+          (() => {
+            const contextual = getContextualImage({
+              category: 'technology',
+              title: 'Backup & Restore',
+              alt: 'Backup & Restore',
+              width: 1200,
+              height: 630,
+              preferCurated: true,
+            });
+            const fallback = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1510511459019-5dda7724fd87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')}`;
+            return React.createElement(
+              'div',
+              {
+                className:
+                  'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
+              },
+              React.createElement(AppImage, {
+                src: contextual.src || fallback,
+                alt: contextual.alt,
+                fill: true,
+                className: 'object-cover',
+                fallbackSrc: fallback,
+                secondaryFallbackSrc: '/assets/images/no_image.png',
+              })
+            );
+          })(),
           React.createElement(
             'h2',
             { className: 'text-2xl font-bold text-slate-900' },
@@ -1385,6 +1569,34 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
+          (() => {
+            const contextual = getContextualImage({
+              category: 'technology',
+              title: 'Automation & Scripts',
+              alt: 'Automation & Scripts',
+              width: 1200,
+              height: 630,
+              preferCurated: true,
+            });
+            const primary = `/api/image-proxy?url=${encodeURIComponent('https://cdn.pixabay.com/photo/2015/04/09/17/33/code-716173_1280.jpg')}`;
+            const fallback = `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1200')}`;
+            return React.createElement(
+              'div',
+              {
+                className:
+                  'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
+              },
+              React.createElement(AppImage, {
+                src: contextual.src || primary,
+                alt: contextual.alt,
+                fill: true,
+                className: 'object-cover',
+                priority: true,
+                fallbackSrc: fallback,
+                secondaryFallbackSrc: '/assets/images/no_image.png',
+              })
+            );
+          })(),
           React.createElement(
             'h2',
             { className: 'text-2xl font-bold text-slate-900' },
@@ -1401,6 +1613,34 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
+          (() => {
+            const contextual = getContextualImage({
+              category: 'technology',
+              title: 'Nigeria‑Specific Tips',
+              alt: 'Nigeria‑Specific Tips',
+              width: 1200,
+              height: 630,
+              preferCurated: true,
+            });
+            const primary = `/api/image-proxy?url=${encodeURIComponent('https://cdn.pixabay.com/photo/2017/08/30/07/59/smartphone-2691436_1280.jpg')}`;
+            const fallback = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1525186402429-b4ff38bedbc8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')}`;
+            return React.createElement(
+              'div',
+              {
+                className:
+                  'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
+              },
+              React.createElement(AppImage, {
+                src: contextual.src || primary,
+                alt: contextual.alt,
+                fill: true,
+                className: 'object-cover',
+                priority: true,
+                fallbackSrc: fallback,
+                secondaryFallbackSrc: '/assets/images/no_image.png',
+              })
+            );
+          })(),
           React.createElement(
             'h2',
             { className: 'text-2xl font-bold text-slate-900' },
@@ -1417,6 +1657,32 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
+          (() => {
+            const contextual = getContextualImage({
+              category: 'technology',
+              title: 'Checklist',
+              alt: 'Checklist',
+              width: 1200,
+              height: 630,
+              preferCurated: true,
+            });
+            const fallback = `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1516542076529-1ea3854896f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')}`;
+            return React.createElement(
+              'div',
+              {
+                className:
+                  'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
+              },
+              React.createElement(AppImage, {
+                src: contextual.src || fallback,
+                alt: contextual.alt,
+                fill: true,
+                className: 'object-cover',
+                fallbackSrc: fallback,
+                secondaryFallbackSrc: '/assets/images/no_image.png',
+              })
+            );
+          })(),
           React.createElement(
             'h2',
             { className: 'text-2xl font-bold text-slate-900' },
@@ -1442,6 +1708,13 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         seoTitle: 'Software How‑To - CACBLAZE',
         seoDescription:
           'Setup/install, configuration, updates/patches, troubleshooting, performance/cleanup, security, backup/restore, automation, Nigeria tips, and checklist.',
+        heroImage:
+          `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80')}`,
+        category: 'Technology',
+        authorName: 'Software Ops',
+        authorRole: 'Systems & Tools',
+        authorImage:
+          `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1547425260-76bcadfb4f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80')}`,
       };
     }
 

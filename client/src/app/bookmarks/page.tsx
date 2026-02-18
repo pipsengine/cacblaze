@@ -4,6 +4,8 @@ import Footer from '@/components/common/Footer';
 import BookmarksManager from './components/BookmarksManager';
 import ReadingListsManager from './components/ReadingListsManager';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'My Bookmarks & Reading Lists',
   description: 'Manage your saved articles and curated reading lists',
