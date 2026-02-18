@@ -5,6 +5,9 @@ import BookmarksManager from './components/BookmarksManager';
 import ReadingListsManager from './components/ReadingListsManager';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
+export const runtime = 'nodejs';
 
 export const metadata: Metadata = {
   title: 'My Bookmarks & Reading Lists',
