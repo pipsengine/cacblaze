@@ -4,6 +4,7 @@ import Footer from '@/components/common/Footer';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import AppImage from '@/components/ui/AppImage';
 import { menuData } from '@/data/menuData';
+import { getContextualImage } from '@/utils/imageService';
 
 function formatSlug(slug: string) {
   return slug
@@ -55,7 +56,7 @@ export default function LifestyleCategoryPage({ params }: { params: { slug: stri
   const title = categoryItem ? categoryItem.label : formatSlug(params.slug);
 
   const breadcrumbItems = [
-    { name: 'Home', href: '/homepage' },
+    { name: 'Home', href: '/' },
     { name: 'Lifestyle', href: '/lifestyle' },
     { name: title, href: `/lifestyle/${params.slug}` },
   ];
@@ -75,177 +76,561 @@ export default function LifestyleCategoryPage({ params }: { params: { slug: stri
         {
           title: 'Daily Foundations',
           items: [
-            'Drink water within the first hour of waking and keep a bottle visible.',
-            'Eat mostly whole foods and reduce added sugar and ultra processed snacks.',
-            'Walk daily and insert short movement breaks to reduce sitting time.',
-            'Use sunlight exposure early in the day to anchor your body clock.',
-            'Plan simple meals and one movement block before the day gets busy.',
-            'Review your main three priorities and remove unnecessary tasks.',
+            {
+              text: 'Drink water within the first hour of waking and keep a bottle visible.',
+              detail:
+                'Hydration drives energy and focus. Pair drinking water with a morning anchor (like making your bed) so it becomes automatic. Keep a refillable bottle on your desk to reduce friction.',
+            },
+            {
+              text: 'Eat mostly whole foods and reduce added sugar and ultra processed snacks.',
+              detail:
+                'Base meals on vegetables, lean protein, complex carbs, and healthy fats. Ultra‑processed snacks hijack appetite; swap them for fruit, yogurt, nuts, or boiled eggs.',
+            },
+            {
+              text: 'Walk daily and insert short movement breaks to reduce sitting time.',
+              detail:
+                'Use 5–10 minute walk blocks after meals and during work breaks. Frequent low‑intensity movement improves blood flow, mood, and long‑term joint health.',
+            },
+            {
+              text: 'Use sunlight exposure early in the day to anchor your body clock.',
+              detail:
+                'Natural light within the first 60–90 minutes after waking strengthens circadian rhythm. Step outside briefly or sit by a bright window for consistent sleep/wake timing.',
+            },
+            {
+              text: 'Plan simple meals and one movement block before the day gets busy.',
+              detail:
+                'Decide “what and when” for meals and a short training block. Reduce decisions during busy hours by preparing ingredients and laying out workout gear in advance.',
+            },
+            {
+              text: 'Review your main three priorities and remove unnecessary tasks.',
+              detail:
+                'Write the top three outcomes that matter today. Batch or delete low‑value tasks to protect time for health routines, recovery, and important relationships.',
+            },
           ],
         },
         {
           title: 'Balanced Nutrition Principles',
           items: [
-            'Compose plates with vegetables, lean protein, complex carbohydrates, and healthy fats.',
-            'Aim for adequate protein across the day to support muscle and satiety.',
-            'Prefer fiber rich carbs like oats, brown rice, beans, and root vegetables.',
-            'Use olive oil, nuts, and seeds for healthy fats without overdoing portions.',
-            'Limit fried foods and choose baking, grilling, steaming, or sautéing.',
-            'Season with herbs and spices to enhance flavor while moderating salt.',
+            {
+              text: 'Compose plates with vegetables, lean protein, complex carbohydrates, and healthy fats.',
+              detail:
+                'Use a visual template: half vegetables, quarter protein, quarter complex carbs, plus a thumb of healthy fats. This balances energy, satiety, and micronutrients.',
+            },
+            {
+              text: 'Aim for adequate protein across the day to support muscle and satiety.',
+              detail:
+                'Distribute protein across meals (e.g., eggs, fish, chicken, beans) instead of one big dinner. Protein curbs cravings and supports training adaptation.',
+            },
+            {
+              text: 'Prefer fiber rich carbs like oats, brown rice, beans, and root vegetables.',
+              detail:
+                'Fiber stabilizes blood sugar and supports gut health. Rotate sources by culture and season for affordability and variety.',
+            },
+            {
+              text: 'Use olive oil, nuts, and seeds for healthy fats without overdoing portions.',
+              detail:
+                'Fats are essential but calorie‑dense. Measure with spoons or small handfuls so portions remain supportive rather than excessive.',
+            },
+            {
+              text: 'Limit fried foods and choose baking, grilling, steaming, or sautéing.',
+              detail:
+                'Lighter methods reduce excess oil and make daily nutrition easier to sustain. Use aromatics (onion, garlic, pepper) to build flavor without heavy sauces.',
+            },
+            {
+              text: 'Season with herbs and spices to enhance flavor while moderating salt.',
+              detail:
+                'Curry, thyme, ginger, and local blends elevate taste while keeping sodium sensible. Add acid (lemon, vinegar) at the end for brightness.',
+            },
           ],
         },
         {
           title: 'Meal Planning And Prep',
           items: [
-            'Plan a simple weekly menu and repeat favorite meals to reduce decisions.',
-            'Batch cook staple proteins and grains and store portions for quick use.',
-            'Keep fruit, yogurt, nuts, and eggs for fast balanced snacks.',
-            'Place healthy options at eye level and move treats out of daily sight.',
-            'Prepare a go bag with a shaker, snacks, and water for busy days.',
-            'Use shopping lists and avoid impulse buys by sticking to planned aisles.',
+            {
+              text: 'Plan a simple weekly menu and repeat favorite meals to reduce decisions.',
+              detail:
+                'Choose 2–3 breakfasts, 3–4 lunches/dinners you can repeat. Predictability lowers effort and helps you spot gaps (protein, vegetables, fiber).',
+            },
+            {
+              text: 'Batch cook staple proteins and grains and store portions for quick use.',
+              detail:
+                'Cook beans, rice, chicken, or fish in batches. Portion in containers for “assembly meals” during the week to avoid fast‑food defaults.',
+            },
+            {
+              text: 'Keep fruit, yogurt, nuts, and eggs for fast balanced snacks.',
+              detail:
+                'Pair quick carbs with protein or healthy fats to stabilize energy: banana + yogurt, apples + nuts, boiled eggs + vegetables.',
+            },
+            {
+              text: 'Place healthy options at eye level and move treats out of daily sight.',
+              detail:
+                'Environment drives behavior. Keep fruit bowls and prepped proteins visible; store sweets in opaque containers away from frequent paths.',
+            },
+            {
+              text: 'Prepare a go bag with a shaker, snacks, and water for busy days.',
+              detail:
+                'Pack shelf‑stable options (nuts, bars) and a reusable bottle. This prevents skipping meals and late overeating.',
+            },
+            {
+              text: 'Use shopping lists and avoid impulse buys by sticking to planned aisles.',
+              detail:
+                'Shop after a small meal, not hungry. Start with produce and staples; compare unit prices to keep budgets predictable.',
+            },
           ],
         },
         {
           title: 'Movement Routine Design',
           items: [
-            'Combine strength, cardio, and mobility across the week for balanced fitness.',
-            'Start with short sessions and grow duration as consistency improves.',
-            'Warm up before training and cool down after to reduce injury risk.',
-            'Track simple metrics like sets, reps, minutes, and perceived effort.',
-            'Use progressive overload by increasing volume or load gradually.',
-            'Schedule rest days and light recovery sessions to consolidate gains.',
+            {
+              text: 'Combine strength, cardio, and mobility across the week for balanced fitness.',
+              detail:
+                'A simple split: 2–3 strength days, 2 cardio days, daily short mobility blocks. Balance protects joints and builds capacity.',
+            },
+            {
+              text: 'Start with short sessions and grow duration as consistency improves.',
+              detail:
+                'Ten minutes beats zero. Build the identity of “I train” first, then lengthen sessions once routines feel automatic.',
+            },
+            {
+              text: 'Warm up before training and cool down after to reduce injury risk.',
+              detail:
+                'Use dynamic warmups (hips, shoulders, spine). End with light movement and breathing to downshift and recover.',
+            },
+            {
+              text: 'Track simple metrics like sets, reps, minutes, and perceived effort.',
+              detail:
+                'Write one line per session. Data shows trends, prevents overdoing it, and guides incremental progress.',
+            },
+            {
+              text: 'Use progressive overload by increasing volume or load gradually.',
+              detail:
+                'Add a set, a few reps, or a small weight as technique allows. Slow progress compounds; avoid big jumps.',
+            },
+            {
+              text: 'Schedule rest days and light recovery sessions to consolidate gains.',
+              detail:
+                'Muscle grows during recovery. Insert walks, mobility, and stretching between harder sessions to maintain momentum.',
+            },
           ],
         },
         {
           title: 'Strength Training Basics',
           items: [
-            'Prioritize compound movements like squats, presses, hinges, and pulls.',
-            'Choose loads that allow clean technique and stop sets before form breaks.',
-            'Use two to three sessions weekly targeting full body or upper lower splits.',
-            'Log exercises and small weekly improvements to guide progression.',
-            'Deload periodically by reducing volume or intensity to manage fatigue.',
-            'Use bodyweight and bands when equipment is limited and maintain intent.',
+            {
+              text: 'Prioritize compound movements like squats, presses, hinges, and pulls.',
+              detail:
+                'Compound lifts train multiple joints and save time. Learn positions first, then layer load.',
+            },
+            {
+              text: 'Choose loads that allow clean technique and stop sets before form breaks.',
+              detail:
+                'Leave 1–2 reps “in the tank.” Quality reps protect joints and produce reliable progress.',
+            },
+            {
+              text: 'Use two to three sessions weekly targeting full body or upper lower splits.',
+              detail:
+                'Frequency matters more than marathon workouts. Keep sessions 30–60 minutes and repeatable.',
+            },
+            {
+              text: 'Log exercises and small weekly improvements to guide progression.',
+              detail:
+                'Track sets/reps/load. Celebrate small PRs and adjust when fatigue or life stress increases.',
+            },
+            {
+              text: 'Deload periodically by reducing volume or intensity to manage fatigue.',
+              detail:
+                'Every 4–8 weeks, ease up for a week. This restores motivation and prepares you for the next block.',
+            },
+            {
+              text: 'Use bodyweight and bands when equipment is limited and maintain intent.',
+              detail:
+                'Push‑ups, rows, split squats, and band work can carry you far. Consistency beats gear.',
+            },
           ],
         },
         {
           title: 'Cardio And Conditioning',
           items: [
-            'Mix steady state work with intervals to build capacity efficiently.',
-            'Choose joint friendly modes like cycling, brisk walking, or swimming.',
-            'Use heart rate or talk tests to gauge intensity and avoid overtraining.',
-            'Prefer outdoor sessions when feasible for mood and sunlight benefits.',
-            'Progress minutes or increase interval work very gradually each week.',
-            'Include low intensity movement on recovery days to promote circulation.',
+            {
+              text: 'Mix steady state work with intervals to build capacity efficiently.',
+              detail:
+                'Alternate easy/moderate continuous efforts with short intervals. This improves endurance and speed without burnout.',
+            },
+            {
+              text: 'Choose joint friendly modes like cycling, brisk walking, or swimming.',
+              detail:
+                'Protect knees and back with low‑impact modalities. Rotate modes to keep training fresh.',
+            },
+            {
+              text: 'Use heart rate or talk tests to gauge intensity and avoid overtraining.',
+              detail:
+                'If you can’t speak a sentence, you’re likely too hard for base work. Use zones sparingly; consistency matters most.',
+            },
+            {
+              text: 'Prefer outdoor sessions when feasible for mood and sunlight benefits.',
+              detail:
+                'Sunlight and scenery improve adherence. Hydrate and choose shade or early hours in hot climates.',
+            },
+            {
+              text: 'Progress minutes or increase interval work very gradually each week.',
+              detail:
+                'Add 5–10% volume per week, then hold. Sudden jumps lead to niggles and stalls.',
+            },
+            {
+              text: 'Include low intensity movement on recovery days to promote circulation.',
+              detail:
+                'Walks and mobility enhance recovery and maintain habit momentum between harder days.',
+            },
           ],
         },
         {
           title: 'Mobility And Flexibility',
           items: [
-            'Perform short daily mobility blocks for tight areas like hips and shoulders.',
-            'Use dynamic warmups before training and static stretches after sessions.',
-            'Integrate balance and core control to support joint stability.',
-            'Address recurrent tightness by adjusting training technique and volume.',
-            'Use gentle ranges without pain and respect gradual improvements over time.',
-            'Track a few mobility drills and repeat them consistently for best results.',
+            {
+              text: 'Perform short daily mobility blocks for tight areas like hips and shoulders.',
+              detail:
+                'Two or three drills repeated daily beat long, sporadic sessions. Focus on positions you actually need.',
+            },
+            {
+              text: 'Use dynamic warmups before training and static stretches after sessions.',
+              detail:
+                'Prepare tissues with movement before loading; lengthen gently after to restore ranges.',
+            },
+            {
+              text: 'Integrate balance and core control to support joint stability.',
+              detail:
+                'Add single‑leg work and anti‑rotation drills. Stability improves lifting and daily movement.',
+            },
+            {
+              text: 'Address recurrent tightness by adjusting training technique and volume.',
+              detail:
+                'Persistent tightness signals overload or poor mechanics. Lighten loads, refine technique, and add rest.',
+            },
+            {
+              text: 'Use gentle ranges without pain and respect gradual improvements over time.',
+              detail:
+                'Avoid forcing ranges. Consistency and patience produce lasting change without flare‑ups.',
+            },
+            {
+              text: 'Track a few mobility drills and repeat them consistently for best results.',
+              detail:
+                'Pick 3–5 drills and log frequency. Small streaks compound quickly.',
+            },
           ],
         },
         {
           title: 'Recovery Protocols',
           items: [
-            'Sleep seven to nine hours most nights and protect wind down routines.',
-            'Use light movement and stretching on recovery days to ease soreness.',
-            'Eat enough protein and carbohydrates after training to refuel and repair.',
-            'Reduce training stress during life stress spikes to prevent overload.',
-            'Hydrate and include electrolytes thoughtfully during heat or long sessions.',
-            'Monitor fatigue and adjust blocks before performance drops persist.',
+            {
+              text: 'Sleep seven to nine hours most nights and protect wind down routines.',
+              detail:
+                'Create a pre‑sleep checklist: dim lights, stop screens, light stretch, read, breathe. Keep timing consistent.',
+            },
+            {
+              text: 'Use light movement and stretching on recovery days to ease soreness.',
+              detail:
+                'Circulation speeds repair. Keep intensity low; aim to feel better after than before.',
+            },
+            {
+              text: 'Eat enough protein and carbohydrates after training to refuel and repair.',
+              detail:
+                'Post‑session meals with protein + carbs replenish stores and accelerate recovery (e.g., rice + fish, beans + plantain).',
+            },
+            {
+              text: 'Reduce training stress during life stress spikes to prevent overload.',
+              detail:
+                'Adjust blocks when sleep or work suffers. Downgrade sessions rather than skip entirely to protect habit identity.',
+            },
+            {
+              text: 'Hydrate and include electrolytes thoughtfully during heat or long sessions.',
+              detail:
+                'Salt, potassium, and magnesium matter during high sweat scenarios. Use balanced mixes; avoid extreme doses.',
+            },
+            {
+              text: 'Monitor fatigue and adjust blocks before performance drops persist.',
+              detail:
+                'Use a simple readiness score (sleep, soreness, mood). If low for several days, reduce volume.',
+            },
           ],
         },
         {
           title: 'Sleep Hygiene',
           items: [
-            'Keep regular sleep and wake times even on weekends to stabilize rhythms.',
-            'Dim lights and avoid screens in the last hour before bed to aid relaxation.',
-            'Maintain a cool, dark, quiet bedroom and remove bright clocks from view.',
-            'Avoid heavy meals and stimulants late in the day to prevent sleep disruption.',
-            'Use calming activities like reading or breathing to transition into sleep.',
-            'If awake too long, get up for a short calm activity and then return to bed.',
+            {
+              text: 'Keep regular sleep and wake times even on weekends to stabilize rhythms.',
+              detail:
+                'Your body loves routine. Small consistency wins beat occasional perfect nights.',
+            },
+            {
+              text: 'Dim lights and avoid screens in the last hour before bed to aid relaxation.',
+              detail:
+                'Blue‑light and stimulation delay sleep. Use warm lamps, paper books, and quiet music.',
+            },
+            {
+              text: 'Maintain a cool, dark, quiet bedroom and remove bright clocks from view.',
+              detail:
+                'Dark curtains, cool temperatures, and minimal noise lower awakenings. Hide time displays to reduce clock‑watching stress.',
+            },
+            {
+              text: 'Avoid heavy meals and stimulants late in the day to prevent sleep disruption.',
+              detail:
+                'Keep caffeine to early hours. Choose lighter dinners and finish 2–3 hours before bed.',
+            },
+            {
+              text: 'Use calming activities like reading or breathing to transition into sleep.',
+              detail:
+                'Create a short ritual that signals shutdown. Start the routine at the same time nightly.',
+            },
+            {
+              text: 'If awake too long, get up for a short calm activity and then return to bed.',
+              detail:
+                'Avoid tossing for long periods. Reset with a few minutes of quiet reading before returning.',
+            },
           ],
         },
         {
           title: 'Stress Regulation',
           items: [
-            'Use simple breathing patterns like box breathing during stressful moments.',
-            'Organize work with time blocks and define top three tasks per day.',
-            'Batch errands and reduce constant context switching to protect focus.',
-            'Schedule breaks and short walks to lower tension and reset attention.',
-            'Limit notifications and set clear availability windows for messaging.',
-            'Reframe setbacks and practice self compassion to sustain momentum.',
+            {
+              text: 'Use simple breathing patterns like box breathing during stressful moments.',
+              detail:
+                'Inhale–hold–exhale–hold for equal counts to lower arousal quickly. Use before calls or after difficult tasks.',
+            },
+            {
+              text: 'Organize work with time blocks and define top three tasks per day.',
+              detail:
+                'Batch deep work, admin, and breaks. Clear outcomes reduce anxious multitasking.',
+            },
+            {
+              text: 'Batch errands and reduce constant context switching to protect focus.',
+              detail:
+                'Group similar tasks together. Each switch taxes attention and increases perceived stress.',
+            },
+            {
+              text: 'Schedule breaks and short walks to lower tension and reset attention.',
+              detail:
+                'Use timers for 50–75 minute focus blocks. A 5–10 minute walk restores clarity.',
+            },
+            {
+              text: 'Limit notifications and set clear availability windows for messaging.',
+              detail:
+                'Silence non‑critical alerts. Share your availability windows to reduce interruptions.',
+            },
+            {
+              text: 'Reframe setbacks and practice self compassion to sustain momentum.',
+              detail:
+                'Treat stumbles as data, not identity. Return to routines with small first steps.',
+            },
           ],
         },
         {
           title: 'Mental Health Practices',
           items: [
-            'Use brief daily mindfulness sessions or guided breathing to lower arousal.',
-            'Journal worries and plans to externalize thoughts and reduce rumination.',
-            'Connect with trusted people and share concerns before they accumulate.',
-            'Limit doomscrolling and curate feeds to reduce unnecessary stress inputs.',
-            'Seek licensed support if persistent symptoms interfere with daily life.',
-            'Combine therapy with lifestyle changes for the strongest long term results.',
+            {
+              text: 'Use brief daily mindfulness sessions or guided breathing to lower arousal.',
+              detail:
+                'Five minutes seated, eyes soft, focus on breath. Simple, repeatable, effective.',
+            },
+            {
+              text: 'Journal worries and plans to externalize thoughts and reduce rumination.',
+              detail:
+                'Write lists, next actions, and concerns. Seeing thoughts on paper calms loops.',
+            },
+            {
+              text: 'Connect with trusted people and share concerns before they accumulate.',
+              detail:
+                'Short check‑ins prevent isolation. Ask for perspective and practical ideas.',
+            },
+            {
+              text: 'Limit doomscrolling and curate feeds to reduce unnecessary stress inputs.',
+              detail:
+                'Unfollow accounts that spike anxiety. Schedule social media windows instead of constant checks.',
+            },
+            {
+              text: 'Seek licensed support if persistent symptoms interfere with daily life.',
+              detail:
+                'Professional guidance accelerates recovery. Combine therapy with daily routines for durable change.',
+            },
+            {
+              text: 'Combine therapy with lifestyle changes for the strongest long term results.',
+              detail:
+                'Sleep, movement, nutrition, social contact, and stress tools amplify clinical work.',
+            },
           ],
         },
         {
           title: 'Social Health And Community',
           items: [
-            'Schedule regular check ins with friends and family to maintain bonds.',
-            'Join activity groups or classes that encourage movement and learning.',
-            'Set boundaries and protect energy when demands become excessive.',
-            'Share goals weekly within a small accountability circle for support.',
-            'Plan light social activities outdoors for combined mood and health benefits.',
-            'Practice kind speech and empathy to strengthen relationships rapidly.',
+            {
+              text: 'Schedule regular check ins with friends and family to maintain bonds.',
+              detail:
+                'Put recurring reminders on your calendar. Consistency matters more than length.',
+            },
+            {
+              text: 'Join activity groups or classes that encourage movement and learning.',
+              detail:
+                'Community increases adherence. Pick low‑pressure groups you enjoy.',
+            },
+            {
+              text: 'Set boundaries and protect energy when demands become excessive.',
+              detail:
+                'Use clear, kind “no’s.” Boundaries create space for health and priorities.',
+            },
+            {
+              text: 'Share goals weekly within a small accountability circle for support.',
+              detail:
+                'Short updates keep momentum and invite encouragement when motivation dips.',
+            },
+            {
+              text: 'Plan light social activities outdoors for combined mood and health benefits.',
+              detail:
+                'Walks, park meetups, and markets add sunlight and movement to social time.',
+            },
+            {
+              text: 'Practice kind speech and empathy to strengthen relationships rapidly.',
+              detail:
+                'Assume good intent; listen actively. Relationships are a core health lever.',
+            },
           ],
         },
         {
           title: 'Habit Design',
           items: [
-            'Attach new habits to existing routines using clear anchors and cues.',
-            'Start with a two minute version and grow once actions feel automatic.',
-            'Use visible trackers and celebrate small wins to reinforce identity.',
-            'Prefer repetition over intensity and avoid all or nothing patterns.',
-            'Design environments that reduce friction and prompt intended actions.',
-            'Build backup plans for busy days to protect streaks and continuity.',
+            {
+              text: 'Attach new habits to existing routines using clear anchors and cues.',
+              detail:
+                '“After I brush my teeth, I fill my water bottle.” Tie actions to existing anchors for reliability.',
+            },
+            {
+              text: 'Start with a two minute version and grow once actions feel automatic.',
+              detail:
+                'Tiny starts lower resistance. Expand duration after several easy wins.',
+            },
+            {
+              text: 'Use visible trackers and celebrate small wins to reinforce identity.',
+              detail:
+                'Paper calendars, app streaks, or habit bracelets make progress tangible.',
+            },
+            {
+              text: 'Prefer repetition over intensity and avoid all or nothing patterns.',
+              detail:
+                'Show up even when short on time. Identity builds through frequent reps.',
+            },
+            {
+              text: 'Design environments that reduce friction and prompt intended actions.',
+              detail:
+                'Lay out clothes, prep ingredients, and set reminders in the right place.',
+            },
+            {
+              text: 'Build backup plans for busy days to protect streaks and continuity.',
+              detail:
+                'Have “minimum viable” routines ready: a 10‑minute walk, a quick salad, early lights out.',
+            },
           ],
         },
         {
           title: 'Environment Setup',
           items: [
-            'Keep healthy snacks and water in visible locations throughout the home.',
-            'Store workout gear where you will see it and can start quickly.',
-            'Declutter work and rest areas to lower decision fatigue and stress.',
-            'Use warm lighting at night and bright lighting during the day.',
-            'Create quiet corners for reading, reflection, and mindful breathing.',
-            'Post simple checklists in common areas to guide household routines.',
+            {
+              text: 'Keep healthy snacks and water in visible locations throughout the home.',
+              detail:
+                'Make good choices the default. Convenience beats willpower in busy weeks.',
+            },
+            {
+              text: 'Store workout gear where you will see it and can start quickly.',
+              detail:
+                'Place shoes, bands, and mats near your training space to reduce start friction.',
+            },
+            {
+              text: 'Declutter work and rest areas to lower decision fatigue and stress.',
+              detail:
+                'Tidy surfaces and simplify layouts. Visual calm supports focus and recovery.',
+            },
+            {
+              text: 'Use warm lighting at night and bright lighting during the day.',
+              detail:
+                'Lighting guides your body clock. Match brightness to the time of day.',
+            },
+            {
+              text: 'Create quiet corners for reading, reflection, and mindful breathing.',
+              detail:
+                'A small chair and lamp can become your nightly wind‑down station.',
+            },
+            {
+              text: 'Post simple checklists in common areas to guide household routines.',
+              detail:
+                'Use one‑page guides for cleaning, meal prep, and sleep steps to align the family.',
+            },
           ],
         },
         {
           title: 'Medical And Preventive Care',
           items: [
-            'Schedule periodic checkups and recommended screenings based on age and risk.',
-            'Know family history and personal risk factors and record them simply.',
-            'Follow reputable guidance sources and avoid miracle cure claims.',
-            'Maintain basic first aid supplies and emergency contacts visibly.',
-            'Keep vaccination and health records organized and backed up.',
-            'Consult professionals when new symptoms persist or escalate.',
+            {
+              text: 'Schedule periodic checkups and recommended screenings based on age and risk.',
+              detail:
+                'Put reminders on your calendar for annual visits. Early detection saves time and money.',
+            },
+            {
+              text: 'Know family history and personal risk factors and record them simply.',
+              detail:
+                'Keep a short note: key conditions, medications, allergies, emergency contacts.',
+            },
+            {
+              text: 'Follow reputable guidance sources and avoid miracle cure claims.',
+              detail:
+                'Prefer evidence‑based organizations and licensed practitioners over viral trends.',
+            },
+            {
+              text: 'Maintain basic first aid supplies and emergency contacts visibly.',
+              detail:
+                'Bandages, antiseptic, pain relief, and a posted contact sheet cover common needs.',
+            },
+            {
+              text: 'Keep vaccination and health records organized and backed up.',
+              detail:
+                'Store physical copies and digital scans. Share access with trusted family members.',
+            },
+            {
+              text: 'Consult professionals when new symptoms persist or escalate.',
+              detail:
+                'Do not delay care during unusual or worsening symptoms. Document timelines and triggers.',
+            },
           ],
         },
         {
           title: 'Tracking And Reflection',
           items: [
-            'Journal weekly about energy, mood, nutrition, movement, and sleep patterns.',
-            'Use simple logs for training and meals to guide realistic adjustments.',
-            'Plan next week routines and appointments in one short session.',
-            'Assess workloads and reduce non critical tasks during high stress periods.',
-            'Review progress monthly and refine goals to match current life context.',
-            'Celebrate inputs and process more than outcomes to sustain motivation.',
+            {
+              text: 'Journal weekly about energy, mood, nutrition, movement, and sleep patterns.',
+              detail:
+                'One page is enough. Track trends, not perfection. Adjust the basics first.',
+            },
+            {
+              text: 'Use simple logs for training and meals to guide realistic adjustments.',
+              detail:
+                'Small notes reveal plateaus and overloads. Tweak volume and food quality gradually.',
+            },
+            {
+              text: 'Plan next week routines and appointments in one short session.',
+              detail:
+                'Reserve a weekly slot to organize health priorities, meals, and rest windows.',
+            },
+            {
+              text: 'Assess workloads and reduce non critical tasks during high stress periods.',
+              detail:
+                'Protect sleep and core training. Defer optional projects until stress subsides.',
+            },
+            {
+              text: 'Review progress monthly and refine goals to match current life context.',
+              detail:
+                'Focus goals on inputs you control — meals cooked, sessions completed, bedtime.',
+            },
+            {
+              text: 'Celebrate inputs and process more than outcomes to sustain motivation.',
+              detail:
+                'Identity grows from repeated actions. Acknowledge consistency first, results second.',
+            },
           ],
         },
       ],
@@ -2988,13 +3373,24 @@ export default function LifestyleCategoryPage({ params }: { params: { slug: stri
               <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">{title}</h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">{description}</p>
               <div className="mt-4">
-                <AppImage
-                  src={`/assets/images/lifestyle/${params.slug}.jpg`}
-                  alt={title}
-                  width={1600}
-                  height={256}
-                  className="w-full max-w-3xl h-64 object-cover rounded-2xl border border-rose-100"
-                />
+              <AppImage
+                src={getContextualImage({
+                  category: 'lifestyle',
+                  title,
+                  preferCurated: true,
+                }).src}
+                alt={getContextualImage({
+                  category: 'lifestyle',
+                  title,
+                  preferCurated: true,
+                }).alt}
+                width={1600}
+                height={256}
+                className="w-full max-w-3xl h-64 object-cover rounded-2xl border border-rose-100"
+                priority
+                fallbackSrc={`/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/4056533/pexels-photo-4056533.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`}
+                secondaryFallbackSrc="/assets/images/no_image.png"
+              />
               </div>
             </div>
           </div>
@@ -3010,6 +3406,23 @@ export default function LifestyleCategoryPage({ params }: { params: { slug: stri
                       key={section.title}
                       className="p-6 rounded-2xl bg-gray-50 border border-gray-200"
                     >
+                      <div className="mb-4">
+                        <AppImage
+                          src={getContextualImage({
+                            category: 'lifestyle',
+                            title: section.title,
+                            preferCurated: true,
+                          }).src}
+                          alt={getContextualImage({
+                            category: 'lifestyle',
+                            title: section.title,
+                            preferCurated: true,
+                          }).alt}
+                          width={800}
+                          height={400}
+                          className="w-full h-40 object-cover rounded-xl border border-gray-200"
+                        />
+                      </div>
                       <div className="flex items-center justify-between mb-4">
                         <h2 className="text-2xl font-bold text-gray-900">{section.title}</h2>
                         <div className="w-10 h-10 rounded-full bg-rose-600 text-white flex items-center justify-center font-semibold shadow-sm">
@@ -3042,6 +3455,23 @@ export default function LifestyleCategoryPage({ params }: { params: { slug: stri
                       key={section.title}
                       className="p-6 rounded-2xl bg-gray-50 border border-gray-200"
                     >
+                      <div className="mb-4">
+                        <AppImage
+                          src={getContextualImage({
+                            category: 'lifestyle',
+                            title: section.title,
+                            preferCurated: true,
+                          }).src}
+                          alt={getContextualImage({
+                            category: 'lifestyle',
+                            title: section.title,
+                            preferCurated: true,
+                          }).alt}
+                          width={800}
+                          height={400}
+                          className="w-full h-40 object-cover rounded-xl border border-gray-200"
+                        />
+                      </div>
                       <div className="flex items-center justify-between mb-4">
                         <h2 className="text-2xl font-bold text-gray-900">{section.title}</h2>
                         <div className="w-10 h-10 rounded-full bg-pink-600 text-white flex items-center justify-center font-semibold shadow-sm">
@@ -3074,6 +3504,23 @@ export default function LifestyleCategoryPage({ params }: { params: { slug: stri
                       key={section.title}
                       className="p-6 rounded-2xl bg-gray-50 border border-gray-200"
                     >
+                      <div className="mb-4">
+                        <AppImage
+                          src={getContextualImage({
+                            category: 'lifestyle',
+                            title: section.title,
+                            preferCurated: true,
+                          }).src}
+                          alt={getContextualImage({
+                            category: 'lifestyle',
+                            title: section.title,
+                            preferCurated: true,
+                          }).alt}
+                          width={800}
+                          height={400}
+                          className="w-full h-40 object-cover rounded-xl border border-gray-200"
+                        />
+                      </div>
                       <div className="flex items-center justify-between mb-4">
                         <h2 className="text-2xl font-bold text-gray-900">{section.title}</h2>
                         <div className="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center font-semibold shadow-sm">

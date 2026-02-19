@@ -486,6 +486,74 @@ const curatedImages = {
 };
 
 const titleImages: Record<string, { src: string; alt: string }> = {
+  healthyliving: {
+    src: 'https://images.pexels.com/photos/4056533/pexels-photo-4056533.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Healthy living with balanced meals, movement, and sunlight',
+  },
+  dailyfoundations: {
+    src: 'https://images.unsplash.com/photo-1517263904808-5dc91e3e7044?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Morning routine with water, planning, and sunlight',
+  },
+  balancednutritionprinciples: {
+    src: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Balanced plate with vegetables, protein, and complex carbs',
+  },
+  mealplanningandprep: {
+    src: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Meal prep containers with healthy ingredients',
+  },
+  movementroutinedesign: {
+    src: 'https://images.unsplash.com/photo-1546484959-f9b45ed67aff?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Training plan with strength, cardio, and mobility',
+  },
+  strengthtrainingbasics: {
+    src: 'https://images.unsplash.com/photo-1517963628607-197ec1f2f314?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Strength training with compound lifts and clean technique',
+  },
+  cardioandconditioning: {
+    src: 'https://images.unsplash.com/photo-1558611848-73f7eb7b3d49?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Outdoor cardio session building endurance',
+  },
+  mobilityandflexibility: {
+    src: 'https://images.unsplash.com/photo-1549449236-92552d1c1fde?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Mobility and flexibility routine for healthy joints',
+  },
+  recoveryprotocols: {
+    src: 'https://images.unsplash.com/photo-1531968451042-783f7f5d6f36?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Recovery day with light stretching and hydration',
+  },
+  sleephygiene: {
+    src: 'https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Calm bedroom environment supporting deep sleep',
+  },
+  stressregulation: {
+    src: 'https://images.unsplash.com/photo-1546483875-ad9019f10c80?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Breathing and time-blocking to lower stress',
+  },
+  mentalhealthpractices: {
+    src: 'https://images.unsplash.com/photo-1519802772250-64a93db511aa?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Mindfulness, journaling, and support for mental health',
+  },
+  socialhealthandcommunity: {
+    src: 'https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Community, friendship, and outdoor social activity',
+  },
+  habitdesign: {
+    src: 'https://images.unsplash.com/photo-1487014679447-9f8336841d58?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Habit tracking and cues for consistent routines',
+  },
+  environmentsetup: {
+    src: 'https://images.unsplash.com/photo-1494949649106-ec67b1a3e72e?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Home environment arranged to prompt healthy choices',
+  },
+  medicalandpreventivecare: {
+    src: 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Preventive care checklist and medical records',
+  },
+  trackingandreflection: {
+    src: 'https://images.unsplash.com/photo-1511203466129-824e631920d4?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Weekly journal and planning for health routines',
+  },
   abujacorporatelawyer: {
     src: 'https://images.unsplash.com/photo-1555375771-14b3c1e0fa9b?auto=format&fit=crop&w=1200&q=80',
     alt: 'Corporate lawyer working with legal documents and scales of justice',
