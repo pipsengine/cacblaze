@@ -499,7 +499,7 @@ const titleImages: Record<string, { src: string; alt: string }> = {
     alt: 'Online booking platform with filters and reviews',
   },
   location: {
-    src: 'https://images.unsplash.com/photo-1494475673543-6a6a27143b22?auto=format&fit=crop&w=1200&q=80',
+    src: 'https://images.pexels.com/photos/4252528/pexels-photo-4252528.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     alt: 'City map and neighborhood planning for stays',
   },
   amenities: {
@@ -511,7 +511,7 @@ const titleImages: Record<string, { src: string; alt: string }> = {
     alt: 'Safety with secure locks and building access',
   },
   budget: {
-    src: 'https://images.unsplash.com/photo-1516557070067-8f0b56f1b1e0?auto=format&fit=crop&w=1200&q=80',
+    src: 'https://images.pexels.com/photos/4386408/pexels-photo-4386408.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     alt: 'Budget planning for accommodation costs',
   },
   checkin: {
@@ -519,7 +519,7 @@ const titleImages: Record<string, { src: string; alt: string }> = {
     alt: 'Check‑in process and arrival logistics',
   },
   houserules: {
-    src: 'https://images.unsplash.com/photo-1494949649106-ec67b1a3e72e?auto=format&fit=crop&w=1200&q=80',
+    src: 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     alt: 'House rules and guidelines for guests',
   },
   reviews: {
@@ -718,9 +718,45 @@ const titleImages: Record<string, { src: string; alt: string }> = {
     src: 'https://images.pexels.com/photos/268362/pexels-photo-268362.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     alt: 'Question marks on board for common questions',
   },
-  troubleshooting: {
+  troubleshootinghelp: {
     src: 'https://images.pexels.com/photos/1334545/pexels-photo-1334545.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     alt: 'Wrenches and tools for troubleshooting',
+  },
+  budgeting: {
+    src: 'https://images.pexels.com/photos/4386408/pexels-photo-4386408.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Trip budgeting with notebook, calculator, and category allocations',
+  },
+  flights: {
+    src: 'https://images.pexels.com/photos/36086229/pexels-photo-36086229.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Airplane window view representing flexible dates and flight deals',
+  },
+  accommodation: {
+    src: 'https://images.pexels.com/photos/18285946/pexels-photo-18285946.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Affordable accommodation options with cozy hotel room interior',
+  },
+  food: {
+    src: 'https://images.pexels.com/photos/4910234/pexels-photo-4910234.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Nigerian woman preparing traditional jollof rice in modern kitchen',
+  },
+  transport: {
+    src: 'https://images.pexels.com/photos/32693053/pexels-photo-32693053.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Public transit platform highlighting low-cost transport choices',
+  },
+  activities: {
+    src: 'https://images.pexels.com/photos/6146935/pexels-photo-6146935.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'City walking tour with friends for affordable activities',
+  },
+  offpeak: {
+    src: 'https://images.pexels.com/photos/10370162/pexels-photo-10370162.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Empty airport hallway illustrating off-peak travel times',
+  },
+  rewards: {
+    src: 'https://images.pexels.com/photos/7545118/pexels-photo-7545118.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Using cards and cashback apps to earn travel rewards',
+  },
+  review: {
+    src: 'https://images.pexels.com/photos/4386373/pexels-photo-4386373.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+    alt: 'Tracking savings in notebook and comparing planned vs actual spend',
   },
   beginnerhelp: {
     src: 'https://images.pexels.com/photos/6646912/pexels-photo-6646912.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',

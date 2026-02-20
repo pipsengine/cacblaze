@@ -16,14 +16,15 @@ function formatSlug(slug: string) {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
+  const { slug } = await params;
   const lifestyleMenu = menuData.mainMenu.find((m) => m.id === 'lifestyle');
   let categoryItem;
 
   if (lifestyleMenu?.categories) {
     for (const cat of lifestyleMenu.categories) {
-      const item = cat.items?.find((i) => i.href === `/lifestyle/${params.slug}`);
+      const item = cat.items?.find((i) => i.href === `/lifestyle/${slug}`);
       if (item) {
         categoryItem = item;
         break;
@@ -31,7 +32,7 @@ export async function generateMetadata({
     }
   }
 
-  const title = categoryItem ? categoryItem.label : formatSlug(params.slug);
+  const title = categoryItem ? categoryItem.label : formatSlug(slug);
 
   return {
     title: `${title} - Lifestyle - CACBLAZE`,
@@ -39,13 +40,14 @@ export async function generateMetadata({
   };
 }
 
-export default function LifestyleCategoryPage({ params }: { params: { slug: string } }) {
+export default async function LifestyleCategoryPage(props: { params: Promise<{ slug: string }> }) {
+  const { slug } = await props.params;
   const lifestyleMenu = menuData.mainMenu.find((m) => m.id === 'lifestyle');
   let categoryItem;
 
   if (lifestyleMenu?.categories) {
     for (const cat of lifestyleMenu.categories) {
-      const item = cat.items?.find((i) => i.href === `/lifestyle/${params.slug}`);
+      const item = cat.items?.find((i) => i.href === `/lifestyle/${slug}`);
       if (item) {
         categoryItem = item;
         break;
@@ -53,12 +55,12 @@ export default function LifestyleCategoryPage({ params }: { params: { slug: stri
     }
   }
 
-  const title = categoryItem ? categoryItem.label : formatSlug(params.slug);
+  const title = categoryItem ? categoryItem.label : formatSlug(slug);
 
   const breadcrumbItems = [
     { name: 'Home', href: '/' },
     { name: 'Lifestyle', href: '/lifestyle' },
-    { name: title, href: `/lifestyle/${params.slug}` },
+    { name: title, href: `/lifestyle/${slug}` },
   ];
 
   const contentMap: Record<
@@ -3352,7 +3354,7 @@ export default function LifestyleCategoryPage({ params }: { params: { slug: stri
   };
 
   contentMap['accommodation-guides'] = contentMap['accommodation'];
-  const detailed = contentMap[params.slug];
+  const detailed = contentMap[slug];
   const isDetailed = !!detailed;
   const sections = detailed?.sections || [];
   const description =
