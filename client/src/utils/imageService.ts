@@ -495,7 +495,7 @@ const titleImages: Record<string, { src: string; alt: string }> = {
     alt: 'Different accommodation types including hotels and apartments',
   },
   booking: {
-    src: 'https://images.unsplash.com/photo-1517954628398-88a2ff8a2d7e?auto=format&fit=crop&w=1200&q=80',
+    src: 'https://images.pexels.com/photos/1449249/pexels-photo-1449249.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     alt: 'Online booking platform with filters and reviews',
   },
   location: {
