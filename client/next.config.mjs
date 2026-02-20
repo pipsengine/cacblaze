@@ -86,6 +86,66 @@ const nextConfig = {
         permanent: false,
       },
       {
+        source: '/pregnancy',
+        destination: '/lifestyle/pregnancy',
+        permanent: false,
+      },
+      {
+        source: '/newborn-care',
+        destination: '/lifestyle/newborn-care',
+        permanent: false,
+      },
+      {
+        source: '/child-development',
+        destination: '/lifestyle/child-development',
+        permanent: false,
+      },
+      {
+        source: '/parenting-tips',
+        destination: '/lifestyle/parenting-tips',
+        permanent: false,
+      },
+      {
+        source: '/education-support',
+        destination: '/lifestyle/education-support',
+        permanent: false,
+      },
+      {
+        source: '/family-budgeting',
+        destination: '/lifestyle/family-budgeting',
+        permanent: false,
+      },
+      {
+        source: '/home-routines',
+        destination: '/lifestyle/home-routines',
+        permanent: false,
+      },
+      {
+        source: '/parenting-resources',
+        destination: '/lifestyle/parenting-resources',
+        permanent: false,
+      },
+      {
+        source: '/travel-planning',
+        destination: '/lifestyle/travel-planning',
+        permanent: false,
+      },
+      {
+        source: '/budget-travel',
+        destination: '/lifestyle/budget-travel',
+        permanent: false,
+      },
+      {
+        source: '/travel-safety',
+        destination: '/lifestyle/travel-safety',
+        permanent: false,
+      },
+      {
+        source: '/accommodation',
+        destination: '/lifestyle/travel-planning',
+        permanent: false,
+      },
+      {
         source: '/education/exam-preparation',
         destination: '/education/exam-prep',
         permanent: false,
