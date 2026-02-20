@@ -3351,6 +3351,7 @@ export default function LifestyleCategoryPage({ params }: { params: { slug: stri
     },
   };
 
+  contentMap['accommodation-guides'] = contentMap['accommodation'];
   const detailed = contentMap[params.slug];
   const isDetailed = !!detailed;
   const sections = detailed?.sections || [];
@@ -3386,7 +3387,7 @@ export default function LifestyleCategoryPage({ params }: { params: { slug: stri
                 }).alt}
                 width={1600}
                 height={256}
-                className="w-full max-w-3xl h-64 object-cover rounded-2xl border border-rose-100"
+                className="w-full max-w-3xl h-64 object-contain rounded-2xl border border-rose-100 bg-white"
                 priority
                 fallbackSrc={`/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/4056533/pexels-photo-4056533.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`}
                 secondaryFallbackSrc="/assets/images/no_image.png"
@@ -3420,7 +3421,7 @@ export default function LifestyleCategoryPage({ params }: { params: { slug: stri
                           }).alt}
                           width={800}
                           height={400}
-                          className="w-full h-40 object-cover rounded-xl border border-gray-200"
+                          className="w-full h-40 object-contain rounded-xl border border-gray-200 bg-white"
                         />
                       </div>
                       <div className="flex items-center justify-between mb-4">
@@ -3469,7 +3470,7 @@ export default function LifestyleCategoryPage({ params }: { params: { slug: stri
                           }).alt}
                           width={800}
                           height={400}
-                          className="w-full h-40 object-cover rounded-xl border border-gray-200"
+                          className="w-full h-40 object-contain rounded-xl border border-gray-200 bg-white"
                         />
                       </div>
                       <div className="flex items-center justify-between mb-4">
@@ -3518,7 +3519,7 @@ export default function LifestyleCategoryPage({ params }: { params: { slug: stri
                           }).alt}
                           width={800}
                           height={400}
-                          className="w-full h-40 object-cover rounded-xl border border-gray-200"
+                          className="w-full h-40 object-contain rounded-xl border border-gray-200 bg-white"
                         />
                       </div>
                       <div className="flex items-center justify-between mb-4">

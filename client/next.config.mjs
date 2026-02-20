@@ -127,7 +127,12 @@ const nextConfig = {
       },
       {
         source: '/travel-planning',
-        destination: '/lifestyle/travel-planning',
+        destination: '/lifestyle/accommodation-guides',
+        permanent: false,
+      },
+      {
+        source: '/lifestyle/travel-planning',
+        destination: '/lifestyle/accommodation-guides',
         permanent: false,
       },
       {
@@ -143,6 +148,16 @@ const nextConfig = {
       {
         source: '/accommodation',
         destination: '/lifestyle/travel-planning',
+        permanent: false,
+      },
+      {
+        source: '/transportation',
+        destination: '/lifestyle/travel-planning',
+        permanent: false,
+      },
+      {
+        source: '/living-abroad',
+        destination: '/lifestyle/living-abroad',
         permanent: false,
       },
       {

@@ -486,6 +486,50 @@ const curatedImages = {
 };
 
 const titleImages: Record<string, { src: string; alt: string }> = {
+  accommodationguides: {
+    src: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Comfortable accommodation with modern amenities and natural light',
+  },
+  types: {
+    src: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Different accommodation types including hotels and apartments',
+  },
+  booking: {
+    src: 'https://images.unsplash.com/photo-1517954628398-88a2ff8a2d7e?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Online booking platform with filters and reviews',
+  },
+  location: {
+    src: 'https://images.unsplash.com/photo-1494475673543-6a6a27143b22?auto=format&fit=crop&w=1200&q=80',
+    alt: 'City map and neighborhood planning for stays',
+  },
+  amenities: {
+    src: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Accommodation amenities including kitchen and workspace',
+  },
+  safety: {
+    src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Safety with secure locks and building access',
+  },
+  budget: {
+    src: 'https://images.unsplash.com/photo-1516557070067-8f0b56f1b1e0?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Budget planning for accommodation costs',
+  },
+  checkin: {
+    src: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Check‑in process and arrival logistics',
+  },
+  houserules: {
+    src: 'https://images.unsplash.com/photo-1494949649106-ec67b1a3e72e?auto=format&fit=crop&w=1200&q=80',
+    alt: 'House rules and guidelines for guests',
+  },
+  reviews: {
+    src: 'https://images.unsplash.com/photo-1523206489230-c012c64b2b48?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Reading and evaluating accommodation reviews',
+  },
+  troubleshooting: {
+    src: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Troubleshooting accommodation issues and contacting hosts',
+  },
   healthyliving: {
     src: 'https://images.pexels.com/photos/4056533/pexels-photo-4056533.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
     alt: 'Healthy living with balanced meals, movement, and sunlight',
