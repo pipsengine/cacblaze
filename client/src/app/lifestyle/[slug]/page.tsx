@@ -3409,7 +3409,7 @@ export default async function LifestyleCategoryPage(props: { params: Promise<{ s
                       key={section.title}
                       className="p-6 rounded-2xl bg-gray-50 border border-gray-200"
                     >
-                      <div className="mb-4">
+                      <div className="mb-4 relative h-40 rounded-xl border border-gray-200 bg-white overflow-hidden">
                         <AppImage
                           src={getContextualImage({
                             category: 'lifestyle',
@@ -3421,9 +3421,8 @@ export default async function LifestyleCategoryPage(props: { params: Promise<{ s
                             title: section.title,
                             preferCurated: true,
                           }).alt}
-                          width={800}
-                          height={400}
-                          className="w-full h-40 object-contain rounded-xl border border-gray-200 bg-white"
+                          fill
+                          className=""
                         />
                       </div>
                       <div className="flex items-center justify-between mb-4">
@@ -3458,7 +3457,7 @@ export default async function LifestyleCategoryPage(props: { params: Promise<{ s
                       key={section.title}
                       className="p-6 rounded-2xl bg-gray-50 border border-gray-200"
                     >
-                      <div className="mb-4">
+                      <div className="mb-4 relative h-40 rounded-xl border border-gray-200 bg-white overflow-hidden">
                         <AppImage
                           src={getContextualImage({
                             category: 'lifestyle',
@@ -3470,9 +3469,8 @@ export default async function LifestyleCategoryPage(props: { params: Promise<{ s
                             title: section.title,
                             preferCurated: true,
                           }).alt}
-                          width={800}
-                          height={400}
-                          className="w-full h-40 object-contain rounded-xl border border-gray-200 bg-white"
+                          fill
+                          className=""
                         />
                       </div>
                       <div className="flex items-center justify-between mb-4">
@@ -3507,7 +3505,7 @@ export default async function LifestyleCategoryPage(props: { params: Promise<{ s
                       key={section.title}
                       className="p-6 rounded-2xl bg-gray-50 border border-gray-200"
                     >
-                      <div className="mb-4">
+                      <div className="mb-4 relative h-40 rounded-xl border border-gray-200 bg-white overflow-hidden">
                         <AppImage
                           src={getContextualImage({
                             category: 'lifestyle',
@@ -3519,9 +3517,8 @@ export default async function LifestyleCategoryPage(props: { params: Promise<{ s
                             title: section.title,
                             preferCurated: true,
                           }).alt}
-                          width={800}
-                          height={400}
-                          className="w-full h-40 object-contain rounded-xl border border-gray-200 bg-white"
+                          fill
+                          className=""
                         />
                       </div>
                       <div className="flex items-center justify-between mb-4">
