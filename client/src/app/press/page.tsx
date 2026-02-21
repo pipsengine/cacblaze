@@ -146,10 +146,10 @@ export default function PressPage() {
                     communications team.
                   </p>
                   <a
-                    href="mailto:press@cacblaze.com"
+                    href="mailto:press@cacsms.com"
                     className="block w-full py-3 bg-white border border-gray-200 text-gray-900 font-semibold rounded-lg text-center hover:border-indigo-600 hover:text-indigo-600 transition-colors mb-8"
                   >
-                    press@cacblaze.com
+                    press@cacsms.com
                   </a>
 
                   <h3 className="text-xl font-bold text-gray-900 mb-4">Brand Assets</h3>

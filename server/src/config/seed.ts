@@ -7,7 +7,7 @@ export const seedAdmin = async () => {
       await User.create({
         username: 'cacblaze',
         password: '@dm1n.c0m', // Will be hashed by hooks
-        email: 'admin@cacblaze.com',
+        email: 'admin@cacsms.com',
         role: 'admin',
       });
       console.log('Admin user seeded successfully.');

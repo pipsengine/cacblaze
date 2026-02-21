@@ -30,8 +30,8 @@ export default function LoginPage() {
   };
 
   const demoCredentials = [
-    { email: 'admin@cacblaze.com', password: 'admin123', role: 'Admin' },
-    { email: 'sarah.chen@cacblaze.com', password: 'author123', role: 'Author' },
+    { email: 'admin@cacsms.com', password: 'admin123', role: 'Admin' },
+    { email: 'sarah.chen@cacsms.com', password: 'author123', role: 'Author' },
     { email: 'john.doe@example.com', password: 'user123', role: 'User' },
   ];
 

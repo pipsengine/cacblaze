@@ -217,7 +217,7 @@ export default function TermsPage() {
                 information regarding use of the Service, please contact us at:
               </p>
               <p className="mt-2">
-                <strong>Email:</strong> legal@cacblaze.com
+                <strong>Email:</strong> legal@cacsms.com
                 <br />
                 <strong>Address:</strong> Lagos, Nigeria
               </p>

@@ -43,10 +43,10 @@ export default function ContactPage() {
                     For help with our guides or your account.
                   </p>
                   <a
-                    href="mailto:support@cacblaze.com"
+                    href="mailto:support@cacsms.com"
                     className="text-primary font-semibold hover:underline"
                   >
-                    support@cacblaze.com
+                    support@cacsms.com
                   </a>
                 </div>
 
@@ -59,10 +59,10 @@ export default function ContactPage() {
                     For partnerships and advertising inquiries.
                   </p>
                   <a
-                    href="mailto:partners@cacblaze.com"
+                    href="mailto:partners@cacsms.com"
                     className="text-primary font-semibold hover:underline"
                   >
-                    partners@cacblaze.com
+                    partners@cacsms.com
                   </a>
                 </div>
 

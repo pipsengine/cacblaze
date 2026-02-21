@@ -55,7 +55,7 @@ export default function PrivacyPolicyPage() {
                 <br />
                 Lagos, Nigeria
                 <br />
-                Email: privacy@cacblaze.com
+                Email: privacy@cacsms.com
               </p>
             </section>
 
@@ -178,8 +178,8 @@ export default function PrivacyPolicyPage() {
               </ul>
               <p className="mt-4">
                 To exercise any of these rights, please contact us at{' '}
-                <a href="mailto:privacy@cacblaze.com" className="text-primary hover:underline">
-                  privacy@cacblaze.com
+                <a href="mailto:privacy@cacsms.com" className="text-primary hover:underline">
+                  privacy@cacsms.com
                 </a>
                 . We will respond to your request within 30 days.
               </p>
@@ -270,7 +270,7 @@ export default function PrivacyPolicyPage() {
                 practices, please contact us:
               </p>
               <p className="mt-2">
-                <strong>Email:</strong> privacy@cacblaze.com
+                <strong>Email:</strong> privacy@cacsms.com
                 <br />
                 <strong>Address:</strong> Lagos, Nigeria
               </p>

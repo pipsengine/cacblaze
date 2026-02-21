@@ -162,7 +162,7 @@ export default function CookiePolicyPage() {
                 email us at:
               </p>
               <p className="mt-2">
-                <strong>Email:</strong> privacy@cacblaze.com
+                <strong>Email:</strong> privacy@cacsms.com
               </p>
             </section>
           </div>
