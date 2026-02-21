@@ -53,64 +53,77 @@ export class AIPublishingScheduler {
 
   private scheduleArticleGeneration(): void {
     // Generate articles Monday-Friday at 2:00 AM
-    cron.schedule('0 2 * * 1-5', async () => {
-      try {
-        console.log('Starting scheduled article generation...');
-        
-        if (!this.adminUser) {
-          throw new Error('Admin user not available for article generation');
-        }
-        
-        const article = await this.aiService.generateArticle(this.adminUser);
-        console.log(`Generated article: ${article.title} (ID: ${article.id})`);
-        
-        // Auto-validate and schedule for publishing if validation passes
-        const validationResult = await this.validationService.validateArticle(article);
-        
-        if (validationResult.isValid) {
-          // Schedule for publishing at 8:00 AM
-          const publishDate = new Date();
-          publishDate.setHours(8, 0, 0, 0);
+    setInterval(async () => {
+      const now = new Date();
+      const hour = now.getHours();
+      const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+      
+      // Run only Monday-Friday (1-5) at 2:00 AM
+      if (hour === 2 && day >= 1 && day <= 5) {
+        try {
+          console.log('Starting scheduled article generation...');
           
-          await article.update({
-            status: 'scheduled',
-            scheduled_publish_date: publishDate,
-            validation_passed: true
-          });
+          if (!this.adminUser) {
+            throw new Error('Admin user not available for article generation');
+          }
           
-          console.log(`Article scheduled for publishing at ${publishDate.toLocaleString()}`);
-        } else {
-          console.log(`Article validation failed: ${validationResult.errors?.join(', ')}`);
+          const article = await this.aiService.generateArticle(this.adminUser);
+          console.log(`Generated article: ${article.title} (ID: ${article.id})`);
+          
+          // Auto-validate and schedule for publishing if validation passes
+          const validationResult = await this.validationService.validateArticle(article);
+          
+          if (validationResult.isValid) {
+            // Schedule for publishing at 8:00 AM
+            const publishDate = new Date();
+            publishDate.setHours(8, 0, 0, 0);
+            
+            await article.update({
+              status: 'scheduled',
+              scheduled_publish_date: publishDate,
+              validation_passed: true
+            });
+            
+            console.log(`Article scheduled for publishing at ${publishDate.toLocaleString()}`);
+          } else {
+            console.log(`Article validation failed: ${validationResult.errors?.join(', ')}`);
+          }
+          
+        } catch (error) {
+          console.error('Error in scheduled article generation:', error);
         }
-        
-      } catch (error) {
-        console.error('Error in scheduled article generation:', error);
       }
-    });
+    }, 60 * 60 * 1000); // Check every hour
   }
 
   private scheduleTipGeneration(): void {
     // Generate tips daily at 3:00 AM
-    cron.schedule('0 3 * * *', async () => {
-      try {
-        console.log('Starting scheduled tip generation...');
-        
-        const tip = await this.aiService.generateDailyTip();
-        console.log(`Generated daily tip: ${tip.title} (ID: ${tip.id})`);
-        
-        // Auto-publish tips immediately (they're short and low-risk)
-        await tip.update({ 
-          status: 'published',
-          published_at: new Date(),
-          validation_passed: true
-        });
-        
-        console.log('Daily tip published successfully');
-        
-      } catch (error) {
-        console.error('Error in scheduled tip generation:', error);
+    setInterval(async () => {
+      const now = new Date();
+      const hour = now.getHours();
+      
+      // Run daily at 3:00 AM
+      if (hour === 3) {
+        try {
+          console.log('Starting scheduled tip generation...');
+          
+          const tip = await this.aiService.generateDailyTip();
+          console.log(`Generated daily tip: ${tip.title} (ID: ${tip.id})`);
+          
+          // Auto-publish tips immediately (they're short and low-risk)
+          await tip.update({ 
+            status: 'published',
+            published_at: new Date(),
+            validation_passed: true
+          });
+          
+          console.log('Daily tip published successfully');
+          
+        } catch (error) {
+          console.error('Error in scheduled tip generation:', error);
+        }
       }
-    });
+    }, 60 * 60 * 1000); // Check every hour
   }
 
   private scheduleContentValidation(): void {
@@ -182,7 +195,7 @@ export class AIPublishingScheduler {
       } catch (error) {
         console.error('Error in auto-publishing:', error);
       }
-    });
+    }, 15 * 60 * 1000); // Check every 15 minutes
   }
 
   private async generateSEOMetadata(article: Article): Promise<void> {
