@@ -204,6 +204,41 @@ router.post('/validate-all', async (req, res) => {
   }
 });
 
+// Get published tips for display
+router.get('/tips/published', async (req, res) => {
+  try {
+    const { limit = 7 } = req.query;
+    
+    const tips = await Tip.findAll({
+      where: { 
+        status: 'published',
+        ai_generated: true 
+      },
+      order: [['published_at', 'DESC']],
+      limit: parseInt(limit as string),
+      attributes: [
+        'id',
+        'title', 
+        'content',
+        'category',
+        'published_at',
+        'featured_image',
+        'image_alt'
+      ]
+    });
+    
+    res.json({
+      tips,
+      count: tips.length
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      error: 'Failed to fetch published tips',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 // Get validation report
 router.get('/validation-report', async (req, res) => {
   try {
@@ -349,23 +384,5 @@ router.get('/scheduler/status', async (req, res) => {
     });
   }
 });
-
-// Helper method to get common errors
-private getCommonErrors(contentItems: Array<Article | Tip>): string[] {
-  const errorCounts: Record<string, number> = {};
-  
-  contentItems.forEach(item => {
-    if (item.validation_errors && item.validation_errors.length > 0) {
-      item.validation_errors.forEach(error => {
-        errorCounts[error] = (errorCounts[error] || 0) + 1;
-      });
-    }
-  });
-
-  return Object.entries(errorCounts)
-    .sort(([, a], [, b]) => b - a)
-    .slice(0, 5)
-    .map(([error]) => error);
-}
 
 export default router;

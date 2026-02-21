@@ -1,6 +1,6 @@
 import { Article, ArticleCreationAttributes } from '../articles/Article';
 import { Tip, TipCreationAttributes } from '../tips/Tip';
-import { User } from '../users/User';
+import User from '../users/User';
 import { AIImageIntegrationService, AIImageRequest } from './AIImageIntegrationService';
 
 interface Topic {

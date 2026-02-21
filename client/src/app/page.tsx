@@ -3,6 +3,7 @@ import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import HeroSection from './homepage/components/HeroSection';
 import DomainShowcase from './homepage/components/DomainShowcase';
+import DailyTips from './homepage/components/DailyTips';
 import FeaturedGuides from './homepage/components/FeaturedGuides';
 import SearchShowcase from './homepage/components/SearchShowcase';
 import TrustAuthority from './homepage/components/TrustAuthority';
@@ -23,6 +24,7 @@ export default function RootHomepage() {
       <main className="min-h-screen">
         <HeroSection />
         <DomainShowcase />
+        <DailyTips />
         <ContinueReading />
         <PersonalizedContent />
         <FeaturedGuides />
