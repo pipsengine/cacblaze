@@ -3,7 +3,20 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = (() => {
+  const raw = process.env.NEXT_PUBLIC_API_URL || '';
+  const base = raw.replace(/\/$/, '');
+  if (!base) {
+    if (typeof window !== 'undefined') {
+      // Surface a clear error in the browser console for missing config
+      // IMPORTANT: do not throw here to avoid hydration issues
+      console.error(
+        'Missing NEXT_PUBLIC_API_URL. Auth endpoints will be unavailable until configured.'
+      );
+    }
+  }
+  return base;
+})();
 
 export interface User {
   id: string;
@@ -37,7 +50,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
       setToken(storedToken);
-      fetchUser(storedToken);
+      if (API_URL) {
+        fetchUser(storedToken);
+      } else {
+        setLoading(false);
+      }
     } else {
       setLoading(false);
     }
@@ -65,6 +82,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signIn = async (email: string, password: string) => {
+    if (!API_URL) {
+      throw new Error('API base URL not configured');
+    }
     const res = await fetch(`${API_URL}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -81,6 +101,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signUp = async (email: string, password: string, fullName: string) => {
+    if (!API_URL) {
+      throw new Error('API base URL not configured');
+    }
     const res = await fetch(`${API_URL}/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

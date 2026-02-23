@@ -29,13 +29,22 @@ const PersonalizedContent = () => {
 
   const fetchRecommendations = async () => {
     try {
-      const response = await fetch('/api/recommendations');
-      if (!response.ok) throw new Error('Failed to fetch recommendations');
+      const response = await fetch('/api/recommendations', { cache: 'no-store' });
+      if (!response.ok) {
+        if (response.status === 401) {
+          setRecommendations([]);
+          return;
+        }
+        console.error('Failed to fetch recommendations:', response.status);
+        setRecommendations([]);
+        return;
+      }
 
       const data = await response.json();
       setRecommendations(data.recommendations || []);
     } catch (error) {
       console.error('Error fetching recommendations:', error);
+      setRecommendations([]);
     } finally {
       setLoading(false);
     }

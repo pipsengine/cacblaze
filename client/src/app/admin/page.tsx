@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import Icon from '@/components/ui/AppIcon';
@@ -13,12 +14,29 @@ export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<'users' | 'audit'>('users');
   const [isPermissionsOpen, setIsPermissionsOpen] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+  const { user, userRole, loading } = useAuth();
 
   return (
     <>
       <Header />
       <main className="min-h-screen pt-24 pb-16 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
+          {loading ? (
+            <div className="flex items-center justify-center py-24">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+            </div>
+          ) : !user || userRole !== 'admin' ? (
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-red-50 flex items-center justify-center">
+                <Icon name="ShieldExclamationIcon" size={28} className="text-destructive" />
+              </div>
+              <h2 className="text-2xl font-bold text-foreground mb-2">Access Restricted</h2>
+              <p className="text-secondary">
+                You need an administrator account to view the User Administration dashboard.
+              </p>
+            </div>
+          ) : (
+          <>
           <div className="mb-8 flex items-center justify-between">
             <div>
               <h1 className="text-4xl font-bold text-foreground mb-2">User Administration</h1>
@@ -78,6 +96,8 @@ export default function AdminDashboard() {
               )}
             </div>
           </div>
+          </>
+          )}
         </div>
       </main>
 

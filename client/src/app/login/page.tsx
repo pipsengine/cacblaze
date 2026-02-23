@@ -29,12 +29,6 @@ export default function LoginPage() {
     }
   };
 
-  const demoCredentials = [
-    { email: 'admin@cacsms.com', password: 'admin123', role: 'Admin' },
-    { email: 'sarah.chen@cacsms.com', password: 'author123', role: 'Author' },
-    { email: 'john.doe@example.com', password: 'user123', role: 'User' },
-  ];
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 to-accent/5 px-4">
       <div className="max-w-md w-full">
@@ -111,22 +105,10 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Demo Credentials */}
-        <div className="mt-6 bg-white rounded-2xl shadow-lg p-6">
-          <div className="flex items-center gap-2 mb-4">
-            <Icon name="InformationCircleIcon" size={20} className="text-primary" />
-            <h3 className="font-semibold text-foreground">Demo Credentials</h3>
-          </div>
-          <div className="space-y-3">
-            {demoCredentials.map((cred, index) => (
-              <div key={index} className="p-3 bg-gray-50 rounded-lg">
-                <p className="text-xs font-semibold text-primary mb-1">{cred.role}</p>
-                <p className="text-sm text-foreground font-mono">{cred.email}</p>
-                <p className="text-sm text-secondary font-mono">{cred.password}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Helpful Note */}
+        <p className="mt-6 text-center text-xs text-secondary">
+          Need access? Contact an administrator to be invited.
+        </p>
       </div>
     </div>
   );

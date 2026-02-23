@@ -45,25 +45,12 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
     }
   }, [isAuthorOrAdmin, filter]);
 
-  const checkPermissions = async () => {
+  const checkPermissions = () => {
     if (!user) {
       setIsAuthorOrAdmin(false);
       return;
     }
-
-    try {
-      const { data, error } = await supabase
-        .from('user_profiles')
-        .select('role')
-        .eq('id', user.id)
-        .single();
-
-      if (error) throw error;
-      setIsAuthorOrAdmin(data?.role === 'admin' || data?.role === 'author');
-    } catch (error) {
-      console.error('Error checking permissions:', error);
-      setIsAuthorOrAdmin(false);
-    }
+    setIsAuthorOrAdmin(user.role === 'admin' || user.role === 'author');
   };
 
   const fetchComments = async () => {

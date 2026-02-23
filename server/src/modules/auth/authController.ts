@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { User } from '../../models';
 import { Op } from 'sequelize';
+import { getUserProfileByEmail, upsertUserProfile } from '../../services/supabase';
 
 export const login = async (req: Request, res: Response) => {
   try {
@@ -27,11 +28,21 @@ export const login = async (req: Request, res: Response) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET || 'default_secret_key', {
+    // Overlay role/status from Supabase profile if available
+    let effectiveRole = user.role;
+    const profile = user.email ? await getUserProfileByEmail(user.email) : null;
+    if (profile) {
+      if (profile.is_active === false) {
+        return res.status(403).json({ message: 'Account is inactive. Contact administrator.' });
+      }
+      effectiveRole = profile.role || user.role;
+    }
+
+    const token = jwt.sign({ id: user.id, role: effectiveRole }, process.env.JWT_SECRET || 'default_secret_key', {
       expiresIn: '1d',
     });
 
-    res.json({ token, user: { id: user.id, username: user.username, email: user.email, role: user.role } });
+    res.json({ token, user: { id: user.id, username: user.username, email: user.email, role: effectiveRole } });
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({ message: 'Server error' });
@@ -57,6 +68,21 @@ export const register = async (req: Request, res: Response) => {
       role: 'user'
     });
 
+    // Ensure a Supabase profile exists for admin management
+    try {
+      if (email) {
+        await upsertUserProfile({
+          email,
+          full_name: fullName || finalUsername,
+          role: 'user',
+          is_active: true,
+        });
+      }
+    } catch (e) {
+      // Non-fatal if Supabase is not configured
+      console.error('Profile upsert skipped:', e instanceof Error ? e.message : e);
+    }
+
     const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET || 'default_secret_key', {
       expiresIn: '1d',
     });
@@ -80,7 +106,22 @@ export const getMe = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    res.json(user);
+    // Overlay role/status from Supabase profile if available
+    let result: any = user.toJSON();
+    try {
+      if (result.email) {
+        const profile = await getUserProfileByEmail(result.email);
+        if (profile) {
+          if (profile.is_active === false) {
+            return res.status(403).json({ message: 'Account is inactive. Contact administrator.' });
+          }
+          result.role = profile.role || result.role;
+          result.username = result.username || profile.full_name;
+        }
+      }
+    } catch {}
+
+    res.json(result);
   } catch (error) {
     console.error('Get Me error:', error);
     res.status(500).json({ message: 'Server error' });

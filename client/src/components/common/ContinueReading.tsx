@@ -30,13 +30,22 @@ const ContinueReading = () => {
 
   const fetchProgress = async () => {
     try {
-      const response = await fetch('/api/reading-progress/list');
-      if (!response.ok) throw new Error('Failed to fetch progress');
+      const response = await fetch('/api/reading-progress/list', { cache: 'no-store' });
+      if (!response.ok) {
+        if (response.status === 401) {
+          setProgressItems([]);
+          return;
+        }
+        console.error('Failed to fetch progress:', response.status);
+        setProgressItems([]);
+        return;
+      }
 
       const data = await response.json();
       setProgressItems(data.progress || []);
     } catch (error) {
       console.error('Error fetching progress:', error);
+      setProgressItems([]);
     } finally {
       setLoading(false);
     }

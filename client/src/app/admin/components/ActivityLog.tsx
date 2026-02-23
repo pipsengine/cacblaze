@@ -1,21 +1,66 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { userManagementService } from '@/services/userManagementService';
+import { createClient } from '@/lib/supabase/client';
 import { ActivityLog as ActivityLogType } from '@/types/user';
 import Icon from '@/components/ui/AppIcon';
 
 export default function ActivityLog() {
   const [logs, setLogs] = useState<ActivityLogType[]>([]);
   const [limit, setLimit] = useState(50);
+  const [loading, setLoading] = useState(true);
+  const supabase = createClient();
 
   useEffect(() => {
-    loadLogs();
+    fetchLogs();
   }, [limit]);
 
-  const loadLogs = () => {
-    const activityLogs = userManagementService.getActivityLogs(limit);
-    setLogs(activityLogs);
+  const fetchLogs = async () => {
+    setLoading(true);
+    try {
+      const { data, error } = await supabase
+        .from('audit_logs')
+        .select(
+          `
+          id,
+          action_type,
+          details,
+          created_at,
+          admin_profiles:admin_user_id(full_name,email),
+          target_profiles:target_user_id(full_name,email)
+        `
+        )
+        .order('created_at', { ascending: false })
+        .limit(limit);
+
+      if (error) throw error;
+
+      const mapped: ActivityLogType[] =
+        (data || []).map((row: any) => ({
+          id: row.id,
+          userId: row.admin_user_id || '',
+          userName: row.admin_profiles?.full_name || row.admin_profiles?.email || 'Admin',
+          action: row.action_type.replace(/_/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase()),
+          target:
+            (row.target_profiles &&
+              (row.target_profiles.full_name || row.target_profiles.email)) ||
+            undefined,
+          details:
+            typeof row.details === 'string'
+              ? row.details
+              : row.details
+              ? JSON.stringify(row.details)
+              : undefined,
+          timestamp: row.created_at,
+        })) ?? [];
+
+      setLogs(mapped);
+    } catch (e) {
+      console.error('Failed to load audit logs:', e);
+      setLogs([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const getActionIcon = (action: string) => {
@@ -58,14 +103,20 @@ export default function ActivityLog() {
     });
   };
 
-  const handleClearLogs = () => {
+  const handleClearLogs = async () => {
     if (
-      window.confirm(
+      !window.confirm(
         'Are you sure you want to clear all activity logs? This action cannot be undone.'
       )
     ) {
-      userManagementService.clearActivityLogs();
-      loadLogs();
+      return;
+    }
+    try {
+      const { error } = await supabase.from('audit_logs').delete().neq('id', '');
+      if (error) throw error;
+      fetchLogs();
+    } catch (e) {
+      console.error('Failed to clear audit logs:', e);
     }
   };
 
@@ -98,7 +149,11 @@ export default function ActivityLog() {
       </div>
 
       {/* Activity List */}
-      {logs.length === 0 ? (
+      {loading ? (
+        <div className="flex items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary" />
+        </div>
+      ) : logs.length === 0 ? (
         <div className="text-center py-12">
           <Icon name="ClockIcon" size={48} className="mx-auto text-gray-300 mb-4" />
           <p className="text-secondary">No activity logs found</p>
