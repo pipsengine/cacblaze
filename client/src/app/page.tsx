@@ -4,6 +4,7 @@ import Footer from '@/components/common/Footer';
 import HeroSection from './homepage/components/HeroSection';
 import DomainShowcase from './homepage/components/DomainShowcase';
 import DailyTips from './homepage/components/DailyTips';
+import FeaturedArticle from './homepage/components/FeaturedArticle';
 import FeaturedGuides from './homepage/components/FeaturedGuides';
 import SearchShowcase from './homepage/components/SearchShowcase';
 import TrustAuthority from './homepage/components/TrustAuthority';
@@ -25,6 +26,7 @@ export default function RootHomepage() {
         <HeroSection />
         <DomainShowcase />
         <DailyTips />
+        <FeaturedArticle />
         <ContinueReading />
         <PersonalizedContent />
         <FeaturedGuides />

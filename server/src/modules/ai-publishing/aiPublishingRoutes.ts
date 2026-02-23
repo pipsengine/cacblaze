@@ -385,4 +385,43 @@ router.get('/scheduler/status', async (req, res) => {
   }
 });
 
+// Get published articles
+router.get('/articles/published', async (req, res) => {
+  try {
+    const { limit = 5, offset = 0 } = req.query;
+    
+    const articles = await Article.findAll({
+      where: {
+        status: 'published',
+        ai_generated: true
+      },
+      order: [['published_at', 'DESC']],
+      limit: parseInt(limit as string),
+      offset: parseInt(offset as string),
+      include: [{
+        association: 'author',
+        attributes: ['id', 'username']
+      }]
+    });
+    
+    const totalCount = await Article.count({
+      where: {
+        status: 'published',
+        ai_generated: true
+      }
+    });
+    
+    res.json({
+      articles,
+      total_count: totalCount,
+      has_more: parseInt(offset as string) + articles.length < totalCount
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      error: 'Failed to fetch published articles',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 export default router;
