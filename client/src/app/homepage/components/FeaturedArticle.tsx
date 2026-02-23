@@ -3,9 +3,15 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-const API_URL =
-  process.env.NEXT_PUBLIC_API_URL ||
-  (process.env.NODE_ENV === 'development' ? 'http://localhost:3001/api' : '');
+const API_BASE = (() => {
+  if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
+  if (typeof window !== 'undefined') {
+    const { protocol, hostname } = window.location;
+    const port = 3001;
+    return `${protocol}//${hostname}:${port}/api`;
+  }
+  return '';
+})();
 
 interface Author {
   id: string;
@@ -43,12 +49,12 @@ export default function FeaturedArticle() {
     const fetchFeaturedArticle = async () => {
       try {
         setLoading(true);
-        if (!API_URL) {
+        if (!API_BASE) {
           throw new Error(
             'API base URL is not configured. Set NEXT_PUBLIC_API_URL in environment variables.'
           );
         }
-        const response = await fetch(`${API_URL}/ai-publishing/articles/published?limit=1`, {
+        const response = await fetch(`${API_BASE}/ai-publishing/articles/published?limit=1`, {
           cache: 'no-store',
         });
         
