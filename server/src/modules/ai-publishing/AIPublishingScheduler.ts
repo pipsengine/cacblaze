@@ -3,6 +3,7 @@ import { ContentValidationService } from './ContentValidationService';
 import User from '../users/User';
 import { Article } from '../articles/Article';
 import { Tip } from '../tips/Tip';
+import { CronJob } from 'cron';
 
 export class AIPublishingScheduler {
   private aiService: AIContentService;
@@ -128,7 +129,7 @@ export class AIPublishingScheduler {
 
   private scheduleContentValidation(): void {
     // Validate draft content every hour
-    cron.schedule('0 * * * *', async () => {
+    new CronJob('0 * * * *', async () => {
       try {
         console.log('Running scheduled content validation...');
         
@@ -165,7 +166,7 @@ export class AIPublishingScheduler {
 
   private scheduleAutoPublishing(): void {
     // Check for scheduled content every 15 minutes
-    cron.schedule('*/15 * * * *', async () => {
+    new CronJob('*/15 * * * *', async () => {
       try {
         console.log('Checking for scheduled content to publish...');
         
@@ -195,7 +196,7 @@ export class AIPublishingScheduler {
       } catch (error) {
         console.error('Error in auto-publishing:', error);
       }
-    }, 15 * 60 * 1000); // Check every 15 minutes
+    }); // Check every 15 minutes
   }
 
   private async generateSEOMetadata(article: Article): Promise<void> {

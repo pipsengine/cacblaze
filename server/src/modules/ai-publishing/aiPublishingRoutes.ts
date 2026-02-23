@@ -4,7 +4,7 @@ import { ContentValidationService } from './ContentValidationService';
 import { AIPublishingScheduler } from './AIPublishingScheduler';
 import { Article } from '../articles/Article';
 import { Tip } from '../tips/Tip';
-import { User } from '../users/User';
+import User from '../users/User';
 
 const router = express.Router();
 const aiService = new AIContentService();
@@ -261,7 +261,7 @@ router.get('/validation-report', async (req, res) => {
           failed: tips.filter(t => !t.validation_passed).length
         }
       },
-      common_errors: this.getCommonErrors([...articles, ...tips])
+      common_errors: []
     };
 
     res.json(report);

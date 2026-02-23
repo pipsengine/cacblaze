@@ -121,6 +121,7 @@ ${topic.title} offers significant opportunities when approached with proper plan
 
     // Generate appropriate image for this content
     const imageRequest: AIImageRequest = {
+      prompt: `Generate image for article about ${topic.title}`,
       category: topic.category.toLowerCase(),
       title: topic.title,
       content: content,
@@ -129,10 +130,10 @@ ${topic.title} offers significant opportunities when approached with proper plan
       contentType: 'article'
     };
 
-    const imageResponse = await this.imageService.getImageForContent(imageRequest);
+    const imageResponse = await AIImageIntegrationService.getImageForContent(imageRequest);
 
     const articleData: ArticleCreationAttributes = {
-      author_id: adminUser.id,
+      author_id: adminUser.id.toString(),
       title: topic.title,
       slug: this.generateSlug(topic.title),
       content: content,
@@ -146,7 +147,7 @@ ${topic.title} offers significant opportunities when approached with proper plan
       readability_score: this.calculateReadability(content),
       ai_generated: true,
       validation_passed: false,
-      featured_image: imageResponse.imageUrl,
+      featured_image_url: imageResponse.imageUrl,
       image_alt: imageResponse.altText
     };
 
@@ -163,6 +164,7 @@ For better ${topic.toLowerCase()} management, try setting specific daily goals a
 
     // Generate appropriate image for this tip
     const imageRequest: AIImageRequest = {
+      prompt: `Generate image for daily tip about ${topic}`,
       category: topic.toLowerCase(),
       title: `Daily ${topic} Tip`,
       content: content,
@@ -170,7 +172,7 @@ For better ${topic.toLowerCase()} management, try setting specific daily goals a
       contentType: 'tip'
     };
 
-    const imageResponse = await this.imageService.getImageForContent(imageRequest);
+    const imageResponse = await AIImageIntegrationService.getImageForContent(imageRequest);
 
     const tipData: TipCreationAttributes = {
       title: `Daily ${topic} Tip`,
