@@ -173,18 +173,26 @@ const nextConfig = {
     ];
   },
   async rewrites() {
+    const rules = [];
     if (process.env.NODE_ENV === 'development') {
-      return [
-        {
-          source: '/api/ai-publishing/:path*',
-          destination: 'http://localhost:3001/api/ai-publishing/:path*',
-        },
-      ];
+      rules.push({
+        source: '/api/ai-publishing/:path*',
+        destination: 'http://localhost:3001/api/ai-publishing/:path*',
+      });
     }
-    return [];
+    if (process.env.NEXT_PUBLIC_API_URL) {
+      try {
+        const u = new URL(process.env.NEXT_PUBLIC_API_URL);
+        const basePath = u.pathname.replace(/\/+$/, '');
+        rules.push({
+          source: '/api/ai-publishing/:path*',
+          destination: `${u.origin}${basePath}/ai-publishing/:path*`,
+        });
+      } catch {}
+    }
+    return rules;
   }
 ,
-  // Silence root inference warning by explicitly setting the project root
   turbopack: {
     root: path.resolve(__dirname, '..'),
   },
