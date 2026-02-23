@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import { connectDB } from './config/database';
 import { seedAdmin } from './config/seed';
 import routes from './routes';
+import { runSupabaseBootstrap } from './services/supabaseBootstrap';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -17,6 +18,7 @@ app.use(express.json()); // Parse JSON bodies
 
 // Database Connection
 const init = async () => {
+  await runSupabaseBootstrap();
   await connectDB();
   await seedAdmin();
 };
