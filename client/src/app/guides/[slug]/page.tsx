@@ -23,7 +23,9 @@ import {
   generateBreadcrumbSchema,
 } from '@/utils/schemaMarkup';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  (process.env.NODE_ENV === 'development' ? 'http://localhost:3001/api' : '');
 
 interface Article {
   id: string;
@@ -51,7 +53,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   try {
-    const response = await fetch(`${API_URL}/ai-publishing/articles/slug/${slug}`);
+    const response = await fetch(`${API_URL}/ai-publishing/articles/slug/${slug}`, {
+      cache: 'no-store',
+    });
     
     if (!response.ok) {
       return {
@@ -75,7 +79,9 @@ export async function generateMetadata({
 
 async function fetchArticle(slug: string): Promise<Article | null> {
   try {
-    const response = await fetch(`${API_URL}/ai-publishing/articles/slug/${slug}`);
+    const response = await fetch(`${API_URL}/ai-publishing/articles/slug/${slug}`, {
+      cache: 'no-store',
+    });
     
     if (!response.ok) {
       return null;
@@ -104,18 +110,54 @@ function parseMarkdownToSections(markdown: string) {
   const usedIds = new Set<string>();
 
   const toHtml = (text: string) => {
-    const paragraphs = text
-      .split(/\n{2,}/)
-      .map((p) => p.trim())
-      .filter(Boolean)
-      .map((p) =>
-        p
-          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-          .replace(/`([^`]+)`/g, '<code>$1</code>')
-      )
-      .map((p) => `<p>${p}</p>`)
-      .join('');
-    return paragraphs || '';
+    const lines = text.split('\n');
+    let html = '';
+    let inUL = false;
+    let inOL = false;
+    const closeLists = () => {
+      if (inUL) {
+        html += '</ul>';
+        inUL = false;
+      }
+      if (inOL) {
+        html += '</ol>';
+        inOL = false;
+      }
+    };
+    const fmt = (s: string) =>
+      s
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+    for (const raw of lines) {
+      const line = raw.trim();
+      if (!line) {
+        closeLists();
+        continue;
+      }
+      if (/^[-*]\s+/.test(line)) {
+        if (!inUL) {
+          closeLists();
+          html += '<ul>';
+          inUL = true;
+        }
+        html += `<li>${fmt(line.replace(/^[-*]\s+/, ''))}</li>`;
+        continue;
+      }
+      if (/^\d+\.\s+/.test(line)) {
+        if (!inOL) {
+          closeLists();
+          html += '<ol>';
+          inOL = true;
+        }
+        html += `<li>${fmt(line.replace(/^\d+\.\s+/, ''))}</li>`;
+        continue;
+      }
+      closeLists();
+      html += `<p>${fmt(line)}</p>`;
+    }
+    closeLists();
+    return html || '';
   };
 
   const uniqueId = (title: string) => {

@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  (process.env.NODE_ENV === 'development' ? 'http://localhost:3001/api' : '');
 
 interface Tip {
   id: string;
@@ -28,7 +30,14 @@ export default function DailyTips() {
     const fetchDailyTips = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${API_URL}/ai-publishing/tips/published?limit=7`);
+        if (!API_URL) {
+          throw new Error(
+            'API base URL is not configured. Set NEXT_PUBLIC_API_URL in environment variables.'
+          );
+        }
+        const response = await fetch(`${API_URL}/ai-publishing/tips/published?limit=7`, {
+          cache: 'no-store',
+        });
         
         if (!response.ok) {
           throw new Error('Failed to fetch daily tips');
@@ -64,7 +73,13 @@ export default function DailyTips() {
     return (
       <section className="bg-white rounded-lg shadow-md p-6 mb-8">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">Daily Tips</h2>
-        <p className="text-red-500">Unable to load daily tips. Please try again later.</p>
+        <p className="text-red-500">
+          Unable to load daily tips. {process.env.NODE_ENV !== 'development' && !API_URL ? (
+            <>Set NEXT_PUBLIC_API_URL in your deployment to the server API base URL.</>
+          ) : (
+            <>Please try again later.</>
+          )}
+        </p>
       </section>
     );
   }
