@@ -83,15 +83,16 @@ export default function DailyTips() {
   const previousTips = tips.slice(1);
 
   return (
-    <section className="bg-white rounded-lg shadow-md p-6 mb-8">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">
-        💡 Daily Tips & Insights
-      </h2>
+    <section className="bg-gradient-to-r from-green-50 to-emerald-50 py-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <h2 className="text-2xl font-bold text-gray-800 mb-6">
+          💡 Daily Tips & Insights
+        </h2>
       
-      {/* Today's Featured Tip */}
-      <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r">
-        <div className="flex items-start mb-3">
-          <span className="bg-blue-500 text-white px-2 py-1 rounded text-sm font-medium mr-3">
+      {/* Today's Featured Tip Card */}
+      <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100 mb-6">
+        <div className="flex items-center justify-between mb-4">
+          <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-1 rounded-full text-sm font-medium">
             TODAY'S TIP
           </span>
           <span className="text-sm text-gray-500">
@@ -99,16 +100,16 @@ export default function DailyTips() {
           </span>
         </div>
         
-        <h3 className="text-lg font-semibold text-gray-800 mb-2">
+        <h3 className="text-xl font-bold text-gray-800 mb-3">
           {todaysTip.title}
         </h3>
         
-        <p className="text-gray-700 leading-relaxed">
+        <p className="text-gray-700 leading-relaxed mb-4">
           {todaysTip.content}
         </p>
         
         {todaysTip.featured_image && (
-          <div className="mt-3">
+          <div className="mb-4">
             <img 
               src={todaysTip.featured_image} 
               alt={todaysTip.image_alt || todaysTip.title}
@@ -117,39 +118,51 @@ export default function DailyTips() {
           </div>
         )}
         
-        <div className="mt-3">
-          <span className="inline-block bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs font-medium">
+        <div className="flex items-center justify-between">
+          <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
             {todaysTip.category}
           </span>
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+            <span className="text-sm text-gray-500">Live</span>
+          </div>
         </div>
       </div>
 
-      {/* Previous Tips */}
+      {/* Previous Tips Grid */}
       {previousTips.length > 0 && (
         <div>
-          <h4 className="font-semibold text-gray-700 mb-3">Recent Tips</h4>
-          <div className="space-y-3">
+          <h4 className="font-semibold text-gray-700 mb-4 text-lg">Recent Tips</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {previousTips.map((tip) => (
-              <div key={tip.id} className="border-b border-gray-100 pb-3 last:border-b-0">
-                <div className="flex justify-between items-start mb-1">
-                  <h5 className="font-medium text-gray-800 text-sm">
+              <div key={tip.id} className="bg-white rounded-lg shadow-sm p-4 border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="flex justify-between items-start mb-2">
+                  <h5 className="font-semibold text-gray-800 text-sm line-clamp-2">
                     {tip.title}
                   </h5>
-                  <span className="text-xs text-gray-400">
+                  <span className="text-xs text-gray-400 whitespace-nowrap">
                     {new Date(tip.published_at).toLocaleDateString()}
                   </span>
                 </div>
-                <p className="text-gray-600 text-sm line-clamp-2">
+                
+                <p className="text-gray-600 text-sm line-clamp-3 mb-3 leading-relaxed">
                   {tip.content}
                 </p>
-                <span className="inline-block bg-gray-100 text-gray-500 px-2 py-1 rounded text-xs font-medium mt-1">
-                  {tip.category}
-                </span>
+                
+                <div className="flex items-center justify-between">
+                  <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
+                    {tip.category}
+                  </span>
+                  <span className="text-xs text-gray-400">
+                    {tip.content.split(' ').length} words
+                  </span>
+                </div>
               </div>
             ))}
           </div>
         </div>
       )}
+      </div>
     </section>
   );
 }

@@ -67,13 +67,15 @@ export default function FeaturedArticle() {
 
   if (loading) {
     return (
-      <section className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-md p-6 mb-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">📖 Today's Featured Article</h2>
-        <div className="animate-pulse">
-          <div className="h-48 bg-gray-200 rounded-lg mb-4"></div>
-          <div className="h-6 bg-gray-200 rounded mb-3"></div>
-          <div className="h-4 bg-gray-200 rounded mb-3"></div>
-          <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+      <section className="bg-gradient-to-r from-blue-50 to-indigo-50 py-12">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">📖 Today's Featured Article</h2>
+          <div className="animate-pulse">
+            <div className="h-48 bg-gray-200 rounded-lg mb-4"></div>
+            <div className="h-6 bg-gray-200 rounded mb-3"></div>
+            <div className="h-4 bg-gray-200 rounded mb-3"></div>
+            <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+          </div>
         </div>
       </section>
     );
@@ -81,18 +83,22 @@ export default function FeaturedArticle() {
 
   if (error) {
     return (
-      <section className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-md p-6 mb-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">📖 Today's Featured Article</h2>
-        <p className="text-red-500">Unable to load featured article. Please try again later.</p>
+      <section className="bg-gradient-to-r from-blue-50 to-indigo-50 py-12">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">📖 Today's Featured Article</h2>
+          <p className="text-red-500">Unable to load featured article. Please try again later.</p>
+        </div>
       </section>
     );
   }
 
   if (!article) {
     return (
-      <section className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-md p-6 mb-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">📖 Today's Featured Article</h2>
-        <p className="text-gray-500">No featured articles available yet. Check back later for new content!</p>
+      <section className="bg-gradient-to-r from-blue-50 to-indigo-50 py-12">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">📖 Today's Featured Article</h2>
+          <p className="text-gray-500">No featured articles available yet. Check back later for new content!</p>
+        </div>
       </section>
     );
   }
@@ -103,10 +109,11 @@ export default function FeaturedArticle() {
   };
 
   return (
-    <section className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-md p-6 mb-8">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">
-        📖 Today's Featured Article
-      </h2>
+    <section className="bg-gradient-to-r from-blue-50 to-indigo-50 py-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <h2 className="text-2xl font-bold text-gray-800 mb-6">
+          📖 Today's Featured Article
+        </h2>
       
       <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
         <div className="flex flex-col md:flex-row gap-6">
@@ -170,6 +177,7 @@ export default function FeaturedArticle() {
             {article.category}
           </span>
         </div>
+      </div>
       </div>
     </section>
   );
