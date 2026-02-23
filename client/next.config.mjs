@@ -1,3 +1,7 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   productionBrowserSourceMaps: true,
@@ -168,6 +172,11 @@ const nextConfig = {
       },
     ];
   }
+,
+  // Silence root inference warning by explicitly setting the project root
+  turbopack: {
+    root: path.resolve(__dirname, '..'),
+  },
 };
 
 export default nextConfig;
