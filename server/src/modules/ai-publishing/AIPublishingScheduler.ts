@@ -4,6 +4,7 @@ import User from '../users/User';
 import { Article } from '../articles/Article';
 import { Tip } from '../tips/Tip';
 import { CronJob } from 'cron';
+import { Op } from 'sequelize';
 
 export class AIPublishingScheduler {
   private aiService: AIContentService;
@@ -43,9 +44,7 @@ export class AIPublishingScheduler {
         username: 'ai-publisher',
         email: 'ai-publisher@cacblaze.com',
         password: 'auto-generated-password', // Should be hashed in production
-        role: 'admin',
-        is_verified: true,
-        profile_completed: true
+        role: 'admin'
       });
     }
     
@@ -129,7 +128,7 @@ export class AIPublishingScheduler {
 
   private scheduleContentValidation(): void {
     // Validate draft content every hour
-    new CronJob('0 * * * *', async () => {
+    const job = new CronJob('0 * * * *', async () => {
       try {
         console.log('Running scheduled content validation...');
         
@@ -162,11 +161,12 @@ export class AIPublishingScheduler {
         console.error('Error in scheduled content validation:', error);
       }
     });
+    job.start();
   }
 
   private scheduleAutoPublishing(): void {
     // Check for scheduled content every 15 minutes
-    new CronJob('*/15 * * * *', async () => {
+    const job = new CronJob('*/15 * * * *', async () => {
       try {
         console.log('Checking for scheduled content to publish...');
         
@@ -175,7 +175,7 @@ export class AIPublishingScheduler {
           where: {
             status: 'scheduled',
             scheduled_publish_date: {
-              [Symbol.for('lte')]: now
+              [Op.lte]: now
             },
             validation_passed: true
           }
@@ -197,6 +197,7 @@ export class AIPublishingScheduler {
         console.error('Error in auto-publishing:', error);
       }
     }); // Check every 15 minutes
+    job.start();
   }
 
   private async generateSEOMetadata(article: Article): Promise<void> {
