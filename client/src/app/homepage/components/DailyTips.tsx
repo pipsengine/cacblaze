@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+
 interface Tip {
   id: string;
   title: string;
@@ -26,7 +28,7 @@ export default function DailyTips() {
     const fetchDailyTips = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/ai-publishing/tips/published?limit=7');
+        const response = await fetch(`${API_URL}/ai-publishing/tips/published?limit=7`);
         
         if (!response.ok) {
           throw new Error('Failed to fetch daily tips');
