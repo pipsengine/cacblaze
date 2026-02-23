@@ -101,6 +101,7 @@ function parseMarkdownToSections(markdown: string) {
   const lines = (markdown || '').split('\n');
   const sections: Array<{ id: string; title: string; level: number; content: string }> = [];
   let current: { id: string; title: string; level: number; content: string } | null = null;
+  const usedIds = new Set<string>();
 
   const toHtml = (text: string) => {
     const paragraphs = text
@@ -117,6 +118,17 @@ function parseMarkdownToSections(markdown: string) {
     return paragraphs || '';
   };
 
+  const uniqueId = (title: string) => {
+    let base = slugify(title);
+    let id = base;
+    let i = 2;
+    while (usedIds.has(id)) {
+      id = `${base}-${i++}`;
+    }
+    usedIds.add(id);
+    return id;
+  };
+
   const flush = () => {
     if (current) {
       current.content = toHtml(current.content.trim());
@@ -129,15 +141,14 @@ function parseMarkdownToSections(markdown: string) {
     if (line.startsWith('## ')) {
       flush();
       const title = line.replace(/^##\s+/, '').trim();
-      current = { id: slugify(title), title, level: 2, content: '' };
+      current = { id: uniqueId(title), title, level: 2, content: '' };
     } else if (line.startsWith('### ')) {
       flush();
       const title = line.replace(/^###\s+/, '').trim();
-      current = { id: slugify(title), title, level: 3, content: '' };
+      current = { id: uniqueId(title), title, level: 3, content: '' };
     } else {
       if (!current) {
-        // Create a default section for content before first heading
-        current = { id: slugify('introduction'), title: 'Introduction', level: 2, content: '' };
+        current = { id: uniqueId('introduction'), title: 'Introduction', level: 2, content: '' };
       }
       current.content += line + '\n';
     }
@@ -146,7 +157,7 @@ function parseMarkdownToSections(markdown: string) {
 
   if (sections.length === 0) {
     sections.push({
-      id: slugify('introduction'),
+      id: uniqueId('introduction'),
       title: 'Introduction',
       level: 2,
       content: markdown || '',
