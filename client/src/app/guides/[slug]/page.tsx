@@ -88,13 +88,110 @@ async function fetchArticle(slug: string): Promise<Article | null> {
   }
 }
 
+function slugify(text: string) {
+  return (text || '')
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+    .substring(0, 100);
+}
+
+function parseMarkdownToSections(markdown: string) {
+  const lines = (markdown || '').split('\n');
+  const sections: Array<{ id: string; title: string; level: number; content: string }> = [];
+  let current: { id: string; title: string; level: number; content: string } | null = null;
+
+  const toHtml = (text: string) => {
+    const paragraphs = text
+      .split(/\n{2,}/)
+      .map((p) => p.trim())
+      .filter(Boolean)
+      .map((p) =>
+        p
+          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+          .replace(/`([^`]+)`/g, '<code>$1</code>')
+      )
+      .map((p) => `<p>${p}</p>`)
+      .join('');
+    return paragraphs || '';
+  };
+
+  const flush = () => {
+    if (current) {
+      current.content = toHtml(current.content.trim());
+      sections.push(current);
+      current = null;
+    }
+  };
+
+  for (const line of lines) {
+    if (line.startsWith('## ')) {
+      flush();
+      const title = line.replace(/^##\s+/, '').trim();
+      current = { id: slugify(title), title, level: 2, content: '' };
+    } else if (line.startsWith('### ')) {
+      flush();
+      const title = line.replace(/^###\s+/, '').trim();
+      current = { id: slugify(title), title, level: 3, content: '' };
+    } else {
+      if (!current) {
+        // Create a default section for content before first heading
+        current = { id: slugify('introduction'), title: 'Introduction', level: 2, content: '' };
+      }
+      current.content += line + '\n';
+    }
+  }
+  flush();
+
+  if (sections.length === 0) {
+    sections.push({
+      id: slugify('introduction'),
+      title: 'Introduction',
+      level: 2,
+      content: markdown || '',
+    });
+  }
+
+  const toc = sections.map((s) => ({ id: s.id, title: s.title, level: s.level }));
+  return { sections, toc };
+}
+
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const article = await fetchArticle(slug);
+  let article: any = await fetchArticle(slug);
 
   if (!article) {
     notFound();
   }
+
+  const wordCount = (article.content || '').split(/\s+/).filter(Boolean).length;
+  const readTime = `${Math.max(1, Math.ceil(wordCount / 200))} min`;
+  const excerpt = article.meta_description || (article.content || '').replace(/\s+/g, ' ').slice(0, 200);
+  const { sections, toc } = parseMarkdownToSections(article.content || '');
+
+  article = {
+    ...article,
+    excerpt,
+    publishDate: article.published_at,
+    lastUpdated: article.updatedAt || article.updated_at || article.published_at,
+    heroImage: article.featured_image_url,
+    heroImageAlt: article.image_alt || `${article.title} - illustration`,
+    readTime,
+    author: {
+      name: article.author?.username || article.author?.name || 'AI Publisher',
+      title: 'Staff Writer',
+      bio: 'Writes practical, context-aware guides for African audiences.',
+      expertise: ['Guides', 'How-To'],
+      articlesCount: 0,
+      verified: true,
+      image: article.author?.avatar_url,
+      imageAlt: (article.author?.username || article.author?.name || 'Author') + ' avatar',
+    },
+    sections,
+    tableOfContents: toc,
+    faqs: Array.isArray(article.faqs) ? article.faqs : [],
+  };
 
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
@@ -116,14 +213,14 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     category: article.category,
     heroImage: article.heroImage,
     heroImageAlt: article.heroImageAlt,
-    slug: params.slug,
+    slug: slug,
   });
 
   const faqSchema = generateFAQSchema(article.faqs || []);
   const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbSchemaItems);
   const jsonLd = [articleSchema, faqSchema, breadcrumbSchema];
 
-  const mappedFaqs = (article.faqs || []).map((faq, index) => ({
+  const mappedFaqs = (article.faqs || []).map((faq: any, index: number) => ({
     id: `faq-${index}`,
     question: faq.question,
     answer: faq.answer,
