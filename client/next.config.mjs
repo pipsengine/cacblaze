@@ -171,6 +171,17 @@ const nextConfig = {
         permanent: false,
       },
     ];
+  },
+  async rewrites() {
+    if (process.env.NODE_ENV === 'development') {
+      return [
+        {
+          source: '/api/ai-publishing/:path*',
+          destination: 'http://localhost:3001/api/ai-publishing/:path*',
+        },
+      ];
+    }
+    return [];
   }
 ,
   // Silence root inference warning by explicitly setting the project root

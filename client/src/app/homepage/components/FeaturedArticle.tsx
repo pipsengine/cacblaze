@@ -3,15 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-const API_BASE = (() => {
-  if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
-  if (typeof window !== 'undefined') {
-    const { protocol, hostname } = window.location;
-    const port = 3001;
-    return `${protocol}//${hostname}:${port}/api`;
-  }
-  return '';
-})();
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
 
 interface Author {
   id: string;
