@@ -28,7 +28,7 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
       { rootMargin: '-100px 0px -80% 0px' }
     );
 
-    items.forEach((item) => {
+    (items || []).forEach((item) => {
       const element = document.getElementById(item.id);
       if (element) observer.observe(element);
     });
@@ -58,7 +58,7 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
           </h3>
         </div>
         <nav className="space-y-2">
-          {items.map((item) => {
+          {(items || []).map((item) => {
             const isActive = activeId === item.id;
             const paddingLeft = (item.level - 2) * 12;
 

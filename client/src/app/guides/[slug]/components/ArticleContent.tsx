@@ -9,7 +9,7 @@ interface ArticleContentProps {
 const ArticleContent = ({ sections }: ArticleContentProps) => {
   return (
     <div className="space-y-8">
-      {sections.map((section) => (
+      {(sections || []).map((section) => (
         <div
           key={section.id}
           id={section.id}

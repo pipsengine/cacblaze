@@ -51,16 +51,18 @@ function AppImage({
   }, [src]);
 
   // More reliable external URL detection
-  const isExternal = imageSrc.startsWith('http://') || imageSrc.startsWith('https://');
+  const isExternal = imageSrc && (imageSrc.startsWith('http://') || imageSrc.startsWith('https://'));
   const isLocal =
-    imageSrc.startsWith('/') || imageSrc.startsWith('./') || imageSrc.startsWith('data:');
+    imageSrc && (imageSrc.startsWith('/') || imageSrc.startsWith('./') || imageSrc.startsWith('data:'));
 
   // Check if the domain is allowed in next.config.mjs for optimization
   const isOptimizedDomain =
-    imageSrc.includes('images.unsplash.com') ||
-    imageSrc.includes('images.pexels.com') ||
-    imageSrc.includes('images.pixabay.com') ||
-    imageSrc.includes('img.rocket.new');
+    imageSrc && (
+      imageSrc.includes('images.unsplash.com') ||
+      imageSrc.includes('images.pexels.com') ||
+      imageSrc.includes('images.pixabay.com') ||
+      imageSrc.includes('img.rocket.new')
+    );
 
   const handleError = () => {
     const isCurrentlyProxied = imageSrc.startsWith('/api/image-proxy?url=');
@@ -142,7 +144,7 @@ function AppImage({
 
   return (
     (() => {
-      const resolvedSrc = imageSrc.startsWith('/api/image-proxy?url=')
+      const resolvedSrc = imageSrc && imageSrc.startsWith('/api/image-proxy?url=')
         ? imageSrc
         : imageSrc;
       return (

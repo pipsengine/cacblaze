@@ -47,10 +47,11 @@ interface Article {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
+  const { slug } = await params;
   try {
-    const response = await fetch(`${API_URL}/ai-publishing/articles/slug/${params.slug}`);
+    const response = await fetch(`${API_URL}/ai-publishing/articles/slug/${slug}`);
     
     if (!response.ok) {
       return {
@@ -87,8 +88,9 @@ async function fetchArticle(slug: string): Promise<Article | null> {
   }
 }
 
-export default async function ArticlePage({ params }: { params: { slug: string } }) {
-  const article = await fetchArticle(params.slug);
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const article = await fetchArticle(slug);
 
   if (!article) {
     notFound();
@@ -121,7 +123,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
   const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbSchemaItems);
   const jsonLd = [articleSchema, faqSchema, breadcrumbSchema];
 
-  const mappedFaqs = article.faqs.map((faq, index) => ({
+  const mappedFaqs = (article.faqs || []).map((faq, index) => ({
     id: `faq-${index}`,
     question: faq.question,
     answer: faq.answer,
