@@ -65,9 +65,9 @@ function AppImage({
     );
 
   const handleError = () => {
-    const isCurrentlyProxied = imageSrc.startsWith('/api/image-proxy?url=');
+    const isCurrentlyProxied = imageSrc && imageSrc.startsWith('/api/image-proxy?url=');
     if (isExternal && !isCurrentlyProxied && !triedProxy) {
-      const proxiedCurrent = `/api/image-proxy?url=${encodeURIComponent(imageSrc)}`;
+      const proxiedCurrent = `/api/image-proxy?url=${encodeURIComponent(imageSrc || '')}`;
       setImageSrc(proxiedCurrent);
       setTriedProxy(true);
       return;
@@ -122,9 +122,9 @@ function AppImage({
         style={{ width: width || '100%', height: height || '100%' }}
       >
         {(() => {
-          const resolvedSrc = imageSrc.startsWith('/api/image-proxy?url=')
-            ? imageSrc
-            : imageSrc;
+          const baseSrc = imageSrc && imageSrc.length > 0 ? imageSrc : fallbackSrc;
+          const resolvedSrc =
+            baseSrc && baseSrc.startsWith('/api/image-proxy?url=') ? baseSrc : baseSrc;
           return (
         <img
           src={resolvedSrc}
@@ -144,9 +144,9 @@ function AppImage({
 
   return (
     (() => {
-      const resolvedSrc = imageSrc && imageSrc.startsWith('/api/image-proxy?url=')
-        ? imageSrc
-        : imageSrc;
+      const baseSrc = imageSrc && imageSrc.length > 0 ? imageSrc : fallbackSrc;
+      const resolvedSrc =
+        baseSrc && baseSrc.startsWith('/api/image-proxy?url=') ? baseSrc : baseSrc;
       return (
     <img
       src={resolvedSrc}
