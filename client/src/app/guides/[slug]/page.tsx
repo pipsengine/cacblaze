@@ -22,30 +22,73 @@ import {
   generateFAQSchema,
   generateBreadcrumbSchema,
 } from '@/utils/schemaMarkup';
-import { articles } from '@/data/articles';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+
+interface Article {
+  id: string;
+  slug: string;
+  title: string;
+  content: string;
+  meta_description: string;
+  category: string;
+  type: string;
+  geo_focus: string;
+  published_at: string;
+  featured_image_url?: string;
+  image_alt?: string;
+  author?: {
+    id: string;
+    name: string;
+    avatar_url?: string;
+  };
+}
 
 export async function generateMetadata({
   params,
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const article = articles[params.slug];
+  try {
+    const response = await fetch(`${API_URL}/ai-publishing/articles/slug/${params.slug}`);
+    
+    if (!response.ok) {
+      return {
+        title: 'Article Not Found',
+      };
+    }
+    
+    const article: Article = await response.json();
 
-  if (!article) {
+    return {
+      title: `${article.title} - CACBLAZE`,
+      description: article.meta_description || article.content.substring(0, 160),
+      keywords: `${article.category}, guide, tutorial, ${article.title}`,
+    };
+  } catch (error) {
     return {
       title: 'Article Not Found',
     };
   }
-
-  return {
-    title: `${article.title} - CACBLAZE`,
-    description: article.excerpt,
-    keywords: `${article.category}, guide, tutorial, ${article.title}`,
-  };
 }
 
-export default function ArticlePage({ params }: { params: { slug: string } }) {
-  const article = articles[params.slug];
+async function fetchArticle(slug: string): Promise<Article | null> {
+  try {
+    const response = await fetch(`${API_URL}/ai-publishing/articles/slug/${slug}`);
+    
+    if (!response.ok) {
+      return null;
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching article:', error);
+    return null;
+  }
+}
+
+export default async function ArticlePage({ params }: { params: { slug: string } }) {
+  const article = await fetchArticle(params.slug);
 
   if (!article) {
     notFound();
@@ -74,7 +117,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     slug: params.slug,
   });
 
-  const faqSchema = generateFAQSchema(article.faqs);
+  const faqSchema = generateFAQSchema(article.faqs || []);
   const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbSchemaItems);
   const jsonLd = [articleSchema, faqSchema, breadcrumbSchema];
 

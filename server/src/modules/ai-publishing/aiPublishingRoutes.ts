@@ -424,4 +424,35 @@ router.get('/articles/published', async (req, res) => {
   }
 });
 
+// Get article by slug
+router.get('/articles/slug/:slug', async (req, res) => {
+  try {
+    const { slug } = req.params;
+    
+    const article = await Article.findOne({
+      where: {
+        slug: slug,
+        status: 'published'
+      },
+      include: [{
+        association: 'author',
+        attributes: ['id', 'username'] // Removed avatar_url as it doesn't exist
+      }]
+    });
+    
+    if (!article) {
+      return res.status(404).json({ 
+        error: 'Article not found' 
+      });
+    }
+    
+    res.json(article);
+  } catch (error) {
+    res.status(500).json({ 
+      error: 'Failed to fetch article',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 export default router;
