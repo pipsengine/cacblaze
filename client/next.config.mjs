@@ -173,24 +173,15 @@ const nextConfig = {
     ];
   },
   async rewrites() {
-    const rules = [];
     if (process.env.NODE_ENV === 'development') {
-      rules.push({
-        source: '/api/ai-publishing/:path*',
-        destination: 'http://localhost:3001/api/ai-publishing/:path*',
-      });
-    }
-    if (process.env.NEXT_PUBLIC_API_URL) {
-      try {
-        const u = new URL(process.env.NEXT_PUBLIC_API_URL);
-        const basePath = u.pathname.replace(/\/+$/, '');
-        rules.push({
+      return [
+        {
           source: '/api/ai-publishing/:path*',
-          destination: `${u.origin}${basePath}/ai-publishing/:path*`,
-        });
-      } catch {}
+          destination: 'http://localhost:3001/api/ai-publishing/:path*',
+        },
+      ];
     }
-    return rules;
+    return [];
   }
 ,
   turbopack: {
