@@ -203,7 +203,6 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
   const { educationHubData } = await import('@/data/education-hub');
   const React = await import('react');
   const { menuData } = await import('@/data/menuData');
-  const { default: AppImage } = await import('@/components/ui/AppImage');
   const { getContextualImage } = await import('@/utils/imageService');
 
   const category = (educationHubData as any)[slug];
@@ -237,12 +236,12 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
                   height: 500,
                   preferCurated: false,
                 });
-                return React.createElement(AppImage, {
-                  src: r.heroImage,
+                const src = r.heroImage || contextual.src;
+                return React.createElement('img', {
+                  src,
                   alt: r.name,
-                  fill: true,
-                  className: 'object-cover',
-                  fallbackSrc: contextual.src,
+                  className: 'absolute inset-0 w-full h-full object-cover',
+                  loading: 'lazy',
                 });
               })()
             ),
@@ -1450,14 +1449,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
                 className:
                   'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
               },
-              React.createElement(AppImage, {
+              React.createElement('img', {
                 src: contextual.src || fallback,
                 alt: contextual.alt,
-                fill: true,
-                className: 'object-cover',
-                priority: true,
-                fallbackSrc: fallback,
-                secondaryFallbackSrc: '/assets/images/no_image.png',
+                className: 'absolute inset-0 w-full h-full object-cover',
+                loading: 'eager',
               })
             );
           })(),
@@ -1497,14 +1493,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
                 className:
                   'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
               },
-              React.createElement(AppImage, {
+              React.createElement('img', {
                 src: contextual.src || fallback,
                 alt: contextual.alt,
-                fill: true,
-                className: 'object-cover',
-                priority: true,
-                fallbackSrc: fallback,
-                secondaryFallbackSrc: '/assets/images/no_image.png',
+                className: 'absolute inset-0 w-full h-full object-cover',
+                loading: 'eager',
               })
             );
           })(),
@@ -1540,13 +1533,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
                 className:
                   'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
               },
-              React.createElement(AppImage, {
+              React.createElement('img', {
                 src: contextual.src || fallback,
                 alt: contextual.alt,
-                fill: true,
-                className: 'object-cover',
-                fallbackSrc: fallback,
-                secondaryFallbackSrc: '/assets/images/no_image.png',
+                className: 'absolute inset-0 w-full h-full object-cover',
+                loading: 'lazy',
               })
             );
           })(),
@@ -1586,13 +1577,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
                 className:
                   'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
               },
-              React.createElement(AppImage, {
+              React.createElement('img', {
                 src: contextual.src || fallback,
                 alt: contextual.alt,
-                fill: true,
-                className: 'object-cover',
-                fallbackSrc: fallback,
-                secondaryFallbackSrc: '/assets/images/no_image.png',
+                className: 'absolute inset-0 w-full h-full object-cover',
+                loading: 'lazy',
               })
             );
           })(),
@@ -1628,13 +1617,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
                 className:
                   'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
               },
-              React.createElement(AppImage, {
+              React.createElement('img', {
                 src: contextual.src || fallback,
                 alt: contextual.alt,
-                fill: true,
-                className: 'object-cover',
-                fallbackSrc: fallback,
-                secondaryFallbackSrc: '/assets/images/no_image.png',
+                className: 'absolute inset-0 w-full h-full object-cover',
+                loading: 'lazy',
               })
             );
           })(),
@@ -1670,13 +1657,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
                 className:
                   'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
               },
-              React.createElement(AppImage, {
+              React.createElement('img', {
                 src: contextual.src || fallback,
                 alt: contextual.alt,
-                fill: true,
-                className: 'object-cover',
-                fallbackSrc: fallback,
-                secondaryFallbackSrc: '/assets/images/no_image.png',
+                className: 'absolute inset-0 w-full h-full object-cover',
+                loading: 'lazy',
               })
             );
           })(),
@@ -1712,13 +1697,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
                 className:
                   'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
               },
-              React.createElement(AppImage, {
+              React.createElement('img', {
                 src: contextual.src || fallback,
                 alt: contextual.alt,
-                fill: true,
-                className: 'object-cover',
-                fallbackSrc: fallback,
-                secondaryFallbackSrc: '/assets/images/no_image.png',
+                className: 'absolute inset-0 w-full h-full object-cover',
+                loading: 'lazy',
               })
             );
           })(),
@@ -1755,14 +1738,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
                 className:
                   'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
               },
-              React.createElement(AppImage, {
+              React.createElement('img', {
                 src: contextual.src || primary,
                 alt: contextual.alt,
-                fill: true,
-                className: 'object-cover',
-                priority: true,
-                fallbackSrc: fallback,
-                secondaryFallbackSrc: '/assets/images/no_image.png',
+                className: 'absolute inset-0 w-full h-full object-cover',
+                loading: 'eager',
               })
             );
           })(),
@@ -1799,14 +1779,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
                 className:
                   'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
               },
-              React.createElement(AppImage, {
+              React.createElement('img', {
                 src: contextual.src || primary,
                 alt: contextual.alt,
-                fill: true,
-                className: 'object-cover',
-                priority: true,
-                fallbackSrc: fallback,
-                secondaryFallbackSrc: '/assets/images/no_image.png',
+                className: 'absolute inset-0 w-full h-full object-cover',
+                loading: 'eager',
               })
             );
           })(),
@@ -1842,13 +1819,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
                 className:
                   'relative aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200',
               },
-              React.createElement(AppImage, {
+              React.createElement('img', {
                 src: contextual.src || fallback,
                 alt: contextual.alt,
-                fill: true,
-                className: 'object-cover',
-                fallbackSrc: fallback,
-                secondaryFallbackSrc: '/assets/images/no_image.png',
+                className: 'absolute inset-0 w-full h-full object-cover',
+                loading: 'lazy',
               })
             );
           })(),
