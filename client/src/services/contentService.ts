@@ -178,7 +178,25 @@ export async function getMetaBySlug(
       };
     }
   }
-  return null;
+  const toTitle = (s: string) =>
+    s
+      .split('-')
+      .filter(Boolean)
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(' ');
+  const derivedTitle = toTitle(slug);
+  return {
+    slug,
+    title: derivedTitle,
+    excerpt: buildLongExcerpt(derivedTitle, `Expert guidance for ${derivedTitle.toLowerCase()}.`),
+    seoTitle: `${derivedTitle} - CACBLAZE`,
+    seoDescription: `Authoritative overview and practical steps for ${derivedTitle.toLowerCase()}.`,
+    heroImage:
+      'https://images.unsplash.com/photo-1517433456452-f9633a875f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
+    category: 'Guides',
+    authorName: 'CACBLAZE Editors',
+    authorRole: 'Guides',
+  };
 }
 
 export async function getContentBySlug(slug: string): Promise<ContentRecord | null> {
@@ -5750,5 +5768,37 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
     };
   }
 
-  return null;
+  const toTitle = (s: string) =>
+    s
+      .split('-')
+      .filter(Boolean)
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(' ');
+  const derivedTitle = toTitle(slug);
+  const body = React.createElement(
+    'div',
+    { className: 'space-y-8' },
+    React.createElement(
+      'p',
+      { className: 'text-slate-700 text-lg' },
+      `This page for ${derivedTitle} is being prepared. Explore related topics, or check back soon for a complete guide with actionable steps and expert-reviewed content.`
+    ),
+    React.createElement(
+      'div',
+      { className: 'rounded-2xl p-6 bg-emerald-50 border border-emerald-100' },
+      React.createElement(
+        'p',
+        { className: 'text-emerald-900' },
+        'Looking for immediate help? Use the site search at the top of the page to find closely related guides.'
+      )
+    )
+  );
+  return {
+    slug,
+    title: derivedTitle,
+    body,
+    excerpt: buildLongExcerpt(derivedTitle, `Overview and next steps for ${derivedTitle.toLowerCase()}.`),
+    seoTitle: `${derivedTitle} - CACBLAZE`,
+    seoDescription: `Essential concepts and steps for ${derivedTitle.toLowerCase()}.`,
+  };
 }
