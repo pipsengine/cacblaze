@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { headers } from 'next/headers';
 import { Feed } from 'feed';
 import { createClient } from '@/lib/supabase/server';
 
@@ -16,23 +17,28 @@ export async function GET() {
 
     if (error) throw error;
 
+    const h = await headers();
+    const proto = h.get('x-forwarded-proto') ?? 'https';
+    const host = h.get('x-forwarded-host') ?? h.get('host') ?? 'cacblaze.com';
+    const baseUrl = `${proto}://${host}`;
+
     // Create feed
     const feed = new Feed({
       title: 'CACBLAZE - Knowledge That Empowers',
       description:
         'Human-centered content for the AI era. Discover verified guides, tutorials, and insights across every domain.',
-      id: 'https://cacblaze.com/',
-      link: 'https://cacblaze.com/',
+      id: `${baseUrl}/`,
+      link: `${baseUrl}/`,
       language: 'en',
-      image: 'https://cacblaze.com/favicon.ico',
-      favicon: 'https://cacblaze.com/favicon.ico',
+      image: `${baseUrl}/favicon.ico`,
+      favicon: `${baseUrl}/favicon.ico`,
       copyright: `All rights reserved ${new Date().getFullYear()}, CACBLAZE`,
       updated: articles && articles.length > 0 ? new Date(articles[0].updated_at) : new Date(),
       generator: 'CACBLAZE RSS Generator',
       feedLinks: {
-        rss2: 'https://cacblaze.com/api/rss',
-        json: 'https://cacblaze.com/api/rss?format=json',
-        atom: 'https://cacblaze.com/api/rss?format=atom',
+        rss2: `${baseUrl}/api/rss`,
+        json: `${baseUrl}/api/rss?format=json`,
+        atom: `${baseUrl}/api/rss?format=atom`,
       },
     });
 
@@ -40,8 +46,8 @@ export async function GET() {
     articles?.forEach((article) => {
       feed.addItem({
         title: article.title,
-        id: `https://cacblaze.com/guides/${article.article_id}`,
-        link: `https://cacblaze.com/guides/${article.article_id}`,
+        id: `${baseUrl}/guides/${article.article_id}`,
+        link: `${baseUrl}/guides/${article.article_id}`,
         description: article.excerpt || '',
         content: article.excerpt || '',
         author: [

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { headers } from 'next/headers';
 import { Feed } from 'feed';
 import { createClient } from '@/lib/supabase/server';
 
@@ -61,22 +62,27 @@ export async function GET(request: Request, { params }: { params: { category: st
 
     if (error) throw error;
 
+    const h = await headers();
+    const proto = h.get('x-forwarded-proto') ?? 'https';
+    const host = h.get('x-forwarded-host') ?? h.get('host') ?? 'cacblaze.com';
+    const baseUrl = `${proto}://${host}`;
+
     // Create category-specific feed
     const feed = new Feed({
       title: metadata.title,
       description: metadata.description,
-      id: `https://cacblaze.com/${category}`,
-      link: `https://cacblaze.com/${category}`,
+      id: `${baseUrl}/${category}`,
+      link: `${baseUrl}/${category}`,
       language: 'en',
-      image: 'https://cacblaze.com/favicon.ico',
-      favicon: 'https://cacblaze.com/favicon.ico',
+      image: `${baseUrl}/favicon.ico`,
+      favicon: `${baseUrl}/favicon.ico`,
       copyright: `All rights reserved ${new Date().getFullYear()}, CACBLAZE`,
       updated: articles && articles.length > 0 ? new Date(articles[0].updated_at) : new Date(),
       generator: 'CACBLAZE RSS Generator',
       feedLinks: {
-        rss2: `https://cacblaze.com/api/rss/${category}`,
-        json: `https://cacblaze.com/api/rss/${category}?format=json`,
-        atom: `https://cacblaze.com/api/rss/${category}?format=atom`,
+        rss2: `${baseUrl}/api/rss/${category}`,
+        json: `${baseUrl}/api/rss/${category}?format=json`,
+        atom: `${baseUrl}/api/rss/${category}?format=atom`,
       },
     });
 
@@ -84,8 +90,8 @@ export async function GET(request: Request, { params }: { params: { category: st
     articles?.forEach((article) => {
       feed.addItem({
         title: article.title,
-        id: `https://cacblaze.com/guides/${article.article_id}`,
-        link: `https://cacblaze.com/guides/${article.article_id}`,
+        id: `${baseUrl}/guides/${article.article_id}`,
+        link: `${baseUrl}/guides/${article.article_id}`,
         description: article.excerpt || '',
         content: article.excerpt || '',
         author: [

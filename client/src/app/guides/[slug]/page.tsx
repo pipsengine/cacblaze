@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
@@ -252,9 +253,14 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     { name: article.title, href: `/guides/${article.slug}` },
   ];
 
+  const h = await headers();
+  const proto = h.get('x-forwarded-proto') ?? 'https';
+  const host = h.get('x-forwarded-host') ?? h.get('host') ?? 'cacblaze.com';
+  const origin = `${proto}://${host}`;
+
   const breadcrumbSchemaItems = breadcrumbItems.map((item) => ({
     name: item.name,
-    url: `https://cacblaze.com${item.href}`,
+    url: `${origin}${item.href}`,
   }));
 
   const articleSchema = generateArticleSchema({
@@ -360,7 +366,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                     <ShareButton
                       articleId={article.id}
                       articleTitle={article.title}
-                      articleUrl={`https://cacblaze.com/guides/${article.slug}`}
+                      articleUrl={`${origin}/guides/${article.slug}`}
                     />
                     <BookmarkButton
                       articleId={article.id}

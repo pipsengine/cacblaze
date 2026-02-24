@@ -23,6 +23,7 @@ import {
   generateBreadcrumbSchema,
 } from '@/utils/schemaMarkup';
 import { articles } from '@/data/articles';
+import { headers } from 'next/headers';
 
 export async function generateMetadata({
   params,
@@ -59,9 +60,14 @@ export default async function HowToPage({ params }: { params: Promise<{ slug: st
     { name: article.title, href: `/howto/${article.slug}` },
   ];
 
+  const h = await headers();
+  const proto = h.get('x-forwarded-proto') ?? 'https';
+  const host = h.get('x-forwarded-host') ?? h.get('host') ?? 'cacblaze.com';
+  const origin = `${proto}://${host}`;
+
   const breadcrumbSchemaItems = breadcrumbItems.map((item) => ({
     name: item.name,
-    url: `https://cacblaze.com${item.href}`,
+    url: `${origin}${item.href}`,
   }));
 
   const articleSchema = generateArticleSchema({
@@ -155,7 +161,7 @@ export default async function HowToPage({ params }: { params: Promise<{ slug: st
                     <ShareButton
                       articleId={article.id}
                       articleTitle={article.title}
-                      articleUrl={`https://cacblaze.com/howto/${article.slug}`}
+                      articleUrl={`${origin}/howto/${article.slug}`}
                     />
                     <BookmarkButton
                       articleId={article.id}
