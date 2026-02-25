@@ -43,6 +43,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/community/ama',
+        destination: '/ama',
+        permanent: false,
+      },
+      {
         source: '/community/qa',
         destination: '/qa',
         permanent: false,

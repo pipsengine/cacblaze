@@ -595,7 +595,7 @@ export const menuData: MenuData = {
           label: 'Interact',
           items: [
             { id: 'community_qa', label: 'Q&A Forum', href: '/qa' },
-            { id: 'community_ama', label: 'AMA Sessions', href: '/community/ama' },
+            { id: 'community_ama', label: 'AMA Sessions', href: '/ama' },
           ],
         },
       ],
