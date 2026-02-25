@@ -359,10 +359,15 @@ export default function TechnologyPage() {
                     {category.title}
                   </h2>
                   <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {category.items.map((item) => (
+                    {category.items.map((item) => {
+                      const href =
+                        typeof item.href === 'string' && item.href.startsWith('/technology/')
+                          ? item.href
+                          : `/technology${item.href}`;
+                      return (
                       <Link
                         key={item.id}
-                        href={item.href}
+                        href={href}
                         className="group block bg-gray-50 rounded-2xl overflow-hidden hover:bg-blue-50 transition-colors border border-gray-100 hover:border-blue-100"
                       >
                         {(() => {
@@ -405,7 +410,8 @@ export default function TechnologyPage() {
                         </h3>
                         <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
                       </Link>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               ))}

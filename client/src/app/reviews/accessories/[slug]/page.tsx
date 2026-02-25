@@ -71,7 +71,11 @@ export default async function AccessoryReviewPage({ params }: PageProps) {
                 <div className="flex items-center gap-4 mb-8 pb-8 border-b border-gray-100">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden border border-gray-200">
                     <AppImage
-                      src={review.author.image}
+                      src={
+                        review.author.image && review.author.image.startsWith('http')
+                          ? `/api/image-proxy?url=${encodeURIComponent(review.author.image)}`
+                          : review.author.image
+                      }
                       alt={review.author.name}
                       fill
                       className="object-cover"
@@ -99,7 +103,11 @@ export default async function AccessoryReviewPage({ params }: PageProps) {
                 <div className="bg-gray-900 rounded-3xl overflow-hidden shadow-2xl">
                   <div className="aspect-[4/3] relative">
                     <AppImage
-                      src={review.heroImage}
+                      src={
+                        review.heroImage && review.heroImage.startsWith('http')
+                          ? `/api/image-proxy?url=${encodeURIComponent(review.heroImage)}`
+                          : review.heroImage
+                      }
                       alt={review.name}
                       fill
                       className="object-cover"
@@ -161,7 +169,7 @@ export default async function AccessoryReviewPage({ params }: PageProps) {
                       className="relative aspect-video rounded-xl overflow-hidden shadow-sm border border-gray-100"
                     >
                       <AppImage
-                        src={img}
+                        src={img && img.startsWith('http') ? `/api/image-proxy?url=${encodeURIComponent(img)}` : img}
                         alt={`${review.name} view ${i + 1}`}
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-500"

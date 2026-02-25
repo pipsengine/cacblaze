@@ -50,7 +50,7 @@ export const accessoryReviews: Record<string, AccessoryReview> = {
     },
     publishDate: 'Feb 12, 2026',
     heroImage:
-      'https://images.unsplash.com/photo-1588423770d14-b29e96e7438c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
     gallery: [
       'https://images.unsplash.com/photo-1588423770d14-b29e96e7438c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       'https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',

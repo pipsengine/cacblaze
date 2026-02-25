@@ -162,7 +162,7 @@ export default function DailyTips() {
                     {tip.category}
                   </span>
                   <span className="text-xs text-gray-400">
-                    {tip.content.split(' ').length} words
+                    {(tip.content || '').split(/\s+/).filter(Boolean).length} words
                   </span>
                 </div>
               </div>

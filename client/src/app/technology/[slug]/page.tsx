@@ -6,24 +6,30 @@ import { menuData } from '@/data/menuData';
 import AppImage from '@/components/ui/AppImage';
 import { getContextualImage, getCuratedImagesForCategory } from '@/utils/imageService';
 
-function formatSlug(slug: string) {
-  return slug
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+function formatSlug(slug?: string) {
+  const s = typeof slug === 'string' ? slug : '';
+  return s
     .split('-')
+    .filter(Boolean)
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
+    .join(' ') || 'Technology';
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
+  const { slug } = await params;
   const techMenu = menuData.mainMenu.find((m) => m.id === 'technology');
   let categoryItem;
 
   if (techMenu?.categories) {
     for (const cat of techMenu.categories) {
-      const item = cat.items?.find((i) => i.href === `/technology/${params.slug}`);
+      const item = cat.items?.find((i) => i.href === `/technology/${slug}`);
       if (item) {
         categoryItem = item;
         break;
@@ -31,7 +37,7 @@ export async function generateMetadata({
     }
   }
 
-  const title = categoryItem ? categoryItem.label : formatSlug(params.slug);
+  const title = categoryItem ? categoryItem.label : formatSlug(slug);
 
   return {
     title: `${title} - Technology - CACBLAZE`,
@@ -39,13 +45,14 @@ export async function generateMetadata({
   };
 }
 
-export default function TechCategoryPage({ params }: { params: { slug: string } }) {
+export default async function TechCategoryPage(props: { params: Promise<{ slug: string }> }) {
+  const { slug } = await props.params;
   const techMenu = menuData.mainMenu.find((m) => m.id === 'technology');
   let categoryItem;
 
   if (techMenu?.categories) {
     for (const cat of techMenu.categories) {
-      const item = cat.items?.find((i) => i.href === `/technology/${params.slug}`);
+      const item = cat.items?.find((i) => i.href === `/technology/${slug}`);
       if (item) {
         categoryItem = item;
         break;
@@ -53,12 +60,12 @@ export default function TechCategoryPage({ params }: { params: { slug: string } 
     }
   }
 
-  const title = categoryItem ? categoryItem.label : formatSlug(params.slug);
+  const title = categoryItem ? categoryItem.label : formatSlug(slug);
 
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Technology', href: '/technology' },
-    { name: title, href: `/technology/${params.slug}` },
+    { name: title, href: `/technology/${slug}` },
   ];
 
   const contentMap: Record<
@@ -2531,7 +2538,7 @@ export default function TechCategoryPage({ params }: { params: { slug: string } 
     },
   };
 
-  const detailed = contentMap[params.slug];
+  const detailed = contentMap[slug];
   const isDetailed = !!detailed;
   const sections = detailed?.sections || [];
   const description =

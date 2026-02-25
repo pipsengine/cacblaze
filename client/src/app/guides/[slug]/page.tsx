@@ -18,6 +18,7 @@ import ReadingProgressTracker from '@/components/common/ReadingProgressTracker';
 import BookmarkButton from '@/components/common/BookmarkButton';
 import ShareButton from '@/components/common/ShareButton';
 import { getContextualImage, getAuthorAvatar } from '@/utils/imageService';
+import { articles as localArticles, Article as LocalArticle } from '@/data/articles';
 import {
   generateArticleSchema,
   generateFAQSchema,
@@ -25,6 +26,11 @@ import {
 } from '@/utils/schemaMarkup';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
+export const runtime = 'nodejs';
 
 function titleFromSlug(slug: string) {
   return (slug || '')
@@ -65,8 +71,17 @@ export async function generateMetadata({
     });
     
     if (!response.ok) {
-      const fallbackTitle = titleFromSlug(slug);
-      return { title: `${fallbackTitle} - CACBLAZE`, description: `Guide: ${fallbackTitle}` };
+      const local = (localArticles as Record<string, LocalArticle>)[slug];
+      if (local) {
+        return {
+          title: `${local.title} - CACBLAZE`,
+          description: local.excerpt,
+          keywords: `${local.category}, guide, tutorial, ${local.title}`,
+        };
+      } else {
+        const fallbackTitle = titleFromSlug(slug);
+        return { title: `${fallbackTitle} - CACBLAZE`, description: `Guide: ${fallbackTitle}` };
+      }
     }
     
     const article: Article = await response.json();
@@ -77,8 +92,17 @@ export async function generateMetadata({
       keywords: `${article.category}, guide, tutorial, ${article.title}`,
     };
   } catch (error) {
-    const fallbackTitle = titleFromSlug(slug);
-    return { title: `${fallbackTitle} - CACBLAZE`, description: `Guide: ${fallbackTitle}` };
+    const local = (localArticles as Record<string, LocalArticle>)[slug];
+    if (local) {
+      return {
+        title: `${local.title} - CACBLAZE`,
+        description: local.excerpt,
+        keywords: `${local.category}, guide, tutorial, ${local.title}`,
+      };
+    } else {
+      const fallbackTitle = titleFromSlug(slug);
+      return { title: `${fallbackTitle} - CACBLAZE`, description: `Guide: ${fallbackTitle}` };
+    }
   }
 }
 
@@ -89,6 +113,80 @@ async function fetchArticle(slug: string): Promise<Article | null> {
     });
     
     if (!response.ok) {
+      const local = (localArticles as Record<string, LocalArticle>)[slug];
+      if (local) {
+        return {
+          id: local.id,
+          slug: local.slug,
+          title: local.title,
+          content: '',
+          meta_description: local.excerpt,
+          category: local.category,
+          type: 'Guide',
+          geo_focus: 'Nigeria',
+          published_at: new Date(local.publishDate).toISOString(),
+          featured_image_url: local.heroImage,
+          image_alt: local.heroImageAlt,
+          author: {
+            id: 'local_dataset',
+            name: local.author?.name || 'CACBLAZE Editors',
+            avatar_url: local.author?.image || '',
+          },
+          sections: local.sections,
+          faqs: local.faqs || [],
+        } as any;
+      } else {
+        const t = titleFromSlug(slug);
+        return {
+          id: `fallback_${slug}`,
+          slug,
+          title: t,
+          content:
+            `## Overview\n` +
+            `This guide for ${t} is being prepared. You can bookmark this page and check back soon.\n\n` +
+            `## What You Can Expect\n` +
+            `- Clear steps and checklists\n- Context for Nigeria and similar markets\n- Safety, costs, and alternatives`,
+          meta_description: `Overview and next steps for ${t}.`,
+          category: 'Guides',
+          type: 'Guide',
+          geo_focus: 'Nigeria',
+          published_at: new Date().toISOString(),
+          featured_image_url: '',
+          image_alt: `${t} illustration`,
+          author: {
+            id: 'cacblaze_editors',
+            name: 'CACBLAZE Editors',
+            avatar_url: '',
+          },
+        };
+      }
+    }
+    
+    return await response.json();
+  } catch (error) {
+    const local = (localArticles as Record<string, LocalArticle>)[slug];
+    if (local) {
+      return {
+        id: local.id,
+        slug: local.slug,
+        title: local.title,
+        content: '',
+        meta_description: local.excerpt,
+        category: local.category,
+        type: 'Guide',
+        geo_focus: 'Nigeria',
+        published_at: new Date(local.publishDate).toISOString(),
+        featured_image_url: local.heroImage,
+        image_alt: local.heroImageAlt,
+        author: {
+          id: 'local_dataset',
+          name: local.author?.name || 'CACBLAZE Editors',
+          avatar_url: local.author?.image || '',
+        },
+        sections: local.sections,
+        faqs: local.faqs || [],
+      } as any;
+    } else {
       const t = titleFromSlug(slug);
       return {
         id: `fallback_${slug}`,
@@ -113,32 +211,6 @@ async function fetchArticle(slug: string): Promise<Article | null> {
         },
       };
     }
-    
-    return await response.json();
-  } catch (error) {
-    const t = titleFromSlug(slug);
-    return {
-      id: `fallback_${slug}`,
-      slug,
-      title: t,
-      content:
-        `## Overview\n` +
-        `This guide for ${t} is being prepared. You can bookmark this page and check back soon.\n\n` +
-        `## What You Can Expect\n` +
-        `- Clear steps and checklists\n- Context for Nigeria and similar markets\n- Safety, costs, and alternatives`,
-      meta_description: `Overview and next steps for ${t}.`,
-      category: 'Guides',
-      type: 'Guide',
-      geo_focus: 'Nigeria',
-      published_at: new Date().toISOString(),
-      featured_image_url: '',
-      image_alt: `${t} illustration`,
-      author: {
-        id: 'cacblaze_editors',
-        name: 'CACBLAZE Editors',
-        avatar_url: '',
-      },
-    };
   }
 }
 
@@ -269,7 +341,16 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const wordCount = (article.content || '').split(/\s+/).filter(Boolean).length;
   const readTime = `${Math.max(1, Math.ceil(wordCount / 200))} min`;
   const excerpt = article.meta_description || (article.content || '').replace(/\s+/g, ' ').slice(0, 200);
-  const { sections, toc } = parseMarkdownToSections(article.content || '');
+  let sections: Array<{ id: string; title: string; level: number; content: string }> = [];
+  let toc: Array<{ id: string; title: string; level: number }> = [];
+  if (Array.isArray(article.sections) && article.sections.length > 0) {
+    sections = article.sections;
+    toc = article.sections.map((s: any) => ({ id: s.id, title: s.title, level: s.level }));
+  } else {
+    const parsed = parseMarkdownToSections(article.content || '');
+    sections = parsed.sections;
+    toc = parsed.toc;
+  }
 
   article = {
     ...article,

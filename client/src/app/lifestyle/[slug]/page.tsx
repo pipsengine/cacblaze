@@ -6,11 +6,15 @@ import AppImage from '@/components/ui/AppImage';
 import { menuData } from '@/data/menuData';
 import { getContextualImage } from '@/utils/imageService';
 
-function formatSlug(slug: string) {
-  return slug
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
+function formatSlug(slug?: string) {
+  const s = typeof slug === 'string' ? slug : '';
+  return (
+    s
+      .split('-')
+      .filter(Boolean)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ') || 'Lifestyle'
+  );
 }
 
 export async function generateMetadata({

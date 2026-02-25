@@ -5,8 +5,9 @@ import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import Link from 'next/link';
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const industry = industriesData[params.slug];
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const industry = industriesData[slug];
   if (!industry) {
     return {
       title: 'Page Not Found - CACBLAZE',
@@ -18,8 +19,9 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   };
 }
 
-export default function IndustryPage({ params }: { params: { slug: string } }) {
-  const industry = industriesData[params.slug];
+export default async function IndustryPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const industry = industriesData[slug];
 
   if (!industry) {
     notFound();

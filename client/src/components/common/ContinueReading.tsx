@@ -105,7 +105,7 @@ const ContinueReading = () => {
                 </div>
                 <div className="p-4">
                   <h3 className="text-sm font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                    {item.article_id
+                    {(item.article_id || '')
                       .split('-')
                       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                       .join(' ')}

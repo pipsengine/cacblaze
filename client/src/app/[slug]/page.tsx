@@ -11,11 +11,11 @@ export const fetchCache = 'force-no-store';
 export const runtime = 'nodejs';
 
 type PageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
   const content = await getMetaBySlug(slug);
 
   if (!content) {
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function CanonicalContentPage({ params }: PageProps) {
-  const { slug } = params;
+  const { slug } = await params;
   const content = await getContentBySlug(slug);
 
   if (!content) {

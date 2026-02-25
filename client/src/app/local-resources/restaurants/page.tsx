@@ -232,9 +232,11 @@ const LocalRestaurantsPage = () => {
                   <div className="relative h-56">
                     {(() => {
                       const curated = getCuratedImagesForCategory('local-resources');
+                      const idStr = typeof area.id === 'string' ? area.id : String(area.id ?? '');
+                      const cityStr = typeof area.city === 'string' ? area.city : String(area.city ?? '');
                       const hash =
-                        area.id.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0) +
-                        area.city.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+                        idStr.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0) +
+                        cityStr.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
                       const idx = curated.length ? hash % curated.length : 0;
                       const fallback = curated[idx]?.src || '/assets/images/no_image.png';
                       const secondary =

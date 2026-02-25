@@ -48,7 +48,11 @@ export default function AccessoriesListingPage() {
               >
                 <div className="aspect-[16/10] relative overflow-hidden">
                   <AppImage
-                    src={review.heroImage}
+                    src={
+                      review.heroImage && review.heroImage.startsWith('http')
+                        ? `/api/image-proxy?url=${encodeURIComponent(review.heroImage)}`
+                        : review.heroImage
+                    }
                     alt={review.name}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
