@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import AppImage from '@/components/ui/AppImage';
 
 const API_BASE = '/api';
 
@@ -120,10 +121,12 @@ export default function FeaturedArticle() {
         <div className="flex flex-col md:flex-row gap-6">
           {article.featured_image_url && (
             <div className="md:w-1/3">
-              <img 
-                src={article.featured_image_url} 
+              <AppImage
+                src={article.featured_image_url}
                 alt={article.image_alt || article.title}
                 className="w-full h-48 object-cover rounded-lg"
+                fallbackSrc="/assets/images/no_image.png"
+                secondaryFallbackSrc="/assets/images/no_image.png"
               />
             </div>
           )}
@@ -152,10 +155,14 @@ export default function FeaturedArticle() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 {article.author?.avatar_url && (
-                  <img 
-                    src={article.author.avatar_url} 
+                  <AppImage
+                    src={article.author.avatar_url}
                     alt={article.author.name}
-                    className="w-8 h-8 rounded-full"
+                    width={32}
+                    height={32}
+                    className="w-8 h-8 rounded-full object-cover"
+                    fallbackSrc="/assets/images/no_image.png"
+                    secondaryFallbackSrc="/assets/images/no_image.png"
                   />
                 )}
                 <span className="text-sm text-gray-600">

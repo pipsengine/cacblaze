@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import AppImage from '@/components/ui/AppImage';
 
 const API_BASE = '/api';
 
@@ -118,10 +120,12 @@ export default function DailyTips() {
         
         {todaysTip.featured_image && (
           <div className="mb-4">
-            <img 
-              src={todaysTip.featured_image} 
+            <AppImage
+              src={todaysTip.featured_image}
               alt={todaysTip.image_alt || todaysTip.title}
               className="w-full h-48 object-cover rounded-lg"
+              fallbackSrc="/assets/images/no_image.png"
+              secondaryFallbackSrc="/assets/images/no_image.png"
             />
           </div>
         )}
@@ -137,36 +141,49 @@ export default function DailyTips() {
         </div>
       </div>
 
-      {/* Previous Tips Grid */}
+      {/* Previous Tips - Horizontal Scroll */}
       {previousTips.length > 0 && (
         <div>
-          <h4 className="font-semibold text-gray-700 mb-4 text-lg">Recent Tips</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {previousTips.map((tip) => (
-              <div key={tip.id} className="bg-white rounded-lg shadow-sm p-4 border border-gray-100 hover:shadow-md transition-shadow">
-                <div className="flex justify-between items-start mb-2">
-                  <h5 className="font-semibold text-gray-800 text-sm line-clamp-2">
-                    {tip.title}
-                  </h5>
-                  <span className="text-xs text-gray-400 whitespace-nowrap">
-                    {new Date(tip.published_at).toLocaleDateString()}
-                  </span>
+          <div className="flex items-center justify-between mb-3">
+            <h4 className="font-semibold text-gray-700 text-lg">Recent Tips</h4>
+            <Link
+              href="/tips"
+              className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+            >
+              View all tips
+            </Link>
+          </div>
+          <div className="overflow-x-auto -mx-2 px-2">
+            <div className="flex gap-4 pb-2">
+              {previousTips.map((tip) => (
+                <div
+                  key={tip.id}
+                  className="min-w-[280px] max-w-[320px] bg-white rounded-lg shadow-sm p-4 border border-gray-100 hover:shadow-md transition-shadow"
+                >
+                  <div className="flex justify-between items-start mb-2">
+                    <h5 className="font-semibold text-gray-800 text-sm line-clamp-2">
+                      {tip.title}
+                    </h5>
+                    <span className="text-xs text-gray-400 whitespace-nowrap">
+                      {new Date(tip.published_at).toLocaleDateString()}
+                    </span>
+                  </div>
+                  
+                  <p className="text-gray-600 text-sm line-clamp-3 mb-3 leading-relaxed">
+                    {tip.content}
+                  </p>
+                  
+                  <div className="flex items-center justify-between">
+                    <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
+                      {tip.category}
+                    </span>
+                    <span className="text-xs text-gray-400">
+                      {(tip.content || '').split(/\s+/).filter(Boolean).length} words
+                    </span>
+                  </div>
                 </div>
-                
-                <p className="text-gray-600 text-sm line-clamp-3 mb-3 leading-relaxed">
-                  {tip.content}
-                </p>
-                
-                <div className="flex items-center justify-between">
-                  <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
-                    {tip.category}
-                  </span>
-                  <span className="text-xs text-gray-400">
-                    {(tip.content || '').split(/\s+/).filter(Boolean).length} words
-                  </span>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       )}
