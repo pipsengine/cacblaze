@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Contact Us - CACBLAZE',
   description:
     'Get in touch with the CACBLAZE team. We are here to help with your questions and feedback.',
+  alternates: { canonical: '/contact' },
 };
 
 export default function ContactPage() {

@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   description:
     'Resources for students, professionals, and lifelong learners. Study guides, career advice, and skill development.',
   keywords: 'education, learning, study tips, career advice, online courses, skill building',
+  alternates: { canonical: '/education' },
 };
 
 const educationCategories = [

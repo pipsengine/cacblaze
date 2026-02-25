@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import { headers } from 'next/headers';
+import { generateReviewSchema } from '@/utils/schemaMarkup';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import Breadcrumb from '@/components/common/Breadcrumb';
@@ -24,6 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${book.title} by ${book.author}: Review & Key Takeaways - CACBLAZE`,
     description: `Is ${book.title} worth reading? Read our detailed review of ${book.author}'s book on ${book.category}, including key takeaways and verdict.`,
+    alternates: { canonical: `/reviews/educational-books/${slug}` },
   };
 }
 
@@ -35,6 +38,19 @@ export default async function EducationalBookDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const h = await headers();
+  const proto = h.get('x-forwarded-proto') ?? 'https';
+  const host = h.get('x-forwarded-host') ?? h.get('host') ?? 'cacblaze.com';
+  const origin = `${proto}://${host}`;
+  const reviewLd = generateReviewSchema({
+    itemName: book.title,
+    rating: book.rating,
+    reviewBody: book.verdict,
+    author: book.reviewer.name,
+    datePublished: book.publishDate,
+  });
+  const jsonLd = [{ ...reviewLd, url: `${origin}/reviews/educational-books/${slug}` }];
+
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Reviews', href: '/reviews' },
@@ -44,6 +60,10 @@ export default async function EducationalBookDetailPage({ params }: PageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <main className="min-h-screen pt-20">
         {/* Hero Section */}

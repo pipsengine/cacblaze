@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     'Unbiased reviews of the latest technology, software, local businesses, books, and services.',
   keywords:
     'reviews, tech reviews, software reviews, business reviews, book reviews, product comparisons',
+  alternates: { canonical: '/reviews' },
 };
 
 const reviewsCategories = [

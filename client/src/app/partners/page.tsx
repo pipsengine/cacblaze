@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Partners - CACBLAZE',
   description:
     'Partner with CACBLAZE to reach millions of engaged users. Explore our partnership programs.',
+  alternates: { canonical: '/partners' },
 };
 
 export default function PartnersPage() {

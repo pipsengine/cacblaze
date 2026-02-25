@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { headers } from 'next/headers';
+import { generateReviewSchema } from '@/utils/schemaMarkup';
 import AppImage from '@/components/ui/AppImage';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
@@ -20,6 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${review.name} Review | Online Services - CACBLAZE`,
     description: review.description,
+    alternates: { canonical: `/reviews/online-services/${review.slug}` },
   };
 }
 
@@ -28,6 +31,19 @@ export default async function OnlineServiceDetailPage({ params }: PageProps) {
   const review = onlineServiceReviews[slug];
 
   if (!review) notFound();
+
+  const h = await headers();
+  const proto = h.get('x-forwarded-proto') ?? 'https';
+  const host = h.get('x-forwarded-host') ?? h.get('host') ?? 'cacblaze.com';
+  const origin = `${proto}://${host}`;
+  const reviewLd = generateReviewSchema({
+    itemName: review.name,
+    rating: review.rating,
+    reviewBody: review.verdict,
+    author: review.author.name,
+    datePublished: review.publishDate,
+  });
+  const jsonLd = [{ ...reviewLd, url: `${origin}/reviews/online-services/${slug}` }];
 
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
@@ -38,6 +54,10 @@ export default async function OnlineServiceDetailPage({ params }: PageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <main className="min-h-screen pt-20 bg-slate-50">
         {/* Hero Section */}

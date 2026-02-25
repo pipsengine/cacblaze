@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'Cookie Policy - CACBLAZE',
   description:
     'Information about how CACBLAZE uses cookies and similar technologies to provide, improve, and protect our services.',
+  alternates: { canonical: '/cookies' },
 };
 
 export default function CookiePolicyPage() {

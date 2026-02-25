@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { headers } from 'next/headers';
+import { generateReviewSchema } from '@/utils/schemaMarkup';
 import Icon from '@/components/ui/AppIcon';
 import AppImage from '@/components/ui/AppImage';
 import Breadcrumb from '@/components/common/Breadcrumb';
@@ -24,6 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${review.name} Review: Best Price in Nigeria - CACBLAZE`,
     description: `${review.tagline}. Read our comprehensive review of the ${review.name} covering performance, battery life, and connectivity for Nigerian users.`,
+    alternates: { canonical: `/reviews/accessories/${review.slug}` },
   };
 }
 
@@ -35,6 +38,19 @@ export default async function AccessoryReviewPage({ params }: PageProps) {
     notFound();
   }
 
+  const h = await headers();
+  const proto = h.get('x-forwarded-proto') ?? 'https';
+  const host = h.get('x-forwarded-host') ?? h.get('host') ?? 'cacblaze.com';
+  const origin = `${proto}://${host}`;
+  const reviewLd = generateReviewSchema({
+    itemName: review.name,
+    rating: review.rating,
+    reviewBody: review.verdict,
+    author: review.author.name,
+    datePublished: review.publishDate,
+  });
+  const jsonLd = [{ ...reviewLd, url: `${origin}/reviews/accessories/${review.slug}` }];
+
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Reviews', href: '/reviews' },
@@ -44,6 +60,10 @@ export default async function AccessoryReviewPage({ params }: PageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <main className="min-h-screen pt-20 bg-gray-50">
         {/* Hero Section */}
@@ -110,6 +130,7 @@ export default async function AccessoryReviewPage({ params }: PageProps) {
                       }
                       alt={review.name}
                       fill
+                      priority
                       className="object-cover"
                     />
                   </div>

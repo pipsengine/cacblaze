@@ -7,6 +7,7 @@ import Icon from '@/components/ui/AppIcon';
 export const metadata: Metadata = {
   title: 'Press & Media - CACBLAZE',
   description: 'News, media assets, and press contact information for CACBLAZE.',
+  alternates: { canonical: '/press' },
 };
 
 export default function PressPage() {

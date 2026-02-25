@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'About Us - CACBLAZE',
   description:
     'Learn about CACBLAZE, our mission to provide human-centered knowledge for the AI era, and the team behind the platform.',
+  alternates: { canonical: '/about' },
 };
 
 export default function AboutPage() {

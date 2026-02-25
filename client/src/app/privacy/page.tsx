@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'Privacy Policy - CACBLAZE',
   description:
     'Our commitment to protecting your personal data in compliance with the Nigeria Data Protection Regulation (NDPR) and the Nigeria Data Protection Act (NDPA).',
+  alternates: { canonical: '/privacy' },
 };
 
 export default function PrivacyPolicyPage() {

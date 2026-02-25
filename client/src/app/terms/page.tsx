@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'Terms of Service - CACBLAZE',
   description:
     'Terms and conditions governing your use of CACBLAZE services, governed by the laws of the Federal Republic of Nigeria.',
+  alternates: { canonical: '/terms' },
 };
 
 export default function TermsPage() {

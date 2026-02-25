@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   description:
     'Search 10,000+ verified articles across all domains. Find guides, tutorials, reviews, and resources with our AI-powered search.',
   keywords: 'search, find guides, knowledge search, article search',
+  alternates: { canonical: '/search' },
 };
 
 export default function SearchPage() {

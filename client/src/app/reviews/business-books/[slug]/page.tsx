@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import { headers } from 'next/headers';
+import { generateReviewSchema } from '@/utils/schemaMarkup';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import Breadcrumb from '@/components/common/Breadcrumb';
@@ -24,6 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${review.name} Review: Key Takeaways & Verdict - CACBLAZE`,
     description: `Read our in-depth review of ${review.name} by ${review.author_book}. Explore key takeaways, pros, cons, and our final verdict.`,
+    alternates: { canonical: `/reviews/business-books/${slug}` },
   };
 }
 
@@ -35,6 +38,19 @@ export default async function BusinessBookDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const h = await headers();
+  const proto = h.get('x-forwarded-proto') ?? 'https';
+  const host = h.get('x-forwarded-host') ?? h.get('host') ?? 'cacblaze.com';
+  const origin = `${proto}://${host}`;
+  const reviewLd = generateReviewSchema({
+    itemName: review.name,
+    rating: review.rating,
+    reviewBody: review.verdict,
+    author: review.author.name,
+    datePublished: review.publishDate,
+  });
+  const jsonLd = [{ ...reviewLd, url: `${origin}/reviews/business-books/${slug}` }];
+
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Reviews', href: '/reviews' },
@@ -44,6 +60,10 @@ export default async function BusinessBookDetailPage({ params }: PageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <main className="min-h-screen pt-20">
         {/* Hero Section */}

@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   description:
     'Step-by-step instructions for technology, business, home maintenance, and cooking. Learn how to do anything.',
   keywords: 'how to, tutorials, diy, instructions, step by step',
+  alternates: { canonical: '/howto' },
 };
 
 const howtoCategories = [

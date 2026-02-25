@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { headers } from 'next/headers';
+import { generateReviewSchema } from '@/utils/schemaMarkup';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import Breadcrumb from '@/components/common/Breadcrumb';
@@ -24,6 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${review.name} Review: Best ${review.category} App in 2026 - CACBLAZE`,
     description: `Expert review of ${review.name}. We analyze courses, pricing, interactive features, and certificate availability for this ${review.category} platform.`,
+    alternates: { canonical: `/reviews/learning-apps/${review.slug}` },
   };
 }
 
@@ -35,6 +38,19 @@ export default async function LearningAppDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const h = await headers();
+  const proto = h.get('x-forwarded-proto') ?? 'https';
+  const host = h.get('x-forwarded-host') ?? h.get('host') ?? 'cacblaze.com';
+  const origin = `${proto}://${host}`;
+  const reviewLd = generateReviewSchema({
+    itemName: review.name,
+    rating: review.rating,
+    reviewBody: review.verdict,
+    author: review.author.name,
+    datePublished: review.publishDate,
+  });
+  const jsonLd = [{ ...reviewLd, url: `${origin}/reviews/learning-apps/${slug}` }];
+
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Reviews', href: '/reviews' },
@@ -44,6 +60,10 @@ export default async function LearningAppDetailPage({ params }: PageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <main className="min-h-screen pt-20 bg-gray-50 pb-16">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 py-12">
@@ -52,7 +72,7 @@ export default async function LearningAppDetailPage({ params }: PageProps) {
           <article className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
             {/* Hero Section */}
             <div className="relative h-[400px]">
-              <AppImage src={review.heroImage} alt={review.name} fill className="object-cover" />
+              <AppImage src={review.heroImage} alt={review.name} fill className="object-cover" priority />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 p-8 text-white">
                 <div className="flex items-center gap-3 mb-4">

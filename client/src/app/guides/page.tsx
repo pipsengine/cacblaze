@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   description:
     'Browse 2,400+ comprehensive guides across finance, career, and life. Expert-verified content updated daily.',
   keywords: 'guides, tutorials, career advice, personal finance, self development',
+  alternates: { canonical: '/guides' },
 };
 
 const guidesCategories = [
