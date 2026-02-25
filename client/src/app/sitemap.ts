@@ -2,7 +2,9 @@ import { MetadataRoute } from 'next';
 import { menuData } from '@/data/menuData';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://cacblaze.com';
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:4028');
   const currentDate = new Date();
 
   // Static pages with high priority

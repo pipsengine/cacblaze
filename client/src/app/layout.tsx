@@ -11,6 +11,10 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:4028');
+
 export const metadata: Metadata = {
   title: {
     default: 'CACBLAZE - Nigerian Knowledge Platform',
@@ -30,14 +34,14 @@ export const metadata: Metadata = {
   authors: [{ name: 'CACBLAZE Team' }],
   creator: 'CACBLAZE',
   publisher: 'CACBLAZE',
-  metadataBase: new URL('https://cacblaze.com'),
+  metadataBase: new URL(siteUrl),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_NG',
-    url: 'https://cacblaze.com',
+    url: siteUrl,
     siteName: 'CACBLAZE',
     title: 'CACBLAZE - Nigerian Knowledge Platform',
     description: 'Comprehensive guides across technology, education, lifestyle, finance, and more.',
