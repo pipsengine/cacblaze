@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { headers } from 'next/headers';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import AMASessionsList from './components/AMASessionsList';
@@ -7,14 +8,39 @@ export const metadata: Metadata = {
   title: 'Expert AMA Sessions - CACBLAZE',
   description:
     'Join live Ask Me Anything sessions with Nigerian tech professionals and industry experts',
+  alternates: { canonical: '/ama' },
 };
 
-export default function AMAPage() {
+export default async function AMAPage() {
+  const h = await headers();
+  const proto = h.get('x-forwarded-proto') ?? 'https';
+  const host = h.get('x-forwarded-host') ?? h.get('host') ?? 'localhost:4028';
+  const baseUrl = `${proto}://${host}`;
+  const amaCollectionLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Expert AMA Sessions',
+    description:
+      'Join live Ask Me Anything sessions with Nigerian tech professionals and industry experts',
+    url: `${baseUrl}/ama`,
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/` },
+        { '@type': 'ListItem', position: 2, name: 'Community', item: `${baseUrl}/community` },
+        { '@type': 'ListItem', position: 3, name: 'AMA', item: `${baseUrl}/ama` },
+      ],
+    },
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
 
       <main className="container mx-auto px-4 py-12">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(amaCollectionLd) }}
+        />
         <div className="max-w-6xl mx-auto">
           <div className="bg-gradient-to-r from-primary to-primary/80 rounded-2xl p-12 mb-12 text-white text-center">
             <h1 className="text-5xl font-bold mb-4">Expert AMA Sessions</h1>

@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   description:
     'Human-centered content for the AI era. Discover verified guides, tutorials, and insights across every domain.',
   keywords: 'guides, tutorials, how-to, reviews, education, technology, lifestyle',
+  alternates: { canonical: '/' },
 };
 
 export default function RootHomepage() {

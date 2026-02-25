@@ -128,7 +128,9 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]): WithContext<B
  * Generate Organization Schema markup
  */
 export function generateOrganizationSchema(): WithContext<Organization> {
-  const baseUrl = 'https://cacblaze.com';
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:4028');
 
   return {
     '@context': 'https://schema.org',
@@ -147,6 +149,26 @@ export function generateOrganizationSchema(): WithContext<Organization> {
       '@type': 'ContactPoint',
       contactType: 'Customer Service',
       email: 'support@cacsms.com',
+    },
+  };
+}
+
+/**
+ * Generate WebSite schema with site search action
+ */
+export function generateWebSiteSchema() {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:4028');
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'CACBLAZE',
+    url: baseUrl,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${baseUrl}/search?q={search_term_string}`,
+      'query-input': 'required name=search_term_string',
     },
   };
 }

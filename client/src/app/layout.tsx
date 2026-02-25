@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 import '../styles/index.css';
 import { AuthProvider } from '@/contexts/AuthContext';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
-import { generateOrganizationSchema } from '@/utils/schemaMarkup';
+import { generateOrganizationSchema, generateWebSiteSchema } from '@/utils/schemaMarkup';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -35,9 +35,6 @@ export const metadata: Metadata = {
   creator: 'CACBLAZE',
   publisher: 'CACBLAZE',
   metadataBase: new URL(siteUrl),
-  alternates: {
-    canonical: '/',
-  },
   openGraph: {
     type: 'website',
     locale: 'en_NG',
@@ -75,6 +72,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const organizationSchema = generateOrganizationSchema();
+  const webSiteSchema = generateWebSiteSchema();
 
   return (
     <html lang="en">
@@ -82,6 +80,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
         />
       </head>
       <body>

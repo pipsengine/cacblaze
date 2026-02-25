@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { headers } from 'next/headers';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import QAList from './components/QAList';
@@ -7,14 +8,38 @@ import AskQuestionButton from './components/AskQuestionButton';
 export const metadata: Metadata = {
   title: 'Community Q&A - CACBLAZE',
   description: 'Ask questions and get answers from the Nigerian tech community',
+  alternates: { canonical: '/qa' },
 };
 
-export default function QAPage() {
+export default async function QAPage() {
+  const h = await headers();
+  const proto = h.get('x-forwarded-proto') ?? 'https';
+  const host = h.get('x-forwarded-host') ?? h.get('host') ?? 'localhost:4028';
+  const baseUrl = `${proto}://${host}`;
+  const qaWebPageLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Community Q&A',
+    description: 'Ask questions and get answers from the Nigerian tech community',
+    url: `${baseUrl}/qa`,
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/` },
+        { '@type': 'ListItem', position: 2, name: 'Community', item: `${baseUrl}/community` },
+        { '@type': 'ListItem', position: 3, name: 'Q&A', item: `${baseUrl}/qa` },
+      ],
+    },
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
 
       <main className="container mx-auto px-4 py-12">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(qaWebPageLd) }}
+        />
         <div className="max-w-5xl mx-auto">
           <div className="bg-gradient-to-r from-primary to-primary/80 rounded-2xl p-8 mb-8 text-white">
             <h1 className="text-4xl font-bold mb-2">Community Q&A</h1>

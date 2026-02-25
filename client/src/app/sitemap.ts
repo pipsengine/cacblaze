@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Static pages with high priority
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: `${baseUrl}/homepage`,
+      url: `${baseUrl}/`,
       lastModified: currentDate,
       changeFrequency: 'daily',
       priority: 1.0,

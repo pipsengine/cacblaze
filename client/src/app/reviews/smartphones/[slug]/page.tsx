@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { headers } from 'next/headers';
+import { generateReviewSchema } from '@/utils/schemaMarkup';
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 import AppImage from '@/components/ui/AppImage';
@@ -25,6 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${review.name} Review: Is it Worth ₦${review.price.split(' ')[0]}? - CACBLAZE`,
     description: `${review.tagline}. Read our in-depth review of the ${review.name} covering battery life, camera performance, and value for money in Nigeria.`,
+    alternates: { canonical: `/reviews/smartphones/${review.slug}` },
   };
 }
 
@@ -36,6 +39,19 @@ export default async function SmartphoneReviewPage({ params }: PageProps) {
     notFound();
   }
 
+  const h = await headers();
+  const proto = h.get('x-forwarded-proto') ?? 'https';
+  const host = h.get('x-forwarded-host') ?? h.get('host') ?? 'cacblaze.com';
+  const origin = `${proto}://${host}`;
+  const reviewLd = generateReviewSchema({
+    itemName: review.name,
+    rating: review.rating,
+    reviewBody: review.verdict,
+    author: review.author.name,
+    datePublished: review.publishDate,
+  });
+  const jsonLd = [{ ...reviewLd, url: `${origin}/reviews/smartphones/${review.slug}` }];
+
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Reviews', href: '/reviews' },
@@ -45,6 +61,10 @@ export default async function SmartphoneReviewPage({ params }: PageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <main className="min-h-screen pt-20 bg-gray-50">
         {/* Hero Section */}
@@ -104,6 +124,7 @@ export default async function SmartphoneReviewPage({ params }: PageProps) {
                     src={review.heroImage}
                     alt={review.name}
                     fill
+                    priority
                     className="object-cover"
                   />
                   <div className="absolute bottom-4 right-4 bg-black/70 backdrop-blur text-white px-4 py-2 rounded-lg font-bold">
