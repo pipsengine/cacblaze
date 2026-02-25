@@ -1,12 +1,22 @@
 import { NextResponse } from 'next/server';
 
-const ALLOWED_HOSTS = new Set([
+const DEFAULT_ALLOWED_HOSTS = [
   'images.unsplash.com',
   'images.pexels.com',
   'images.pixabay.com',
   'cdn.pixabay.com',
   'img.rocket.new',
-]);
+];
+
+function buildAllowedHosts() {
+  const envList = (process.env.IMAGE_PROXY_ALLOWED_HOSTS || '')
+    .split(',')
+    .map((h) => h.trim())
+    .filter(Boolean);
+  return new Set<string>([...DEFAULT_ALLOWED_HOSTS, ...envList]);
+}
+
+const ALLOWED_HOSTS = buildAllowedHosts();
 
 export async function GET(request: Request) {
   try {
