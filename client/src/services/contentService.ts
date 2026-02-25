@@ -92,7 +92,7 @@ export async function getMetaBySlug(
       for (const cat of categories) {
         const items = cat.items ?? [];
         for (const it of items) {
-          if (typeof it.href === 'string') {
+          if (it && typeof it.href === 'string' && it.href.trim().length > 0) {
             const hrefSlug = it.href.split('/').filter(Boolean).pop();
             if (hrefSlug === slug) {
               return { label: it.label, description: it.description };
@@ -178,8 +178,8 @@ export async function getMetaBySlug(
       };
     }
   }
-  const toTitle = (s: string) =>
-    s
+  const toTitle = (s?: string) =>
+    String(s || '')
       .split('-')
       .filter(Boolean)
       .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
@@ -405,7 +405,7 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
       for (const cat of categories) {
         const items = cat.items ?? [];
         for (const it of items) {
-          if (typeof it.href === 'string') {
+          if (it && typeof it.href === 'string' && it.href.trim().length > 0) {
             const hrefSlug = it.href.split('/').filter(Boolean).pop();
             if (hrefSlug === slug) {
               return { label: it.label, description: it.description };
@@ -5743,8 +5743,8 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
     };
   }
 
-  const toTitle = (s: string) =>
-    s
+  const toTitle = (s?: string) =>
+    String(s || '')
       .split('-')
       .filter(Boolean)
       .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
