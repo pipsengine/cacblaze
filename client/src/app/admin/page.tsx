@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
+import Link from 'next/link';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import Icon from '@/components/ui/AppIcon';
@@ -42,13 +43,22 @@ export default function AdminDashboard() {
                   <h1 className="text-4xl font-bold text-foreground mb-2">User Administration</h1>
                   <p className="text-secondary">Manage users, roles, permissions, and audit logs</p>
                 </div>
-                <button
-                  onClick={() => setIsPermissionsOpen(true)}
-                  className="px-4 py-2 border border-gray-300 text-secondary rounded-lg font-semibold hover:bg-gray-50 transition-colors flex items-center gap-2"
-                >
-                  <Icon name="InformationCircleIcon" size={20} />
-                  View Roles & Permissions
-                </button>
+                <div className="flex items-center gap-3">
+                  <Link
+                    href="/admin/settings/social-keys"
+                    className="px-4 py-2 border border-gray-300 text-secondary rounded-lg font-semibold hover:bg-gray-50 transition-colors flex items-center gap-2"
+                  >
+                    <Icon name="Cog6ToothIcon" size={20} />
+                    Settings
+                  </Link>
+                  <button
+                    onClick={() => setIsPermissionsOpen(true)}
+                    className="px-4 py-2 border border-gray-300 text-secondary rounded-lg font-semibold hover:bg-gray-50 transition-colors flex items-center gap-2"
+                  >
+                    <Icon name="InformationCircleIcon" size={20} />
+                    View Roles & Permissions
+                  </button>
+                </div>
               </div>
 
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
