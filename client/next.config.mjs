@@ -173,7 +173,8 @@ const nextConfig = {
     ];
   },
   async rewrites() {
-    if (process.env.NODE_ENV === 'development') {
+    const useDevRewrite = process.env.USE_DEV_API_REWRITE === '1';
+    if (process.env.NODE_ENV === 'development' && useDevRewrite) {
       return [
         {
           source: '/api/ai-publishing/:path*',

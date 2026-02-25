@@ -28,24 +28,19 @@ export default function DailyTips() {
     const fetchDailyTips = async () => {
       try {
         setLoading(true);
-        if (!API_BASE) {
-          throw new Error(
-            'API base URL is not configured. Set NEXT_PUBLIC_API_URL in environment variables.'
-          );
-        }
         const response = await fetch(`${API_BASE}/ai-publishing/tips/published?limit=7`, {
           cache: 'no-store',
         });
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch daily tips');
+        if (response.ok) {
+          const data: TipsResponse = await response.json();
+          setTips(Array.isArray(data?.tips) ? data.tips : []);
+        } else {
+          setTips([]);
         }
-        
-        const data: TipsResponse = await response.json();
-        setTips(data.tips);
+        setError(null);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-        console.error('Error fetching daily tips:', err);
+        setTips([]);
+        setError(null);
       } finally {
         setLoading(false);
       }

@@ -41,29 +41,23 @@ export default function FeaturedArticle() {
     const fetchFeaturedArticle = async () => {
       try {
         setLoading(true);
-        if (!API_BASE) {
-          throw new Error(
-            'API base URL is not configured. Set NEXT_PUBLIC_API_URL in environment variables.'
-          );
-        }
         const response = await fetch(`${API_BASE}/ai-publishing/articles/published?limit=1`, {
           cache: 'no-store',
         });
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch featured article');
-        }
-        
-        const data: ArticlesResponse = await response.json();
-        
-        if (data.articles && data.articles.length > 0) {
-          setArticle(data.articles[0]);
+        if (response.ok) {
+          const data: ArticlesResponse = await response.json();
+          if (data.articles && data.articles.length > 0) {
+            setArticle(data.articles[0]);
+          } else {
+            setArticle(null);
+          }
         } else {
-          setError('No featured articles available');
+          setArticle(null);
         }
+        setError(null);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-        console.error('Error fetching featured article:', err);
+        setArticle(null);
+        setError(null);
       } finally {
         setLoading(false);
       }

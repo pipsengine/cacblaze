@@ -78,13 +78,19 @@ function getLifestyleCategories() {
     id: cat.id,
     title: cat.label,
     items:
-      cat.items?.map((item) => ({
-        id: item.id,
-        label: item.label,
-        href: item.href!,
-        icon: iconByHref[item.href!] || 'ClipboardDocumentCheckIcon',
-        description: descriptionByHref[item.href!] || 'Open detailed lifestyle guides.',
-      })) || [],
+      cat.items?.map((item) => {
+        const safeHref =
+          item && typeof item.href === 'string' && item.href.trim().length > 0
+            ? item.href
+            : '/lifestyle';
+        return {
+          id: item.id,
+          label: item.label,
+          href: safeHref,
+          icon: iconByHref[safeHref] || 'ClipboardDocumentCheckIcon',
+          description: descriptionByHref[safeHref] || 'Open detailed lifestyle guides.',
+        };
+      }) || [],
   }));
 }
 
@@ -134,7 +140,10 @@ export default function LifestylePage() {
                       >
                         <div className="mb-4">
                           <AppImage
-                            src={`/assets/images/lifestyle/${item.href.split('/').pop()}.jpg`}
+                            src={`/assets/images/lifestyle/${(typeof item.href === 'string' ? item.href : '')
+                              .split('/')
+                              .filter(Boolean)
+                              .pop() || 'lifestyle'}.jpg`}
                             alt={item.label}
                             width={800}
                             height={160}
