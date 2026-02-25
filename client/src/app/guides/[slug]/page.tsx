@@ -26,6 +26,14 @@ import {
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
 
+function titleFromSlug(slug: string) {
+  return (slug || '')
+    .split('-')
+    .filter(Boolean)
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+}
+
 interface Article {
   id: string;
   slug: string;
@@ -57,9 +65,8 @@ export async function generateMetadata({
     });
     
     if (!response.ok) {
-      return {
-        title: 'Article Not Found',
-      };
+      const fallbackTitle = titleFromSlug(slug);
+      return { title: `${fallbackTitle} - CACBLAZE`, description: `Guide: ${fallbackTitle}` };
     }
     
     const article: Article = await response.json();
@@ -70,9 +77,8 @@ export async function generateMetadata({
       keywords: `${article.category}, guide, tutorial, ${article.title}`,
     };
   } catch (error) {
-    return {
-      title: 'Article Not Found',
-    };
+    const fallbackTitle = titleFromSlug(slug);
+    return { title: `${fallbackTitle} - CACBLAZE`, description: `Guide: ${fallbackTitle}` };
   }
 }
 
@@ -83,13 +89,56 @@ async function fetchArticle(slug: string): Promise<Article | null> {
     });
     
     if (!response.ok) {
-      return null;
+      const t = titleFromSlug(slug);
+      return {
+        id: `fallback_${slug}`,
+        slug,
+        title: t,
+        content:
+          `## Overview\n` +
+          `This guide for ${t} is being prepared. You can bookmark this page and check back soon.\n\n` +
+          `## What You Can Expect\n` +
+          `- Clear steps and checklists\n- Context for Nigeria and similar markets\n- Safety, costs, and alternatives`,
+        meta_description: `Overview and next steps for ${t}.`,
+        category: 'Guides',
+        type: 'Guide',
+        geo_focus: 'Nigeria',
+        published_at: new Date().toISOString(),
+        featured_image_url: '',
+        image_alt: `${t} illustration`,
+        author: {
+          id: 'cacblaze_editors',
+          name: 'CACBLAZE Editors',
+          avatar_url: '',
+        },
+      };
     }
     
     return await response.json();
   } catch (error) {
-    console.error('Error fetching article:', error);
-    return null;
+    const t = titleFromSlug(slug);
+    return {
+      id: `fallback_${slug}`,
+      slug,
+      title: t,
+      content:
+        `## Overview\n` +
+        `This guide for ${t} is being prepared. You can bookmark this page and check back soon.\n\n` +
+        `## What You Can Expect\n` +
+        `- Clear steps and checklists\n- Context for Nigeria and similar markets\n- Safety, costs, and alternatives`,
+      meta_description: `Overview and next steps for ${t}.`,
+      category: 'Guides',
+      type: 'Guide',
+      geo_focus: 'Nigeria',
+      published_at: new Date().toISOString(),
+      featured_image_url: '',
+      image_alt: `${t} illustration`,
+      author: {
+        id: 'cacblaze_editors',
+        name: 'CACBLAZE Editors',
+        avatar_url: '',
+      },
+    };
   }
 }
 

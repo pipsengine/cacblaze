@@ -7,7 +7,7 @@ import Icon from '@/components/ui/AppIcon';
 import { getAuthorAvatar } from '@/utils/imageService';
 import { trackCommentAction } from '@/lib/analytics';
 
-const API_URL = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/$/, '');
+const API_BASE = (process.env.NEXT_PUBLIC_API_URL || '/api').replace(/\/$/, '');
 
 interface Comment {
   id: string;
@@ -62,12 +62,15 @@ export default function CommentsSection({ articleId }: CommentsProps) {
 
   const fetchComments = async () => {
     try {
-      if (!API_URL) {
+      if (!API_BASE) {
         setComments([]);
         return;
       }
-      const res = await fetch(`${API_URL}/comments/${articleId}`);
-      if (!res.ok) throw new Error('Failed to fetch comments');
+      const res = await fetch(`${API_BASE}/comments/${articleId}`, { cache: 'no-store' });
+      if (!res.ok) {
+        setComments([]);
+        return;
+      }
 
       const data = await res.json();
 
@@ -113,8 +116,8 @@ export default function CommentsSection({ articleId }: CommentsProps) {
       });
 
       setComments(topLevelComments.map((c: Comment) => commentMap.get(c.id)!));
-    } catch (error) {
-      console.error('Error fetching comments:', error);
+    } catch {
+      setComments([]);
     } finally {
       setLoading(false);
     }
@@ -125,8 +128,8 @@ export default function CommentsSection({ articleId }: CommentsProps) {
     if (!user || !newComment.trim()) return;
 
     try {
-      if (!API_URL) return;
-      const res = await fetch(`${API_URL}/comments`, {
+      if (!API_BASE) return;
+      const res = await fetch(`${API_BASE}/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -137,16 +140,15 @@ export default function CommentsSection({ articleId }: CommentsProps) {
           content: newComment.trim(),
         }),
       });
-
-      if (!res.ok) throw new Error('Failed to post comment');
+      if (!res.ok) return;
 
       // Track comment post
       trackCommentAction('post', { articleId });
 
       setNewComment('');
       fetchComments(); // Refresh comments
-    } catch (error) {
-      console.error('Error posting comment:', error);
+    } catch {
+      return;
     }
   };
 
@@ -154,8 +156,8 @@ export default function CommentsSection({ articleId }: CommentsProps) {
     if (!user || !replyContent.trim()) return;
 
     try {
-      if (!API_URL) return;
-      const res = await fetch(`${API_URL}/comments`, {
+      if (!API_BASE) return;
+      const res = await fetch(`${API_BASE}/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -167,8 +169,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
           content: replyContent.trim(),
         }),
       });
-
-      if (!res.ok) throw new Error('Failed to post reply');
+      if (!res.ok) return;
 
       // Track reply
       trackCommentAction('reply', { articleId, commentId: parentId });
@@ -176,8 +177,8 @@ export default function CommentsSection({ articleId }: CommentsProps) {
       setReplyContent('');
       setReplyingTo(null);
       fetchComments(); // Refresh comments
-    } catch (error) {
-      console.error('Error posting reply:', error);
+    } catch {
+      return;
     }
   };
 
@@ -185,8 +186,8 @@ export default function CommentsSection({ articleId }: CommentsProps) {
     if (!user || !editContent.trim()) return;
 
     try {
-      if (!API_URL) return;
-      const res = await fetch(`${API_URL}/comments/${commentId}`, {
+      if (!API_BASE) return;
+      const res = await fetch(`${API_BASE}/comments/${commentId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -196,8 +197,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
           content: editContent.trim(),
         }),
       });
-
-      if (!res.ok) throw new Error('Failed to edit comment');
+      if (!res.ok) return;
 
       // Track edit
       trackCommentAction('edit', { articleId, commentId });
@@ -205,8 +205,8 @@ export default function CommentsSection({ articleId }: CommentsProps) {
       setEditingId(null);
       setEditContent('');
       fetchComments(); // Refresh comments
-    } catch (error) {
-      console.error('Error editing comment:', error);
+    } catch {
+      return;
     }
   };
 
@@ -214,21 +214,20 @@ export default function CommentsSection({ articleId }: CommentsProps) {
     if (!user || !confirm('Are you sure you want to delete this comment?')) return;
 
     try {
-      if (!API_URL) return;
-      const res = await fetch(`${API_URL}/comments/${commentId}`, {
+      if (!API_BASE) return;
+      const res = await fetch(`${API_BASE}/comments/${commentId}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
-      if (!res.ok) throw new Error('Failed to delete comment');
+      if (!res.ok) return;
 
       // Track deletion
       trackCommentAction('delete', { articleId, commentId });
       fetchComments(); // Refresh comments
-    } catch (error) {
-      console.error('Error deleting comment:', error);
+    } catch {
+      return;
     }
   };
 
@@ -236,8 +235,8 @@ export default function CommentsSection({ articleId }: CommentsProps) {
     if (!user) return;
 
     try {
-      if (!API_URL) return;
-      const res = await fetch(`${API_URL}/comments/${commentId}/reaction`, {
+      if (!API_BASE) return;
+      const res = await fetch(`${API_BASE}/comments/${commentId}/reaction`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -245,14 +244,13 @@ export default function CommentsSection({ articleId }: CommentsProps) {
         },
         body: JSON.stringify({ reactionType }),
       });
-
-      if (!res.ok) throw new Error('Failed to toggle reaction');
+      if (!res.ok) return;
 
       // Track reaction
       trackCommentAction('reaction', { articleId, commentId, reactionType });
       fetchComments(); // Refresh comments
-    } catch (error) {
-      console.error('Error handling reaction:', error);
+    } catch {
+      return;
     }
   };
 
