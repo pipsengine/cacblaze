@@ -29,6 +29,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'img.rocket.new',
       },
+      {
+        protocol: 'https',
+        hostname: 'cacblaze.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.cacblaze.com',
+      },
     ],
   },
 
