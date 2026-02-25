@@ -11,6 +11,7 @@ const Footer = () => {
       { id: 'footer_press', label: 'Press', href: '/press' },
       { id: 'footer_partners', label: 'Partners', href: '/partners' },
       { id: 'footer_contact', label: 'Contact', href: '/contact' },
+      { id: 'footer_advertise', label: 'Advertise', href: '/advertise' },
     ],
     resources: [
       { id: 'footer_guides', label: 'Guides', href: '/guides' },
