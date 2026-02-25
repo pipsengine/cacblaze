@@ -6,6 +6,9 @@ const DEFAULT_ALLOWED_HOSTS = [
   'images.pixabay.com',
   'cdn.pixabay.com',
   'img.rocket.new',
+  'cacblaze.com',
+  'www.cacblaze.com',
+  'cdn.cacblaze.com',
 ];
 
 function buildAllowedHosts() {
