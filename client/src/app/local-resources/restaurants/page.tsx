@@ -28,105 +28,120 @@ const LocalRestaurantsPage = () => {
       id: 'lagos_vi',
       city: 'Lagos',
       area: 'Victoria Island',
-      image: 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Seafood & grills', 'Upscale lounges', 'Date-night spots'],
     },
     {
       id: 'lagos_ikoyi',
       city: 'Lagos',
       area: 'Ikoyi',
-      image: 'https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Fine dining', 'Quiet ambience', 'Business lunches'],
     },
     {
       id: 'lagos_lekki',
       city: 'Lagos',
       area: 'Lekki Phase 1',
-      image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',
+      image:
+        'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',
       highlights: ['Trendy cafes', 'Brunch culture', 'Rooftop views'],
     },
     {
       id: 'abuja_wuse',
       city: 'FCT Abuja',
       area: 'Wuse 2',
-      image: 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=1200&q=80',
+      image:
+        'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=1200&q=80',
       highlights: ['International cuisine', 'Family-friendly', 'Dessert bars'],
     },
     {
       id: 'abuja_maitama',
       city: 'FCT Abuja',
       area: 'Maitama',
-      image: 'https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Fine dining', 'Quiet settings', 'Corporate dinners'],
     },
     {
       id: 'ph_gra',
       city: 'Rivers',
       area: 'Port Harcourt GRA',
-      image: 'https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Grills & chops', 'Live music', 'Outdoor seating'],
     },
     {
       id: 'kano_nassarawa',
       city: 'Kano',
       area: 'Nassarawa',
-      image: 'https://images.pexels.com/photos/6210766/pexels-photo-6210766.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/6210766/pexels-photo-6210766.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Local grills', 'Family eateries', 'Evening spots'],
     },
     {
       id: 'ibadan_bodija',
       city: 'Oyo',
       area: 'Bodija',
-      image: 'https://images.pexels.com/photos/414645/pexels-photo-414645.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/414645/pexels-photo-414645.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Bukkataria', 'Rice & stew', 'Affordable meals'],
     },
     {
       id: 'enugu_independence',
       city: 'Enugu',
       area: 'Independence Layout',
-      image: 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Local soups', 'Family restaurants', 'Night grills'],
     },
     {
       id: 'benin_gra',
       city: 'Edo',
       area: 'Benin GRA',
-      image: 'https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Seafood', 'Outdoor seating', 'Live bands'],
     },
     {
       id: 'jos_rayfield',
       city: 'Plateau',
       area: 'Rayfield',
-      image: 'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Cold weather menus', 'Stews & teas', 'Scenic views'],
     },
     {
       id: 'ilorin_tanke',
       city: 'Kwara',
       area: 'Tanke',
-      image: 'https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=1200&q=80',
+      image:
+        'https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=1200&q=80',
       highlights: ['Student-friendly', 'Casual bites', 'Affordable combos'],
     },
     {
       id: 'calabar_marina',
       city: 'Cross River',
       area: 'Marina',
-      image: 'https://images.pexels.com/photos/760044/pexels-photo-760044.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/760044/pexels-photo-760044.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Sea views', 'Seafood platters', 'Tourist-friendly'],
     },
     {
       id: 'uyo_ewet',
       city: 'Akwa Ibom',
       area: 'Ewet Housing',
-      image: 'https://images.pexels.com/photos/949193/pexels-photo-949193.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/949193/pexels-photo-949193.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Eateries & lounges', 'Family spots', 'Local grills'],
     },
     {
       id: 'kaduna_barnawa',
       city: 'Kaduna',
       area: 'Barnawa',
-      image: 'https://images.pexels.com/photos/6210967/pexels-photo-6210967.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/6210967/pexels-photo-6210967.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Grills & suya', 'Casual dining', 'Group seating'],
     },
   ];
@@ -233,7 +248,8 @@ const LocalRestaurantsPage = () => {
                     {(() => {
                       const curated = getCuratedImagesForCategory('local-resources');
                       const idStr = typeof area.id === 'string' ? area.id : String(area.id ?? '');
-                      const cityStr = typeof area.city === 'string' ? area.city : String(area.city ?? '');
+                      const cityStr =
+                        typeof area.city === 'string' ? area.city : String(area.city ?? '');
                       const hash =
                         idStr.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0) +
                         cityStr.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
@@ -415,7 +431,11 @@ const LocalRestaurantsPage = () => {
                     Watch bags and phones; use secure parking and avoid late cash withdrawals.
                   </li>
                   <li className="flex items-start gap-3 text-secondary">
-                    <Icon name="InformationCircleIcon" size={18} className="text-emerald-600 mt-0.5" />
+                    <Icon
+                      name="InformationCircleIcon"
+                      size={18}
+                      className="text-emerald-600 mt-0.5"
+                    />
                     Allergies or dietary needs? Ask for substitutions; many places can adapt.
                   </li>
                 </ul>

@@ -65,7 +65,8 @@ export default function BusinessBooksListingPage() {
                       const fallback = curated[idx]?.src || '/assets/images/no_image.png';
                       const secondary =
                         curated.length > 1
-                          ? curated[(idx + 1) % curated.length]?.src || '/assets/images/no_image.png'
+                          ? curated[(idx + 1) % curated.length]?.src ||
+                            '/assets/images/no_image.png'
                           : '/assets/images/no_image.png';
                       return (
                         <AppImage

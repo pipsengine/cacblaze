@@ -124,15 +124,23 @@ export default async function AMAPage() {
               <div className="space-y-3 text-sm text-secondary">
                 <div>
                   <h4 className="text-foreground font-semibold">Purpose</h4>
-                  <p>Learn directly from experienced practitioners through focused, time‑boxed sessions.</p>
+                  <p>
+                    Learn directly from experienced practitioners through focused, time‑boxed
+                    sessions.
+                  </p>
                 </div>
                 <div>
                   <h4 className="text-foreground font-semibold">Format</h4>
-                  <p>Experts host live threads; participants submit questions and upvote helpful answers.</p>
+                  <p>
+                    Experts host live threads; participants submit questions and upvote helpful
+                    answers.
+                  </p>
                 </div>
                 <div>
                   <h4 className="text-foreground font-semibold">Scope</h4>
-                  <p>Topics span engineering, product, business, finance, and career development.</p>
+                  <p>
+                    Topics span engineering, product, business, finance, and career development.
+                  </p>
                 </div>
                 <div>
                   <h4 className="text-foreground font-semibold">Outcomes</h4>
@@ -142,7 +150,10 @@ export default async function AMAPage() {
               <div className="space-y-3 text-sm text-secondary">
                 <div>
                   <h4 className="text-foreground font-semibold">Participation</h4>
-                  <p>Ask concise, well‑scoped questions with context and goals; avoid broad hypotheticals.</p>
+                  <p>
+                    Ask concise, well‑scoped questions with context and goals; avoid broad
+                    hypotheticals.
+                  </p>
                 </div>
                 <div>
                   <h4 className="text-foreground font-semibold">Etiquette</h4>
@@ -150,7 +161,10 @@ export default async function AMAPage() {
                 </div>
                 <div>
                   <h4 className="text-foreground font-semibold">Follow‑Up</h4>
-                  <p>Share results, edits, or learnings so future readers benefit from your implementation.</p>
+                  <p>
+                    Share results, edits, or learnings so future readers benefit from your
+                    implementation.
+                  </p>
                 </div>
                 <div>
                   <h4 className="text-foreground font-semibold">Recording</h4>

@@ -25,8 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const isFallback =
-    (content as any).category === 'Guides' &&
-    (content as any).authorName === 'CACBLAZE Editors';
+    (content as any).category === 'Guides' && (content as any).authorName === 'CACBLAZE Editors';
 
   return {
     title: content.seoTitle ?? content.title,
@@ -80,11 +79,7 @@ export default async function CanonicalContentPage({ params }: PageProps) {
               </span>
             )}
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">{content.title}</h1>
-            {content.excerpt && (
-              <p className="text-lg text-slate-200 mb-8">
-                {content.excerpt}
-              </p>
-            )}
+            {content.excerpt && <p className="text-lg text-slate-200 mb-8">{content.excerpt}</p>}
             <div className="flex items-center gap-4 mb-10">
               <a
                 href="#start"
@@ -111,9 +106,7 @@ export default async function CanonicalContentPage({ params }: PageProps) {
                 </div>
               )}
               <div>
-                {content.authorName && (
-                  <p className="text-sm font-bold">{content.authorName}</p>
-                )}
+                {content.authorName && <p className="text-sm font-bold">{content.authorName}</p>}
                 {content.authorRole && (
                   <p className="text-xs text-slate-300">{content.authorRole}</p>
                 )}

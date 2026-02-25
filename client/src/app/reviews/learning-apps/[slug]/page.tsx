@@ -72,7 +72,13 @@ export default async function LearningAppDetailPage({ params }: PageProps) {
           <article className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
             {/* Hero Section */}
             <div className="relative h-[400px]">
-              <AppImage src={review.heroImage} alt={review.name} fill className="object-cover" priority />
+              <AppImage
+                src={review.heroImage}
+                alt={review.name}
+                fill
+                className="object-cover"
+                priority
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 p-8 text-white">
                 <div className="flex items-center gap-3 mb-4">

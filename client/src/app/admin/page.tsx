@@ -36,67 +36,67 @@ export default function AdminDashboard() {
               </p>
             </div>
           ) : (
-          <>
-          <div className="mb-8 flex items-center justify-between">
-            <div>
-              <h1 className="text-4xl font-bold text-foreground mb-2">User Administration</h1>
-              <p className="text-secondary">Manage users, roles, permissions, and audit logs</p>
-            </div>
-            <button
-              onClick={() => setIsPermissionsOpen(true)}
-              className="px-4 py-2 border border-gray-300 text-secondary rounded-lg font-semibold hover:bg-gray-50 transition-colors flex items-center gap-2"
-            >
-              <Icon name="InformationCircleIcon" size={20} />
-              View Roles & Permissions
-            </button>
-          </div>
+            <>
+              <div className="mb-8 flex items-center justify-between">
+                <div>
+                  <h1 className="text-4xl font-bold text-foreground mb-2">User Administration</h1>
+                  <p className="text-secondary">Manage users, roles, permissions, and audit logs</p>
+                </div>
+                <button
+                  onClick={() => setIsPermissionsOpen(true)}
+                  className="px-4 py-2 border border-gray-300 text-secondary rounded-lg font-semibold hover:bg-gray-50 transition-colors flex items-center gap-2"
+                >
+                  <Icon name="InformationCircleIcon" size={20} />
+                  View Roles & Permissions
+                </button>
+              </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
-            <div className="flex border-b border-gray-200">
-              <button
-                onClick={() => setActiveTab('users')}
-                className={`px-6 py-4 font-semibold transition-colors ${
-                  activeTab === 'users'
-                    ? 'text-primary border-b-2 border-primary'
-                    : 'text-secondary hover:text-foreground'
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  <Icon name="UsersIcon" size={20} />
-                  Users
+              <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
+                <div className="flex border-b border-gray-200">
+                  <button
+                    onClick={() => setActiveTab('users')}
+                    className={`px-6 py-4 font-semibold transition-colors ${
+                      activeTab === 'users'
+                        ? 'text-primary border-b-2 border-primary'
+                        : 'text-secondary hover:text-foreground'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <Icon name="UsersIcon" size={20} />
+                      Users
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('audit')}
+                    className={`px-6 py-4 font-semibold transition-colors ${
+                      activeTab === 'audit'
+                        ? 'text-primary border-b-2 border-primary'
+                        : 'text-secondary hover:text-foreground'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <Icon name="ClipboardDocumentListIcon" size={20} />
+                      Audit Log
+                    </div>
+                  </button>
                 </div>
-              </button>
-              <button
-                onClick={() => setActiveTab('audit')}
-                className={`px-6 py-4 font-semibold transition-colors ${
-                  activeTab === 'audit'
-                    ? 'text-primary border-b-2 border-primary'
-                    : 'text-secondary hover:text-foreground'
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  <Icon name="ClipboardDocumentListIcon" size={20} />
-                  Audit Log
-                </div>
-              </button>
-            </div>
 
-            <div className="p-6">
-              {activeTab === 'users' ? (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <div>
-                    <UserList onUserSelect={(id) => setSelectedUserId(id)} />
-                  </div>
-                  <div>
-                    <UserProfile userId={selectedUserId} />
-                  </div>
+                <div className="p-6">
+                  {activeTab === 'users' ? (
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      <div>
+                        <UserList onUserSelect={(id) => setSelectedUserId(id)} />
+                      </div>
+                      <div>
+                        <UserProfile userId={selectedUserId} />
+                      </div>
+                    </div>
+                  ) : (
+                    <AuditLog />
+                  )}
                 </div>
-              ) : (
-                <AuditLog />
-              )}
-            </div>
-          </div>
-          </>
+              </div>
+            </>
           )}
         </div>
       </main>

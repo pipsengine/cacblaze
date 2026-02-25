@@ -45,8 +45,7 @@ const NigerianCitiesPage = () => {
       tagline: 'The Federal Capital Territory',
       description:
         "Discover Abuja's organized layout, government opportunities, real estate market, and quality of life advantages.",
-      image:
-        'https://source.unsplash.com/1200x800/?abuja,city',
+      image: 'https://source.unsplash.com/1200x800/?abuja,city',
       imageAlt: 'Abuja city center with Aso Rock in background',
       href: '/nigerian-cities/abuja',
       stats: { population: '3M+', traffic: 'Moderate', business: 'Growing' },
@@ -58,8 +57,7 @@ const NigerianCitiesPage = () => {
       tagline: 'The Garden City',
       description:
         "Explore Port Harcourt's oil & gas opportunities, business landscape, and emerging tech scene in the Niger Delta.",
-      image:
-        'https://source.unsplash.com/1200x800/?port-harcourt,city',
+      image: 'https://source.unsplash.com/1200x800/?port-harcourt,city',
       imageAlt: 'Port Harcourt waterfront with industrial and commercial areas',
       href: '/nigerian-cities/port-harcourt',
       stats: { population: '2M+', traffic: 'Light', business: 'Oil & Gas' },

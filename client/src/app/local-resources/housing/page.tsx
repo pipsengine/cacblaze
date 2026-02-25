@@ -10,7 +10,8 @@ import { NIGERIA_STATES } from '@/data/nigeria-states';
 
 export const metadata: Metadata = {
   title: 'Housing Tips in Nigeria - CACBLAZE',
-  description: 'Practical housing tips across Nigerian states: renting, neighborhoods, agents, payments, and safety.',
+  description:
+    'Practical housing tips across Nigerian states: renting, neighborhoods, agents, payments, and safety.',
   keywords: 'Nigeria housing, renting Nigeria, neighborhoods Nigeria, agents Nigeria, housing tips',
 };
 
@@ -25,28 +26,180 @@ type HousingItem = {
   points: string[];
 };
 
-const H1 = 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const H2 = 'https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const H3 = 'https://images.pexels.com/photos/259962/pexels-photo-259962.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const H4 = 'https://images.pexels.com/photos/271742/pexels-photo-271742.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const H5 = 'https://images.pexels.com/photos/259957/pexels-photo-259957.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const H1 =
+  'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const H2 =
+  'https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const H3 =
+  'https://images.pexels.com/photos/259962/pexels-photo-259962.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const H4 =
+  'https://images.pexels.com/photos/271742/pexels-photo-271742.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const H5 =
+  'https://images.pexels.com/photos/259957/pexels-photo-259957.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
 
 const ITEMS: HousingItem[] = [
-  { id: 'lagos_renting', state: 'Lagos', city: 'Lagos', title: 'Renting in Lagos', image: H1, category: 'Renting', summary: 'Choose areas by commute, price, and safety.', points: ['Ask for total cost incl. agency/agreements', 'Inspect at different times of day', 'Check power and water schedule'] },
-  { id: 'abuja_renting', state: 'FCT Abuja', city: 'Abuja', title: 'Renting in Abuja', image: H2, category: 'Renting', summary: 'Wuse, Gwarinpa, Lugbe vary by budget.', points: ['Verify service charge details', 'Confirm parking and security', 'Ask neighbors for noise levels'] },
-  { id: 'ph_neighborhoods', state: 'Rivers', city: 'Port Harcourt', title: 'Neighborhoods in PH', image: H3, category: 'Neighborhoods', summary: 'GRA vs Ada George vs Choba.', points: ['Check flood history', 'Confirm road condition', 'Transit time to work'] },
-  { id: 'ibadan_renting', state: 'Oyo', city: 'Ibadan', title: 'Renting in Ibadan', image: H4, category: 'Renting', summary: 'Bodija, Akobo, Ring Road options.', points: ['Water source and treatment', 'Security and fencing', 'Access to markets and hospitals'] },
-  { id: 'kano_renting', state: 'Kano', city: 'Kano', title: 'Renting in Kano', image: H5, category: 'Renting', summary: 'Nassarawa and Farm Centre.', points: ['Ventilation and heat', 'Check borehole quality', 'Proximity to work routes'] },
-  { id: 'kaduna_neighborhoods', state: 'Kaduna', city: 'Kaduna', title: 'Neighborhoods in Kaduna', image: H1, category: 'Neighborhoods', summary: 'Barnawa, Ungwan Rimi, Kakuri.', points: ['Traffic at peak hours', 'Security presence', 'Market distance'] },
-  { id: 'enugu_renting', state: 'Enugu', city: 'Enugu', title: 'Renting in Enugu', image: H2, category: 'Renting', summary: 'Independence Layout, New Haven.', points: ['Road lighting', 'Noise from nightlife', 'Water pressure checks'] },
-  { id: 'edo_neighborhoods', state: 'Edo', city: 'Benin City', title: 'Neighborhoods in Benin', image: H3, category: 'Neighborhoods', summary: 'GRA, Sapele Road, Ugbowo.', points: ['Flood zones and drainage', 'Waste disposal', 'POS and cash availability'] },
-  { id: 'plateau_renting', state: 'Plateau', city: 'Jos', title: 'Renting in Jos', image: H4, category: 'Renting', summary: 'Rayfield, Bukuru, Terminus.', points: ['Cold‑weather insulation', 'Window sealing', 'Transport availability'] },
-  { id: 'kwara_neighborhoods', state: 'Kwara', city: 'Ilorin', title: 'Neighborhoods in Ilorin', image: H5, category: 'Neighborhoods', summary: 'Tanke, GRA, Pipeline.', points: ['Student crowd and term times', 'Power supply variation', 'Distance to shops'] },
-  { id: 'crossriver_renting', state: 'Cross River', city: 'Calabar', title: 'Renting in Calabar', image: H1, category: 'Renting', summary: 'Marina, State Housing, Parliamentary.', points: ['Mosquito control strategies', 'Water treatment filters', 'Proximity to workplaces'] },
-  { id: 'akwaibom_neighborhoods', state: 'Akwa Ibom', city: 'Uyo', title: 'Neighborhoods in Uyo', image: H2, category: 'Neighborhoods', summary: 'Ewet Housing, Shelter Afrique.', points: ['Security checks and guards', 'Street lighting', 'Road access quality'] },
-  { id: 'imo_renting', state: 'Imo', city: 'Owerri', title: 'Renting in Owerri', image: H3, category: 'Renting', summary: 'New Owerri, Ikenegbu, World Bank.', points: ['Service charges and levies', 'Road condition in rainy season', 'Noise and nightlife'] },
-  { id: 'ogun_neighborhoods', state: 'Ogun', city: 'Abeokuta', title: 'Neighborhoods in Abeokuta', image: H4, category: 'Neighborhoods', summary: 'GRA, Oke‑Ilewo, Lafenwa.', points: ['Market and schools proximity', 'Borehole vs water board', 'Security at night'] },
-  { id: 'anambra_renting', state: 'Anambra', city: 'Awka', title: 'Renting in Awka', image: H5, category: 'Renting', summary: 'Ifite, Aroma, Udoka.', points: ['Student demand impact on prices', 'Landlord policies', 'Parking space availability'] },
+  {
+    id: 'lagos_renting',
+    state: 'Lagos',
+    city: 'Lagos',
+    title: 'Renting in Lagos',
+    image: H1,
+    category: 'Renting',
+    summary: 'Choose areas by commute, price, and safety.',
+    points: [
+      'Ask for total cost incl. agency/agreements',
+      'Inspect at different times of day',
+      'Check power and water schedule',
+    ],
+  },
+  {
+    id: 'abuja_renting',
+    state: 'FCT Abuja',
+    city: 'Abuja',
+    title: 'Renting in Abuja',
+    image: H2,
+    category: 'Renting',
+    summary: 'Wuse, Gwarinpa, Lugbe vary by budget.',
+    points: [
+      'Verify service charge details',
+      'Confirm parking and security',
+      'Ask neighbors for noise levels',
+    ],
+  },
+  {
+    id: 'ph_neighborhoods',
+    state: 'Rivers',
+    city: 'Port Harcourt',
+    title: 'Neighborhoods in PH',
+    image: H3,
+    category: 'Neighborhoods',
+    summary: 'GRA vs Ada George vs Choba.',
+    points: ['Check flood history', 'Confirm road condition', 'Transit time to work'],
+  },
+  {
+    id: 'ibadan_renting',
+    state: 'Oyo',
+    city: 'Ibadan',
+    title: 'Renting in Ibadan',
+    image: H4,
+    category: 'Renting',
+    summary: 'Bodija, Akobo, Ring Road options.',
+    points: [
+      'Water source and treatment',
+      'Security and fencing',
+      'Access to markets and hospitals',
+    ],
+  },
+  {
+    id: 'kano_renting',
+    state: 'Kano',
+    city: 'Kano',
+    title: 'Renting in Kano',
+    image: H5,
+    category: 'Renting',
+    summary: 'Nassarawa and Farm Centre.',
+    points: ['Ventilation and heat', 'Check borehole quality', 'Proximity to work routes'],
+  },
+  {
+    id: 'kaduna_neighborhoods',
+    state: 'Kaduna',
+    city: 'Kaduna',
+    title: 'Neighborhoods in Kaduna',
+    image: H1,
+    category: 'Neighborhoods',
+    summary: 'Barnawa, Ungwan Rimi, Kakuri.',
+    points: ['Traffic at peak hours', 'Security presence', 'Market distance'],
+  },
+  {
+    id: 'enugu_renting',
+    state: 'Enugu',
+    city: 'Enugu',
+    title: 'Renting in Enugu',
+    image: H2,
+    category: 'Renting',
+    summary: 'Independence Layout, New Haven.',
+    points: ['Road lighting', 'Noise from nightlife', 'Water pressure checks'],
+  },
+  {
+    id: 'edo_neighborhoods',
+    state: 'Edo',
+    city: 'Benin City',
+    title: 'Neighborhoods in Benin',
+    image: H3,
+    category: 'Neighborhoods',
+    summary: 'GRA, Sapele Road, Ugbowo.',
+    points: ['Flood zones and drainage', 'Waste disposal', 'POS and cash availability'],
+  },
+  {
+    id: 'plateau_renting',
+    state: 'Plateau',
+    city: 'Jos',
+    title: 'Renting in Jos',
+    image: H4,
+    category: 'Renting',
+    summary: 'Rayfield, Bukuru, Terminus.',
+    points: ['Cold‑weather insulation', 'Window sealing', 'Transport availability'],
+  },
+  {
+    id: 'kwara_neighborhoods',
+    state: 'Kwara',
+    city: 'Ilorin',
+    title: 'Neighborhoods in Ilorin',
+    image: H5,
+    category: 'Neighborhoods',
+    summary: 'Tanke, GRA, Pipeline.',
+    points: ['Student crowd and term times', 'Power supply variation', 'Distance to shops'],
+  },
+  {
+    id: 'crossriver_renting',
+    state: 'Cross River',
+    city: 'Calabar',
+    title: 'Renting in Calabar',
+    image: H1,
+    category: 'Renting',
+    summary: 'Marina, State Housing, Parliamentary.',
+    points: ['Mosquito control strategies', 'Water treatment filters', 'Proximity to workplaces'],
+  },
+  {
+    id: 'akwaibom_neighborhoods',
+    state: 'Akwa Ibom',
+    city: 'Uyo',
+    title: 'Neighborhoods in Uyo',
+    image: H2,
+    category: 'Neighborhoods',
+    summary: 'Ewet Housing, Shelter Afrique.',
+    points: ['Security checks and guards', 'Street lighting', 'Road access quality'],
+  },
+  {
+    id: 'imo_renting',
+    state: 'Imo',
+    city: 'Owerri',
+    title: 'Renting in Owerri',
+    image: H3,
+    category: 'Renting',
+    summary: 'New Owerri, Ikenegbu, World Bank.',
+    points: ['Service charges and levies', 'Road condition in rainy season', 'Noise and nightlife'],
+  },
+  {
+    id: 'ogun_neighborhoods',
+    state: 'Ogun',
+    city: 'Abeokuta',
+    title: 'Neighborhoods in Abeokuta',
+    image: H4,
+    category: 'Neighborhoods',
+    summary: 'GRA, Oke‑Ilewo, Lafenwa.',
+    points: ['Market and schools proximity', 'Borehole vs water board', 'Security at night'],
+  },
+  {
+    id: 'anambra_renting',
+    state: 'Anambra',
+    city: 'Awka',
+    title: 'Renting in Awka',
+    image: H5,
+    category: 'Renting',
+    summary: 'Ifite, Aroma, Udoka.',
+    points: ['Student demand impact on prices', 'Landlord policies', 'Parking space availability'],
+  },
 ];
 
 const buildStateCards = (state: string) => {
@@ -65,7 +218,11 @@ const buildStateCards = (state: string) => {
   }));
 };
 
-const HousingPage = ({ searchParams }: { searchParams?: { [key: string]: string | string[] | undefined } }) => {
+const HousingPage = ({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) => {
   const raw = searchParams?.state;
   const selectedState = typeof raw === 'string' ? raw : Array.isArray(raw) ? raw[0] || '' : '';
 
@@ -76,7 +233,9 @@ const HousingPage = ({ searchParams }: { searchParams?: { [key: string]: string 
   ];
 
   const filtered =
-    selectedState && selectedState.length > 0 ? ITEMS.filter((e) => e.state === selectedState) : ITEMS;
+    selectedState && selectedState.length > 0
+      ? ITEMS.filter((e) => e.state === selectedState)
+      : ITEMS;
 
   const nigeriaStates = NIGERIA_STATES;
 
@@ -95,8 +254,8 @@ const HousingPage = ({ searchParams }: { searchParams?: { [key: string]: string 
                 {selectedState ? `Housing Tips in ${selectedState}` : 'Housing Tips in Nigeria'}
               </h1>
               <p className="text-xl text-secondary mb-8 leading-relaxed">
-                Practical guidance for renting, choosing neighborhoods, and managing costs. Compare areas by commute,
-                utilities, and safety across Nigerian cities.
+                Practical guidance for renting, choosing neighborhoods, and managing costs. Compare
+                areas by commute, utilities, and safety across Nigerian cities.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
@@ -190,7 +349,10 @@ const HousingPage = ({ searchParams }: { searchParams?: { [key: string]: string 
                       <div className="p-6">
                         <ul className="space-y-2">
                           {c.points.map((p, idx) => (
-                            <li key={idx} className="flex items-center gap-2 text-sm text-secondary">
+                            <li
+                              key={idx}
+                              className="flex items-center gap-2 text-sm text-secondary"
+                            >
                               <Icon name="SparklesIcon" size={16} className="text-primary" />
                               {p}
                             </li>

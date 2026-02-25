@@ -23,44 +23,44 @@ const SearchInteractive = () => {
     type === 'food-delivery'
       ? 'Food Delivery'
       : type === 'restaurants'
-      ? 'Restaurants'
-    : type === 'cost-of-living'
-      ? 'Cost of Living'
-      : type === 'lounges'
-      ? 'Lounges'
-      : type === 'street-food'
-      ? 'Street Food'
-      : type === 'places-to-visit'
-      ? 'Places to Visit'
-      : type === 'attractions'
-      ? 'Attractions'
-      : type === 'itineraries'
-      ? 'Itineraries'
-      : type === 'local-culture'
-      ? 'Local Culture'
-      : type === 'events-calendar'
-      ? 'Events Calendar'
-      : type === 'concerts'
-      ? 'Concerts'
-      : type === 'festivals'
-      ? 'Festivals'
-      : type === 'nightlife'
-      ? 'Nightlife'
-      : type === 'family-events'
-      ? 'Family Events'
-      : type === 'home-services'
-      ? 'Home Services'
-      : type === 'freelancers'
-      ? 'Freelancers'
-      : type === 'professionals'
-      ? 'Professionals'
-      : type === 'business-services'
-      ? 'Business Services'
-      : type === 'tech-services'
-      ? 'Tech Services'
-      : type
-      ? type
-      : '';
+        ? 'Restaurants'
+        : type === 'cost-of-living'
+          ? 'Cost of Living'
+          : type === 'lounges'
+            ? 'Lounges'
+            : type === 'street-food'
+              ? 'Street Food'
+              : type === 'places-to-visit'
+                ? 'Places to Visit'
+                : type === 'attractions'
+                  ? 'Attractions'
+                  : type === 'itineraries'
+                    ? 'Itineraries'
+                    : type === 'local-culture'
+                      ? 'Local Culture'
+                      : type === 'events-calendar'
+                        ? 'Events Calendar'
+                        : type === 'concerts'
+                          ? 'Concerts'
+                          : type === 'festivals'
+                            ? 'Festivals'
+                            : type === 'nightlife'
+                              ? 'Nightlife'
+                              : type === 'family-events'
+                                ? 'Family Events'
+                                : type === 'home-services'
+                                  ? 'Home Services'
+                                  : type === 'freelancers'
+                                    ? 'Freelancers'
+                                    : type === 'professionals'
+                                      ? 'Professionals'
+                                      : type === 'business-services'
+                                        ? 'Business Services'
+                                        : type === 'tech-services'
+                                          ? 'Tech Services'
+                                          : type
+                                            ? type
+                                            : '';
 
   useEffect(() => {
     if (type || state) {
@@ -68,14 +68,14 @@ const SearchInteractive = () => {
         type === 'food-delivery'
           ? 'Food Delivery'
           : type === 'restaurants'
-          ? 'Restaurants'
-          : type === 'lounges'
-          ? 'Lounges'
-          : type === 'street-food'
-          ? 'Street Food'
-          : type
-          ? type
-          : '';
+            ? 'Restaurants'
+            : type === 'lounges'
+              ? 'Lounges'
+              : type === 'street-food'
+                ? 'Street Food'
+                : type
+                  ? type
+                  : '';
       const queryParts = [];
       if (formattedType) queryParts.push(formattedType);
       if (state) queryParts.push(state);
@@ -111,14 +111,14 @@ const SearchInteractive = () => {
       t === 'food-delivery'
         ? '/local-resources/food-delivery'
         : t === 'restaurants'
-        ? '/local-resources/restaurants'
-      : t === 'cost-of-living'
-        ? '/local-resources/cost-of-living'
-        : t === 'lounges'
-        ? '/local-resources/lounges'
-        : t === 'street-food'
-        ? '/local-resources/street-food'
-        : '/local-resources';
+          ? '/local-resources/restaurants'
+          : t === 'cost-of-living'
+            ? '/local-resources/cost-of-living'
+            : t === 'lounges'
+              ? '/local-resources/lounges'
+              : t === 'street-food'
+                ? '/local-resources/street-food'
+                : '/local-resources';
     const topics = [
       `Best ${label} in ${s || 'your area'}`,
       `Affordable ${label} options in ${s || 'your area'}`,
@@ -266,58 +266,57 @@ const SearchInteractive = () => {
                   type === 'food-delivery'
                     ? '/local-resources/food-delivery'
                     : type === 'restaurants'
-                    ? '/local-resources/restaurants'
-                    : type === 'lounges'
-                    ? '/local-resources/lounges'
-                    : type === 'street-food'
-                    ? '/local-resources/street-food'
-                    : type === 'places-to-visit'
-                    ? '/local-resources/places-to-visit'
-                    : type === 'attractions'
-                    ? '/local-resources/attractions'
-                    : type === 'itineraries'
-                    ? '/local-resources/itineraries'
-                    : type === 'local-culture'
-                    ? '/local-resources/local-culture'
-                    : type === 'events-calendar'
-                    ? '/local-resources/events-calendar'
-                    : type === 'concerts'
-                    ? '/local-resources/concerts'
-                    : type === 'festivals'
-                    ? '/local-resources/festivals'
-                    : type === 'nightlife'
-                    ? '/local-resources/nightlife'
-                    : type === 'family-events'
-                    ? '/local-resources/family-events'
-                    : type === 'home-services'
-                    ? '/local-resources/home-services'
-                  : type === 'freelancers'
-                    ? '/local-resources/freelancers'
-                  : type === 'professionals'
-                    ? '/local-resources/professionals'
-                  : type === 'business-services'
-                    ? '/local-resources/business-services'
-                    : type === 'tech-services'
-                    ? '/local-resources/tech-services'
-                    : `/search?type=${encodeURIComponent(type)}`;
-                const href =
-                  basePath.startsWith('/local-resources')
-                    ? `${basePath}?state=${encodeURIComponent(s)}`
-                    : `${basePath}&state=${encodeURIComponent(s)}`;
+                      ? '/local-resources/restaurants'
+                      : type === 'lounges'
+                        ? '/local-resources/lounges'
+                        : type === 'street-food'
+                          ? '/local-resources/street-food'
+                          : type === 'places-to-visit'
+                            ? '/local-resources/places-to-visit'
+                            : type === 'attractions'
+                              ? '/local-resources/attractions'
+                              : type === 'itineraries'
+                                ? '/local-resources/itineraries'
+                                : type === 'local-culture'
+                                  ? '/local-resources/local-culture'
+                                  : type === 'events-calendar'
+                                    ? '/local-resources/events-calendar'
+                                    : type === 'concerts'
+                                      ? '/local-resources/concerts'
+                                      : type === 'festivals'
+                                        ? '/local-resources/festivals'
+                                        : type === 'nightlife'
+                                          ? '/local-resources/nightlife'
+                                          : type === 'family-events'
+                                            ? '/local-resources/family-events'
+                                            : type === 'home-services'
+                                              ? '/local-resources/home-services'
+                                              : type === 'freelancers'
+                                                ? '/local-resources/freelancers'
+                                                : type === 'professionals'
+                                                  ? '/local-resources/professionals'
+                                                  : type === 'business-services'
+                                                    ? '/local-resources/business-services'
+                                                    : type === 'tech-services'
+                                                      ? '/local-resources/tech-services'
+                                                      : `/search?type=${encodeURIComponent(type)}`;
+                const href = basePath.startsWith('/local-resources')
+                  ? `${basePath}?state=${encodeURIComponent(s)}`
+                  : `${basePath}&state=${encodeURIComponent(s)}`;
                 return (
-                <Link
-                  key={s}
-                  href={href}
-                  className={`flex items-center justify-between gap-3 rounded-2xl border ${
-                    s === state ? 'border-primary' : 'border-gray-200'
-                  } bg-white px-4 py-3 hover:border-primary hover:bg-primary/5 transition-colors`}
-                >
-                  <div className="flex items-center gap-2">
-                    <Icon name="MapPinIcon" size={16} className="text-primary" />
-                    <span className="text-sm font-semibold text-foreground">{s}</span>
-                  </div>
-                  <span className="text-xs text-muted-foreground">{formattedType}</span>
-                </Link>
+                  <Link
+                    key={s}
+                    href={href}
+                    className={`flex items-center justify-between gap-3 rounded-2xl border ${
+                      s === state ? 'border-primary' : 'border-gray-200'
+                    } bg-white px-4 py-3 hover:border-primary hover:bg-primary/5 transition-colors`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <Icon name="MapPinIcon" size={16} className="text-primary" />
+                      <span className="text-sm font-semibold text-foreground">{s}</span>
+                    </div>
+                    <span className="text-xs text-muted-foreground">{formattedType}</span>
+                  </Link>
                 );
               })}
             </div>

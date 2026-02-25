@@ -69,7 +69,7 @@ export async function generateMetadata({
     const response = await fetch(`${API_URL}/ai-publishing/articles/slug/${slug}`, {
       cache: 'no-store',
     });
-    
+
     if (!response.ok) {
       const local = (localArticles as Record<string, LocalArticle>)[slug];
       if (local) {
@@ -83,7 +83,7 @@ export async function generateMetadata({
         return { title: `${fallbackTitle} - CACBLAZE`, description: `Guide: ${fallbackTitle}` };
       }
     }
-    
+
     const article: Article = await response.json();
 
     return {
@@ -111,7 +111,7 @@ async function fetchArticle(slug: string): Promise<Article | null> {
     const response = await fetch(`${API_URL}/ai-publishing/articles/slug/${slug}`, {
       cache: 'no-store',
     });
-    
+
     if (!response.ok) {
       const local = (localArticles as Record<string, LocalArticle>)[slug];
       if (local) {
@@ -161,7 +161,7 @@ async function fetchArticle(slug: string): Promise<Article | null> {
         };
       }
     }
-    
+
     return await response.json();
   } catch (error) {
     const local = (localArticles as Record<string, LocalArticle>)[slug];
@@ -248,7 +248,10 @@ function parseMarkdownToSections(markdown: string) {
       s
         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
         .replace(/`([^`]+)`/g, '<code>$1</code>')
-        .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+        .replace(
+          /\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g,
+          '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
+        );
     for (const raw of lines) {
       const line = raw.trim();
       if (!line) {
@@ -340,7 +343,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   const wordCount = (article.content || '').split(/\s+/).filter(Boolean).length;
   const readTime = `${Math.max(1, Math.ceil(wordCount / 200))} min`;
-  const excerpt = article.meta_description || (article.content || '').replace(/\s+/g, ' ').slice(0, 200);
+  const excerpt =
+    article.meta_description || (article.content || '').replace(/\s+/g, ' ').slice(0, 200);
   let sections: Array<{ id: string; title: string; level: number; content: string }> = [];
   let toc: Array<{ id: string; title: string; level: number }> = [];
   if (Array.isArray(article.sections) && article.sections.length > 0) {

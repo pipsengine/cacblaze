@@ -11,11 +11,13 @@ export const revalidate = 0;
 
 function formatSlug(slug?: string) {
   const s = typeof slug === 'string' ? slug : '';
-  return s
-    .split('-')
-    .filter(Boolean)
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ') || 'Technology';
+  return (
+    s
+      .split('-')
+      .filter(Boolean)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ') || 'Technology'
+  );
 }
 
 export async function generateMetadata({
@@ -2610,7 +2612,8 @@ export default async function TechCategoryPage(props: { params: Promise<{ slug: 
                         });
                         const curatedList = getCuratedImagesForCategory('technology') || [];
                         const fallback = curatedList[0]?.src || '/assets/images/no_image.png';
-                        const secondaryFallback = curatedList[1]?.src || '/assets/images/no_image.png';
+                        const secondaryFallback =
+                          curatedList[1]?.src || '/assets/images/no_image.png';
                         return (
                           <div className="relative aspect-[16/9]">
                             <AppImage
@@ -2626,20 +2629,20 @@ export default async function TechCategoryPage(props: { params: Promise<{ slug: 
                         );
                       })()}
                       <div className="p-6">
-                      <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-2xl font-bold text-gray-900">{section.title}</h2>
-                        <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold shadow-sm">
-                          {idx + 1}
+                        <div className="flex items-center justify-between mb-4">
+                          <h2 className="text-2xl font-bold text-gray-900">{section.title}</h2>
+                          <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold shadow-sm">
+                            {idx + 1}
+                          </div>
                         </div>
-                      </div>
-                      <ul className="space-y-3">
-                        {section.items.map((item) => (
-                          <li key={item} className="flex items-start">
-                            <span className="mt-1 mr-3 inline-block w-2 h-2 rounded-full bg-blue-500"></span>
-                            <span className="text-gray-700">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                        <ul className="space-y-3">
+                          {section.items.map((item) => (
+                            <li key={item} className="flex items-start">
+                              <span className="mt-1 mr-3 inline-block w-2 h-2 rounded-full bg-blue-500"></span>
+                              <span className="text-gray-700">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
                   ))}
@@ -2662,7 +2665,8 @@ export default async function TechCategoryPage(props: { params: Promise<{ slug: 
                         });
                         const curatedList = getCuratedImagesForCategory('technology') || [];
                         const fallback = curatedList[0]?.src || '/assets/images/no_image.png';
-                        const secondaryFallback = curatedList[1]?.src || '/assets/images/no_image.png';
+                        const secondaryFallback =
+                          curatedList[1]?.src || '/assets/images/no_image.png';
                         return (
                           <div className="relative aspect-[16/9]">
                             <AppImage
@@ -2678,20 +2682,20 @@ export default async function TechCategoryPage(props: { params: Promise<{ slug: 
                         );
                       })()}
                       <div className="p-6">
-                      <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-2xl font-bold text-gray-900">{section.title}</h2>
-                        <div className="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-semibold shadow-sm">
-                          {idx + 5}
+                        <div className="flex items-center justify-between mb-4">
+                          <h2 className="text-2xl font-bold text-gray-900">{section.title}</h2>
+                          <div className="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-semibold shadow-sm">
+                            {idx + 5}
+                          </div>
                         </div>
-                      </div>
-                      <ul className="space-y-3">
-                        {section.items.map((item) => (
-                          <li key={item} className="flex items-start">
-                            <span className="mt-1 mr-3 inline-block w-2 h-2 rounded-full bg-indigo-500"></span>
-                            <span className="text-gray-700">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                        <ul className="space-y-3">
+                          {section.items.map((item) => (
+                            <li key={item} className="flex items-start">
+                              <span className="mt-1 mr-3 inline-block w-2 h-2 rounded-full bg-indigo-500"></span>
+                              <span className="text-gray-700">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
                   ))}
@@ -2714,7 +2718,8 @@ export default async function TechCategoryPage(props: { params: Promise<{ slug: 
                         });
                         const curatedList = getCuratedImagesForCategory('technology') || [];
                         const fallback = curatedList[0]?.src || '/assets/images/no_image.png';
-                        const secondaryFallback = curatedList[1]?.src || '/assets/images/no_image.png';
+                        const secondaryFallback =
+                          curatedList[1]?.src || '/assets/images/no_image.png';
                         return (
                           <div className="relative aspect-[16/9]">
                             <AppImage
@@ -2730,20 +2735,20 @@ export default async function TechCategoryPage(props: { params: Promise<{ slug: 
                         );
                       })()}
                       <div className="p-6">
-                      <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-2xl font-bold text-gray-900">{section.title}</h2>
-                        <div className="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center font-semibold shadow-sm">
-                          {idx + 9}
+                        <div className="flex items-center justify-between mb-4">
+                          <h2 className="text-2xl font-bold text-gray-900">{section.title}</h2>
+                          <div className="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center font-semibold shadow-sm">
+                            {idx + 9}
+                          </div>
                         </div>
-                      </div>
-                      <ul className="space-y-3">
-                        {section.items.map((item) => (
-                          <li key={item} className="flex items-start">
-                            <span className="mt-1 mr-3 inline-block w-2 h-2 rounded-full bg-slate-600"></span>
-                            <span className="text-gray-700">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                        <ul className="space-y-3">
+                          {section.items.map((item) => (
+                            <li key={item} className="flex items-start">
+                              <span className="mt-1 mr-3 inline-block w-2 h-2 rounded-full bg-slate-600"></span>
+                              <span className="text-gray-700">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
                   ))}

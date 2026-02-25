@@ -54,19 +54,31 @@ export default async function QAPage() {
             <div className="space-y-3 text-sm text-secondary mb-6">
               <div>
                 <h4 className="text-foreground font-semibold mb-1">Purpose</h4>
-                <p>Solve practical problems with clear questions and defensible answers that balance correctness, maintainability, and security.</p>
+                <p>
+                  Solve practical problems with clear questions and defensible answers that balance
+                  correctness, maintainability, and security.
+                </p>
               </div>
               <div>
                 <h4 className="text-foreground font-semibold mb-1">Question Essentials</h4>
-                <p>Articulate the exact challenge, environment details, and expected outcome so responders can reason without guesswork.</p>
+                <p>
+                  Articulate the exact challenge, environment details, and expected outcome so
+                  responders can reason without guesswork.
+                </p>
               </div>
               <div>
                 <h4 className="text-foreground font-semibold mb-1">Posting Flow</h4>
-                <p>State the goal, list observed behavior, include a minimal repro, paste logs verbatim, and describe prior attempts.</p>
+                <p>
+                  State the goal, list observed behavior, include a minimal repro, paste logs
+                  verbatim, and describe prior attempts.
+                </p>
               </div>
               <div>
                 <h4 className="text-foreground font-semibold mb-1">Recognition</h4>
-                <p>Upvote helpful answers, accept the best one, and edit your post with learnings for future readers.</p>
+                <p>
+                  Upvote helpful answers, accept the best one, and edit your post with learnings for
+                  future readers.
+                </p>
               </div>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
@@ -77,7 +89,10 @@ export default async function QAPage() {
                   </div>
                   <p className="font-semibold text-foreground">Ask Clearly</p>
                 </div>
-                <p className="text-sm text-secondary">Describe the problem, show attempts, include code or screenshots, and set expected outcomes.</p>
+                <p className="text-sm text-secondary">
+                  Describe the problem, show attempts, include code or screenshots, and set expected
+                  outcomes.
+                </p>
               </div>
               <div className="rounded-xl border border-gray-200 p-6">
                 <div className="flex items-center gap-3 mb-2">
@@ -86,7 +101,10 @@ export default async function QAPage() {
                   </div>
                   <p className="font-semibold text-foreground">Answer Helpfully</p>
                 </div>
-                <p className="text-sm text-secondary">Explain steps, provide references, add working examples, and mention trade‑offs or caveats.</p>
+                <p className="text-sm text-secondary">
+                  Explain steps, provide references, add working examples, and mention trade‑offs or
+                  caveats.
+                </p>
               </div>
               <div className="rounded-xl border border-gray-200 p-6">
                 <div className="flex items-center gap-3 mb-2">
@@ -95,7 +113,10 @@ export default async function QAPage() {
                   </div>
                   <p className="font-semibold text-foreground">Reward and Improve</p>
                 </div>
-                <p className="text-sm text-secondary">Upvote helpful answers, accept the best, and edit your question with learnings for future readers.</p>
+                <p className="text-sm text-secondary">
+                  Upvote helpful answers, accept the best, and edit your question with learnings for
+                  future readers.
+                </p>
               </div>
             </div>
           </div>
@@ -103,57 +124,57 @@ export default async function QAPage() {
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div className="bg-white rounded-2xl shadow-sm p-8">
               <h3 className="text-xl font-bold text-foreground mb-3">Ask a Great Question</h3>
-                <div className="space-y-2 text-sm text-secondary">
-                  <div>
-                    <h4 className="text-foreground font-semibold">Title</h4>
-                    <p>Capture the core problem in a concise, specific statement.</p>
-                  </div>
-                  <div>
-                    <h4 className="text-foreground font-semibold">Context</h4>
-                    <p>List framework, versions, configuration flags, platform, and setup.</p>
-                  </div>
-                  <div>
-                    <h4 className="text-foreground font-semibold">Minimal Repro</h4>
-                    <p>Provide the smallest snippet that reproduces the failure consistently.</p>
-                  </div>
-                  <div>
-                    <h4 className="text-foreground font-semibold">Error Details</h4>
-                    <p>Paste logs and messages verbatim with relevant inputs and outputs.</p>
-                  </div>
-                  <div>
-                    <h4 className="text-foreground font-semibold">Prior Attempts</h4>
-                    <p>Explain what you tried and why those approaches did not work.</p>
-                  </div>
-                  <div>
-                    <h4 className="text-foreground font-semibold">Tagging</h4>
-                    <p>Add precise tags so experts can discover and answer quickly.</p>
-                  </div>
+              <div className="space-y-2 text-sm text-secondary">
+                <div>
+                  <h4 className="text-foreground font-semibold">Title</h4>
+                  <p>Capture the core problem in a concise, specific statement.</p>
                 </div>
+                <div>
+                  <h4 className="text-foreground font-semibold">Context</h4>
+                  <p>List framework, versions, configuration flags, platform, and setup.</p>
+                </div>
+                <div>
+                  <h4 className="text-foreground font-semibold">Minimal Repro</h4>
+                  <p>Provide the smallest snippet that reproduces the failure consistently.</p>
+                </div>
+                <div>
+                  <h4 className="text-foreground font-semibold">Error Details</h4>
+                  <p>Paste logs and messages verbatim with relevant inputs and outputs.</p>
+                </div>
+                <div>
+                  <h4 className="text-foreground font-semibold">Prior Attempts</h4>
+                  <p>Explain what you tried and why those approaches did not work.</p>
+                </div>
+                <div>
+                  <h4 className="text-foreground font-semibold">Tagging</h4>
+                  <p>Add precise tags so experts can discover and answer quickly.</p>
+                </div>
+              </div>
             </div>
             <div className="bg-white rounded-2xl shadow-sm p-8">
               <h3 className="text-xl font-bold text-foreground mb-3">Write a Solid Answer</h3>
-                <div className="space-y-2 text-sm text-secondary">
-                  <div>
-                    <h4 className="text-foreground font-semibold">Directness</h4>
-                    <p>Address the exact question with clear, actionable steps.</p>
-                  </div>
-                  <div>
-                    <h4 className="text-foreground font-semibold">Steps & Code</h4>
-                    <p>Show code samples, expected outputs, and verification checks.</p>
-                  </div>
-                  <div>
-                    <h4 className="text-foreground font-semibold">Reasoning</h4>
-                    <p>Explain why the approach works, with performance and caveats.</p>
-                  </div>
-                  <div>
-                    <h4 className="text-foreground font-semibold">Sources</h4>
-                    <p>Reference official docs and reputable resources for credibility.</p>
-                  </div>
-                  <div>
-                    <h4 className="text-foreground font-semibold">Safety</h4>
-                    <p>Offer secure patterns and alternatives that avoid common pitfalls.</p>
-                  </div>
+              <div className="space-y-2 text-sm text-secondary">
+                <div>
+                  <h4 className="text-foreground font-semibold">Directness</h4>
+                  <p>Address the exact question with clear, actionable steps.</p>
                 </div>
+                <div>
+                  <h4 className="text-foreground font-semibold">Steps & Code</h4>
+                  <p>Show code samples, expected outputs, and verification checks.</p>
+                </div>
+                <div>
+                  <h4 className="text-foreground font-semibold">Reasoning</h4>
+                  <p>Explain why the approach works, with performance and caveats.</p>
+                </div>
+                <div>
+                  <h4 className="text-foreground font-semibold">Sources</h4>
+                  <p>Reference official docs and reputable resources for credibility.</p>
+                </div>
+                <div>
+                  <h4 className="text-foreground font-semibold">Safety</h4>
+                  <p>Offer secure patterns and alternatives that avoid common pitfalls.</p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -178,16 +199,23 @@ export default async function QAPage() {
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              {['JavaScript', 'TypeScript', 'React', 'Next.js', 'Python', 'DevOps', 'Security', 'UI/UX', 'Education', 'Finance', 'Career'].map(
-                (cat) => (
-                  <span
-                    key={cat}
-                    className="px-3 py-1 bg-gray-100 text-foreground rounded-lg"
-                  >
-                    {cat}
-                  </span>
-                )
-              )}
+              {[
+                'JavaScript',
+                'TypeScript',
+                'React',
+                'Next.js',
+                'Python',
+                'DevOps',
+                'Security',
+                'UI/UX',
+                'Education',
+                'Finance',
+                'Career',
+              ].map((cat) => (
+                <span key={cat} className="px-3 py-1 bg-gray-100 text-foreground rounded-lg">
+                  {cat}
+                </span>
+              ))}
             </div>
           </div>
 
@@ -237,15 +265,24 @@ export default async function QAPage() {
             <div className="space-y-2 text-sm text-secondary">
               <div>
                 <h4 className="text-foreground font-semibold">Performance Example</h4>
-                <p>Explain component structure, dataset size, rendering strategy, and the exact bottleneck with a constrained repro.</p>
+                <p>
+                  Explain component structure, dataset size, rendering strategy, and the exact
+                  bottleneck with a constrained repro.
+                </p>
               </div>
               <div>
                 <h4 className="text-foreground font-semibold">Security Example</h4>
-                <p>Provide a clear threat model and failure modes, then propose protective controls that preserve user experience.</p>
+                <p>
+                  Provide a clear threat model and failure modes, then propose protective controls
+                  that preserve user experience.
+                </p>
               </div>
               <div>
                 <h4 className="text-foreground font-semibold">Outcome</h4>
-                <p>Use shared patterns to compare approaches, evaluate trade‑offs, and adopt practices that stand up to real‑world demands.</p>
+                <p>
+                  Use shared patterns to compare approaches, evaluate trade‑offs, and adopt
+                  practices that stand up to real‑world demands.
+                </p>
               </div>
             </div>
           </div>

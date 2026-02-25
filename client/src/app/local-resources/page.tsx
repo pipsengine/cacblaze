@@ -26,7 +26,8 @@ const LocalResourcesPage = () => {
             </div>
             <h1 className="text-5xl font-bold text-foreground mb-4">Local Resources</h1>
             <p className="text-xl text-secondary max-w-2xl mx-auto">
-              Nigerian-specific guides for government services, local businesses, and community resources.
+              Nigerian-specific guides for government services, local businesses, and community
+              resources.
             </p>
           </div>
 

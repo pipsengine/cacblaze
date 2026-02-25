@@ -62,8 +62,8 @@ export default async function AdvertisePage() {
             <div className="max-w-3xl">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">Advertise With Us</h1>
               <p className="text-lg md:text-xl opacity-90">
-                Reach decision‑makers and ambitious learners across Nigeria with brand‑safe placements,
-                high intent topics, and measurable outcomes.
+                Reach decision‑makers and ambitious learners across Nigeria with brand‑safe
+                placements, high intent topics, and measurable outcomes.
               </p>
             </div>
           </div>
@@ -101,8 +101,8 @@ export default async function AdvertisePage() {
                 <div>
                   <h4 className="text-foreground font-semibold">Sponsored Articles</h4>
                   <p>
-                    Editorial‑quality explainers, comparisons, or case studies created with your team.
-                    Includes research, visuals, and distribution across relevant categories.
+                    Editorial‑quality explainers, comparisons, or case studies created with your
+                    team. Includes research, visuals, and distribution across relevant categories.
                   </p>
                 </div>
                 <div>
@@ -168,8 +168,8 @@ export default async function AdvertisePage() {
           <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
             <h2 className="text-2xl font-bold text-foreground mb-4">Get Started</h2>
             <p className="text-secondary text-sm mb-6">
-              Share your objectives, preferred formats, and timelines. We’ll reply with availability,
-              recommendations, and a media kit with current placement options.
+              Share your objectives, preferred formats, and timelines. We’ll reply with
+              availability, recommendations, and a media kit with current placement options.
             </p>
             <div className="flex flex-wrap gap-3">
               <a

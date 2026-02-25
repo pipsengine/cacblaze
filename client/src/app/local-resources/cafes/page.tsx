@@ -27,105 +27,120 @@ const LocalCafesPage = () => {
       id: 'lagos_lekki',
       city: 'Lagos',
       area: 'Lekki Phase 1',
-      image: 'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Brunch culture', 'Rooftop views', 'Social vibe'],
     },
     {
       id: 'lagos_ikoyi',
       city: 'Lagos',
       area: 'Ikoyi',
-      image: 'https://images.pexels.com/photos/302090/pexels-photo-302090.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/302090/pexels-photo-302090.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Quiet ambience', 'Premium pastries', 'Business meetups'],
     },
     {
       id: 'lagos_yaba',
       city: 'Lagos',
       area: 'Yaba',
-      image: 'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Tech crowd', 'Affordable menu', 'Student-friendly'],
     },
     {
       id: 'abuja_wuse',
       city: 'FCT Abuja',
       area: 'Wuse 2',
-      image: 'https://images.pexels.com/photos/261996/pexels-photo-261996.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/261996/pexels-photo-261996.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['International drinks', 'Dessert bars', 'Family-friendly'],
     },
     {
       id: 'abuja_maitama',
       city: 'FCT Abuja',
       area: 'Maitama',
-      image: 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Premium coffee', 'Plush seating', 'Corporate vibe'],
     },
     {
       id: 'ph_gra',
       city: 'Rivers',
       area: 'Port Harcourt GRA',
-      image: 'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Dessert bars', 'Cafe lounges', 'Outdoor seating'],
     },
     {
       id: 'kano_nassarawa',
       city: 'Kano',
       area: 'Nassarawa',
-      image: 'https://images.pexels.com/photos/103566/pexels-photo-103566.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/103566/pexels-photo-103566.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Smoothies & tea', 'Student hangouts', 'Affordable bites'],
     },
     {
       id: 'ibadan_bodija',
       city: 'Oyo',
       area: 'Bodija',
-      image: 'https://images.pexels.com/photos/103566/pexels-photo-103566.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/103566/pexels-photo-103566.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Coffee & pastries', 'Study corners', 'Casual seating'],
     },
     {
       id: 'enugu_independence',
       city: 'Enugu',
       area: 'Independence Layout',
-      image: 'https://images.pexels.com/photos/302090/pexels-photo-302090.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/302090/pexels-photo-302090.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Tea houses', 'Local desserts', 'Evening lounges'],
     },
     {
       id: 'benin_gra',
       city: 'Edo',
       area: 'Benin GRA',
-      image: 'https://images.pexels.com/photos/261996/pexels-photo-261996.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/261996/pexels-photo-261996.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Coffee bars', 'Light meals', 'Weekend brunch'],
     },
     {
       id: 'jos_rayfield',
       city: 'Plateau',
       area: 'Rayfield',
-      image: 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Warm drinks', 'Cozy seating', 'Scenic cafes'],
     },
     {
       id: 'ilorin_tanke',
       city: 'Kwara',
       area: 'Tanke',
-      image: 'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/374885/pexels-photo-374885.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Student-friendly', 'Affordable combos', 'Quick bites'],
     },
     {
       id: 'calabar_marina',
       city: 'Cross River',
       area: 'Marina',
-      image: 'https://images.pexels.com/photos/302090/pexels-photo-302090.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/302090/pexels-photo-302090.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Sea views', 'Dessert cafes', 'Tourist-friendly'],
     },
     {
       id: 'uyo_ewet',
       city: 'Akwa Ibom',
       area: 'Ewet Housing',
-      image: 'https://images.pexels.com/photos/103566/pexels-photo-103566.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/103566/pexels-photo-103566.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Cafe lounges', 'Smoothie bars', 'Family seating'],
     },
     {
       id: 'kaduna_barnawa',
       city: 'Kaduna',
       area: 'Barnawa',
-      image: 'https://images.pexels.com/photos/261996/pexels-photo-261996.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      image:
+        'https://images.pexels.com/photos/261996/pexels-photo-261996.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
       highlights: ['Tea & snacks', 'Casual cafes', 'Group seating'],
     },
   ];
@@ -420,7 +435,11 @@ const LocalCafesPage = () => {
                     Keep devices safe; choose seating with line‑of‑sight and use bag hooks.
                   </li>
                   <li className="flex items-start gap-3 text-secondary">
-                    <Icon name="InformationCircleIcon" size={18} className="text-emerald-600 mt-0.5" />
+                    <Icon
+                      name="InformationCircleIcon"
+                      size={18}
+                      className="text-emerald-600 mt-0.5"
+                    />
                     Dietary needs? Ask about non‑dairy milks and gluten‑free pastry options.
                   </li>
                 </ul>

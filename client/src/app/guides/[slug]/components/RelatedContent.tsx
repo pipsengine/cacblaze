@@ -101,7 +101,14 @@ const RelatedContent = ({
       },
     ];
 
-    const recommended = getRelatedArticles(currentArticleId, category, title, allArticles as any, tags, 3);
+    const recommended = getRelatedArticles(
+      currentArticleId,
+      category,
+      title,
+      allArticles as any,
+      tags,
+      3
+    );
     const transformed = recommended.map((a: any) => ({
       id: a.id,
       title: a.title,

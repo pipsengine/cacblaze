@@ -40,17 +40,18 @@ export default function ActivityLog() {
           id: row.id,
           userId: row.admin_user_id || '',
           userName: row.admin_profiles?.full_name || row.admin_profiles?.email || 'Admin',
-          action: row.action_type.replace(/_/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase()),
+          action: row.action_type
+            .replace(/_/g, ' ')
+            .replace(/\b\w/g, (c: string) => c.toUpperCase()),
           target:
-            (row.target_profiles &&
-              (row.target_profiles.full_name || row.target_profiles.email)) ||
+            (row.target_profiles && (row.target_profiles.full_name || row.target_profiles.email)) ||
             undefined,
           details:
             typeof row.details === 'string'
               ? row.details
               : row.details
-              ? JSON.stringify(row.details)
-              : undefined,
+                ? JSON.stringify(row.details)
+                : undefined,
           timestamp: row.created_at,
         })) ?? [];
 

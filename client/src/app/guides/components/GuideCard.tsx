@@ -44,7 +44,10 @@ const GuideCard = ({
     height: 600,
     preferCurated: true,
   });
-  const displayImage = image && image.length > 0 ? { src: image, alt: imageAlt || contextualImage.alt } : contextualImage;
+  const displayImage =
+    image && image.length > 0
+      ? { src: image, alt: imageAlt || contextualImage.alt }
+      : contextualImage;
 
   // Get author avatar
   const authorAvatar = getAuthorAvatar(author);

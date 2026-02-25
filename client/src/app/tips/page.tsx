@@ -21,7 +21,9 @@ interface Tip {
 
 async function fetchTips(limit = 60): Promise<Tip[]> {
   try {
-    const res = await fetch(`/api/ai-publishing/tips/published?limit=${limit}`, { cache: 'no-store' });
+    const res = await fetch(`/api/ai-publishing/tips/published?limit=${limit}`, {
+      cache: 'no-store',
+    });
     if (res.ok) {
       const data = await res.json();
       return Array.isArray(data?.tips) ? data.tips : [];
@@ -40,7 +42,9 @@ export default async function TipsArchivePage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="mb-8">
               <h1 className="text-3xl font-bold text-foreground">Daily Tips Archive</h1>
-              <p className="text-muted-foreground mt-2">Browse previous tips by date and category.</p>
+              <p className="text-muted-foreground mt-2">
+                Browse previous tips by date and category.
+              </p>
             </div>
 
             {tips.length === 0 ? (
@@ -53,7 +57,10 @@ export default async function TipsArchivePage() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {tips.map((tip) => (
-                  <div key={tip.id} className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-sm transition-shadow">
+                  <div
+                    key={tip.id}
+                    className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-sm transition-shadow"
+                  >
                     <div className="flex items-center justify-between mb-3">
                       <span className="bg-gray-100 text-gray-700 text-xs font-medium px-2 py-1 rounded-full">
                         {tip.category}
@@ -63,7 +70,9 @@ export default async function TipsArchivePage() {
                       </span>
                     </div>
                     <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">{tip.title}</h3>
-                    <p className="text-sm text-gray-700 mb-4 line-clamp-4 leading-relaxed">{tip.content}</p>
+                    <p className="text-sm text-gray-700 mb-4 line-clamp-4 leading-relaxed">
+                      {tip.content}
+                    </p>
                     {tip.featured_image ? (
                       <div className="relative w-full h-40 overflow-hidden rounded-lg">
                         <AppImage

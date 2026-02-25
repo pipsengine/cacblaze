@@ -119,7 +119,10 @@ export default async function RestaurantReviewPage({ params }: PageProps) {
                   <ul className="space-y-3">
                     {review.pros.slice(0, 3).map((item, idx) => (
                       <li key={idx} className="flex items-start gap-3 text-gray-700">
-                        <Icon name="SparklesIcon" className="h-5 w-5 text-indigo-500 mt-0.5 flex-shrink-0" />
+                        <Icon
+                          name="SparklesIcon"
+                          className="h-5 w-5 text-indigo-500 mt-0.5 flex-shrink-0"
+                        />
                         <span className="font-medium">{item}</span>
                       </li>
                     ))}
@@ -208,8 +211,16 @@ export default async function RestaurantReviewPage({ params }: PageProps) {
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Gallery</h2>
             <div className="grid md:grid-cols-3 gap-6">
               {review.gallery.map((img, idx) => (
-                <div key={idx} className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
-                  <AppImage src={img} alt={`${review.name} photo ${idx + 1}`} fill className="object-cover" />
+                <div
+                  key={idx}
+                  className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-gray-100 shadow-sm"
+                >
+                  <AppImage
+                    src={img}
+                    alt={`${review.name} photo ${idx + 1}`}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
               ))}
             </div>

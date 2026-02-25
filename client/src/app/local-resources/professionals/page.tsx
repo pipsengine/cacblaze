@@ -17,8 +17,7 @@ export const metadata: Metadata = {
   title: 'Professionals in Nigeria - CACBLAZE',
   description:
     'Find doctors, lawyers, accountants, architects, engineers, and other licensed professionals across Nigerian states.',
-  keywords:
-    'Nigeria professionals, doctors, lawyers, accountants, architects, engineers, states',
+  keywords: 'Nigeria professionals, doctors, lawyers, accountants, architects, engineers, states',
 };
 
 type Professional = {
@@ -32,31 +31,174 @@ type Professional = {
   highlights: string[];
 };
 
-const P1 = 'https://images.pexels.com/photos/8460977/pexels-photo-8460977.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const P2 = 'https://images.pexels.com/photos/3853202/pexels-photo-3853202.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const P3 = 'https://images.pexels.com/photos/3184611/pexels-photo-3184611.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const P4 = 'https://images.pexels.com/photos/8376235/pexels-photo-8376235.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const P5 = 'https://images.pexels.com/photos/3779712/pexels-photo-3779712.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const IMG_LAWYER = 'https://images.pexels.com/photos/5668773/pexels-photo-5668773.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const IMG_DENTIST = 'https://images.pexels.com/photos/3845720/pexels-photo-3845720.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const IMG_BUILDER = 'https://images.pexels.com/photos/3862138/pexels-photo-3862138.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const P1 =
+  'https://images.pexels.com/photos/8460977/pexels-photo-8460977.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const P2 =
+  'https://images.pexels.com/photos/3853202/pexels-photo-3853202.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const P3 =
+  'https://images.pexels.com/photos/3184611/pexels-photo-3184611.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const P4 =
+  'https://images.pexels.com/photos/8376235/pexels-photo-8376235.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const P5 =
+  'https://images.pexels.com/photos/3779712/pexels-photo-3779712.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const IMG_LAWYER =
+  'https://images.pexels.com/photos/5668773/pexels-photo-5668773.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const IMG_DENTIST =
+  'https://images.pexels.com/photos/3845720/pexels-photo-3845720.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const IMG_BUILDER =
+  'https://images.pexels.com/photos/3862138/pexels-photo-3862138.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
 
 const PROFESSIONALS: Professional[] = [
-  { id: 'lagos_doctor', state: 'Lagos', city: 'Lagos', name: 'Lagos Family Doctor', image: P1, profession: 'Doctor', availability: 'Weekdays · 9:00 AM – 5:00 PM', highlights: ['General practice', 'Checkups', 'Referrals'] },
-  { id: 'abuja_lawyer', state: 'FCT Abuja', city: 'Abuja', name: 'Abuja Corporate Lawyer', image: IMG_LAWYER, profession: 'Lawyer', availability: 'By appointment', highlights: ['Contracts', 'Company law', 'Compliance'] },
-  { id: 'rivers_accountant', state: 'Rivers', city: 'Port Harcourt', name: 'PH Chartered Accountant', image: P3, profession: 'Accountant', availability: 'Weekdays · 9:00 AM – 5:00 PM', highlights: ['Tax', 'Books', 'Payroll'] },
-  { id: 'oyo_architect', state: 'Oyo', city: 'Ibadan', name: 'Ibadan Architect Studio', image: P4, profession: 'Architect', availability: 'Weekdays · 10:00 AM – 4:00 PM', highlights: ['Plans', 'Permits', 'Supervision'] },
-  { id: 'kano_engineer', state: 'Kano', city: 'Kano', name: 'Kano Civil Engineer', image: P5, profession: 'Engineer', availability: 'Weekdays · 9:00 AM – 5:00 PM', highlights: ['Structural', 'Site', 'Reports'] },
-  { id: 'kaduna_pharmacist', state: 'Kaduna', city: 'Kaduna', name: 'Kaduna Pharmacist', image: P1, profession: 'Pharmacist', availability: 'Daily · 8:00 AM – 8:00 PM', highlights: ['Dispensing', 'Counsel', 'OTC'] },
-  { id: 'enugu_dentist', state: 'Enugu', city: 'Enugu', name: 'Enugu Dental Care', image: IMG_DENTIST, profession: 'Dentist', availability: 'Weekdays · 9:00 AM – 4:00 PM', highlights: ['Cleaning', 'Fillings', 'Whitening'] },
-  { id: 'anambra_surveyor', state: 'Anambra', city: 'Awka', name: 'Awka Surveyor', image: P3, profession: 'Surveyor', availability: 'By appointment', highlights: ['Land surveys', 'Layouts', 'Beaconing'] },
-  { id: 'delta_physio', state: 'Delta', city: 'Asaba', name: 'Asaba Physiotherapist', image: P4, profession: 'Physiotherapist', availability: 'Weekdays · 10:00 AM – 4:00 PM', highlights: ['Rehab', 'Mobility', 'Sports'] },
-  { id: 'edo_consultant', state: 'Edo', city: 'Benin City', name: 'Benin Business Consultant', image: P5, profession: 'Consultant', availability: 'By appointment', highlights: ['Strategy', 'Ops', 'Growth'] },
-  { id: 'ogun_notary', state: 'Ogun', city: 'Abeokuta', name: 'Abeokuta Notary Public', image: P1, profession: 'Notary', availability: 'Weekdays · 9:00 AM – 3:00 PM', highlights: ['Notarization', 'Affidavits', 'Docs'] },
-  { id: 'osun_builder', state: 'Osun', city: 'Osogbo', name: 'Osogbo Builder', image: IMG_BUILDER, profession: 'Builder', availability: 'Weekdays · 9:00 AM – 5:00 PM', highlights: ['Supervision', 'Renovations', 'Estimates'] },
-  { id: 'kwara_optometrist', state: 'Kwara', city: 'Ilorin', name: 'Ilorin Optometrist', image: P3, profession: 'Optometrist', availability: 'Weekdays · 9:00 AM – 4:00 PM', highlights: ['Eye tests', 'Lenses', 'Checks'] },
-  { id: 'plateau_nurse', state: 'Plateau', city: 'Jos', name: 'Jos Registered Nurse', image: P4, profession: 'Nurse', availability: 'Daily · 8:00 AM – 8:00 PM', highlights: ['Care', 'Vitals', 'Home visits'] },
-  { id: 'imo_psychologist', state: 'Imo', city: 'Owerri', name: 'Owerri Psychologist', image: P5, profession: 'Psychologist', availability: 'By appointment', highlights: ['Counseling', 'Assessments', 'Plans'] },
+  {
+    id: 'lagos_doctor',
+    state: 'Lagos',
+    city: 'Lagos',
+    name: 'Lagos Family Doctor',
+    image: P1,
+    profession: 'Doctor',
+    availability: 'Weekdays · 9:00 AM – 5:00 PM',
+    highlights: ['General practice', 'Checkups', 'Referrals'],
+  },
+  {
+    id: 'abuja_lawyer',
+    state: 'FCT Abuja',
+    city: 'Abuja',
+    name: 'Abuja Corporate Lawyer',
+    image: IMG_LAWYER,
+    profession: 'Lawyer',
+    availability: 'By appointment',
+    highlights: ['Contracts', 'Company law', 'Compliance'],
+  },
+  {
+    id: 'rivers_accountant',
+    state: 'Rivers',
+    city: 'Port Harcourt',
+    name: 'PH Chartered Accountant',
+    image: P3,
+    profession: 'Accountant',
+    availability: 'Weekdays · 9:00 AM – 5:00 PM',
+    highlights: ['Tax', 'Books', 'Payroll'],
+  },
+  {
+    id: 'oyo_architect',
+    state: 'Oyo',
+    city: 'Ibadan',
+    name: 'Ibadan Architect Studio',
+    image: P4,
+    profession: 'Architect',
+    availability: 'Weekdays · 10:00 AM – 4:00 PM',
+    highlights: ['Plans', 'Permits', 'Supervision'],
+  },
+  {
+    id: 'kano_engineer',
+    state: 'Kano',
+    city: 'Kano',
+    name: 'Kano Civil Engineer',
+    image: P5,
+    profession: 'Engineer',
+    availability: 'Weekdays · 9:00 AM – 5:00 PM',
+    highlights: ['Structural', 'Site', 'Reports'],
+  },
+  {
+    id: 'kaduna_pharmacist',
+    state: 'Kaduna',
+    city: 'Kaduna',
+    name: 'Kaduna Pharmacist',
+    image: P1,
+    profession: 'Pharmacist',
+    availability: 'Daily · 8:00 AM – 8:00 PM',
+    highlights: ['Dispensing', 'Counsel', 'OTC'],
+  },
+  {
+    id: 'enugu_dentist',
+    state: 'Enugu',
+    city: 'Enugu',
+    name: 'Enugu Dental Care',
+    image: IMG_DENTIST,
+    profession: 'Dentist',
+    availability: 'Weekdays · 9:00 AM – 4:00 PM',
+    highlights: ['Cleaning', 'Fillings', 'Whitening'],
+  },
+  {
+    id: 'anambra_surveyor',
+    state: 'Anambra',
+    city: 'Awka',
+    name: 'Awka Surveyor',
+    image: P3,
+    profession: 'Surveyor',
+    availability: 'By appointment',
+    highlights: ['Land surveys', 'Layouts', 'Beaconing'],
+  },
+  {
+    id: 'delta_physio',
+    state: 'Delta',
+    city: 'Asaba',
+    name: 'Asaba Physiotherapist',
+    image: P4,
+    profession: 'Physiotherapist',
+    availability: 'Weekdays · 10:00 AM – 4:00 PM',
+    highlights: ['Rehab', 'Mobility', 'Sports'],
+  },
+  {
+    id: 'edo_consultant',
+    state: 'Edo',
+    city: 'Benin City',
+    name: 'Benin Business Consultant',
+    image: P5,
+    profession: 'Consultant',
+    availability: 'By appointment',
+    highlights: ['Strategy', 'Ops', 'Growth'],
+  },
+  {
+    id: 'ogun_notary',
+    state: 'Ogun',
+    city: 'Abeokuta',
+    name: 'Abeokuta Notary Public',
+    image: P1,
+    profession: 'Notary',
+    availability: 'Weekdays · 9:00 AM – 3:00 PM',
+    highlights: ['Notarization', 'Affidavits', 'Docs'],
+  },
+  {
+    id: 'osun_builder',
+    state: 'Osun',
+    city: 'Osogbo',
+    name: 'Osogbo Builder',
+    image: IMG_BUILDER,
+    profession: 'Builder',
+    availability: 'Weekdays · 9:00 AM – 5:00 PM',
+    highlights: ['Supervision', 'Renovations', 'Estimates'],
+  },
+  {
+    id: 'kwara_optometrist',
+    state: 'Kwara',
+    city: 'Ilorin',
+    name: 'Ilorin Optometrist',
+    image: P3,
+    profession: 'Optometrist',
+    availability: 'Weekdays · 9:00 AM – 4:00 PM',
+    highlights: ['Eye tests', 'Lenses', 'Checks'],
+  },
+  {
+    id: 'plateau_nurse',
+    state: 'Plateau',
+    city: 'Jos',
+    name: 'Jos Registered Nurse',
+    image: P4,
+    profession: 'Nurse',
+    availability: 'Daily · 8:00 AM – 8:00 PM',
+    highlights: ['Care', 'Vitals', 'Home visits'],
+  },
+  {
+    id: 'imo_psychologist',
+    state: 'Imo',
+    city: 'Owerri',
+    name: 'Owerri Psychologist',
+    image: P5,
+    profession: 'Psychologist',
+    availability: 'By appointment',
+    highlights: ['Counseling', 'Assessments', 'Plans'],
+  },
 ];
 
 const buildStateCards = (state: string) => {
@@ -81,8 +223,7 @@ const ProfessionalsPage = ({
   searchParams?: { [key: string]: string | string[] | undefined };
 }) => {
   const raw = searchParams?.state;
-  const selectedState =
-    typeof raw === 'string' ? raw : Array.isArray(raw) ? raw[0] || '' : '';
+  const selectedState = typeof raw === 'string' ? raw : Array.isArray(raw) ? raw[0] || '' : '';
 
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
@@ -110,7 +251,8 @@ const ProfessionalsPage = ({
                 {selectedState ? `Professionals in ${selectedState}` : 'Professionals'}
               </h1>
               <p className="text-xl text-secondary mb-8 leading-relaxed">
-                Discover verified, licensed professionals across medical, legal, finance, and technical fields.
+                Discover verified, licensed professionals across medical, legal, finance, and
+                technical fields.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
@@ -151,7 +293,9 @@ const ProfessionalsPage = ({
                     <div className="relative h-56">
                       {(() => {
                         const needsGenerated =
-                          e.id === 'abuja_lawyer' || e.id === 'enugu_dentist' || e.id === 'osun_builder';
+                          e.id === 'abuja_lawyer' ||
+                          e.id === 'enugu_dentist' ||
+                          e.id === 'osun_builder';
                         if (needsGenerated) {
                           const contextual = getContextualImage({
                             category: 'local-resources',
@@ -227,7 +371,10 @@ const ProfessionalsPage = ({
                       <div className="p-6">
                         <ul className="space-y-2">
                           {c.points.map((p, idx) => (
-                            <li key={idx} className="flex items-center gap-2 text-sm text-secondary">
+                            <li
+                              key={idx}
+                              className="flex items-center gap-2 text-sm text-secondary"
+                            >
                               <Icon name="SparklesIcon" size={16} className="text-primary" />
                               {p}
                             </li>

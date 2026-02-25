@@ -123,7 +123,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Review detail pages from local data sources
-  const fromRecord = (records: Record<string, { slug: string }>, prefix: string): MetadataRoute.Sitemap =>
+  const fromRecord = (
+    records: Record<string, { slug: string }>,
+    prefix: string
+  ): MetadataRoute.Sitemap =>
     Object.values(records).map((item) => ({
       url: `${baseUrl}${prefix}/${item.slug}`,
       lastModified: currentDate,

@@ -314,7 +314,8 @@ export default function HowToPage() {
                           });
                           const curatedList = getCuratedImagesForCategory('howto') || [];
                           const fallback = curatedList[0]?.src || '/assets/images/no_image.png';
-                          const secondaryFallback = curatedList[1]?.src || '/assets/images/no_image.png';
+                          const secondaryFallback =
+                            curatedList[1]?.src || '/assets/images/no_image.png';
                           return (
                             <div className="relative aspect-[16/10] bg-white">
                               <AppImage

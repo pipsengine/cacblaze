@@ -609,8 +609,7 @@ export const articles: Record<string, Article> = {
       {
         id: 'principles',
         title: 'Core Principles',
-        content:
-          `Productivity is not speed; it is consistent progress on the right work. Use these anchors:
+        content: `Productivity is not speed; it is consistent progress on the right work. Use these anchors:
           <ul class="list-disc pl-6 space-y-2 mt-4">
             <li><strong>Clarity beats effort:</strong> Define the outcome before starting.</li>
             <li><strong>Constraints create focus:</strong> Work in time‑boxed blocks.</li>
@@ -622,8 +621,7 @@ export const articles: Record<string, Article> = {
       {
         id: 'pipeline',
         title: 'Task Pipeline: Capture → Prioritize → Execute',
-        content:
-          `Create one capture inbox (Notion, Obsidian, paper). Each day:
+        content: `Create one capture inbox (Notion, Obsidian, paper). Each day:
           <ol class="list-decimal pl-6 space-y-2 mt-4">
             <li><strong>Capture:</strong> Dump tasks and ideas without judging.</li>
             <li><strong>Prioritize:</strong> Tag 1–3 <em>Most Important Tasks</em> (MITs) that move a project.</li>
@@ -635,8 +633,7 @@ export const articles: Record<string, Article> = {
       {
         id: 'deep-work',
         title: 'Deep Work Blocks',
-        content:
-          `Protect 2–3 blocks per day for work that requires concentration (design, writing, analysis).
+        content: `Protect 2–3 blocks per day for work that requires concentration (design, writing, analysis).
           <ul class="list-disc pl-6 space-y-2 mt-4">
             <li>Use 50/10 or 45/10 sprints; longer if momentum is strong.</li>
             <li>Phones away; notifications off; one tab per task.</li>
@@ -647,8 +644,7 @@ export const articles: Record<string, Article> = {
       {
         id: 'automation',
         title: 'Automation & Templates',
-        content:
-          `Automate repeatable steps; template the rest.
+        content: `Automate repeatable steps; template the rest.
           <ul class="list-disc pl-6 space-y-2 mt-4">
             <li>Use email filters/labels for newsletters, receipts, and approvals.</li>
             <li>Create project kick‑off templates (scope, risks, milestones, stakeholders).</li>
@@ -659,8 +655,7 @@ export const articles: Record<string, Article> = {
       {
         id: 'communication',
         title: 'Meetings & Communication Hygiene',
-        content:
-          `Default to async. When meetings are required:
+        content: `Default to async. When meetings are required:
           <ul class="list-disc pl-6 space-y-2 mt-4">
             <li>Agenda, owner, decision required, and time limit.</li>
             <li>Start with context; end with next actions and owners.</li>
@@ -671,8 +666,7 @@ export const articles: Record<string, Article> = {
       {
         id: 'weekly-review',
         title: 'Weekly Review & Planning',
-        content:
-          `Every week:
+        content: `Every week:
           <ol class="list-decimal pl-6 space-y-2 mt-4">
             <li>List wins and blockers.</li>
             <li>Update project status; remove stale tasks.</li>
@@ -684,8 +678,7 @@ export const articles: Record<string, Article> = {
       {
         id: 'tools',
         title: 'Tools that Actually Help',
-        content:
-          `Pick lightweight tools; avoid tool‑chasing.
+        content: `Pick lightweight tools; avoid tool‑chasing.
           <ul class="list-disc pl-6 space-y-2 mt-4">
             <li><strong>Notes/Tasks:</strong> Notion, Obsidian, Todoist.</li>
             <li><strong>Calendar:</strong> Block deep work; color‑code themes.</li>
@@ -750,43 +743,37 @@ export const articles: Record<string, Article> = {
       {
         id: 'why',
         title: 'Why Urban Gardening',
-        content:
-          `Fresh food, lower bills, and a calmer mind. Urban gardening adds resilience against price shocks and lets you control quality. It works even if you only have a window ledge.`,
+        content: `Fresh food, lower bills, and a calmer mind. Urban gardening adds resilience against price shocks and lets you control quality. It works even if you only have a window ledge.`,
         level: 2,
       },
       {
         id: 'space',
         title: 'Make Any Space Work',
-        content:
-          `Use vertical shelves, railing planters, and wall hooks. Keep weight in mind for rooftops/balconies; distribute containers evenly.`,
+        content: `Use vertical shelves, railing planters, and wall hooks. Keep weight in mind for rooftops/balconies; distribute containers evenly.`,
         level: 2,
       },
       {
         id: 'containers',
         title: 'Containers & DIY Planters',
-        content:
-          `Buckets, paint tubs, and jerrycans become planters. Drill drainage holes; add gravel at the bottom; label crops with tape.`,
+        content: `Buckets, paint tubs, and jerrycans become planters. Drill drainage holes; add gravel at the bottom; label crops with tape.`,
         level: 2,
       },
       {
         id: 'soil',
         title: 'Soil Mixes & Fertilizing',
-        content:
-          `Use a mix: 50% topsoil, 30% compost, 20% coco peat or rice husk. Feed monthly with compost tea; avoid over‑fertilizing leafy greens.`,
+        content: `Use a mix: 50% topsoil, 30% compost, 20% coco peat or rice husk. Feed monthly with compost tea; avoid over‑fertilizing leafy greens.`,
         level: 2,
       },
       {
         id: 'sunlight',
         title: 'Sunlight, Watering & Climate',
-        content:
-          `Most crops need 4–6 hours of light. Water deeply but less often. In harmattan, shield leaves from dry winds and mulch the soil.`,
+        content: `Most crops need 4–6 hours of light. Water deeply but less often. In harmattan, shield leaves from dry winds and mulch the soil.`,
         level: 2,
       },
       {
         id: 'crops',
         title: 'Beginner‑Friendly Crops',
-        content:
-          `<ul class="list-disc pl-6 space-y-2 mt-2">
+        content: `<ul class="list-disc pl-6 space-y-2 mt-2">
             <li>Leafy greens: spinach, lettuce, ugu</li>
             <li>Herbs: basil, mint, scent leaf</li>
             <li>Fast growers: okra, peppers, cherry tomatoes</li>
@@ -796,8 +783,7 @@ export const articles: Record<string, Article> = {
       {
         id: 'rotation',
         title: 'Crop Rotation & Pest Control',
-        content:
-          `Rotate families every season (leafy → fruiting → roots). Use neem oil spray weekly; remove diseased leaves promptly.`,
+        content: `Rotate families every season (leafy → fruiting → roots). Use neem oil spray weekly; remove diseased leaves promptly.`,
         level: 2,
       },
     ],

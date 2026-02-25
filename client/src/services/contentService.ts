@@ -56,10 +56,9 @@ export async function getMetaBySlug(
       excerpt: buildLongExcerpt(category.title, category.description),
       seoTitle: `${category.title} - CACBLAZE`,
       seoDescription: category.description,
-      heroImage:
-        category.title.toLowerCase().includes('admissions')
-          ? 'https://images.unsplash.com/photo-1523580494863-6f3031224c33?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80'
-          : category.title.toLowerCase().includes('english')
+      heroImage: category.title.toLowerCase().includes('admissions')
+        ? 'https://images.unsplash.com/photo-1523580494863-6f3031224c33?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80'
+        : category.title.toLowerCase().includes('english')
           ? 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80'
           : 'https://images.unsplash.com/photo-1517433456452-f9633a875f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
       category: 'Education',
@@ -116,13 +115,11 @@ export async function getMetaBySlug(
         seoTitle: 'Software How‑To - CACBLAZE',
         seoDescription:
           'Setup/install, configuration, updates/patches, troubleshooting, performance/cleanup, security, backup/restore, automation, Nigeria tips, and checklist.',
-        heroImage:
-          `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80')}`,
+        heroImage: `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80')}`,
         category: 'Technology',
         authorName: 'Software Ops',
         authorRole: 'Systems & Tools',
-        authorImage:
-          `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1547425260-76bcadfb4f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80')}`,
+        authorImage: `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1547425260-76bcadfb4f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80')}`,
       };
     }
     if (slug === 'chatgpt-alternatives') {
@@ -248,7 +245,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
             React.createElement(
               'div',
               { className: 'p-6' },
-              React.createElement('h2', { className: 'text-lg font-bold text-slate-900 mb-2' }, r.name),
+              React.createElement(
+                'h2',
+                { className: 'text-lg font-bold text-slate-900 mb-2' },
+                r.name
+              ),
               React.createElement('p', { className: 'text-slate-600 text-sm' }, r.description)
             )
           )
@@ -263,10 +264,9 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
       excerpt: buildLongExcerpt(category.title, category.description),
       seoTitle: `${category.title} - CACBLAZE`,
       seoDescription: category.description,
-      heroImage:
-        category.title.toLowerCase().includes('admissions')
-          ? 'https://images.unsplash.com/photo-1523580494863-6f3031224c33?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80'
-          : category.title.toLowerCase().includes('english')
+      heroImage: category.title.toLowerCase().includes('admissions')
+        ? 'https://images.unsplash.com/photo-1523580494863-6f3031224c33?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80'
+        : category.title.toLowerCase().includes('english')
           ? 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80'
           : 'https://images.unsplash.com/photo-1517433456452-f9633a875f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80',
       category: 'Education',
@@ -293,59 +293,134 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
                   { className: 'text-xl font-bold text-slate-900 mb-2' },
                   item.title
                 ),
-                React.createElement('div', { className: 'text-slate-700 leading-relaxed' }, item.body)
+                React.createElement(
+                  'div',
+                  { className: 'text-slate-700 leading-relaxed' },
+                  item.body
+                )
               )
             : React.createElement('p', { className: 'text-slate-700 leading-relaxed' }, item)
         );
       });
 
-      const extraSections =
-        String(cat.title).toLowerCase().includes('certification')
-          ? [
+      const extraSections = String(cat.title).toLowerCase().includes('certification')
+        ? [
+            React.createElement(
+              'div',
+              { className: 'space-y-4' },
               React.createElement(
-                'div',
-                { className: 'space-y-4' },
-                React.createElement('h2', { className: 'text-xl font-bold text-slate-900' }, 'Study Plan'),
-                React.createElement(
-                  'ul',
-                  { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-                  React.createElement('li', null, 'Define prerequisites and baseline skills to avoid gaps.'),
-                  React.createElement('li', null, 'Schedule modules with weekly targets and review windows.'),
-                  React.createElement('li', null, 'Use mixed resources: official docs, courses, and lab practice.'),
-                  React.createElement('li', null, 'Create recall prompts and concept maps for fast reviews.'),
-                  React.createElement('li', null, 'Run timed practice tests and log weak domains for retake drills.')
-                )
+                'h2',
+                { className: 'text-xl font-bold text-slate-900' },
+                'Study Plan'
               ),
               React.createElement(
-                'div',
-                { className: 'space-y-4' },
-                React.createElement('h2', { className: 'text-xl font-bold text-slate-900' }, 'Exam Logistics'),
+                'ul',
+                { className: 'list-disc pl-6 space-y-2 text-slate-700' },
                 React.createElement(
-                  'ul',
-                  { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-                  React.createElement('li', null, 'Register early; confirm ID requirements and test center rules.'),
-                  React.createElement('li', null, 'Understand scoring, retake policies, and validity period.'),
-                  React.createElement('li', null, 'Prepare environment for remote proctoring if applicable.'),
-                  React.createElement('li', null, 'Create test‑day checklist and pacing plan per section.'),
-                  React.createElement('li', null, 'Plan post‑exam review and next certification path.')
+                  'li',
+                  null,
+                  'Define prerequisites and baseline skills to avoid gaps.'
+                ),
+                React.createElement(
+                  'li',
+                  null,
+                  'Schedule modules with weekly targets and review windows.'
+                ),
+                React.createElement(
+                  'li',
+                  null,
+                  'Use mixed resources: official docs, courses, and lab practice.'
+                ),
+                React.createElement(
+                  'li',
+                  null,
+                  'Create recall prompts and concept maps for fast reviews.'
+                ),
+                React.createElement(
+                  'li',
+                  null,
+                  'Run timed practice tests and log weak domains for retake drills.'
                 )
+              )
+            ),
+            React.createElement(
+              'div',
+              { className: 'space-y-4' },
+              React.createElement(
+                'h2',
+                { className: 'text-xl font-bold text-slate-900' },
+                'Exam Logistics'
               ),
               React.createElement(
-                'div',
-                { className: 'space-y-4' },
-                React.createElement('h2', { className: 'text-xl font-bold text-slate-900' }, 'Career Impact'),
+                'ul',
+                { className: 'list-disc pl-6 space-y-2 text-slate-700' },
                 React.createElement(
-                  'ul',
-                  { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-                  React.createElement('li', null, 'Update CV and LinkedIn with verified credential and skills.'),
-                  React.createElement('li', null, 'Align projects and portfolio to certified domains.'),
-                  React.createElement('li', null, 'Share outcomes with managers; request stretch assignments.'),
-                  React.createElement('li', null, 'Track ROI: role changes, compensation, and opportunities.'),
-                  React.createElement('li', null, 'Maintain CPD/CE credits and plan renewals proactively.')
+                  'li',
+                  null,
+                  'Register early; confirm ID requirements and test center rules.'
+                ),
+                React.createElement(
+                  'li',
+                  null,
+                  'Understand scoring, retake policies, and validity period.'
+                ),
+                React.createElement(
+                  'li',
+                  null,
+                  'Prepare environment for remote proctoring if applicable.'
+                ),
+                React.createElement(
+                  'li',
+                  null,
+                  'Create test‑day checklist and pacing plan per section.'
+                ),
+                React.createElement(
+                  'li',
+                  null,
+                  'Plan post‑exam review and next certification path.'
                 )
+              )
+            ),
+            React.createElement(
+              'div',
+              { className: 'space-y-4' },
+              React.createElement(
+                'h2',
+                { className: 'text-xl font-bold text-slate-900' },
+                'Career Impact'
               ),
-            ]
-          : [];
+              React.createElement(
+                'ul',
+                { className: 'list-disc pl-6 space-y-2 text-slate-700' },
+                React.createElement(
+                  'li',
+                  null,
+                  'Update CV and LinkedIn with verified credential and skills.'
+                ),
+                React.createElement(
+                  'li',
+                  null,
+                  'Align projects and portfolio to certified domains.'
+                ),
+                React.createElement(
+                  'li',
+                  null,
+                  'Share outcomes with managers; request stretch assignments.'
+                ),
+                React.createElement(
+                  'li',
+                  null,
+                  'Track ROI: role changes, compensation, and opportunities.'
+                ),
+                React.createElement(
+                  'li',
+                  null,
+                  'Maintain CPD/CE credits and plan renewals proactively.'
+                )
+              )
+            ),
+          ]
+        : [];
 
       const tips =
         resource.tips && resource.tips.length > 0
@@ -364,7 +439,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
                   React.createElement(
                     'div',
                     { key: i },
-                    React.createElement('div', { className: 'font-semibold text-blue-900' }, t.title),
+                    React.createElement(
+                      'div',
+                      { className: 'font-semibold text-blue-900' },
+                      t.title
+                    ),
                     React.createElement('div', { className: 'text-blue-800' }, t.content)
                   )
                 )
@@ -431,21 +510,49 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Core Principles'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Core Principles'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Active recall: test yourself from memory instead of re-reading.'),
-            React.createElement('li', null, 'Spaced repetition: review at increasing intervals to fight forgetting.'),
-            React.createElement('li', null, 'Interleaving: mix related topics to improve transfer and discrimination.'),
-            React.createElement('li', null, 'Elaboration: explain concepts in your own words with examples.'),
-            React.createElement('li', null, 'Dual coding: combine words with visuals (diagrams, timelines, charts).')
+            React.createElement(
+              'li',
+              null,
+              'Active recall: test yourself from memory instead of re-reading.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Spaced repetition: review at increasing intervals to fight forgetting.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Interleaving: mix related topics to improve transfer and discrimination.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Elaboration: explain concepts in your own words with examples.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Dual coding: combine words with visuals (diagrams, timelines, charts).'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Daily Study System'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Daily Study System'
+          ),
           React.createElement(
             'ol',
             { className: 'list-decimal pl-6 space-y-3 text-slate-700' },
@@ -469,14 +576,26 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
               null,
               'End‑of‑day consolidation (15 mins): write a one‑page summary and 5–10 quiz items.'
             ),
-            React.createElement('li', null, 'Plan the next session with a clear micro‑goal and materials prepared.'),
-            React.createElement('li', null, 'Log obstacles and fixes; adjust strategy weekly based on patterns.')
+            React.createElement(
+              'li',
+              null,
+              'Plan the next session with a clear micro‑goal and materials prepared.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Log obstacles and fixes; adjust strategy weekly based on patterns.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Active Recall Toolkit'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Active Recall Toolkit'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
@@ -495,15 +614,31 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
               null,
               'Teach‑back: explain to a peer or into a voice memo; flag weak spots you can’t teach.'
             ),
-            React.createElement('li', null, 'Problem sets: prioritize mixed problems over section‑only drills.'),
-            React.createElement('li', null, 'Reverse questions: given an answer, generate the prompt from memory.'),
-            React.createElement('li', null, 'Confidence tagging: mark items 1–3 and focus reviews on low‑confidence.')
+            React.createElement(
+              'li',
+              null,
+              'Problem sets: prioritize mixed problems over section‑only drills.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Reverse questions: given an answer, generate the prompt from memory.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Confidence tagging: mark items 1–3 and focus reviews on low‑confidence.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Spaced Repetition Schedule'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Spaced Repetition Schedule'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
@@ -511,13 +646,21 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
             React.createElement('li', null, 'Day 1: first review.'),
             React.createElement('li', null, 'Day 3: second review.'),
             React.createElement('li', null, 'Day 7: third review.'),
-            React.createElement('li', null, 'Day 14/30: monthly consolidation for long‑term courses.')
+            React.createElement(
+              'li',
+              null,
+              'Day 14/30: monthly consolidation for long‑term courses.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Time Management'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Time Management'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
@@ -526,75 +669,183 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
               null,
               'Pomodoro variants: 45/10 for deep work; 25/5 for lighter tasks; batch similar topics.'
             ),
-            React.createElement('li', null, 'Plan weekly themes (e.g., algebra focus week) with daily subgoals.'),
-            React.createElement('li', null, 'Protect mornings for hardest tasks; admin and chores later.'),
-            React.createElement('li', null, 'Timebox review and creation separately to avoid context switching.'),
-            React.createElement('li', null, 'Use calendar blocks and reminders; defend study time like appointments.')
+            React.createElement(
+              'li',
+              null,
+              'Plan weekly themes (e.g., algebra focus week) with daily subgoals.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Protect mornings for hardest tasks; admin and chores later.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Timebox review and creation separately to avoid context switching.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use calendar blocks and reminders; defend study time like appointments.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Note‑Taking Methods'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Note‑Taking Methods'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Cornell: cues, notes, summary for efficient review.'),
             React.createElement('li', null, 'Outline: structured headings for theory courses.'),
-            React.createElement('li', null, 'Matrix: compare concepts side‑by‑side (e.g., diseases, laws, formulas).'),
-            React.createElement('li', null, 'Sketch/draw: dual coding improves memory for systems and processes.'),
-            React.createElement('li', null, 'Mind maps: show relationships and hierarchies for quick overviews.'),
-            React.createElement('li', null, 'Linked notes: create evergreen ideas and connect related topics.')
+            React.createElement(
+              'li',
+              null,
+              'Matrix: compare concepts side‑by‑side (e.g., diseases, laws, formulas).'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Sketch/draw: dual coding improves memory for systems and processes.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Mind maps: show relationships and hierarchies for quick overviews.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Linked notes: create evergreen ideas and connect related topics.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Exam Strategy'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Exam Strategy'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Two‑pass approach: quick scan then targeted solving.'),
-            React.createElement('li', null, 'Mark and move: flag hard items; return with fresh eyes.'),
-            React.createElement('li', null, 'Show working: earn partial credit; avoid silent blanks.'),
-            React.createElement('li', null, 'Post‑mortem: log mistakes, misreads, time sinks, and fixes.'),
-            React.createElement('li', null, 'Estimate per‑question time; bail early when time cost spikes.'),
-            React.createElement('li', null, 'Read prompts twice; underline constraints and edge conditions.')
+            React.createElement(
+              'li',
+              null,
+              'Mark and move: flag hard items; return with fresh eyes.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Show working: earn partial credit; avoid silent blanks.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Post‑mortem: log mistakes, misreads, time sinks, and fixes.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Estimate per‑question time; bail early when time cost spikes.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Read prompts twice; underline constraints and edge conditions.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Common Pitfalls'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Common Pitfalls'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Passive re‑reading without testing.'),
             React.createElement('li', null, 'Endless highlighting with no prompts or summaries.'),
-            React.createElement('li', null, 'Monotopic drills; add interleaving to improve transfer.'),
-            React.createElement('li', null, 'Ignoring sleep, nutrition, and exercise — memory needs recovery.'),
-            React.createElement('li', null, 'Skipping scheduled reviews and relying on last‑minute cramming.'),
-            React.createElement('li', null, 'Watching solution videos without attempting problems first.')
+            React.createElement(
+              'li',
+              null,
+              'Monotopic drills; add interleaving to improve transfer.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Ignoring sleep, nutrition, and exercise — memory needs recovery.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Skipping scheduled reviews and relying on last‑minute cramming.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Watching solution videos without attempting problems first.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Nigeria‑Specific Tips'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Nigeria‑Specific Tips'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use offline‑first tools (local PDF libraries, Anki decks).'),
-            React.createElement('li', null, 'Schedule downloads during off‑peak data windows to save costs.'),
-            React.createElement('li', null, 'Form study circles with rotating teach‑back sessions.'),
-            React.createElement('li', null, 'Leverage campus libraries and community centers for bandwidth.'),
-            React.createElement('li', null, 'Plan around power availability; keep small backups for devices.')
+            React.createElement(
+              'li',
+              null,
+              'Use offline‑first tools (local PDF libraries, Anki decks).'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Schedule downloads during off‑peak data windows to save costs.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Form study circles with rotating teach‑back sessions.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Leverage campus libraries and community centers for bandwidth.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Plan around power availability; keep small backups for devices.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Quick Checklist'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Quick Checklist'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
@@ -645,11 +896,31 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Anthropic Claude: strong reasoning and safety defaults.'),
-            React.createElement('li', null, 'Google Gemini: multimodal capabilities and ecosystem tooling.'),
-            React.createElement('li', null, 'Meta Llama via managed platforms: flexible, cost‑effective with tuning options.'),
-            React.createElement('li', null, 'Mistral: efficient models with competitive performance.'),
-            React.createElement('li', null, 'Cohere: enterprise focus and classification/embedding strengths.')
+            React.createElement(
+              'li',
+              null,
+              'Anthropic Claude: strong reasoning and safety defaults.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Google Gemini: multimodal capabilities and ecosystem tooling.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Meta Llama via managed platforms: flexible, cost‑effective with tuning options.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Mistral: efficient models with competitive performance.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Cohere: enterprise focus and classification/embedding strengths.'
+            )
           )
         ),
         React.createElement(
@@ -668,8 +939,16 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Task fit: reasoning, generation, retrieval, tool use.'),
-            React.createElement('li', null, 'Latency SLOs and throughput limits for production peaks.'),
+            React.createElement(
+              'li',
+              null,
+              'Task fit: reasoning, generation, retrieval, tool use.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Latency SLOs and throughput limits for production peaks.'
+            ),
             React.createElement('li', null, 'Cost modeling with guardrails and usage alerts.'),
             React.createElement('li', null, 'Privacy/retention controls and enterprise contracts.'),
             React.createElement('li', null, 'SDKs, REST APIs, and ecosystem integrations.')
@@ -713,9 +992,17 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'No secrets/regulated PII in prompts; use masked tokens.'),
+            React.createElement(
+              'li',
+              null,
+              'No secrets/regulated PII in prompts; use masked tokens.'
+            ),
             React.createElement('li', null, 'Retention policies, logging, and access controls.'),
-            React.createElement('li', null, 'Regional hosting and contractual compliance commitments.')
+            React.createElement(
+              'li',
+              null,
+              'Regional hosting and contractual compliance commitments.'
+            )
           )
         ),
         React.createElement(
@@ -1204,19 +1491,35 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Setup & Formatting'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Setup & Formatting'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Set workbook currency, date format, and locale.'),
-            React.createElement('li', null, 'Use Tables for structured ranges and auto-fill formulas.'),
-            React.createElement('li', null, 'Freeze panes and use filters for consistent navigation.')
+            React.createElement(
+              'li',
+              null,
+              'Use Tables for structured ranges and auto-fill formulas.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Freeze panes and use filters for consistent navigation.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Data Cleaning'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Data Cleaning'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
@@ -1228,11 +1531,19 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Formulas & Lookups'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Formulas & Lookups'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'SUMIF/SUMIFS and COUNTIF/COUNTIFS for rules-based totals.'),
+            React.createElement(
+              'li',
+              null,
+              'SUMIF/SUMIFS and COUNTIF/COUNTIFS for rules-based totals.'
+            ),
             React.createElement('li', null, 'XLOOKUP or INDEX/MATCH for robust lookups.'),
             React.createElement('li', null, 'IF/IFERROR for control flow and graceful failures.')
           )
@@ -1240,7 +1551,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Dates & Times'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Dates & Times'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
@@ -1252,7 +1567,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Pivot Tables'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Pivot Tables'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
@@ -1264,7 +1583,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Charts & Dashboards'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Charts & Dashboards'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
@@ -1276,7 +1599,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Data Validation'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Data Validation'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
@@ -1288,7 +1615,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Error Handling'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Error Handling'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
@@ -1300,7 +1631,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Shortcuts & Productivity'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Shortcuts & Productivity'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
@@ -1312,19 +1647,39 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Nigeria‑Specific Tips'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Nigeria‑Specific Tips'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Format currency with ₦ and correct thousand separators.'),
-            React.createElement('li', null, 'Align date format (dd/mm/yyyy) across sheets and exports.'),
-            React.createElement('li', null, 'Handle CSV encodings (UTF‑8) and separator differences.')
+            React.createElement(
+              'li',
+              null,
+              'Format currency with ₦ and correct thousand separators.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Align date format (dd/mm/yyyy) across sheets and exports.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Handle CSV encodings (UTF‑8) and separator differences.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Checklist'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Checklist'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
@@ -1336,74 +1691,174 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Power Query (Get & Transform)'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Power Query (Get & Transform)'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Import CSV/Excel/Web data and define repeatable steps.'),
-            React.createElement('li', null, 'Trim, split, replace values, and change types in the Query Editor.'),
-            React.createElement('li', null, 'Merge/Append queries to join tables and build pipelines.'),
-            React.createElement('li', null, 'Refresh on demand; set background refresh where appropriate.')
+            React.createElement(
+              'li',
+              null,
+              'Import CSV/Excel/Web data and define repeatable steps.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Trim, split, replace values, and change types in the Query Editor.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Merge/Append queries to join tables and build pipelines.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Refresh on demand; set background refresh where appropriate.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Dynamic Arrays & Advanced Formulas'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Dynamic Arrays & Advanced Formulas'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'FILTER, SORT, UNIQUE for live, spill‑range analytics.'),
-            React.createElement('li', null, 'TEXTJOIN, CONCAT, LET, LAMBDA for clean logic and reuse.'),
-            React.createElement('li', null, 'Use structured references in Tables to avoid broken ranges.')
+            React.createElement(
+              'li',
+              null,
+              'FILTER, SORT, UNIQUE for live, spill‑range analytics.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'TEXTJOIN, CONCAT, LET, LAMBDA for clean logic and reuse.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use structured references in Tables to avoid broken ranges.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Data Model & Power Pivot'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Data Model & Power Pivot'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Load tables to Data Model; define relationships by keys.'),
-            React.createElement('li', null, 'Build PivotTables from the model for cross‑table analysis.'),
-            React.createElement('li', null, 'Create measures with implicit aggregations for performance.')
+            React.createElement(
+              'li',
+              null,
+              'Load tables to Data Model; define relationships by keys.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Build PivotTables from the model for cross‑table analysis.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Create measures with implicit aggregations for performance.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Import/Export & CSV'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Import/Export & CSV'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use correct delimiter and UTF‑8 encoding for Nigerian data.'),
-            React.createElement('li', null, 'Map columns explicitly; avoid header drift in automation.'),
-            React.createElement('li', null, 'Validate numeric/date types after import; fix locale mismatches.')
+            React.createElement(
+              'li',
+              null,
+              'Use correct delimiter and UTF‑8 encoding for Nigerian data.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Map columns explicitly; avoid header drift in automation.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Validate numeric/date types after import; fix locale mismatches.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Protection & Sharing'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Protection & Sharing'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Protect sheets/workbooks; lock formulas and critical cells.'),
-            React.createElement('li', null, 'Set file passwords and restrict editing for shared copies.'),
-            React.createElement('li', null, 'Use OneDrive/SharePoint permissions with version history.')
+            React.createElement(
+              'li',
+              null,
+              'Protect sheets/workbooks; lock formulas and critical cells.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Set file passwords and restrict editing for shared copies.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use OneDrive/SharePoint permissions with version history.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Printing & PDF'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Printing & PDF'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Set print area, page breaks, headers/footers, and scaling.'),
-            React.createElement('li', null, 'Use “Fit to page” for summary sheets; export to PDF for sharing.'),
-            React.createElement('li', null, 'Preview before export to confirm pagination and legibility.')
+            React.createElement(
+              'li',
+              null,
+              'Set print area, page breaks, headers/footers, and scaling.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use “Fit to page” for summary sheets; export to PDF for sharing.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Preview before export to confirm pagination and legibility.'
+            )
           )
         )
       );
@@ -1730,8 +2185,10 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
               height: 630,
               preferCurated: true,
             });
-            const primary = 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1200';
-            const fallback = 'https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
+            const primary =
+              'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1200';
+            const fallback =
+              'https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
             return React.createElement(
               'div',
               {
@@ -1771,8 +2228,10 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
               height: 630,
               preferCurated: true,
             });
-            const primary = 'https://images.unsplash.com/photo-1525186402429-b4ff38bedbc8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
-            const fallback = 'https://images.pexels.com/photos/5082575/pexels-photo-5082575.jpeg?auto=compress&cs=tinysrgb&w=1200';
+            const primary =
+              'https://images.unsplash.com/photo-1525186402429-b4ff38bedbc8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
+            const fallback =
+              'https://images.pexels.com/photos/5082575/pexels-photo-5082575.jpeg?auto=compress&cs=tinysrgb&w=1200';
             return React.createElement(
               'div',
               {
@@ -1795,9 +2254,21 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Prefer official mirrors; avoid third‑party “patch” sites.'),
-            React.createElement('li', null, 'Plan updates around network reliability and data costs.'),
-            React.createElement('li', null, 'Protect banking apps; avoid public Wi‑Fi for sensitive tasks.')
+            React.createElement(
+              'li',
+              null,
+              'Prefer official mirrors; avoid third‑party “patch” sites.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Plan updates around network reliability and data costs.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Protect banking apps; avoid public Wi‑Fi for sensitive tasks.'
+            )
           )
         ),
         React.createElement(
@@ -1852,13 +2323,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         seoTitle: 'Software How‑To - CACBLAZE',
         seoDescription:
           'Setup/install, configuration, updates/patches, troubleshooting, performance/cleanup, security, backup/restore, automation, Nigeria tips, and checklist.',
-        heroImage:
-          `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80')}`,
+        heroImage: `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80')}`,
         category: 'Technology',
         authorName: 'Software Ops',
         authorRole: 'Systems & Tools',
-        authorImage:
-          `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1547425260-76bcadfb4f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80')}`,
+        authorImage: `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1547425260-76bcadfb4f6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80')}`,
       };
     }
 
@@ -1911,8 +2380,16 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Use verified CVM (PIN/sign/MFA) per scheme rules.'),
-            React.createElement('li', null, 'Match name/signature when applicable; avoid shortcuts.'),
-            React.createElement('li', null, 'Refuse suspicious transactions and escalate to supervisor.')
+            React.createElement(
+              'li',
+              null,
+              'Match name/signature when applicable; avoid shortcuts.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Refuse suspicious transactions and escalate to supervisor.'
+            )
           )
         ),
         React.createElement(
@@ -1927,8 +2404,16 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Print or deliver digital receipts with RRN/STAN.'),
-            React.createElement('li', null, 'Record operator ID and device terminal serial on incidents.'),
-            React.createElement('li', null, 'Keep copies for chargeback defense and settlement reconciliation.')
+            React.createElement(
+              'li',
+              null,
+              'Record operator ID and device terminal serial on incidents.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Keep copies for chargeback defense and settlement reconciliation.'
+            )
           )
         ),
         React.createElement(
@@ -1942,7 +2427,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Confirm network status before retrying; avoid duplicate charges.'),
+            React.createElement(
+              'li',
+              null,
+              'Confirm network status before retrying; avoid duplicate charges.'
+            ),
             React.createElement('li', null, 'Use official acquirer guidance during offline modes.'),
             React.createElement('li', null, 'Document attempts with timestamps and outcome notes.')
           )
@@ -1958,8 +2447,16 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use acquirer settlement reports to match daily totals.'),
-            React.createElement('li', null, 'Map authorizations to settlement batches using RRN/STAN.'),
+            React.createElement(
+              'li',
+              null,
+              'Use acquirer settlement reports to match daily totals.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Map authorizations to settlement batches using RRN/STAN.'
+            ),
             React.createElement('li', null, 'Investigate mismatches promptly and log incidents.')
           )
         ),
@@ -1974,7 +2471,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Manual PAN entry requests, rushed transactions, or unusual narration.'),
+            React.createElement(
+              'li',
+              null,
+              'Manual PAN entry requests, rushed transactions, or unusual narration.'
+            ),
             React.createElement('li', null, 'Claimed failures seeking instant cash refunds.'),
             React.createElement('li', null, 'Repeated small tests followed by larger attempts.')
           )
@@ -1990,8 +2491,16 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Respond on time with receipts, logs, and CVM evidence.'),
-            React.createElement('li', null, 'Provide terminal serial, operator ID, and transaction history.'),
+            React.createElement(
+              'li',
+              null,
+              'Respond on time with receipts, logs, and CVM evidence.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Provide terminal serial, operator ID, and transaction history.'
+            ),
             React.createElement('li', null, 'Tune controls based on outcomes and patterns.')
           )
         ),
@@ -2007,7 +2516,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Train staff on fraud markers and receipt workflows.'),
-            React.createElement('li', null, 'Run drills for outage scenarios and dispute conversations.'),
+            React.createElement(
+              'li',
+              null,
+              'Run drills for outage scenarios and dispute conversations.'
+            ),
             React.createElement('li', null, 'Maintain incident logs and review regularly.')
           )
         ),
@@ -2024,7 +2537,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Shield PIN entry and avoid sharing codes.'),
             React.createElement('li', null, 'Request receipts and verify amounts before approval.'),
-            React.createElement('li', null, 'Monitor bank alerts and dispute unexpected debits promptly.')
+            React.createElement(
+              'li',
+              null,
+              'Monitor bank alerts and dispute unexpected debits promptly.'
+            )
           )
         ),
         React.createElement(
@@ -2038,9 +2555,21 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Record RRN/STAN and terminal serial in incident reports.'),
-            React.createElement('li', null, 'Use official bank fraud lines; avoid informal refunds.'),
-            React.createElement('li', null, 'Verify POS providers/acquirers and avoid unregistered terminals.')
+            React.createElement(
+              'li',
+              null,
+              'Record RRN/STAN and terminal serial in incident reports.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use official bank fraud lines; avoid informal refunds.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Verify POS providers/acquirers and avoid unregistered terminals.'
+            )
           )
         ),
         React.createElement(
@@ -2056,7 +2585,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Chip/PIN and verified CVM; disable manual entry.'),
             React.createElement('li', null, 'Strict receipts with RRN/STAN and operator ID.'),
-            React.createElement('li', null, 'Reconcile daily and respond to disputes with evidence.')
+            React.createElement(
+              'li',
+              null,
+              'Reconcile daily and respond to disputes with evidence.'
+            )
           )
         )
       );
@@ -2086,11 +2619,7 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement(
-            'h2',
-            { className: 'text-2xl font-bold text-slate-900' },
-            'Core IDs'
-          ),
+          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Core IDs'),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
@@ -2226,7 +2755,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Do not share full ID images online or via chats.'),
             React.createElement('li', null, 'Redact sensitive fields when submitting copies.'),
-            React.createElement('li', null, 'Verify requests; avoid unsolicited “verification” agents.')
+            React.createElement(
+              'li',
+              null,
+              'Verify requests; avoid unsolicited “verification” agents.'
+            )
           )
         ),
         React.createElement(
@@ -2268,8 +2801,16 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Store copies securely; use encryption where possible.'),
-            React.createElement('li', null, 'Limit retention to legal requirements and clear purposes.'),
+            React.createElement(
+              'li',
+              null,
+              'Store copies securely; use encryption where possible.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Limit retention to legal requirements and clear purposes.'
+            ),
             React.createElement('li', null, 'Restrict access and audit retrievals.')
           )
         ),
@@ -2286,7 +2827,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Use authorized NIMC/BVN service points only.'),
             React.createElement('li', null, 'Keep case numbers and receipts for all changes.'),
-            React.createElement('li', null, 'Align updates across banks, SIM registration, and tax records.')
+            React.createElement(
+              'li',
+              null,
+              'Align updates across banks, SIM registration, and tax records.'
+            )
           )
         ),
         React.createElement(
@@ -2302,7 +2847,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Verify via official portals; keep evidence.'),
             React.createElement('li', null, 'Use authorized centers for changes; retain receipts.'),
-            React.createElement('li', null, 'Secure storage; limit sharing and redact sensitive fields.')
+            React.createElement(
+              'li',
+              null,
+              'Secure storage; limit sharing and redact sensitive fields.'
+            )
           )
         )
       );
@@ -2424,9 +2973,21 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Follow official photo specs: background, size, and attire.'),
-            React.createElement('li', null, 'Ensure clean fingerprints; avoid smudges for reliable capture.'),
-            React.createElement('li', null, 'Match NIN details to application forms to reduce mismatches.')
+            React.createElement(
+              'li',
+              null,
+              'Follow official photo specs: background, size, and attire.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Ensure clean fingerprints; avoid smudges for reliable capture.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Match NIN details to application forms to reduce mismatches.'
+            )
           )
         ),
         React.createElement(
@@ -2514,7 +3075,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Do not hand over originals to unauthorized agents.'),
             React.createElement('li', null, 'Redact sensitive fields in copies; share minimally.'),
-            React.createElement('li', null, 'Use official lines for support; avoid unsolicited offers.')
+            React.createElement(
+              'li',
+              null,
+              'Use official lines for support; avoid unsolicited offers.'
+            )
           )
         ),
         React.createElement(
@@ -2529,7 +3094,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Use immigration and FRSC official portals only.'),
-            React.createElement('li', null, 'Keep application numbers, receipts, and capture references.'),
+            React.createElement(
+              'li',
+              null,
+              'Keep application numbers, receipts, and capture references.'
+            ),
             React.createElement('li', null, 'Align updates across NIN/BVN and bank/SIM records.')
           )
         ),
@@ -2544,9 +3113,21 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Apply via official portals; book appointments and pay online.'),
-            React.createElement('li', null, 'Meet photo/biometric standards; bring required originals.'),
-            React.createElement('li', null, 'Store evidence and protect personal data at all times.')
+            React.createElement(
+              'li',
+              null,
+              'Apply via official portals; book appointments and pay online.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Meet photo/biometric standards; bring required originals.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Store evidence and protect personal data at all times.'
+            )
           )
         )
       );
@@ -2762,11 +3343,7 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
               null,
               'Review auto‑forward rules and revoke unknown sessions.'
             ),
-            React.createElement(
-              'li',
-              null,
-              'Keep apps updated; avoid sideloaded finance apps.'
-            )
+            React.createElement('li', null, 'Keep apps updated; avoid sideloaded finance apps.')
           )
         ),
         React.createElement(
@@ -2782,7 +3359,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Intrabank transfers within same bank.'),
             React.createElement('li', null, 'Interbank instant rails via supported networks.'),
-            React.createElement('li', null, 'USSD or wallet‑based transfers with provider references.')
+            React.createElement(
+              'li',
+              null,
+              'USSD or wallet‑based transfers with provider references.'
+            )
           )
         ),
         React.createElement(
@@ -2829,11 +3410,7 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
               null,
               'Capture references, screenshots, timestamps, and beneficiary details.'
             ),
-            React.createElement(
-              'li',
-              null,
-              'Open sender bank case and track resolution window.'
-            ),
+            React.createElement('li', null, 'Open sender bank case and track resolution window.'),
             React.createElement(
               'li',
               null,
@@ -2868,7 +3445,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Platforms & Tools'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Platforms & Tools'
+          ),
           React.createElement(
             'p',
             { className: 'text-slate-700' },
@@ -2877,17 +3458,41 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'LMS: Moodle, Google Classroom, Canvas for course orchestration.'),
-            React.createElement('li', null, 'Video: Zoom/Meet/Teams with recording, captions, and breakout rooms.'),
-            React.createElement('li', null, 'Content: Notion/Obsidian for notes, H5P for interactive modules.'),
-            React.createElement('li', null, 'Assessment tools: Google Forms, LMS quizzes, and proctoring add‑ons.'),
-            React.createElement('li', null, 'Community: discussion boards, chat groups, and virtual office hours.')
+            React.createElement(
+              'li',
+              null,
+              'LMS: Moodle, Google Classroom, Canvas for course orchestration.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Video: Zoom/Meet/Teams with recording, captions, and breakout rooms.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Content: Notion/Obsidian for notes, H5P for interactive modules.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Assessment tools: Google Forms, LMS quizzes, and proctoring add‑ons.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Community: discussion boards, chat groups, and virtual office hours.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Learning Design'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Learning Design'
+          ),
           React.createElement(
             'p',
             { className: 'text-slate-700' },
@@ -2896,17 +3501,41 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Micro‑modules: short lessons with one objective and practice.'),
-            React.createElement('li', null, 'Active recall tasks embedded in each module; low‑stakes quizzes.'),
-            React.createElement('li', null, 'Visual scaffolds: diagrams, timelines, and checklists for complex topics.'),
-            React.createElement('li', null, 'Story‑based explanations and examples to anchor abstract ideas.'),
-            React.createElement('li', null, 'Frequent formative feedback loops; revise based on results.')
+            React.createElement(
+              'li',
+              null,
+              'Micro‑modules: short lessons with one objective and practice.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Active recall tasks embedded in each module; low‑stakes quizzes.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Visual scaffolds: diagrams, timelines, and checklists for complex topics.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Story‑based explanations and examples to anchor abstract ideas.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Frequent formative feedback loops; revise based on results.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Access & Equity'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Access & Equity'
+          ),
           React.createElement(
             'p',
             { className: 'text-slate-700' },
@@ -2915,17 +3544,41 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Offline‑first: downloadable PDFs, low‑bandwidth video, and transcripts.'),
-            React.createElement('li', null, 'Mobile‑friendly: responsive layouts and small asset sizes.'),
-            React.createElement('li', null, 'Accessibility: captions, alt text, keyboard navigation, color contrast.'),
-            React.createElement('li', null, 'Language options and local examples to reduce cultural friction.'),
-            React.createElement('li', null, 'Device checks: test across budget Android phones and older laptops.')
+            React.createElement(
+              'li',
+              null,
+              'Offline‑first: downloadable PDFs, low‑bandwidth video, and transcripts.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Mobile‑friendly: responsive layouts and small asset sizes.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Accessibility: captions, alt text, keyboard navigation, color contrast.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Language options and local examples to reduce cultural friction.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Device checks: test across budget Android phones and older laptops.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Assessment & Feedback'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Assessment & Feedback'
+          ),
           React.createElement(
             'p',
             { className: 'text-slate-700' },
@@ -2934,17 +3587,41 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Formative quizzes with immediate explanations and retry paths.'),
-            React.createElement('li', null, 'Assignments with rubrics; peer review for scale and reflection.'),
-            React.createElement('li', null, 'Progress dashboards; alerts for inactivity and struggling learners.'),
-            React.createElement('li', null, 'Capstone projects to synthesize learning into practical outputs.'),
-            React.createElement('li', null, 'Calibration sessions to align grading standards across instructors.')
+            React.createElement(
+              'li',
+              null,
+              'Formative quizzes with immediate explanations and retry paths.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Assignments with rubrics; peer review for scale and reflection.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Progress dashboards; alerts for inactivity and struggling learners.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Capstone projects to synthesize learning into practical outputs.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Calibration sessions to align grading standards across instructors.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Teacher & Admin Operations'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Teacher & Admin Operations'
+          ),
           React.createElement(
             'p',
             { className: 'text-slate-700' },
@@ -2953,17 +3630,41 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Course templates and cloning for consistency across cohorts.'),
-            React.createElement('li', null, 'Bulk enrollments; roster sync; simple onboarding instructions.'),
-            React.createElement('li', null, 'Weekly reports: completion rates, quiz performance, and engagement.'),
-            React.createElement('li', null, 'Content governance: versioning, approvals, and audit trails.'),
-            React.createElement('li', null, 'Instructor support kits: starter slides, checklists, and office hours.')
+            React.createElement(
+              'li',
+              null,
+              'Course templates and cloning for consistency across cohorts.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Bulk enrollments; roster sync; simple onboarding instructions.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Weekly reports: completion rates, quiz performance, and engagement.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Content governance: versioning, approvals, and audit trails.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Instructor support kits: starter slides, checklists, and office hours.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Student Playbook'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Student Playbook'
+          ),
           React.createElement(
             'p',
             { className: 'text-slate-700' },
@@ -2972,17 +3673,41 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Schedule fixed study blocks; use notifications for module releases.'),
-            React.createElement('li', null, 'Take notes while watching; pause to answer recall prompts.'),
-            React.createElement('li', null, 'Join discussion threads early; ask targeted questions.'),
-            React.createElement('li', null, 'Summarize modules in your own words; build recall packs.'),
-            React.createElement('li', null, 'Reach out during office hours with specific blockers and goals.')
+            React.createElement(
+              'li',
+              null,
+              'Schedule fixed study blocks; use notifications for module releases.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Take notes while watching; pause to answer recall prompts.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Join discussion threads early; ask targeted questions.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Summarize modules in your own words; build recall packs.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Reach out during office hours with specific blockers and goals.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Security & Privacy'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Security & Privacy'
+          ),
           React.createElement(
             'p',
             { className: 'text-slate-700' },
@@ -2991,15 +3716,31 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use institutional accounts; avoid sharing meeting links publicly.'),
-            React.createElement('li', null, 'Store grades and submissions in secured LMS spaces only.'),
-            React.createElement('li', null, 'Review privacy policies; limit third‑party app data sharing.')
+            React.createElement(
+              'li',
+              null,
+              'Use institutional accounts; avoid sharing meeting links publicly.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Store grades and submissions in secured LMS spaces only.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Review privacy policies; limit third‑party app data sharing.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Nigeria‑Specific Tips'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Nigeria‑Specific Tips'
+          ),
           React.createElement(
             'p',
             { className: 'text-slate-700' },
@@ -3008,9 +3749,21 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Plan low‑data alternatives and offline packs for regions with outages.'),
-            React.createElement('li', null, 'Use WhatsApp/Telegram for announcements when LMS access is limited.'),
-            React.createElement('li', null, 'Schedule heavy downloads during off‑peak data windows.')
+            React.createElement(
+              'li',
+              null,
+              'Plan low‑data alternatives and offline packs for regions with outages.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use WhatsApp/Telegram for announcements when LMS access is limited.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Schedule heavy downloads during off‑peak data windows.'
+            )
           )
         )
       );
@@ -3046,97 +3799,257 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Syllabus Mapping'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Syllabus Mapping'
+          ),
           React.createElement(
             'ol',
             { className: 'list-decimal pl-6 space-y-3 text-slate-700' },
-            React.createElement('li', null, 'Collect official syllabus and past questions for the last 5–10 years.'),
-            React.createElement('li', null, 'Break topics into atomic subskills with examples and typical mistakes.'),
-            React.createElement('li', null, 'Assign difficulty ratings (1–3) and forecast review needs per subskill.'),
-            React.createElement('li', null, 'Tag objectives by weight and exam frequency to prioritize.'),
-            React.createElement('li', null, 'Create a weekly study plan mapping subskills to sessions.')
+            React.createElement(
+              'li',
+              null,
+              'Collect official syllabus and past questions for the last 5–10 years.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Break topics into atomic subskills with examples and typical mistakes.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Assign difficulty ratings (1–3) and forecast review needs per subskill.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Tag objectives by weight and exam frequency to prioritize.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Create a weekly study plan mapping subskills to sessions.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Practice Strategy'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Practice Strategy'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use interleaved sets (mixed topics) to improve transfer and discrimination.'),
-            React.createElement('li', null, 'Two‑pass method: quick scan for easy points, then deep solve for tough ones.'),
-            React.createElement('li', null, 'Error log: record problem, cause, fix, and a re‑test date for spaced review.'),
-            React.createElement('li', null, 'Timebox sessions; stop when accuracy or focus drops sharply.'),
-            React.createElement('li', null, 'Alternate easy and hard items to keep momentum and stretch.')
+            React.createElement(
+              'li',
+              null,
+              'Use interleaved sets (mixed topics) to improve transfer and discrimination.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Two‑pass method: quick scan for easy points, then deep solve for tough ones.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Error log: record problem, cause, fix, and a re‑test date for spaced review.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Timebox sessions; stop when accuracy or focus drops sharply.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Alternate easy and hard items to keep momentum and stretch.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Timing and Stamina'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Timing and Stamina'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Simulate exact timing conditions; practice with a visible countdown.'),
-            React.createElement('li', null, 'Plan nutrition and hydration; avoid heavy meals right before mock exams.'),
-            React.createElement('li', null, 'Use breathing resets between sections to control adrenaline and focus.'),
-            React.createElement('li', null, 'Warm‑up with 3–5 quick recall prompts to prime memory.'),
-            React.createElement('li', null, 'Track pace with a wristwatch; adjust when lag exceeds targets.')
+            React.createElement(
+              'li',
+              null,
+              'Simulate exact timing conditions; practice with a visible countdown.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Plan nutrition and hydration; avoid heavy meals right before mock exams.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use breathing resets between sections to control adrenaline and focus.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Warm‑up with 3–5 quick recall prompts to prime memory.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Track pace with a wristwatch; adjust when lag exceeds targets.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Mock Exam Protocol'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Mock Exam Protocol'
+          ),
           React.createElement(
             'ol',
             { className: 'list-decimal pl-6 space-y-3 text-slate-700' },
-            React.createElement('li', null, 'Weekly full‑length mock with strict conditions; no phones, no notes.'),
-            React.createElement('li', null, 'Post‑mortem within 24 hours: score, categorize errors, schedule retests.'),
-            React.createElement('li', null, 'Trend analysis: track weak topics and adjust the weekly focus plan.'),
-            React.createElement('li', null, 'Peer review of solutions to expose blind spots and alternative methods.'),
-            React.createElement('li', null, 'Rotate mock providers to avoid overfitting to one style.')
+            React.createElement(
+              'li',
+              null,
+              'Weekly full‑length mock with strict conditions; no phones, no notes.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Post‑mortem within 24 hours: score, categorize errors, schedule retests.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Trend analysis: track weak topics and adjust the weekly focus plan.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Peer review of solutions to expose blind spots and alternative methods.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Rotate mock providers to avoid overfitting to one style.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Test‑Day Checklist'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Test‑Day Checklist'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Pack ID, stationery, calculator (if allowed), and water the night before.'),
-            React.createElement('li', null, 'Arrive early; do a light 5‑minute recall warm‑up — no cramming.'),
-            React.createElement('li', null, 'Section pacing plan: min goals per 15 minutes; mark and move when stuck.'),
-            React.createElement('li', null, 'Carry spares: pens, batteries, and backup calculator if allowed.'),
-            React.createElement('li', null, 'Review instructions; avoid penalties for mis‑marking or extra pages.')
+            React.createElement(
+              'li',
+              null,
+              'Pack ID, stationery, calculator (if allowed), and water the night before.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Arrive early; do a light 5‑minute recall warm‑up — no cramming.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Section pacing plan: min goals per 15 minutes; mark and move when stuck.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Carry spares: pens, batteries, and backup calculator if allowed.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Review instructions; avoid penalties for mis‑marking or extra pages.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Nigeria‑Specific Guidance'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Nigeria‑Specific Guidance'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use official portals and verified past question banks; avoid leaks/scams.'),
-            React.createElement('li', null, 'Schedule heavy downloads during off‑peak data windows to reduce costs.'),
-            React.createElement('li', null, 'Study circles: rotate topics and teach‑backs; simulate proctoring conditions.'),
-            React.createElement('li', null, 'Verify exam center routes and timing; avoid last‑minute surprises.'),
-            React.createElement('li', null, 'Prepare IDs and documents; check requirements ahead of time.')
+            React.createElement(
+              'li',
+              null,
+              'Use official portals and verified past question banks; avoid leaks/scams.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Schedule heavy downloads during off‑peak data windows to reduce costs.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Study circles: rotate topics and teach‑backs; simulate proctoring conditions.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Verify exam center routes and timing; avoid last‑minute surprises.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Prepare IDs and documents; check requirements ahead of time.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Rapid Review Kit'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Rapid Review Kit'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'One‑page summaries per topic with formulas, laws, and exception cases.'),
-            React.createElement('li', null, '5–10 recall prompts per topic; re‑test weak prompts daily before exam.'),
-            React.createElement('li', null, 'Problem patterns list: common traps and how to avoid them.'),
+            React.createElement(
+              'li',
+              null,
+              'One‑page summaries per topic with formulas, laws, and exception cases.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              '5–10 recall prompts per topic; re‑test weak prompts daily before exam.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Problem patterns list: common traps and how to avoid them.'
+            ),
             React.createElement('li', null, 'Create mini‑guides for your top 5 weakest subskills.')
           )
         )
@@ -3173,92 +4086,220 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Guide Structure'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Guide Structure'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Overview: one paragraph summary and key outcomes.'),
-            React.createElement('li', null, 'Core ideas: 3–7 bullets with formulas, definitions, laws.'),
-            React.createElement('li', null, 'Visual: diagram or flow with labeled steps and exceptions.'),
-            React.createElement('li', null, 'Examples: 2–3 worked examples with typical mistakes and fixes.'),
-            React.createElement('li', null, 'Recall: 8–12 prompts for active testing and spaced repetition.')
+            React.createElement(
+              'li',
+              null,
+              'Core ideas: 3–7 bullets with formulas, definitions, laws.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Visual: diagram or flow with labeled steps and exceptions.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Examples: 2–3 worked examples with typical mistakes and fixes.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Recall: 8–12 prompts for active testing and spaced repetition.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Visual Frameworks'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Visual Frameworks'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Timelines for history and processes; annotate causes and impacts.'),
-            React.createElement('li', null, 'Concept maps for relationships; show hierarchies and cross‑links.'),
-            React.createElement('li', null, 'Matrices to compare categories; define criteria across columns.'),
-            React.createElement('li', null, 'Flowcharts for decision paths and troubleshooting sequences.'),
-            React.createElement('li', null, 'Layered diagrams to reveal systems at multiple levels.')
+            React.createElement(
+              'li',
+              null,
+              'Timelines for history and processes; annotate causes and impacts.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Concept maps for relationships; show hierarchies and cross‑links.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Matrices to compare categories; define criteria across columns.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Flowcharts for decision paths and troubleshooting sequences.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Layered diagrams to reveal systems at multiple levels.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Worked Example Pattern'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Worked Example Pattern'
+          ),
           React.createElement(
             'ol',
             { className: 'list-decimal pl-6 space-y-3 text-slate-700' },
             React.createElement('li', null, 'Restate the problem; identify knowns and unknowns.'),
             React.createElement('li', null, 'Select method; justify why it applies to this case.'),
-            React.createElement('li', null, 'Solve step‑wise with checks; note common traps at each step.'),
-            React.createElement('li', null, 'Reflect on alternative approaches and when to prefer them.'),
-            React.createElement('li', null, 'Check units, bounds, and edge cases to validate results.'),
-            React.createElement('li', null, 'Summarize the takeaway and how to recognize similar problems.')
+            React.createElement(
+              'li',
+              null,
+              'Solve step‑wise with checks; note common traps at each step.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Reflect on alternative approaches and when to prefer them.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Check units, bounds, and edge cases to validate results.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Summarize the takeaway and how to recognize similar problems.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Recall Pack'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Recall Pack'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Definition prompts: term → definition + example.'),
             React.createElement('li', null, 'Process prompts: step order and failure points.'),
-            React.createElement('li', null, 'Compare/contrast prompts: similarities and differences.'),
-            React.createElement('li', null, 'Scenario prompts: apply concepts to realistic situations.'),
-            React.createElement('li', null, 'Why prompts: explain the rationale behind rules and formulas.')
+            React.createElement(
+              'li',
+              null,
+              'Compare/contrast prompts: similarities and differences.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Scenario prompts: apply concepts to realistic situations.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Why prompts: explain the rationale behind rules and formulas.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Citation and Sources'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Citation and Sources'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Record page numbers and URLs for quick verification.'),
-            React.createElement('li', null, 'Prefer primary sources; summarize secondary commentary separately.'),
-            React.createElement('li', null, 'Track edition differences; update guides when curricula change.')
+            React.createElement(
+              'li',
+              null,
+              'Prefer primary sources; summarize secondary commentary separately.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Track edition differences; update guides when curricula change.'
+            )
           ),
-          React.createElement('li', null, 'Use reference managers (Zotero/EndNote) to organize citations.'),
-          React.createElement('li', null, 'Apply consistent styles (APA/MLA); include citation cheat sheets.')
+          React.createElement(
+            'li',
+            null,
+            'Use reference managers (Zotero/EndNote) to organize citations.'
+          ),
+          React.createElement(
+            'li',
+            null,
+            'Apply consistent styles (APA/MLA); include citation cheat sheets.'
+          )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Nigeria‑Specific Tips'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Nigeria‑Specific Tips'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Build offline PDF libraries and local note vaults to avoid outages.'),
-            React.createElement('li', null, 'Use community study groups for teach‑backs and mock sessions.'),
-            React.createElement('li', null, 'Align guides to WAEC/JAMB syllabi and official objectives.')
+            React.createElement(
+              'li',
+              null,
+              'Build offline PDF libraries and local note vaults to avoid outages.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use community study groups for teach‑backs and mock sessions.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Align guides to WAEC/JAMB syllabi and official objectives.'
+            )
           ),
-          React.createElement('li', null, 'Distribute low‑data variants (text‑heavy, compressed visuals).'),
-          React.createElement('li', null, 'Schedule module releases around power and connectivity windows.')
+          React.createElement(
+            'li',
+            null,
+            'Distribute low‑data variants (text‑heavy, compressed visuals).'
+          ),
+          React.createElement(
+            'li',
+            null,
+            'Schedule module releases around power and connectivity windows.'
+          )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Quick Checklist'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Quick Checklist'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
@@ -3301,16 +4342,44 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Quick Checks'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Quick Checks'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Toggle Airplane Mode for 10–20 seconds to reset radios.'),
-            React.createElement('li', null, 'Restart phone and power‑cycle router/modem for 30–60 seconds.'),
-            React.createElement('li', null, 'Check official ISP/carrier outages and status portals.'),
-            React.createElement('li', null, 'Verify data balance and plan validity; expired bundles mimic faults.'),
-            React.createElement('li', null, 'Ensure SIM is detected and preferred network mode is 4G/3G auto.'),
-            React.createElement('li', null, 'If on Wi‑Fi, confirm the SSID shows “internet access,” not local only.')
+            React.createElement(
+              'li',
+              null,
+              'Toggle Airplane Mode for 10–20 seconds to reset radios.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Restart phone and power‑cycle router/modem for 30–60 seconds.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Check official ISP/carrier outages and status portals.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Verify data balance and plan validity; expired bundles mimic faults.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Ensure SIM is detected and preferred network mode is 4G/3G auto.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'If on Wi‑Fi, confirm the SSID shows “internet access,” not local only.'
+            )
           ),
           React.createElement('li', null, 'Check account suspension or SIM registration issues.'),
           React.createElement('li', null, 'Test a different device to isolate device vs. network.')
@@ -3326,26 +4395,70 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Disable VPN/firewall/content filters temporarily; test basic browsing.'),
-            React.createElement('li', null, 'Reset APN to default; remove custom gateways that break PDP context.'),
-            React.createElement('li', null, 'Set network type to automatic; avoid forcing unstable bands.'),
-            React.createElement('li', null, 'Reinsert SIM after cleaning contacts; test with a second SIM line.'),
-            React.createElement('li', null, 'Run field test (RSRP/RSRQ/SINR) to identify coverage/interference issues.')
+            React.createElement(
+              'li',
+              null,
+              'Disable VPN/firewall/content filters temporarily; test basic browsing.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Reset APN to default; remove custom gateways that break PDP context.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Set network type to automatic; avoid forcing unstable bands.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Reinsert SIM after cleaning contacts; test with a second SIM line.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Run field test (RSRP/RSRQ/SINR) to identify coverage/interference issues.'
+            )
           ),
           React.createElement('li', null, 'Reset network settings if stale configurations persist.')
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Wi‑Fi and Router'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Wi‑Fi and Router'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Power‑cycle router/modem to clear stale NAT/DHCP/driver states.'),
-            React.createElement('li', null, 'Move closer to router; reduce obstructions and interference sources.'),
-            React.createElement('li', null, 'Forget and reconnect SSID; confirm security type matches (WPA2/WPA3).'),
-            React.createElement('li', null, 'Separate 2.4/5 GHz SSIDs; test both bands; disable unstable band steering.'),
-            React.createElement('li', null, 'Update firmware; use non‑overlapping channels (1/6/11) or DFS‑safe 5 GHz.')
+            React.createElement(
+              'li',
+              null,
+              'Power‑cycle router/modem to clear stale NAT/DHCP/driver states.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Move closer to router; reduce obstructions and interference sources.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Forget and reconnect SSID; confirm security type matches (WPA2/WPA3).'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Separate 2.4/5 GHz SSIDs; test both bands; disable unstable band steering.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Update firmware; use non‑overlapping channels (1/6/11) or DFS‑safe 5 GHz.'
+            )
           )
         ),
         React.createElement(
@@ -3359,88 +4472,220 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Switch to 1.1.1.1 or 8.8.8.8; apply at router for consistency.'),
+            React.createElement(
+              'li',
+              null,
+              'Switch to 1.1.1.1 or 8.8.8.8; apply at router for consistency.'
+            ),
             React.createElement('li', null, 'Flush local DNS caches after changing resolvers.'),
-            React.createElement('li', null, 'Test failing sites via direct IP or alternate resolvers to confirm DNS‑only.'),
-            React.createElement('li', null, 'Disable Secure DNS/DoH temporarily to rule out compatibility issues.'),
-            React.createElement('li', null, 'Verify split‑horizon DNS requirements on corporate/school networks.')
+            React.createElement(
+              'li',
+              null,
+              'Test failing sites via direct IP or alternate resolvers to confirm DNS‑only.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Disable Secure DNS/DoH temporarily to rule out compatibility issues.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Verify split‑horizon DNS requirements on corporate/school networks.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Performance and Speed'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Performance and Speed'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Run speed tests across times/bands; compare to plan expectations.'),
-            React.createElement('li', null, 'Monitor SINR; low values cause retransmissions despite “full bars.”'),
-            React.createElement('li', null, 'Limit background sync/downloads; enable QoS for critical apps.'),
-            React.createElement('li', null, 'Relocate router centrally, elevate, and reduce interference sources.')
+            React.createElement(
+              'li',
+              null,
+              'Run speed tests across times/bands; compare to plan expectations.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Monitor SINR; low values cause retransmissions despite “full bars.”'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Limit background sync/downloads; enable QoS for critical apps.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Relocate router centrally, elevate, and reduce interference sources.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'App‑Specific Issues'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'App‑Specific Issues'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Update apps; clear cache/data for login/streaming failures.'),
-            React.createElement('li', null, 'Sign out/in; reinstall as last resort to regenerate clean state.'),
-            React.createElement('li', null, 'Check platform status dashboards (WhatsApp/YouTube/Netflix/etc.).'),
-            React.createElement('li', null, 'Disable data/battery saver if app needs background activity.'),
-            React.createElement('li', null, 'Verify app permissions for network/background/storage.')
+            React.createElement(
+              'li',
+              null,
+              'Update apps; clear cache/data for login/streaming failures.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Sign out/in; reinstall as last resort to regenerate clean state.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Check platform status dashboards (WhatsApp/YouTube/Netflix/etc.).'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Disable data/battery saver if app needs background activity.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Verify app permissions for network/background/storage.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Advanced Diagnostics'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Advanced Diagnostics'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Ping 1.1.1.1 to measure baseline latency/packet loss.'),
-            React.createElement('li', null, 'Traceroute to locate failing hops or high‑latency segments.'),
-            React.createElement('li', null, 'Inspect router logs for WAN sync errors and DHCP failures.'),
-            React.createElement('li', null, 'Review topology (double‑NAT?); use bridge mode when necessary.'),
-            React.createElement('li', null, 'Verify IPv6 prefix/SLAAC/DHCPv6 health; misconfigurations cause delays.')
+            React.createElement(
+              'li',
+              null,
+              'Ping 1.1.1.1 to measure baseline latency/packet loss.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Traceroute to locate failing hops or high‑latency segments.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Inspect router logs for WAN sync errors and DHCP failures.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Review topology (double‑NAT?); use bridge mode when necessary.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Verify IPv6 prefix/SLAAC/DHCPv6 health; misconfigurations cause delays.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Security and Safety'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Security and Safety'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Scan for malicious apps; remove unknown profiles/certificates.'),
-            React.createElement('li', null, 'Change router admin password; disable remote management.'),
-            React.createElement('li', null, 'Use WPA2/WPA3; avoid open networks; audit connected devices.')
+            React.createElement(
+              'li',
+              null,
+              'Scan for malicious apps; remove unknown profiles/certificates.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Change router admin password; disable remote management.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use WPA2/WPA3; avoid open networks; audit connected devices.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Nigeria‑Specific Tips'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Nigeria‑Specific Tips'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Understand bundle rollover and off‑peak windows; schedule heavy tasks.'),
-            React.createElement('li', null, 'Confirm APN settings for local carriers; avoid legacy gateways.'),
-            React.createElement('li', null, 'Use official USSD/apps to review service state and report faults.')
+            React.createElement(
+              'li',
+              null,
+              'Understand bundle rollover and off‑peak windows; schedule heavy tasks.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Confirm APN settings for local carriers; avoid legacy gateways.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use official USSD/apps to review service state and report faults.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Escalation and Support'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Escalation and Support'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Keep a log of timestamps/locations/screenshots/errors.'),
-            React.createElement('li', null, 'Contact ISP/carrier with account details and test results.'),
-            React.createElement('li', null, 'Request line tests/tower checks/router replacement when warranted.')
+            React.createElement(
+              'li',
+              null,
+              'Keep a log of timestamps/locations/screenshots/errors.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Contact ISP/carrier with account details and test results.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Request line tests/tower checks/router replacement when warranted.'
+            )
           )
         )
       );
@@ -3476,13 +4721,29 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Immediate Resets'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Immediate Resets'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Toggle Airplane Mode for 20–30 seconds to reset radios.'),
-            React.createElement('li', null, 'Restart device; if dual‑SIM, disable/enable target SIM.'),
-            React.createElement('li', null, 'Power‑cycle portable hotspot or home router if using LTE routers.')
+            React.createElement(
+              'li',
+              null,
+              'Toggle Airplane Mode for 20–30 seconds to reset radios.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Restart device; if dual‑SIM, disable/enable target SIM.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Power‑cycle portable hotspot or home router if using LTE routers.'
+            )
           )
         ),
         React.createElement(
@@ -3496,33 +4757,77 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Confirm SIM is detected; reseat and clean contacts gently.'),
-            React.createElement('li', null, 'Set Network Selection to automatic; avoid locking to a single band.'),
-            React.createElement('li', null, 'Reset APN to default; remove custom proxies breaking attach requests.'),
-            React.createElement('li', null, 'Test with a second SIM/carrier to isolate device vs. tower issues.')
+            React.createElement(
+              'li',
+              null,
+              'Confirm SIM is detected; reseat and clean contacts gently.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Set Network Selection to automatic; avoid locking to a single band.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Reset APN to default; remove custom proxies breaking attach requests.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Test with a second SIM/carrier to isolate device vs. tower issues.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Field Test Diagnostics'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Field Test Diagnostics'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Check signal metrics: RSRP, RSRQ, SINR; extremely low values imply coverage gaps.'),
-            React.createElement('li', null, 'Confirm bands in use; some devices fail on specific LTE/5G bands indoors.'),
-            React.createElement('li', null, 'Move outdoors or closer to windows; avoid metal structures and basements.')
+            React.createElement(
+              'li',
+              null,
+              'Check signal metrics: RSRP, RSRQ, SINR; extremely low values imply coverage gaps.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Confirm bands in use; some devices fail on specific LTE/5G bands indoors.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Move outdoors or closer to windows; avoid metal structures and basements.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Voice and Wi‑Fi Calling'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Voice and Wi‑Fi Calling'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Enable VoLTE/VoWiFi where available to place calls over data/Wi‑Fi.'),
-            React.createElement('li', null, 'If no cellular coverage at home, use Wi‑Fi calling as primary.')
+            React.createElement(
+              'li',
+              null,
+              'Enable VoLTE/VoWiFi where available to place calls over data/Wi‑Fi.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'If no cellular coverage at home, use Wi‑Fi calling as primary.'
+            )
           )
         ),
         React.createElement(
@@ -3536,45 +4841,101 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'External antennas for LTE routers can recover service in fringe areas.'),
-            React.createElement('li', null, 'Place router high and central; avoid interference and thick walls.'),
-            React.createElement('li', null, 'Lock to stable bands if automatic selection is unreliable.')
+            React.createElement(
+              'li',
+              null,
+              'External antennas for LTE routers can recover service in fringe areas.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Place router high and central; avoid interference and thick walls.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Lock to stable bands if automatic selection is unreliable.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Safety and Offline'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Safety and Offline'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Keep offline copies of essential contacts and maps.'),
-            React.createElement('li', null, 'Prepare dual‑SIM with different carriers for redundancy.'),
-            React.createElement('li', null, 'Have alternative messaging apps ready for Wi‑Fi‑only situations.')
+            React.createElement(
+              'li',
+              null,
+              'Prepare dual‑SIM with different carriers for redundancy.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Have alternative messaging apps ready for Wi‑Fi‑only situations.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Nigeria‑Specific Tips'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Nigeria‑Specific Tips'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use official USSD/apps to check service status and report outages.'),
-            React.createElement('li', null, 'Know local tower patterns; relocate briefly to known coverage spots.'),
-            React.createElement('li', null, 'Keep small power banks; brief blackouts can coincide with cell outages.')
+            React.createElement(
+              'li',
+              null,
+              'Use official USSD/apps to check service status and report outages.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Know local tower patterns; relocate briefly to known coverage spots.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Keep small power banks; brief blackouts can coincide with cell outages.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Escalation'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Escalation'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Log timestamps, exact locations, screenshots, and error messages.'),
-            React.createElement('li', null, 'Contact carrier support; request line tests and tower investigations.'),
-            React.createElement('li', null, 'Ask for SIM replacement if attach failures persist after diagnostics.')
+            React.createElement(
+              'li',
+              null,
+              'Log timestamps, exact locations, screenshots, and error messages.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Contact carrier support; request line tests and tower investigations.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Ask for SIM replacement if attach failures persist after diagnostics.'
+            )
           )
         )
       );
@@ -3610,74 +4971,170 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Plan Types'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Plan Types'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Daily and weekly bundles: good for short bursts and testing coverage.'),
-            React.createElement('li', null, 'Monthly plans: balanced value; check fair usage and throttling policies.'),
-            React.createElement('li', null, 'Night/Off‑Peak plans: bulk downloads and updates at lower cost.'),
-            React.createElement('li', null, 'Social bundles: limited app targets; confirm app eligibility and limits.')
+            React.createElement(
+              'li',
+              null,
+              'Daily and weekly bundles: good for short bursts and testing coverage.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Monthly plans: balanced value; check fair usage and throttling policies.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Night/Off‑Peak plans: bulk downloads and updates at lower cost.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Social bundles: limited app targets; confirm app eligibility and limits.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Value Calculations'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Value Calculations'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Compute Naira per GB; factor in rollover and bonus data conditions.'),
-            React.createElement('li', null, 'Estimate monthly usage: streaming, meetings, downloads, and social.'),
-            React.createElement('li', null, 'Compare carriers by actual speed/latency at your locations.')
+            React.createElement(
+              'li',
+              null,
+              'Compute Naira per GB; factor in rollover and bonus data conditions.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Estimate monthly usage: streaming, meetings, downloads, and social.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Compare carriers by actual speed/latency at your locations.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Rollover & Auto‑Renew'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Rollover & Auto‑Renew'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Enable auto‑renew only if you consistently consume the allowance.'),
-            React.createElement('li', null, 'Use rollover friendly plans when your usage fluctuates month to month.'),
-            React.createElement('li', null, 'Track expiry dates; set reminders to avoid unexpected lapses.')
+            React.createElement(
+              'li',
+              null,
+              'Enable auto‑renew only if you consistently consume the allowance.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use rollover friendly plans when your usage fluctuates month to month.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Track expiry dates; set reminders to avoid unexpected lapses.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Use Cases'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Use Cases'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Remote work: prioritize stable latency and daytime reliability.'),
-            React.createElement('li', null, 'Streaming: larger monthly bundles; off‑peak for heavy downloads.'),
-            React.createElement('li', null, 'General browsing: mid‑tier plans with rollover for flexibility.')
+            React.createElement(
+              'li',
+              null,
+              'Remote work: prioritize stable latency and daytime reliability.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Streaming: larger monthly bundles; off‑peak for heavy downloads.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'General browsing: mid‑tier plans with rollover for flexibility.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Nigeria‑Specific Tips'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Nigeria‑Specific Tips'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Buy during promos and double data offers; verify eligibility.'),
-            React.createElement('li', null, 'Plan heavy tasks in off‑peak windows to save costs and reduce congestion.'),
-            React.createElement('li', null, 'Keep dual‑SIM with different carriers to switch when coverage varies.')
+            React.createElement(
+              'li',
+              null,
+              'Buy during promos and double data offers; verify eligibility.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Plan heavy tasks in off‑peak windows to save costs and reduce congestion.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Keep dual‑SIM with different carriers to switch when coverage varies.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Checklist'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Checklist'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Confirm speed/latency where you work and live.'),
-            React.createElement('li', null, 'Match bundle size to monthly estimate + 10–20% buffer.'),
-            React.createElement('li', null, 'Enable rollover/auto‑renew only when it benefits your pattern.')
+            React.createElement(
+              'li',
+              null,
+              'Match bundle size to monthly estimate + 10–20% buffer.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Enable rollover/auto‑renew only when it benefits your pattern.'
+            )
           )
         )
       );
@@ -3711,156 +5168,412 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Quick Diagnostics'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Quick Diagnostics'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Restart the device to clear transient glitches and stuck services.'),
-            React.createElement('li', null, 'Check storage headroom; keep at least 20% free to avoid I/O contention.'),
-            React.createElement('li', null, 'Update OS and apps; install pending security patches and bug fixes.'),
-            React.createElement('li', null, 'Toggle Airplane mode and reconnect to refresh radios cleanly.'),
-            React.createElement('li', null, 'Run built‑in diagnostics for sensors, audio, display, and network.'),
-            React.createElement('li', null, 'Boot into safe mode to isolate third‑party app conflicts quickly.')
+            React.createElement(
+              'li',
+              null,
+              'Restart the device to clear transient glitches and stuck services.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Check storage headroom; keep at least 20% free to avoid I/O contention.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Update OS and apps; install pending security patches and bug fixes.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Toggle Airplane mode and reconnect to refresh radios cleanly.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Run built‑in diagnostics for sensors, audio, display, and network.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Boot into safe mode to isolate third‑party app conflicts quickly.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Performance Fixes'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Performance Fixes'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Reduce animations and widgets; trim background refresh for non‑essentials.'),
-            React.createElement('li', null, 'Audit battery/CPU stats; kill or uninstall runaway processes.'),
-            React.createElement('li', null, 'Limit auto‑sync intervals; prefer manual refresh for heavy apps.'),
-            React.createElement('li', null, 'Disable unnecessary live wallpapers and heavy launchers.'),
-            React.createElement('li', null, 'Clear app caches that balloon (social, browsers) to free resources.')
+            React.createElement(
+              'li',
+              null,
+              'Reduce animations and widgets; trim background refresh for non‑essentials.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Audit battery/CPU stats; kill or uninstall runaway processes.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Limit auto‑sync intervals; prefer manual refresh for heavy apps.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Disable unnecessary live wallpapers and heavy launchers.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Clear app caches that balloon (social, browsers) to free resources.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Battery & Charging'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Battery & Charging'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use certified chargers/cables; inspect ports for debris and moisture.'),
-            React.createElement('li', null, 'Enable battery saver; restrict background activity for heavy apps.'),
-            React.createElement('li', null, 'Avoid full discharges frequently; keep typical range between 20–80%.'),
-            React.createElement('li', null, 'Disable unnecessary GPS, Bluetooth, and high‑brightness settings.'),
-            React.createElement('li', null, 'Check charging temperature; excessive heat degrades battery health.')
+            React.createElement(
+              'li',
+              null,
+              'Use certified chargers/cables; inspect ports for debris and moisture.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Enable battery saver; restrict background activity for heavy apps.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Avoid full discharges frequently; keep typical range between 20–80%.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Disable unnecessary GPS, Bluetooth, and high‑brightness settings.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Check charging temperature; excessive heat degrades battery health.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Storage Management'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Storage Management'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Delete large videos and duplicate photos; archive to cloud or SD.'),
-            React.createElement('li', null, 'Clear offline downloads in media apps and messaging attachments.'),
-            React.createElement('li', null, 'Uninstall rarely used apps; replace bloated ones with light alternatives.'),
-            React.createElement('li', null, 'Use Files cleanup tools to remove temporary and residual data.'),
-            React.createElement('li', null, 'Keep databases compact by clearing app data when corruption is suspected.')
+            React.createElement(
+              'li',
+              null,
+              'Delete large videos and duplicate photos; archive to cloud or SD.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Clear offline downloads in media apps and messaging attachments.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Uninstall rarely used apps; replace bloated ones with light alternatives.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use Files cleanup tools to remove temporary and residual data.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Keep databases compact by clearing app data when corruption is suspected.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Connectivity (Mobile & Wi‑Fi)'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Connectivity (Mobile & Wi‑Fi)'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Reset network settings; re‑add trusted Wi‑Fi and Bluetooth devices.'),
-            React.createElement('li', null, 'Verify APN/MMS settings; incorrect gateways break data and messaging.'),
-            React.createElement('li', null, 'Disable VPN temporarily to test baseline speed and routing.'),
-            React.createElement('li', null, 'Force network mode (3G/4G/5G) and band selection if supported.'),
-            React.createElement('li', null, 'Run speed tests at peak/off‑peak to reveal congestion patterns.')
+            React.createElement(
+              'li',
+              null,
+              'Reset network settings; re‑add trusted Wi‑Fi and Bluetooth devices.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Verify APN/MMS settings; incorrect gateways break data and messaging.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Disable VPN temporarily to test baseline speed and routing.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Force network mode (3G/4G/5G) and band selection if supported.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Run speed tests at peak/off‑peak to reveal congestion patterns.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Camera & Media'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Camera & Media'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Clean lenses and sensors; remove faulty screen protectors causing glare.'),
-            React.createElement('li', null, 'Reset camera settings; test focus/exposure in multiple lighting scenarios.'),
-            React.createElement('li', null, 'Switch storage location (internal/SD) and retest for write errors.'),
-            React.createElement('li', null, 'Disable HDR/AI modes temporarily to isolate processing glitches.'),
+            React.createElement(
+              'li',
+              null,
+              'Clean lenses and sensors; remove faulty screen protectors causing glare.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Reset camera settings; test focus/exposure in multiple lighting scenarios.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Switch storage location (internal/SD) and retest for write errors.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Disable HDR/AI modes temporarily to isolate processing glitches.'
+            ),
             React.createElement('li', null, 'Check audio input/output paths when recording video.')
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Apps & Crashes'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Apps & Crashes'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Clear cache/data for misbehaving apps; re‑login to reinitialize state.'),
-            React.createElement('li', null, 'Remove recent installs and overlays; test again in safe mode.'),
-            React.createElement('li', null, 'Review crash logs if available; report reproducible steps to vendors.'),
-            React.createElement('li', null, 'Disable battery optimizations for critical messaging apps if needed.'),
-            React.createElement('li', null, 'Update WebView/Play Services; stale components cause rendering issues.')
+            React.createElement(
+              'li',
+              null,
+              'Clear cache/data for misbehaving apps; re‑login to reinitialize state.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Remove recent installs and overlays; test again in safe mode.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Review crash logs if available; report reproducible steps to vendors.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Disable battery optimizations for critical messaging apps if needed.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Update WebView/Play Services; stale components cause rendering issues.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'System Updates & Reset'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'System Updates & Reset'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Backup critical data before major updates or resets.'),
-            React.createElement('li', null, 'Install incremental updates; avoid skipping multiple versions.'),
-            React.createElement('li', null, 'Use repair install options where available to refresh system files.'),
-            React.createElement('li', null, 'As last resort, factory reset after confirming backups are complete.'),
-            React.createElement('li', null, 'Document changes and outcomes for faster future troubleshooting.')
+            React.createElement(
+              'li',
+              null,
+              'Install incremental updates; avoid skipping multiple versions.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use repair install options where available to refresh system files.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'As last resort, factory reset after confirming backups are complete.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Document changes and outcomes for faster future troubleshooting.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Security & Privacy'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Security & Privacy'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use strong passcodes and biometrics; enable device encryption.'),
-            React.createElement('li', null, 'Audit app permissions; revoke non‑essential access and background activity.'),
-            React.createElement('li', null, 'Install from trusted stores only; avoid sideloads without verification.'),
-            React.createElement('li', null, 'Enable Find My Device; record IMEI for loss/theft reporting.'),
+            React.createElement(
+              'li',
+              null,
+              'Use strong passcodes and biometrics; enable device encryption.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Audit app permissions; revoke non‑essential access and background activity.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Install from trusted stores only; avoid sideloads without verification.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Enable Find My Device; record IMEI for loss/theft reporting.'
+            ),
             React.createElement('li', null, 'Patch promptly; unpatched devices are easy targets.')
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Nigeria‑Specific Tips'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Nigeria‑Specific Tips'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use dual‑SIM to hedge against carrier congestion and outages.'),
-            React.createElement('li', null, 'Prefer data‑saving modes and lite apps to reduce monthly spend.'),
-            React.createElement('li', null, 'Charge safely during power windows; avoid cheap adapters that overheat.'),
-            React.createElement('li', null, 'Download updates off‑peak; cache maps and media for offline use.'),
-            React.createElement('li', null, 'Visit carrier shops for APN provisioning if SMS/MMS fails repeatedly.')
+            React.createElement(
+              'li',
+              null,
+              'Use dual‑SIM to hedge against carrier congestion and outages.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Prefer data‑saving modes and lite apps to reduce monthly spend.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Charge safely during power windows; avoid cheap adapters that overheat.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Download updates off‑peak; cache maps and media for offline use.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Visit carrier shops for APN provisioning if SMS/MMS fails repeatedly.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Escalation & Repair'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Escalation & Repair'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Record symptoms, timestamps, and actions taken; include photos/videos.'),
-            React.createElement('li', null, 'Check warranty status and authorized service centers first.'),
-            React.createElement('li', null, 'Replace cables/batteries with original parts to avoid compatibility issues.'),
-            React.createElement('li', null, 'Ask for diagnostic reports and repair estimates before approval.'),
-            React.createElement('li', null, 'Test thoroughly after repair; confirm issues are fully resolved.')
+            React.createElement(
+              'li',
+              null,
+              'Record symptoms, timestamps, and actions taken; include photos/videos.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Check warranty status and authorized service centers first.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Replace cables/batteries with original parts to avoid compatibility issues.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Ask for diagnostic reports and repair estimates before approval.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Test thoroughly after repair; confirm issues are fully resolved.'
+            )
           )
         )
       );
@@ -3868,8 +5581,10 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         slug,
         title: 'Smartphone Problems',
         body,
-        excerpt:
-          buildLongExcerpt('Smartphone Problems', 'Practical fixes for stability, speed, battery, storage, connectivity, camera, and app issues with clear, safe steps.'),
+        excerpt: buildLongExcerpt(
+          'Smartphone Problems',
+          'Practical fixes for stability, speed, battery, storage, connectivity, camera, and app issues with clear, safe steps.'
+        ),
         seoTitle: 'Smartphone Problems - CACBLAZE',
         seoDescription:
           'A thorough troubleshooting guide: quick diagnostics, performance, battery, storage, connectivity, camera, apps, updates, security, Nigeria‑specific tips, and repair escalation.',
@@ -3888,15 +5603,35 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Common Causes'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Common Causes'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Heavy CPU/GPU tasks (gaming, camera processing, video rendering).'),
+            React.createElement(
+              'li',
+              null,
+              'Heavy CPU/GPU tasks (gaming, camera processing, video rendering).'
+            ),
             React.createElement('li', null, 'Charging while running demanding apps or downloads.'),
-            React.createElement('li', null, 'Poor ventilation: thick cases, pocket carry, direct sunlight.'),
-            React.createElement('li', null, 'Background processes and malware sustaining constant load.'),
-            React.createElement('li', null, 'Weak signal causing radios to transmit at high power for long periods.')
+            React.createElement(
+              'li',
+              null,
+              'Poor ventilation: thick cases, pocket carry, direct sunlight.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Background processes and malware sustaining constant load.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Weak signal causing radios to transmit at high power for long periods.'
+            )
           )
         ),
         React.createElement(
@@ -3910,105 +5645,273 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Pause heavy workloads and remove the case to improve airflow.'),
-            React.createElement('li', null, 'Place the phone on a hard, ventilated surface away from heat sources.'),
-            React.createElement('li', null, 'Lower brightness and refresh rate; close background apps and services.'),
-            React.createElement('li', null, 'Avoid charging until cooldown; heat and charge together accelerate stress.'),
-            React.createElement('li', null, 'Toggle Airplane mode for 1–2 minutes to reset radios cleanly.')
+            React.createElement(
+              'li',
+              null,
+              'Pause heavy workloads and remove the case to improve airflow.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Place the phone on a hard, ventilated surface away from heat sources.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Lower brightness and refresh rate; close background apps and services.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Avoid charging until cooldown; heat and charge together accelerate stress.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Toggle Airplane mode for 1–2 minutes to reset radios cleanly.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Charging Practices'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Charging Practices'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use certified chargers/cables; poor regulation wastes energy as heat.'),
-            React.createElement('li', null, 'Prefer slower charging when ambient temps are high or heat persists.'),
-            React.createElement('li', null, 'Separate charging and heavy use; do not game or stream while charging.'),
-            React.createElement('li', null, 'Keep battery between roughly 20–80% for thermal stability and longevity.'),
-            React.createElement('li', null, 'Monitor charging temperature; halt if device becomes uncomfortably hot.')
+            React.createElement(
+              'li',
+              null,
+              'Use certified chargers/cables; poor regulation wastes energy as heat.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Prefer slower charging when ambient temps are high or heat persists.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Separate charging and heavy use; do not game or stream while charging.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Keep battery between roughly 20–80% for thermal stability and longevity.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Monitor charging temperature; halt if device becomes uncomfortably hot.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Workload & Performance Tuning'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Workload & Performance Tuning'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Reduce graphics settings and frame rates in games and camera apps.'),
-            React.createElement('li', null, 'Disable hotspot, high‑rate GPS, and constant Bluetooth scanning.'),
-            React.createElement('li', null, 'Limit background sync intervals and mute non‑essential notifications.'),
-            React.createElement('li', null, 'Uninstall or replace apps known for poor energy/thermal behavior.'),
-            React.createElement('li', null, 'Use battery saver/performance limiter profiles during long sessions.')
+            React.createElement(
+              'li',
+              null,
+              'Reduce graphics settings and frame rates in games and camera apps.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Disable hotspot, high‑rate GPS, and constant Bluetooth scanning.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Limit background sync intervals and mute non‑essential notifications.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Uninstall or replace apps known for poor energy/thermal behavior.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use battery saver/performance limiter profiles during long sessions.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Environment & Accessories'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Environment & Accessories'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Avoid direct sunlight and dashboards; store in shaded, ventilated areas.'),
-            React.createElement('li', null, 'Prefer slim, ventilated cases; avoid insulated or heat‑trapping materials.'),
-            React.createElement('li', null, 'Remove metal plates/magnets that interfere with antennas and raise heat.'),
-            React.createElement('li', null, 'Keep device away from other hot electronics during charge or heavy use.')
+            React.createElement(
+              'li',
+              null,
+              'Avoid direct sunlight and dashboards; store in shaded, ventilated areas.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Prefer slim, ventilated cases; avoid insulated or heat‑trapping materials.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Remove metal plates/magnets that interfere with antennas and raise heat.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Keep device away from other hot electronics during charge or heavy use.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Diagnostics & Firmware'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Diagnostics & Firmware'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Read battery temperature via diagnostics; note ranges during typical tasks.'),
-            React.createElement('li', null, 'Review CPU/GPU usage overlays; identify runaway processes and hotspots.'),
-            React.createElement('li', null, 'Scan for malware; remove suspicious profiles that block power saving.'),
-            React.createElement('li', null, 'Update OS/firmware for thermal management and driver improvements.'),
-            React.createElement('li', null, 'Test in safe mode; if heat drops, isolate problematic third‑party apps.')
+            React.createElement(
+              'li',
+              null,
+              'Read battery temperature via diagnostics; note ranges during typical tasks.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Review CPU/GPU usage overlays; identify runaway processes and hotspots.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Scan for malware; remove suspicious profiles that block power saving.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Update OS/firmware for thermal management and driver improvements.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Test in safe mode; if heat drops, isolate problematic third‑party apps.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Hardware Health'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Hardware Health'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Check battery health and swelling; replace degraded batteries promptly.'),
-            React.createElement('li', null, 'Clean charging ports; debris increases resistance and heat during charge.'),
-            React.createElement('li', null, 'Verify thermal pads/heatsink components if device supports service.'),
-            React.createElement('li', null, 'Confirm accessories are compatible and do not block ventilation.')
+            React.createElement(
+              'li',
+              null,
+              'Check battery health and swelling; replace degraded batteries promptly.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Clean charging ports; debris increases resistance and heat during charge.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Verify thermal pads/heatsink components if device supports service.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Confirm accessories are compatible and do not block ventilation.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Nigeria‑Specific Tips'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Nigeria‑Specific Tips'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Avoid use under direct tropical sun; plan tasks indoors when possible.'),
-            React.createElement('li', null, 'Use slower charge profiles during hot afternoons; charge at cooler hours.'),
-            React.createElement('li', null, 'Leverage dual‑SIM to avoid high‑power transmission in weak coverage areas.'),
-            React.createElement('li', null, 'Choose quality adapters; cheap chargers overheat and damage batteries.')
+            React.createElement(
+              'li',
+              null,
+              'Avoid use under direct tropical sun; plan tasks indoors when possible.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use slower charge profiles during hot afternoons; charge at cooler hours.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Leverage dual‑SIM to avoid high‑power transmission in weak coverage areas.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Choose quality adapters; cheap chargers overheat and damage batteries.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Escalation & Checklist'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Escalation & Checklist'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Log overheating events with apps in use, location, and accessories.'),
-            React.createElement('li', null, 'Cool down fully before charging or resuming heavy tasks.'),
+            React.createElement(
+              'li',
+              null,
+              'Log overheating events with apps in use, location, and accessories.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Cool down fully before charging or resuming heavy tasks.'
+            ),
             React.createElement('li', null, 'Update OS/firmware; retest with reduced workloads.'),
-            React.createElement('li', null, 'If heat persists, visit authorized service centers and request diagnostics.')
+            React.createElement(
+              'li',
+              null,
+              'If heat persists, visit authorized service centers and request diagnostics.'
+            )
           )
         )
       );
@@ -4016,7 +5919,10 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         slug,
         title: 'Phone Overheating',
         body,
-        excerpt: buildLongExcerpt('Phone Overheating', 'Stop heat fast, fix root causes, and protect battery health with clear actions.'),
+        excerpt: buildLongExcerpt(
+          'Phone Overheating',
+          'Stop heat fast, fix root causes, and protect battery health with clear actions.'
+        ),
         seoTitle: 'Phone Overheating - CACBLAZE',
         seoDescription:
           'Mitigation and prevention: workload controls, charging practices, ventilation, diagnostics, firmware updates, environment guidance, and repair escalation.',
@@ -4035,15 +5941,39 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Quick Audit'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Quick Audit'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Open battery usage and note top apps versus actual usage patterns.'),
-            React.createElement('li', null, 'Check signal strength; weak coverage forces high transmit power.'),
-            React.createElement('li', null, 'Review screen‑on time and display settings; screens dominate power.'),
-            React.createElement('li', null, 'Identify frequent wakeups from notifications and background sync.'),
-            React.createElement('li', null, 'Scan for updates; outdated apps and OS can leak energy.')
+            React.createElement(
+              'li',
+              null,
+              'Open battery usage and note top apps versus actual usage patterns.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Check signal strength; weak coverage forces high transmit power.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Review screen‑on time and display settings; screens dominate power.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Identify frequent wakeups from notifications and background sync.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Scan for updates; outdated apps and OS can leak energy.'
+            )
           )
         ),
         React.createElement(
@@ -4053,120 +5983,308 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Enable battery saver/adaptive battery to cap background behavior.'),
-            React.createElement('li', null, 'Reduce brightness and shorten screen timeout aggressively.'),
-            React.createElement('li', null, 'Disable 5G where coverage is poor; prefer stable 4G for efficiency.'),
-            React.createElement('li', null, 'Turn off always‑on display and live wallpapers to cut idle draw.'),
-            React.createElement('li', null, 'Batch notifications; mute non‑essential alerts that wake the CPU.')
+            React.createElement(
+              'li',
+              null,
+              'Enable battery saver/adaptive battery to cap background behavior.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Reduce brightness and shorten screen timeout aggressively.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Disable 5G where coverage is poor; prefer stable 4G for efficiency.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Turn off always‑on display and live wallpapers to cut idle draw.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Batch notifications; mute non‑essential alerts that wake the CPU.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Background Activity'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Background Activity'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Restrict background data/activity for top offenders in settings.'),
-            React.createElement('li', null, 'Lower sync frequency and disable auto‑download in heavy apps.'),
-            React.createElement('li', null, 'Consolidate messaging apps to avoid duplicate push events.'),
-            React.createElement('li', null, 'Limit location access to “While using” and remove stale geofences.'),
-            React.createElement('li', null, 'Disable aggressive widgets and complications that redraw constantly.')
+            React.createElement(
+              'li',
+              null,
+              'Restrict background data/activity for top offenders in settings.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Lower sync frequency and disable auto‑download in heavy apps.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Consolidate messaging apps to avoid duplicate push events.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Limit location access to “While using” and remove stale geofences.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Disable aggressive widgets and complications that redraw constantly.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Screen & Radios'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Screen & Radios'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use adaptive brightness and lower refresh rates where available.'),
-            React.createElement('li', null, 'Prefer Wi‑Fi for heavy tasks; mobile radios can cost more in weak signal.'),
-            React.createElement('li', null, 'Disable 5G in marginal areas; reduce reselection and transmit power.'),
-            React.createElement('li', null, 'Turn off scanning for Wi‑Fi/Bluetooth when not needed.'),
-            React.createElement('li', null, 'Avoid hotspot unless necessary; it keeps radios at high duty cycles.')
+            React.createElement(
+              'li',
+              null,
+              'Use adaptive brightness and lower refresh rates where available.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Prefer Wi‑Fi for heavy tasks; mobile radios can cost more in weak signal.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Disable 5G in marginal areas; reduce reselection and transmit power.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Turn off scanning for Wi‑Fi/Bluetooth when not needed.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Avoid hotspot unless necessary; it keeps radios at high duty cycles.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'App‑Specific Energy'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'App‑Specific Energy'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Replace apps with poor energy behavior or limit their usage windows.'),
-            React.createElement('li', null, 'Disable autoplay, background prefetch, and constant media polling.'),
-            React.createElement('li', null, 'Use lite versions where possible for social and news clients.'),
-            React.createElement('li', null, 'Clear caches and remove large offline media libraries periodically.'),
-            React.createElement('li', null, 'Grant notifications sparingly; avoid duplicated alert channels.')
+            React.createElement(
+              'li',
+              null,
+              'Replace apps with poor energy behavior or limit their usage windows.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Disable autoplay, background prefetch, and constant media polling.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use lite versions where possible for social and news clients.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Clear caches and remove large offline media libraries periodically.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Grant notifications sparingly; avoid duplicated alert channels.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'System Hygiene'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'System Hygiene'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Update OS/apps; many releases include battery and performance fixes.'),
-            React.createElement('li', null, 'Remove bloatware and unused apps that schedule background tasks.'),
-            React.createElement('li', null, 'Review developer options overlays to spot runaway processes.'),
-            React.createElement('li', null, 'Scan for malware; suspicious profiles disable power saving features.'),
+            React.createElement(
+              'li',
+              null,
+              'Update OS/apps; many releases include battery and performance fixes.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Remove bloatware and unused apps that schedule background tasks.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Review developer options overlays to spot runaway processes.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Scan for malware; suspicious profiles disable power saving features.'
+            ),
             React.createElement('li', null, 'Reboot weekly to clear leaks and stale services.')
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Charging Habits'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Charging Habits'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Avoid deep discharges; keep typical range around 20–80%.'),
-            React.createElement('li', null, 'Use certified chargers/cables; poor regulation wastes energy as heat.'),
+            React.createElement(
+              'li',
+              null,
+              'Avoid deep discharges; keep typical range around 20–80%.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use certified chargers/cables; poor regulation wastes energy as heat.'
+            ),
             React.createElement('li', null, 'Do not leave on charge in high ambient temperatures.'),
-            React.createElement('li', null, 'Separate charging and heavy use to limit combined thermal stress.'),
-            React.createElement('li', null, 'Check battery health periodically; replace degraded cells promptly.')
+            React.createElement(
+              'li',
+              null,
+              'Separate charging and heavy use to limit combined thermal stress.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Check battery health periodically; replace degraded cells promptly.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Network Strategy'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Network Strategy'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Prefer stable Wi‑Fi for updates and large downloads.'),
-            React.createElement('li', null, 'Use dual‑SIM to hedge poor coverage; switch to the stronger network.'),
-            React.createElement('li', null, 'Schedule heavy tasks for times with good signal and lower congestion.'),
-            React.createElement('li', null, 'Disable VPN temporarily if battery drain spikes under tunnel load.')
+            React.createElement(
+              'li',
+              null,
+              'Use dual‑SIM to hedge poor coverage; switch to the stronger network.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Schedule heavy tasks for times with good signal and lower congestion.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Disable VPN temporarily if battery drain spikes under tunnel load.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Nigeria‑Specific Tips'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Nigeria‑Specific Tips'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use lite apps and data saver modes to reduce radio and CPU usage.'),
-            React.createElement('li', null, 'Plan downloads during off‑peak windows; avoid heat and congestion.'),
-            React.createElement('li', null, 'Leverage carrier bundles with Wi‑Fi calling to minimize mobile radio time.'),
-            React.createElement('li', null, 'Keep devices out of direct sun; heat accelerates drain and aging.')
+            React.createElement(
+              'li',
+              null,
+              'Use lite apps and data saver modes to reduce radio and CPU usage.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Plan downloads during off‑peak windows; avoid heat and congestion.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Leverage carrier bundles with Wi‑Fi calling to minimize mobile radio time.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Keep devices out of direct sun; heat accelerates drain and aging.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Escalation & Checklist'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Escalation & Checklist'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Log top drainers, signal conditions, and app behaviors daily for a week.'),
-            React.createElement('li', null, 'Implement limits and retest; compare battery graphs before/after.'),
-            React.createElement('li', null, 'Update firmware; factory reset only after full backups if issues persist.'),
-            React.createElement('li', null, 'Seek authorized service diagnostics for abnormal drain or battery health warnings.')
+            React.createElement(
+              'li',
+              null,
+              'Log top drainers, signal conditions, and app behaviors daily for a week.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Implement limits and retest; compare battery graphs before/after.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Update firmware; factory reset only after full backups if issues persist.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Seek authorized service diagnostics for abnormal drain or battery health warnings.'
+            )
           )
         )
       );
@@ -4174,7 +6292,10 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         slug,
         title: 'Battery Draining Fast',
         body,
-        excerpt: buildLongExcerpt('Battery Draining Fast', 'Practical steps to cut background drain, optimize screen and radios, and adopt smart charging and network habits.'),
+        excerpt: buildLongExcerpt(
+          'Battery Draining Fast',
+          'Practical steps to cut background drain, optimize screen and radios, and adopt smart charging and network habits.'
+        ),
         seoTitle: 'Battery Draining Fast - CACBLAZE',
         seoDescription:
           'Find and fix drainers: background activity, screen and radios, app behavior, system hygiene, charging habits, network strategy, local tips, and escalation.',
@@ -4193,115 +6314,263 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Immediate Containment'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Immediate Containment'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Open WhatsApp and revoke all linked devices from Settings > Linked Devices to terminate sessions elsewhere.'),
-            React.createElement('li', null, 'Notify close contacts via alternate channels to ignore unusual requests involving money or codes.'),
-            React.createElement('li', null, 'Attempt account re‑verification using your number; enter the 6‑digit SMS or call code. Never share this code.'),
-            React.createElement('li', null, 'Enable two‑step verification (6‑digit PIN) immediately after regaining access and add a recovery email.')
+            React.createElement(
+              'li',
+              null,
+              'Open WhatsApp and revoke all linked devices from Settings > Linked Devices to terminate sessions elsewhere.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Notify close contacts via alternate channels to ignore unusual requests involving money or codes.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Attempt account re‑verification using your number; enter the 6‑digit SMS or call code. Never share this code.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Enable two‑step verification (6‑digit PIN) immediately after regaining access and add a recovery email.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'SIM Swap Defense'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'SIM Swap Defense'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Contact your carrier to check for SIM swap activity; attackers use swaps to intercept codes.'),
-            React.createElement('li', null, 'Request a SIM swap lock or extra identity checks on your line.'),
-            React.createElement('li', null, 'If your SIM is missing or inactive, get an immediate replacement and re‑register WhatsApp.')
+            React.createElement(
+              'li',
+              null,
+              'Contact your carrier to check for SIM swap activity; attackers use swaps to intercept codes.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Request a SIM swap lock or extra identity checks on your line.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'If your SIM is missing or inactive, get an immediate replacement and re‑register WhatsApp.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Device Hygiene'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Device Hygiene'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Scan devices for malware; remove suspicious apps and unknown configuration profiles.'),
-            React.createElement('li', null, 'Update OS and WhatsApp to the latest version to close known vulnerabilities.'),
-            React.createElement('li', null, 'Limit notification previews and lock‑screen exposure for sensitive messages.')
+            React.createElement(
+              'li',
+              null,
+              'Scan devices for malware; remove suspicious apps and unknown configuration profiles.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Update OS and WhatsApp to the latest version to close known vulnerabilities.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Limit notification previews and lock‑screen exposure for sensitive messages.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Privacy & History'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Privacy & History'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Adjust privacy for profile photo, last seen, and groups to reduce exposure.'),
-            React.createElement('li', null, 'Review group memberships and exit unknown or risky groups added during compromise.'),
-            React.createElement('li', null, 'Export important threads securely and clear sensitive histories as needed.')
+            React.createElement(
+              'li',
+              null,
+              'Adjust privacy for profile photo, last seen, and groups to reduce exposure.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Review group memberships and exit unknown or risky groups added during compromise.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Export important threads securely and clear sensitive histories as needed.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Escalation & Support'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Escalation & Support'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use in‑app support or official WhatsApp help channels to report the incident.'),
-            React.createElement('li', null, 'Collect timestamps, verification prompts, and device logs for investigations.'),
-            React.createElement('li', null, 'If financial loss occurred, coordinate with your bank and file an official report.')
+            React.createElement(
+              'li',
+              null,
+              'Use in‑app support or official WhatsApp help channels to report the incident.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Collect timestamps, verification prompts, and device logs for investigations.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'If financial loss occurred, coordinate with your bank and file an official report.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Communication Plan'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Communication Plan'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Broadcast a short message to contacts clarifying the incident and warning about scams.'),
-            React.createElement('li', null, 'Temporarily update profile or status to warn new contacts until stability is confirmed.')
+            React.createElement(
+              'li',
+              null,
+              'Broadcast a short message to contacts clarifying the incident and warning about scams.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Temporarily update profile or status to warn new contacts until stability is confirmed.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Post‑Incident Hardening'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Post‑Incident Hardening'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Rotate device unlock codes and review notification policies.'),
-            React.createElement('li', null, 'Set PIN reminders; store recovery email securely and separately.'),
-            React.createElement('li', null, 'Review third‑party app permissions; remove apps with broad messaging access.')
+            React.createElement(
+              'li',
+              null,
+              'Rotate device unlock codes and review notification policies.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Set PIN reminders; store recovery email securely and separately.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Review third‑party app permissions; remove apps with broad messaging access.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Evidence & Timeline'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Evidence & Timeline'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Export relevant chat logs and store securely off device.'),
-            React.createElement('li', null, 'Keep a timeline of events and carrier interactions to aid support or law enforcement.'),
-            React.createElement('li', null, 'Plan staged checks over a week: session reviews, privacy audits, and contact confirmations.')
+            React.createElement(
+              'li',
+              null,
+              'Export relevant chat logs and store securely off device.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Keep a timeline of events and carrier interactions to aid support or law enforcement.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Plan staged checks over a week: session reviews, privacy audits, and contact confirmations.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Nigeria‑Specific Tips'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Nigeria‑Specific Tips'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Request SIM swap locks where supported and confirm identity re‑verification steps with your carrier.'),
-            React.createElement('li', null, 'Use official USSD or carrier apps to check line status after recovery.'),
-            React.createElement('li', null, 'Educate contacts to distrust requests for money or codes sent via messaging apps.')
+            React.createElement(
+              'li',
+              null,
+              'Request SIM swap locks where supported and confirm identity re‑verification steps with your carrier.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use official USSD or carrier apps to check line status after recovery.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Educate contacts to distrust requests for money or codes sent via messaging apps.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Checklist'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Checklist'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
@@ -4316,7 +6585,10 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         slug,
         title: 'WhatsApp Hacked',
         body,
-        excerpt: buildLongExcerpt('WhatsApp Hacked', 'Contain the breach, reverify securely, harden privacy, defend against SIM swaps, and coordinate support to reduce harm.'),
+        excerpt: buildLongExcerpt(
+          'WhatsApp Hacked',
+          'Contain the breach, reverify securely, harden privacy, defend against SIM swaps, and coordinate support to reduce harm.'
+        ),
         seoTitle: 'WhatsApp Hacked - CACBLAZE',
         seoDescription:
           'Recovery playbook: containment, SIM swap defense, device hygiene, privacy controls, escalation, communication, hardening, evidence handling, regional tips, and checklist.',
@@ -4335,138 +6607,326 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Understand the Ban'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Understand the Ban'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Read the ban notification; note cited policies, timestamps, and recent actions.'),
-            React.createElement('li', null, 'Identify content or behaviors that may violate guidelines (spam, impersonation, unsafe links).'),
-            React.createElement('li', null, 'List recent changes: apps, automation tools, link shorteners, or aggressive posting patterns.'),
-            React.createElement('li', null, 'Check account health dashboards or warning histories if the platform provides them.')
+            React.createElement(
+              'li',
+              null,
+              'Read the ban notification; note cited policies, timestamps, and recent actions.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Identify content or behaviors that may violate guidelines (spam, impersonation, unsafe links).'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'List recent changes: apps, automation tools, link shorteners, or aggressive posting patterns.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Check account health dashboards or warning histories if the platform provides them.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Evidence & Context'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Evidence & Context'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Collect URLs, screenshots, post IDs, and timestamps relevant to the incident.'),
-            React.createElement('li', null, 'Provide neutral context (satire, educational content, fair use, corrections, or misclicks).'),
-            React.createElement('li', null, 'Show intent and past compliant behavior; reference positive community interactions.'),
-            React.createElement('li', null, 'Avoid emotional language; keep records factual and concise.')
+            React.createElement(
+              'li',
+              null,
+              'Collect URLs, screenshots, post IDs, and timestamps relevant to the incident.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Provide neutral context (satire, educational content, fair use, corrections, or misclicks).'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Show intent and past compliant behavior; reference positive community interactions.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Avoid emotional language; keep records factual and concise.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Formal Appeal'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Formal Appeal'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use the official appeal form; map each point to specific policies.'),
-            React.createElement('li', null, 'Acknowledge mistakes where applicable and outline corrective actions.'),
-            React.createElement('li', null, 'Request human review if automated moderation may have misclassified content.'),
-            React.createElement('li', null, 'Include contact details and case numbers; avoid duplicate submissions.')
+            React.createElement(
+              'li',
+              null,
+              'Use the official appeal form; map each point to specific policies.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Acknowledge mistakes where applicable and outline corrective actions.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Request human review if automated moderation may have misclassified content.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Include contact details and case numbers; avoid duplicate submissions.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Ongoing Compliance'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Ongoing Compliance'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Establish internal content standards and approval workflows for sensitive topics.'),
-            React.createElement('li', null, 'Use trusted sources and citations; reduce misinformation flags.'),
-            React.createElement('li', null, 'Monitor account health and remove borderline posts proactively.'),
-            React.createElement('li', null, 'Limit automation; avoid rapid, repetitive actions that look like spam.')
+            React.createElement(
+              'li',
+              null,
+              'Establish internal content standards and approval workflows for sensitive topics.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use trusted sources and citations; reduce misinformation flags.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Monitor account health and remove borderline posts proactively.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Limit automation; avoid rapid, repetitive actions that look like spam.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Policy Mapping'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Policy Mapping'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Map appeal arguments to specific clauses (community standards, intellectual property, spam).'),
-            React.createElement('li', null, 'Reference prior compliant posts to demonstrate consistent intent.'),
-            React.createElement('li', null, 'Avoid broad claims; stick to the exact rule language where relevant.')
+            React.createElement(
+              'li',
+              null,
+              'Map appeal arguments to specific clauses (community standards, intellectual property, spam).'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Reference prior compliant posts to demonstrate consistent intent.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Avoid broad claims; stick to the exact rule language where relevant.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Content Review Process'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Content Review Process'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Adopt pre‑publication checks for sensitive topics and external links.'),
-            React.createElement('li', null, 'Use internal reviewers or checklists to catch tone and context issues.'),
-            React.createElement('li', null, 'Run link safety scans and keep a list of approved sources.')
+            React.createElement(
+              'li',
+              null,
+              'Adopt pre‑publication checks for sensitive topics and external links.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use internal reviewers or checklists to catch tone and context issues.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Run link safety scans and keep a list of approved sources.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Community Signals'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Community Signals'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Encourage followers to report impersonation or misuse quickly.'),
-            React.createElement('li', null, 'Respond professionally to feedback; avoid heated exchanges that trigger flags.'),
-            React.createElement('li', null, 'Document false reports or brigading with timestamps for support review.')
+            React.createElement(
+              'li',
+              null,
+              'Encourage followers to report impersonation or misuse quickly.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Respond professionally to feedback; avoid heated exchanges that trigger flags.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Document false reports or brigading with timestamps for support review.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Compliance Toolkit'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Compliance Toolkit'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use link checkers, copyright scanners, and source verification workflows.'),
-            React.createElement('li', null, 'Maintain a repository of approved references and standard disclaimers.'),
-            React.createElement('li', null, 'Train contributors on platform guidelines and common pitfalls.')
+            React.createElement(
+              'li',
+              null,
+              'Use link checkers, copyright scanners, and source verification workflows.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Maintain a repository of approved references and standard disclaimers.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Train contributors on platform guidelines and common pitfalls.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Post‑Restoration Monitoring'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Post‑Restoration Monitoring'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Track warnings and account health metrics to catch residual issues.'),
-            React.createElement('li', null, 'Rotate credentials and review permissions of connected apps.'),
-            React.createElement('li', null, 'Audit publishing tools and remove unused integrations.')
+            React.createElement(
+              'li',
+              null,
+              'Track warnings and account health metrics to catch residual issues.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Rotate credentials and review permissions of connected apps.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Audit publishing tools and remove unused integrations.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Nigeria‑Specific Tips'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Nigeria‑Specific Tips'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Avoid risky giveaways or money requests that trigger fraud flags.'),
-            React.createElement('li', null, 'Preserve evidence for local authorities if funds or identities were compromised.'),
-            React.createElement('li', null, 'Use official channels to appeal; beware third‑party “restoration” scams.')
+            React.createElement(
+              'li',
+              null,
+              'Avoid risky giveaways or money requests that trigger fraud flags.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Preserve evidence for local authorities if funds or identities were compromised.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use official channels to appeal; beware third‑party “restoration” scams.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Checklist'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Checklist'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Identify cited policies and collect evidence.'),
             React.createElement('li', null, 'Submit a structured appeal with corrective actions.'),
-            React.createElement('li', null, 'Implement compliance workflows and monitor health metrics.'),
-            React.createElement('li', null, 'Review connected apps and credentials after restoration.')
+            React.createElement(
+              'li',
+              null,
+              'Implement compliance workflows and monitor health metrics.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Review connected apps and credentials after restoration.'
+            )
           )
         )
       );
@@ -4474,7 +6934,10 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         slug,
         title: 'Account Banned',
         body,
-        excerpt: buildLongExcerpt('Account Banned', 'Craft a clear, policy‑mapped appeal and implement compliance workflows to stabilize your account.'),
+        excerpt: buildLongExcerpt(
+          'Account Banned',
+          'Craft a clear, policy‑mapped appeal and implement compliance workflows to stabilize your account.'
+        ),
         seoTitle: 'Account Banned - CACBLAZE',
         seoDescription:
           'Appeal and prevention: understand ban, evidence, policy mapping, formal appeal, compliance workflows, community signals, toolkit, monitoring, regional tips, and checklist.',
@@ -4493,87 +6956,187 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Initial Steps'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Initial Steps'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Attempt login from a recognized device and location to trigger familiar signals; avoid VPN during recovery.'),
-            React.createElement('li', null, 'Use “Forgot Password” with recovery email or phone; retrieve codes promptly and avoid multiple failed attempts.'),
-            React.createElement('li', null, 'Prepare to complete “Confirm Your Identity” prompts with government ID and profile details if requested.')
+            React.createElement(
+              'li',
+              null,
+              'Attempt login from a recognized device and location to trigger familiar signals; avoid VPN during recovery.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use “Forgot Password” with recovery email or phone; retrieve codes promptly and avoid multiple failed attempts.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Prepare to complete “Confirm Your Identity” prompts with government ID and profile details if requested.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Security Checkup'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Security Checkup'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Once inside, run Security Checkup to log out of suspicious sessions and enable two‑factor authentication.'),
-            React.createElement('li', null, 'Update recovery email/phone; remove outdated contacts and review trusted devices.'),
-            React.createElement('li', null, 'Revoke third‑party app access that you no longer use to reduce attack surfaces.')
+            React.createElement(
+              'li',
+              null,
+              'Once inside, run Security Checkup to log out of suspicious sessions and enable two‑factor authentication.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Update recovery email/phone; remove outdated contacts and review trusted devices.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Revoke third‑party app access that you no longer use to reduce attack surfaces.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'If Recovery Fails'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'If Recovery Fails'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Use Facebook’s identity confirmation form with clear photos of your ID and accurate profile ownership details.'),
-            React.createElement('li', null, 'Provide evidence of account ownership, such as unique posts or contacts recognizable by support.'),
-            React.createElement('li', null, 'Wait for human review and avoid repeated submissions that could delay processing.')
+            React.createElement(
+              'li',
+              null,
+              'Use Facebook’s identity confirmation form with clear photos of your ID and accurate profile ownership details.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Provide evidence of account ownership, such as unique posts or contacts recognizable by support.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Wait for human review and avoid repeated submissions that could delay processing.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Signal Stabilization'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Signal Stabilization'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Attempt login from a consistent device and IP without VPN to present familiar signals.'),
-            React.createElement('li', null, 'Avoid rapid retries; spaced attempts reduce risk flags.')
+            React.createElement(
+              'li',
+              null,
+              'Attempt login from a consistent device and IP without VPN to present familiar signals.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Avoid rapid retries; spaced attempts reduce risk flags.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Identity Docs Prep'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Identity Docs Prep'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Prepare high‑quality scans of IDs and ensure names and dates match your profile data.'),
-            React.createElement('li', null, 'Collect utility bills or secondary documents if accepted for verification.')
+            React.createElement(
+              'li',
+              null,
+              'Prepare high‑quality scans of IDs and ensure names and dates match your profile data.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Collect utility bills or secondary documents if accepted for verification.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Support Escalation'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Support Escalation'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Record case numbers and maintain a concise log of steps and responses.'),
-            React.createElement('li', null, 'Escalate politely with new evidence rather than restating prior messages.')
+            React.createElement(
+              'li',
+              null,
+              'Record case numbers and maintain a concise log of steps and responses.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Escalate politely with new evidence rather than restating prior messages.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Aftercare'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Aftercare'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Enable advanced authentication, review trusted devices, and set alerts for unusual logins.'),
-            React.createElement('li', null, 'Audit connected apps and remove historic integrations you no longer use.')
+            React.createElement(
+              'li',
+              null,
+              'Enable advanced authentication, review trusted devices, and set alerts for unusual logins.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Audit connected apps and remove historic integrations you no longer use.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Checklist'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Checklist'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
@@ -4588,7 +7151,10 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         slug,
         title: 'Facebook Locked',
         body,
-        excerpt: buildLongExcerpt('Facebook Locked', 'Confirm identity, fix security flags, and stabilize login signals to regain access.'),
+        excerpt: buildLongExcerpt(
+          'Facebook Locked',
+          'Confirm identity, fix security flags, and stabilize login signals to regain access.'
+        ),
         seoTitle: 'Facebook Locked - CACBLAZE',
         seoDescription:
           'Step‑wise recovery: initial steps, security checkup, identity confirmation, signal stabilization, escalation, aftercare, and checklist.',
@@ -4607,148 +7173,376 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Recognize Patterns'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Recognize Patterns'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Urgency, guaranteed returns, escrow avoidance, or upfront fees for jobs/grants.'),
-            React.createElement('li', null, 'Mismatched branding, cloned websites, poor grammar, or new accounts with aggressive DMs.'),
-            React.createElement('li', null, 'Crypto giveaways and “double your money” claims using celebrity impersonations.'),
-            React.createElement('li', null, 'Romance or investment scams pressuring secrecy and fast transfers.'),
-            React.createElement('li', null, 'Requests for codes, PINs, or verification via messaging apps.')
+            React.createElement(
+              'li',
+              null,
+              'Urgency, guaranteed returns, escrow avoidance, or upfront fees for jobs/grants.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Mismatched branding, cloned websites, poor grammar, or new accounts with aggressive DMs.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Crypto giveaways and “double your money” claims using celebrity impersonations.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Romance or investment scams pressuring secrecy and fast transfers.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Requests for codes, PINs, or verification via messaging apps.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Validate Identity'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Validate Identity'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Check domain age, SSL, WHOIS, and official contact details; compare to messages.'),
-            React.createElement('li', null, 'Call verified official numbers rather than those provided by the sender.'),
-            React.createElement('li', null, 'Request references and cross‑verify through independent channels.'),
-            React.createElement('li', null, 'Use video verification and ask security questions only a real contact knows.'),
-            React.createElement('li', null, 'Search for scam reports and community warnings about the entity.')
+            React.createElement(
+              'li',
+              null,
+              'Check domain age, SSL, WHOIS, and official contact details; compare to messages.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Call verified official numbers rather than those provided by the sender.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Request references and cross‑verify through independent channels.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use video verification and ask security questions only a real contact knows.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Search for scam reports and community warnings about the entity.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Preserve Evidence'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Preserve Evidence'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Take screenshots of profiles, chats, payment requests, and transaction IDs.'),
-            React.createElement('li', null, 'Record dates, usernames, phone numbers, and bank details presented.'),
-            React.createElement('li', null, 'Save email headers and message metadata where possible.'),
-            React.createElement('li', null, 'Archive originals; avoid editing evidence that could undermine investigations.'),
+            React.createElement(
+              'li',
+              null,
+              'Take screenshots of profiles, chats, payment requests, and transaction IDs.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Record dates, usernames, phone numbers, and bank details presented.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Save email headers and message metadata where possible.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Archive originals; avoid editing evidence that could undermine investigations.'
+            ),
             React.createElement('li', null, 'Store data securely off device and back it up.')
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Report & Notify'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Report & Notify'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Report accounts on platforms/marketplaces to suspend scammers.'),
-            React.createElement('li', null, 'Notify your bank for fraudulent transfers; request dispute or chargeback procedures.'),
-            React.createElement('li', null, 'Inform your mobile provider for suspicious calls/SMS; request line checks.'),
-            React.createElement('li', null, 'Escalate to appropriate authorities or cybercrime units as guided by local policy.'),
-            React.createElement('li', null, 'Warn family/community groups to prevent further victims.')
+            React.createElement(
+              'li',
+              null,
+              'Report accounts on platforms/marketplaces to suspend scammers.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Notify your bank for fraudulent transfers; request dispute or chargeback procedures.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Inform your mobile provider for suspicious calls/SMS; request line checks.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Escalate to appropriate authorities or cybercrime units as guided by local policy.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Warn family/community groups to prevent further victims.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Payment Safety'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Payment Safety'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Prefer reputable escrow; avoid direct transfers to unknown parties.'),
-            React.createElement('li', null, 'Use strong MFA on banking apps and disable risky auto‑forward email rules.'),
-            React.createElement('li', null, 'Verify invoices and payout accounts through official channels.'),
-            React.createElement('li', null, 'Start with small test transactions before large commitments.'),
-            React.createElement('li', null, 'Keep devices patched and avoid sideloaded finance apps.')
+            React.createElement(
+              'li',
+              null,
+              'Prefer reputable escrow; avoid direct transfers to unknown parties.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use strong MFA on banking apps and disable risky auto‑forward email rules.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Verify invoices and payout accounts through official channels.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Start with small test transactions before large commitments.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Keep devices patched and avoid sideloaded finance apps.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Communication Hygiene'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Communication Hygiene'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
             React.createElement('li', null, 'Never share verification codes, PINs, or passwords.'),
-            React.createElement('li', null, 'Disable auto‑forward rules that redirect sensitive emails.'),
-            React.createElement('li', null, 'Restrict app permissions and remove unknown messaging integrations.'),
-            React.createElement('li', null, 'Use verified channels to discuss payments; avoid DMs for critical steps.'),
-            React.createElement('li', null, 'Enable login alerts and review unusual sign‑ins promptly.')
+            React.createElement(
+              'li',
+              null,
+              'Disable auto‑forward rules that redirect sensitive emails.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Restrict app permissions and remove unknown messaging integrations.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use verified channels to discuss payments; avoid DMs for critical steps.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Enable login alerts and review unusual sign‑ins promptly.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Education & Outreach'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Education & Outreach'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Share verified warnings within community groups to prevent others from falling prey.'),
-            React.createElement('li', null, 'Encourage critical evaluation of offers and provide checklists for safe engagement.'),
-            React.createElement('li', null, 'Publish simple guides on recognizing scam markers and safe payment practices.'),
-            React.createElement('li', null, 'Promote “pause and verify” habits before any transfer.')
+            React.createElement(
+              'li',
+              null,
+              'Share verified warnings within community groups to prevent others from falling prey.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Encourage critical evaluation of offers and provide checklists for safe engagement.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Publish simple guides on recognizing scam markers and safe payment practices.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Promote “pause and verify” habits before any transfer.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Recovery Steps'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Recovery Steps'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Document transaction IDs; contact your bank immediately and open a dispute.'),
-            React.createElement('li', null, 'Preserve all communications intact; do not confront scammers directly.'),
-            React.createElement('li', null, 'Freeze accounts or cards if needed and rotate credentials.'),
-            React.createElement('li', null, 'File a report with relevant authorities and follow case guidance.')
+            React.createElement(
+              'li',
+              null,
+              'Document transaction IDs; contact your bank immediately and open a dispute.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Preserve all communications intact; do not confront scammers directly.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Freeze accounts or cards if needed and rotate credentials.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'File a report with relevant authorities and follow case guidance.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'International Considerations'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'International Considerations'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Check cross‑border jurisdiction limits and use proper reporting channels.'),
-            React.createElement('li', null, 'Avoid sending identity documents to unknown “verification” addresses.'),
-            React.createElement('li', null, 'Use official embassy or consulate guidance where international parties are involved.')
+            React.createElement(
+              'li',
+              null,
+              'Check cross‑border jurisdiction limits and use proper reporting channels.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Avoid sending identity documents to unknown “verification” addresses.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use official embassy or consulate guidance where international parties are involved.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Nigeria‑Specific Tips'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Nigeria‑Specific Tips'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Verify business identities with CAC records and official channels.'),
-            React.createElement('li', null, 'Use bank fraud lines and official channels to dispute transfers.'),
-            React.createElement('li', null, 'Avoid paying for “grant processing” or “job placement” fees via DMs.'),
-            React.createElement('li', null, 'Educate contacts about code requests and fake investment pitches.')
+            React.createElement(
+              'li',
+              null,
+              'Verify business identities with CAC records and official channels.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use bank fraud lines and official channels to dispute transfers.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Avoid paying for “grant processing” or “job placement” fees via DMs.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Educate contacts about code requests and fake investment pitches.'
+            )
           )
         ),
         React.createElement(
           'div',
           { className: 'space-y-6' },
-          React.createElement('h2', { className: 'text-2xl font-bold text-slate-900' }, 'Checklist'),
+          React.createElement(
+            'h2',
+            { className: 'text-2xl font-bold text-slate-900' },
+            'Checklist'
+          ),
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Verify identity through official contacts before any payment.'),
-            React.createElement('li', null, 'Use escrow and small test transactions; avoid urgency.'),
-            React.createElement('li', null, 'Preserve evidence; report to platform, bank, and authorities.'),
+            React.createElement(
+              'li',
+              null,
+              'Verify identity through official contacts before any payment.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Use escrow and small test transactions; avoid urgency.'
+            ),
+            React.createElement(
+              'li',
+              null,
+              'Preserve evidence; report to platform, bank, and authorities.'
+            ),
             React.createElement('li', null, 'Harden accounts: MFA, alerts, remove risky rules.'),
             React.createElement('li', null, 'Share warnings with your community.')
           )
@@ -4758,7 +7552,10 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
         slug,
         title: 'Scams & Fraud',
         body,
-        excerpt: buildLongExcerpt('Scams & Fraud', 'Spot scams, validate identities, preserve evidence, report correctly, and use safe payment and communication practices.'),
+        excerpt: buildLongExcerpt(
+          'Scams & Fraud',
+          'Spot scams, validate identities, preserve evidence, report correctly, and use safe payment and communication practices.'
+        ),
         seoTitle: 'Scams & Fraud - CACBLAZE',
         seoDescription:
           'Recognition, validation, evidence, reporting, payment safety, communication hygiene, outreach, recovery steps, international guidance, Nigeria‑specific tips, and checklist.',
@@ -4927,7 +7724,11 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
           React.createElement(
             'ul',
             { className: 'list-disc pl-6 space-y-2 text-slate-700' },
-            React.createElement('li', null, 'Verify online status before charging; avoid retries during outages.'),
+            React.createElement(
+              'li',
+              null,
+              'Verify online status before charging; avoid retries during outages.'
+            ),
             React.createElement(
               'li',
               null,
@@ -5772,7 +8573,10 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
     slug,
     title: derivedTitle,
     body,
-    excerpt: buildLongExcerpt(derivedTitle, `Overview and next steps for ${derivedTitle.toLowerCase()}.`),
+    excerpt: buildLongExcerpt(
+      derivedTitle,
+      `Overview and next steps for ${derivedTitle.toLowerCase()}.`
+    ),
     seoTitle: `${derivedTitle} - CACBLAZE`,
     seoDescription: `Essential concepts and steps for ${derivedTitle.toLowerCase()}.`,
   };

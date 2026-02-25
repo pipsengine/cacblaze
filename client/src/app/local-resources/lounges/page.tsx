@@ -330,7 +330,11 @@ const LoungesPage = () => {
                     Verify POS amounts; keep receipts for expense tracking.
                   </li>
                   <li className="flex items-start gap-3 text-secondary">
-                    <Icon name="InformationCircleIcon" size={18} className="text-emerald-600 mt-0.5" />
+                    <Icon
+                      name="InformationCircleIcon"
+                      size={18}
+                      className="text-emerald-600 mt-0.5"
+                    />
                     Plan transport after closing; avoid late cash withdrawals.
                   </li>
                 </ul>

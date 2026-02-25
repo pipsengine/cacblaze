@@ -198,8 +198,7 @@ const AttractionsPage = ({
   searchParams?: { [key: string]: string | string[] | undefined };
 }) => {
   const raw = searchParams?.state;
-  const selectedState =
-    typeof raw === 'string' ? raw : Array.isArray(raw) ? raw[0] || '' : '';
+  const selectedState = typeof raw === 'string' ? raw : Array.isArray(raw) ? raw[0] || '' : '';
 
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
@@ -379,7 +378,10 @@ const AttractionsPage = ({
                       <div className="p-6">
                         <ul className="space-y-2">
                           {c.points.map((p, idx) => (
-                            <li key={idx} className="flex items-center gap-2 text-sm text-secondary">
+                            <li
+                              key={idx}
+                              className="flex items-center gap-2 text-sm text-secondary"
+                            >
                               <Icon name="SparklesIcon" size={16} className="text-primary" />
                               {p}
                             </li>

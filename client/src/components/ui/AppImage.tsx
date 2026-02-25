@@ -51,18 +51,19 @@ function AppImage({
   }, [src]);
 
   // More reliable external URL detection
-  const isExternal = imageSrc && (imageSrc.startsWith('http://') || imageSrc.startsWith('https://'));
+  const isExternal =
+    imageSrc && (imageSrc.startsWith('http://') || imageSrc.startsWith('https://'));
   const isLocal =
-    imageSrc && (imageSrc.startsWith('/') || imageSrc.startsWith('./') || imageSrc.startsWith('data:'));
+    imageSrc &&
+    (imageSrc.startsWith('/') || imageSrc.startsWith('./') || imageSrc.startsWith('data:'));
 
   // Check if the domain is allowed in next.config.mjs for optimization
   const isOptimizedDomain =
-    imageSrc && (
-      imageSrc.includes('images.unsplash.com') ||
+    imageSrc &&
+    (imageSrc.includes('images.unsplash.com') ||
       imageSrc.includes('images.pexels.com') ||
       imageSrc.includes('images.pixabay.com') ||
-      imageSrc.includes('img.rocket.new')
-    );
+      imageSrc.includes('img.rocket.new'));
 
   const handleError = () => {
     const isCurrentlyProxied = imageSrc && imageSrc.startsWith('/api/image-proxy?url=');
@@ -75,7 +76,10 @@ function AppImage({
     // If the proxied fetch failed, try the original source directly once
     if (isCurrentlyProxied && !triedRawFromProxy) {
       try {
-        const u = new URL(imageSrc, typeof window !== 'undefined' ? window.location.origin : 'http://localhost');
+        const u = new URL(
+          imageSrc,
+          typeof window !== 'undefined' ? window.location.origin : 'http://localhost'
+        );
         const raw = u.searchParams.get('url');
         if (raw) {
           setImageSrc(raw);
@@ -117,52 +121,46 @@ function AppImage({
 
   if (fill) {
     return (
-      <div
-        className={`relative`}
-        style={{ width: width || '100%', height: height || '100%' }}
-      >
+      <div className={`relative`} style={{ width: width || '100%', height: height || '100%' }}>
         {(() => {
           const baseSrc = imageSrc && imageSrc.length > 0 ? imageSrc : fallbackSrc;
           const resolvedSrc =
             baseSrc && baseSrc.startsWith('/api/image-proxy?url=') ? baseSrc : baseSrc;
           return (
-        <img
-          src={resolvedSrc}
-          alt={alt}
-          className={`${commonClassName} absolute inset-0 w-full h-full object-cover`}
-          onError={handleError}
-          onLoad={handleLoad}
-          onClick={onClick}
-          loading={priority ? 'eager' : 'lazy'}
-          {...validImgProps}
-        />
+            <img
+              src={resolvedSrc}
+              alt={alt}
+              className={`${commonClassName} absolute inset-0 w-full h-full object-cover`}
+              onError={handleError}
+              onLoad={handleLoad}
+              onClick={onClick}
+              loading={priority ? 'eager' : 'lazy'}
+              {...validImgProps}
+            />
           );
         })()}
       </div>
     );
   }
 
-  return (
-    (() => {
-      const baseSrc = imageSrc && imageSrc.length > 0 ? imageSrc : fallbackSrc;
-      const resolvedSrc =
-        baseSrc && baseSrc.startsWith('/api/image-proxy?url=') ? baseSrc : baseSrc;
-      return (
-    <img
-      src={resolvedSrc}
-      alt={alt}
-      width={width || 400}
-      height={height || 300}
-      className={commonClassName}
-      onError={handleError}
-      onLoad={handleLoad}
-      onClick={onClick}
-      loading={priority ? 'eager' : 'lazy'}
-      {...validImgProps}
-    />
-      );
-    })()
-  );
+  return (() => {
+    const baseSrc = imageSrc && imageSrc.length > 0 ? imageSrc : fallbackSrc;
+    const resolvedSrc = baseSrc && baseSrc.startsWith('/api/image-proxy?url=') ? baseSrc : baseSrc;
+    return (
+      <img
+        src={resolvedSrc}
+        alt={alt}
+        width={width || 400}
+        height={height || 300}
+        className={commonClassName}
+        onError={handleError}
+        onLoad={handleLoad}
+        onClick={onClick}
+        loading={priority ? 'eager' : 'lazy'}
+        {...validImgProps}
+      />
+    );
+  })();
 }
 
 export default AppImage;

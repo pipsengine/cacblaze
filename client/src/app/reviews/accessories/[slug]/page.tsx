@@ -190,7 +190,11 @@ export default async function AccessoryReviewPage({ params }: PageProps) {
                       className="relative aspect-video rounded-xl overflow-hidden shadow-sm border border-gray-100"
                     >
                       <AppImage
-                        src={img && img.startsWith('http') ? `/api/image-proxy?url=${encodeURIComponent(img)}` : img}
+                        src={
+                          img && img.startsWith('http')
+                            ? `/api/image-proxy?url=${encodeURIComponent(img)}`
+                            : img
+                        }
                         alt={`${review.name} view ${i + 1}`}
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-500"

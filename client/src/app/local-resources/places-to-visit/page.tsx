@@ -191,8 +191,7 @@ const PlacesToVisitPage = ({
   searchParams?: { [key: string]: string | string[] | undefined };
 }) => {
   const raw = searchParams?.state;
-  const selectedState =
-    typeof raw === 'string' ? raw : Array.isArray(raw) ? raw[0] || '' : '';
+  const selectedState = typeof raw === 'string' ? raw : Array.isArray(raw) ? raw[0] || '' : '';
 
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
@@ -273,12 +272,12 @@ const PlacesToVisitPage = ({
                             a.name === 'Osun-Osogbo Sacred Grove'
                               ? `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=1200&q=80')}`
                               : a.name === 'Kofar Mata Dye Pits'
-                              ? `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80')}`
-                              : a.name === 'Jos Wildlife Park'
-                              ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/602024/pexels-photo-602024.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
-                              : a.name === 'Pleasure Park'
-                              ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
-                              : a.image;
+                                ? `/api/image-proxy?url=${encodeURIComponent('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80')}`
+                                : a.name === 'Jos Wildlife Park'
+                                  ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/602024/pexels-photo-602024.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
+                                  : a.name === 'Pleasure Park'
+                                    ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
+                                    : a.image;
                           return (
                             <AppImage
                               src={override}
@@ -290,12 +289,12 @@ const PlacesToVisitPage = ({
                                 a.name === 'Osun-Osogbo Sacred Grove'
                                   ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/1083896/pexels-photo-1083896.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
                                   : a.name === 'Jos Wildlife Park'
-                                  ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
-                                  : a.name === 'Pleasure Park'
-                                  ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
-                                  : a.name === 'Kofar Mata Dye Pits'
-                                  ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/3645970/pexels-photo-3645970.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
-                                  : a.image
+                                    ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
+                                    : a.name === 'Pleasure Park'
+                                      ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
+                                      : a.name === 'Kofar Mata Dye Pits'
+                                        ? `/api/image-proxy?url=${encodeURIComponent('https://images.pexels.com/photos/3645970/pexels-photo-3645970.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80')}`
+                                        : a.image
                               }
                               secondaryFallbackSrc="/assets/images/no_image.png"
                             />
@@ -357,7 +356,10 @@ const PlacesToVisitPage = ({
                       <div className="p-6">
                         <ul className="space-y-2">
                           {c.points.map((p, idx) => (
-                            <li key={idx} className="flex items-center gap-2 text-sm text-secondary">
+                            <li
+                              key={idx}
+                              className="flex items-center gap-2 text-sm text-secondary"
+                            >
                               <Icon name="SparklesIcon" size={16} className="text-primary" />
                               {p}
                             </li>

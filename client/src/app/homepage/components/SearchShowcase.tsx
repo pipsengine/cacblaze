@@ -105,9 +105,11 @@ const SearchShowcase = () => {
                       router.push(`/search?q=${encodeURIComponent(search.text)}`);
                     }}
                     className={`flex items-center gap-2 px-5 py-3 rounded-full transition-all whitespace-nowrap
-                      ${activeSearch === search.text
-                        ? 'border-2 border-black bg-white text-foreground shadow-sm'
-                        : 'border border-gray-200 bg-white text-foreground hover:border-primary'}`}
+                      ${
+                        activeSearch === search.text
+                          ? 'border-2 border-black bg-white text-foreground shadow-sm'
+                          : 'border border-gray-200 bg-white text-foreground hover:border-primary'
+                      }`}
                   >
                     <Icon name={search.icon} size={16} className="text-primary" />
                     <span className="text-sm font-medium">{search.text}</span>

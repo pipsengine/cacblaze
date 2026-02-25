@@ -12,7 +12,8 @@ export const metadata: Metadata = {
   title: 'Neighborhood Guides in Nigeria - CACBLAZE',
   description:
     'Explore neighborhoods across Nigerian states: lifestyle, commute, safety, utilities, and nearby amenities.',
-  keywords: 'Nigeria neighborhoods, Lagos areas, Abuja areas, PH neighborhoods, commute safety utilities',
+  keywords:
+    'Nigeria neighborhoods, Lagos areas, Abuja areas, PH neighborhoods, commute safety utilities',
 };
 
 type NeighborhoodItem = {
@@ -26,28 +27,168 @@ type NeighborhoodItem = {
   points: string[];
 };
 
-const N1 = 'https://images.pexels.com/photos/373904/pexels-photo-373904.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const N2 = 'https://images.pexels.com/photos/21014/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const N3 = 'https://images.pexels.com/photos/261169/pexels-photo-261169.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const N4 = 'https://images.pexels.com/photos/271742/pexels-photo-271742.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const N5 = 'https://images.pexels.com/photos/949193/pexels-photo-949193.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const N1 =
+  'https://images.pexels.com/photos/373904/pexels-photo-373904.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const N2 =
+  'https://images.pexels.com/photos/21014/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const N3 =
+  'https://images.pexels.com/photos/261169/pexels-photo-261169.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const N4 =
+  'https://images.pexels.com/photos/271742/pexels-photo-271742.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
+const N5 =
+  'https://images.pexels.com/photos/949193/pexels-photo-949193.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
 
 const ITEMS: NeighborhoodItem[] = [
-  { id: 'lagos_vi', state: 'Lagos', city: 'Lagos', title: 'Victoria Island', image: N1, category: 'Neighborhoods', summary: 'Upscale, business district, nightlife.', points: ['High rent; plan budgets', 'Traffic at peak hours', 'Near beaches and malls'] },
-  { id: 'lagos_ikoyi', state: 'Lagos', city: 'Lagos', title: 'Ikoyi', image: N2, category: 'Neighborhoods', summary: 'Quiet, premium estates, embassies.', points: ['Reliable security', 'Power often better', 'Proximity to VI'] },
-  { id: 'lagos_yaba', state: 'Lagos', city: 'Lagos', title: 'Yaba', image: N3, category: 'Neighborhoods', summary: 'Tech hubs, student crowd, affordable.', points: ['Hostels around UNILAG', 'Evening busier near markets', 'Workspaces available'] },
-  { id: 'abuja_wuse', state: 'FCT Abuja', city: 'Abuja', title: 'Wuse 2', image: N4, category: 'Neighborhoods', summary: 'Restaurants, lounges, central routes.', points: ['Plan around ministries hours', 'Good for business meetups', 'Premium pricing'] },
-  { id: 'abuja_maitama', state: 'FCT Abuja', city: 'Abuja', title: 'Maitama', image: N5, category: 'Neighborhoods', summary: 'Premium, embassies, serene.', points: ['Quiet streets', 'Reliable utilities', 'Higher service charges'] },
-  { id: 'ph_gra', state: 'Rivers', city: 'Port Harcourt', title: 'GRA', image: N1, category: 'Neighborhoods', summary: 'Grills, nightlife, lounges.', points: ['Flood awareness in rains', 'Cashless payments common', 'Traffic near clubs'] },
-  { id: 'kano_nassarawa', state: 'Kano', city: 'Kano', title: 'Nassarawa', image: N2, category: 'Neighborhoods', summary: 'Family areas, eateries, parks.', points: ['Heat prep mid‑day', 'Carry small change', 'Confirm school options'] },
-  { id: 'ibadan_bodija', state: 'Oyo', city: 'Ibadan', title: 'Bodija', image: N3, category: 'Neighborhoods', summary: 'Markets, local food, study corners.', points: ['Busy on market days', 'Water source checks', 'Affordable rentals'] },
-  { id: 'enugu_independence', state: 'Enugu', city: 'Enugu', title: 'Independence Layout', image: N4, category: 'Neighborhoods', summary: 'Tea houses, lounges, estates.', points: ['Quiet ambience', 'Night transport limited', 'Cash/transfers accepted'] },
-  { id: 'benin_gra', state: 'Edo', city: 'Benin City', title: 'Benin GRA', image: N5, category: 'Neighborhoods', summary: 'Seafood spots, outdoor seating.', points: ['Flood‑prone routes caution', 'Agree fares before trips', 'POS widely available'] },
-  { id: 'jos_rayfield', state: 'Plateau', city: 'Jos', title: 'Rayfield', image: N1, category: 'Neighborhoods', summary: 'Scenic, cooler weather, cafes.', points: ['Cold‑weather prep', 'Early closures in some areas', 'Great weekend views'] },
-  { id: 'ilorin_tanke', state: 'Kwara', city: 'Ilorin', title: 'Tanke', image: N2, category: 'Neighborhoods', summary: 'Student‑friendly, casual bites.', points: ['Busy during terms', 'Affordable eateries', 'Transfers accepted widely'] },
-  { id: 'calabar_marina', state: 'Cross River', city: 'Calabar', title: 'Marina', image: N3, category: 'Neighborhoods', summary: 'Sea views, tourist friendly.', points: ['Plan for weekend crowds', 'Verify boat schedules', 'Check parking'] },
-  { id: 'uyo_ewet', state: 'Akwa Ibom', city: 'Uyo', title: 'Ewet Housing', image: N4, category: 'Neighborhoods', summary: 'Family spots, local grills.', points: ['Security checks', 'Street lighting', 'Road access quality'] },
-  { id: 'kaduna_barnawa', state: 'Kaduna', city: 'Kaduna', title: 'Barnawa', image: N5, category: 'Neighborhoods', summary: 'Casual cafes, group seating.', points: ['Agree pricing upfront', 'Use transfers at night', 'Plan safe drop‑offs'] },
+  {
+    id: 'lagos_vi',
+    state: 'Lagos',
+    city: 'Lagos',
+    title: 'Victoria Island',
+    image: N1,
+    category: 'Neighborhoods',
+    summary: 'Upscale, business district, nightlife.',
+    points: ['High rent; plan budgets', 'Traffic at peak hours', 'Near beaches and malls'],
+  },
+  {
+    id: 'lagos_ikoyi',
+    state: 'Lagos',
+    city: 'Lagos',
+    title: 'Ikoyi',
+    image: N2,
+    category: 'Neighborhoods',
+    summary: 'Quiet, premium estates, embassies.',
+    points: ['Reliable security', 'Power often better', 'Proximity to VI'],
+  },
+  {
+    id: 'lagos_yaba',
+    state: 'Lagos',
+    city: 'Lagos',
+    title: 'Yaba',
+    image: N3,
+    category: 'Neighborhoods',
+    summary: 'Tech hubs, student crowd, affordable.',
+    points: ['Hostels around UNILAG', 'Evening busier near markets', 'Workspaces available'],
+  },
+  {
+    id: 'abuja_wuse',
+    state: 'FCT Abuja',
+    city: 'Abuja',
+    title: 'Wuse 2',
+    image: N4,
+    category: 'Neighborhoods',
+    summary: 'Restaurants, lounges, central routes.',
+    points: ['Plan around ministries hours', 'Good for business meetups', 'Premium pricing'],
+  },
+  {
+    id: 'abuja_maitama',
+    state: 'FCT Abuja',
+    city: 'Abuja',
+    title: 'Maitama',
+    image: N5,
+    category: 'Neighborhoods',
+    summary: 'Premium, embassies, serene.',
+    points: ['Quiet streets', 'Reliable utilities', 'Higher service charges'],
+  },
+  {
+    id: 'ph_gra',
+    state: 'Rivers',
+    city: 'Port Harcourt',
+    title: 'GRA',
+    image: N1,
+    category: 'Neighborhoods',
+    summary: 'Grills, nightlife, lounges.',
+    points: ['Flood awareness in rains', 'Cashless payments common', 'Traffic near clubs'],
+  },
+  {
+    id: 'kano_nassarawa',
+    state: 'Kano',
+    city: 'Kano',
+    title: 'Nassarawa',
+    image: N2,
+    category: 'Neighborhoods',
+    summary: 'Family areas, eateries, parks.',
+    points: ['Heat prep mid‑day', 'Carry small change', 'Confirm school options'],
+  },
+  {
+    id: 'ibadan_bodija',
+    state: 'Oyo',
+    city: 'Ibadan',
+    title: 'Bodija',
+    image: N3,
+    category: 'Neighborhoods',
+    summary: 'Markets, local food, study corners.',
+    points: ['Busy on market days', 'Water source checks', 'Affordable rentals'],
+  },
+  {
+    id: 'enugu_independence',
+    state: 'Enugu',
+    city: 'Enugu',
+    title: 'Independence Layout',
+    image: N4,
+    category: 'Neighborhoods',
+    summary: 'Tea houses, lounges, estates.',
+    points: ['Quiet ambience', 'Night transport limited', 'Cash/transfers accepted'],
+  },
+  {
+    id: 'benin_gra',
+    state: 'Edo',
+    city: 'Benin City',
+    title: 'Benin GRA',
+    image: N5,
+    category: 'Neighborhoods',
+    summary: 'Seafood spots, outdoor seating.',
+    points: ['Flood‑prone routes caution', 'Agree fares before trips', 'POS widely available'],
+  },
+  {
+    id: 'jos_rayfield',
+    state: 'Plateau',
+    city: 'Jos',
+    title: 'Rayfield',
+    image: N1,
+    category: 'Neighborhoods',
+    summary: 'Scenic, cooler weather, cafes.',
+    points: ['Cold‑weather prep', 'Early closures in some areas', 'Great weekend views'],
+  },
+  {
+    id: 'ilorin_tanke',
+    state: 'Kwara',
+    city: 'Ilorin',
+    title: 'Tanke',
+    image: N2,
+    category: 'Neighborhoods',
+    summary: 'Student‑friendly, casual bites.',
+    points: ['Busy during terms', 'Affordable eateries', 'Transfers accepted widely'],
+  },
+  {
+    id: 'calabar_marina',
+    state: 'Cross River',
+    city: 'Calabar',
+    title: 'Marina',
+    image: N3,
+    category: 'Neighborhoods',
+    summary: 'Sea views, tourist friendly.',
+    points: ['Plan for weekend crowds', 'Verify boat schedules', 'Check parking'],
+  },
+  {
+    id: 'uyo_ewet',
+    state: 'Akwa Ibom',
+    city: 'Uyo',
+    title: 'Ewet Housing',
+    image: N4,
+    category: 'Neighborhoods',
+    summary: 'Family spots, local grills.',
+    points: ['Security checks', 'Street lighting', 'Road access quality'],
+  },
+  {
+    id: 'kaduna_barnawa',
+    state: 'Kaduna',
+    city: 'Kaduna',
+    title: 'Barnawa',
+    image: N5,
+    category: 'Neighborhoods',
+    summary: 'Casual cafes, group seating.',
+    points: ['Agree pricing upfront', 'Use transfers at night', 'Plan safe drop‑offs'],
+  },
 ];
 
 const buildStateCards = (state: string) => {
@@ -66,7 +207,11 @@ const buildStateCards = (state: string) => {
   }));
 };
 
-const NeighborhoodsPage = ({ searchParams }: { searchParams?: { [key: string]: string | string[] | undefined } }) => {
+const NeighborhoodsPage = ({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) => {
   const raw = searchParams?.state;
   const selectedState = typeof raw === 'string' ? raw : Array.isArray(raw) ? raw[0] || '' : '';
 
@@ -76,7 +221,10 @@ const NeighborhoodsPage = ({ searchParams }: { searchParams?: { [key: string]: s
     { name: 'Neighborhoods', href: '/local-resources/neighborhoods' },
   ];
 
-  const filtered = selectedState && selectedState.length > 0 ? ITEMS.filter((e) => e.state === selectedState) : ITEMS;
+  const filtered =
+    selectedState && selectedState.length > 0
+      ? ITEMS.filter((e) => e.state === selectedState)
+      : ITEMS;
   const nigeriaStates = NIGERIA_STATES;
 
   return (
@@ -91,10 +239,13 @@ const NeighborhoodsPage = ({ searchParams }: { searchParams?: { [key: string]: s
                 Lifestyle & Areas
               </span>
               <h1 className="text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                {selectedState ? `Neighborhoods in ${selectedState}` : 'Neighborhood Guides in Nigeria'}
+                {selectedState
+                  ? `Neighborhoods in ${selectedState}`
+                  : 'Neighborhood Guides in Nigeria'}
               </h1>
               <p className="text-xl text-secondary mb-8 leading-relaxed">
-                Compare neighborhoods by lifestyle, commute, utilities, safety, and nearby amenities across Nigerian cities.
+                Compare neighborhoods by lifestyle, commute, utilities, safety, and nearby amenities
+                across Nigerian cities.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
@@ -120,7 +271,11 @@ const NeighborhoodsPage = ({ searchParams }: { searchParams?: { [key: string]: s
             <h2 className="text-3xl font-bold text-foreground mb-8">Explore Neighborhoods</h2>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
               <div className="lg:col-span-3">
-                <StateFilterSidebar basePath="/local-resources/neighborhoods" selectedState={selectedState} header="Explore by State" />
+                <StateFilterSidebar
+                  basePath="/local-resources/neighborhoods"
+                  selectedState={selectedState}
+                  header="Explore by State"
+                />
               </div>
               <div className="lg:col-span-9 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filtered.map((e) => (
@@ -184,7 +339,10 @@ const NeighborhoodsPage = ({ searchParams }: { searchParams?: { [key: string]: s
                       <div className="p-6">
                         <ul className="space-y-2">
                           {c.points.map((p, idx) => (
-                            <li key={idx} className="flex items-center gap-2 text-sm text-secondary">
+                            <li
+                              key={idx}
+                              className="flex items-center gap-2 text-sm text-secondary"
+                            >
                               <Icon name="SparklesIcon" size={16} className="text-primary" />
                               {p}
                             </li>
@@ -242,7 +400,11 @@ const NeighborhoodsPage = ({ searchParams }: { searchParams?: { [key: string]: s
                     Prefer well‑lit streets and avoid isolated drop‑offs late at night.
                   </li>
                   <li className="flex items-start gap-3 text-secondary">
-                    <Icon name="InformationCircleIcon" size={18} className="text-emerald-600 mt-0.5" />
+                    <Icon
+                      name="InformationCircleIcon"
+                      size={18}
+                      className="text-emerald-600 mt-0.5"
+                    />
                     Ask neighbors for area‑specific tips and recent changes in traffic patterns.
                   </li>
                 </ul>

@@ -9,8 +9,7 @@ import { menuData } from '@/data/menuData';
 
 export const metadata: Metadata = {
   title: 'Lifestyle - CACBLAZE',
-  description:
-    'Health, wellness, parenting, and travel guides to help you live better every day.',
+  description: 'Health, wellness, parenting, and travel guides to help you live better every day.',
   keywords: 'health, wellness, lifestyle, parenting, travel, habits',
 };
 
@@ -140,10 +139,12 @@ export default function LifestylePage() {
                       >
                         <div className="mb-4">
                           <AppImage
-                            src={`/assets/images/lifestyle/${(typeof item.href === 'string' ? item.href : '')
-                              .split('/')
-                              .filter(Boolean)
-                              .pop() || 'lifestyle'}.jpg`}
+                            src={`/assets/images/lifestyle/${
+                              (typeof item.href === 'string' ? item.href : '')
+                                .split('/')
+                                .filter(Boolean)
+                                .pop() || 'lifestyle'
+                            }.jpg`}
                             alt={item.label}
                             width={800}
                             height={160}
