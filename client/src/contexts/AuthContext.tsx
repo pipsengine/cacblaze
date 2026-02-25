@@ -62,9 +62,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const fetchUser = async (authToken: string) => {
     try {
+      // In dev, avoid noisy network errors if local API is down
+      // Also keep this silent in production to prevent console.error spam in monitoring
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 5000);
       const res = await fetch(`${API_URL}/auth/me`, {
         headers: { Authorization: `Bearer ${authToken}` },
+        signal: controller.signal,
+      }).catch((e) => {
+        // Swallow connection errors; treat as signed-out
+        return new Response(null, { status: 0, statusText: 'network-failed' });
       });
+      clearTimeout(timeout);
       if (res.ok) {
         const userData = await res.json();
         setUser(userData);
@@ -73,7 +82,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setToken(null);
       }
     } catch (error) {
-      console.error('Error fetching user:', error);
+      // Be quiet to avoid noisy dev/preview consoles when API is unavailable
       localStorage.removeItem('token');
       setToken(null);
     } finally {

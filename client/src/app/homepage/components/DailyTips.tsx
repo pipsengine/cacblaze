@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
+import { getContextualImage } from '@/utils/imageService';
 
 const API_BASE = '/api';
 
@@ -118,17 +119,39 @@ export default function DailyTips() {
           {todaysTip.content}
         </p>
         
-        {todaysTip.featured_image && (
-          <div className="mb-4">
-            <AppImage
-              src={todaysTip.featured_image}
-              alt={todaysTip.image_alt || todaysTip.title}
-              className="w-full h-48 object-cover rounded-lg"
-              fallbackSrc="/assets/images/no_image.png"
-              secondaryFallbackSrc="/assets/images/no_image.png"
-            />
-          </div>
-        )}
+        {(() => {
+          const contextual = getContextualImage({
+            category: todaysTip.category || 'Guides',
+            title: todaysTip.title,
+            alt: todaysTip.image_alt || todaysTip.title,
+            width: 1200,
+            height: 600,
+            preferCurated: true,
+          });
+          const placeholder = getContextualImage({
+            category: todaysTip.category || 'Guides',
+            title: todaysTip.title,
+            alt: todaysTip.image_alt || todaysTip.title,
+            width: 1200,
+            height: 600,
+            preferCurated: false,
+          }).src;
+          const chosenSrc =
+            (todaysTip as any).featured_image ||
+            (todaysTip as any).featured_image_url ||
+            contextual.src;
+          return (
+            <div className="mb-4">
+              <AppImage
+                src={chosenSrc}
+                alt={todaysTip.image_alt || todaysTip.title}
+                className="w-full h-48 object-cover rounded-lg"
+                fallbackSrc={placeholder}
+                secondaryFallbackSrc="/assets/images/no_image.png"
+              />
+            </div>
+          );
+        })()}
         
         <div className="flex items-center justify-between">
           <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">

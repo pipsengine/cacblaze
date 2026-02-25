@@ -119,19 +119,17 @@ export default function FeaturedArticle() {
       
       <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
         <div className="flex flex-col md:flex-row gap-6">
-          {article.featured_image_url && (
-            <div className="md:w-1/3">
-              <AppImage
-                src={article.featured_image_url}
-                alt={article.image_alt || article.title}
-                className="w-full h-48 object-cover rounded-lg"
-                fallbackSrc="/assets/images/no_image.png"
-                secondaryFallbackSrc="/assets/images/no_image.png"
-              />
-            </div>
-          )}
+          <div className="md:w-1/3">
+            <AppImage
+              src={(article as any).featured_image_url || (article as any).featured_image || '/assets/images/no_image.png'}
+              alt={article.image_alt || article.title}
+              className="w-full h-48 object-cover rounded-lg"
+              fallbackSrc="/assets/images/no_image.png"
+              secondaryFallbackSrc="/assets/images/no_image.png"
+            />
+          </div>
           
-          <div className={article.featured_image_url ? "md:w-2/3" : "w-full"}>
+          <div className="md:w-2/3">
             <div className="flex items-center gap-2 mb-3">
               <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
                 {article.type}
