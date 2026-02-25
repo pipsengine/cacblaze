@@ -1,5 +1,22 @@
 import { MetadataRoute } from 'next';
 import { menuData } from '@/data/menuData';
+import { laptopReviews } from '@/data/laptops';
+import { smartphoneReviews } from '@/data/smartphones';
+import { tabletReviews } from '@/data/tablets';
+import { accessoryReviews } from '@/data/accessories';
+import { restaurants } from '@/data/restaurants';
+import { hotelReviews } from '@/data/hotels';
+import { learningAppReviews } from '@/data/learning-apps';
+import { techBookReviews } from '@/data/tech-books';
+import { educationalBooks } from '@/data/educational-books';
+import { businessBookReviews } from '@/data/business-books';
+import { gadgetReviews } from '@/data/gadgets';
+import { saasReviews } from '@/data/saas';
+import { digitalPlatformReviews } from '@/data/digital-platforms';
+import { onlineServiceReviews } from '@/data/online-services';
+import { subscriptionReviews } from '@/data/subscriptions';
+import { serviceProviderReviews } from '@/data/service-providers';
+import { localVendorReviews } from '@/data/local-vendors';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl =
@@ -105,5 +122,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [...staticPages, ...categoryPages, ...subCategoryPages, ...articlePages];
+  // Review detail pages from local data sources
+  const fromRecord = (records: Record<string, { slug: string }>, prefix: string): MetadataRoute.Sitemap =>
+    Object.values(records).map((item) => ({
+      url: `${baseUrl}${prefix}/${item.slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    }));
+
+  const reviewPages: MetadataRoute.Sitemap = [
+    ...fromRecord(laptopReviews, '/reviews/laptops'),
+    ...fromRecord(smartphoneReviews, '/reviews/smartphones'),
+    ...fromRecord(tabletReviews, '/reviews/tablets'),
+    ...fromRecord(accessoryReviews, '/reviews/accessories'),
+    ...fromRecord(gadgetReviews, '/reviews/gadgets'),
+    ...fromRecord(restaurants, '/reviews/restaurants'),
+    ...fromRecord(hotelReviews, '/reviews/hotels'),
+    ...fromRecord(learningAppReviews, '/reviews/learning-apps'),
+    ...fromRecord(techBookReviews, '/reviews/tech-books'),
+    ...fromRecord(educationalBooks, '/reviews/educational-books'),
+    ...fromRecord(businessBookReviews, '/reviews/business-books'),
+    ...fromRecord(saasReviews, '/reviews/saas'),
+    ...fromRecord(digitalPlatformReviews, '/reviews/digital-platforms'),
+    ...fromRecord(onlineServiceReviews, '/reviews/online-services'),
+    ...fromRecord(subscriptionReviews, '/reviews/subscriptions'),
+    ...fromRecord(serviceProviderReviews, '/reviews/service-providers'),
+    ...fromRecord(localVendorReviews, '/reviews/local-vendors'),
+  ];
+
+  return [...staticPages, ...categoryPages, ...subCategoryPages, ...articlePages, ...reviewPages];
 }

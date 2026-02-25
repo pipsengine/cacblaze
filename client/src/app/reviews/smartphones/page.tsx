@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     'In-depth reviews of the latest smartphones available in Nigeria. Compare iPhone 15, Samsung S24, Tecno Phantom, and Infinix Note prices and features.',
   keywords:
     'smartphone reviews, nigeria phone prices, iphone 15 nigeria, samsung s24 ultra, tecno phantom v fold, infinix note 40 pro',
+  alternates: { canonical: '/reviews/smartphones' },
 };
 
 const SmartphonesPage = () => {

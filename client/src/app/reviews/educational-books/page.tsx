@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'Best Educational Books: Top Picks for Self-Improvement - CACBLAZE',
   description:
     'Looking to level up your skills? We review the best educational books on productivity, business, software engineering, and more.',
+  alternates: { canonical: '/reviews/educational-books' },
 };
 
 export default function EducationalBooksListingPage() {

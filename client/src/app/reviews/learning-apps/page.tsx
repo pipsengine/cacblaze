@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     'Expert reviews of the best learning apps, from language tools like Duolingo to professional courses on Coursera and local favorites like uLesson.',
   keywords:
     'best learning apps, online courses, duolingo review, coursera review, ulesson review, khan academy review, udemy review',
+  alternates: { canonical: '/reviews/learning-apps' },
 };
 
 export default function LearningAppsListingPage() {

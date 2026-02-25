@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: 'Digital Platform Reviews | Economy & Social - CACBLAZE',
   description:
     "Analysis of the world's most influential digital platforms, from e-commerce giants to social media and payment systems.",
+  alternates: { canonical: '/reviews/digital-platforms' },
 };
 
 export default function DigitalPlatformsListingPage() {

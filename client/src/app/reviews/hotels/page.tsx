@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     'Honest reviews of the best hotels in Lagos, Abuja, Port Harcourt and across Nigeria. From luxury resorts to boutique business hotels, we help you find the perfect stay.',
   keywords:
     'best hotels in lagos, transcorp hilton abuja review, eko hotel price, hotels in ikoyi, hotels in maitama, luxury hotels nigeria, slot price list',
+  alternates: { canonical: '/reviews/hotels' },
 };
 
 export default function HotelsListingPage() {

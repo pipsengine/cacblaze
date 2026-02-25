@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     'In-depth reviews and comparisons of the latest laptops available in Nigeria. From MacBook Air to Dell XPS, find the best laptop for your budget and needs.',
   keywords:
     'laptop reviews nigeria, macbook price nigeria, dell xps nigeria, hp victus review, best laptops for students nigeria',
+  alternates: { canonical: '/reviews/laptops' },
 };
 
 export default function LaptopsListingPage() {

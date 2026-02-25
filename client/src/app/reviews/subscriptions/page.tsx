@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'Subscription Reviews | Best Digital Memberships - CACBLAZE',
   description:
     "Analysis of the world's most popular subscriptions, from entertainment and gaming to productivity and news.",
+  alternates: { canonical: '/reviews/subscriptions' },
 };
 
 export default function SubscriptionsListingPage() {

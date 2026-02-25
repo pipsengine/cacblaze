@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: 'Business Book Reviews: Strategy, Leadership & Startups - CACBLAZE',
   description:
     "In-depth reviews of the world's best business books. From startup manifestos to leadership classics, we break down the key takeaways.",
+  alternates: { canonical: '/reviews/business-books' },
 };
 
 export default function BusinessBooksListingPage() {

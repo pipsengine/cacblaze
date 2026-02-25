@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Careers - CACBLAZE',
   description:
     'Join the team building the future of knowledge. View our open positions and learn about our culture.',
+  alternates: { canonical: '/careers' },
 };
 
 export default function CareersPage() {

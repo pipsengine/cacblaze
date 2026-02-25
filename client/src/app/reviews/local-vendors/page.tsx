@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     'Honest reviews of the best local vendors in Nigeria. From electronics stores like Slot and Pointek to supermarkets like Hubmart and H-Medix.',
   keywords:
     'slot systems review, hubmart stores lagos, pointek online, local vendors nigeria, best electronics stores lagos',
+  alternates: { canonical: '/reviews/local-vendors' },
 };
 
 export default function LocalVendorsListingPage() {

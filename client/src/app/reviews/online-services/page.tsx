@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: 'Online Service Reviews | Best Digital Solutions - CACBLAZE',
   description:
     "In-depth reviews of the world's top online services, from streaming and cloud storage to VPNs and productivity tools.",
+  alternates: { canonical: '/reviews/online-services' },
 };
 
 export default function OnlineServicesListingPage() {

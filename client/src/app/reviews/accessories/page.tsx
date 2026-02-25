@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     'In-depth reviews of the latest headphones, earbuds, chargers, and tech accessories available in Nigeria. Find the best value for your setup.',
   keywords:
     'airpods pro price nigeria, sony xm5 review, oraimo freepods 4 price, best earbuds nigeria, bluetooth headphones review',
+  alternates: { canonical: '/reviews/accessories' },
 };
 
 export default function AccessoriesListingPage() {

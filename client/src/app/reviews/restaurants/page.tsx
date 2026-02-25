@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     'Honest reviews of the best restaurants in Lagos, Abuja, and across Nigeria. From fine dining to local spots, we find the best tastes for your budget.',
   keywords:
     'best restaurants in lagos, yellow chilli review, terra kulture food, restaurants in victoria island, dining out nigeria, slot price list',
+  alternates: { canonical: '/reviews/restaurants' },
 };
 
 export default function RestaurantsListingPage() {

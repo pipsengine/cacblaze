@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     'Comprehensive reviews of the latest tablets in Nigeria. Compare iPad Pro, Galaxy Tab, and more to find the best tablet for drawing, work, or school.',
   keywords:
     'tablet reviews nigeria, ipad price nigeria, galaxy tab review, best tablets for students, drawing tablets nigeria',
+  alternates: { canonical: '/reviews/tablets' },
 };
 
 export default function TabletsListingPage() {

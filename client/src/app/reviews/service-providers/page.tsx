@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     'Honest reviews of the best ISPs in Nigeria. From Fiber-to-the-Home (FTTH) like ipNX and MTN to Satellite internet like Starlink.',
   keywords:
     'best isp nigeria, starlink nigeria review, ipnx fiber review, mtn fiber, airtel 5g router review',
+  alternates: { canonical: '/reviews/service-providers' },
 };
 
 export default function ServiceProvidersListingPage() {

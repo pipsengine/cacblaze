@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'Tech Book Reviews: Programming, Architecture & Cloud - CACBLAZE',
   description:
     'Unbiased reviews of the most important technical books for developers, architects, and data scientists.',
+  alternates: { canonical: '/reviews/tech-books' },
 };
 
 export default function TechBooksListingPage() {

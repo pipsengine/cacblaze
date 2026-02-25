@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     'From gaming consoles to drones and satellite internet, we review the most exciting tech gadgets landing in Nigeria. Find out if they are worth your money.',
   keywords:
     'ps5 pro price nigeria, starlink review nigeria, dji mini 4 pro price, tech gadgets nigeria, best drones for creators',
+  alternates: { canonical: '/reviews/gadgets' },
 };
 
 export default function GadgetsListingPage() {

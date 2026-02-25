@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'SaaS Reviews | Software as a Service Analysis - CACBLAZE',
   description:
     'In-depth reviews and comparisons of the leading SaaS platforms for communication, CRM, DevOps, and more.',
+  alternates: { canonical: '/reviews/saas' },
 };
 
 export default function SaaSListingPage() {
