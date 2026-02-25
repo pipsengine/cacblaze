@@ -7,9 +7,9 @@ const BASE =
     ''
   );
 
-async function proxy(request: Request, params: { path: string[] }) {
+async function proxy(request: Request, params: { path?: string[] }) {
   const url = new URL(request.url);
-  const path = params.path?.join('/') || '';
+  const path = params?.path?.join('/') || '';
   const search = url.search ? url.search : '';
   const qs = url.searchParams;
   const limitParam = Number(qs.get('limit') || '');
@@ -146,19 +146,19 @@ async function proxy(request: Request, params: { path: string[] }) {
   }
 }
 
-export async function GET(request: Request, { params }: { params: { path: string[] } }) {
-  return proxy(request, params);
+export async function GET(request: Request, { params }: { params: Promise<{ path: string[] }> }) {
+  return proxy(request, await params);
 }
-export async function POST(request: Request, { params }: { params: { path: string[] } }) {
-  return proxy(request, params);
+export async function POST(request: Request, { params }: { params: Promise<{ path: string[] }> }) {
+  return proxy(request, await params);
 }
-export async function PUT(request: Request, { params }: { params: { path: string[] } }) {
-  return proxy(request, params);
+export async function PUT(request: Request, { params }: { params: Promise<{ path: string[] }> }) {
+  return proxy(request, await params);
 }
-export async function PATCH(request: Request, { params }: { params: { path: string[] } }) {
-  return proxy(request, params);
+export async function PATCH(request: Request, { params }: { params: Promise<{ path: string[] }> }) {
+  return proxy(request, await params);
 }
-export async function DELETE(request: Request, { params }: { params: { path: string[] } }) {
-  return proxy(request, params);
+export async function DELETE(request: Request, { params }: { params: Promise<{ path: string[] }> }) {
+  return proxy(request, await params);
 }
 

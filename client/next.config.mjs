@@ -185,7 +185,7 @@ const nextConfig = {
     if (process.env.NODE_ENV === 'development' && useDevRewrite) {
       return [
         {
-          source: '/api/ai-publishing/:path*',
+          source: '/api/upstream/ai-publishing/:path*',
           destination: 'http://localhost:3001/api/ai-publishing/:path*',
         },
       ];
