@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
 
@@ -14,6 +15,8 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const { signUp } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const next = searchParams.get('next') || '/';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +25,7 @@ export default function RegisterPage() {
 
     try {
       await signUp(email, password, fullName);
-      router.push('/');
+      router.push(next);
     } catch (err: any) {
       setError(err.message || 'Failed to create account');
     } finally {

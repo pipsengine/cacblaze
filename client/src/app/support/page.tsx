@@ -5,13 +5,20 @@ import Footer from '@/components/common/Footer';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function SupportPage() {
+  const { user, userRole } = useAuth();
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Support', href: '/support' },
   ];
 
+  const isAdmin = !!user && userRole === 'admin';
+  const adminHref = isAdmin ? '/admin' : `/login?next=${encodeURIComponent('/admin')}`;
+  const socialKeysHref = isAdmin
+    ? '/admin/settings/social-keys'
+    : `/login?next=${encodeURIComponent('/admin/settings/social-keys')}`;
   return (
     <>
       <Header />
@@ -43,7 +50,7 @@ export default function SupportPage() {
             </Link>
 
             <Link
-              href="/admin"
+              href={adminHref}
               className="group bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition-all"
             >
               <div className="flex items-center gap-3 mb-3">
@@ -58,7 +65,7 @@ export default function SupportPage() {
             </Link>
 
             <Link
-              href="/admin/settings/social-keys"
+              href={socialKeysHref}
               className="group bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition-all"
             >
               <div className="flex items-center gap-3 mb-3">

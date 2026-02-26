@@ -2,21 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-
-const API_URL = (() => {
-  const raw = process.env.NEXT_PUBLIC_API_URL || '';
-  const base = raw.replace(/\/$/, '');
-  if (!base) {
-    if (typeof window !== 'undefined') {
-      // Surface a clear error in the browser console for missing config
-      // IMPORTANT: do not throw here to avoid hydration issues
-      console.error(
-        'Missing NEXT_PUBLIC_API_URL. Auth endpoints will be unavailable until configured.'
-      );
-    }
-  }
-  return base;
-})();
+import { createClient } from '@/lib/supabase/client';
 
 export interface User {
   id: string;
@@ -44,92 +30,86 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState<string | null>(null);
   const router = useRouter();
+  const supabase = createClient();
 
   useEffect(() => {
-    // Check for token in localStorage
-    const storedToken = localStorage.getItem('token');
-    if (storedToken) {
-      setToken(storedToken);
-      if (API_URL) {
-        fetchUser(storedToken);
+    const init = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data.session) {
+        setToken(data.session.access_token);
+        await loadCurrentUser();
       } else {
         setLoading(false);
       }
-    } else {
-      setLoading(false);
-    }
+    };
+    init();
+    const { data: sub } = supabase.auth.onAuthStateChange(async (_e, session) => {
+      setToken(session?.access_token || null);
+      if (session) {
+        await loadCurrentUser();
+      } else {
+        setUser(null);
+      }
+    });
+    return () => {
+      sub.subscription.unsubscribe();
+    };
   }, []);
 
-  const fetchUser = async (authToken: string) => {
-    try {
-      // In dev, avoid noisy network errors if local API is down
-      // Also keep this silent in production to prevent console.error spam in monitoring
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 5000);
-      const res = await fetch(`${API_URL}/auth/me`, {
-        headers: { Authorization: `Bearer ${authToken}` },
-        signal: controller.signal,
-      }).catch((e) => {
-        // Swallow connection errors; treat as signed-out
-        return new Response(null, { status: 0, statusText: 'network-failed' });
-      });
-      clearTimeout(timeout);
-      if (res.ok) {
-        const userData = await res.json();
-        setUser(userData);
-      } else {
-        localStorage.removeItem('token');
-        setToken(null);
-      }
-    } catch (error) {
-      // Be quiet to avoid noisy dev/preview consoles when API is unavailable
-      localStorage.removeItem('token');
-      setToken(null);
-    } finally {
+  const loadCurrentUser = async () => {
+    const { data: u } = await supabase.auth.getUser();
+    if (!u.user) {
+      setUser(null);
       setLoading(false);
+      return;
     }
+    let role: 'admin' | 'author' | 'user' = 'user';
+    let fullName: string | undefined = undefined;
+    let avatarUrl: string | undefined = undefined;
+    const { data: profile } = await supabase
+      .from('user_profiles')
+      .select('role,full_name,avatar_url')
+      .eq('id', u.user.id)
+      .single();
+    if (profile?.role) role = profile.role;
+    if (profile?.full_name) fullName = profile.full_name;
+    if (profile?.avatar_url) avatarUrl = profile.avatar_url;
+    setUser({
+      id: u.user.id,
+      email: u.user.email || '',
+      username: u.user.user_metadata?.username || u.user.email?.split('@')[0] || '',
+      role,
+      full_name: fullName,
+      avatar_url: avatarUrl,
+    });
+    setLoading(false);
   };
 
   const signIn = async (email: string, password: string) => {
-    if (!API_URL) {
-      throw new Error('API base URL not configured');
-    }
-    const res = await fetch(`${API_URL}/auth/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.message || 'Login failed');
-
-    localStorage.setItem('token', data.token);
-    setToken(data.token);
-    setUser(data.user);
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw new Error(error.message || 'Login failed');
+    await loadCurrentUser();
     router.refresh();
   };
 
   const signUp = async (email: string, password: string, fullName: string) => {
-    if (!API_URL) {
-      throw new Error('API base URL not configured');
-    }
-    const res = await fetch(`${API_URL}/auth/register`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password, fullName }),
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { full_name: fullName } },
     });
-
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.message || 'Registration failed');
-
-    localStorage.setItem('token', data.token);
-    setToken(data.token);
-    setUser(data.user);
+    if (error) throw new Error(error.message || 'Registration failed');
+    if (data.user) {
+      await supabase
+        .from('user_profiles')
+        .upsert({ id: data.user.id, full_name: fullName }, { onConflict: 'id' });
+    }
+    await loadCurrentUser();
     router.refresh();
   };
 
   const signOut = async () => {
-    localStorage.removeItem('token');
+    await supabase.auth.signOut();
     setToken(null);
     setUser(null);
     router.push('/');

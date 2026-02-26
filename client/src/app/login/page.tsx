@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
 
@@ -13,6 +14,8 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const { signIn } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const next = searchParams.get('next') || '/';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +24,7 @@ export default function LoginPage() {
 
     try {
       await signIn(email, password);
-      router.push('/');
+      router.push(next);
     } catch (err: any) {
       setError(err.message || 'Failed to sign in');
     } finally {
