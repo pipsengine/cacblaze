@@ -100,6 +100,37 @@ async function proxy(request: Request, params: { path?: string[] }) {
       content: 'Standardize repeated tasks with short checklists to reduce errors.',
     },
   ];
+  const tipImageByCategory = (category: string) => {
+    const lc = category.toLowerCase();
+    const catalog: Record<string, string[]> = {
+      technology: [
+        'https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+        'https://images.pexels.com/photos/3182759/pexels-photo-3182759.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80',
+      ],
+      education: [
+        'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=1200&q=80',
+      ],
+      lifestyle: [
+        'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1556910103-1c02745a30bf?auto=format&fit=crop&w=1200&q=80',
+      ],
+      business: [
+        'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1523958203904-5f8d59f0e1ea?auto=format&fit=crop&w=1200&q=80',
+      ],
+      finance: [
+        'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?auto=format&fit=crop&w=1200&q=80',
+      ],
+    };
+    const list =
+      lc.includes('finance') || lc.includes('personal finance')
+        ? catalog.finance
+        : catalog[lc] || catalog.business;
+    const pick = list[(weekIndex + today.getDate()) % list.length];
+    return `/api/image-proxy?url=${encodeURIComponent(pick)}`;
+  };
   const dailyTipsFallback = (n: number) => {
     const items = Array.from({ length: n }).map((_, i) => {
       const idx = (weekIndex + i) % tipPhrases.length;
@@ -112,7 +143,7 @@ async function proxy(request: Request, params: { path?: string[] }) {
         content: phrase.content,
         category: cat,
         published_at: toISO(pub),
-        featured_image: '/assets/images/no_image.png',
+        featured_image: tipImageByCategory(cat),
         image_alt: phrase.title,
       };
     });
@@ -128,7 +159,7 @@ async function proxy(request: Request, params: { path?: string[] }) {
         return NextResponse.json(data, { status: 200, headers: { 'Cache-Control': 'no-store' } });
       }
       if (path.startsWith('articles/published')) {
-        const n = limit ?? 5;
+        const n = limit ?? 7;
         const data = publishedArticlesFallback(n);
         return NextResponse.json(data, { status: 200, headers: { 'Cache-Control': 'no-store' } });
       }
@@ -159,7 +190,7 @@ async function proxy(request: Request, params: { path?: string[] }) {
         return NextResponse.json(dailyTipsFallback(n), { status: 200 });
       }
       if (path.startsWith('articles/published')) {
-        const n = limit ?? 5;
+        const n = limit ?? 7;
         return NextResponse.json(publishedArticlesFallback(n), { status: 200 });
       }
     }
@@ -175,7 +206,7 @@ async function proxy(request: Request, params: { path?: string[] }) {
         return NextResponse.json(dailyTipsFallback(n), { status: 200 });
       }
       if (path.startsWith('articles/published')) {
-        const n = limit ?? 5;
+        const n = limit ?? 7;
         return NextResponse.json(publishedArticlesFallback(n), { status: 200 });
       }
     }
