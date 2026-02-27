@@ -6,7 +6,8 @@
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
     "build": "tsc",
-    "supabase:setup": "ts-node scripts/setup-supabase.ts"
+    "supabase:setup": "ts-node scripts/setup-supabase.ts",
+    "supabase:ping": "ts-node scripts/ping-supabase.ts"
   },
   "dependencies": {
     "@cacblaze/shared": "^1.0.0",
