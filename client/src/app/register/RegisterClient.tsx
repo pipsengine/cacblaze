@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Icon from '@/components/ui/AppIcon';
@@ -12,10 +12,36 @@ export default function RegisterClient() {
   const [fullName, setFullName] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [regEnabled, setRegEnabled] = useState(true);
+  const [regNotice, setRegNotice] = useState('');
   const { signUp } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
   const next = searchParams.get('next') || '/';
+
+  useEffect(() => {
+    let active = true;
+    const check = async () => {
+      try {
+        const res = await fetch('/api/health/supabase', { cache: 'no-store' });
+        const j = await res.json();
+        const ok = j?.reachable && j?.env?.authHealth === 'ok';
+        if (!active) return;
+        if (!ok) {
+          setRegEnabled(false);
+          setRegNotice('Registrations temporarily unavailable. Please try again later.');
+        }
+      } catch {
+        if (!active) return;
+        setRegEnabled(false);
+        setRegNotice('Registrations temporarily unavailable. Please try again later.');
+      }
+    };
+    check();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,6 +91,11 @@ export default function RegisterClient() {
         </div>
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <h2 className="text-2xl font-bold text-foreground mb-6">Create Account</h2>
+          {!!regNotice && (
+            <div className="mb-4 p-4 bg-amber-50 border border-amber-200 rounded-lg text-amber-800 text-sm">
+              {regNotice}
+            </div>
+          )}
           {error && (
             <div className="mb-4 p-4 bg-destructive/10 border border-destructive/20 rounded-lg flex items-start gap-3">
               <Icon
@@ -88,6 +119,7 @@ export default function RegisterClient() {
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 placeholder="John Doe"
+                disabled={!regEnabled}
               />
             </div>
             <div>
@@ -102,6 +134,7 @@ export default function RegisterClient() {
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 placeholder="you@example.com"
+                disabled={!regEnabled}
               />
             </div>
             <div>
@@ -117,12 +150,13 @@ export default function RegisterClient() {
                 minLength={6}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 placeholder="••••••••"
+                disabled={!regEnabled}
               />
               <p className="text-xs text-secondary mt-1">Must be at least 6 characters</p>
             </div>
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || !regEnabled}
               className="w-full py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Creating account...' : 'Create Account'}
