@@ -18,14 +18,20 @@ export async function POST(req: NextRequest) {
     }
 
     const supabase = await createClient();
+    const { origin } = new URL(req.url);
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
-      options: { data: { full_name: fullName || '' } },
+      options: {
+        data: { full_name: fullName || '' },
+        emailRedirectTo: `${origin}/auth/callback`,
+      },
     });
     if (error) {
       return NextResponse.json(
-        { error: error.message || 'Registration failed' },
+        {
+          error: error.message || 'Registration failed',
+        },
         { status: 400, headers: { 'Cache-Control': 'no-store' } }
       );
     }
@@ -41,10 +47,11 @@ export async function POST(req: NextRequest) {
       // ignore; profile can be created on first login
     }
 
-    return NextResponse.json(
-      { ok: true, userId: data?.user?.id ?? null, message: 'Check your email to confirm.' },
-      { status: 200, headers: { 'Cache-Control': 'no-store' } }
-    );
+    return NextResponse.json({
+      ok: true,
+      userId: data?.user?.id ?? null,
+      message: 'Check your email to confirm.',
+    });
   } catch (e: any) {
     return NextResponse.json(
       { error: e?.message || 'Unexpected error' },

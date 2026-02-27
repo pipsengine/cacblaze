@@ -22,37 +22,37 @@ export default function RegisterClient() {
     setError('');
     setLoading(true);
     try {
-      await signUp(email, password, fullName);
-      router.push(next);
+      // Server-first registration to avoid client DNS issues
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, fullName }),
+      });
+      let payload: any = null;
+      try {
+        payload = await res.json();
+      } catch {
+        // fall through
+      }
+      if (!res.ok) {
+        const msg =
+          (payload && (payload.error || payload.message)) ||
+          (await res.text().catch(() => 'Registration failed'));
+        throw new Error(msg || 'Registration failed');
+      }
+      router.push('/login');
     } catch (err: any) {
       const msg = err?.message || 'Failed to create account';
-      const isNetwork = /failed to fetch|name_not_resolved|dns/i.test(msg);
-      if (isNetwork) {
-        try {
-          const res = await fetch('/api/auth/signup', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password, fullName }),
-          });
-          const data = await res.json();
-          if (!res.ok) {
-            throw new Error(data?.error || 'Registration failed');
-          }
-          router.push('/login');
-          return;
-        } catch (e: any) {
-          setError(e?.message || 'Registration failed (fallback)');
-          return;
-        }
-      } else {
-        const hint =
-          /invalid|email|password/i.test(msg) ? '' : ' • Check Supabase URL/Anon Key env vars';
-        setError(`${msg}${hint}`);
-      }
+      const hint =
+        /failed to fetch|name_not_resolved|dns/i.test(msg) && !/invalid|email|password/i.test(msg)
+          ? ' • Check Supabase URL/Anon Key env vars'
+          : '';
+      setError(`${msg}${hint}`);
     } finally {
       setLoading(false);
     }
   };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 to-accent/5 px-4">
