@@ -2,10 +2,10 @@ import 'dotenv/config';
 import { Client } from 'pg';
 
 async function main() {
-  const host = process.env.POSTGRES_HOST;
-  const database = process.env.POSTGRES_DATABASE;
-  const user = process.env.POSTGRES_USER;
-  const password = process.env.POSTGRES_PASSWORD;
+  const host = process.env.POSTGRES_HOST || process.env.Cacblaze_POSTGRES_HOST;
+  const database = process.env.POSTGRES_DATABASE || process.env.Cacblaze_POSTGRES_DATABASE;
+  const user = process.env.POSTGRES_USER || process.env.Cacblaze_POSTGRES_USER;
+  const password = process.env.POSTGRES_PASSWORD || process.env.Cacblaze_POSTGRES_PASSWORD;
 
   let client: Client;
   if (host && database && user && password) {
@@ -18,7 +18,11 @@ async function main() {
       ssl: { rejectUnauthorized: false },
     });
   } else {
-    const url = process.env.POSTGRES_URL_NON_POOLING || process.env.POSTGRES_URL;
+    const url =
+      process.env.POSTGRES_URL_NON_POOLING ||
+      process.env.POSTGRES_URL ||
+      process.env.Cacblaze_POSTGRES_URL_NON_POOLING ||
+      process.env.Cacblaze_POSTGRES_URL;
     if (!url) {
       console.error('Missing POSTGRES_URL[_NON_POOLING] or discrete POSTGRES_* parameters');
       process.exit(2);
