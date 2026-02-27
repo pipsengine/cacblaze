@@ -24,7 +24,12 @@ export default function LoginClient() {
       await signIn(email, password);
       router.push(next);
     } catch (err: any) {
-      setError(err.message || 'Failed to sign in');
+      const msg = err?.message || 'Failed to sign in';
+      const hint =
+        /failed to fetch|name_not_resolved|dns/i.test(msg)
+          ? ' • Check Supabase URL/Anon Key env vars'
+          : '';
+      setError(`${msg}${hint}`);
     } finally {
       setLoading(false);
     }
