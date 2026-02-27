@@ -26,11 +26,29 @@ export default function RegisterClient() {
       router.push(next);
     } catch (err: any) {
       const msg = err?.message || 'Failed to create account';
-      const hint =
-        /failed to fetch|name_not_resolved|dns/i.test(msg)
-          ? ' • Check Supabase URL/Anon Key env vars'
-          : '';
-      setError(`${msg}${hint}`);
+      const isNetwork = /failed to fetch|name_not_resolved|dns/i.test(msg);
+      if (isNetwork) {
+        try {
+          const res = await fetch('/api/auth/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password, fullName }),
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            throw new Error(data?.error || 'Registration failed');
+          }
+          router.push('/login');
+          return;
+        } catch (e: any) {
+          setError(e?.message || 'Registration failed (fallback)');
+          return;
+        }
+      } else {
+        const hint =
+          /invalid|email|password/i.test(msg) ? '' : ' • Check Supabase URL/Anon Key env vars';
+        setError(`${msg}${hint}`);
+      }
     } finally {
       setLoading(false);
     }
