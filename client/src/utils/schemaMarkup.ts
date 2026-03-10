@@ -1,12 +1,10 @@
-import {
-  Article,
-  WithContext,
-  FAQPage,
-  BreadcrumbList,
-  Organization,
-  Review,
-  HowTo,
-} from 'schema-dts';
+type WithContext<T> = T & { '@context': string };
+type Article = Record<string, any>;
+type FAQPage = Record<string, any>;
+type BreadcrumbList = Record<string, any>;
+type Organization = Record<string, any>;
+type Review = Record<string, any>;
+type HowTo = Record<string, any>;
 
 interface ArticleData {
   title: string;

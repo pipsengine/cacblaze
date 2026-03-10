@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 import path from 'path';
 
-const storagePath = path.join(__dirname, '../../database/cacblaze.db');
+const storagePath = process.env.SQLITE_PATH || path.resolve(process.cwd(), 'database', 'cacblaze.db');
 
 export const sequelize = new Sequelize({
   dialect: 'sqlite',

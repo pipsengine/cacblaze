@@ -38,7 +38,13 @@ export const login = async (req: Request, res: Response) => {
       effectiveRole = profile.role || user.role;
     }
 
-    const token = jwt.sign({ id: user.id, role: effectiveRole }, process.env.JWT_SECRET || 'default_secret_key', {
+    const secret =
+      process.env.JWT_SECRET || (process.env.NODE_ENV === 'production' ? '' : 'default_secret_key');
+    if (!secret) {
+      return res.status(500).json({ message: 'Server misconfigured' });
+    }
+
+    const token = jwt.sign({ id: user.id, role: effectiveRole }, secret, {
       expiresIn: '1d',
     });
 
@@ -83,7 +89,13 @@ export const register = async (req: Request, res: Response) => {
       console.error('Profile upsert skipped:', e instanceof Error ? e.message : e);
     }
 
-    const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET || 'default_secret_key', {
+    const secret =
+      process.env.JWT_SECRET || (process.env.NODE_ENV === 'production' ? '' : 'default_secret_key');
+    if (!secret) {
+      return res.status(500).json({ message: 'Server misconfigured' });
+    }
+
+    const token = jwt.sign({ id: user.id, role: user.role }, secret, {
       expiresIn: '1d',
     });
 

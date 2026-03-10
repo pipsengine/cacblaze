@@ -41,9 +41,9 @@
   "scripts": {
     "dev": "next dev -p 4028",
     "build": "next build",
-    "start": "next dev -p 4028",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "start": "next start",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,md,json}\"",
     "serve": "next start",
     "type-check": "tsc --noEmit"
@@ -62,11 +62,12 @@
     "nodemailer": "^8.0.1",
     "react": "19.0.3",
     "react-dom": "19.0.3",
-    "recharts": "^2.15.2",
-    "schema-dts": "^1.1.5"
+    "recharts": "^2.15.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@next/swc-wasm-nodejs": "^16.1.6",
+    "@next/swc-wasm-web": "^16.1.6",
     "@netlify/plugin-nextjs": "^5.11.1",
     "@types/node": "^20",
     "@types/nodemailer": "^7.0.9",

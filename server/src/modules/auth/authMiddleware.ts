@@ -9,7 +9,13 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
     return res.status(401).json({ message: 'Authentication required' });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET || 'default_secret_key', (err: any, user: any) => {
+  const secret =
+    process.env.JWT_SECRET || (process.env.NODE_ENV === 'production' ? '' : 'default_secret_key');
+  if (!secret) {
+    return res.status(500).json({ message: 'Server misconfigured' });
+  }
+
+  jwt.verify(token, secret, (err: any, user: any) => {
     if (err) {
       return res.status(403).json({ message: 'Invalid token' });
     }

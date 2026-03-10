@@ -1,7 +1,6 @@
 import express from 'express';
 import { AIContentService } from './AIContentService';
 import { ContentValidationService } from './ContentValidationService';
-import { AIPublishingScheduler } from './AIPublishingScheduler';
 import { Article } from '../articles/Article';
 import { Tip } from '../tips/Tip';
 import User from '../users/User';
@@ -9,7 +8,6 @@ import User from '../users/User';
 const router = express.Router();
 const aiService = new AIContentService();
 const validationService = new ContentValidationService();
-const scheduler = new AIPublishingScheduler();
 
 // Get AI publishing statistics
 router.get('/stats', async (req, res) => {

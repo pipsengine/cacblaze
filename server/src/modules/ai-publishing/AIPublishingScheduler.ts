@@ -35,16 +35,26 @@ export class AIPublishingScheduler {
   }
 
   private async getAdminUser(): Promise<User> {
-    // Try to find existing admin user
-    let adminUser = await User.findOne({ where: { email: 'ai-publisher@cacblaze.com' } });
+    const email = process.env.AI_PUBLISHER_EMAIL || 'ai-publisher@cacblaze.com';
+    const username = process.env.AI_PUBLISHER_USERNAME || 'ai-publisher';
+
+    let adminUser = await User.findOne({ where: { email } });
     
     if (!adminUser) {
-      // Create admin user for AI content
+      if (process.env.ALLOW_AI_PUBLISHER_AUTO_CREATE !== 'true') {
+        throw new Error('AI publisher user not found');
+      }
+
+      const password = process.env.AI_PUBLISHER_PASSWORD;
+      if (!password) {
+        throw new Error('AI_PUBLISHER_PASSWORD is required when auto-creating the AI publisher user');
+      }
+
       adminUser = await User.create({
-        username: 'ai-publisher',
-        email: 'ai-publisher@cacblaze.com',
-        password: 'auto-generated-password', // Should be hashed in production
-        role: 'admin'
+        username,
+        email,
+        password,
+        role: 'admin',
       });
     }
     
