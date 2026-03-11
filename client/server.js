@@ -13,7 +13,7 @@ if (!started) {
   const dev = false;
   const app = next({ dev, conf: { distDir: '.next' } });
   const handle = app.getRequestHandler();
-  const host = process.env.HOST || '127.0.0.1';
+const host = process.env.HOST || '0.0.0.0';
   app.prepare().then(() => {
     createServer((req, res) => handle(req, res)).listen(port, host);
   });

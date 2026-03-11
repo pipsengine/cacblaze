@@ -7,12 +7,15 @@ const nextConfig = {
   productionBrowserSourceMaps: true,
   distDir: process.env.DIST_DIR || '.next',
   output: 'standalone',
+  compress: true,
+  poweredByHeader: false,
 
   typescript: {
       ignoreBuildErrors: true,
     },
 
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
