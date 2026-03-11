@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import { getContentBySlug, getMetaBySlug } from '../../services/contentService';
@@ -87,12 +88,12 @@ export default async function CanonicalContentPage({ params }: PageProps) {
               >
                 Start Guide
               </a>
-              <a
+              <Link
                 href="/topics/education"
                 className="inline-flex items-center px-5 py-3 rounded-full bg-white/10 text-white font-semibold border border-white/20 hover:bg-white/15 transition"
               >
                 Browse Topics
-              </a>
+              </Link>
             </div>
             <div className="flex items-center gap-6 text-slate-200">
               {content.authorImage && (

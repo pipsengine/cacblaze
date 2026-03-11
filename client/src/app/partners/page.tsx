@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import Breadcrumb from '@/components/common/Breadcrumb';
@@ -162,12 +163,12 @@ export default function PartnersPage() {
                 Fill out our partnership inquiry form and a member of our business development team
                 will get back to you within 24 hours.
               </p>
-              <a
+              <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-teal-600 text-white font-bold rounded-full hover:bg-teal-700 transition-colors"
               >
                 Contact Partnerships
-              </a>
+              </Link>
             </div>
           </div>
         </section>

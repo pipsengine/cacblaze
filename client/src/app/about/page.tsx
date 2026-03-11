@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import Breadcrumb from '@/components/common/Breadcrumb';
@@ -198,13 +199,13 @@ export default function AboutPage() {
               Our team comes from top tech companies, publishing houses, and universities. We are
               united by a passion for clarity and quality.
             </p>
-            <a
+            <Link
               href="/careers"
               className="inline-flex items-center gap-2 px-8 py-4 bg-white text-indigo-900 font-bold rounded-full hover:bg-indigo-50 transition-colors"
             >
               Join Our Mission
               <Icon name="ArrowRightIcon" size={20} />
-            </a>
+            </Link>
           </div>
         </section>
       </main>

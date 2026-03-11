@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { headers } from 'next/headers';
+import Link from 'next/link';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 
@@ -178,12 +179,12 @@ export default async function AdvertisePage() {
               >
                 Email advertise@cacsms.com
               </a>
-              <a
+              <Link
                 href="/contact"
                 className="px-6 py-3 bg-gray-100 text-foreground rounded-lg font-semibold hover:bg-gray-200 transition-colors"
               >
                 Contact Form
-              </a>
+              </Link>
             </div>
           </div>
         </section>

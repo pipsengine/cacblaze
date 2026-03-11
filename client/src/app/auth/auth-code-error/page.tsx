@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 export default function AuthCodeError() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -23,12 +25,12 @@ export default function AuthCodeError() {
         <p className="text-secondary mb-6">
           There was an error during authentication. Please try again.
         </p>
-        <a
+        <Link
           href="/homepage"
           className="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-semibold"
         >
           Return to Home
-        </a>
+        </Link>
       </div>
     </div>
   );

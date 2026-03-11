@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
@@ -475,12 +476,12 @@ export default function CommentsSection({ articleId }: CommentsProps) {
       ) : (
         <div className="mb-8 bg-gray-50 rounded-xl p-6 border border-gray-200 text-center">
           <p className="text-secondary mb-4">Sign in to join the discussion</p>
-          <a
+          <Link
             href="/login"
             className="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-semibold"
           >
             Sign In
-          </a>
+          </Link>
         </div>
       )}
 

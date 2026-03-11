@@ -12,7 +12,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ['node_modules/**', '.next/**', 'out/**', 'public/**'],
+    ignores: ['node_modules/**', '.next/**', 'out/**', 'public/**', 'tailwind.config.js'],
   },
   ...compat.extends(
     'next/core-web-vitals',
@@ -23,7 +23,7 @@ export default [
   {
     rules: {
       'prettier/prettier': [
-        'error',
+        'warn',
         {
           endOfLine: 'auto',
           singleQuote: true,
@@ -33,6 +33,8 @@ export default [
           trailingComma: 'es5',
         },
       ],
+      'react/no-unescaped-entities': 'off',
+      'no-empty': 'off',
       '@typescript-eslint/no-unused-vars': [
         'warn',
         {

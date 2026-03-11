@@ -249,7 +249,7 @@ function parseMarkdownToSections(markdown: string) {
         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
         .replace(/`([^`]+)`/g, '<code>$1</code>')
         .replace(
-          /\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g,
+          /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g,
           '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
         );
     for (const raw of lines) {
@@ -284,7 +284,7 @@ function parseMarkdownToSections(markdown: string) {
   };
 
   const uniqueId = (title: string) => {
-    let base = slugify(title);
+    const base = slugify(title);
     let id = base;
     let i = 2;
     while (usedIds.has(id)) {
