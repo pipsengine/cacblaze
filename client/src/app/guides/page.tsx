@@ -14,7 +14,7 @@ import { getContextualImage, getCuratedImagesForCategory } from '@/utils/imageSe
 export const metadata: Metadata = {
   title: 'Guides - CACBLAZE',
   description:
-    'Browse 2,400+ comprehensive guides across finance, career, and life. Expert-verified content updated daily.',
+    'Browse in-depth guides across finance, work, business, productivity, and everyday decisions with practical explanations and next-step advice.',
   keywords: 'guides, tutorials, career advice, personal finance, self development',
   alternates: { canonical: '/guides' },
 };
@@ -256,10 +256,22 @@ export default function GuidesPage() {
               <h1 className="text-5xl lg:text-6xl font-bold text-foreground mb-6">
                 Explore Guides
               </h1>
-              <p className="text-xl text-secondary mb-8 leading-relaxed">
-                2,400+ comprehensive guides across every domain. Expert-verified, regularly updated,
-                and optimized for learning.
+              <p className="text-xl text-secondary mb-6 leading-relaxed">
+                Explore a robust library of practical guides covering money, work, business,
+                productivity, and everyday life decisions. Each topic is written to give readers
+                context, clarity, and useful next steps they can apply immediately.
               </p>
+              <div className="flex flex-wrap gap-3 text-sm font-medium text-foreground">
+                <span className="rounded-full bg-white px-4 py-2 border border-primary/10">
+                  Clear explanations
+                </span>
+                <span className="rounded-full bg-white px-4 py-2 border border-primary/10">
+                  Real-world examples
+                </span>
+                <span className="rounded-full bg-white px-4 py-2 border border-primary/10">
+                  Actionable next steps
+                </span>
+              </div>
             </div>
           </div>
         </section>

@@ -1,6 +1,14 @@
 import { Request, Response } from 'express';
 import { Comment, User, Reaction } from '../../models';
 
+type AuthenticatedRequest = Request & {
+  user?: {
+    id: number;
+    role: 'admin' | 'author' | 'user';
+    email?: string | null;
+  };
+};
+
 export const getComments = async (req: Request, res: Response) => {
   try {
     const { articleId } = req.params;
@@ -28,18 +36,25 @@ export const getComments = async (req: Request, res: Response) => {
   }
 };
 
-export const createComment = async (req: Request, res: Response) => {
+export const createComment = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { articleId, content, parentId } = req.body;
-    // @ts-ignore - user is attached by auth middleware
-    const userId = req.user.id; 
+    const userId = req.user?.id;
+
+    if (!userId) {
+      return res.status(401).json({ message: 'Authentication required' });
+    }
+
+    if (!articleId || typeof content !== 'string' || !content.trim()) {
+      return res.status(400).json({ message: 'articleId and content are required' });
+    }
 
     const comment = await Comment.create({
       articleId,
       userId,
-      content,
+      content: content.trim(),
       parentId: parentId || null,
-      status: 'approved', // Auto-approve for now
+      status: 'approved',
     });
 
     const newComment = await Comment.findByPk(comment.id, {
@@ -59,12 +74,19 @@ export const createComment = async (req: Request, res: Response) => {
   }
 };
 
-export const updateComment = async (req: Request, res: Response) => {
+export const updateComment = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { id } = req.params;
     const { content } = req.body;
-    // @ts-ignore
-    const userId = req.user.id;
+    const userId = req.user?.id;
+
+    if (!userId) {
+      return res.status(401).json({ message: 'Authentication required' });
+    }
+
+    if (typeof content !== 'string' || !content.trim()) {
+      return res.status(400).json({ message: 'Content is required' });
+    }
 
     const comment = await Comment.findOne({ where: { id, userId } });
 
@@ -72,7 +94,7 @@ export const updateComment = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'Comment not found or unauthorized' });
     }
 
-    comment.content = content;
+    comment.content = content.trim();
     await comment.save();
 
     res.json(comment);
@@ -82,11 +104,14 @@ export const updateComment = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteComment = async (req: Request, res: Response) => {
+export const deleteComment = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { id } = req.params;
-    // @ts-ignore
-    const userId = req.user.id;
+    const userId = req.user?.id;
+
+    if (!userId) {
+      return res.status(401).json({ message: 'Authentication required' });
+    }
 
     const comment = await Comment.findOne({ where: { id, userId } });
 
@@ -103,12 +128,20 @@ export const deleteComment = async (req: Request, res: Response) => {
   }
 };
 
-export const toggleReaction = async (req: Request, res: Response) => {
+export const toggleReaction = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const { id } = req.params; // commentId
+    const { id } = req.params;
     const { reactionType } = req.body;
-    // @ts-ignore
-    const userId = req.user.id;
+    const userId = req.user?.id;
+    const allowedReactions = new Set(['like', 'helpful', 'insightful', 'love']);
+
+    if (!userId) {
+      return res.status(401).json({ message: 'Authentication required' });
+    }
+
+    if (typeof reactionType !== 'string' || !allowedReactions.has(reactionType)) {
+      return res.status(400).json({ message: 'Invalid reaction type' });
+    }
 
     const existingReaction = await Reaction.findOne({
       where: { commentId: id, userId, reactionType },

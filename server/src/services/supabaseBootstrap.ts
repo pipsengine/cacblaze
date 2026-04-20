@@ -1,5 +1,14 @@
 import 'dotenv/config';
-import { Client } from 'pg';
+
+type PgQueryResult = {
+  rows: Array<Record<string, unknown>>;
+};
+
+type PgClientLike = {
+  connect: () => Promise<void>;
+  query: (sql: string) => Promise<PgQueryResult>;
+  end: () => Promise<void>;
+};
 
 function hasSupabaseEnv(): boolean {
   return !!(
@@ -10,16 +19,29 @@ function hasSupabaseEnv(): boolean {
   );
 }
 
-async function getClient(): Promise<Client | null> {
+async function getClient(): Promise<PgClientLike | null> {
   if (!hasSupabaseEnv()) return null;
-  const client = new Client({
-    host: process.env.POSTGRES_HOST!,
+
+  let ClientCtor: new (config: Record<string, unknown>) => PgClientLike;
+  try {
+    const pgModule = require('pg') as {
+      Client: new (config: Record<string, unknown>) => PgClientLike;
+    };
+    ClientCtor = pgModule.Client;
+  } catch {
+    console.warn('[SupabaseBootstrap] Skipped: optional pg dependency is not installed');
+    return null;
+  }
+
+  const client = new ClientCtor({
+    host: process.env.POSTGRES_HOST,
     port: parseInt(process.env.POSTGRES_PORT || '5432', 10),
-    user: process.env.POSTGRES_USER!,
-    password: process.env.POSTGRES_PASSWORD!,
-    database: process.env.POSTGRES_DATABASE!,
+    user: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DATABASE,
     ssl: { rejectUnauthorized: false },
   });
+
   await client.connect();
   return client;
 }
@@ -28,7 +50,7 @@ export async function runSupabaseBootstrap(): Promise<boolean> {
   if (process.env.SUPABASE_AUTO_MIGRATE !== 'true') {
     return false;
   }
-  let client: Client | null = null;
+  let client: PgClientLike | null = null;
   try {
     client = await getClient();
   } catch (e) {

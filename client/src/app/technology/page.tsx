@@ -9,7 +9,8 @@ import { getContextualImage, getCuratedImagesForCategory } from '@/utils/imageSe
 
 export const metadata: Metadata = {
   title: 'Technology - CACBLAZE',
-  description: 'Explore our comprehensive technology guides, troubleshooting tips, and reviews.',
+  description:
+    'Explore technology guides for devices, connectivity, digital safety, online services, troubleshooting, and practical modern tools.',
   keywords: 'technology, smartphones, internet, social media, online safety, ai tools',
 };
 
@@ -341,10 +342,16 @@ export default function TechnologyPage() {
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
                 Technology Simplified
               </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Expert guides, troubleshooting tips, and reviews to help you master your digital
-                life.
+              <p className="text-xl text-gray-600 mb-6 leading-relaxed">
+                Navigate digital life with more confidence through practical help on devices,
+                internet access, app issues, security, online identity, payments, and modern work
+                tools. The focus is clarity, safety, and usable solutions.
               </p>
+              <div className="flex flex-wrap gap-3 text-sm font-medium text-foreground">
+                <span className="rounded-full bg-white px-4 py-2 border border-blue-100">Device troubleshooting</span>
+                <span className="rounded-full bg-white px-4 py-2 border border-blue-100">Digital safety</span>
+                <span className="rounded-full bg-white px-4 py-2 border border-blue-100">Practical tech help</span>
+              </div>
             </div>
           </div>
         </section>

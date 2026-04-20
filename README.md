@@ -50,10 +50,17 @@ npm run dev -w @cacblaze/client
 
 ## Database
 
-The project uses SQLite. The database file is located at `server/database/cacblaze.db`.
-On the first run, the server will seed an admin user with the following credentials:
-- Username: `cacblaze`
-- Password: `@dm1n.c0m`
+The project uses SQLite by default for local development. The database file is located at `server/database/cacblaze.db`.
+For production, configure `DATABASE_URL` or the `POSTGRES_*` environment variables.
+
+## Environment setup
+
+Copy the example environment files before starting:
+
+- `client/.env.example` → `client/.env.local`
+- `server/.env.example` → `server/.env`
+
+Admin seeding is **opt-in** and only runs when `SEED_ADMIN=true` and `ADMIN_SEED_PASSWORD` are set.
 
 ## API Routes
 

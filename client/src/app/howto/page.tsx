@@ -10,7 +10,7 @@ import { getContextualImage, getCuratedImagesForCategory } from '@/utils/imageSe
 export const metadata: Metadata = {
   title: 'How-To Guides - CACBLAZE',
   description:
-    'Step-by-step instructions for technology, business, home maintenance, and cooking. Learn how to do anything.',
+    'Follow step-by-step instructions for digital tasks, business setup, home routines, cooking, and practical everyday problem-solving.',
   keywords: 'how to, tutorials, diy, instructions, step by step',
   alternates: { canonical: '/howto' },
 };
@@ -279,10 +279,16 @@ export default function HowToPage() {
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
                 How To Do Anything
               </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Practical, easy-to-follow instructions for technology, business, cooking, and daily
-                life challenges.
+              <p className="text-xl text-gray-600 mb-6 leading-relaxed">
+                Find practical, easy-to-follow instructions for technology, business, household
+                tasks, and everyday life challenges. These tutorials are built for clarity, speed,
+                and confident execution from start to finish.
               </p>
+              <div className="flex flex-wrap gap-3 text-sm font-medium text-foreground">
+                <span className="rounded-full bg-white px-4 py-2 border border-green-100">Step-by-step flow</span>
+                <span className="rounded-full bg-white px-4 py-2 border border-green-100">Beginner-friendly help</span>
+                <span className="rounded-full bg-white px-4 py-2 border border-green-100">Practical outcomes</span>
+              </div>
             </div>
           </div>
         </section>

@@ -40,6 +40,11 @@ function createSequelize(): Sequelize {
 
   const storagePath =
     process.env.SQLITE_PATH || path.resolve(process.cwd(), 'database', 'cacblaze.db');
+
+  if (process.env.NODE_ENV === 'production') {
+    console.warn(`[Database] Postgres env not found. Falling back to SQLite at ${storagePath}`);
+  }
+
   return new Sequelize({
     dialect: 'sqlite',
     storage: storagePath,
@@ -53,7 +58,10 @@ export const connectDB = async () => {
   try {
     await sequelize.authenticate();
     await sequelize.sync();
+    console.log(`[Database] Connected successfully using ${sequelize.getDialect()}`);
+    return sequelize;
   } catch (error) {
     console.error('Unable to connect to the database:', error);
+    throw error;
   }
 };

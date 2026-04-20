@@ -7,6 +7,8 @@ const TrustAuthority = () => {
       id: 'stat_1',
       value: '10,000+',
       label: 'Verified Articles',
+      description:
+        'In-depth guides, reviews, and explainers built to answer practical questions with clarity.',
       icon: 'DocumentCheckIcon' as const,
       color: 'bg-blue-50 text-blue-600',
     },
@@ -14,20 +16,26 @@ const TrustAuthority = () => {
       id: 'stat_2',
       value: '200+',
       label: 'Expert Contributors',
+      description:
+        'Writers, researchers, and specialists helping shape content readers can rely on.',
       icon: 'UserGroupIcon' as const,
       color: 'bg-green-50 text-green-600',
     },
     {
       id: 'stat_3',
-      value: '50ms',
-      label: 'Average Search Time',
+      value: 'Fast',
+      label: 'Search Experience',
+      description:
+        'Quick discovery tools designed to help readers find useful answers without friction.',
       icon: 'BoltIcon' as const,
       color: 'bg-amber-50 text-amber-600',
     },
     {
       id: 'stat_4',
-      value: '4.9/5',
-      label: 'User Rating',
+      value: 'Trusted',
+      label: 'Reader Confidence',
+      description:
+        'Content is organized to support confident decisions, better comparisons, and clear next steps.',
       icon: 'StarIcon' as const,
       color: 'bg-purple-50 text-purple-600',
     },
@@ -36,20 +44,23 @@ const TrustAuthority = () => {
   const trustBadges = [
     {
       id: 'badge_1',
-      title: 'Expert Verified',
-      description: 'All content reviewed by domain experts',
+      title: 'Expert Reviewed',
+      description:
+        'Important content is checked for usefulness, accuracy, and real-world relevance before it reaches readers.',
       icon: 'CheckBadgeIcon' as const,
     },
     {
       id: 'badge_2',
-      title: 'Updated Daily',
-      description: 'Fresh content added every day',
+      title: 'Continuously Updated',
+      description:
+        'Pages are refreshed to reflect changing tools, trends, opportunities, and everyday user needs.',
       icon: 'ArrowPathIcon' as const,
     },
     {
       id: 'badge_3',
-      title: 'AI-Optimized',
-      description: 'Structured for AI-era search',
+      title: 'Structured for Discovery',
+      description:
+        'Our publishing approach makes content easier to scan, search, understand, and act on.',
       icon: 'CpuChipIcon' as const,
     },
   ];
@@ -65,18 +76,19 @@ const TrustAuthority = () => {
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Built on Trust & Expertise
           </h2>
-          <p className="text-xl text-secondary max-w-2xl mx-auto">
-            Every piece of content is verified, structured, and optimized for accuracy and
-            discoverability.
+          <p className="text-xl text-secondary max-w-3xl mx-auto leading-8">
+            CACBLAZE is designed to give readers dependable information they can actually use —
+            from step-by-step guidance and honest reviews to education, technology, lifestyle,
+            and local resources that support better decisions.
           </p>
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {stats.map((stat) => (
             <div
               key={stat.id}
-              className="p-8 rounded-3xl border border-gray-200 bg-white text-center hover-lift"
+              className="p-8 rounded-3xl border border-gray-200 bg-white text-center hover-lift min-h-[240px]"
             >
               <div
                 className={`w-16 h-16 rounded-2xl ${stat.color} flex items-center justify-center mx-auto mb-4`}
@@ -84,7 +96,8 @@ const TrustAuthority = () => {
                 <Icon name={stat.icon} size={32} />
               </div>
               <div className="text-4xl font-bold text-foreground mb-2">{stat.value}</div>
-              <div className="text-sm text-secondary font-medium">{stat.label}</div>
+              <div className="text-sm text-secondary font-semibold mb-3">{stat.label}</div>
+              <p className="text-sm text-secondary leading-6">{stat.description}</p>
             </div>
           ))}
         </div>
@@ -94,7 +107,7 @@ const TrustAuthority = () => {
           {trustBadges.map((badge) => (
             <div
               key={badge.id}
-              className="p-6 rounded-3xl border-2 border-primary/20 bg-primary/5 text-center"
+              className="p-6 rounded-3xl border-2 border-primary/20 bg-primary/5 text-center min-h-[190px]"
             >
               <div className="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center mx-auto mb-4">
                 <Icon name={badge.icon} size={24} className="text-white" />
@@ -106,9 +119,14 @@ const TrustAuthority = () => {
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-16 text-center">
-          <p className="text-lg text-secondary mb-6">
-            Join 200+ domain experts contributing to CACBLAZE
+        <div className="mt-16 text-center max-w-3xl mx-auto">
+          <p className="text-lg text-secondary mb-3">
+            We welcome subject-matter experts, experienced writers, and thoughtful reviewers who
+            want to help build a more useful knowledge platform.
+          </p>
+          <p className="text-base text-secondary mb-6">
+            If you have practical insight to share, CACBLAZE offers a place to contribute content
+            that is clear, responsible, and genuinely valuable to readers.
           </p>
           <Link
             href="/contact?reason=contribute"

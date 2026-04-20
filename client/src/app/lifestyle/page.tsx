@@ -9,7 +9,8 @@ import { menuData } from '@/data/menuData';
 
 export const metadata: Metadata = {
   title: 'Lifestyle - CACBLAZE',
-  description: 'Health, wellness, parenting, and travel guides to help you live better every day.',
+  description:
+    'Explore practical guidance for health, wellness, routines, parenting, travel, and everyday living with grounded, useful advice.',
   keywords: 'health, wellness, lifestyle, parenting, travel, habits',
 };
 
@@ -115,9 +116,16 @@ export default function LifestylePage() {
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
                 Health, Wellness & Lifestyle
               </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Practical guides for healthy living, mental wellness, family life, and travel.
+              <p className="text-xl text-gray-600 mb-6 leading-relaxed">
+                Discover realistic guidance for healthy habits, mental wellness, parenting,
+                home routines, and travel planning. The content is designed to support better daily
+                living without overwhelming readers.
               </p>
+              <div className="flex flex-wrap gap-3 text-sm font-medium text-foreground">
+                <span className="rounded-full bg-white px-4 py-2 border border-rose-100">Healthier routines</span>
+                <span className="rounded-full bg-white px-4 py-2 border border-rose-100">Family support</span>
+                <span className="rounded-full bg-white px-4 py-2 border border-rose-100">Better daily living</span>
+              </div>
             </div>
           </div>
         </section>

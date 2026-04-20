@@ -5,10 +5,22 @@ import { User } from '../../models';
 import { Op } from 'sequelize';
 import { getUserProfileByEmail, upsertUserProfile } from '../../services/supabase';
 
+type AuthenticatedRequest = Request & {
+  user?: {
+    id: number;
+    role: 'admin' | 'author' | 'user';
+    email?: string | null;
+  };
+};
+
 export const login = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body; // Changed from username to email to match frontend
-    
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Email and password are required' });
+    }
+
     // Allow login with either username or email
     const user = await User.findOne({ 
       where: { 
@@ -59,6 +71,10 @@ export const register = async (req: Request, res: Response) => {
   try {
     const { email, password, fullName, username } = req.body;
 
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Email and password are required' });
+    }
+
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
@@ -106,10 +122,14 @@ export const register = async (req: Request, res: Response) => {
   }
 };
 
-export const getMe = async (req: Request, res: Response) => {
+export const getMe = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    // @ts-ignore
-    const userId = req.user.id;
+    const userId = req.user?.id;
+
+    if (!userId) {
+      return res.status(401).json({ message: 'Authentication required' });
+    }
+
     const user = await User.findByPk(userId, {
       attributes: ['id', 'username', 'email', 'role']
     });

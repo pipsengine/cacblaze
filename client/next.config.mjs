@@ -10,10 +10,6 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
 
-  typescript: {
-      ignoreBuildErrors: true,
-    },
-
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -205,10 +201,6 @@ const nextConfig = {
       ];
     }
     return [];
-  }
-,
-  turbopack: {
-    root: path.resolve(__dirname, '..'),
   },
 };
 

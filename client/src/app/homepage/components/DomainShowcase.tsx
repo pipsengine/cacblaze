@@ -6,6 +6,7 @@ interface Domain {
   title: string;
   description: string;
   count: string;
+  highlights: [string, string];
   icon:
     | 'BookOpenIcon'
     | 'WrenchScrewdriverIcon'
@@ -23,8 +24,10 @@ const DomainShowcase = () => {
     {
       id: 'domain_guides',
       title: 'Guides',
-      description: 'Comprehensive guides on every topic',
+      description:
+        'Deep, practical explainers for money, work, business, and everyday decisions, written to help readers understand the why, the how, and the next best step.',
       count: '2,400+',
+      highlights: ['Money and work', 'Actionable explainers'],
       icon: 'BookOpenIcon',
       color: 'bg-blue-50 text-blue-600 border-blue-200',
       href: '/guides',
@@ -32,8 +35,10 @@ const DomainShowcase = () => {
     {
       id: 'domain_howto',
       title: 'How-To',
-      description: 'Step-by-step tutorials and walkthroughs',
+      description:
+        'Clear step-by-step tutorials, walkthroughs, and practical fixes for real tasks, from getting started quickly to solving common problems with confidence.',
       count: '850+',
+      highlights: ['Beginner-friendly steps', 'Practical solutions'],
       icon: 'WrenchScrewdriverIcon',
       color: 'bg-green-50 text-green-600 border-green-200',
       href: '/howto',
@@ -41,8 +46,10 @@ const DomainShowcase = () => {
     {
       id: 'domain_reviews',
       title: 'Reviews',
-      description: 'In-depth product and service reviews',
+      description:
+        'Balanced reviews of products, tools, apps, and services that show real strengths, trade-offs, value for money, and who each option is best for.',
       count: '320+',
+      highlights: ['Honest pros and cons', 'Smarter buying'],
       icon: 'StarIcon',
       color: 'bg-amber-50 text-amber-600 border-amber-200',
       href: '/reviews',
@@ -50,8 +57,10 @@ const DomainShowcase = () => {
     {
       id: 'domain_education',
       title: 'Education',
-      description: 'Learning paths and educational resources',
+      description:
+        'Study resources, exam preparation help, digital learning strategies, and skill-building content for students, professionals, and lifelong learners.',
       count: '1,100+',
+      highlights: ['Study success', 'Learning roadmaps'],
       icon: 'AcademicCapIcon',
       color: 'bg-purple-50 text-purple-600 border-purple-200',
       href: '/education',
@@ -59,8 +68,10 @@ const DomainShowcase = () => {
     {
       id: 'domain_technology',
       title: 'Technology',
-      description: 'Tech insights and troubleshooting',
+      description:
+        'Useful tech guidance covering devices, apps, digital safety, troubleshooting, connectivity, and online tools that make modern life easier to manage.',
       count: '940+',
+      highlights: ['Digital safety', 'Device help'],
       icon: 'CodeBracketIcon',
       color: 'bg-indigo-50 text-indigo-600 border-indigo-200',
       href: '/technology',
@@ -68,8 +79,10 @@ const DomainShowcase = () => {
     {
       id: 'domain_lifestyle',
       title: 'Lifestyle',
-      description: 'Wellness, productivity, and life tips',
+      description:
+        'Trusted advice for wellness, routines, productivity, self-development, and better daily living, with grounded tips people can realistically apply.',
       count: '680+',
+      highlights: ['Wellness habits', 'Better routines'],
       icon: 'HeartIcon',
       color: 'bg-pink-50 text-pink-600 border-pink-200',
       href: '/lifestyle',
@@ -77,8 +90,10 @@ const DomainShowcase = () => {
     {
       id: 'domain_local',
       title: 'Local Resources',
-      description: 'City guides and local directories',
+      description:
+        'City guides, local directories, and location-aware recommendations to help readers discover useful services, opportunities, and trusted places nearby.',
       count: '420+',
+      highlights: ['City guidance', 'Local discoveries'],
       icon: 'MapPinIcon',
       color: 'bg-teal-50 text-teal-600 border-teal-200',
       href: '/local-resources',
@@ -96,9 +111,9 @@ const DomainShowcase = () => {
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Knowledge Across Every Domain
           </h2>
-          <p className="text-xl text-secondary max-w-2xl mx-auto">
-            From technology to lifestyle, find authoritative content on the topics that matter to
-            you.
+          <p className="text-xl text-secondary max-w-3xl mx-auto">
+            Explore robust content hubs built around real needs, from learning and career growth to
+            technology, reviews, wellness, and trusted local discovery.
           </p>
         </div>
 
@@ -108,7 +123,7 @@ const DomainShowcase = () => {
             <Link
               key={domain.id}
               href={domain.href}
-              className="group relative p-8 rounded-3xl border-2 bg-white hover:border-primary transition-all hover-lift"
+              className="group relative flex h-full min-h-[290px] flex-col p-8 rounded-3xl border-2 bg-white hover:border-primary transition-all hover-lift"
             >
               <div
                 className={`w-16 h-16 rounded-2xl ${domain.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}
@@ -118,8 +133,18 @@ const DomainShowcase = () => {
               <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                 {domain.title}
               </h3>
-              <p className="text-secondary mb-4 leading-relaxed">{domain.description}</p>
-              <div className="flex items-center justify-between">
+              <p className="text-secondary mb-5 leading-relaxed">{domain.description}</p>
+              <div className="flex flex-wrap gap-2 mb-5">
+                {domain.highlights.map((item) => (
+                  <span
+                    key={`${domain.id}-${item}`}
+                    className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-xs font-medium text-foreground"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-auto flex items-center justify-between">
                 <span className="text-sm font-semibold text-muted-foreground">
                   {domain.count} Articles
                 </span>

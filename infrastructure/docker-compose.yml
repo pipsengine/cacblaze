@@ -5,21 +5,48 @@ services:
     build:
       context: ../
       dockerfile: infrastructure/Dockerfile.server
+    restart: unless-stopped
     ports:
       - "3001:3001"
     volumes:
       - ../server/database:/app/server/database
     environment:
-      - PORT=3001
-      - NODE_ENV=production
+      PORT: 3001
+      NODE_ENV: production
+      SQLITE_PATH: /app/server/database/cacblaze.db
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:4028}
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+      SUPABASE_URL: ${SUPABASE_URL:-}
+      SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY:-}
+      SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY:-}
+      NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL:-}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY:-}
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/health').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
 
   client:
     build:
       context: ../
       dockerfile: infrastructure/Dockerfile.client
+    restart: unless-stopped
     ports:
       - "4028:4028"
     depends_on:
-      - server
+      server:
+        condition: service_healthy
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:3001/api
+      PORT: 4028
+      HOST: 0.0.0.0
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3001/api}
+      NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL:-}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY:-}
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4028').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 30s

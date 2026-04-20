@@ -10,7 +10,7 @@ import { getContextualImage, getCuratedImagesForCategory } from '@/utils/imageSe
 export const metadata: Metadata = {
   title: 'Education & Learning Hub - CACBLAZE',
   description:
-    'Resources for students, professionals, and lifelong learners. Study guides, career advice, and skill development.',
+    'Discover study support, exam preparation, career development, and skill-building resources for students, professionals, and lifelong learners.',
   keywords: 'education, learning, study tips, career advice, online courses, skill building',
   alternates: { canonical: '/education' },
 };
@@ -207,10 +207,22 @@ export default function EducationPage() {
                 Knowledge Hub
               </span>
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">Learn & Grow</h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Empowering you with the best educational resources, career advice, and
-                skill-building guides for a brighter future.
+              <p className="text-xl text-gray-600 mb-6 leading-relaxed">
+                Access a stronger learning hub built for academic progress, career readiness, and
+                long-term skill development. Whether you are preparing for exams or building new
+                capabilities, the goal is practical growth that lasts.
               </p>
+              <div className="flex flex-wrap gap-3 text-sm font-medium text-foreground">
+                <span className="rounded-full bg-white px-4 py-2 border border-sky-100">
+                  Exam support
+                </span>
+                <span className="rounded-full bg-white px-4 py-2 border border-sky-100">
+                  Study systems
+                </span>
+                <span className="rounded-full bg-white px-4 py-2 border border-sky-100">
+                  Career growth
+                </span>
+              </div>
             </div>
           </div>
         </section>

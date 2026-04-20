@@ -10,7 +10,7 @@ import { getContextualImage, getCuratedImagesForCategory } from '@/utils/imageSe
 export const metadata: Metadata = {
   title: 'Reviews & Recommendations - CACBLAZE',
   description:
-    'Unbiased reviews of the latest technology, software, local businesses, books, and services.',
+    'Read balanced reviews of technology, software, services, books, and local businesses with pros, cons, pricing context, and recommendations.',
   keywords:
     'reviews, tech reviews, software reviews, business reviews, book reviews, product comparisons',
   alternates: { canonical: '/reviews' },
@@ -300,10 +300,16 @@ export default function ReviewsPage() {
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
                 Reviews You Can Trust
               </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Unbiased, in-depth reviews of technology, software, local businesses, and services
-                to help you make informed decisions.
+              <p className="text-xl text-gray-600 mb-6 leading-relaxed">
+                Compare products, tools, subscriptions, and services with confidence. Our reviews are
+                designed to highlight strengths, trade-offs, pricing value, and who each option is
+                best suited for before you commit.
               </p>
+              <div className="flex flex-wrap gap-3 text-sm font-medium text-foreground">
+                <span className="rounded-full bg-white px-4 py-2 border border-indigo-100">Pros and cons</span>
+                <span className="rounded-full bg-white px-4 py-2 border border-indigo-100">Value for money</span>
+                <span className="rounded-full bg-white px-4 py-2 border border-indigo-100">Practical recommendations</span>
+              </div>
             </div>
           </div>
         </section>

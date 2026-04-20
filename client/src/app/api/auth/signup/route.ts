@@ -52,9 +52,11 @@ export async function POST(req: NextRequest) {
       userId: data?.user?.id ?? null,
       message: 'Check your email to confirm.',
     });
-  } catch (e: any) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Unexpected error';
+
     return NextResponse.json(
-      { error: e?.message || 'Unexpected error' },
+      { error: message },
       { status: 500, headers: { 'Cache-Control': 'no-store' } }
     );
   }

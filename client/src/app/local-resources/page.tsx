@@ -1,9 +1,18 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import { menuData } from '@/data/menuData';
+
+export const metadata: Metadata = {
+  title: 'Local Resources - CACBLAZE',
+  description:
+    'Find Nigerian-focused local guides, community directories, city resources, and practical help for everyday services and discovery.',
+  keywords: 'local resources, Nigeria, city guides, services, directories, community resources',
+  alternates: { canonical: '/local-resources' },
+};
 
 const LocalResourcesPage = () => {
   const localResourcesMenu = menuData?.mainMenu?.find((item) => item?.id === 'local');
@@ -25,9 +34,22 @@ const LocalResourcesPage = () => {
               <Icon name="MapPinIcon" size={32} className="text-primary" />
             </div>
             <h1 className="text-5xl font-bold text-foreground mb-4">Local Resources</h1>
-            <p className="text-xl text-secondary max-w-2xl mx-auto">
-              Nigerian-specific guides for government services, local businesses, and community
-              resources.
+            <p className="text-xl text-secondary max-w-3xl mx-auto mb-6">
+              Discover Nigerian-focused local guides for community services, trusted businesses,
+              practical city information, and everyday decisions that benefit from local context.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 text-sm font-medium text-foreground">
+              <span className="rounded-full bg-white px-4 py-2 border border-primary/10">City discovery</span>
+              <span className="rounded-full bg-white px-4 py-2 border border-primary/10">Useful services</span>
+              <span className="rounded-full bg-white px-4 py-2 border border-primary/10">Local guidance</span>
+            </div>
+          </div>
+
+          <div className="max-w-3xl mb-10">
+            <p className="text-base text-secondary leading-relaxed">
+              These collections are organized to help readers quickly find reliable places,
+              resources, and locally relevant information without digging through scattered sources.
+              Browse by category to get practical direction faster.
             </p>
           </div>
 
