@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import { Feed } from 'feed';
 import { createClient } from '@/lib/supabase/server';
@@ -40,9 +40,12 @@ const CATEGORY_METADATA: Record<string, { title: string; description: string }> 
   },
 };
 
-export async function GET(request: Request, { params }: { params: { category: string } }) {
+export async function GET(
+  _request: NextRequest,
+  { params }: { params: Promise<{ category: string }> }
+) {
   try {
-    const category = params.category;
+    const { category } = await params;
     const metadata = CATEGORY_METADATA[category];
 
     if (!metadata) {
