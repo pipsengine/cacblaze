@@ -1,13 +1,54 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 
+const allowedFrequencies = new Set(['daily', 'weekly', 'monthly']);
+const requestStore = new Map<string, { count: number; resetAt: number }>();
+
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isRateLimited(key: string, windowMs: number, max: number) {
+  const now = Date.now();
+  const current = requestStore.get(key);
+
+  if (!current || current.resetAt <= now) {
+    requestStore.set(key, { count: 1, resetAt: now + windowMs });
+    return false;
+  }
+
+  if (current.count >= max) {
+    return true;
+  }
+
+  current.count += 1;
+  requestStore.set(key, current);
+  return false;
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { email, topics, frequency = 'weekly' } = body;
+    const rawEmail = typeof body?.email === 'string' ? body.email.trim().toLowerCase() : '';
+    const frequency = typeof body?.frequency === 'string' ? body.frequency : 'weekly';
+    const topics = Array.isArray(body?.topics)
+      ? body.topics.filter((topic): topic is string => typeof topic === 'string').slice(0, 6)
+      : [];
+    const forwardedFor = request.headers.get('x-forwarded-for') || 'unknown';
+    const rateKey = `newsletter:${forwardedFor.split(',')[0]?.trim()}:${rawEmail || 'anonymous'}`;
 
-    if (!email || !topics || !Array.isArray(topics)) {
-      return NextResponse.json({ error: 'Email and topics array are required' }, { status: 400 });
+    if (isRateLimited(rateKey, 15 * 60 * 1000, 6)) {
+      return NextResponse.json(
+        { error: 'Too many subscription attempts. Please try again shortly.' },
+        { status: 429 }
+      );
+    }
+
+    if (!rawEmail || !isValidEmail(rawEmail) || topics.length === 0 || !allowedFrequencies.has(frequency)) {
+      return NextResponse.json(
+        { error: 'Please enter a valid email, topic choice, and delivery frequency' },
+        { status: 400 }
+      );
     }
 
     const supabase = await createClient();
@@ -22,7 +63,7 @@ export async function POST(request: Request) {
       .from('newsletter_subscriptions')
       .upsert(
         {
-          email,
+          email: rawEmail,
           user_id: user?.id || null,
           subscribed_topics: topics,
           frequency,

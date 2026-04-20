@@ -13,6 +13,43 @@ type AuthenticatedRequest = Request & {
   };
 };
 
+function normalizeEmail(value: string) {
+  return value.trim().toLowerCase();
+}
+
+function isStrongPassword(password: string) {
+  return (
+    password.length >= 8 &&
+    /[a-z]/.test(password) &&
+    /[A-Z]/.test(password) &&
+    /\d/.test(password)
+  );
+}
+
+function sanitizeUsername(value: string) {
+  const normalized = value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9_]/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_+|_+$/g, '');
+
+  return normalized || 'user';
+}
+
+async function buildAvailableUsername(baseValue: string) {
+  const base = sanitizeUsername(baseValue);
+  let candidate = base;
+  let suffix = 1;
+
+  while (await User.findOne({ where: { username: candidate } })) {
+    suffix += 1;
+    candidate = `${base}${suffix}`;
+  }
+
+  return candidate;
+}
+
 export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
@@ -21,14 +58,14 @@ export const login = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Email and password are required' });
     }
 
+    const rawIdentifier = String(email).trim();
+    const normalizedEmail = normalizeEmail(rawIdentifier);
+
     // Allow login with either username or email
-    const user = await User.findOne({ 
-      where: { 
-        [Op.or]: [
-          { email: email },
-          { username: email } // In case they send username in email field
-        ]
-      } 
+    const user = await User.findOne({
+      where: {
+        [Op.or]: [{ email: normalizedEmail }, { username: rawIdentifier }],
+      },
     });
 
     if (!user) {
@@ -56,8 +93,9 @@ export const login = async (req: Request, res: Response) => {
       return res.status(500).json({ message: 'Server misconfigured' });
     }
 
+    const jwtExpiresIn = (process.env.JWT_EXPIRES_IN || '1d') as jwt.SignOptions['expiresIn'];
     const token = jwt.sign({ id: user.id, role: effectiveRole }, secret, {
-      expiresIn: '1d',
+      expiresIn: jwtExpiresIn,
     });
 
     res.json({ token, user: { id: user.id, username: user.username, email: user.email, role: effectiveRole } });
@@ -75,19 +113,34 @@ export const register = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Email and password are required' });
     }
 
-    const existingUser = await User.findOne({ where: { email } });
+    const normalizedEmail = normalizeEmail(String(email));
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
+      return res.status(400).json({ message: 'Please provide a valid email address' });
+    }
+
+    if (!isStrongPassword(String(password))) {
+      return res.status(400).json({
+        message:
+          'Password must be at least 8 characters and include uppercase, lowercase, and a number',
+      });
+    }
+
+    if (!fullName || String(fullName).trim().length < 2) {
+      return res.status(400).json({ message: 'Please provide your full name' });
+    }
+
+    const existingUser = await User.findOne({ where: { email: normalizedEmail } });
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    // Generate username from email if not provided
-    const finalUsername = username || email.split('@')[0];
+    const finalUsername = await buildAvailableUsername(username || normalizedEmail.split('@')[0]);
 
     const user = await User.create({
-      email,
+      email: normalizedEmail,
       password,
       username: finalUsername,
-      role: 'user'
+      role: 'user',
     });
 
     // Ensure a Supabase profile exists for admin management
@@ -111,8 +164,9 @@ export const register = async (req: Request, res: Response) => {
       return res.status(500).json({ message: 'Server misconfigured' });
     }
 
+    const jwtExpiresIn = (process.env.JWT_EXPIRES_IN || '1d') as jwt.SignOptions['expiresIn'];
     const token = jwt.sign({ id: user.id, role: user.role }, secret, {
-      expiresIn: '1d',
+      expiresIn: jwtExpiresIn,
     });
 
     res.status(201).json({ token, user: { id: user.id, username: user.username, email: user.email, role: user.role } });

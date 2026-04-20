@@ -8,6 +8,8 @@ function createSequelize(): Sequelize {
   const pgUser = process.env.POSTGRES_USER || process.env.PGUSER;
   const pgPassword = process.env.POSTGRES_PASSWORD || process.env.PGPASSWORD;
   const pgDatabase = process.env.POSTGRES_DATABASE || process.env.PGDATABASE;
+  const requireManagedDb =
+    process.env.NODE_ENV === 'production' && process.env.REQUIRE_MANAGED_DB === 'true';
 
   if (databaseUrl) {
     const useSSL = (process.env.POSTGRES_SSL || '').toLowerCase() === 'true';
@@ -40,6 +42,12 @@ function createSequelize(): Sequelize {
 
   const storagePath =
     process.env.SQLITE_PATH || path.resolve(process.cwd(), 'database', 'cacblaze.db');
+
+  if (requireManagedDb) {
+    throw new Error(
+      'Managed Postgres is required in production. Set DATABASE_URL or POSTGRES_* variables.'
+    );
+  }
 
   if (process.env.NODE_ENV === 'production') {
     console.warn(`[Database] Postgres env not found. Falling back to SQLite at ${storagePath}`);

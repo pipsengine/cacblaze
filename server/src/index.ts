@@ -11,15 +11,18 @@ import { AIPublishingScheduler } from './modules/ai-publishing/AIPublishingSched
 const app = express();
 const DEFAULT_PORT = Number(process.env.PORT || 3001);
 const MAX_PORT_RETRIES = Number(process.env.PORT_RETRY_COUNT || 10);
+const isProduction = process.env.NODE_ENV === 'production';
 const allowedOrigins = (process.env.CORS_ORIGIN || '')
   .split(',')
   .map((origin) => origin.trim())
   .filter(Boolean);
 
+app.set('trust proxy', 1);
+
 app.use(helmet());
 app.use(
   cors({
-    origin: allowedOrigins.length > 0 ? allowedOrigins : true,
+    origin: allowedOrigins.length > 0 ? allowedOrigins : isProduction ? false : true,
     credentials: true,
   })
 );

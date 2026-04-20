@@ -8,6 +8,7 @@ import FeaturedArticle from './homepage/components/FeaturedArticle';
 import FeaturedGuides from './homepage/components/FeaturedGuides';
 import SearchShowcase from './homepage/components/SearchShowcase';
 import TrustAuthority from './homepage/components/TrustAuthority';
+import NewsletterSection from './homepage/components/NewsletterSection';
 import PersonalizedContent from '@/components/common/PersonalizedContent';
 import ContinueReading from '@/components/common/ContinueReading';
 
@@ -35,6 +36,7 @@ export default function RootHomepage() {
         <PersonalizedContent />
         <FeaturedGuides />
         <SearchShowcase />
+        <NewsletterSection />
         <TrustAuthority />
       </main>
       <Footer />

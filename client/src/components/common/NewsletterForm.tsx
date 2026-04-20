@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
+import { trackNewsletterSignup } from '@/lib/analytics';
 
 interface NewsletterFormProps {
   variant?: 'inline' | 'modal';
@@ -42,7 +43,7 @@ const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) 
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          email,
+          email: email.trim().toLowerCase(),
           topics: selectedTopics,
           frequency,
         }),
@@ -56,6 +57,7 @@ const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) 
 
       setSuccess(true);
       setEmail('');
+      trackNewsletterSignup(variant, frequency, selectedTopics.length);
       onSuccess?.();
 
       setTimeout(() => setSuccess(false), 5000);
@@ -154,6 +156,7 @@ const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) 
       {/* Submit Button */}
       <button
         type="submit"
+        data-analytics="newsletter-subscribe"
         disabled={loading || selectedTopics.length === 0}
         className="w-full bg-primary text-white font-semibold py-4 rounded-xl hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
       >

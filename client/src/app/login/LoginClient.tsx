@@ -42,7 +42,7 @@ export default function LoginClient() {
           <Link href="/" className="inline-block">
             <h1 className="text-4xl font-bold text-primary mb-2">CACBLAZE</h1>
           </Link>
-          <p className="text-secondary">Sign in to join the discussion</p>
+          <p className="text-secondary">Sign in to bookmark guides, join discussions, and follow fresh updates</p>
         </div>
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <h2 className="text-2xl font-bold text-foreground mb-6">Welcome Back</h2>
@@ -87,6 +87,7 @@ export default function LoginClient() {
             </div>
             <button
               type="submit"
+              data-analytics="login-submit"
               disabled={loading}
               className="w-full py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
             >

@@ -4,15 +4,26 @@ import { createClient } from '@/lib/supabase/server';
 export async function POST(req: NextRequest) {
   try {
     const { email, password, fullName } = await req.json();
+    const normalizedEmail = typeof email === 'string' ? email.trim().toLowerCase() : '';
+    const strongPassword =
+      typeof password === 'string' &&
+      password.length >= 8 &&
+      /[a-z]/.test(password) &&
+      /[A-Z]/.test(password) &&
+      /\d/.test(password);
+
     if (
-      !email ||
-      typeof email !== 'string' ||
-      !password ||
-      typeof password !== 'string' ||
-      password.length < 6
+      !normalizedEmail ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail) ||
+      !strongPassword ||
+      typeof fullName !== 'string' ||
+      fullName.trim().length < 2
     ) {
       return NextResponse.json(
-        { error: 'Invalid payload' },
+        {
+          error:
+            'Enter a valid email, full name, and a strong password with uppercase, lowercase, and a number',
+        },
         { status: 400, headers: { 'Cache-Control': 'no-store' } }
       );
     }
@@ -20,7 +31,7 @@ export async function POST(req: NextRequest) {
     const supabase = await createClient();
     const { origin } = new URL(req.url);
     const { data, error } = await supabase.auth.signUp({
-      email,
+      email: normalizedEmail,
       password,
       options: {
         data: { full_name: fullName || '' },

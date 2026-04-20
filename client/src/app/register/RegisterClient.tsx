@@ -87,7 +87,7 @@ export default function RegisterClient() {
           <Link href="/" className="inline-block">
             <h1 className="text-4xl font-bold text-primary mb-2">CACBLAZE</h1>
           </Link>
-          <p className="text-secondary">Create your account to get started</p>
+          <p className="text-secondary">Create your account to save articles, comment, and receive curated updates</p>
         </div>
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <h2 className="text-2xl font-bold text-foreground mb-6">Create Account</h2>
@@ -147,15 +147,18 @@ export default function RegisterClient() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                minLength={6}
+                minLength={8}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                 placeholder="••••••••"
                 disabled={!regEnabled}
               />
-              <p className="text-xs text-secondary mt-1">Must be at least 6 characters</p>
+              <p className="text-xs text-secondary mt-1">
+                Use at least 8 characters with a mix of letters and numbers
+              </p>
             </div>
             <button
               type="submit"
+              data-analytics="register-submit"
               disabled={loading || !regEnabled}
               className="w-full py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
             >
