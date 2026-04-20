@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
+import { getContextualImage } from '@/utils/imageService';
 
 const API_BASE = '/api';
 
@@ -112,6 +113,24 @@ export default function FeaturedArticle() {
     return text.substring(0, maxLength) + '...';
   };
 
+  const contextualImage = getContextualImage({
+    category: article.category || 'Guides',
+    title: article.title,
+    alt: article.image_alt || article.title,
+    width: 1200,
+    height: 600,
+    preferCurated: true,
+  });
+
+  const fallbackImage = getContextualImage({
+    category: article.category || 'Guides',
+    title: article.title,
+    alt: article.image_alt || article.title,
+    width: 1200,
+    height: 600,
+    preferCurated: false,
+  });
+
   return (
     <section className="bg-gradient-to-r from-blue-50 to-indigo-50 py-12">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -124,12 +143,12 @@ export default function FeaturedArticle() {
                 src={
                   (article as any).featured_image_url ||
                   (article as any).featured_image ||
-                  '/assets/images/no_image.png'
+                  contextualImage.src
                 }
                 alt={article.image_alt || article.title}
                 className="w-full h-48 object-cover rounded-lg"
-                fallbackSrc="/assets/images/no_image.png"
-                secondaryFallbackSrc="/assets/images/no_image.png"
+                fallbackSrc={fallbackImage.src}
+                secondaryFallbackSrc={fallbackImage.src}
               />
             </div>
 

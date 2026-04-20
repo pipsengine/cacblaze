@@ -1,4 +1,5 @@
 import { AIContentService } from './AIContentService';
+import { AIImageIntegrationService } from './AIImageIntegrationService';
 import { ContentValidationService } from './ContentValidationService';
 import User from '../users/User';
 import { Article } from '../articles/Article';
@@ -32,6 +33,7 @@ export class AIPublishingScheduler {
         Number(process.env.AI_MIN_PUBLISHED_ARTICLES || Math.max(this.weeklyArticleTarget * 4, 21))
       );
       await this.refreshLegacyPublishedContent(Number(process.env.AI_MIN_PUBLISHED_WORDS || 2000));
+      await this.repairInvalidGeneratedImages();
       await this.ensureWeeklyFreshContent();
 
       this.scheduleArticleGeneration();
@@ -131,6 +133,73 @@ export class AIPublishingScheduler {
 
     if (legacyArticles.length > 0) {
       console.log(`Refreshed ${legacyArticles.length} legacy AI articles to the new quality standard.`);
+    }
+  }
+
+  private async repairInvalidGeneratedImages(): Promise<void> {
+    const [articles, tips] = await Promise.all([
+      Article.findAll({
+        where: { ai_generated: true },
+        order: [['updated_at', 'DESC']],
+        limit: 100,
+      }),
+      Tip.findAll({
+        where: { ai_generated: true },
+        order: [['updated_at', 'DESC']],
+        limit: 100,
+      }),
+    ]);
+
+    let repairedArticles = 0;
+    for (const article of articles) {
+      if (!AIImageIntegrationService.isPlaceholderImage(article.featured_image_url)) {
+        continue;
+      }
+
+      const image = await AIImageIntegrationService.getImageForContent({
+        prompt: `Select a real digital image for ${article.title}`,
+        category: article.category,
+        title: article.title,
+        content: article.content,
+        geoFocus: article.geo_focus,
+        contentType: 'article',
+        keywords: article.tags || [],
+      });
+
+      await article.update({
+        featured_image_url: image.imageUrl,
+        image_alt: image.altText,
+      });
+      repairedArticles += 1;
+    }
+
+    let repairedTips = 0;
+    for (const tip of tips) {
+      if (!AIImageIntegrationService.isPlaceholderImage(tip.featured_image)) {
+        continue;
+      }
+
+      const image = await AIImageIntegrationService.getImageForContent({
+        prompt: `Select a real digital image for ${tip.title}`,
+        category: tip.category,
+        title: tip.title,
+        content: tip.content,
+        geoFocus: 'Nigeria',
+        contentType: 'tip',
+        keywords: [tip.category.toLowerCase(), 'tip'],
+      });
+
+      await tip.update({
+        featured_image: image.imageUrl,
+        image_alt: image.altText,
+      });
+      repairedTips += 1;
+    }
+
+    if (repairedArticles > 0 || repairedTips > 0) {
+      console.log(
+        `Repaired ${repairedArticles} article images and ${repairedTips} tip images with real digital assets.`
+      );
     }
   }
 
