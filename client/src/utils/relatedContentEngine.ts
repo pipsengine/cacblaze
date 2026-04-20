@@ -7,6 +7,8 @@ interface Article {
   readTime: string;
   publishDate: string;
   slug: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 interface RelatedArticleScore {

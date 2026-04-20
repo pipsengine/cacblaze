@@ -150,7 +150,7 @@ const RelatedContent = ({
           3
         );
 
-        const transformed = recommended.map((article) => ({
+        const transformed: RelatedArticle[] = recommended.map((article) => ({
           id: article.id,
           title: article.title,
           excerpt: article.excerpt,
@@ -158,8 +158,8 @@ const RelatedContent = ({
           readTime: article.readTime,
           href: `/guides/${article.slug}`,
           tags: article.tags,
-          image: 'image' in article ? article.image : '',
-          imageAlt: 'imageAlt' in article ? article.imageAlt : article.title,
+          image: typeof article.image === 'string' ? article.image : '',
+          imageAlt: typeof article.imageAlt === 'string' ? article.imageAlt : article.title,
           publishedAt: article.publishDate,
         }));
 
