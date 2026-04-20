@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { MenuItem } from '@/types/menu';
+import { trackEvent } from '@/lib/analytics';
 
 interface MegaMenuProps {
   item: MenuItem;
@@ -78,6 +79,14 @@ const MegaMenu = ({ item, isActive }: MegaMenuProps) => {
     return (
       <Link
         href={item?.href}
+        onClick={() =>
+          trackEvent('header_navigation_click', {
+            section_name: 'header_primary_nav',
+            link_text: item?.label,
+            destination_url: item?.href,
+            content_type: 'primary_navigation',
+          })
+        }
         className={`text-sm font-medium transition-colors whitespace-nowrap ${
           isActive ? 'text-primary' : 'text-secondary hover:text-foreground'
         }`}
@@ -95,7 +104,17 @@ const MegaMenu = ({ item, isActive }: MegaMenuProps) => {
       onMouseLeave={handleMouseLeave}
     >
       <button
-        onClick={handleClick}
+        onClick={(event) => {
+          if (!isOpen) {
+            trackEvent('menu_section_opened', {
+              section_name: 'header_mega_menu',
+              link_text: item?.label,
+              content_type: 'mega_menu',
+            });
+          }
+
+          handleClick(event);
+        }}
         onKeyDown={handleKeyDown}
         className={`flex items-center gap-1 text-sm font-medium transition-colors whitespace-nowrap ${
           isActive || isOpen ? 'text-primary' : 'text-secondary hover:text-foreground'
@@ -141,7 +160,15 @@ const MegaMenu = ({ item, isActive }: MegaMenuProps) => {
                         href={subItem?.href}
                         className="block text-sm text-secondary hover:text-primary transition-colors hover:translate-x-1 duration-200"
                         role="menuitem"
-                        onClick={() => setIsOpen(false)}
+                        onClick={() => {
+                          trackEvent('header_navigation_click', {
+                            section_name: `mega_menu_${item?.id}`,
+                            content_type: category?.label,
+                            link_text: subItem?.label,
+                            destination_url: subItem?.href,
+                          });
+                          setIsOpen(false);
+                        }}
                       >
                         {subItem?.label}
                       </Link>

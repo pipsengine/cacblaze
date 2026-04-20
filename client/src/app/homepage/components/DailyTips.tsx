@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
 import { getContextualImage } from '@/utils/imageService';
+import { trackEvent } from '@/lib/analytics';
 
 const API_BASE = '/api';
 
@@ -166,6 +167,14 @@ export default function DailyTips() {
               <h4 className="font-semibold text-gray-700 text-lg">Recent Tips</h4>
               <Link
                 href="/tips"
+                onClick={() =>
+                  trackEvent('daily_tips_archive_click', {
+                    page_type: 'home',
+                    section_name: 'daily_tips',
+                    link_text: 'View all tips',
+                    destination_url: '/tips',
+                  })
+                }
                 className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
               >
                 View all tips

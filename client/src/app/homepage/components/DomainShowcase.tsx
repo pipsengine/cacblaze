@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
+import { trackEvent } from '@/lib/analytics';
 
 interface Domain {
   id: string;
@@ -123,6 +124,16 @@ const DomainShowcase = () => {
             <Link
               key={domain.id}
               href={domain.href}
+              onClick={() =>
+                trackEvent('category_hub_click', {
+                  page_type: 'home',
+                  section_name: 'domain_showcase',
+                  category_name: domain.title,
+                  content_group: domain.title,
+                  link_text: domain.title,
+                  destination_url: domain.href,
+                })
+              }
               className="group relative flex h-full min-h-[290px] flex-col p-8 rounded-3xl border-2 bg-white hover:border-primary transition-all hover-lift"
             >
               <div
@@ -162,6 +173,14 @@ const DomainShowcase = () => {
         <div className="text-center mt-12">
           <Link
             href="/guides"
+            onClick={() =>
+              trackEvent('browse_all_content_click', {
+                page_type: 'home',
+                section_name: 'domain_showcase',
+                link_text: 'Browse All Content',
+                destination_url: '/guides',
+              })
+            }
             className="inline-flex items-center gap-2 px-8 py-4 bg-foreground text-white rounded-2xl font-semibold hover:bg-foreground/90 transition-all hover-lift"
           >
             Browse All Content

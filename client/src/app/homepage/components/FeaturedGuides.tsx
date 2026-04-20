@@ -5,6 +5,7 @@ import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
 import { getContextualImage } from '@/utils/imageService';
+import { CACBLAZE_EVENT_EXAMPLES, trackEvent } from '@/lib/analytics';
 
 interface Guide {
   id: string;
@@ -197,7 +198,15 @@ const FeaturedGuides = () => {
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.value)}
+                onClick={() => {
+                  setActiveTab(tab.value);
+                  trackEvent('featured_guides_tab_click', {
+                    page_type: 'home',
+                    section_name: 'featured_guides',
+                    content_type: tab.value,
+                    link_text: tab.label,
+                  });
+                }}
                 className={`px-6 py-2 rounded-lg text-sm font-medium transition-all ${
                   activeTab === tab.value
                     ? 'bg-white text-foreground shadow-sm'
@@ -242,6 +251,16 @@ const FeaturedGuides = () => {
                 <Link
                   key={guide.id}
                   href={guide.href}
+                  onClick={() =>
+                    CACBLAZE_EVENT_EXAMPLES.topGuideClick({
+                      page_type: 'home',
+                      section_name: 'featured_guides',
+                      content_type: activeTab,
+                      category_name: guide.category,
+                      article_title: guide.title,
+                      destination_url: guide.href,
+                    })
+                  }
                   className="group flex-shrink-0 w-80 rounded-3xl border border-gray-200 bg-white hover:border-primary transition-all overflow-hidden hover-lift"
                 >
                   <div className="relative h-48 overflow-hidden">
@@ -300,6 +319,14 @@ const FeaturedGuides = () => {
         <div className="text-center mt-8">
           <Link
             href="/guides"
+            onClick={() =>
+              CACBLAZE_EVENT_EXAMPLES.exploreGuidesClick({
+                cta_location: 'featured_guides_footer',
+                section_name: 'featured_guides',
+                link_text: 'Explore More Generated Guides',
+                destination_url: '/guides',
+              })
+            }
             className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
           >
             Explore More Generated Guides

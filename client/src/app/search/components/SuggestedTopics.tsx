@@ -1,4 +1,5 @@
 import Icon from '@/components/ui/AppIcon';
+import { trackEvent } from '@/lib/analytics';
 
 interface SuggestedTopicsProps {
   onTopicClick: (topic: string) => void;
@@ -51,7 +52,15 @@ const SuggestedTopics = ({ onTopicClick }: SuggestedTopicsProps) => {
         {topics.map((topic) => (
           <button
             key={topic.id}
-            onClick={() => onTopicClick(topic.text)}
+            onClick={() => {
+              trackEvent('search_topic_click', {
+                page_type: 'search',
+                search_term: topic.text,
+                topic_name: topic.text,
+                section_name: 'suggested_topics',
+              });
+              onTopicClick(topic.text);
+            }}
             className={`flex items-center gap-2 px-5 py-3 rounded-2xl ${topic.color} font-medium whitespace-nowrap hover:scale-105 transition-transform flex-shrink-0`}
           >
             <Icon name={topic.icon} size={20} />

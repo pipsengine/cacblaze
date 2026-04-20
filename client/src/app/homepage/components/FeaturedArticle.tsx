@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
 import { getContextualImage } from '@/utils/imageService';
+import { CACBLAZE_EVENT_EXAMPLES } from '@/lib/analytics';
 
 const API_BASE = '/api';
 
@@ -191,6 +192,16 @@ export default function FeaturedArticle() {
 
                 <Link
                   href={`/guides/${article.slug}`}
+                  onClick={() =>
+                    CACBLAZE_EVENT_EXAMPLES.featuredArticleClick({
+                      page_type: 'home',
+                      section_name: 'featured_article',
+                      category_name: article.category,
+                      article_title: article.title,
+                      article_slug: article.slug,
+                      destination_url: `/guides/${article.slug}`,
+                    })
+                  }
                   className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                 >
                   Read Full Article

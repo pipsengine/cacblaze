@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
+import { CACBLAZE_EVENT_EXAMPLES, trackEvent } from '@/lib/analytics';
 
 const HeroSection = () => {
   const categoryPreviews = [
@@ -77,6 +78,14 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link
                 href="/guides"
+                onClick={() =>
+                  CACBLAZE_EVENT_EXAMPLES.exploreGuidesClick({
+                    cta_location: 'homepage_hero',
+                    section_name: 'hero_primary_cta',
+                    link_text: 'Explore Guides',
+                    destination_url: '/guides',
+                  })
+                }
                 className="group px-8 py-4 bg-primary text-white rounded-2xl text-base font-semibold hover:bg-primary/90 transition-all flex items-center justify-center gap-2 hover-lift"
               >
                 <Icon name="BookOpenIcon" size={20} className="text-white" />
@@ -89,6 +98,15 @@ const HeroSection = () => {
               </Link>
               <Link
                 href="/search"
+                onClick={() =>
+                  trackEvent('search_content_click', {
+                    page_type: 'home',
+                    section_name: 'hero_secondary_cta',
+                    cta_location: 'homepage_hero',
+                    link_text: 'Search Content',
+                    destination_url: '/search',
+                  })
+                }
                 className="group px-8 py-4 bg-white border-2 border-gray-200 text-foreground rounded-2xl text-base font-semibold hover:border-primary transition-all flex items-center justify-center gap-2 hover-lift"
               >
                 <Icon name="MagnifyingGlassIcon" size={20} className="text-foreground" />
@@ -132,6 +150,15 @@ const HeroSection = () => {
                 <Link
                   key={category.id}
                   href={`/${category.title.toLowerCase()}`}
+                  onClick={() =>
+                    trackEvent('homepage_category_card_click', {
+                      page_type: 'home',
+                      section_name: 'hero_category_grid',
+                      category_name: category.title,
+                      link_text: category.title,
+                      destination_url: `/${category.title.toLowerCase()}`,
+                    })
+                  }
                   className={`group relative overflow-hidden rounded-3xl border border-gray-200 bg-white hover:border-primary transition-all hover-lift ${
                     index === 0 ? 'col-span-2 row-span-2' : ''
                   }`}

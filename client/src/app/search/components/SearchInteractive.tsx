@@ -182,11 +182,6 @@ const SearchInteractive = () => {
   const handleTopicClick = (topic: string) => {
     setSearchQuery(topic);
     setHasSearched(true);
-    trackEvent('search_topic_click', {
-      page_type: 'search',
-      search_term: topic,
-      section_name: 'suggested_topics',
-    });
   };
 
   const applyFilters = (items: any[], f: any) => {
@@ -236,6 +231,42 @@ const SearchInteractive = () => {
     const filtered = tokens.length > 0 ? scored.filter((r) => r.matchScore > 0.65) : scored;
     return filtered.slice(0, 12);
   };
+
+  const computedResults = hasSearched
+    ? applyFilters(
+        (
+          (formattedType && !searchQuery
+            ? buildTopicResults(type, state)
+            : buildArticleResults(searchQuery)) as any[]
+        ) || [],
+        filters
+      )
+    : [];
+
+  useEffect(() => {
+    if (!hasSearched || !searchQuery) {
+      return;
+    }
+
+    const resultCount = computedResults.length;
+
+    trackEvent('search_results_loaded', {
+      page_type: 'search',
+      search_term: searchQuery,
+      search_results_count: resultCount,
+      section_name: 'search_results',
+      empty_results: resultCount === 0,
+    });
+
+    if (resultCount === 0) {
+      trackEvent('empty_search_results', {
+        page_type: 'search',
+        search_term: searchQuery,
+        search_results_count: 0,
+        section_name: 'search_results',
+      });
+    }
+  }, [computedResults.length, hasSearched, searchQuery]);
 
   return (
     <>
@@ -369,14 +400,11 @@ const SearchInteractive = () => {
             <div className="lg:col-span-9">
               {hasSearched ? (
                 searchQuery ? (
-                  (() => {
-                    const base =
-                      formattedType && !searchQuery
-                        ? buildTopicResults(type, state)
-                        : buildArticleResults(searchQuery);
-                    const results = applyFilters(base as any[], filters);
-                    return <SearchResults query={searchQuery} results={results as any[]} />;
-                  })()
+                  computedResults.length > 0 ? (
+                    <SearchResults query={searchQuery} results={computedResults as any[]} />
+                  ) : (
+                    <EmptyState query={searchQuery} />
+                  )
                 ) : (
                   <EmptyState query={searchQuery} />
                 )

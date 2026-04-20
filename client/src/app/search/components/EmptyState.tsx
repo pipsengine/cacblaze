@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
+import { trackEvent } from '@/lib/analytics';
 
 interface EmptyStateProps {
   query: string;
@@ -65,6 +66,16 @@ const EmptyState = ({ query }: EmptyStateProps) => {
             <Link
               key={guide.id}
               href={guide.href}
+              onClick={() =>
+                trackEvent('empty_search_recommendation_click', {
+                  page_type: 'search',
+                  search_term: query,
+                  category_name: guide.category,
+                  article_title: guide.title,
+                  destination_url: guide.href,
+                  section_name: 'search_empty_state',
+                })
+              }
               className="flex items-center justify-between p-4 rounded-2xl border border-gray-200 bg-white hover:border-primary transition-all hover-lift"
             >
               <div className="flex items-center gap-3">
@@ -83,6 +94,15 @@ const EmptyState = ({ query }: EmptyStateProps) => {
       <div className="mt-12">
         <Link
           href="/request-guide"
+          onClick={() =>
+            trackEvent('empty_search_request_guide_click', {
+              page_type: 'search',
+              search_term: query,
+              section_name: 'search_empty_state',
+              link_text: 'Request a Guide on This Topic',
+              destination_url: '/request-guide',
+            })
+          }
           className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-2xl font-semibold hover:bg-primary/90 transition-all hover-lift"
         >
           Request a Guide on This Topic

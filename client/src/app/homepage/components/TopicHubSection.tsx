@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
+import { trackEvent } from '@/lib/analytics';
 
 const hubs = [
   {
@@ -62,6 +63,16 @@ export default function TopicHubSection() {
             <Link
               key={hub.href}
               href={hub.href}
+              onClick={() =>
+                trackEvent('topic_hub_click', {
+                  page_type: 'home',
+                  section_name: 'topic_hub_section',
+                  topic_name: hub.title,
+                  content_group: hub.title,
+                  link_text: hub.title,
+                  destination_url: hub.href,
+                })
+              }
               className="group rounded-2xl border border-gray-200 bg-gradient-to-br from-white to-slate-50 p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg"
             >
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">

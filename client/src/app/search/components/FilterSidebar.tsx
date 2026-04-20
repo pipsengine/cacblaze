@@ -16,6 +16,7 @@ const FilterSidebar = ({
   const [selectedCategories, setSelectedCategories] = useState<string[]>(initialCategories);
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
   const [readTimeRange, setReadTimeRange] = useState<string>('all');
+  const [publishedDateRange, setPublishedDateRange] = useState<string>('all');
   const initialized = useRef(false);
 
   const LOCAL_TYPES = new Set([
@@ -73,9 +74,10 @@ const FilterSidebar = ({
         categories: initialCategories,
         difficulty: selectedDifficulty,
         readTime: readTimeRange,
+        publishedDate: publishedDateRange,
       });
     }
-  }, [initialCategories, selectedDifficulty, readTimeRange, onFilterChange]);
+  }, [initialCategories, selectedDifficulty, readTimeRange, publishedDateRange, onFilterChange]);
 
   const handleCategoryToggle = (category: string) => {
     const newCategories = selectedCategories.includes(category)
@@ -86,6 +88,7 @@ const FilterSidebar = ({
       categories: newCategories,
       difficulty: selectedDifficulty,
       readTime: readTimeRange,
+      publishedDate: publishedDateRange,
     });
   };
 
@@ -93,7 +96,8 @@ const FilterSidebar = ({
     setSelectedCategories([]);
     setSelectedDifficulty('all');
     setReadTimeRange('all');
-    onFilterChange({ categories: [], difficulty: 'all', readTime: 'all' });
+    setPublishedDateRange('all');
+    onFilterChange({ categories: [], difficulty: 'all', readTime: 'all', publishedDate: 'all' });
   };
 
   return (
@@ -152,6 +156,7 @@ const FilterSidebar = ({
                       categories: selectedCategories,
                       difficulty: e.target.value,
                       readTime: readTimeRange,
+                      publishedDate: publishedDateRange,
                     });
                   }}
                   className="w-5 h-5 border-2 border-gray-300 text-primary focus:ring-primary focus:ring-offset-0"
@@ -182,6 +187,7 @@ const FilterSidebar = ({
                     categories: selectedCategories,
                     difficulty: selectedDifficulty,
                     readTime: e.target.value,
+                      publishedDate: publishedDateRange,
                   });
                 }}
                 className="w-5 h-5 border-2 border-gray-300 text-primary focus:ring-primary focus:ring-offset-0"
@@ -197,7 +203,19 @@ const FilterSidebar = ({
       {/* Date Range */}
       <div>
         <h4 className="text-sm font-semibold text-foreground mb-4">Published Date</h4>
-        <select className="w-full px-4 py-2 rounded-xl border border-gray-200 bg-white text-sm text-foreground focus:outline-none focus:border-primary">
+        <select
+          value={publishedDateRange}
+          onChange={(e) => {
+            setPublishedDateRange(e.target.value);
+            onFilterChange({
+              categories: selectedCategories,
+              difficulty: selectedDifficulty,
+              readTime: readTimeRange,
+              publishedDate: e.target.value,
+            });
+          }}
+          className="w-full px-4 py-2 rounded-xl border border-gray-200 bg-white text-sm text-foreground focus:outline-none focus:border-primary"
+        >
           <option value="all">All Time</option>
           <option value="week">Past Week</option>
           <option value="month">Past Month</option>

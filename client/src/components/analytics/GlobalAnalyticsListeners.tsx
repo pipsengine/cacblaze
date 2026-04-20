@@ -34,7 +34,7 @@ export default function GlobalAnalyticsListeners() {
         trackEvent('outbound_link_click', {
           link_text: linkText,
           destination_url: anchor.href,
-          section_name,
+          section_name: sectionName,
         });
       }
     };
