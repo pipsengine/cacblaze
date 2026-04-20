@@ -173,6 +173,14 @@ const PersonalizedContent = () => {
               height: 400,
               preferCurated: true,
             });
+            const contextualFallbackImage = getContextualImage({
+              category: article.category,
+              title: article.title,
+              alt: `${article.title} article cover`,
+              width: 600,
+              height: 400,
+              preferCurated: false,
+            });
 
             return (
               <Link
@@ -185,6 +193,8 @@ const PersonalizedContent = () => {
                     src={contextualImage.src}
                     alt={contextualImage.alt}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    fallbackSrc={contextualFallbackImage.src}
+                    secondaryFallbackSrc="/assets/images/no_image.png"
                   />
                   <div className="absolute left-4 top-4">
                     <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-foreground backdrop-blur-sm">

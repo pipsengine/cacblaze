@@ -110,6 +110,14 @@ const ContinueReading = () => {
               height: 250,
               preferCurated: true,
             });
+            const contextualFallbackImage = getContextualImage({
+              category: item.category,
+              title: item.title,
+              alt: 'Article thumbnail',
+              width: 400,
+              height: 250,
+              preferCurated: false,
+            });
 
             return (
               <Link
@@ -122,6 +130,8 @@ const ContinueReading = () => {
                     src={contextualImage.src}
                     alt={contextualImage.alt}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    fallbackSrc={contextualFallbackImage.src}
+                    secondaryFallbackSrc="/assets/images/no_image.png"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-2 left-2 right-2">

@@ -19,6 +19,15 @@ export interface CategoryTheme {
   textColor: string;
 }
 
+function escapeSvgText(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // Nigerian/African-inspired color themes for each category
 const categoryThemes: Record<string, CategoryTheme> = {
   technology: {
@@ -91,8 +100,9 @@ export function generatePlaceholderSVG(config: PlaceholderConfig): string {
 
   const theme = categoryThemes[category.toLowerCase()] || categoryThemes.default;
   const displayText = text || category.charAt(0).toUpperCase() + category.slice(1);
+  const safeDisplayText = escapeSvgText(displayText);
+  const safeIcon = escapeSvgText(icon || theme.icon);
   const accentColor = seed ? generateColorFromSeed(seed) : theme.colors[1] || theme.colors[0];
-  const iconToUse = icon || theme.icon;
 
   // Add pattern overlay for visual interest
   const patternColor = theme.textColor === '#FFFFFF' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
@@ -117,7 +127,7 @@ export function generatePlaceholderSVG(config: PlaceholderConfig): string {
       
       <!-- Icon -->
       <text x="50%" y="40%" font-size="80" text-anchor="middle" dominant-baseline="middle" opacity="0.9">
-        ${iconToUse}
+        ${safeIcon}
       </text>
       
       <!-- Category text -->
@@ -132,7 +142,7 @@ export function generatePlaceholderSVG(config: PlaceholderConfig): string {
         dominant-baseline="middle"
         opacity="0.95"
       >
-        ${displayText}
+        ${safeDisplayText}
       </text>
       
       <!-- Decorative elements -->
@@ -212,70 +222,7 @@ export function generatePlaceholderCanvas(
  * Get data URL for placeholder image
  */
 export function getPlaceholderDataURL(config: PlaceholderConfig): string {
-  // Use URI encoding instead of base64 to handle Unicode characters (emojis)
-  const svg = generatePlaceholderSVG(config);
-  // Extract the SVG content from the data URL
-  const svgContent = svg.replace(/^data:image\/svg\+xml;base64,/, '');
-
-  // Decode base64 to get original SVG, then use URI encoding
-  try {
-    const decodedSVG = atob(svgContent);
-    return `data:image/svg+xml,${encodeURIComponent(decodedSVG)}`;
-  } catch (_e) {
-    // If base64 decode fails, generate SVG directly with URI encoding
-    const { width = 800, height = 600, category = 'default', text = '', icon } = config;
-    const theme = categoryThemes[category.toLowerCase()] || categoryThemes.default;
-    const displayText = text || category.charAt(0).toUpperCase() + category.slice(1);
-    const patternColor =
-      theme.textColor === '#FFFFFF' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)';
-    const iconToUse = icon || theme.icon;
-
-    const svgString = `
-      <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="grad-${category}" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:${theme.colors[0]};stop-opacity:1" />
-            <stop offset="100%" style="stop-color:${theme.colors[1] || theme.colors[0]};stop-opacity:1" />
-          </linearGradient>
-          <pattern id="pattern-${category}" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-            <circle cx="20" cy="20" r="2" fill="${patternColor}" />
-          </pattern>
-        </defs>
-        
-        <!-- Background gradient -->
-        <rect width="${width}" height="${height}" fill="url(#grad-${category})" />
-        
-        <!-- Pattern overlay -->
-        <rect width="${width}" height="${height}" fill="url(#pattern-${category})" />
-        
-        <!-- Icon -->
-        <text x="50%" y="40%" font-size="80" text-anchor="middle" dominant-baseline="middle" opacity="0.9">
-          ${iconToUse}
-        </text>
-        
-        <!-- Category text -->
-        <text 
-          x="50%" 
-          y="60%" 
-          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
-          font-size="32" 
-          font-weight="700" 
-          fill="${theme.textColor}" 
-          text-anchor="middle" 
-          dominant-baseline="middle"
-          opacity="0.95"
-        >
-          ${displayText}
-        </text>
-        
-        <!-- Decorative elements -->
-        <circle cx="10%" cy="10%" r="60" fill="${theme.textColor}" opacity="0.1" />
-        <circle cx="90%" cy="90%" r="80" fill="${theme.textColor}" opacity="0.08" />
-      </svg>
-    `;
-
-    return `data:image/svg+xml,${encodeURIComponent(svgString)}`;
-  }
+  return generatePlaceholderSVG(config);
 }
 
 /**
