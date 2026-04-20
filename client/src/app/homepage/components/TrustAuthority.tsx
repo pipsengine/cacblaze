@@ -1,3 +1,5 @@
+'use client';
+
 import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
 import { CACBLAZE_EVENT_EXAMPLES } from '@/lib/analytics';
