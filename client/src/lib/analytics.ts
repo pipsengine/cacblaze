@@ -6,7 +6,7 @@ type AnalyticsValue = string | number | boolean | undefined;
 type AnalyticsParams = Record<string, AnalyticsValue>;
 
 function getMeasurementId() {
-  return process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-MKC05QTFGE';
+  return process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-EB3LB77X4H';
 }
 
 function isAnalyticsEnabled() {

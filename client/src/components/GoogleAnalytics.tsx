@@ -2,7 +2,7 @@
 import Script from 'next/script';
 import { useGoogleAnalytics } from '@/lib/analytics';
 
-const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-MKC05QTFGE';
+const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-EB3LB77X4H';
 
 export default function GoogleAnalytics() {
   useGoogleAnalytics();
