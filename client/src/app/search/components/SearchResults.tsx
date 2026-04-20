@@ -2,6 +2,7 @@ import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import { getCuratedImagesForCategory } from '@/utils/imageService';
+import { trackSearchResultClick } from '@/lib/analytics';
 
 interface SearchResult {
   id: string;
@@ -58,6 +59,15 @@ const SearchResults = ({ query, results }: SearchResultsProps) => {
             <Link
               key={result.id}
               href={result.href}
+              onClick={() =>
+                trackSearchResultClick({
+                  searchTerm: query,
+                  resultTitle: result.title,
+                  resultUrl: result.href,
+                  resultPosition: results.findIndex((entry) => entry.id === result.id) + 1,
+                  categoryName: result.category,
+                })
+              }
               className="group flex gap-6 p-6 rounded-3xl border border-gray-200 bg-white hover:border-primary transition-all hover-lift"
             >
               {/* Image */}

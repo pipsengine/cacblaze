@@ -6,6 +6,7 @@ import Breadcrumb from '@/components/common/Breadcrumb';
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 import { useAuth } from '@/contexts/AuthContext';
+import { trackEvent } from '@/lib/analytics';
 
 export default function SupportPage() {
   const { user, userRole } = useAuth();
@@ -36,6 +37,14 @@ export default function SupportPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link
               href="/login"
+              onClick={() =>
+                trackEvent('support_resource_click', {
+                  page_type: 'support',
+                  section_name: 'support_cards',
+                  link_text: 'Sign In',
+                  destination_url: '/login',
+                })
+              }
               className="group bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition-all"
             >
               <div className="flex items-center gap-3 mb-3">
@@ -51,6 +60,14 @@ export default function SupportPage() {
 
             <Link
               href={adminHref}
+              onClick={() =>
+                trackEvent('support_resource_click', {
+                  page_type: 'support',
+                  section_name: 'support_cards',
+                  link_text: 'Admin Dashboard',
+                  destination_url: adminHref,
+                })
+              }
               className="group bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition-all"
             >
               <div className="flex items-center gap-3 mb-3">
@@ -66,6 +83,14 @@ export default function SupportPage() {
 
             <Link
               href={socialKeysHref}
+              onClick={() =>
+                trackEvent('support_resource_click', {
+                  page_type: 'support',
+                  section_name: 'support_cards',
+                  link_text: 'Social API Keys',
+                  destination_url: socialKeysHref,
+                })
+              }
               className="group bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition-all"
             >
               <div className="flex items-center gap-3 mb-3">
@@ -96,11 +121,33 @@ export default function SupportPage() {
               <h4 className="text-base font-semibold text-gray-900 mb-2">Privacy & Security</h4>
               <p className="text-sm text-gray-600">
                 Your credentials are encrypted and never displayed after saving. Review our{' '}
-                <Link href="/privacy" className="text-primary font-semibold">
+                <Link
+                  href="/privacy"
+                  onClick={() =>
+                    trackEvent('support_resource_click', {
+                      page_type: 'support',
+                      section_name: 'support_policies',
+                      link_text: 'Privacy Policy',
+                      destination_url: '/privacy',
+                    })
+                  }
+                  className="text-primary font-semibold"
+                >
                   Privacy Policy
                 </Link>{' '}
                 and{' '}
-                <Link href="/terms" className="text-primary font-semibold">
+                <Link
+                  href="/terms"
+                  onClick={() =>
+                    trackEvent('support_resource_click', {
+                      page_type: 'support',
+                      section_name: 'support_policies',
+                      link_text: 'Terms of Service',
+                      destination_url: '/terms',
+                    })
+                  }
+                  className="text-primary font-semibold"
+                >
                   Terms of Service
                 </Link>
                 .

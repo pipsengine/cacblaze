@@ -1,5 +1,6 @@
 import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
+import { CACBLAZE_EVENT_EXAMPLES } from '@/lib/analytics';
 
 const TrustAuthority = () => {
   const stats = [
@@ -130,6 +131,14 @@ const TrustAuthority = () => {
           </p>
           <Link
             href="/contact?reason=contribute"
+            onClick={() =>
+              CACBLAZE_EVENT_EXAMPLES.contributorCtaClick({
+                cta_location: 'homepage_trust_authority',
+                section_name: 'trust_authority',
+                destination_url: '/contact?reason=contribute',
+                link_text: 'Become a Contributor',
+              })
+            }
             className="px-8 py-4 bg-foreground text-white rounded-2xl font-semibold hover:bg-foreground/90 transition-all hover-lift inline-block"
           >
             Become a Contributor

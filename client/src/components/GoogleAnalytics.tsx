@@ -1,7 +1,6 @@
 'use client';
-import { useGoogleAnalytics } from '@/lib/analytics';
+import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 
-export default function GoogleAnalytics() {
-  useGoogleAnalytics();
-  return null;
+export default function LegacyGoogleAnalytics() {
+  return <GoogleAnalytics />;
 }

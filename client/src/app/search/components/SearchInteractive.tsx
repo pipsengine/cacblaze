@@ -10,6 +10,7 @@ import FilterSidebar from './FilterSidebar';
 import SearchResults from './SearchResults';
 import SuggestedTopics from './SuggestedTopics';
 import EmptyState from './EmptyState';
+import { trackEvent, trackInternalSearch } from '@/lib/analytics';
 
 const SearchInteractive = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -84,6 +85,12 @@ const SearchInteractive = () => {
         setSearchQuery(q);
         setHasSearched(true);
         setFilters({ categories: ['local'], state });
+        trackInternalSearch({
+          searchTerm: q,
+          pagePath: `/search?type=${encodeURIComponent(type)}${state ? `&state=${encodeURIComponent(state)}` : ''}`,
+          sectionName: 'local_resource_search',
+          searchType: 'filter_refined',
+        });
       }
     }
   }, [type, state]);
@@ -92,6 +99,11 @@ const SearchInteractive = () => {
     if (q && !type && !state) {
       setSearchQuery(q);
       setHasSearched(true);
+      trackInternalSearch({
+        searchTerm: q,
+        pagePath: `/search?q=${encodeURIComponent(q)}`,
+        sectionName: 'search_page',
+      });
     }
   }, [q, type, state]);
   const topicImages = [
@@ -150,15 +162,31 @@ const SearchInteractive = () => {
   const handleSearch = (query: string) => {
     setSearchQuery(query);
     setHasSearched(true);
+    trackInternalSearch({
+      searchTerm: query,
+      sectionName: 'search_page',
+      searchType: 'standard',
+    });
   };
 
   const handleFilterChange = (newFilters: any) => {
     setFilters(newFilters);
+    trackEvent('search_filters_applied', {
+      page_type: 'search',
+      section_name: 'search_filters',
+      filters_applied: JSON.stringify(newFilters),
+      search_term: searchQuery || q,
+    });
   };
 
   const handleTopicClick = (topic: string) => {
     setSearchQuery(topic);
     setHasSearched(true);
+    trackEvent('search_topic_click', {
+      page_type: 'search',
+      search_term: topic,
+      section_name: 'suggested_topics',
+    });
   };
 
   const applyFilters = (items: any[], f: any) => {

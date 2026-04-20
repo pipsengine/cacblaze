@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
+import { CACBLAZE_EVENT_EXAMPLES } from '@/lib/analytics';
 
 const Footer = () => {
   const currentYear = 2026;
@@ -71,6 +74,14 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-analytics-section="footer_social"
+                  onClick={() =>
+                    CACBLAZE_EVENT_EXAMPLES.outboundLinkClick({
+                      section_name: 'footer_social',
+                      link_text: social.label,
+                      destination_url: social.href,
+                    })
+                  }
                   className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-secondary hover:text-primary hover:border-primary transition-colors"
                   aria-label={social.label}
                 >
@@ -88,6 +99,14 @@ const Footer = () => {
                 <li key={link.id}>
                   <Link
                     href={link.href}
+                    data-analytics-section="footer_company"
+                    onClick={() =>
+                      CACBLAZE_EVENT_EXAMPLES.footerLinkClick({
+                        section_name: 'footer_company',
+                        link_text: link.label,
+                        destination_url: link.href,
+                      })
+                    }
                     className="text-sm text-secondary hover:text-primary transition-colors"
                   >
                     {link.label}
@@ -105,6 +124,14 @@ const Footer = () => {
                 <li key={link.id}>
                   <Link
                     href={link.href}
+                    data-analytics-section="footer_resources"
+                    onClick={() =>
+                      CACBLAZE_EVENT_EXAMPLES.footerLinkClick({
+                        section_name: 'footer_resources',
+                        link_text: link.label,
+                        destination_url: link.href,
+                      })
+                    }
                     className="text-sm text-secondary hover:text-primary transition-colors"
                   >
                     {link.label}
@@ -122,6 +149,14 @@ const Footer = () => {
                 <li key={link.id}>
                   <Link
                     href={link.href}
+                    data-analytics-section="footer_legal"
+                    onClick={() =>
+                      CACBLAZE_EVENT_EXAMPLES.footerLinkClick({
+                        section_name: 'footer_legal',
+                        link_text: link.label,
+                        destination_url: link.href,
+                      })
+                    }
                     className="text-sm text-secondary hover:text-primary transition-colors"
                   >
                     {link.label}
@@ -138,19 +173,63 @@ const Footer = () => {
             © {currentYear} CACBLAZE Inc. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-xs text-muted-foreground">
-            <Link href="/privacy" className="hover:text-primary transition-colors">
+            <Link
+              href="/privacy"
+              data-analytics-section="footer_bottom"
+              onClick={() =>
+                CACBLAZE_EVENT_EXAMPLES.footerLinkClick({
+                  section_name: 'footer_bottom',
+                  link_text: 'Privacy',
+                  destination_url: '/privacy',
+                })
+              }
+              className="hover:text-primary transition-colors"
+            >
               Privacy
             </Link>
             <span>·</span>
-            <Link href="/terms" className="hover:text-primary transition-colors">
+            <Link
+              href="/terms"
+              data-analytics-section="footer_bottom"
+              onClick={() =>
+                CACBLAZE_EVENT_EXAMPLES.footerLinkClick({
+                  section_name: 'footer_bottom',
+                  link_text: 'Terms',
+                  destination_url: '/terms',
+                })
+              }
+              className="hover:text-primary transition-colors"
+            >
               Terms
             </Link>
             <span>·</span>
-            <Link href="/cookies" className="hover:text-primary transition-colors">
+            <Link
+              href="/cookies"
+              data-analytics-section="footer_bottom"
+              onClick={() =>
+                CACBLAZE_EVENT_EXAMPLES.footerLinkClick({
+                  section_name: 'footer_bottom',
+                  link_text: 'Cookies',
+                  destination_url: '/cookies',
+                })
+              }
+              className="hover:text-primary transition-colors"
+            >
               Cookies
             </Link>
             <span>·</span>
-            <Link href="/support" className="hover:text-primary transition-colors">
+            <Link
+              href="/support"
+              data-analytics-section="footer_bottom"
+              onClick={() =>
+                CACBLAZE_EVENT_EXAMPLES.footerLinkClick({
+                  section_name: 'footer_bottom',
+                  link_text: 'Support',
+                  destination_url: '/support',
+                })
+              }
+              className="hover:text-primary transition-colors"
+            >
               Support
             </Link>
           </div>

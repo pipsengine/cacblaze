@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { trackEvent, trackInternalSearch } from '@/lib/analytics';
 
 const SearchShowcase = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -102,6 +103,11 @@ const SearchShowcase = () => {
                     key={search.id}
                     onClick={() => {
                       setActiveSearch(search.text);
+                      trackInternalSearch({
+                        searchTerm: search.text,
+                        sectionName: 'homepage_search_showcase',
+                        searchType: 'advanced',
+                      });
                       router.push(`/search?q=${encodeURIComponent(search.text)}`);
                     }}
                     className={`flex items-center gap-2 px-5 py-3 rounded-full transition-all whitespace-nowrap
@@ -122,6 +128,15 @@ const SearchShowcase = () => {
             <div className="mt-8">
               <Link
                 href="/search"
+                onClick={() =>
+                  trackEvent('advanced_search_click', {
+                    page_type: 'home',
+                    cta_location: 'homepage_search_showcase',
+                    section_name: 'search_showcase',
+                    link_text: 'Try Advanced Search',
+                    destination_url: '/search',
+                  })
+                }
                 className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-2xl font-semibold hover:bg-primary/90 transition-all hover-lift"
               >
                 Try Advanced Search

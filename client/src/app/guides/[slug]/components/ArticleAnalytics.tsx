@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { trackArticleView, trackEngagement, trackScrollDepth } from '@/lib/analytics';
+import { trackArticleView, trackEngagement, trackEvent, trackScrollDepth } from '@/lib/analytics';
 import { saveRecentArticleView } from '@/utils/personalizationStorage';
 
 interface ArticleAnalyticsProps {
@@ -28,6 +28,15 @@ export default function ArticleAnalytics({ article }: ArticleAnalyticsProps) {
       category: article.category,
       author: article.author.name,
       readTime: article.readTime,
+      slug: article.slug,
+    });
+
+    trackEvent('return_reader_content_exploration', {
+      page_type: 'article',
+      article_slug: article.slug || article.id,
+      article_title: article.title,
+      category_name: article.category,
+      user_status: 'anonymous',
     });
 
     saveRecentArticleView({
@@ -49,7 +58,21 @@ export default function ArticleAnalytics({ article }: ArticleAnalyticsProps) {
       milestones.forEach((milestone) => {
         if (scrollPercentage >= milestone && !scrollMilestones.has(milestone)) {
           setScrollMilestones((prev) => new Set(prev).add(milestone));
-          trackScrollDepth(article.id, milestone);
+          trackScrollDepth(article.id, milestone, {
+            article_slug: article.slug,
+            article_title: article.title,
+            category_name: article.category,
+          });
+
+          if (milestone === 100) {
+            trackEvent('content_completion', {
+              page_type: 'article',
+              article_slug: article.slug,
+              article_title: article.title,
+              category_name: article.category,
+              percent_scrolled: milestone,
+            });
+          }
         }
       });
     };
@@ -59,7 +82,11 @@ export default function ArticleAnalytics({ article }: ArticleAnalyticsProps) {
       const timeSpent = Math.round((Date.now() - startTimeRef.current) / 1000);
       if (timeSpent > 5) {
         // Only track if spent more than 5 seconds
-        trackEngagement(article.id, timeSpent);
+        trackEngagement(article.id, timeSpent, {
+          article_slug: article.slug,
+          article_title: article.title,
+          category_name: article.category,
+        });
       }
     };
 

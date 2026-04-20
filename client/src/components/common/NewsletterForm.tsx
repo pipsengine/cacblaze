@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
-import { trackNewsletterSignup } from '@/lib/analytics';
+import { CACBLAZE_EVENT_EXAMPLES, trackEvent, trackNewsletterSignup } from '@/lib/analytics';
 
 interface NewsletterFormProps {
   variant?: 'inline' | 'modal';
@@ -26,11 +26,26 @@ const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
+  const hasTrackedStartRef = useRef(false);
+
+  useEffect(() => {
+    trackEvent('newsletter_form_view', {
+      page_type: 'newsletter',
+      cta_location: variant,
+      section_name: 'newsletter_form',
+    });
+  }, [variant]);
 
   const toggleTopic = (topic: string) => {
     setSelectedTopics((prev) =>
       prev.includes(topic) ? prev.filter((t) => t !== topic) : [...prev, topic]
     );
+
+    CACBLAZE_EVENT_EXAMPLES.newsletterTopicSelected({
+      cta_location: variant,
+      newsletter_topic: topic,
+      section_name: 'newsletter_form',
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -58,10 +73,25 @@ const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) 
       setSuccess(true);
       setEmail('');
       trackNewsletterSignup(variant, frequency, selectedTopics.length);
+      trackEvent('newsletter_signup_completed', {
+        page_type: 'newsletter',
+        cta_location: variant,
+        newsletter_frequency: frequency,
+        newsletter_topic: selectedTopics.join('|'),
+        selected_topic_count: selectedTopics.length,
+        section_name: 'newsletter_form',
+      });
       onSuccess?.();
 
       setTimeout(() => setSuccess(false), 5000);
     } catch (err: any) {
+      trackEvent('newsletter_signup_failed', {
+        page_type: 'newsletter',
+        cta_location: variant,
+        newsletter_frequency: frequency,
+        selected_topic_count: selectedTopics.length,
+        error_message: err.message || 'unknown_error',
+      });
       setError(err.message || 'Something went wrong');
     } finally {
       setLoading(false);
@@ -89,7 +119,22 @@ const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) 
           type="email"
           id="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            if (!hasTrackedStartRef.current) {
+              hasTrackedStartRef.current = true;
+              CACBLAZE_EVENT_EXAMPLES.newsletterStarted({
+                cta_location: variant,
+                section_name: 'newsletter_form',
+              });
+              trackEvent('newsletter_email_started', {
+                page_type: 'newsletter',
+                cta_location: variant,
+                section_name: 'newsletter_form',
+              });
+            }
+
+            setEmail(e.target.value);
+          }}
           placeholder="your@email.com"
           required
           className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
@@ -128,7 +173,14 @@ const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) 
             <button
               key={freq}
               type="button"
-              onClick={() => setFrequency(freq)}
+              onClick={() => {
+                setFrequency(freq);
+                CACBLAZE_EVENT_EXAMPLES.newsletterFrequencySelected({
+                  cta_location: variant,
+                  newsletter_frequency: freq,
+                  section_name: 'newsletter_form',
+                });
+              }}
               className={`flex-1 px-4 py-3 rounded-xl border-2 transition-all capitalize ${
                 frequency === freq
                   ? 'border-primary bg-primary/5 text-primary font-semibold'
@@ -158,6 +210,15 @@ const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) 
         type="submit"
         data-analytics="newsletter-subscribe"
         disabled={loading || selectedTopics.length === 0}
+        onClick={() =>
+          trackEvent('newsletter_subscribe_click', {
+            page_type: 'newsletter',
+            cta_location: variant,
+            newsletter_frequency: frequency,
+            selected_topic_count: selectedTopics.length,
+            section_name: 'newsletter_form',
+          })
+        }
         className="w-full bg-primary text-white font-semibold py-4 rounded-xl hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
       >
         {loading ? (

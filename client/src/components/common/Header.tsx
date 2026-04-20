@@ -8,6 +8,7 @@ import MegaMenu from '@/components/common/MegaMenu';
 import { menuData } from '@/data/menuData';
 import { useAuth } from '@/contexts/AuthContext';
 import NotificationCenter from '@/components/common/NotificationCenter';
+import { CACBLAZE_EVENT_EXAMPLES, trackEvent } from '@/lib/analytics';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -35,7 +36,18 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group shrink-0">
+          <Link
+            href="/"
+            onClick={() =>
+              trackEvent('homepage_cta_click', {
+                page_type: 'home',
+                cta_location: 'header_logo',
+                link_text: 'CACBLAZE',
+                destination_url: '/',
+              })
+            }
+            className="flex items-center gap-2 group shrink-0"
+          >
             <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
               <Icon name="BookOpenIcon" size={24} className="text-white" />
             </div>
@@ -55,6 +67,14 @@ const Header = () => {
             {user && (
               <Link
                 href="/bookmarks"
+                onClick={() =>
+                  trackEvent('library_navigation_click', {
+                    page_type: 'static_page',
+                    section_name: 'header',
+                    link_text: 'Library',
+                    destination_url: '/bookmarks',
+                  })
+                }
                 className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-secondary hover:text-foreground transition-colors"
               >
                 <Icon name="BookmarkIcon" size={20} />
@@ -64,6 +84,14 @@ const Header = () => {
             {user && userRole === 'admin' && (
               <Link
                 href="/admin"
+                onClick={() =>
+                  trackEvent('admin_navigation_click', {
+                    page_type: 'support',
+                    section_name: 'header',
+                    link_text: 'Admin',
+                    destination_url: '/admin',
+                  })
+                }
                 className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-secondary hover:text-foreground transition-colors"
               >
                 <Icon name="ShieldCheckIcon" size={20} />
@@ -72,6 +100,14 @@ const Header = () => {
             )}
             <Link
               href="/search"
+              onClick={() =>
+                trackEvent('search_content_click', {
+                  page_type: 'home',
+                  section_name: 'header',
+                  link_text: 'Search',
+                  destination_url: '/search',
+                })
+              }
               className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-secondary hover:text-foreground transition-colors"
             >
               <Icon name="MagnifyingGlassIcon" size={20} />
@@ -79,6 +115,14 @@ const Header = () => {
             </Link>
             <Link
               href="/guides"
+              onClick={() =>
+                CACBLAZE_EVENT_EXAMPLES.exploreGuidesClick({
+                  cta_location: 'header',
+                  section_name: 'header',
+                  link_text: 'Start Exploring',
+                  destination_url: '/guides',
+                })
+              }
               className="px-5 py-2 bg-primary text-white rounded-full text-sm font-semibold hover:bg-primary/90 transition-colors flex items-center gap-2 whitespace-nowrap"
             >
               Start Exploring
@@ -138,7 +182,15 @@ const Header = () => {
               ))}
               <Link
                 href="/search"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  trackEvent('search_content_click', {
+                    page_type: 'home',
+                    section_name: 'mobile_header',
+                    link_text: 'Search',
+                    destination_url: '/search',
+                  });
+                }}
                 className="px-4 py-2 text-sm font-medium text-secondary hover:text-foreground flex items-center gap-2"
               >
                 <Icon name="MagnifyingGlassIcon" size={20} />
@@ -146,7 +198,15 @@ const Header = () => {
               </Link>
               <Link
                 href="/guides"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  CACBLAZE_EVENT_EXAMPLES.exploreGuidesClick({
+                    cta_location: 'mobile_header',
+                    section_name: 'mobile_header',
+                    link_text: 'Start Exploring',
+                    destination_url: '/guides',
+                  });
+                }}
                 className="mx-4 px-6 py-2.5 bg-primary text-white rounded-full text-sm font-semibold text-center"
               >
                 Start Exploring
@@ -154,7 +214,15 @@ const Header = () => {
               {user && userRole === 'admin' && (
                 <Link
                   href="/admin"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    trackEvent('admin_navigation_click', {
+                      page_type: 'support',
+                      section_name: 'mobile_header',
+                      link_text: 'Admin Dashboard',
+                      destination_url: '/admin',
+                    });
+                  }}
                   className="mx-4 px-6 py-2.5 border border-primary text-primary rounded-full text-sm font-semibold text-center flex items-center justify-center gap-2"
                 >
                   <Icon name="ShieldCheckIcon" size={20} />

@@ -3,6 +3,7 @@ import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import Icon from '@/components/ui/AppIcon';
+import ContactFormClient from './ContactFormClient';
 
 export const metadata: Metadata = {
   title: 'Contact Us - CACBLAZE',
@@ -84,78 +85,7 @@ export default function ContactPage() {
 
               {/* Contact Form */}
               <div className="lg:col-span-2">
-                <div className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Send us a message</h2>
-                  <form className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <label
-                          htmlFor="name"
-                          className="block text-sm font-medium text-gray-700 mb-2"
-                        >
-                          Name
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                          placeholder="John Doe"
-                        />
-                      </div>
-                      <div>
-                        <label
-                          htmlFor="email"
-                          className="block text-sm font-medium text-gray-700 mb-2"
-                        >
-                          Email
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                          placeholder="john@example.com"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="subject"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
-                        Subject
-                      </label>
-                      <select
-                        id="subject"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white"
-                      >
-                        <option>General Inquiry</option>
-                        <option>Feedback</option>
-                        <option>Report an Issue</option>
-                        <option>Partnership</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="message"
-                        className="block text-sm font-medium text-gray-700 mb-2"
-                      >
-                        Message
-                      </label>
-                      <textarea
-                        id="message"
-                        rows={6}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
-                        placeholder="How can we help you?"
-                      ></textarea>
-                    </div>
-                    <button
-                      type="button"
-                      className="w-full py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
-                    >
-                      Send Message
-                    </button>
-                  </form>
-                </div>
+                <ContactFormClient />
               </div>
             </div>
           </div>
