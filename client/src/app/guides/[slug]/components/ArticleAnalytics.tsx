@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { trackArticleView, trackEngagement, trackScrollDepth } from '@/lib/analytics';
+import { saveRecentArticleView } from '@/utils/personalizationStorage';
 
 interface ArticleAnalyticsProps {
   article: {
@@ -11,6 +12,7 @@ interface ArticleAnalyticsProps {
       name: string;
     };
     readTime: string;
+    slug?: string;
   };
 }
 
@@ -25,6 +27,13 @@ export default function ArticleAnalytics({ article }: ArticleAnalyticsProps) {
       title: article.title,
       category: article.category,
       author: article.author.name,
+      readTime: article.readTime,
+    });
+
+    saveRecentArticleView({
+      slug: article.slug || article.id,
+      title: article.title,
+      category: article.category,
       readTime: article.readTime,
     });
 

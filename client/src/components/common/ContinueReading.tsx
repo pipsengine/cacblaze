@@ -6,6 +6,7 @@ import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
 import { getContextualImage } from '@/utils/imageService';
+import { getRecentArticleViews, type RecentArticleView } from '@/utils/personalizationStorage';
 
 interface ReadingProgressItem {
   id: string;
@@ -15,15 +16,26 @@ interface ReadingProgressItem {
   updated_at: string;
 }
 
+interface DisplayItem {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  progressPercentage: number;
+  helperText: string;
+}
+
 const ContinueReading = () => {
   const { user, loading: authLoading } = useAuth();
   const [progressItems, setProgressItems] = useState<ReadingProgressItem[]>([]);
+  const [guestRecent, setGuestRecent] = useState<RecentArticleView[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!authLoading && user) {
-      fetchProgress();
-    } else if (!authLoading && !user) {
+      void fetchProgress();
+    } else if (!authLoading) {
+      setGuestRecent(getRecentArticleViews());
       setLoading(false);
     }
   }, [user, authLoading]);
@@ -32,49 +44,67 @@ const ContinueReading = () => {
     try {
       const response = await fetch('/api/reading-progress/list', { cache: 'no-store' });
       if (!response.ok) {
-        if (response.status === 401) {
-          setProgressItems([]);
-          return;
-        }
-        console.error('Failed to fetch progress:', response.status);
         setProgressItems([]);
         return;
       }
 
       const data = await response.json();
       setProgressItems(data.progress || []);
-    } catch (error) {
-      console.error('Error fetching progress:', error);
+      setGuestRecent(getRecentArticleViews());
+    } catch {
       setProgressItems([]);
+      setGuestRecent(getRecentArticleViews());
     } finally {
       setLoading(false);
     }
   };
 
-  if (authLoading || loading || !user || progressItems.length === 0) {
-    return null;
-  }
-
-  // Filter incomplete articles
   const incompleteArticles = progressItems.filter(
     (item) => !item.completed && item.progress_percentage > 0
   );
 
-  if (incompleteArticles.length === 0) return null;
+  const signedInItems: DisplayItem[] = incompleteArticles.slice(0, 4).map((item) => ({
+    id: item.id,
+    slug: item.article_id,
+    title: (item.article_id || '')
+      .split('-')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' '),
+    category: 'Guides',
+    progressPercentage: item.progress_percentage,
+    helperText: `${item.progress_percentage}% complete`,
+  }));
+
+  const guestItems: DisplayItem[] = guestRecent.slice(0, 4).map((item) => ({
+    id: item.slug,
+    slug: item.slug,
+    title: item.title,
+    category: item.category,
+    progressPercentage: 100,
+    helperText: 'Viewed recently',
+  }));
+
+  const displayItems = user ? signedInItems : guestItems;
+
+  if (authLoading || loading || displayItems.length === 0) {
+    return null;
+  }
 
   return (
-    <section className="py-12 bg-white border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center gap-2 mb-6">
+    <section className="border-b border-gray-100 bg-white py-12">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mb-6 flex items-center gap-2">
           <Icon name="BookmarkIcon" size={24} className="text-primary" />
-          <h2 className="text-2xl font-bold text-foreground">Continue Reading</h2>
+          <h2 className="text-2xl font-bold text-foreground">
+            {user ? 'Continue Reading' : 'Recently Viewed'}
+          </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {incompleteArticles.slice(0, 4).map((item) => {
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {displayItems.map((item) => {
             const contextualImage = getContextualImage({
-              category: 'Guides',
-              title: item.article_id,
+              category: item.category,
+              title: item.title,
               alt: 'Article thumbnail',
               width: 400,
               height: 250,
@@ -84,38 +114,35 @@ const ContinueReading = () => {
             return (
               <Link
                 key={item.id}
-                href={`/guides/${item.article_id}`}
-                className="group bg-white rounded-xl border border-gray-200 overflow-hidden hover:border-primary hover:shadow-md transition-all"
+                href={`/guides/${item.slug}`}
+                className="group overflow-hidden rounded-xl border border-gray-200 bg-white transition-all hover:border-primary hover:shadow-md"
               >
                 <div className="relative h-32 overflow-hidden">
                   <AppImage
                     src={contextualImage.src}
                     alt={contextualImage.alt}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-2 left-2 right-2">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-full h-2 overflow-hidden">
+                    <div className="h-2 overflow-hidden rounded-full bg-white/90 backdrop-blur-sm">
                       <div
                         className="h-full bg-primary transition-all"
-                        style={{ width: `${item.progress_percentage}%` }}
+                        style={{ width: `${item.progressPercentage}%` }}
                       />
                     </div>
                   </div>
                 </div>
                 <div className="p-4">
-                  <h3 className="text-sm font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                    {(item.article_id || '')
-                      .split('-')
-                      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                      .join(' ')}
+                  <h3 className="mb-2 line-clamp-2 text-sm font-bold text-foreground transition-colors group-hover:text-primary">
+                    {item.title}
                   </h3>
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span>{item.progress_percentage}% complete</span>
+                    <span>{item.helperText}</span>
                     <Icon
                       name="ArrowRightIcon"
                       size={14}
-                      className="group-hover:translate-x-1 transition-transform"
+                      className="transition-transform group-hover:translate-x-1"
                     />
                   </div>
                 </div>

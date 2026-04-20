@@ -6,45 +6,114 @@ import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
 import { getContextualImage } from '@/utils/imageService';
+import { getPreferredCategories, getRecentArticleViews } from '@/utils/personalizationStorage';
 
 interface RecommendedArticle {
   article_id: string;
   title: string;
   category: string;
   relevance_score: number;
+  reason?: string;
+}
+
+interface PublishedArticle {
+  id?: string;
+  slug?: string;
+  title: string;
+  category?: string;
 }
 
 const PersonalizedContent = () => {
   const { user, loading: authLoading } = useAuth();
   const [recommendations, setRecommendations] = useState<RecommendedArticle[]>([]);
   const [loading, setLoading] = useState(true);
+  const [eyebrow, setEyebrow] = useState('Personalized for You');
+  const [heading, setHeading] = useState('Recommended Content');
+  const [description, setDescription] = useState(
+    'Fresh recommendations tuned to the topics you care about most.'
+  );
 
   useEffect(() => {
-    if (!authLoading && user) {
-      fetchRecommendations();
-    } else if (!authLoading && !user) {
-      setLoading(false);
+    if (!authLoading) {
+      void fetchRecommendations();
     }
   }, [user, authLoading]);
 
-  const fetchRecommendations = async () => {
+  const fetchFallbackRecommendations = async () => {
+    const preferredCategories = getPreferredCategories();
+    const recentViews = getRecentArticleViews();
+    const primaryCategory = preferredCategories[0] || 'Technology';
+
+    setEyebrow(recentViews.length > 0 ? 'Based on your recent reading' : 'Popular right now');
+    setHeading(recentViews.length > 0 ? `${primaryCategory} picks for you` : 'Fresh guides to explore');
+    setDescription(
+      recentViews.length > 0
+        ? 'We used your recent activity to surface more of what you already find useful.'
+        : 'Trending guides across the platform to help new and returning readers discover value faster.'
+    );
+
     try {
-      const response = await fetch('/api/recommendations', { cache: 'no-store' });
+      const params = new URLSearchParams({
+        limit: '6',
+        sort: 'trending',
+      });
+      params.set('category', primaryCategory);
+
+      const response = await fetch(`/api/ai-publishing/articles/published?${params.toString()}`, {
+        cache: 'no-store',
+      });
+
       if (!response.ok) {
-        if (response.status === 401) {
-          setRecommendations([]);
-          return;
-        }
-        console.error('Failed to fetch recommendations:', response.status);
         setRecommendations([]);
         return;
       }
 
       const data = await response.json();
-      setRecommendations(data.recommendations || []);
-    } catch (error) {
-      console.error('Error fetching recommendations:', error);
+      const articles = ((data.articles || []) as PublishedArticle[]).slice(0, 6).map((article) => ({
+        article_id: article.slug || article.id || '',
+        title: article.title,
+        category: article.category || primaryCategory,
+        relevance_score: recentViews.length > 0 ? 82 : 74,
+        reason: recentViews.length > 0
+          ? `Because you explored ${primaryCategory}`
+          : 'Trending with readers this week',
+      }));
+
+      setRecommendations(articles.filter((article) => Boolean(article.article_id)));
+    } catch {
       setRecommendations([]);
+    }
+  };
+
+  const fetchRecommendations = async () => {
+    try {
+      setLoading(true);
+
+      if (!user) {
+        await fetchFallbackRecommendations();
+        return;
+      }
+
+      const response = await fetch('/api/recommendations', { cache: 'no-store' });
+      if (!response.ok) {
+        await fetchFallbackRecommendations();
+        return;
+      }
+
+      const data = await response.json();
+      const items = Array.isArray(data.recommendations) ? data.recommendations : [];
+
+      if (items.length === 0) {
+        await fetchFallbackRecommendations();
+        return;
+      }
+
+      setEyebrow('Personalized for You');
+      setHeading('Recommended Content');
+      setDescription('Fresh recommendations tuned to your interests, reading habits, and activity.');
+      setRecommendations(items);
+    } catch {
+      await fetchFallbackRecommendations();
     } finally {
       setLoading(false);
     }
@@ -52,13 +121,13 @@ const PersonalizedContent = () => {
 
   if (authLoading || loading) {
     return (
-      <section className="py-12 bg-gradient-to-br from-primary/5 to-accent/5">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="animate-pulse space-y-4">
-            <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <section className="bg-gradient-to-br from-primary/5 to-accent/5 py-12">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="space-y-4 animate-pulse">
+            <div className="h-8 w-1/3 rounded bg-gray-200" />
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="h-64 bg-gray-200 rounded-2xl"></div>
+                <div key={i} className="h-64 rounded-2xl bg-gray-200" />
               ))}
             </div>
           </div>
@@ -67,35 +136,34 @@ const PersonalizedContent = () => {
     );
   }
 
-  if (!user || recommendations.length === 0) {
+  if (recommendations.length === 0) {
     return null;
   }
 
   return (
-    <section className="py-16 bg-gradient-to-br from-primary/5 to-accent/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex items-center justify-between mb-8">
+    <section className="bg-gradient-to-br from-primary/5 to-accent/5 py-16">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mb-8 flex items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 mb-2">
+            <div className="mb-2 flex items-center gap-2">
               <Icon name="SparklesIcon" size={24} className="text-primary" />
-              <span className="text-sm font-semibold text-primary uppercase tracking-wide">
-                Personalized for You
+              <span className="text-sm font-semibold uppercase tracking-wide text-primary">
+                {eyebrow}
               </span>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground">Recommended Content</h2>
+            <h2 className="text-3xl font-bold text-foreground lg:text-4xl">{heading}</h2>
+            <p className="mt-2 max-w-2xl text-secondary">{description}</p>
           </div>
           <Link
-            href="/preferences"
-            className="text-sm text-primary font-semibold hover:underline flex items-center gap-1"
+            href={user ? '/preferences' : '/guides'}
+            className="flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
           >
-            Manage Preferences
-            <Icon name="Cog6ToothIcon" size={16} />
+            {user ? 'Manage Preferences' : 'Browse all guides'}
+            <Icon name={user ? 'Cog6ToothIcon' : 'ArrowRightIcon'} size={16} />
           </Link>
         </div>
 
-        {/* Recommendations Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {recommendations.slice(0, 6).map((article) => {
             const contextualImage = getContextualImage({
               category: article.category,
@@ -110,40 +178,35 @@ const PersonalizedContent = () => {
               <Link
                 key={article.article_id}
                 href={`/guides/${article.article_id}`}
-                className="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:border-primary hover:shadow-lg transition-all"
+                className="group overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all hover:border-primary hover:shadow-lg"
               >
                 <div className="relative h-48 overflow-hidden">
                   <AppImage
                     src={contextualImage.src}
                     alt={contextualImage.alt}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-semibold text-foreground">
+                  <div className="absolute left-4 top-4">
+                    <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-foreground backdrop-blur-sm">
                       {article.category}
                     </span>
                   </div>
-                  {article.relevance_score >= 70 && (
-                    <div className="absolute top-4 right-4">
-                      <div className="bg-success/90 backdrop-blur-sm text-white px-2 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
-                        <Icon name="SparklesIcon" size={12} />
-                        Top Match
-                      </div>
-                    </div>
-                  )}
                 </div>
                 <div className="p-5">
-                  <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                  <h3 className="mb-2 line-clamp-2 text-lg font-bold text-foreground transition-colors group-hover:text-primary">
                     {article.title}
                   </h3>
-                  <div className="flex items-center justify-between mt-4">
+                  <p className="text-sm text-secondary">
+                    {article.reason || `${article.relevance_score}% match for your interests`}
+                  </p>
+                  <div className="mt-4 flex items-center justify-between">
                     <span className="text-xs text-muted-foreground">
-                      {article.relevance_score}% match
+                      {article.relevance_score}% relevance
                     </span>
                     <Icon
                       name="ArrowRightIcon"
                       size={16}
-                      className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"
+                      className="text-muted-foreground transition-all group-hover:translate-x-1 group-hover:text-primary"
                     />
                   </div>
                 </div>

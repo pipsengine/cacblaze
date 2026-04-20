@@ -45,18 +45,31 @@ interface SchedulerStatus {
   minimum_target_word_count: number;
 }
 
+interface StatsResponse {
+  total_articles: number;
+  total_tips: number;
+  published_articles: number;
+  draft_articles: number;
+  success_rate: number;
+  average_word_count: number;
+  minimum_target_word_count: number;
+  category_breakdown: Record<string, number>;
+}
+
 export default function AdminDashboard() {
   const { user, userRole, loading } = useAuth();
   const [report, setReport] = useState<OverviewResponse | null>(null);
   const [scheduler, setScheduler] = useState<SchedulerStatus | null>(null);
+  const [stats, setStats] = useState<StatsResponse | null>(null);
   const [pageLoading, setPageLoading] = useState(true);
 
   useEffect(() => {
     const loadDashboard = async () => {
       try {
-        const [reportRes, schedulerRes] = await Promise.all([
+        const [reportRes, schedulerRes, statsRes] = await Promise.all([
           fetch('/api/ai-publishing/report/overview', { cache: 'no-store' }),
           fetch('/api/ai-publishing/scheduler/status', { cache: 'no-store' }),
+          fetch('/api/ai-publishing/stats', { cache: 'no-store' }),
         ]);
 
         if (reportRes.ok) {
@@ -65,6 +78,10 @@ export default function AdminDashboard() {
 
         if (schedulerRes.ok) {
           setScheduler(await schedulerRes.json());
+        }
+
+        if (statsRes.ok) {
+          setStats(await statsRes.json());
         }
       } finally {
         setPageLoading(false);
@@ -124,6 +141,28 @@ export default function AdminDashboard() {
                 </div>
               </div>
 
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="bg-white rounded-2xl border border-gray-200 p-6">
+                  <p className="text-sm text-secondary mb-2">Average Word Count</p>
+                  <p className="text-3xl font-bold text-foreground">{stats?.average_word_count ?? 0}</p>
+                  <p className="text-xs text-secondary mt-2">
+                    Target: {stats?.minimum_target_word_count ?? 2000}+ words
+                  </p>
+                </div>
+                <div className="bg-white rounded-2xl border border-gray-200 p-6">
+                  <p className="text-sm text-secondary mb-2">Publishing Success Rate</p>
+                  <p className="text-3xl font-bold text-foreground">
+                    {Math.round((stats?.success_rate ?? 0) * 100)}%
+                  </p>
+                  <p className="text-xs text-secondary mt-2">Quality and approval readiness snapshot</p>
+                </div>
+                <div className="bg-white rounded-2xl border border-gray-200 p-6">
+                  <p className="text-sm text-secondary mb-2">Tips Generated</p>
+                  <p className="text-3xl font-bold text-foreground">{stats?.total_tips ?? 0}</p>
+                  <p className="text-xs text-secondary mt-2">Additional short-form engagement inventory</p>
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
                 <div className="lg:col-span-1 bg-white rounded-2xl border border-gray-200 p-6">
                   <h2 className="text-xl font-bold text-foreground mb-4">Automation Summary</h2>
@@ -152,6 +191,59 @@ export default function AdminDashboard() {
                         </span>
                       </div>
                     ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                <div className="bg-white rounded-2xl border border-gray-200 p-6">
+                  <h2 className="text-xl font-bold text-foreground mb-4">Growth and SEO Snapshot</h2>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="rounded-xl bg-gray-50 p-4">
+                      <p className="text-xs uppercase tracking-wide text-secondary">Indexed-ready long form</p>
+                      <p className="mt-2 text-2xl font-bold text-foreground">{stats?.average_word_count ?? 0}</p>
+                      <p className="text-xs text-secondary mt-1">average words per published article</p>
+                    </div>
+                    <div className="rounded-xl bg-gray-50 p-4">
+                      <p className="text-xs uppercase tracking-wide text-secondary">Weekly output</p>
+                      <p className="mt-2 text-2xl font-bold text-foreground">{report?.automation.total_weekly_publish_events ?? 14}</p>
+                      <p className="text-xs text-secondary mt-1">planned content releases every week</p>
+                    </div>
+                    <div className="rounded-xl bg-gray-50 p-4">
+                      <p className="text-xs uppercase tracking-wide text-secondary">Published inventory</p>
+                      <p className="mt-2 text-2xl font-bold text-foreground">{stats?.published_articles ?? 0}</p>
+                      <p className="text-xs text-secondary mt-1">articles available for search and readers</p>
+                    </div>
+                    <div className="rounded-xl bg-gray-50 p-4">
+                      <p className="text-xs uppercase tracking-wide text-secondary">Quality pass rate</p>
+                      <p className="mt-2 text-2xl font-bold text-foreground">{Math.round((stats?.success_rate ?? 0) * 100)}%</p>
+                      <p className="text-xs text-secondary mt-1">content flow accepted for publishing</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-2xl border border-gray-200 p-6">
+                  <h2 className="text-xl font-bold text-foreground mb-4">Top Category Mix</h2>
+                  <div className="space-y-4">
+                    {Object.entries(stats?.category_breakdown || {})
+                      .sort((a, b) => b[1] - a[1])
+                      .slice(0, 6)
+                      .map(([category, count]) => {
+                        const total = Math.max(1, stats?.published_articles || 1);
+                        const width = Math.max(8, Math.round((count / total) * 100));
+
+                        return (
+                          <div key={category}>
+                            <div className="mb-1 flex items-center justify-between text-sm">
+                              <span className="font-medium text-foreground">{category}</span>
+                              <span className="text-secondary">{count} articles</span>
+                            </div>
+                            <div className="h-2 rounded-full bg-gray-100">
+                              <div className="h-2 rounded-full bg-primary" style={{ width: `${width}%` }} />
+                            </div>
+                          </div>
+                        );
+                      })}
                   </div>
                 </div>
               </div>
