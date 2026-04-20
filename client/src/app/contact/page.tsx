@@ -12,7 +12,15 @@ export const metadata: Metadata = {
   alternates: { canonical: '/contact' },
 };
 
-export default function ContactPage() {
+interface ContactPageProps {
+  searchParams?: Promise<{ reason?: string | string[] | undefined }>;
+}
+
+export default async function ContactPage({ searchParams }: ContactPageProps) {
+  const resolvedSearchParams = searchParams ? await searchParams : undefined;
+  const reasonValue = resolvedSearchParams?.reason;
+  const reason = Array.isArray(reasonValue) ? reasonValue[0] : reasonValue;
+
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'Contact', href: '/contact' },
@@ -85,7 +93,7 @@ export default function ContactPage() {
 
               {/* Contact Form */}
               <div className="lg:col-span-2">
-                <ContactFormClient />
+                <ContactFormClient reason={reason} />
               </div>
             </div>
           </div>

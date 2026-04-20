@@ -112,7 +112,7 @@ const FeaturedGuides = () => {
         setGuides(items);
         setFeedMeta({
           weekLabel: typeof weekStart === 'string' ? `Week of ${weekStart}` : 'This week',
-          sort: activeTab,
+          sort: 'popular',
         });
       } catch {
         if (!cancelled) {
@@ -145,11 +145,7 @@ const FeaturedGuides = () => {
     const items = [...guides];
 
     if (activeTab === 'recent') {
-      return items
-        .sort(
-          (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-        )
-        .slice(0, 8);
+      return items.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()).slice(0, 8);
     }
 
     if (activeTab === 'trending') {
@@ -223,7 +219,10 @@ const FeaturedGuides = () => {
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             {Array.from({ length: 4 }).map((_, index) => (
-              <div key={`guide-skeleton-${index}`} className="rounded-3xl border border-gray-200 bg-white p-4 animate-pulse h-[420px]" />
+              <div
+                key={`guide-skeleton-${index}`}
+                className="rounded-3xl border border-gray-200 bg-white p-4 animate-pulse h-[420px]"
+              />
             ))}
           </div>
         ) : (
@@ -231,85 +230,85 @@ const FeaturedGuides = () => {
             <div className="flex gap-6" style={{ width: 'max-content' }}>
               {displayedGuides.map((guide) => {
                 const contextualImage = getContextualImage({
-                category: guide.category,
-                title: guide.title,
-                alt: guide.alt,
-                width: 800,
-                height: 600,
-                preferCurated: true,
-              });
-              const placeholderSrc = getContextualImage({
-                category: guide.category,
-                title: guide.title,
-                alt: guide.alt,
-                width: 800,
-                height: 600,
-                preferCurated: false,
-              }).src;
+                  category: guide.category,
+                  title: guide.title,
+                  alt: guide.alt,
+                  width: 800,
+                  height: 600,
+                  preferCurated: true,
+                });
+                const placeholderSrc = getContextualImage({
+                  category: guide.category,
+                  title: guide.title,
+                  alt: guide.alt,
+                  width: 800,
+                  height: 600,
+                  preferCurated: false,
+                }).src;
 
-              return (
-                <Link
-                  key={guide.id}
-                  href={guide.href}
-                  onClick={() =>
-                    CACBLAZE_EVENT_EXAMPLES.topGuideClick({
-                      page_type: 'home',
-                      section_name: 'featured_guides',
-                      content_type: activeTab,
-                      category_name: guide.category,
-                      article_title: guide.title,
-                      destination_url: guide.href,
-                    })
-                  }
-                  className="group flex-shrink-0 w-80 rounded-3xl border border-gray-200 bg-white hover:border-primary transition-all overflow-hidden hover-lift"
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <AppImage
-                      src={guide.image || contextualImage.src}
-                      alt={guide.alt || contextualImage.alt}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      fill
-                      fallbackSrc={placeholderSrc}
-                      secondaryFallbackSrc={placeholderSrc}
-                    />
+                return (
+                  <Link
+                    key={guide.id}
+                    href={guide.href}
+                    onClick={() =>
+                      CACBLAZE_EVENT_EXAMPLES.topGuideClick({
+                        page_type: 'home',
+                        section_name: 'featured_guides',
+                        content_type: activeTab,
+                        category_name: guide.category,
+                        article_title: guide.title,
+                        destination_url: guide.href,
+                      })
+                    }
+                    className="group flex-shrink-0 w-80 rounded-3xl border border-gray-200 bg-white hover:border-primary transition-all overflow-hidden hover-lift"
+                  >
+                    <div className="relative h-48 overflow-hidden">
+                      <AppImage
+                        src={guide.image || contextualImage.src}
+                        alt={guide.alt || contextualImage.alt}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        fill
+                        fallbackSrc={placeholderSrc}
+                        secondaryFallbackSrc={placeholderSrc}
+                      />
 
-                    <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-semibold text-foreground">
-                        {guide.category}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                      {guide.title}
-                    </h3>
-                    <p className="text-secondary text-sm mb-4 line-clamp-2">{guide.excerpt}</p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent" />
-                        <span className="text-sm font-medium text-foreground">{guide.author}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Icon name="StarIcon" size={16} className="text-warning fill-current" />
-                        <span className="text-sm font-semibold text-foreground">
-                          {guide.rating}
+                      <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-semibold text-foreground">
+                          {guide.category}
                         </span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-4 mt-4 pt-4 border-t border-gray-100">
-                      <div className="flex items-center gap-1 text-muted-foreground">
-                        <Icon name="ClockIcon" size={16} />
-                        <span className="text-xs">{guide.readTime}</span>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                        {guide.title}
+                      </h3>
+                      <p className="text-secondary text-sm mb-4 line-clamp-2">{guide.excerpt}</p>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent" />
+                          <span className="text-sm font-medium text-foreground">{guide.author}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Icon name="StarIcon" size={16} className="text-warning fill-current" />
+                          <span className="text-sm font-semibold text-foreground">
+                            {guide.rating}
+                          </span>
+                        </div>
                       </div>
-                      <Icon
-                        name="ArrowRightIcon"
-                        size={16}
-                        className="ml-auto text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"
-                      />
+                      <div className="flex items-center gap-4 mt-4 pt-4 border-t border-gray-100">
+                        <div className="flex items-center gap-1 text-muted-foreground">
+                          <Icon name="ClockIcon" size={16} />
+                          <span className="text-xs">{guide.readTime}</span>
+                        </div>
+                        <Icon
+                          name="ArrowRightIcon"
+                          size={16}
+                          className="ml-auto text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"
+                        />
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              );
+                  </Link>
+                );
               })}
             </div>
           </div>

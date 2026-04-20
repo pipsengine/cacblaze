@@ -21,6 +21,7 @@ interface Article {
   category: string;
   published_at: string;
   featured_image_url?: string;
+  featured_image?: string;
   image_alt?: string;
   author?: Author;
   slug: string;
@@ -58,7 +59,7 @@ export default function FeaturedArticle() {
           setArticle(null);
         }
         setError(null);
-      } catch (err) {
+      } catch {
         setArticle(null);
         setError(null);
       } finally {
@@ -141,11 +142,7 @@ export default function FeaturedArticle() {
           <div className="flex flex-col md:flex-row gap-6">
             <div className="md:w-1/3">
               <AppImage
-                src={
-                  (article as any).featured_image_url ||
-                  (article as any).featured_image ||
-                  contextualImage.src
-                }
+                src={article.featured_image_url || article.featured_image || contextualImage.src}
                 alt={article.image_alt || article.title}
                 className="w-full h-48 object-cover rounded-lg"
                 fallbackSrc={fallbackImage.src}

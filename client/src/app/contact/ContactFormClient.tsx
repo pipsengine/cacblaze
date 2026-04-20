@@ -1,12 +1,13 @@
 'use client';
 
 import { useMemo, useRef, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { CACBLAZE_EVENT_EXAMPLES, trackEvent } from '@/lib/analytics';
 
-export default function ContactFormClient() {
-  const searchParams = useSearchParams();
-  const reason = searchParams?.get('reason') || 'general';
+interface ContactFormClientProps {
+  reason?: string;
+}
+
+export default function ContactFormClient({ reason = 'general' }: ContactFormClientProps) {
   const isContributorFlow = reason === 'contribute';
   const [formData, setFormData] = useState({
     name: '',
@@ -71,14 +72,19 @@ export default function ContactFormClient() {
       content_type: isContributorFlow ? 'contributor_application' : 'contact_request',
     };
 
-    const isValid = Boolean(formData.name.trim() && formData.email.trim() && formData.message.trim());
+    const isValid = Boolean(
+      formData.name.trim() && formData.email.trim() && formData.message.trim()
+    );
 
-    trackEvent(isContributorFlow ? 'contributor_application_submit_click' : 'contact_form_submit_click', {
-      page_type: isContributorFlow ? 'contributor' : 'contact',
-      contributor_interest_area: isContributorFlow ? formData.subject : undefined,
-      form_valid: isValid,
-      ...baseParams,
-    });
+    trackEvent(
+      isContributorFlow ? 'contributor_application_submit_click' : 'contact_form_submit_click',
+      {
+        page_type: isContributorFlow ? 'contributor' : 'contact',
+        contributor_interest_area: isContributorFlow ? formData.subject : undefined,
+        form_valid: isValid,
+        ...baseParams,
+      }
+    );
 
     if (isValid && isContributorFlow) {
       CACBLAZE_EVENT_EXAMPLES.contributorApplicationSubmitted({
@@ -164,7 +170,11 @@ export default function ContactFormClient() {
             value={formData.message}
             onChange={(event) => handleChange('message', event.target.value)}
             className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
-            placeholder={isContributorFlow ? 'Share your expertise, topic focus, and editorial strengths.' : 'How can we help you?'}
+            placeholder={
+              isContributorFlow
+                ? 'Share your expertise, topic focus, and editorial strengths.'
+                : 'How can we help you?'
+            }
           ></textarea>
         </div>
         <button

@@ -15,6 +15,7 @@ interface Tip {
   category: string;
   published_at: string;
   featured_image?: string;
+  featured_image_url?: string;
   image_alt?: string;
 }
 
@@ -42,7 +43,7 @@ export default function DailyTips() {
           setTips([]);
         }
         setError(null);
-      } catch (err) {
+      } catch {
         setTips([]);
         setError(null);
       } finally {
@@ -133,9 +134,7 @@ export default function DailyTips() {
               preferCurated: false,
             }).src;
             const chosenSrc =
-              (todaysTip as any).featured_image ||
-              (todaysTip as any).featured_image_url ||
-              contextual.src;
+              todaysTip.featured_image || todaysTip.featured_image_url || contextual.src;
             return (
               <div className="mb-4">
                 <AppImage

@@ -116,6 +116,7 @@ export default function ArticleAnalytics({ article }: ArticleAnalyticsProps) {
     article.category,
     article.author.name,
     article.readTime,
+    article.slug,
     scrollMilestones,
   ]);
 
