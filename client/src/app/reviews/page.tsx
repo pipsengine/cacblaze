@@ -5,7 +5,7 @@ import Breadcrumb from '@/components/common/Breadcrumb';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import AppImage from '@/components/ui/AppImage';
-import { getContextualImage, getCuratedImagesForCategory } from '@/utils/imageService';
+import { getContextualImage } from '@/utils/imageService';
 
 export const metadata: Metadata = {
   title: 'Reviews & Recommendations - CACBLAZE',
@@ -339,15 +339,14 @@ export default function ReviewsPage() {
                             height: 500,
                             preferCurated: true,
                           });
-                          const curatedList = getCuratedImagesForCategory('reviews') || [];
-                          const hash =
-                            item.label.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0) +
-                            item.id.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
-                          const idx = curatedList.length ? hash % curatedList.length : 0;
-                          const fallback = curatedList[idx]?.src || '/assets/images/no_image.png';
-                          const secondaryFallback =
-                            curatedList[(idx + 1) % Math.max(curatedList.length, 1)]?.src ||
-                            '/assets/images/no_image.png';
+                          const fallback = getContextualImage({
+                            category: 'reviews',
+                            title: item.label,
+                            alt: item.label,
+                            width: 800,
+                            height: 500,
+                            preferCurated: false,
+                          });
                           return (
                             <div className="relative aspect-[16/10] bg-white">
                               <AppImage
@@ -355,8 +354,8 @@ export default function ReviewsPage() {
                                 alt={primary.alt}
                                 fill
                                 className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                fallbackSrc={fallback}
-                                secondaryFallbackSrc={secondaryFallback}
+                                fallbackSrc={fallback.src}
+                                secondaryFallbackSrc="/assets/images/no_image.png"
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
                             </div>

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
-import { getCuratedImagesForCategory } from '@/utils/imageService';
+import { getContextualImage } from '@/utils/imageService';
 import { trackSearchResultClick } from '@/lib/analytics';
 
 interface SearchResult {
@@ -24,7 +24,6 @@ interface SearchResultsProps {
 }
 
 const SearchResults = ({ query, results }: SearchResultsProps) => {
-  const curatedList = getCuratedImagesForCategory('reviews');
   return (
     <div className="space-y-6">
       {/* Results Header */}
@@ -46,15 +45,14 @@ const SearchResults = ({ query, results }: SearchResultsProps) => {
       {/* Results List */}
       <div className="space-y-4">
         {results.map((result) => {
-          const hash =
-            result.title.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0) +
-            result.id.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
-          const idx = curatedList.length ? hash % curatedList.length : 0;
-          const fallback = curatedList[idx]?.src || '/assets/images/no_image.png';
-          const secondaryFallback =
-            curatedList.length > 1
-              ? curatedList[(idx + 1) % curatedList.length]?.src || '/assets/images/no_image.png'
-              : '/assets/images/no_image.png';
+          const fallback = getContextualImage({
+            category: result.category,
+            title: result.title,
+            alt: result.imageAlt || result.title,
+            width: 480,
+            height: 320,
+            preferCurated: false,
+          });
           return (
             <Link
               key={result.id}
@@ -76,8 +74,8 @@ const SearchResults = ({ query, results }: SearchResultsProps) => {
                   src={result.image}
                   alt={result.imageAlt}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  fallbackSrc={fallback}
-                  secondaryFallbackSrc={secondaryFallback}
+                  fallbackSrc={fallback.src}
+                  secondaryFallbackSrc="/assets/images/no_image.png"
                 />
               </div>
 
