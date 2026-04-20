@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
@@ -17,62 +17,158 @@ interface Guide {
   image: string;
   alt: string;
   href: string;
+  publishedAt: string;
+}
+
+const rotateForWeek = <T,>(items: T[], offset = 0) => {
+  if (items.length === 0) {
+    return items;
+  }
+
+  const weekSeed = Math.floor(Date.now() / (1000 * 60 * 60 * 24 * 7));
+  const start = (weekSeed + offset) % items.length;
+  return items.slice(start).concat(items.slice(0, start));
+};
+
+interface ApiArticle {
+  id: string;
+  title: string;
+  meta_description?: string;
+  content: string;
+  category: string;
+  slug: string;
+  featured_image_url?: string;
+  image_alt?: string;
+  word_count?: number;
+  readability_score?: number;
+  published_at?: string;
+  author?: { name?: string };
+}
+
+interface FeedMeta {
+  weekLabel: string;
+  sort: 'recent' | 'popular' | 'trending';
 }
 
 const FeaturedGuides = () => {
   const [activeTab, setActiveTab] = useState<'recent' | 'popular' | 'trending'>('popular');
+  const [guides, setGuides] = useState<Guide[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [feedMeta, setFeedMeta] = useState<FeedMeta>({
+    weekLabel: 'This week',
+    sort: 'popular',
+  });
 
-  const guides: Guide[] = [
-    {
-      id: 'guide_1',
-      title: 'Complete Guide to Modern Web Development',
-      excerpt:
-        'Learn the fundamentals and advanced techniques of building modern web applications.',
-      category: 'Technology',
-      readTime: '12 min',
-      author: 'Sarah Chen',
-      rating: 4.9,
-      image: '',
-      alt: 'Person coding on laptop with multiple screens showing web development code',
-      href: '/guides/web-development',
-    },
-    {
-      id: 'guide_2',
-      title: 'Mastering Productivity: Time Management Strategies',
-      excerpt: 'Proven techniques to boost your productivity and achieve your goals faster.',
-      category: 'Lifestyle',
-      readTime: '8 min',
-      author: 'Michael Roberts',
-      rating: 4.8,
-      image: '',
-      alt: 'Organized workspace with planner, laptop, and coffee cup on white desk',
-      href: '/guides/productivity',
-    },
-    {
-      id: 'guide_3',
-      title: 'Understanding Machine Learning Fundamentals',
-      excerpt: 'A beginner-friendly introduction to machine learning concepts and applications.',
-      category: 'Education',
-      readTime: '15 min',
-      author: 'Dr. Emily Watson',
-      rating: 5.0,
-      image: '',
-      alt: 'Digital visualization of neural network with glowing blue connections',
-      href: '/guides/machine-learning',
-    },
-    {
-      id: 'guide_4',
-      title: 'Complete Guide to Urban Gardening',
-      excerpt: 'Transform your small space into a thriving garden with these expert tips.',
-      category: 'Lifestyle',
-      readTime: '10 min',
-      author: 'James Park',
-      rating: 4.7,
-      image: '',
-      alt: 'Small urban garden with various plants on apartment balcony',
-      href: '/guides/urban-gardening',
-    },
-  ];
+  useEffect(() => {
+    let cancelled = false;
+
+    const fetchGuides = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          `/api/ai-publishing/articles/published?limit=18&featured=true&sort=recent&scope=homepage`,
+          {
+            cache: 'no-store',
+            headers: {
+              'Cache-Control': 'no-cache',
+              Pragma: 'no-cache',
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error('Failed to load featured guides');
+        }
+
+        const data = await response.json();
+        if (cancelled) {
+          return;
+        }
+
+        const items: Guide[] = (data.articles || []).map((article: ApiArticle) => ({
+          id: article.id,
+          title: article.title,
+          excerpt: article.meta_description || article.content?.slice(0, 140) || '',
+          category: article.category,
+          readTime: `${Math.max(4, Math.round((article.word_count || 900) / 180))} min`,
+          author: article.author?.name || 'CACBLAZE Editorial Desk',
+          rating: Number(
+            Math.min(5, Math.max(4.6, (article.readability_score || 8.5) / 2)).toFixed(1)
+          ),
+          image: article.featured_image_url || '',
+          alt: article.image_alt || article.title,
+          href: `/guides/${article.slug}`,
+          publishedAt: article.published_at || new Date().toISOString(),
+        }));
+
+        const weekStart = data?.selected_for?.week_start
+          ? new Date(data.selected_for.week_start).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+            })
+          : 'This week';
+
+        setGuides(items);
+        setFeedMeta({
+          weekLabel: typeof weekStart === 'string' ? `Week of ${weekStart}` : 'This week',
+          sort: activeTab,
+        });
+      } catch {
+        if (!cancelled) {
+          setGuides([]);
+        }
+      } finally {
+        if (!cancelled) {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchGuides();
+    const refreshTimer = window.setInterval(fetchGuides, 15 * 60 * 1000);
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(refreshTimer);
+    };
+  }, []);
+
+  useEffect(() => {
+    setFeedMeta((current) => ({
+      ...current,
+      sort: activeTab,
+    }));
+  }, [activeTab]);
+
+  const displayedGuides = useMemo(() => {
+    const items = [...guides];
+
+    if (activeTab === 'recent') {
+      return items
+        .sort(
+          (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+        )
+        .slice(0, 8);
+    }
+
+    if (activeTab === 'trending') {
+      const ranked = items.sort((a, b) => {
+        const scoreA = a.rating * 100 + new Date(a.publishedAt).getTime() / 100000000;
+        const scoreB = b.rating * 100 + new Date(b.publishedAt).getTime() / 100000000;
+        return scoreB - scoreA;
+      });
+
+      return rotateForWeek(ranked, 2).slice(0, 8);
+    }
+
+    const ranked = items.sort((a, b) => {
+      const scoreA = a.rating * 100 + Number.parseInt(a.readTime, 10);
+      const scoreB = b.rating * 100 + Number.parseInt(b.readTime, 10);
+      return scoreB - scoreA;
+    });
+
+    return rotateForWeek(ranked, 0).slice(0, 8);
+  }, [activeTab, guides]);
 
   const tabs = [
     { id: 'tab_popular', value: 'popular' as const, label: 'Popular' },
@@ -90,6 +186,10 @@ const FeaturedGuides = () => {
               Featured Content
             </span>
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground">Top Guides This Week</h2>
+            <p className="text-sm text-secondary mt-3">
+              Auto-refreshed from the live publishing engine · {feedMeta.weekLabel} · Showing{' '}
+              {feedMeta.sort} picks
+            </p>
           </div>
 
           {/* Tabs */}
@@ -111,11 +211,17 @@ const FeaturedGuides = () => {
         </div>
 
         {/* Guides Horizontal Scroll */}
-        <div className="overflow-x-auto pb-6 -mx-6 px-6">
-          <div className="flex gap-6" style={{ width: 'max-content' }}>
-            {guides.map((guide) => {
-              // Get contextual image for each guide
-              const contextualImage = getContextualImage({
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+            {Array.from({ length: 4 }).map((_, index) => (
+              <div key={`guide-skeleton-${index}`} className="rounded-3xl border border-gray-200 bg-white p-4 animate-pulse h-[420px]" />
+            ))}
+          </div>
+        ) : (
+          <div className="overflow-x-auto pb-6 -mx-6 px-6">
+            <div className="flex gap-6" style={{ width: 'max-content' }}>
+              {displayedGuides.map((guide) => {
+                const contextualImage = getContextualImage({
                 category: guide.category,
                 title: guide.title,
                 alt: guide.alt,
@@ -140,8 +246,8 @@ const FeaturedGuides = () => {
                 >
                   <div className="relative h-48 overflow-hidden">
                     <AppImage
-                      src={contextualImage.src}
-                      alt={contextualImage.alt}
+                      src={guide.image || contextualImage.src}
+                      alt={guide.alt || contextualImage.alt}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       fill
                       fallbackSrc={placeholderSrc}
@@ -185,9 +291,10 @@ const FeaturedGuides = () => {
                   </div>
                 </Link>
               );
-            })}
+              })}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* View All Link */}
         <div className="text-center mt-8">
@@ -195,7 +302,7 @@ const FeaturedGuides = () => {
             href="/guides"
             className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
           >
-            View All Guides
+            Explore More Generated Guides
             <Icon name="ArrowRightIcon" size={20} className="text-primary" />
           </Link>
         </div>

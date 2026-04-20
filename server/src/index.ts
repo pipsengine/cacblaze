@@ -6,6 +6,7 @@ import { connectDB } from './config/database';
 import { seedAdmin } from './config/seed';
 import routes from './routes';
 import { runSupabaseBootstrap } from './services/supabaseBootstrap';
+import { AIPublishingScheduler } from './modules/ai-publishing/AIPublishingScheduler';
 
 const app = express();
 const DEFAULT_PORT = Number(process.env.PORT || 3001);
@@ -81,6 +82,12 @@ async function start() {
     await runSupabaseBootstrap();
     await connectDB();
     await seedAdmin();
+
+    if (process.env.AI_AUTOMATION_ENABLED !== 'false') {
+      void new AIPublishingScheduler();
+      console.log('AI automation is enabled for autonomous content generation and publishing.');
+    }
+
     await startListening(DEFAULT_PORT);
   } catch (error) {
     console.error('Server failed to start:', error);

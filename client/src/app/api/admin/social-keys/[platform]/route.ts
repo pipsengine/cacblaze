@@ -19,6 +19,10 @@ const REQUIRED_FIELDS: Record<Platform, string[]> = {
   whatsapp: ['businessId', 'accessToken', 'phoneNumberId'],
 };
 
+function isPlatform(value: string): value is Platform {
+  return value in REQUIRED_FIELDS;
+}
+
 async function requireAdmin() {
   const supabase = await createClient();
   const {
@@ -40,12 +44,15 @@ async function requireAdmin() {
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: Promise<{ platform: Platform }> }
+  { params }: { params: Promise<{ platform: string }> }
 ) {
   const { supabase, user, error } = await requireAdmin();
   if (error || !supabase || !user) return error!;
 
   const { platform } = await params;
+  if (!isPlatform(platform)) {
+    return NextResponse.json({ error: 'Invalid platform' }, { status: 400 });
+  }
   const body = await req.json();
   const enabled = !!body?.enabled;
   const credentials = (body?.credentials || {}) as Record<string, string>;
@@ -81,13 +88,16 @@ export async function PUT(
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: Promise<{ platform: Platform }> }
+  { params }: { params: Promise<{ platform: string }> }
 ) {
   // Test connection: basic validation that required keys are present in the payload.
   const { error } = await requireAdmin();
   if (error) return error;
 
   const { platform } = await params;
+  if (!isPlatform(platform)) {
+    return NextResponse.json({ error: 'Invalid platform' }, { status: 400 });
+  }
   const body = await req.json();
   const credentials = (body?.credentials || {}) as Record<string, string>;
   const required = REQUIRED_FIELDS[platform] || [];

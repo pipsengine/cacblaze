@@ -1,10 +1,33 @@
 import { NextResponse } from 'next/server';
 import { articles as localArticles } from '@/data/articles';
 
-const BASE = (
-  process.env.NEXT_PUBLIC_API_URL ||
-  (process.env.NODE_ENV === 'development' ? 'http://localhost:3001/api' : '')
-).replace(/\/+$/, '');
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+const EXPLICIT_BASE = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/+$/, '');
+const DEV_BASE_CANDIDATES = Array.from({ length: 10 }, (_, index) =>
+  `http://localhost:${3001 + index}/api`
+);
+
+async function resolveBaseUrl(pathWithSearch: string, init: RequestInit) {
+  const candidates = EXPLICIT_BASE ? [EXPLICIT_BASE] : DEV_BASE_CANDIDATES;
+
+  for (const base of candidates) {
+    try {
+      const response = await fetch(`${base}/ai-publishing/${pathWithSearch}`, {
+        ...init,
+        method: 'GET',
+        cache: 'no-store',
+      });
+
+      if (response.ok || response.status < 500) {
+        return base;
+      }
+    } catch {}
+  }
+
+  return EXPLICIT_BASE || '';
+}
 
 async function proxy(request: Request, params: { path?: string[] }) {
   const url = new URL(request.url);
@@ -17,6 +40,7 @@ async function proxy(request: Request, params: { path?: string[] }) {
   const today = new Date();
   const dayMs = 24 * 60 * 60 * 1000;
   const weekIndex = Math.floor(today.getTime() / (7 * dayMs));
+  const sortMode = qs.get('sort') || 'popular';
   const toISO = (d: Date) => new Date(d).toISOString();
   const pickArticleSlugs = (n: number) => {
     const keys = Object.keys(localArticles);
@@ -28,8 +52,8 @@ async function proxy(request: Request, params: { path?: string[] }) {
     }
     return picked;
   };
-  const publishedArticlesFallback = (n: number) => {
-    const slugs = pickArticleSlugs(n);
+  const publishedArticlesFallback = (n: number, sortMode: string = 'popular') => {
+    const slugs = pickArticleSlugs(Math.max(n * 2, 12));
     const items = slugs.map((slug, i) => {
       const a: any = (localArticles as any)[slug];
       const pub = new Date(today.getTime() - i * dayMs);
@@ -50,9 +74,37 @@ async function proxy(request: Request, params: { path?: string[] }) {
         meta_description: a.excerpt || '',
         type: 'Guide',
         geo_focus: 'Nigeria',
+        word_count: 2000 + i * 35,
+        readability_score: 8.2 + ((weekIndex + i) % 5) * 0.2,
       };
     });
-    return { articles: items, total_count: items.length, has_more: false };
+
+    const sorted = [...items].sort((a, b) => {
+      if (sortMode === 'recent') {
+        return new Date(b.published_at).getTime() - new Date(a.published_at).getTime();
+      }
+
+      if (sortMode === 'trending') {
+        return (b.readability_score || 0) - (a.readability_score || 0);
+      }
+
+      return ((b.readability_score || 0) + (b.word_count || 0) / 1000) - ((a.readability_score || 0) + (a.word_count || 0) / 1000);
+    });
+
+    const rotated = sortMode === 'recent'
+      ? sorted
+      : sorted.slice(weekIndex % sorted.length).concat(sorted.slice(0, weekIndex % sorted.length));
+
+    return {
+      articles: rotated.slice(0, n),
+      total_count: items.length,
+      has_more: items.length > n,
+      selected_for: {
+        featured: true,
+        sort: sortMode,
+        week_start: toISO(new Date(today.getTime() - ((today.getDay() + 6) % 7) * dayMs)),
+      },
+    };
   };
   const categories = ['Technology', 'Education', 'Lifestyle', 'Personal Finance', 'Business'];
   const tipPhrases = [
@@ -150,8 +202,18 @@ async function proxy(request: Request, params: { path?: string[] }) {
     return { tips: items, count: items.length };
   };
 
+  const headers = new Headers(request.headers);
+  headers.delete('host');
+
+  const init: RequestInit = {
+    method: request.method,
+    headers,
+  };
+
+  const resolvedBase = await resolveBaseUrl(path + search, init);
+
   // If no upstream configured in production, provide safe fallbacks for known endpoints
-  if (!BASE) {
+  if (!resolvedBase) {
     if (request.method === 'GET') {
       if (path.startsWith('tips/published')) {
         const n = limit ?? 7;
@@ -160,22 +222,14 @@ async function proxy(request: Request, params: { path?: string[] }) {
       }
       if (path.startsWith('articles/published')) {
         const n = limit ?? 7;
-        const data = publishedArticlesFallback(n);
+        const data = publishedArticlesFallback(n, sortMode);
         return NextResponse.json(data, { status: 200, headers: { 'Cache-Control': 'no-store' } });
       }
     }
     return NextResponse.json({ error: 'Upstream API not configured' }, { status: 502 });
   }
 
-  const target = `${BASE}/ai-publishing/${path}${search}`;
-
-  const headers = new Headers(request.headers);
-  headers.delete('host');
-
-  const init: RequestInit = {
-    method: request.method,
-    headers,
-  };
+  const target = `${resolvedBase}/ai-publishing/${path}${search}`;
 
   if (request.method !== 'GET' && request.method !== 'HEAD') {
     init.body = request.body as any;
@@ -191,12 +245,13 @@ async function proxy(request: Request, params: { path?: string[] }) {
       }
       if (path.startsWith('articles/published')) {
         const n = limit ?? 7;
-        return NextResponse.json(publishedArticlesFallback(n), { status: 200 });
+        return NextResponse.json(publishedArticlesFallback(n, sortMode), { status: 200 });
       }
     }
 
     const buf = await res.arrayBuffer();
     const responseHeaders = new Headers(res.headers);
+    responseHeaders.set('Cache-Control', 'no-store, max-age=0, must-revalidate');
     return new NextResponse(buf, { status: res.status, headers: responseHeaders });
   } catch (e) {
     // Network or DNS error
@@ -207,7 +262,7 @@ async function proxy(request: Request, params: { path?: string[] }) {
       }
       if (path.startsWith('articles/published')) {
         const n = limit ?? 7;
-        return NextResponse.json(publishedArticlesFallback(n), { status: 200 });
+        return NextResponse.json(publishedArticlesFallback(n, sortMode), { status: 200 });
       }
     }
     return NextResponse.json({ error: 'Upstream request failed' }, { status: 502 });

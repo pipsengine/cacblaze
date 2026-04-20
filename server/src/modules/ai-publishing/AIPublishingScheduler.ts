@@ -10,24 +10,35 @@ export class AIPublishingScheduler {
   private aiService: AIContentService;
   private validationService: ContentValidationService;
   private adminUser: User | null = null;
+  private readonly weeklyArticleTarget = Math.max(
+    1,
+    Math.min(Number(process.env.AI_WEEKLY_ARTICLE_TARGET || 7), 7)
+  );
+  private readonly weeklyTipTarget = Math.max(
+    1,
+    Math.min(Number(process.env.AI_WEEKLY_TIP_TARGET || 7), 7)
+  );
 
   constructor() {
     this.aiService = new AIContentService();
     this.validationService = new ContentValidationService();
-    this.initializeScheduler();
+    void this.initializeScheduler();
   }
 
   private async initializeScheduler(): Promise<void> {
     try {
-      // Find or create admin user for AI content
       this.adminUser = await this.getAdminUser();
-      
-      // Schedule content generation
+      await this.ensureContentInventory(
+        Number(process.env.AI_MIN_PUBLISHED_ARTICLES || Math.max(this.weeklyArticleTarget * 4, 21))
+      );
+      await this.refreshLegacyPublishedContent(Number(process.env.AI_MIN_PUBLISHED_WORDS || 2000));
+      await this.ensureWeeklyFreshContent();
+
       this.scheduleArticleGeneration();
       this.scheduleTipGeneration();
       this.scheduleContentValidation();
       this.scheduleAutoPublishing();
-      
+
       console.log('AI Publishing Scheduler initialized successfully');
     } catch (error) {
       console.error('Failed to initialize AI Publishing Scheduler:', error);
@@ -39,7 +50,11 @@ export class AIPublishingScheduler {
     const username = process.env.AI_PUBLISHER_USERNAME || 'ai-publisher';
 
     let adminUser = await User.findOne({ where: { email } });
-    
+
+    if (!adminUser) {
+      adminUser = await User.findOne({ where: { role: 'admin' } });
+    }
+
     if (!adminUser) {
       if (process.env.ALLOW_AI_PUBLISHER_AUTO_CREATE !== 'true') {
         throw new Error('AI publisher user not found');
@@ -57,161 +72,276 @@ export class AIPublishingScheduler {
         role: 'admin',
       });
     }
-    
+
     return adminUser;
   }
 
+  async ensureContentInventory(minimumPublished: number = 6): Promise<void> {
+    if (!this.adminUser || minimumPublished <= 0) {
+      return;
+    }
+
+    const publishedCount = await Article.count({
+      where: {
+        status: 'published',
+        ai_generated: true,
+      },
+    });
+
+    if (publishedCount >= minimumPublished) {
+      return;
+    }
+
+    const missingCount = minimumPublished - publishedCount;
+    const categories = this.aiService.getSupportedCategories();
+
+    for (let index = 0; index < missingCount; index += 1) {
+      const category = categories[index % categories.length];
+      const article = await this.aiService.generateArticle(this.adminUser, {
+        category,
+        status: 'draft',
+      });
+
+      await this.autoApproveAfterSelfReview(article, 'immediate');
+    }
+
+    console.log(`AI inventory warm-up completed with ${missingCount} newly generated articles.`);
+  }
+
+  async refreshLegacyPublishedContent(minimumWords: number = 2000): Promise<void> {
+    if (!this.adminUser || minimumWords <= 0) {
+      return;
+    }
+
+    const legacyArticles = await Article.findAll({
+      where: {
+        ai_generated: true,
+        word_count: {
+          [Op.lt]: minimumWords,
+        },
+      },
+      order: [['updated_at', 'ASC']],
+      limit: 25,
+    });
+
+    for (const article of legacyArticles) {
+      await this.aiService.refreshArticleContent(article);
+      await this.autoApproveAfterSelfReview(article, 'immediate');
+    }
+
+    if (legacyArticles.length > 0) {
+      console.log(`Refreshed ${legacyArticles.length} legacy AI articles to the new quality standard.`);
+    }
+  }
+
+  private async ensureWeeklyFreshContent(): Promise<void> {
+    if (!this.adminUser || this.weeklyArticleTarget <= 0) {
+      return;
+    }
+
+    const now = new Date();
+    const mondayOffset = (now.getDay() + 6) % 7;
+    const weekStart = new Date(now);
+    weekStart.setDate(now.getDate() - mondayOffset);
+    weekStart.setHours(0, 0, 0, 0);
+
+    const publishedThisWeek = await Article.count({
+      where: {
+        status: 'published',
+        ai_generated: true,
+        published_at: {
+          [Op.gte]: weekStart,
+        },
+      },
+    });
+
+    const missingThisWeek = this.weeklyArticleTarget - publishedThisWeek;
+    if (missingThisWeek <= 0) {
+      return;
+    }
+
+    const categories = this.aiService.getSupportedCategories();
+    for (let index = 0; index < missingThisWeek; index += 1) {
+      const category = categories[(mondayOffset + index) % categories.length];
+      const article = await this.aiService.generateArticle(this.adminUser, {
+        category,
+        status: 'draft',
+      });
+
+      await this.autoApproveAfterSelfReview(article, 'immediate');
+    }
+
+    console.log(`Weekly content catch-up completed with ${missingThisWeek} article(s).`);
+  }
+
+  private getDailyCategory(): string {
+    const rotation: Record<number, string> = {
+      1: 'Technology',
+      2: 'Education',
+      3: 'Lifestyle',
+      4: 'Local Resources',
+      5: 'Business',
+      6: 'Finance',
+      0: 'Career',
+    };
+
+    return rotation[new Date().getDay()] || 'Technology';
+  }
+
+  private shouldRunForWeeklyTarget(target: number): boolean {
+    const preferredDays = [1, 2, 3, 4, 5, 6, 0];
+    if (target >= preferredDays.length) {
+      return true;
+    }
+
+    return preferredDays.slice(0, target).includes(new Date().getDay());
+  }
+
+  private async autoApproveAfterSelfReview(
+    article: Article,
+    publishMode: 'immediate' | 'scheduled' = 'immediate'
+  ): Promise<boolean> {
+    const validationResult = await this.validationService.validateArticle(article);
+
+    if (!validationResult.isValid) {
+      await article.update({
+        status: 'draft',
+        validation_passed: false,
+        validation_errors: validationResult.errors || [],
+      });
+      return false;
+    }
+
+    if (publishMode === 'scheduled') {
+      const publishDate = new Date();
+      publishDate.setMinutes(publishDate.getMinutes() + 15, 0, 0);
+
+      await article.update({
+        status: 'scheduled',
+        scheduled_publish_date: publishDate,
+        validation_passed: true,
+        validation_errors: [],
+      });
+      return true;
+    }
+
+    await article.update({
+      status: 'published',
+      published_at: new Date(),
+      validation_passed: true,
+      validation_errors: [],
+    });
+
+    await this.generateSEOMetadata(article);
+    return true;
+  }
+
   private scheduleArticleGeneration(): void {
-    // Generate articles Monday-Friday at 2:00 AM
-    setInterval(async () => {
-      const now = new Date();
-      const hour = now.getHours();
-      const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-      
-      // Run only Monday-Friday (1-5) at 2:00 AM
-      if (hour === 2 && day >= 1 && day <= 5) {
-        try {
-          console.log('Starting scheduled article generation...');
-          
-          if (!this.adminUser) {
-            throw new Error('Admin user not available for article generation');
-          }
-          
-          const article = await this.aiService.generateArticle(this.adminUser);
-          console.log(`Generated article: ${article.title} (ID: ${article.id})`);
-          
-          // Auto-validate and schedule for publishing if validation passes
-          const validationResult = await this.validationService.validateArticle(article);
-          
-          if (validationResult.isValid) {
-            // Schedule for publishing at 8:00 AM
-            const publishDate = new Date();
-            publishDate.setHours(8, 0, 0, 0);
-            
-            await article.update({
-              status: 'scheduled',
-              scheduled_publish_date: publishDate,
-              validation_passed: true
-            });
-            
-            console.log(`Article scheduled for publishing at ${publishDate.toLocaleString()}`);
-          } else {
-            console.log(`Article validation failed: ${validationResult.errors?.join(', ')}`);
-          }
-          
-        } catch (error) {
-          console.error('Error in scheduled article generation:', error);
+    const job = new CronJob('0 2 * * *', async () => {
+      try {
+        if (!this.shouldRunForWeeklyTarget(this.weeklyArticleTarget)) {
+          return;
         }
+
+        if (!this.adminUser) {
+          throw new Error('Admin user not available for article generation');
+        }
+
+        const article = await this.aiService.generateArticle(this.adminUser, {
+          category: this.getDailyCategory(),
+          status: 'draft',
+        });
+
+        const approved = await this.autoApproveAfterSelfReview(article, 'immediate');
+        console.log(
+          approved
+            ? `Article auto-approved and published: ${article.title}`
+            : `Article sent back to draft after self-review: ${article.title}`
+        );
+      } catch (error) {
+        console.error('Error in scheduled article generation:', error);
       }
-    }, 60 * 60 * 1000); // Check every hour
+    });
+
+    job.start();
   }
 
   private scheduleTipGeneration(): void {
-    // Generate tips daily at 3:00 AM
-    setInterval(async () => {
-      const now = new Date();
-      const hour = now.getHours();
-      
-      // Run daily at 3:00 AM
-      if (hour === 3) {
-        try {
-          console.log('Starting scheduled tip generation...');
-          
-          const tip = await this.aiService.generateDailyTip();
-          console.log(`Generated daily tip: ${tip.title} (ID: ${tip.id})`);
-          
-          // Auto-publish tips immediately (they're short and low-risk)
-          await tip.update({ 
-            status: 'published',
-            published_at: new Date(),
-            validation_passed: true
-          });
-          
-          console.log('Daily tip published successfully');
-          
-        } catch (error) {
-          console.error('Error in scheduled tip generation:', error);
+    const job = new CronJob('0 3 * * *', async () => {
+      try {
+        if (!this.shouldRunForWeeklyTarget(this.weeklyTipTarget)) {
+          return;
         }
+
+        const tip = await this.aiService.generateDailyTip(this.getDailyCategory());
+        await tip.update({
+          status: 'published',
+          published_at: new Date(),
+          validation_passed: true,
+          validation_errors: [],
+        });
+
+        console.log(`Daily tip published successfully: ${tip.title}`);
+      } catch (error) {
+        console.error('Error in scheduled tip generation:', error);
       }
-    }, 60 * 60 * 1000); // Check every hour
+    });
+
+    job.start();
   }
 
   private scheduleContentValidation(): void {
-    // Validate draft content every hour
     const job = new CronJob('0 * * * *', async () => {
       try {
-        console.log('Running scheduled content validation...');
-        
-        const draftArticles = await Article.findAll({ 
-          where: { 
+        const draftArticles = await Article.findAll({
+          where: {
             status: 'draft',
-            ai_generated: true 
-          } 
+            ai_generated: true,
+          },
         });
-        
+
         for (const article of draftArticles) {
-          const validationResult = await this.validationService.validateArticle(article);
-          
-          if (validationResult.isValid) {
-            await article.update({ 
-              validation_passed: true,
-              validation_errors: []
-            });
-            console.log(`Article validated: ${article.title}`);
-          } else {
-            await article.update({ 
-              validation_passed: false,
-              validation_errors: validationResult.errors
-            });
-            console.log(`Article validation failed: ${article.title}`);
-          }
+          await this.autoApproveAfterSelfReview(article, 'immediate');
         }
-        
       } catch (error) {
         console.error('Error in scheduled content validation:', error);
       }
     });
+
     job.start();
   }
 
   private scheduleAutoPublishing(): void {
-    // Check for scheduled content every 15 minutes
     const job = new CronJob('*/15 * * * *', async () => {
       try {
-        console.log('Checking for scheduled content to publish...');
-        
         const now = new Date();
         const scheduledArticles = await Article.findAll({
           where: {
             status: 'scheduled',
             scheduled_publish_date: {
-              [Op.lte]: now
+              [Op.lte]: now,
             },
-            validation_passed: true
-          }
+            validation_passed: true,
+          },
         });
-        
+
         for (const article of scheduledArticles) {
           await article.update({
             status: 'published',
-            published_at: now
+            published_at: now,
           });
-          
-          console.log(`Published article: ${article.title}`);
-          
-          // Generate SEO and schema data
+
           await this.generateSEOMetadata(article);
         }
-        
       } catch (error) {
         console.error('Error in auto-publishing:', error);
       }
-    }); // Check every 15 minutes
+    });
+
     job.start();
   }
 
   private async generateSEOMetadata(article: Article): Promise<void> {
-    // Generate rich SEO metadata and schema markup
     const seoData = {
       title: article.title,
       description: article.meta_description,
@@ -224,52 +354,45 @@ export class AIPublishingScheduler {
         description: article.meta_description,
         author: {
           '@type': 'Organization',
-          name: 'CACBLAZE AI Publisher'
+          name: 'CACBLAZE AI Publisher',
         },
         datePublished: article.published_at?.toISOString(),
         wordCount: article.word_count,
-        articleSection: article.category
-      }
+        articleSection: article.category,
+      },
     };
-    
-    // In production, you would store this in a separate SEO table
-    // or add fields to the article model
-    console.log('Generated SEO metadata for article:', article.title);
+
+    console.log('Generated SEO metadata for article:', seoData.title);
   }
 
-  // Manual trigger methods for testing and admin control
-  async generateArticleNow(): Promise<Article> {
+  async generateArticleNow(category?: string): Promise<Article> {
     if (!this.adminUser) {
       throw new Error('Admin user not available');
     }
-    
-    const article = await this.aiService.generateArticle(this.adminUser);
-    console.log('Manually generated article:', article.title);
+
+    const article = await this.aiService.generateArticle(this.adminUser, {
+      category,
+      status: 'draft',
+    });
+
+    await this.autoApproveAfterSelfReview(article, 'immediate');
     return article;
   }
 
-  async generateTipNow(): Promise<Tip> {
-    const tip = await this.aiService.generateDailyTip();
-    console.log('Manually generated tip:', tip.title);
-    return tip;
+  async generateTipNow(category?: string): Promise<Tip> {
+    return this.aiService.generateDailyTip(category);
   }
 
   async validateAllDrafts(): Promise<void> {
-    const draftArticles = await Article.findAll({ 
-      where: { 
+    const draftArticles = await Article.findAll({
+      where: {
         status: 'draft',
-        ai_generated: true 
-      } 
+        ai_generated: true,
+      },
     });
-    
+
     for (const article of draftArticles) {
-      const result = await this.validationService.validateArticle(article);
-      await article.update({
-        validation_passed: result.isValid,
-        validation_errors: result.errors
-      });
-      
-      console.log(`Validation result for ${article.title}: ${result.isValid ? 'PASS' : 'FAIL'}`);
+      await this.autoApproveAfterSelfReview(article, 'immediate');
     }
   }
 }

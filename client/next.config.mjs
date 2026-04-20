@@ -1,11 +1,12 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const isDevelopment = process.env.NODE_ENV === 'development';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   productionBrowserSourceMaps: true,
-  distDir: process.env.DIST_DIR || '.next',
+  distDir: process.env.DIST_DIR || (isDevelopment ? '.next-dev' : '.next'),
   output: 'standalone',
   compress: true,
   poweredByHeader: false,

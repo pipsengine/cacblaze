@@ -8,8 +8,8 @@ interface ValidationResult {
 }
 
 export class ContentValidationService {
-  private readonly MIN_WORD_COUNT = 800;
-  private readonly MAX_WORD_COUNT = 2000;
+  private readonly MIN_WORD_COUNT = 2000;
+  private readonly MAX_WORD_COUNT = 4500;
   private readonly MIN_READABILITY_SCORE = 7.0;
   private readonly MAX_READABILITY_SCORE = 10.0;
 
