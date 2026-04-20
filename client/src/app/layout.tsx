@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import { Suspense } from 'react';
+import Script from 'next/script';
 import '../styles/index.css';
 import { AuthProvider } from '@/contexts/AuthContext';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
@@ -14,6 +15,7 @@ export const viewport: Viewport = {
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:4028');
+const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-EB3LB77X4H';
 
 export const metadata: Metadata = {
   title: {
@@ -77,6 +79,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
+          strategy="beforeInteractive"
+        />
+        <Script id="google-tag-manager" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = window.gtag || gtag;
+            gtag('js', new Date());
+            gtag('config', '${measurementId}');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
