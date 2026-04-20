@@ -25,6 +25,17 @@ A modern Next.js 15 application built with TypeScript and Tailwind CSS.
   ```
 3. Open [http://localhost:4028](http://localhost:4028) with your browser to see the result.
 
+## 🔐 Environment Variables
+
+Create a local env file with the public variables the client requires:
+
+```bash
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-EB3LB77X4H
+NEXT_PUBLIC_API_URL=http://localhost:3001/api
+```
+
+For production deployments, set `NEXT_PUBLIC_GA_MEASUREMENT_ID` in your hosting provider as well. The app now falls back to the CACBLAZE GA4 property if the env var is missing, but deployment should still define it explicitly so Tag Assistant and future environment changes stay predictable.
+
 ## 📁 Project Structure
 
 ```
@@ -72,6 +83,8 @@ Build the application for production:
   ```bash
   npm run build
   ```
+
+Before deploying, verify that the production environment includes `NEXT_PUBLIC_GA_MEASUREMENT_ID`. If Google Tag Assistant still cannot detect the tag, check for CSP restrictions, script blockers, and any consent manager that prevents requests to `https://www.googletagmanager.com`.
 
 ## 📚 Learn More
 

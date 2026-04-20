@@ -1,6 +1,53 @@
 'use client';
 
-export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() || '';
+const DEFAULT_GA_MEASUREMENT_ID = 'G-EB3LB77X4H';
+const GA_MEASUREMENT_ID_PATTERN = /G-[A-Z0-9]+/i;
+
+const ANALYTICS_ENV_CANDIDATES = [
+  {
+    source: 'NEXT_PUBLIC_GA_MEASUREMENT_ID',
+    value: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
+  },
+  {
+    source: 'NEXT_PUBLIC_GOOGLE_ANALYTICS_ID',
+    value: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
+  },
+] as const;
+
+export interface AnalyticsStatus {
+  enabled: boolean;
+  measurementId: string;
+  configuredSource: string;
+  usingFallback: boolean;
+}
+
+function resolveMeasurementId() {
+  for (const candidate of ANALYTICS_ENV_CANDIDATES) {
+    const trimmedCandidate = candidate.value?.trim();
+    if (!trimmedCandidate) {
+      continue;
+    }
+
+    const matchedMeasurementId = trimmedCandidate.match(GA_MEASUREMENT_ID_PATTERN)?.[0];
+    if (matchedMeasurementId) {
+      return {
+        measurementId: matchedMeasurementId.toUpperCase(),
+        configuredSource: candidate.source,
+        usingFallback: false,
+      };
+    }
+  }
+
+  return {
+    measurementId: DEFAULT_GA_MEASUREMENT_ID,
+    configuredSource: 'default_fallback',
+    usingFallback: true,
+  };
+}
+
+const analyticsResolution = resolveMeasurementId();
+
+export const GA_MEASUREMENT_ID = analyticsResolution.measurementId;
 
 export const PAGE_TYPES = [
   'home',
@@ -63,6 +110,15 @@ declare global {
 
 export function isAnalyticsEnabled(): boolean {
   return Boolean(GA_MEASUREMENT_ID);
+}
+
+export function getAnalyticsStatus(): AnalyticsStatus {
+  return {
+    enabled: isAnalyticsEnabled(),
+    measurementId: analyticsResolution.measurementId,
+    configuredSource: analyticsResolution.configuredSource,
+    usingFallback: analyticsResolution.usingFallback,
+  };
 }
 
 export function sanitizeAnalyticsParams<T extends AnalyticsParams>(params?: T): Partial<T> {

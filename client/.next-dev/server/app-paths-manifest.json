@@ -1,6 +1,4 @@
 {
-  "/api/image-proxy/route": "app/api/image-proxy/route.js",
-  "/api/ai-publishing/[...path]/route": "app/api/ai-publishing/[...path]/route.js",
   "/page": "app/page.js",
   "/contact/page": "app/contact/page.js"
 }
