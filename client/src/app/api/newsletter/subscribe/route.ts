@@ -31,9 +31,10 @@ export async function POST(request: Request) {
     const body = await request.json();
     const rawEmail = typeof body?.email === 'string' ? body.email.trim().toLowerCase() : '';
     const frequency = typeof body?.frequency === 'string' ? body.frequency : 'weekly';
-    const topics = Array.isArray(body?.topics)
-      ? body.topics.filter((topic): topic is string => typeof topic === 'string').slice(0, 6)
-      : [];
+    const rawTopics: unknown[] = Array.isArray(body?.topics) ? (body.topics as unknown[]) : [];
+    const topics = rawTopics
+      .filter((topic: unknown): topic is string => typeof topic === 'string')
+      .slice(0, 6);
     const forwardedFor = request.headers.get('x-forwarded-for') || 'unknown';
     const rateKey = `newsletter:${forwardedFor.split(',')[0]?.trim()}:${rawEmail || 'anonymous'}`;
 
