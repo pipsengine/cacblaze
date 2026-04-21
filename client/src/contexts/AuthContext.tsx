@@ -21,6 +21,7 @@ interface AuthContextType {
   loading: boolean;
   userRole: 'admin' | 'author' | 'user' | null;
   token: string | null;
+  isDevAuthSession: boolean;
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string, fullName: string) => Promise<void>;
   signOut: () => Promise<void>;
@@ -66,6 +67,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState<string | null>(null);
+  const [isDevAuthSession, setIsDevAuthSession] = useState(false);
   const router = useRouter();
   const supabase = useMemo(() => createClient(), []);
 
@@ -74,6 +76,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (storedDevSession) {
       setUser(storedDevSession.user);
       setToken(storedDevSession.token);
+      setIsDevAuthSession(true);
       setLoading(false);
       return;
     }
@@ -81,6 +84,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (DEV_ADMIN_AUTH_ENABLED) {
       setUser(null);
       setToken(null);
+      setIsDevAuthSession(false);
       setLoading(false);
       return;
     }
@@ -114,9 +118,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         full_name: fullName,
         avatar_url: avatarUrl,
       });
+      setIsDevAuthSession(false);
     } catch (error) {
       console.error('Failed to load current user', error);
       setUser(null);
+      setIsDevAuthSession(false);
     } finally {
       setLoading(false);
     }
@@ -128,6 +134,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (storedDevSession) {
         setUser(storedDevSession.user);
         setToken(storedDevSession.token);
+        setIsDevAuthSession(true);
         setLoading(false);
         return;
       }
@@ -135,6 +142,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (DEV_ADMIN_AUTH_ENABLED) {
         setUser(null);
         setToken(null);
+        setIsDevAuthSession(false);
         setLoading(false);
         return;
       }
@@ -162,9 +170,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const { data: sub } = supabase.auth.onAuthStateChange(async (_e, session) => {
       setToken(session?.access_token || null);
       if (session) {
+        setIsDevAuthSession(false);
         await loadCurrentUser();
       } else {
         setUser(null);
+        setIsDevAuthSession(false);
         setLoading(false);
       }
     });
@@ -193,6 +203,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(payload.user);
       setToken(payload.token);
       setLoading(false);
+      setIsDevAuthSession(true);
       storeDevSession({ user: payload.user, token: payload.token });
       router.refresh();
       return;
@@ -230,6 +241,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(payload.user);
       setToken(payload.token);
       setLoading(false);
+      setIsDevAuthSession(true);
       storeDevSession({ user: payload.user, token: payload.token });
       router.refresh();
     }
@@ -260,13 +272,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
     setToken(null);
     setUser(null);
+    setIsDevAuthSession(false);
     router.push('/');
     router.refresh();
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, userRole: user?.role || null, token, signIn, signUp, signOut }}
+      value={{
+        user,
+        loading,
+        userRole: user?.role || null,
+        token,
+        isDevAuthSession,
+        signIn,
+        signUp,
+        signOut,
+      }}
     >
       {children}
     </AuthContext.Provider>

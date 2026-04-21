@@ -68,19 +68,19 @@ function getDisplayImage(item: DisplayItem) {
 }
 
 const ContinueReading = () => {
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading, isDevAuthSession } = useAuth();
   const [progressItems, setProgressItems] = useState<ReadingProgressItem[]>([]);
   const [guestRecent, setGuestRecent] = useState<RecentArticleView[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!authLoading && user) {
+    if (!authLoading && user && !isDevAuthSession) {
       void fetchProgress();
     } else if (!authLoading) {
       setGuestRecent(getRecentArticleViews());
       setLoading(false);
     }
-  }, [user, authLoading]);
+  }, [user, authLoading, isDevAuthSession]);
 
   const fetchProgress = async () => {
     try {
@@ -128,7 +128,7 @@ const ContinueReading = () => {
     imageAlt: item.imageAlt,
   }));
 
-  const displayItems = user ? signedInItems : guestItems;
+  const displayItems = user && !isDevAuthSession ? signedInItems : guestItems;
 
   if (authLoading || loading || displayItems.length === 0) {
     return null;
@@ -140,7 +140,7 @@ const ContinueReading = () => {
         <div className="mb-6 flex items-center gap-2">
           <Icon name="BookmarkIcon" size={24} className="text-primary" />
           <h2 className="text-2xl font-bold text-foreground">
-            {user ? 'Continue Reading' : 'Recently Viewed'}
+            {user && !isDevAuthSession ? 'Continue Reading' : 'Recently Viewed'}
           </h2>
         </div>
 

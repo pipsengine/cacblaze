@@ -17,7 +17,7 @@ interface Notification {
 }
 
 const NotificationCenter = () => {
-  const { user } = useAuth();
+  const { user, isDevAuthSession } = useAuth();
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -25,13 +25,14 @@ const NotificationCenter = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (user) {
+    if (user && !isDevAuthSession) {
       fetchNotifications();
       // Poll for new notifications every 30 seconds
       const interval = setInterval(fetchNotifications, 30000);
       return () => clearInterval(interval);
     }
-  }, [user]);
+  }, [user, isDevAuthSession]);
+  if (!user || isDevAuthSession) return null;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

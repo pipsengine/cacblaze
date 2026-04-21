@@ -24,7 +24,7 @@ interface PublishedArticle {
 }
 
 const PersonalizedContent = () => {
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading, isDevAuthSession } = useAuth();
   const [recommendations, setRecommendations] = useState<RecommendedArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [eyebrow, setEyebrow] = useState('Personalized for You');
@@ -37,7 +37,7 @@ const PersonalizedContent = () => {
     if (!authLoading) {
       void fetchRecommendations();
     }
-  }, [user, authLoading]);
+  }, [user, authLoading, isDevAuthSession]);
 
   const fetchFallbackRecommendations = async () => {
     const preferredCategories = getPreferredCategories();
@@ -89,7 +89,7 @@ const PersonalizedContent = () => {
     try {
       setLoading(true);
 
-      if (!user) {
+      if (!user || isDevAuthSession) {
         await fetchFallbackRecommendations();
         return;
       }
@@ -155,11 +155,11 @@ const PersonalizedContent = () => {
             <p className="mt-2 max-w-2xl text-secondary">{description}</p>
           </div>
           <Link
-            href={user ? '/preferences' : '/guides'}
+            href={user && !isDevAuthSession ? '/preferences' : '/guides'}
             className="flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
           >
-            {user ? 'Manage Preferences' : 'Browse all guides'}
-            <Icon name={user ? 'Cog6ToothIcon' : 'ArrowRightIcon'} size={16} />
+            {user && !isDevAuthSession ? 'Manage Preferences' : 'Browse all guides'}
+            <Icon name={user && !isDevAuthSession ? 'Cog6ToothIcon' : 'ArrowRightIcon'} size={16} />
           </Link>
         </div>
 
