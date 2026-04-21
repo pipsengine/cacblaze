@@ -1,8 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { UserStats } from '@/types/user';
 import Icon from '@/components/ui/AppIcon';
+
+type RoleFilter = 'all' | 'admin' | 'author' | 'user';
+type StatusFilter = 'all' | 'active' | 'inactive';
 
 interface UserProfile {
   id: string;
@@ -30,20 +33,19 @@ export default function UserList({ onUserSelect, onStatsChange, selectedUserId }
   const [users, setUsers] = useState<UserProfile[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-  const [roleFilter, setRoleFilter] = useState<'all' | 'admin' | 'author' | 'user'>('all');
-  const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'inactive'>('all');
+  const [roleFilter, setRoleFilter] = useState<RoleFilter>('all');
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    void fetchUsers();
-  }, []);
-
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     setLoading(true);
     try {
       setError(null);
       const response = await fetch('/api/admin/users', { cache: 'no-store' });
-      const payload = (await response.json().catch(() => null)) as UsersResponse | { error?: string } | null;
+      const payload = (await response.json().catch(() => null)) as
+        | UsersResponse
+        | { error?: string }
+        | null;
 
       if (!response.ok || !payload || !('users' in payload)) {
         throw new Error((payload && 'error' in payload && payload.error) || 'Failed to load users');
@@ -59,7 +61,11 @@ export default function UserList({ onUserSelect, onStatsChange, selectedUserId }
     } finally {
       setLoading(false);
     }
-  };
+  }, [onStatsChange]);
+
+  useEffect(() => {
+    void fetchUsers();
+  }, [fetchUsers]);
 
   const handleRoleChange = async (userId: string, newRole: 'admin' | 'author' | 'user') => {
     try {
@@ -125,6 +131,18 @@ export default function UserList({ onUserSelect, onStatsChange, selectedUserId }
     }
   };
 
+  const handleRoleFilterChange = (value: string) => {
+    setRoleFilter(value as RoleFilter);
+  };
+
+  const handleStatusFilterChange = (value: string) => {
+    setStatusFilter(value as StatusFilter);
+  };
+
+  const handleUserRoleChange = (userId: string, value: string) => {
+    void handleRoleChange(userId, value as UserProfile['role']);
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -161,7 +179,7 @@ export default function UserList({ onUserSelect, onStatsChange, selectedUserId }
         </div>
         <select
           value={roleFilter}
-          onChange={(e) => setRoleFilter(e.target.value as any)}
+          onChange={(e) => handleRoleFilterChange(e.target.value)}
           className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
         >
           <option value="all">All Roles</option>
@@ -171,7 +189,7 @@ export default function UserList({ onUserSelect, onStatsChange, selectedUserId }
         </select>
         <select
           value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value as any)}
+          onChange={(e) => handleStatusFilterChange(e.target.value)}
           className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
         >
           <option value="all">All Status</option>
@@ -214,7 +232,7 @@ export default function UserList({ onUserSelect, onStatsChange, selectedUserId }
                   <td className="py-4 px-4">
                     <select
                       value={user.role}
-                      onChange={(e) => handleRoleChange(user.id, e.target.value as any)}
+                      onChange={(e) => handleUserRoleChange(user.id, e.target.value)}
                       className={`px-3 py-1 rounded-full text-xs font-medium ${getRoleBadgeColor(user.role)} border-0 cursor-pointer`}
                     >
                       <option value="user">User</option>

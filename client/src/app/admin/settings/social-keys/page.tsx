@@ -1,18 +1,9 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import Header from '@/components/common/Header';
-import Footer from '@/components/common/Footer';
-import Breadcrumb from '@/components/common/Breadcrumb';
 import Icon from '@/components/ui/AppIcon';
 
-type PlatformKey =
-  | 'facebook'
-  | 'twitter'
-  | 'linkedin'
-  | 'instagram'
-  | 'youtube'
-  | 'whatsapp';
+type PlatformKey = 'facebook' | 'twitter' | 'linkedin' | 'instagram' | 'youtube' | 'whatsapp';
 
 type PlatformConfig = {
   label: string;
@@ -230,13 +221,6 @@ function PlatformCard({
 }
 
 export default function SocialKeysSettingsPage() {
-  const breadcrumbItems = [
-    { name: 'Home', href: '/homepage' },
-    { name: 'Admin', href: '/admin' },
-    { name: 'Settings', href: '/admin/settings' },
-    { name: 'Social API Keys', href: '/admin/settings/social-keys' },
-  ];
-
   const [status, setStatus] = useState<StatusItem[]>([]);
   const [loading, setLoading] = useState(true);
   const load = async () => {
@@ -263,40 +247,34 @@ export default function SocialKeysSettingsPage() {
   ];
 
   return (
-    <>
-      <Header />
-      <main className="min-h-screen pt-20 bg-gray-50 pb-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <Breadcrumb items={breadcrumbItems} className="mb-6" />
+    <div className="space-y-8">
+      <section className="rounded-[2rem] border border-gray-200 bg-white p-8 shadow-sm">
+        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
+          Integration Security
+        </p>
+        <h2 className="mt-3 text-3xl font-semibold text-gray-900">Social media API keys</h2>
+        <p className="mt-3 max-w-3xl text-sm leading-7 text-gray-600">
+          Manage encrypted credentials for auto-posting and future automation without exposing
+          secrets in the browser or mixing credential operations into unrelated workflows.
+        </p>
+      </section>
 
-          <div className="mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-              Social Media API Keys
-            </h1>
-            <p className="text-gray-600">
-              Manage encrypted credentials for auto-posting and future automation.
-            </p>
-          </div>
-
-          {loading ? (
-            <div className="flex items-center justify-center py-24">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {grid.map((p) => (
-                <PlatformCard
-                  key={p}
-                  platform={p}
-                  status={status.find((s) => s.platform === p)}
-                  onRefresh={load}
-                />
-              ))}
-            </div>
-          )}
+      {loading ? (
+        <div className="flex items-center justify-center py-24">
+          <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-sky-400" />
         </div>
-      </main>
-      <Footer />
-    </>
+      ) : (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {grid.map((p) => (
+            <PlatformCard
+              key={p}
+              platform={p}
+              status={status.find((s) => s.platform === p)}
+              onRefresh={load}
+            />
+          ))}
+        </div>
+      )}
+    </div>
   );
 }

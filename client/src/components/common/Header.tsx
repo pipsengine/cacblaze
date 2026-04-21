@@ -8,6 +8,7 @@ import MegaMenu from '@/components/common/MegaMenu';
 import { menuData } from '@/data/menuData';
 import { useAuth } from '@/contexts/AuthContext';
 import NotificationCenter from '@/components/common/NotificationCenter';
+import UserAccountMenu from '@/components/common/UserAccountMenu';
 import { CACBLAZE_EVENT_EXAMPLES, trackEvent } from '@/lib/analytics';
 
 const Header = () => {
@@ -64,40 +65,6 @@ const Header = () => {
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-4">
             {user && <NotificationCenter />}
-            {user && (
-              <Link
-                href="/bookmarks"
-                onClick={() =>
-                  trackEvent('library_navigation_click', {
-                    page_type: 'static_page',
-                    section_name: 'header',
-                    link_text: 'Library',
-                    destination_url: '/bookmarks',
-                  })
-                }
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-secondary hover:text-foreground transition-colors"
-              >
-                <Icon name="BookmarkIcon" size={20} />
-                Library
-              </Link>
-            )}
-            {user && userRole === 'admin' && (
-              <Link
-                href="/admin"
-                onClick={() =>
-                  trackEvent('admin_navigation_click', {
-                    page_type: 'support',
-                    section_name: 'header',
-                    link_text: 'Admin',
-                    destination_url: '/admin',
-                  })
-                }
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-secondary hover:text-foreground transition-colors"
-              >
-                <Icon name="ShieldCheckIcon" size={20} />
-                Admin
-              </Link>
-            )}
             <Link
               href="/search"
               onClick={() =>
@@ -110,6 +77,22 @@ const Header = () => {
               }
               className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-secondary hover:text-foreground transition-colors"
             >
+              {!user && (
+                <Link
+                  href="/login"
+                  className="px-4 py-2 text-sm font-medium text-secondary transition-colors hover:text-foreground"
+                >
+                  Sign In
+                </Link>
+              )}
+              {!user && (
+                <Link
+                  href="/register"
+                  className="rounded-full border border-gray-200 px-5 py-2 text-sm font-semibold text-foreground transition-colors hover:border-gray-300 hover:bg-white"
+                >
+                  Create Account
+                </Link>
+              )}
               <Icon name="MagnifyingGlassIcon" size={20} />
               Search
             </Link>
@@ -128,6 +111,7 @@ const Header = () => {
               Start Exploring
               <Icon name="ArrowRightIcon" size={16} className="text-white" />
             </Link>
+            {user && <UserAccountMenu />}
           </div>
 
           {/* Mobile Menu Button */}
@@ -211,23 +195,75 @@ const Header = () => {
               >
                 Start Exploring
               </Link>
-              {user && userRole === 'admin' && (
-                <Link
-                  href="/admin"
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    trackEvent('admin_navigation_click', {
-                      page_type: 'support',
-                      section_name: 'mobile_header',
-                      link_text: 'Admin Dashboard',
-                      destination_url: '/admin',
-                    });
-                  }}
-                  className="mx-4 px-6 py-2.5 border border-primary text-primary rounded-full text-sm font-semibold text-center flex items-center justify-center gap-2"
-                >
-                  <Icon name="ShieldCheckIcon" size={20} />
-                  Admin Dashboard
-                </Link>
+              {user ? (
+                <div className="mx-4 rounded-3xl border border-gray-200 bg-gray-50 p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
+                      {(user.full_name || user.username || user.email).slice(0, 1).toUpperCase()}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground">
+                        {user.full_name || user.username}
+                      </p>
+                      <p className="text-xs uppercase tracking-[0.18em] text-secondary">
+                        {userRole}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="mt-4 space-y-2">
+                    <Link
+                      href="/account/profile"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm font-medium text-foreground"
+                    >
+                      <Icon name="UserCircleIcon" size={18} />
+                      Profile
+                    </Link>
+                    <Link
+                      href="/account/security"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm font-medium text-foreground"
+                    >
+                      <Icon name="KeyIcon" size={18} />
+                      Change Password
+                    </Link>
+                    <Link
+                      href="/bookmarks"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm font-medium text-foreground"
+                    >
+                      <Icon name="BookmarkIcon" size={18} />
+                      Library
+                    </Link>
+                    {userRole === 'admin' && (
+                      <Link
+                        href="/admin"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm font-medium text-foreground"
+                      >
+                        <Icon name="ShieldCheckIcon" size={18} />
+                        Admin Workspace
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <div className="mx-4 grid grid-cols-2 gap-3">
+                  <Link
+                    href="/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="rounded-full border border-gray-300 px-5 py-2.5 text-center text-sm font-semibold text-foreground"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    href="/register"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="rounded-full bg-slate-900 px-5 py-2.5 text-center text-sm font-semibold text-white"
+                  >
+                    Create Account
+                  </Link>
+                </div>
               )}
             </nav>
           </div>

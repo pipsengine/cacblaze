@@ -1,3 +1,4 @@
+import AdminShell from '@/components/admin/AdminShell';
 import { getAuthenticatedIdentity } from '@/lib/auth/adminAccess';
 import { redirect } from 'next/navigation';
 
@@ -12,5 +13,5 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     redirect('/');
   }
 
-  return <>{children}</>;
+  return <AdminShell identity={session.identity}>{children}</AdminShell>;
 }

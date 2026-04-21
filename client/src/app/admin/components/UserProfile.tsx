@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
 
 interface UserProfile {
@@ -34,22 +34,17 @@ export default function UserProfile({ userId }: UserProfileProps) {
     role: 'user',
     is_active: true,
   });
-  useEffect(() => {
-    if (userId) {
-      void fetchUserProfile();
-    }
-  }, [userId]);
-
-  const fetchUserProfile = async () => {
+  const fetchUserProfile = useCallback(async () => {
     if (!userId) return;
 
     setLoading(true);
     try {
       setError(null);
       const response = await fetch(`/api/admin/users/${userId}`, { cache: 'no-store' });
-      const payload = (await response.json().catch(() => null)) as
-        | { user?: UserProfile; error?: string }
-        | null;
+      const payload = (await response.json().catch(() => null)) as {
+        user?: UserProfile;
+        error?: string;
+      } | null;
 
       if (!response.ok || !payload?.user) {
         throw new Error(payload?.error || 'Failed to load user profile');
@@ -69,6 +64,16 @@ export default function UserProfile({ userId }: UserProfileProps) {
     } finally {
       setLoading(false);
     }
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
+      void fetchUserProfile();
+    }
+  }, [fetchUserProfile, userId]);
+
+  const handleRoleInputChange = (value: string) => {
+    setFormData({ ...formData, role: value as UserProfile['role'] });
   };
 
   const handleSave = async () => {
@@ -189,7 +194,7 @@ export default function UserProfile({ userId }: UserProfileProps) {
           {editing ? (
             <select
               value={formData.role}
-              onChange={(e) => setFormData({ ...formData, role: e.target.value as any })}
+              onChange={(e) => handleRoleInputChange(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             >
               <option value="user">User</option>

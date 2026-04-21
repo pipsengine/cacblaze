@@ -1,11 +1,9 @@
 {
-  "/api/dev-auth/login/route": "app/api/dev-auth/login/route.js",
-  "/api/ai-publishing/[...path]/route": "app/api/ai-publishing/[...path]/route.js",
-  "/api/admin/users/route": "app/api/admin/users/route.js",
-  "/api/admin/audit-logs/route": "app/api/admin/audit-logs/route.js",
+  "/api/admin/social-keys/route": "app/api/admin/social-keys/route.js",
   "/page": "app/page.js",
   "/guides/[slug]/page": "app/guides/[slug]/page.js",
   "/login/page": "app/login/page.js",
   "/register/page": "app/register/page.js",
-  "/admin/page": "app/admin/page.js"
+  "/admin/page": "app/admin/page.js",
+  "/admin/settings/social-keys/page": "app/admin/settings/social-keys/page.js"
 }

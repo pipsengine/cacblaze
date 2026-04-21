@@ -22,6 +22,7 @@ interface AuthContextType {
   userRole: 'admin' | 'author' | 'user' | null;
   token: string | null;
   isDevAuthSession: boolean;
+  refreshUser: () => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string, fullName: string) => Promise<void>;
   signOut: () => Promise<void>;
@@ -76,9 +77,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     try {
       const response = await fetch('/api/dev-auth/session', { cache: 'no-store' });
-      const payload = (await response.json().catch(() => null)) as
-        | { user?: User; token?: string | null }
-        | null;
+      const payload = (await response.json().catch(() => null)) as {
+        user?: User;
+        token?: string | null;
+      } | null;
 
       if (!response.ok || !payload?.user || !payload?.token) {
         return null;
@@ -203,7 +205,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => {
       sub.subscription.unsubscribe();
     };
-  }, [loadCurrentUser, supabase]);
+  }, [loadCurrentUser, loadDevSessionFromServer, supabase]);
 
   const signIn = async (email: string, password: string) => {
     try {
@@ -228,9 +230,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         body: JSON.stringify({ email, password }),
       });
 
-      const payload = (await response.json().catch(() => null)) as
-        | { user?: User; token?: string; error?: string }
-        | null;
+      const payload = (await response.json().catch(() => null)) as {
+        user?: User;
+        token?: string;
+        error?: string;
+      } | null;
 
       if (!response.ok || !payload?.user || !payload?.token) {
         throw new Error(payload?.error || message || 'Login failed');
@@ -291,6 +295,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         userRole: user?.role || null,
         token,
         isDevAuthSession,
+        refreshUser: loadCurrentUser,
         signIn,
         signUp,
         signOut,

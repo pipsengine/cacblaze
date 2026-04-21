@@ -7,8 +7,17 @@ interface StatsCardsProps {
   stats: UserStats;
 }
 
+type StatsCard = {
+  label: string;
+  value: number;
+  icon: string;
+  color: string;
+  bgColor: string;
+  textColor: string;
+};
+
 export default function StatsCards({ stats }: StatsCardsProps) {
-  const cards = [
+  const cards: StatsCard[] = [
     {
       label: 'Total Users',
       value: stats.totalUsers,
@@ -62,7 +71,7 @@ export default function StatsCards({ stats }: StatsCardsProps) {
             <div
               className={`w-12 h-12 rounded-lg ${card.bgColor} flex items-center justify-center`}
             >
-              <Icon name={card.icon as any} size={24} className={card.textColor} />
+              <Icon name={card.icon} size={24} className={card.textColor} />
             </div>
           </div>
           <p className="text-3xl font-bold text-foreground mb-1">{card.value}</p>
