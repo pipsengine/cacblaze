@@ -5,7 +5,18 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 
 const DEV_SESSION_KEY = 'cacblaze_dev_admin_session';
-const DEV_ADMIN_AUTH_ENABLED = process.env.NEXT_PUBLIC_DEV_ADMIN_ENABLED === 'true';
+
+function canUseDevAdminFallback() {
+  if (!isBrowser()) return false;
+
+  const isDevelopmentBuild = process.env.NODE_ENV === 'development';
+  const isDevAdminEnabled = process.env.NEXT_PUBLIC_DEV_ADMIN_ENABLED === 'true';
+  const hostname = window.location.hostname;
+  const isLocalHost =
+    hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '0.0.0.0';
+
+  return isDevelopmentBuild && isDevAdminEnabled && isLocalHost;
+}
 
 export interface User {
   id: string;
@@ -73,7 +84,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const supabase = useMemo(() => createClient(), []);
 
   const loadDevSessionFromServer = useCallback(async () => {
-    if (!DEV_ADMIN_AUTH_ENABLED) return null;
+    if (!canUseDevAdminFallback()) return null;
 
     try {
       const response = await fetch('/api/dev-auth/session', { cache: 'no-store' });
@@ -218,7 +229,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Login failed';
       const shouldTryDevFallback =
-        DEV_ADMIN_AUTH_ENABLED && /failed to fetch|name_not_resolved|dns/i.test(message);
+        canUseDevAdminFallback() && /failed to fetch|name_not_resolved|dns/i.test(message);
 
       if (!shouldTryDevFallback) {
         throw error instanceof Error ? error : new Error(message);

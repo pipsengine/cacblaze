@@ -16,6 +16,20 @@ export default function LoginClient() {
   const searchParams = useSearchParams();
   const next = searchParams.get('next') || '/';
 
+  const formatAuthError = (value: unknown) => {
+    const message = value instanceof Error ? value.message : 'Failed to sign in';
+
+    if (/development admin login is disabled/i.test(message)) {
+      return 'Authentication is not available through the development fallback on this deployment.';
+    }
+
+    if (/failed to fetch|name_not_resolved|dns/i.test(message)) {
+      return 'Authentication service is currently unreachable. The deployed Supabase URL or DNS configuration appears to be invalid.';
+    }
+
+    return message;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -23,13 +37,8 @@ export default function LoginClient() {
     try {
       await signIn(email, password);
       router.push(next);
-    } catch (err: any) {
-      const msg = err?.message || 'Failed to sign in';
-      const hint =
-        /failed to fetch|name_not_resolved|dns/i.test(msg)
-          ? ' • Check Supabase URL/Anon Key env vars'
-          : '';
-      setError(`${msg}${hint}`);
+    } catch (err: unknown) {
+      setError(formatAuthError(err));
     } finally {
       setLoading(false);
     }
@@ -42,7 +51,9 @@ export default function LoginClient() {
           <Link href="/" className="inline-block">
             <h1 className="text-4xl font-bold text-primary mb-2">CACBLAZE</h1>
           </Link>
-          <p className="text-secondary">Sign in to bookmark guides, join discussions, and follow fresh updates</p>
+          <p className="text-secondary">
+            Sign in to bookmark guides, join discussions, and follow fresh updates
+          </p>
         </div>
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <h2 className="text-2xl font-bold text-foreground mb-6">Welcome Back</h2>
