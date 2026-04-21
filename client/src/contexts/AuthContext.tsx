@@ -43,6 +43,21 @@ function isBrowser() {
   return typeof window !== 'undefined';
 }
 
+function isSupabaseConnectivityError(error: unknown) {
+  const message = error instanceof Error ? error.message : String(error || '');
+  return /failed to fetch|name_not_resolved|dns|networkerror|load failed/i.test(message);
+}
+
+function normalizeAuthError(error: unknown) {
+  if (isSupabaseConnectivityError(error)) {
+    return new Error(
+      'Authentication service is currently unreachable. Please try again later or contact support if the issue persists.'
+    );
+  }
+
+  return error instanceof Error ? error : new Error('Login failed');
+}
+
 function getStoredDevSession(): { user: User; token: string } | null {
   if (!isBrowser()) return null;
 
@@ -155,7 +170,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       });
       setIsDevAuthSession(false);
     } catch (error) {
-      console.error('Failed to load current user', error);
+      if (!isSupabaseConnectivityError(error)) {
+        console.error('Failed to load current user', error);
+      }
       setUser(null);
       setToken(null);
       setIsDevAuthSession(false);
@@ -193,7 +210,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setLoading(false);
         }
       } catch (error) {
-        console.error('Failed to initialize auth session', error);
+        if (!isSupabaseConnectivityError(error)) {
+          console.error('Failed to initialize auth session', error);
+        }
         setLoading(false);
       }
     };
@@ -227,12 +246,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       router.refresh();
       return;
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Login failed';
+      const normalizedError = normalizeAuthError(error);
       const shouldTryDevFallback =
-        canUseDevAdminFallback() && /failed to fetch|name_not_resolved|dns/i.test(message);
+        canUseDevAdminFallback() && isSupabaseConnectivityError(error);
 
       if (!shouldTryDevFallback) {
-        throw error instanceof Error ? error : new Error(message);
+        throw normalizedError;
       }
 
       const response = await fetch('/api/dev-auth/login', {
@@ -248,7 +267,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } | null;
 
       if (!response.ok || !payload?.user || !payload?.token) {
-        throw new Error(payload?.error || message || 'Login failed');
+        throw new Error(payload?.error || normalizedError.message || 'Login failed');
       }
 
       setUser(payload.user);

@@ -2,6 +2,7 @@
 
 import { UserStats } from '@/types/user';
 import Icon from '@/components/ui/AppIcon';
+import { adminCardThemes } from '@/components/admin/cardThemes';
 
 interface StatsCardsProps {
   stats: UserStats;
@@ -11,9 +12,7 @@ type StatsCard = {
   label: string;
   value: number;
   icon: string;
-  color: string;
-  bgColor: string;
-  textColor: string;
+  theme: keyof typeof adminCardThemes;
 };
 
 export default function StatsCards({ stats }: StatsCardsProps) {
@@ -22,62 +21,56 @@ export default function StatsCards({ stats }: StatsCardsProps) {
       label: 'Total Users',
       value: stats.totalUsers,
       icon: 'UsersIcon',
-      color: 'bg-blue-500',
-      bgColor: 'bg-blue-50',
-      textColor: 'text-blue-600',
+      theme: 'sky',
     },
     {
       label: 'Active Users',
       value: stats.activeUsers,
       icon: 'CheckCircleIcon',
-      color: 'bg-green-500',
-      bgColor: 'bg-green-50',
-      textColor: 'text-green-600',
+      theme: 'emerald',
     },
     {
       label: 'Admins',
       value: stats.adminCount,
       icon: 'ShieldCheckIcon',
-      color: 'bg-red-500',
-      bgColor: 'bg-red-50',
-      textColor: 'text-red-600',
+      theme: 'rose',
     },
     {
       label: 'Authors',
       value: stats.authorCount,
       icon: 'DocumentTextIcon',
-      color: 'bg-indigo-500',
-      bgColor: 'bg-indigo-50',
-      textColor: 'text-indigo-600',
+      theme: 'indigo',
     },
     {
       label: 'New This Month',
       value: stats.newUsersThisMonth,
       icon: 'SparklesIcon',
-      color: 'bg-orange-500',
-      bgColor: 'bg-orange-50',
-      textColor: 'text-orange-600',
+      theme: 'amber',
     },
   ];
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-8">
-      {cards.map((card, index) => (
-        <div
-          key={index}
-          className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div
-              className={`w-12 h-12 rounded-lg ${card.bgColor} flex items-center justify-center`}
-            >
-              <Icon name={card.icon} size={24} className={card.textColor} />
+      {cards.map((card, index) => {
+        const theme = adminCardThemes[card.theme];
+
+        return (
+          <div
+            key={index}
+            className={`rounded-[1.5rem] border p-6 transition-shadow hover:shadow-md ${theme.surface}`}
+          >
+            <div className="mb-4 flex items-center justify-between">
+              <div
+                className={`flex h-12 w-12 items-center justify-center rounded-2xl ${theme.iconWrap}`}
+              >
+                <Icon name={card.icon} size={24} className={theme.iconColor} />
+              </div>
             </div>
+            <p className={`mb-1 text-3xl font-bold ${theme.value}`}>{card.value}</p>
+            <p className="text-sm text-secondary">{card.label}</p>
           </div>
-          <p className="text-3xl font-bold text-foreground mb-1">{card.value}</p>
-          <p className="text-sm text-secondary">{card.label}</p>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

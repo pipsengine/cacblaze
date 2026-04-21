@@ -1,9 +1,23 @@
 'use client';
 
 import { useAdminWorkspaceData } from '@/components/admin/useAdminWorkspaceData';
+import Icon from '@/components/ui/AppIcon';
+import { adminCardThemes } from '@/components/admin/cardThemes';
 
 export default function AdminAnalyticsPage() {
   const { report, stats, loading } = useAdminWorkspaceData();
+  const analyticThemes = [
+    adminCardThemes.sky,
+    adminCardThemes.indigo,
+    adminCardThemes.rose,
+    adminCardThemes.amber,
+  ] as const;
+  const analyticIcons = [
+    'ChartBarSquareIcon',
+    'DocumentTextIcon',
+    'SparklesIcon',
+    'CalendarDaysIcon',
+  ] as const;
 
   if (loading) {
     return (
@@ -21,12 +35,23 @@ export default function AdminAnalyticsPage() {
           ['Average Word Count', stats?.average_word_count ?? 0],
           ['Success Rate', `${Math.round((stats?.success_rate ?? 0) * 100)}%`],
           ['Weekly Target', report?.automation.total_weekly_publish_events ?? 14],
-        ].map(([label, value]) => (
-          <div key={String(label)} className="rounded-[2rem] border border-gray-200 bg-white p-6 shadow-sm">
-            <p className="text-sm text-gray-600">{label}</p>
-            <p className="mt-4 text-4xl font-semibold text-gray-900">{value}</p>
-          </div>
-        ))}
+        ].map(([label, value], index) => {
+          const theme = analyticThemes[index];
+
+          return (
+            <div key={String(label)} className={`rounded-[2rem] border p-6 ${theme.surface}`}>
+              <div className="flex items-start justify-between gap-4">
+                <p className="text-sm text-gray-600">{label}</p>
+                <div
+                  className={`flex h-11 w-11 items-center justify-center rounded-2xl ${theme.iconWrap} ${theme.iconColor}`}
+                >
+                  <Icon name={analyticIcons[index]} size={20} />
+                </div>
+              </div>
+              <p className={`mt-4 text-4xl font-semibold ${theme.value}`}>{value}</p>
+            </div>
+          );
+        })}
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[1fr_1fr]">
@@ -48,7 +73,7 @@ export default function AdminAnalyticsPage() {
                       <span className="text-gray-600">{count} articles</span>
                     </div>
                     <div className="h-2 rounded-full bg-gray-200">
-                      <div className="h-2 rounded-full bg-sky-400" style={{ width: `${width}%` }} />
+                      <div className="h-2 rounded-full bg-indigo-500" style={{ width: `${width}%` }} />
                     </div>
                   </div>
                 );

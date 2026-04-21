@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 import { adminNavigationItems } from '@/lib/admin/navigation';
 import { useAdminWorkspaceData } from '@/components/admin/useAdminWorkspaceData';
+import { adminCardThemes } from '@/components/admin/cardThemes';
 
 function formatPercentage(value: number | undefined) {
   return `${Math.round((value || 0) * 100)}%`;
@@ -11,6 +12,21 @@ function formatPercentage(value: number | undefined) {
 
 export default function AdminOverviewPage() {
   const { report, scheduler, stats, loading } = useAdminWorkspaceData();
+  const overviewMetricThemes = [
+    adminCardThemes.sky,
+    adminCardThemes.violet,
+    adminCardThemes.amber,
+    adminCardThemes.emerald,
+  ] as const;
+  const rhythmThemes = [adminCardThemes.indigo, adminCardThemes.rose, adminCardThemes.cyan] as const;
+  const moduleThemes = [
+    adminCardThemes.sky,
+    adminCardThemes.emerald,
+    adminCardThemes.violet,
+    adminCardThemes.amber,
+    adminCardThemes.rose,
+    adminCardThemes.indigo,
+  ] as const;
 
   if (loading) {
     return (
@@ -23,7 +39,7 @@ export default function AdminOverviewPage() {
   return (
     <div className="space-y-8">
       <section className="grid gap-6 xl:grid-cols-[1.5fr_0.9fr]">
-        <div className="rounded-[2rem] border border-gray-200 bg-white p-8 shadow-sm">
+        <div className="rounded-[2rem] border border-indigo-200 bg-gradient-to-br from-indigo-50 via-white to-sky-50 p-8 shadow-sm">
           <div className="flex flex-wrap items-start justify-between gap-5">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-sky-700/80">
@@ -75,21 +91,24 @@ export default function AdminOverviewPage() {
                 meta: 'Current publishing quality acceptance snapshot',
                 icon: 'ChartBarSquareIcon',
               },
-            ].map((metric) => (
-              <div
-                key={metric.label}
-                className="rounded-3xl border border-gray-200 bg-gray-50 p-5"
-              >
+            ].map((metric, index) => {
+              const theme = overviewMetricThemes[index];
+
+              return (
+                <div key={metric.label} className={`rounded-3xl border p-5 ${theme.surface}`}>
                 <div className="flex items-center justify-between gap-4">
                   <p className="text-sm text-gray-600">{metric.label}</p>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-50 text-sky-700">
+                  <div
+                    className={`flex h-10 w-10 items-center justify-center rounded-2xl ${theme.iconWrap} ${theme.iconColor}`}
+                  >
                     <Icon name={metric.icon} size={18} />
                   </div>
                 </div>
-                <p className="mt-6 text-3xl font-semibold text-gray-900">{metric.value}</p>
+                <p className={`mt-6 text-3xl font-semibold ${theme.value}`}>{metric.value}</p>
                 <p className="mt-2 text-xs leading-5 text-gray-500">{metric.meta}</p>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
@@ -98,7 +117,7 @@ export default function AdminOverviewPage() {
             Operating Rhythm
           </p>
           <div className="mt-6 space-y-5">
-            <div className="rounded-3xl border border-gray-200 bg-gray-50 p-5">
+            <div className={`rounded-3xl border p-5 ${rhythmThemes[0].surface}`}>
               <p className="text-sm text-gray-600">Weekly release target</p>
               <p className="mt-2 text-3xl font-semibold text-gray-900">
                 {report?.automation.total_weekly_publish_events ?? 14}
@@ -108,7 +127,7 @@ export default function AdminOverviewPage() {
                 {report?.automation.weekly_tip_target ?? 7} tips planned weekly.
               </p>
             </div>
-            <div className="rounded-3xl border border-gray-200 bg-gray-50 p-5">
+            <div className={`rounded-3xl border p-5 ${rhythmThemes[1].surface}`}>
               <p className="text-sm text-gray-600">This week so far</p>
               <p className="mt-2 text-3xl font-semibold text-gray-900">
                 {report?.weekly_progress.published_articles_this_week ?? 0} /{' '}
@@ -118,7 +137,7 @@ export default function AdminOverviewPage() {
                 Articles published this week / tips published this week.
               </p>
             </div>
-            <div className="rounded-3xl border border-gray-200 bg-gray-50 p-5">
+            <div className={`rounded-3xl border p-5 ${rhythmThemes[2].surface}`}>
               <p className="text-sm text-gray-600">Average word count</p>
               <p className="mt-2 text-3xl font-semibold text-gray-900">
                 {stats?.average_word_count ?? 0}
@@ -154,19 +173,25 @@ export default function AdminOverviewPage() {
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {adminNavigationItems
               .filter((item) => item.href !== '/admin')
-              .map((item) => (
+              .map((item, index) => {
+                const theme = moduleThemes[index % moduleThemes.length];
+
+                return (
                 <Link
                   key={item.id}
                   href={item.href}
-                  className="rounded-3xl border border-gray-200 bg-gray-50 p-5 transition hover:border-sky-200 hover:bg-white"
+                  className={`rounded-3xl border p-5 transition hover:bg-white ${theme.surface}`}
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-50 text-sky-700">
+                  <div
+                    className={`flex h-11 w-11 items-center justify-center rounded-2xl ${theme.iconWrap} ${theme.iconColor}`}
+                  >
                     <Icon name={item.icon} size={18} />
                   </div>
                   <h4 className="mt-4 text-lg font-semibold text-gray-900">{item.label}</h4>
                   <p className="mt-2 text-sm leading-6 text-gray-600">{item.description}</p>
                 </Link>
-              ))}
+                );
+              })}
           </div>
         </div>
 
@@ -175,8 +200,11 @@ export default function AdminOverviewPage() {
             Recent Releases
           </p>
           <div className="mt-6 space-y-4">
-            {(report?.latest_published || []).slice(0, 5).map((item) => (
-              <div key={item.id} className="rounded-3xl border border-gray-200 bg-gray-50 p-5">
+            {(report?.latest_published || []).slice(0, 5).map((item, index) => {
+              const theme = moduleThemes[index % moduleThemes.length];
+
+              return (
+              <div key={item.id} className={`rounded-3xl border p-5 ${theme.surface}`}>
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <p className="font-semibold text-gray-900">{item.title}</p>
@@ -192,7 +220,8 @@ export default function AdminOverviewPage() {
                   Published {new Date(item.published_at).toLocaleString()}
                 </p>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import ActivityLog from '@/app/admin/components/ActivityLog';
 import PermissionsView from '@/app/admin/components/PermissionsView';
 import Icon from '@/components/ui/AppIcon';
+import { adminCardThemes } from '@/components/admin/cardThemes';
 
 export default function AdminSecurityPage() {
   const [showPermissions, setShowPermissions] = useState(false);
@@ -17,15 +18,15 @@ export default function AdminSecurityPage() {
           </p>
           <h3 className="mt-3 text-3xl font-semibold text-gray-900">Security and access posture</h3>
           <div className="mt-6 space-y-4 text-sm leading-7 text-gray-600">
-            <div className="rounded-3xl border border-gray-200 bg-gray-50 p-5">
+            <div className={`rounded-3xl border p-5 ${adminCardThemes.rose.surface}`}>
               Protect the platform by making privileged actions auditable, role assignment
               deliberate, and last-admin scenarios impossible to create accidentally.
             </div>
-            <div className="rounded-3xl border border-gray-200 bg-gray-50 p-5">
+            <div className={`rounded-3xl border p-5 ${adminCardThemes.amber.surface}`}>
               Centralize sensitive integration settings under server-side authorization instead of
               browser-issued mutations.
             </div>
-            <div className="rounded-3xl border border-gray-200 bg-gray-50 p-5">
+            <div className={`rounded-3xl border p-5 ${adminCardThemes.indigo.surface}`}>
               Extend this section later with 2FA enforcement, session inventory, IP/device
               awareness, and credential rotation workflows.
             </div>
@@ -49,11 +50,20 @@ export default function AdminSecurityPage() {
               'Use the audit trail to review unexpected role, status, or settings changes.',
               'Keep development fallback authentication isolated from production deployment paths.',
               'Treat API key management, password management, and role governance as separate responsibilities.',
-            ].map((item) => (
-              <div key={item} className="rounded-3xl border border-gray-200 bg-gray-50 p-5 text-sm leading-7 text-gray-600">
+            ].map((item, index) => {
+              const themes = [
+                adminCardThemes.rose,
+                adminCardThemes.sky,
+                adminCardThemes.amber,
+                adminCardThemes.emerald,
+              ] as const;
+
+              return (
+              <div key={item} className={`rounded-3xl border p-5 text-sm leading-7 text-gray-600 ${themes[index].surface}`}>
                 {item}
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
