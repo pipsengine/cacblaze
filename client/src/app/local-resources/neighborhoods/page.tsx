@@ -6,7 +6,6 @@ import Breadcrumb from '@/components/common/Breadcrumb';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import StateFilterSidebar from '@/components/common/StateFilterSidebar';
-import { NIGERIA_STATES } from '@/data/nigeria-states';
 
 export const metadata: Metadata = {
   title: 'Neighborhood Guides in Nigeria - CACBLAZE',
@@ -225,7 +224,6 @@ const NeighborhoodsPage = ({
     selectedState && selectedState.length > 0
       ? ITEMS.filter((e) => e.state === selectedState)
       : ITEMS;
-  const nigeriaStates = NIGERIA_STATES;
 
   return (
     <>

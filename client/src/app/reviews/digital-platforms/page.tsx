@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
 import AppImage from '@/components/ui/AppImage';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';

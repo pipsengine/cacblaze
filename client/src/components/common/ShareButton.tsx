@@ -9,7 +9,14 @@ interface ShareButtonProps {
   articleUrl: string;
 }
 
-const sharePlatforms = [
+type SharePlatform = {
+  name: string;
+  icon: string;
+  color: string;
+  action: (url: string, title: string) => string;
+};
+
+const sharePlatforms: SharePlatform[] = [
   {
     name: 'Twitter',
     icon: 'ShareIcon',
@@ -21,14 +28,14 @@ const sharePlatforms = [
     name: 'Facebook',
     icon: 'ShareIcon',
     color: 'bg-blue-600',
-    action: (url: string) =>
+    action: (url: string, _title: string) =>
       `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
   },
   {
     name: 'LinkedIn',
     icon: 'ShareIcon',
     color: 'bg-blue-700',
-    action: (url: string, title: string) =>
+    action: (url: string, _title: string) =>
       `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
   },
   {
@@ -59,10 +66,10 @@ export default function ShareButton({ articleId, articleTitle, articleUrl }: Sha
     }
   };
 
-  const handleShare = (platform: any) => {
+  const handleShare = (platform: SharePlatform) => {
     const shareUrl = platform.action(articleUrl, articleTitle);
     window.open(shareUrl, '_blank', 'width=600,height=400');
-    trackShare(platform.name);
+    void trackShare(platform.name);
     setShowMenu(false);
   };
 
@@ -70,7 +77,7 @@ export default function ShareButton({ articleId, articleTitle, articleUrl }: Sha
     try {
       await navigator.clipboard.writeText(articleUrl);
       setCopied(true);
-      trackShare('copy_link');
+      void trackShare('copy_link');
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
       console.error('Copy error:', error);

@@ -57,7 +57,8 @@ const fallbackArticles = [
   {
     id: 'fallback_tech_1',
     title: 'Understanding Cybersecurity Basics for Everyday Internet Users',
-    excerpt: 'A practical guide to digital safety, better browsing habits, and stronger decisions online.',
+    excerpt:
+      'A practical guide to digital safety, better browsing habits, and stronger decisions online.',
     category: 'Technology',
     readTime: '10 min',
     slug: 'understanding-cybersecurity-basics-for-everyday-internet-users',

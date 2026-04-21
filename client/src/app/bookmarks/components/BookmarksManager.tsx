@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { createClient } from '@/lib/supabase/client';
+import { useCallback, useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
@@ -15,25 +14,27 @@ interface Bookmark {
   createdAt: string;
 }
 
+type BookmarkRecord = {
+  id: string;
+  article_id: string;
+  article_title: string;
+  article_category: string;
+  notes: string | null;
+  created_at: string;
+};
+
 export default function BookmarksManager() {
   const { user } = useAuth();
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
   const [loading, setLoading] = useState(true);
-  const supabase = createClient();
 
-  useEffect(() => {
-    if (user) {
-      fetchBookmarks();
-    }
-  }, [user]);
-
-  const fetchBookmarks = async () => {
+  const fetchBookmarks = useCallback(async () => {
     try {
       const response = await fetch('/api/bookmarks');
       const data = await response.json();
 
       if (data.success) {
-        const formatted = data.bookmarks.map((b: any) => ({
+        const formatted = (data.bookmarks as BookmarkRecord[]).map((b) => ({
           id: b.id,
           articleId: b.article_id,
           articleTitle: b.article_title,
@@ -48,14 +49,22 @@ export default function BookmarksManager() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      void fetchBookmarks();
+    }
+  }, [fetchBookmarks, user]);
 
   const removeBookmark = async (bookmarkId: string) => {
     try {
       await fetch(`/api/bookmarks?bookmark_id=${bookmarkId}`, {
         method: 'DELETE',
       });
-      setBookmarks(bookmarks.filter((b) => b.id !== bookmarkId));
+      setBookmarks((currentBookmarks) =>
+        currentBookmarks.filter((bookmark) => bookmark.id !== bookmarkId)
+      );
     } catch (error) {
       console.error('Remove bookmark error:', error);
     }

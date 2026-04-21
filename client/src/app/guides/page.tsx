@@ -320,7 +320,7 @@ export default function GuidesPage() {
                           );
                         })()}
                         <div className="w-12 h-12 rounded-xl bg-white shadow-sm text-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                          <Icon name={item.icon as any} size={24} />
+                          <Icon name={item.icon} size={24} />
                         </div>
                         <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">
                           {item.label}

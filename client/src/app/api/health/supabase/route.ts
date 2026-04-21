@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 
+function getErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message : 'Unknown error';
+}
+
 export async function GET() {
   try {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
@@ -62,13 +66,13 @@ export async function GET() {
         },
         { status: 200, headers: { 'Cache-Control': 'no-store' } }
       );
-    } catch (e: any) {
+    } catch (error: unknown) {
       return NextResponse.json(
         {
           reachable: false,
           rest: false,
           db: 'unknown',
-          error: e?.message || 'Network error',
+          error: getErrorMessage(error) || 'Network error',
           env: {
             supabaseUrlHost: host || null,
             supabaseAnonPresent: !!anon,
@@ -78,11 +82,11 @@ export async function GET() {
         { status: 200, headers: { 'Cache-Control': 'no-store' } }
       );
     }
-  } catch (e: any) {
+  } catch (error: unknown) {
     return NextResponse.json(
       {
         reachable: false,
-        error: e?.message || 'Initialization error',
+        error: getErrorMessage(error) || 'Initialization error',
       },
       { status: 500, headers: { 'Cache-Control': 'no-store' } }
     );

@@ -34,8 +34,6 @@ const C3 =
   'https://images.pexels.com/photos/3740791/pexels-photo-3740791.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
 const C4 =
   'https://images.pexels.com/photos/3184192/pexels-photo-3184192.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const C5 =
-  'https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
 
 const ITEMS: CostItem[] = [
   {

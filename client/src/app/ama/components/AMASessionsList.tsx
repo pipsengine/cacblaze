@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import AppImage from '@/components/ui/AppImage';
 import { getAuthorAvatar } from '@/utils/imageService';
@@ -26,23 +26,39 @@ interface AMASession {
   };
 }
 
+type AmaSessionApiResponse = {
+  id: string;
+  expert_id: string;
+  title: string;
+  description: string;
+  expert_bio: string | null;
+  expert_title: string | null;
+  category: string;
+  scheduled_at: string;
+  duration_minutes: number;
+  status: string;
+  participant_count: number;
+  question_count: number;
+  user_profiles?: {
+    full_name?: string;
+    avatar_url?: string | null;
+    role?: string;
+  } | null;
+};
+
 export default function AMASessionsList() {
   const [sessions, setSessions] = useState<AMASession[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'upcoming' | 'live' | 'completed'>('upcoming');
 
-  useEffect(() => {
-    fetchSessions();
-  }, [filter]);
-
-  const fetchSessions = async () => {
+  const fetchSessions = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(`/api/ama/sessions?status=${filter}&limit=20`);
       const data = await response.json();
 
       if (data.success) {
-        const formatted = data.sessions.map((s: any) => ({
+        const formatted = (data.sessions as AmaSessionApiResponse[]).map((s) => ({
           id: s.id,
           expertId: s.expert_id,
           title: s.title,
@@ -57,7 +73,7 @@ export default function AMASessionsList() {
           questionCount: s.question_count,
           userProfiles: {
             fullName: s.user_profiles?.full_name || 'Expert',
-            avatarUrl: s.user_profiles?.avatar_url,
+            avatarUrl: s.user_profiles?.avatar_url ?? null,
             role: s.user_profiles?.role || 'author',
           },
         }));
@@ -68,7 +84,11 @@ export default function AMASessionsList() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filter]);
+
+  useEffect(() => {
+    void fetchSessions();
+  }, [fetchSessions]);
 
   const getStatusBadge = (status: string) => {
     const badges = {

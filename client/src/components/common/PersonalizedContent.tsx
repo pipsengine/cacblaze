@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
@@ -33,19 +33,15 @@ const PersonalizedContent = () => {
     'Fresh recommendations tuned to the topics you care about most.'
   );
 
-  useEffect(() => {
-    if (!authLoading) {
-      void fetchRecommendations();
-    }
-  }, [user, authLoading, isDevAuthSession]);
-
-  const fetchFallbackRecommendations = async () => {
+  const fetchFallbackRecommendations = useCallback(async () => {
     const preferredCategories = getPreferredCategories();
     const recentViews = getRecentArticleViews();
     const primaryCategory = preferredCategories[0] || 'Technology';
 
     setEyebrow(recentViews.length > 0 ? 'Based on your recent reading' : 'Popular right now');
-    setHeading(recentViews.length > 0 ? `${primaryCategory} picks for you` : 'Fresh guides to explore');
+    setHeading(
+      recentViews.length > 0 ? `${primaryCategory} picks for you` : 'Fresh guides to explore'
+    );
     setDescription(
       recentViews.length > 0
         ? 'We used your recent activity to surface more of what you already find useful.'
@@ -74,18 +70,19 @@ const PersonalizedContent = () => {
         title: article.title,
         category: article.category || primaryCategory,
         relevance_score: recentViews.length > 0 ? 82 : 74,
-        reason: recentViews.length > 0
-          ? `Because you explored ${primaryCategory}`
-          : 'Trending with readers this week',
+        reason:
+          recentViews.length > 0
+            ? `Because you explored ${primaryCategory}`
+            : 'Trending with readers this week',
       }));
 
       setRecommendations(articles.filter((article) => Boolean(article.article_id)));
     } catch {
       setRecommendations([]);
     }
-  };
+  }, []);
 
-  const fetchRecommendations = async () => {
+  const fetchRecommendations = useCallback(async () => {
     try {
       setLoading(true);
 
@@ -110,14 +107,22 @@ const PersonalizedContent = () => {
 
       setEyebrow('Personalized for You');
       setHeading('Recommended Content');
-      setDescription('Fresh recommendations tuned to your interests, reading habits, and activity.');
+      setDescription(
+        'Fresh recommendations tuned to your interests, reading habits, and activity.'
+      );
       setRecommendations(items);
     } catch {
       await fetchFallbackRecommendations();
     } finally {
       setLoading(false);
     }
-  };
+  }, [fetchFallbackRecommendations, isDevAuthSession, user]);
+
+  useEffect(() => {
+    if (!authLoading) {
+      void fetchRecommendations();
+    }
+  }, [authLoading, fetchRecommendations]);
 
   if (authLoading || loading) {
     return (

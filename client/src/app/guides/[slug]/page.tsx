@@ -55,9 +55,51 @@ interface Article {
   author?: {
     id: string;
     name: string;
+    username?: string;
     avatar_url?: string;
   };
 }
+
+type ArticleSection = {
+  id: string;
+  title: string;
+  level: 2 | 3 | 4;
+  content: string;
+};
+
+type ArticleFaq = {
+  question: string;
+  answer: string;
+};
+
+type ArticleData = Article & {
+  updated_at?: string;
+  updatedAt?: string;
+  sections?: ArticleSection[];
+  faqs?: ArticleFaq[];
+};
+
+type NormalizedArticle = Omit<ArticleData, 'author' | 'sections' | 'faqs'> & {
+  excerpt: string;
+  publishDate: string;
+  lastUpdated: string;
+  heroImage: string;
+  heroImageAlt: string;
+  readTime: string;
+  author: {
+    name: string;
+    title: string;
+    bio: string;
+    expertise: string[];
+    articlesCount: number;
+    verified: boolean;
+    image?: string;
+    imageAlt: string;
+  };
+  sections: ArticleSection[];
+  tableOfContents: Array<{ id: string; title: string; level: number }>;
+  faqs: ArticleFaq[];
+};
 
 export async function generateMetadata({
   params,
@@ -91,7 +133,7 @@ export async function generateMetadata({
       description: article.meta_description || article.content.substring(0, 160),
       keywords: `${article.category}, guide, tutorial, ${article.title}`,
     };
-  } catch (error) {
+  } catch (_error) {
     const local = (localArticles as Record<string, LocalArticle>)[slug];
     if (local) {
       return {
@@ -106,7 +148,7 @@ export async function generateMetadata({
   }
 }
 
-async function fetchArticle(slug: string): Promise<Article | null> {
+async function fetchArticle(slug: string): Promise<ArticleData | null> {
   try {
     const response = await fetch(`${API_URL}/ai-publishing/articles/slug/${slug}`, {
       cache: 'no-store',
@@ -134,7 +176,7 @@ async function fetchArticle(slug: string): Promise<Article | null> {
           },
           sections: local.sections,
           faqs: local.faqs || [],
-        } as any;
+        };
       } else {
         const t = titleFromSlug(slug);
         return {
@@ -163,7 +205,7 @@ async function fetchArticle(slug: string): Promise<Article | null> {
     }
 
     return await response.json();
-  } catch (error) {
+  } catch (_error) {
     const local = (localArticles as Record<string, LocalArticle>)[slug];
     if (local) {
       return {
@@ -185,7 +227,7 @@ async function fetchArticle(slug: string): Promise<Article | null> {
         },
         sections: local.sections,
         faqs: local.faqs || [],
-      } as any;
+      };
     } else {
       const t = titleFromSlug(slug);
       return {
@@ -225,8 +267,8 @@ function slugify(text: string) {
 
 function parseMarkdownToSections(markdown: string) {
   const lines = (markdown || '').split('\n');
-  const sections: Array<{ id: string; title: string; level: number; content: string }> = [];
-  let current: { id: string; title: string; level: number; content: string } | null = null;
+  const sections: ArticleSection[] = [];
+  let current: ArticleSection | null = null;
   const usedIds = new Set<string>();
 
   const toHtml = (text: string) => {
@@ -335,48 +377,52 @@ function parseMarkdownToSections(markdown: string) {
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  let article: any = await fetchArticle(slug);
+  const rawArticle = await fetchArticle(slug);
 
-  if (!article) {
+  if (!rawArticle) {
     notFound();
   }
 
-  const wordCount = (article.content || '').split(/\s+/).filter(Boolean).length;
+  const wordCount = (rawArticle.content || '').split(/\s+/).filter(Boolean).length;
   const readTime = `${Math.max(1, Math.ceil(wordCount / 200))} min`;
   const excerpt =
-    article.meta_description || (article.content || '').replace(/\s+/g, ' ').slice(0, 200);
-  let sections: Array<{ id: string; title: string; level: number; content: string }> = [];
-  let toc: Array<{ id: string; title: string; level: number }> = [];
-  if (Array.isArray(article.sections) && article.sections.length > 0) {
-    sections = article.sections;
-    toc = article.sections.map((s: any) => ({ id: s.id, title: s.title, level: s.level }));
+    rawArticle.meta_description || (rawArticle.content || '').replace(/\s+/g, ' ').slice(0, 200);
+  let sections: ArticleSection[] = [];
+  let toc: Array<{ id: string; title: string; level: 2 | 3 | 4 }> = [];
+  if (Array.isArray(rawArticle.sections) && rawArticle.sections.length > 0) {
+    sections = rawArticle.sections;
+    toc = rawArticle.sections.map((section) => ({
+      id: section.id,
+      title: section.title,
+      level: section.level,
+    }));
   } else {
-    const parsed = parseMarkdownToSections(article.content || '');
+    const parsed = parseMarkdownToSections(rawArticle.content || '');
     sections = parsed.sections;
     toc = parsed.toc;
   }
 
-  article = {
-    ...article,
+  const article: NormalizedArticle = {
+    ...rawArticle,
     excerpt,
-    publishDate: article.published_at,
-    lastUpdated: article.updatedAt || article.updated_at || article.published_at,
-    heroImage: article.featured_image_url,
-    heroImageAlt: article.image_alt || `${article.title} - illustration`,
+    publishDate: rawArticle.published_at,
+    lastUpdated: rawArticle.updatedAt || rawArticle.updated_at || rawArticle.published_at,
+    heroImage: rawArticle.featured_image_url || '',
+    heroImageAlt: rawArticle.image_alt || `${rawArticle.title} - illustration`,
     readTime,
     author: {
-      name: article.author?.username || article.author?.name || 'AI Publisher',
+      name: rawArticle.author?.username || rawArticle.author?.name || 'AI Publisher',
       title: 'Staff Writer',
       bio: 'Writes practical, context-aware guides for African audiences.',
       expertise: ['Guides', 'How-To'],
       articlesCount: 0,
       verified: true,
-      image: article.author?.avatar_url,
-      imageAlt: (article.author?.username || article.author?.name || 'Author') + ' avatar',
+      image: rawArticle.author?.avatar_url,
+      imageAlt: (rawArticle.author?.username || rawArticle.author?.name || 'Author') + ' avatar',
     },
     sections,
     tableOfContents: toc,
-    faqs: Array.isArray(article.faqs) ? article.faqs : [],
+    faqs: Array.isArray(rawArticle.faqs) ? rawArticle.faqs : [],
   };
 
   const breadcrumbItems = [
@@ -411,7 +457,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbSchemaItems);
   const jsonLd = [articleSchema, faqSchema, breadcrumbSchema];
 
-  const mappedFaqs = (article.faqs || []).map((faq: any, index: number) => ({
+  const mappedFaqs = (article.faqs || []).map((faq, index: number) => ({
     id: `faq-${index}`,
     question: faq.question,
     answer: faq.answer,
@@ -462,7 +508,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               <div className="flex items-center justify-center gap-6">
                 <div className="flex items-center gap-3">
                   <AppImage
-                    src={article.author.image}
+                    src={article.author.image || authorFallback}
                     alt={article.author.imageAlt}
                     width={48}
                     height={48}

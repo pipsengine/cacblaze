@@ -3,7 +3,6 @@
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import Link from 'next/link';
-import Icon from '@/components/ui/AppIcon';
 
 export default function CityComparisonPage() {
   const cities = [

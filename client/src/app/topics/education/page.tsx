@@ -227,7 +227,7 @@ export default function TopicsEducationPage() {
                         className="group block bg-gray-50 rounded-2xl p-6 hover:bg-sky-50 transition-colors border border-gray-100 hover:border-sky-100"
                       >
                         <div className="w-12 h-12 rounded-xl bg-white shadow-sm text-sky-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                          <Icon name={item.icon as any} size={24} />
+                          <Icon name={item.icon} size={24} />
                         </div>
                         <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-sky-700 transition-colors">
                           {item.label}

@@ -5,9 +5,23 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 const EXPLICIT_BASE = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/+$/, '');
-const DEV_BASE_CANDIDATES = Array.from({ length: 10 }, (_, index) =>
-  `http://localhost:${3001 + index}/api`
+const DEV_BASE_CANDIDATES = Array.from(
+  { length: 10 },
+  (_, index) => `http://localhost:${3001 + index}/api`
 );
+
+type LocalArticleRecord = {
+  slug: string;
+  title: string;
+  excerpt?: string;
+  category?: string;
+  heroImage?: string;
+  heroImageAlt?: string;
+  author?: {
+    name?: string;
+    image?: string;
+  };
+};
 
 async function resolveBaseUrl(pathWithSearch: string, init: RequestInit) {
   const candidates = EXPLICIT_BASE ? [EXPLICIT_BASE] : DEV_BASE_CANDIDATES;
@@ -55,23 +69,23 @@ async function proxy(request: Request, params: { path?: string[] }) {
   const publishedArticlesFallback = (n: number, sortMode: string = 'popular') => {
     const slugs = pickArticleSlugs(Math.max(n * 2, 12));
     const items = slugs.map((slug, i) => {
-      const a: any = (localArticles as any)[slug];
+      const article = (localArticles as Record<string, LocalArticleRecord>)[slug];
       const pub = new Date(today.getTime() - i * dayMs);
       return {
-        id: `local_${a.slug}`,
-        title: a.title,
-        content: a.excerpt,
-        category: a.category || 'Guides',
+        id: `local_${article.slug}`,
+        title: article.title,
+        content: article.excerpt,
+        category: article.category || 'Guides',
         published_at: toISO(pub),
-        featured_image_url: a.heroImage || '',
-        image_alt: a.heroImageAlt || a.title,
+        featured_image_url: article.heroImage || '',
+        image_alt: article.heroImageAlt || article.title,
         author: {
           id: 'local_dataset',
-          name: a.author?.name || 'CACBLAZE Editors',
-          avatar_url: a.author?.image || '',
+          name: article.author?.name || 'CACBLAZE Editors',
+          avatar_url: article.author?.image || '',
         },
-        slug: a.slug,
-        meta_description: a.excerpt || '',
+        slug: article.slug,
+        meta_description: article.excerpt || '',
         type: 'Guide',
         geo_focus: 'Nigeria',
         word_count: 2000 + i * 35,
@@ -88,12 +102,19 @@ async function proxy(request: Request, params: { path?: string[] }) {
         return (b.readability_score || 0) - (a.readability_score || 0);
       }
 
-      return ((b.readability_score || 0) + (b.word_count || 0) / 1000) - ((a.readability_score || 0) + (a.word_count || 0) / 1000);
+      return (
+        (b.readability_score || 0) +
+        (b.word_count || 0) / 1000 -
+        ((a.readability_score || 0) + (a.word_count || 0) / 1000)
+      );
     });
 
-    const rotated = sortMode === 'recent'
-      ? sorted
-      : sorted.slice(weekIndex % sorted.length).concat(sorted.slice(0, weekIndex % sorted.length));
+    const rotated =
+      sortMode === 'recent'
+        ? sorted
+        : sorted
+            .slice(weekIndex % sorted.length)
+            .concat(sorted.slice(0, weekIndex % sorted.length));
 
     return {
       articles: rotated.slice(0, n),
@@ -232,7 +253,7 @@ async function proxy(request: Request, params: { path?: string[] }) {
   const target = `${resolvedBase}/ai-publishing/${path}${search}`;
 
   if (request.method !== 'GET' && request.method !== 'HEAD') {
-    init.body = request.body as any;
+    init.body = request.body;
   }
 
   try {
@@ -253,7 +274,7 @@ async function proxy(request: Request, params: { path?: string[] }) {
     const responseHeaders = new Headers(res.headers);
     responseHeaders.set('Cache-Control', 'no-store, max-age=0, must-revalidate');
     return new NextResponse(buf, { status: res.status, headers: responseHeaders });
-  } catch (e) {
+  } catch (_error) {
     // Network or DNS error
     if (request.method === 'GET') {
       if (path.startsWith('tips/published')) {

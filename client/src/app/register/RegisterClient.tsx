@@ -2,9 +2,18 @@
 
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
+
+function getErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message : 'Failed to create account';
+}
+
+type SignupResponse = {
+  error?: string;
+  message?: string;
+};
 
 export default function RegisterClient() {
   const [email, setEmail] = useState('');
@@ -14,10 +23,8 @@ export default function RegisterClient() {
   const [loading, setLoading] = useState(false);
   const [regEnabled, setRegEnabled] = useState(true);
   const [regNotice, setRegNotice] = useState('');
-  const { signUp } = useAuth();
+  useAuth();
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const next = searchParams.get('next') || '/';
 
   useEffect(() => {
     let active = true;
@@ -54,9 +61,9 @@ export default function RegisterClient() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password, fullName }),
       });
-      let payload: any = null;
+      let payload: SignupResponse | null = null;
       try {
-        payload = await res.json();
+        payload = (await res.json()) as SignupResponse;
       } catch {
         // fall through
       }
@@ -67,8 +74,8 @@ export default function RegisterClient() {
         throw new Error(msg || 'Registration failed');
       }
       router.push('/login');
-    } catch (err: any) {
-      const msg = err?.message || 'Failed to create account';
+    } catch (error: unknown) {
+      const msg = getErrorMessage(error);
       const hint =
         /failed to fetch|name_not_resolved|dns/i.test(msg) && !/invalid|email|password/i.test(msg)
           ? ' • Check Supabase URL/Anon Key env vars'
@@ -79,7 +86,6 @@ export default function RegisterClient() {
     }
   };
 
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 to-accent/5 px-4">
       <div className="max-w-md w-full">
@@ -87,7 +93,9 @@ export default function RegisterClient() {
           <Link href="/" className="inline-block">
             <h1 className="text-4xl font-bold text-primary mb-2">CACBLAZE</h1>
           </Link>
-          <p className="text-secondary">Create your account to save articles, comment, and receive curated updates</p>
+          <p className="text-secondary">
+            Create your account to save articles, comment, and receive curated updates
+          </p>
         </div>
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <h2 className="text-2xl font-bold text-foreground mb-6">Create Account</h2>

@@ -6,7 +6,11 @@ import { adminCardThemes } from '@/components/admin/cardThemes';
 
 export default function AdminContentPage() {
   const { report, stats, loading } = useAdminWorkspaceData();
-  const contentThemes = [adminCardThemes.emerald, adminCardThemes.amber, adminCardThemes.violet] as const;
+  const contentThemes = [
+    adminCardThemes.emerald,
+    adminCardThemes.amber,
+    adminCardThemes.violet,
+  ] as const;
   const contentIcons = ['NewspaperIcon', 'ClockIcon', 'SparklesIcon'] as const;
 
   if (loading) {
@@ -66,22 +70,22 @@ export default function AdminContentPage() {
               const theme = contentThemes[index % contentThemes.length];
 
               return (
-              <div key={item.id} className={`rounded-3xl border p-5 ${theme.surface}`}>
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-lg font-semibold text-gray-900">{item.title}</p>
-                    <p className="mt-2 text-sm text-gray-600">
-                      {item.category} • {item.word_count} words
-                    </p>
+                <div key={item.id} className={`rounded-3xl border p-5 ${theme.surface}`}>
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="text-lg font-semibold text-gray-900">{item.title}</p>
+                      <p className="mt-2 text-sm text-gray-600">
+                        {item.category} • {item.word_count} words
+                      </p>
+                    </div>
+                    <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
+                      {item.status}
+                    </span>
                   </div>
-                  <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
-                    {item.status}
-                  </span>
+                  <p className="mt-4 text-xs text-gray-500">
+                    Published {new Date(item.published_at).toLocaleString()}
+                  </p>
                 </div>
-                <p className="mt-4 text-xs text-gray-500">
-                  Published {new Date(item.published_at).toLocaleString()}
-                </p>
-              </div>
               );
             })}
           </div>

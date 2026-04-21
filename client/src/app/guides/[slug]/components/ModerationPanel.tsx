@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import Icon from '@/components/ui/AppIcon';
@@ -27,33 +27,47 @@ interface ModerationPanelProps {
   articleId: string;
 }
 
+type ModerationFlagRecord = {
+  id: string;
+  reason: string;
+  user_profiles?: {
+    full_name?: string;
+  } | null;
+};
+
+type ModerationCommentRecord = {
+  id: string;
+  content: string;
+  status: ModerationComment['status'];
+  created_at: string;
+  user_profiles?: {
+    full_name?: string;
+    email?: string;
+  } | null;
+  flags?: ModerationFlagRecord[] | null;
+};
+
 export default function ModerationPanel({ articleId }: ModerationPanelProps) {
   const { user } = useAuth();
   const [comments, setComments] = useState<ModerationComment[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'pending' | 'flagged'>('all');
   const [isAuthorOrAdmin, setIsAuthorOrAdmin] = useState(false);
-  const supabase = createClient();
+  const supabase = useMemo(() => createClient(), []);
 
-  useEffect(() => {
-    checkPermissions();
-  }, [user]);
-
-  useEffect(() => {
-    if (isAuthorOrAdmin) {
-      fetchComments();
-    }
-  }, [isAuthorOrAdmin, filter]);
-
-  const checkPermissions = () => {
+  const checkPermissions = useCallback(() => {
     if (!user) {
       setIsAuthorOrAdmin(false);
       return;
     }
     setIsAuthorOrAdmin(user.role === 'admin' || user.role === 'author');
-  };
+  }, [user]);
 
-  const fetchComments = async () => {
+  useEffect(() => {
+    checkPermissions();
+  }, [checkPermissions]);
+
+  const fetchComments = useCallback(async () => {
     try {
       let query = supabase
         .from('comments')
@@ -87,7 +101,7 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
       if (error) throw error;
 
       const formattedComments =
-        data?.map((comment: any) => ({
+        (data as ModerationCommentRecord[] | null)?.map((comment) => ({
           id: comment.id,
           content: comment.content,
           status: comment.status,
@@ -97,7 +111,7 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
             email: comment.user_profiles?.email || '',
           },
           flags:
-            comment.flags?.map((f: any) => ({
+            comment.flags?.map((f) => ({
               id: f.id,
               reason: f.reason,
               userProfiles: {
@@ -112,7 +126,13 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [articleId, filter, supabase]);
+
+  useEffect(() => {
+    if (isAuthorOrAdmin) {
+      void fetchComments();
+    }
+  }, [fetchComments, isAuthorOrAdmin]);
 
   const handleUpdateStatus = async (commentId: string, newStatus: 'approved' | 'rejected') => {
     try {
@@ -122,7 +142,7 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
         .eq('id', commentId);
 
       if (error) throw error;
-      fetchComments();
+      await fetchComments();
     } catch (error) {
       console.error('Error updating comment status:', error);
     }
@@ -135,7 +155,7 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
       const { error } = await supabase.from('comments').delete().eq('id', commentId);
 
       if (error) throw error;
-      fetchComments();
+      await fetchComments();
     } catch (error) {
       console.error('Error deleting comment:', error);
     }
@@ -158,7 +178,7 @@ export default function ModerationPanel({ articleId }: ModerationPanelProps) {
         await supabase.from('comments').update({ status: 'approved' }).eq('id', commentId);
       }
 
-      fetchComments();
+      await fetchComments();
     } catch (error) {
       console.error('Error dismissing flag:', error);
     }

@@ -301,14 +301,20 @@ export default function ReviewsPage() {
                 Reviews You Can Trust
               </h1>
               <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-                Compare products, tools, subscriptions, and services with confidence. Our reviews are
-                designed to highlight strengths, trade-offs, pricing value, and who each option is
-                best suited for before you commit.
+                Compare products, tools, subscriptions, and services with confidence. Our reviews
+                are designed to highlight strengths, trade-offs, pricing value, and who each option
+                is best suited for before you commit.
               </p>
               <div className="flex flex-wrap gap-3 text-sm font-medium text-foreground">
-                <span className="rounded-full bg-white px-4 py-2 border border-indigo-100">Pros and cons</span>
-                <span className="rounded-full bg-white px-4 py-2 border border-indigo-100">Value for money</span>
-                <span className="rounded-full bg-white px-4 py-2 border border-indigo-100">Practical recommendations</span>
+                <span className="rounded-full bg-white px-4 py-2 border border-indigo-100">
+                  Pros and cons
+                </span>
+                <span className="rounded-full bg-white px-4 py-2 border border-indigo-100">
+                  Value for money
+                </span>
+                <span className="rounded-full bg-white px-4 py-2 border border-indigo-100">
+                  Practical recommendations
+                </span>
               </div>
             </div>
           </div>
@@ -362,7 +368,7 @@ export default function ReviewsPage() {
                           );
                         })()}
                         <div className="w-12 h-12 rounded-xl bg-white shadow-sm text-indigo-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                          <Icon name={item.icon as any} size={24} />
+                          <Icon name={item.icon} size={24} />
                         </div>
                         <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-indigo-700 transition-colors">
                           {item.label}

@@ -73,7 +73,10 @@ export default function AdminAnalyticsPage() {
                       <span className="text-gray-600">{count} articles</span>
                     </div>
                     <div className="h-2 rounded-full bg-gray-200">
-                      <div className="h-2 rounded-full bg-indigo-500" style={{ width: `${width}%` }} />
+                      <div
+                        className="h-2 rounded-full bg-indigo-500"
+                        style={{ width: `${width}%` }}
+                      />
                     </div>
                   </div>
                 );

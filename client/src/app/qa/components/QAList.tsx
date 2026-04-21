@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
 import AppImage from '@/components/ui/AppImage';
 import { getAuthorAvatar } from '@/utils/imageService';
@@ -37,6 +37,37 @@ interface Answer {
   };
 }
 
+type QaAnswerRecord = {
+  id: string;
+  content: string;
+  is_accepted: boolean;
+  upvotes: number;
+  created_at: string;
+  user_profiles?: {
+    full_name?: string;
+    avatar_url?: string | null;
+    role?: string;
+  } | null;
+};
+
+type QaQuestionRecord = {
+  id: string;
+  user_id: string;
+  category: string;
+  title: string;
+  content: string;
+  status: string;
+  upvotes: number;
+  view_count: number;
+  created_at: string;
+  user_profiles?: {
+    full_name?: string;
+    avatar_url?: string | null;
+    role?: string;
+  } | null;
+  qa_answers?: QaAnswerRecord[] | null;
+};
+
 export default function QAList() {
   const { user } = useAuth();
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -44,17 +75,13 @@ export default function QAList() {
   const [selectedQuestion, setSelectedQuestion] = useState<Question | null>(null);
   const [answerContent, setAnswerContent] = useState('');
 
-  useEffect(() => {
-    fetchQuestions();
-  }, []);
-
-  const fetchQuestions = async () => {
+  const fetchQuestions = useCallback(async () => {
     try {
       const response = await fetch('/api/qa/questions?limit=20');
       const data = await response.json();
 
       if (data.success) {
-        const formatted = data.questions.map((q: any) => ({
+        const formatted = (data.questions as QaQuestionRecord[]).map((q) => ({
           id: q.id,
           userId: q.user_id,
           category: q.category,
@@ -66,11 +93,11 @@ export default function QAList() {
           createdAt: q.created_at,
           userProfiles: {
             fullName: q.user_profiles?.full_name || 'Anonymous',
-            avatarUrl: q.user_profiles?.avatar_url,
+            avatarUrl: q.user_profiles?.avatar_url ?? null,
             role: q.user_profiles?.role || 'user',
           },
           qaAnswers:
-            q.qa_answers?.map((a: any) => ({
+            q.qa_answers?.map((a) => ({
               id: a.id,
               content: a.content,
               isAccepted: a.is_accepted,
@@ -78,7 +105,7 @@ export default function QAList() {
               createdAt: a.created_at,
               userProfiles: {
                 fullName: a.user_profiles?.full_name || 'Anonymous',
-                avatarUrl: a.user_profiles?.avatar_url,
+                avatarUrl: a.user_profiles?.avatar_url ?? null,
                 role: a.user_profiles?.role || 'user',
               },
             })) || [],
@@ -90,7 +117,11 @@ export default function QAList() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    void fetchQuestions();
+  }, [fetchQuestions]);
 
   const submitAnswer = async () => {
     if (!user || !selectedQuestion || !answerContent.trim()) return;
@@ -107,7 +138,7 @@ export default function QAList() {
 
       setAnswerContent('');
       setSelectedQuestion(null);
-      fetchQuestions();
+      await fetchQuestions();
     } catch (error) {
       console.error('Submit answer error:', error);
     }
@@ -125,7 +156,7 @@ export default function QAList() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question_id: questionId }),
       });
-      fetchQuestions();
+      await fetchQuestions();
     } catch (error) {
       console.error('Upvote error:', error);
     }

@@ -3,13 +3,24 @@
 import { useState } from 'react';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
+
+type SalaryCalculation = {
+  gross: number;
+  pension: number;
+  nhf: number;
+  cra: number;
+  taxableIncome: number;
+  tax: number;
+  net: number;
+  monthlyNet: number;
+  monthlyTax: number;
+};
 
 export default function SalaryCalculatorPage() {
   const [grossSalary, setGrossSalary] = useState<string>('');
   const [period, setPeriod] = useState<'monthly' | 'annual'>('monthly');
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<SalaryCalculation | null>(null);
 
   const calculateTax = () => {
     const salary = parseFloat(grossSalary.replace(/,/g, ''));
@@ -80,8 +91,11 @@ export default function SalaryCalculatorPage() {
       gross: annualGross,
       pension,
       nhf,
+      cra,
+      taxableIncome,
       tax,
       net: annualNet,
+      monthlyTax: tax / 12,
       monthlyNet: annualNet / 12,
     });
   };

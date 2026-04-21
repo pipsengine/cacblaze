@@ -1,6 +1,13 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 
+type PreferencesUpdate = {
+  favorite_categories?: unknown;
+  favorite_topics?: unknown;
+  notification_enabled?: unknown;
+  email_notifications?: unknown;
+};
+
 export async function GET() {
   try {
     const supabase = await createClient();
@@ -50,7 +57,7 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const updateData: any = {};
+    const updateData: PreferencesUpdate = {};
     if (favorite_categories !== undefined) updateData.favorite_categories = favorite_categories;
     if (favorite_topics !== undefined) updateData.favorite_topics = favorite_topics;
     if (notification_enabled !== undefined) updateData.notification_enabled = notification_enabled;

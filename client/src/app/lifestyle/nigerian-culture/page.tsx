@@ -204,7 +204,7 @@ const NigerianCulturePage = () => {
                     <div className="absolute bottom-6 left-6 right-6">
                       <div className="flex items-center gap-3 mb-3">
                         <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                          <Icon name={category.icon as any} size={20} className="text-white" />
+                          <Icon name={category.icon} size={20} className="text-white" />
                         </div>
                         <span className="text-white/90 text-sm font-semibold">
                           {category.count}

@@ -5,9 +5,7 @@ import AppImage from '@/components/ui/AppImage';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import { NIGERIA_STATES } from '@/data/nigeria-states';
 import StateFilterSidebar from '@/components/common/StateFilterSidebar';
-import { getContextualImage } from '@/utils/imageService';
 
 export const metadata: Metadata = {
   title: 'Places to Visit in Nigeria - CACBLAZE',
@@ -203,8 +201,6 @@ const PlacesToVisitPage = ({
     selectedState && selectedState.length > 0
       ? ATTRACTIONS.filter((a) => a.state === selectedState)
       : ATTRACTIONS;
-
-  const nigeriaStates = NIGERIA_STATES;
 
   return (
     <>

@@ -78,7 +78,7 @@ export async function GET(request: Request) {
         'Cross-Origin-Resource-Policy': 'cross-origin',
       },
     });
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: 'Proxy error' }, { status: 500 });
   }
 }

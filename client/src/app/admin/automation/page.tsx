@@ -12,8 +12,17 @@ export default function AdminAutomationPage() {
     adminCardThemes.sky,
     adminCardThemes.amber,
   ] as const;
-  const schedulerIcons = ['BoltIcon', 'ShieldCheckIcon', 'RocketLaunchIcon', 'DocumentTextIcon'] as const;
-  const cadenceThemes = [adminCardThemes.violet, adminCardThemes.rose, adminCardThemes.cyan] as const;
+  const schedulerIcons = [
+    'BoltIcon',
+    'ShieldCheckIcon',
+    'RocketLaunchIcon',
+    'DocumentTextIcon',
+  ] as const;
+  const cadenceThemes = [
+    adminCardThemes.violet,
+    adminCardThemes.rose,
+    adminCardThemes.cyan,
+  ] as const;
 
   if (loading) {
     return (
@@ -57,9 +66,7 @@ export default function AdminAutomationPage() {
         </div>
 
         <div className="rounded-[2rem] border border-gray-200 bg-white p-8 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
-            Cadence
-          </p>
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">Cadence</p>
           <div className="mt-6 space-y-4 text-sm leading-7 text-gray-600">
             <div className={`rounded-3xl border p-5 ${cadenceThemes[0].surface}`}>
               Next article generation: {scheduler?.next_article_generation || 'Not scheduled'}
@@ -87,9 +94,12 @@ export default function AdminAutomationPage() {
             const theme = cadenceThemes[index];
 
             return (
-            <div key={item} className={`rounded-3xl border p-5 text-sm leading-7 text-gray-600 ${theme.surface}`}>
-              {item}
-            </div>
+              <div
+                key={item}
+                className={`rounded-3xl border p-5 text-sm leading-7 text-gray-600 ${theme.surface}`}
+              >
+                {item}
+              </div>
             );
           })}
         </div>

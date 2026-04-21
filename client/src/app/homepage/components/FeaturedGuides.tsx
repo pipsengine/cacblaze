@@ -145,7 +145,9 @@ const FeaturedGuides = () => {
     const items = [...guides];
 
     if (activeTab === 'recent') {
-      return items.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()).slice(0, 8);
+      return items
+        .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+        .slice(0, 8);
     }
 
     if (activeTab === 'trending') {
@@ -286,7 +288,9 @@ const FeaturedGuides = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent" />
-                          <span className="text-sm font-medium text-foreground">{guide.author}</span>
+                          <span className="text-sm font-medium text-foreground">
+                            {guide.author}
+                          </span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Icon name="StarIcon" size={16} className="text-warning fill-current" />

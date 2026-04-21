@@ -11,6 +11,12 @@ interface FilterState {
   difficulty: string;
 }
 
+type CuratedGuideImage = {
+  src: string;
+  alt: string;
+  keywords?: string[];
+};
+
 const GuidesInteractive = () => {
   const [filters, setFilters] = useState<FilterState>({
     category: 'all',
@@ -152,11 +158,11 @@ const GuidesInteractive = () => {
             {(() => {
               const used = new Set<string>();
               return guides.map((guide) => {
-                const curated = getCuratedImagesForCategory(guide.category);
+                const curated = getCuratedImagesForCategory(guide.category) as CuratedGuideImage[];
                 const titleLower = guide.title.toLowerCase();
                 let best: { src: string; alt: string } | null = null;
                 let bestScore = -1;
-                for (const img of curated as any[]) {
+                for (const img of curated) {
                   const kws: string[] = Array.isArray(img.keywords) ? img.keywords : [];
                   let score = 0;
                   for (const k of kws) {

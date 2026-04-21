@@ -16,9 +16,11 @@ export default function GlobalAnalyticsListeners() {
       }
 
       const href = anchor.getAttribute('href') || anchor.href || '';
-      const linkText = anchor.textContent?.trim().slice(0, 120) || anchor.getAttribute('aria-label') || 'link';
+      const linkText =
+        anchor.textContent?.trim().slice(0, 120) || anchor.getAttribute('aria-label') || 'link';
       const footerAncestor = anchor.closest('footer');
-      const sectionName = anchor.dataset.analyticsSection || (footerAncestor ? 'footer' : undefined);
+      const sectionName =
+        anchor.dataset.analyticsSection || (footerAncestor ? 'footer' : undefined);
       const isExternal = Boolean(anchor.href && !anchor.href.startsWith(window.location.origin));
       const isDownload = DOWNLOAD_FILE_PATTERN.test(href);
 

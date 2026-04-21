@@ -1,5 +1,9 @@
 import { NextResponse } from 'next/server';
-import { buildDevAdminIdentity, buildExpectedDevAdminToken, DEV_ADMIN_COOKIE_NAME } from '@/lib/auth/adminAccess';
+import {
+  buildDevAdminIdentity,
+  buildExpectedDevAdminToken,
+  DEV_ADMIN_COOKIE_NAME,
+} from '@/lib/auth/adminAccess';
 
 export async function GET(request: Request) {
   const expectedToken = buildExpectedDevAdminToken();

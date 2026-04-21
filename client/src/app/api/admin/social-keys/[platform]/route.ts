@@ -2,13 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { encryptJson } from '@/lib/crypto';
 
-type Platform =
-  | 'facebook'
-  | 'twitter'
-  | 'linkedin'
-  | 'instagram'
-  | 'youtube'
-  | 'whatsapp';
+type Platform = 'facebook' | 'twitter' | 'linkedin' | 'instagram' | 'youtube' | 'whatsapp';
 
 const REQUIRED_FIELDS: Record<Platform, string[]> = {
   facebook: ['appId', 'appSecret', 'accessToken'],
@@ -42,10 +36,7 @@ async function requireAdmin() {
   return { supabase, user };
 }
 
-export async function PUT(
-  req: NextRequest,
-  { params }: { params: Promise<{ platform: string }> }
-) {
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ platform: string }> }) {
   const { supabase, user, error } = await requireAdmin();
   if (error || !supabase || !user) return error!;
 

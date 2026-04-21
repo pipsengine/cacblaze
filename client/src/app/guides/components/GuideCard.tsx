@@ -21,14 +21,14 @@ interface GuideCardProps {
 }
 
 const GuideCard = ({
-  id,
+  id: _id,
   title,
   excerpt,
   category,
   readTime,
   author,
-  authorImage,
-  authorImageAlt,
+  authorImage: _authorImage,
+  authorImageAlt: _authorImageAlt,
   rating,
   image,
   imageAlt,

@@ -80,9 +80,9 @@ const TrustAuthority = () => {
             Built on Trust & Expertise
           </h2>
           <p className="text-xl text-secondary max-w-3xl mx-auto leading-8">
-            CACBLAZE is designed to give readers dependable information they can actually use —
-            from step-by-step guidance and honest reviews to education, technology, lifestyle,
-            and local resources that support better decisions.
+            CACBLAZE is designed to give readers dependable information they can actually use — from
+            step-by-step guidance and honest reviews to education, technology, lifestyle, and local
+            resources that support better decisions.
           </p>
         </div>
 

@@ -55,7 +55,7 @@ export async function GET(request: Request) {
 
     if (error) throw error;
 
-    const platformCounts = data?.reduce((acc: any, share: any) => {
+    const platformCounts = data?.reduce<Record<string, number>>((acc, share) => {
       acc[share.platform] = (acc[share.platform] || 0) + 1;
       return acc;
     }, {});

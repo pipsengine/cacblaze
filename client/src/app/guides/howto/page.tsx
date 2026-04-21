@@ -309,7 +309,7 @@ export default function GuidesHowToPage() {
                         })()}
                         <div className="p-6">
                           <div className="w-12 h-12 rounded-xl bg-white shadow-sm text-green-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <Icon name={item.icon as any} size={24} />
+                            <Icon name={item.icon} size={24} />
                           </div>
                           <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-700 transition-colors">
                             {item.label}

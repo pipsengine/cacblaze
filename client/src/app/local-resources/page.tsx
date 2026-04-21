@@ -39,9 +39,15 @@ const LocalResourcesPage = () => {
               practical city information, and everyday decisions that benefit from local context.
             </p>
             <div className="flex flex-wrap justify-center gap-3 text-sm font-medium text-foreground">
-              <span className="rounded-full bg-white px-4 py-2 border border-primary/10">City discovery</span>
-              <span className="rounded-full bg-white px-4 py-2 border border-primary/10">Useful services</span>
-              <span className="rounded-full bg-white px-4 py-2 border border-primary/10">Local guidance</span>
+              <span className="rounded-full bg-white px-4 py-2 border border-primary/10">
+                City discovery
+              </span>
+              <span className="rounded-full bg-white px-4 py-2 border border-primary/10">
+                Useful services
+              </span>
+              <span className="rounded-full bg-white px-4 py-2 border border-primary/10">
+                Local guidance
+              </span>
             </div>
           </div>
 

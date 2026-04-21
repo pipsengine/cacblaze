@@ -19,6 +19,10 @@ const AVAILABLE_TOPICS = [
   { id: 'Local Resources', label: 'Local Resources', icon: 'MapPinIcon' },
 ];
 
+function getErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message : 'Something went wrong';
+}
+
 const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) => {
   const [email, setEmail] = useState('');
   const [selectedTopics, setSelectedTopics] = useState<string[]>(['Technology']);
@@ -84,15 +88,15 @@ const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) 
       onSuccess?.();
 
       setTimeout(() => setSuccess(false), 5000);
-    } catch (err: any) {
+    } catch (error: unknown) {
       trackEvent('newsletter_signup_failed', {
         page_type: 'newsletter',
         cta_location: variant,
         newsletter_frequency: frequency,
         selected_topic_count: selectedTopics.length,
-        error_message: err.message || 'unknown_error',
+        error_message: getErrorMessage(error),
       });
-      setError(err.message || 'Something went wrong');
+      setError(getErrorMessage(error));
     } finally {
       setLoading(false);
     }
@@ -158,7 +162,7 @@ const NewsletterForm = ({ variant = 'inline', onSuccess }: NewsletterFormProps) 
                   : 'border-gray-200 text-secondary hover:border-gray-300'
               }`}
             >
-              <Icon name={topic.icon as any} size={20} />
+              <Icon name={topic.icon} size={20} />
               <span className="text-sm font-medium">{topic.label}</span>
             </button>
           ))}

@@ -5,7 +5,6 @@ import AppImage from '@/components/ui/AppImage';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import { NIGERIA_STATES } from '@/data/nigeria-states';
 import StateFilterSidebar from '@/components/common/StateFilterSidebar';
 
 export const metadata: Metadata = {
@@ -259,8 +258,6 @@ const FoodDeliveryPage = ({
     'Use in‑app tipping where available',
     'Confirm address & drop‑off notes',
   ];
-
-  const nigeriaStates = NIGERIA_STATES;
 
   return (
     <>

@@ -6,7 +6,6 @@ import Breadcrumb from '@/components/common/Breadcrumb';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import StateFilterSidebar from '@/components/common/StateFilterSidebar';
-import { NIGERIA_STATES } from '@/data/nigeria-states';
 
 export const metadata: Metadata = {
   title: 'Transportation Guides in Nigeria - CACBLAZE',
@@ -27,25 +26,10 @@ type TransportItem = {
   points: string[];
 };
 
-const T1 =
-  'https://images.pexels.com/photos/14946382/pexels-photo-14946382.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80'; // Lagos danfo bus
-const T2 =
-  'https://images.pexels.com/photos/20453360/pexels-photo-20453360.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80'; // Abuja street/cars
-const T3 =
-  'https://images.pexels.com/photos/1321252/pexels-photo-1321252.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80'; // Keke tricycle
-const T4 =
-  'https://images.pexels.com/photos/3860258/pexels-photo-3860258.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80'; // Intercity coach
-const T5 =
-  'https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80'; // Taxi/road
-
 const IMG_CITY_BUS =
   'https://images.pexels.com/photos/144429/pexels-photo-144429.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const IMG_TAXI =
-  'https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
 const IMG_INTERCITY_COACH =
   'https://images.pexels.com/photos/3860258/pexels-photo-3860258.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
-const IMG_KEKE =
-  'https://images.pexels.com/photos/165943/pexels-photo-165943.jpeg?auto=compress&cs=tinysrgb&w=1200&q=80';
 
 const SVG_BUS = '/assets/images/local-resources/transport-bus.svg';
 const SVG_TAXI = '/assets/images/local-resources/transport-taxi.svg';
@@ -314,7 +298,6 @@ const TransportationPage = ({
     selectedState && selectedState.length > 0
       ? ITEMS.filter((e) => e.state === selectedState)
       : ITEMS;
-  const nigeriaStates = NIGERIA_STATES;
 
   return (
     <>

@@ -50,18 +50,16 @@ export async function POST(req: NextRequest) {
     // Best-effort profile create; may fail if no session before email confirm
     try {
       if (data?.user?.id) {
-        await supabase
-          .from('user_profiles')
-          .upsert(
-            {
-              id: data.user.id,
-              email: normalizedEmail,
-              full_name: fullName || null,
-              role: 'user',
-              is_active: true,
-            },
-            { onConflict: 'id' }
-          );
+        await supabase.from('user_profiles').upsert(
+          {
+            id: data.user.id,
+            email: normalizedEmail,
+            full_name: fullName || null,
+            role: 'user',
+            is_active: true,
+          },
+          { onConflict: 'id' }
+        );
       }
     } catch {
       // ignore; profile can be created on first login

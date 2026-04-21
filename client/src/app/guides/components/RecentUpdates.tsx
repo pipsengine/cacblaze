@@ -3,6 +3,12 @@ import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import { getContextualImage, getCuratedImagesForCategory } from '@/utils/imageService';
 
+type CuratedUpdateImage = {
+  src: string;
+  alt: string;
+  keywords?: string[];
+};
+
 interface GuideCardProps {
   id: string;
   title: string;
@@ -55,11 +61,11 @@ const RecentUpdates = () => {
         {(() => {
           const used = new Set<string>();
           return updates.map((update) => {
-            const curated = getCuratedImagesForCategory(update.category);
+            const curated = getCuratedImagesForCategory(update.category) as CuratedUpdateImage[];
             const titleLower = update.title.toLowerCase();
             let best: { src: string; alt: string } | null = null;
             let bestScore = -1;
-            for (const img of curated as any[]) {
+            for (const img of curated) {
               const kws: string[] = Array.isArray(img.keywords) ? img.keywords : [];
               let score = 0;
               for (const k of kws) {

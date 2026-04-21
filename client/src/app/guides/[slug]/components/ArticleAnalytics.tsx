@@ -1,5 +1,6 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+
+import { useEffect, useRef } from 'react';
 import { trackArticleView, trackEngagement, trackEvent, trackScrollDepth } from '@/lib/analytics';
 import { saveRecentArticleView } from '@/utils/personalizationStorage';
 
@@ -22,7 +23,7 @@ interface ArticleAnalyticsProps {
 
 export default function ArticleAnalytics({ article }: ArticleAnalyticsProps) {
   const startTimeRef = useRef<number>(Date.now());
-  const [scrollMilestones, setScrollMilestones] = useState<Set<number>>(new Set());
+  const scrollMilestonesRef = useRef<Set<number>>(new Set());
 
   useEffect(() => {
     // Track article view on mount
@@ -62,8 +63,8 @@ export default function ArticleAnalytics({ article }: ArticleAnalyticsProps) {
       // Track milestones: 25%, 50%, 75%, 90%, 100%
       const milestones = [25, 50, 75, 90, 100];
       milestones.forEach((milestone) => {
-        if (scrollPercentage >= milestone && !scrollMilestones.has(milestone)) {
-          setScrollMilestones((prev) => new Set(prev).add(milestone));
+        if (scrollPercentage >= milestone && !scrollMilestonesRef.current.has(milestone)) {
+          scrollMilestonesRef.current.add(milestone);
           trackScrollDepth(article.id, milestone, {
             article_slug: article.slug,
             article_title: article.title,
@@ -123,7 +124,10 @@ export default function ArticleAnalytics({ article }: ArticleAnalyticsProps) {
     article.author.name,
     article.readTime,
     article.slug,
-    scrollMilestones,
+    article.heroImage,
+    article.heroImageAlt,
+    article.featured_image_url,
+    article.image_alt,
   ]);
 
   return null; // This component doesn't render anything

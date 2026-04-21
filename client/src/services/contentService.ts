@@ -15,6 +15,58 @@ type ContentRecord = {
   authorImage?: string;
 };
 
+type EducationAuthor = {
+  name?: string;
+  role?: string;
+  image?: string;
+};
+
+type EducationTip = {
+  title: string;
+  content: ReactNode;
+};
+
+type StructuredContentItem = {
+  title: string;
+  body: ReactNode;
+};
+
+type EducationResource = {
+  slug: string;
+  name: string;
+  description: string;
+  publishDate?: string;
+  heroImage?: string;
+  category?: string;
+  author?: EducationAuthor;
+  content: Array<StructuredContentItem | ReactNode>;
+  tips?: EducationTip[];
+};
+
+type EducationCategory = {
+  title: string;
+  description: string;
+  resources: EducationResource[];
+};
+
+type MenuLeafItem = {
+  label: string;
+  description?: string;
+  href?: string;
+};
+
+type MenuCategory = {
+  items?: MenuLeafItem[];
+};
+
+type MenuSection = {
+  categories?: MenuCategory[];
+};
+
+type MenuDataShape = {
+  mainMenu?: MenuSection[];
+};
+
 function buildLongExcerpt(title: string, description?: string, context?: string): string {
   const base = description && description.trim().length > 0 ? description.trim() : '';
   const topic = context && context.trim().length > 0 ? context.trim() : title;
@@ -48,7 +100,8 @@ export async function getMetaBySlug(
 > | null> {
   const { educationHubData } = await import('@/data/education-hub');
   const { menuData } = await import('@/data/menuData');
-  const category = (educationHubData as any)[slug];
+  const hub = educationHubData as Record<string, EducationCategory>;
+  const category = hub[slug];
   if (category) {
     return {
       slug,
@@ -64,10 +117,8 @@ export async function getMetaBySlug(
       category: 'Education',
     };
   }
-  type EducationCategory = { title: string; description: string; resources: any[] };
-  const hub = educationHubData as Record<string, EducationCategory>;
   for (const cat of Object.values(hub)) {
-    const resource = cat.resources.find((r: any) => r.slug === slug);
+    const resource = cat.resources.find((resourceItem) => resourceItem.slug === slug);
     if (resource) {
       return {
         slug,
@@ -85,7 +136,7 @@ export async function getMetaBySlug(
     }
   }
   const findMenuItemBySlug = (): { label: string; description?: string } | null => {
-    const main = (menuData as any).mainMenu ?? [];
+    const main = (menuData as MenuDataShape).mainMenu ?? [];
     for (const m of main) {
       const categories = m.categories ?? [];
       for (const cat of categories) {
@@ -202,7 +253,8 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
   const { menuData } = await import('@/data/menuData');
   const { getContextualImage } = await import('@/utils/imageService');
 
-  const category = (educationHubData as any)[slug];
+  const hub = educationHubData as Record<string, EducationCategory>;
+  const category = hub[slug];
 
   if (category) {
     const body = React.createElement(
@@ -212,12 +264,12 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
       React.createElement(
         'div',
         { className: 'grid md:grid-cols-2 lg:grid-cols-3 gap-6' },
-        ...category.resources.map((r: any) =>
+        ...category.resources.map((resource) =>
           React.createElement(
             'a',
             {
-              key: r.slug,
-              href: `/${r.slug}`,
+              key: resource.slug,
+              href: `/${resource.slug}`,
               className:
                 'block bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-md transition',
             },
@@ -227,16 +279,16 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
               (() => {
                 const contextual = getContextualImage({
                   category: 'admissions',
-                  title: r.name,
-                  alt: r.name,
+                  title: resource.name,
+                  alt: resource.name,
                   width: 800,
                   height: 500,
                   preferCurated: false,
                 });
-                const src = r.heroImage || contextual.src;
+                const src = resource.heroImage || contextual.src;
                 return React.createElement('img', {
                   src,
-                  alt: r.name,
+                  alt: resource.name,
                   className: 'absolute inset-0 w-full h-full object-cover',
                   loading: 'lazy',
                 });
@@ -248,9 +300,13 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
               React.createElement(
                 'h2',
                 { className: 'text-lg font-bold text-slate-900 mb-2' },
-                r.name
+                resource.name
               ),
-              React.createElement('p', { className: 'text-slate-600 text-sm' }, r.description)
+              React.createElement(
+                'p',
+                { className: 'text-slate-600 text-sm' },
+                resource.description
+              )
             )
           )
         )
@@ -273,13 +329,10 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
     };
   }
 
-  type EducationCategory = { title: string; description: string; resources: any[] };
-  const hub = educationHubData as Record<string, EducationCategory>;
-
   for (const cat of Object.values(hub)) {
-    const resource = cat.resources.find((r: any) => r.slug === slug);
+    const resource = cat.resources.find((resourceItem) => resourceItem.slug === slug);
     if (resource) {
-      const sections = resource.content.map((item: any, idx: number) => {
+      const sections = resource.content.map((item, idx: number) => {
         const isStructured = item && typeof item === 'object' && 'title' in item;
         return React.createElement(
           'div',
@@ -296,7 +349,7 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
                 React.createElement(
                   'div',
                   { className: 'text-slate-700 leading-relaxed' },
-                  item.body
+                  (item as StructuredContentItem).body
                 )
               )
             : React.createElement('p', { className: 'text-slate-700 leading-relaxed' }, item)
@@ -435,16 +488,16 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
               React.createElement(
                 'div',
                 { className: 'space-y-4' },
-                ...resource.tips.map((t: any, i: number) =>
+                ...resource.tips.map((tip, i: number) =>
                   React.createElement(
                     'div',
                     { key: i },
                     React.createElement(
                       'div',
                       { className: 'font-semibold text-blue-900' },
-                      t.title
+                      tip.title
                     ),
-                    React.createElement('div', { className: 'text-blue-800' }, t.content)
+                    React.createElement('div', { className: 'text-blue-800' }, tip.content)
                   )
                 )
               )
@@ -478,7 +531,7 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
 
   // Fallback: Build content from menuData for non-education slugs (Technology, Lifestyle, etc.)
   const findMenuItemBySlug = (): { label: string; description?: string } | null => {
-    const main = (menuData as any).mainMenu ?? [];
+    const main = (menuData as MenuDataShape).mainMenu ?? [];
     for (const m of main) {
       const categories = m.categories ?? [];
       for (const cat of categories) {
@@ -2187,8 +2240,6 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
             });
             const primary =
               'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1200';
-            const fallback =
-              'https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
             return React.createElement(
               'div',
               {
@@ -2230,8 +2281,6 @@ export async function getContentBySlug(slug: string): Promise<ContentRecord | nu
             });
             const primary =
               'https://images.unsplash.com/photo-1525186402429-b4ff38bedbc8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
-            const fallback =
-              'https://images.pexels.com/photos/5082575/pexels-photo-5082575.jpeg?auto=compress&cs=tinysrgb&w=1200';
             return React.createElement(
               'div',
               {

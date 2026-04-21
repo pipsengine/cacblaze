@@ -204,7 +204,7 @@ const JobMarketPage = () => {
                   <div className="flex items-start justify-between mb-4">
                     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all">
                       <Icon
-                        name={industry.icon as any}
+                        name={industry.icon}
                         size={24}
                         className="text-primary group-hover:text-white transition-colors"
                       />
@@ -246,7 +246,7 @@ const JobMarketPage = () => {
                 >
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-110 transition-all">
                     <Icon
-                      name={tool.icon as any}
+                      name={tool.icon}
                       size={24}
                       className="text-primary group-hover:text-white transition-colors"
                     />

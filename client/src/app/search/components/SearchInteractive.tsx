@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { articles } from '@/data/articles';
 import { NIGERIA_STATES } from '@/data/nigeria-states';
+import Icon from '@/components/ui/AppIcon';
 import SearchBar from './SearchBar';
 import FilterSidebar from './FilterSidebar';
 import SearchResults from './SearchResults';
@@ -12,9 +13,31 @@ import SuggestedTopics from './SuggestedTopics';
 import EmptyState from './EmptyState';
 import { trackEvent, trackInternalSearch } from '@/lib/analytics';
 
+type SearchFilters = {
+  categories?: string[];
+  difficulty?: string;
+  readTime?: string;
+  publishedDate?: string;
+  state?: string;
+};
+
+type SearchResultItem = {
+  id: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  readTime: string;
+  author: string;
+  date: string;
+  matchScore: number;
+  image: string;
+  imageAlt: string;
+  href: string;
+};
+
 const SearchInteractive = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState<SearchFilters>({});
   const [hasSearched, setHasSearched] = useState(false);
   const params = useSearchParams();
   const q = params?.get('q') || '';
@@ -169,7 +192,7 @@ const SearchInteractive = () => {
     });
   };
 
-  const handleFilterChange = (newFilters: any) => {
+  const handleFilterChange = (newFilters: SearchFilters) => {
     setFilters(newFilters);
     trackEvent('search_filters_applied', {
       page_type: 'search',
@@ -184,13 +207,10 @@ const SearchInteractive = () => {
     setHasSearched(true);
   };
 
-  const applyFilters = (items: any[], f: any) => {
+  const applyFilters = (items: SearchResultItem[], f: SearchFilters) => {
     const cats: string[] = Array.isArray(f?.categories) ? f.categories : [];
     const time: string = f?.readTime || 'all';
-    const normalizeGroup = (label: string) => {
-      const l = (label || '').toLowerCase();
-      return 'local';
-    };
+    const normalizeGroup = (_label: string) => 'local';
     const passesCategory =
       cats.length === 0 || cats.includes('local') || cats.includes(normalizeGroup(formattedType));
     const parseMinutes = (rt: string) => {
@@ -207,7 +227,7 @@ const SearchInteractive = () => {
     });
   };
 
-  const buildArticleResults = (q: string) => {
+  const buildArticleResults = (q: string): SearchResultItem[] => {
     const query = (q || '').toLowerCase();
     const tokens = query.split(/\s+/).filter(Boolean);
     const scored = Object.values(articles).map((a) => {
@@ -232,13 +252,11 @@ const SearchInteractive = () => {
     return filtered.slice(0, 12);
   };
 
-  const computedResults = hasSearched
+  const computedResults: SearchResultItem[] = hasSearched
     ? applyFilters(
-        (
-          (formattedType && !searchQuery
-            ? buildTopicResults(type, state)
-            : buildArticleResults(searchQuery)) as any[]
-        ) || [],
+        formattedType && !searchQuery
+          ? buildTopicResults(type, state)
+          : buildArticleResults(searchQuery),
         filters
       )
     : [];
@@ -401,7 +419,7 @@ const SearchInteractive = () => {
               {hasSearched ? (
                 searchQuery ? (
                   computedResults.length > 0 ? (
-                    <SearchResults query={searchQuery} results={computedResults as any[]} />
+                    <SearchResults query={searchQuery} results={computedResults} />
                   ) : (
                     <EmptyState query={searchQuery} />
                   )
@@ -413,7 +431,7 @@ const SearchInteractive = () => {
                   <SuggestedTopics onTopicClick={handleTopicClick} />
                   {(() => {
                     const recs = buildArticleResults('');
-                    return <SearchResults query="Trending" results={recs as any[]} />;
+                    return <SearchResults query="Trending" results={recs} />;
                   })()}
                 </div>
               )}
@@ -424,8 +442,5 @@ const SearchInteractive = () => {
     </>
   );
 };
-
-// Import Icon at top of file
-import Icon from '@/components/ui/AppIcon';
 
 export default SearchInteractive;

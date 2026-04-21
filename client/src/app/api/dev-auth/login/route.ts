@@ -16,7 +16,6 @@ export async function POST(request: Request) {
 
   const configuredEmail = process.env.DEV_ADMIN_EMAIL;
   const configuredPassword = process.env.DEV_ADMIN_PASSWORD;
-  const configuredName = process.env.DEV_ADMIN_NAME || 'Local Admin';
   const expectedToken = buildExpectedDevAdminToken();
   const identity = buildDevAdminIdentity();
 

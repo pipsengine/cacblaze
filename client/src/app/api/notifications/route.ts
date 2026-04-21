@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 
+type NotificationUpdate = {
+  status: string;
+  read_at?: string;
+};
+
 export async function GET() {
   try {
     const supabase = await createClient();
@@ -101,7 +106,7 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const updateData: any = { status };
+    const updateData: NotificationUpdate = { status };
     if (status === 'read') {
       updateData.read_at = new Date().toISOString();
     }

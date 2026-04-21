@@ -1,13 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 
-type Platform =
-  | 'facebook'
-  | 'twitter'
-  | 'linkedin'
-  | 'instagram'
-  | 'youtube'
-  | 'whatsapp';
+type Platform = 'facebook' | 'twitter' | 'linkedin' | 'instagram' | 'youtube' | 'whatsapp';
 
 export async function GET() {
   const supabase = await createClient();

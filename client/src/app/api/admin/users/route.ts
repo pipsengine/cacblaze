@@ -34,8 +34,7 @@ export async function GET() {
         if (!createdAt) return false;
         const now = new Date();
         return (
-          createdAt.getFullYear() === now.getFullYear() &&
-          createdAt.getMonth() === now.getMonth()
+          createdAt.getFullYear() === now.getFullYear() && createdAt.getMonth() === now.getMonth()
         );
       }).length,
     },

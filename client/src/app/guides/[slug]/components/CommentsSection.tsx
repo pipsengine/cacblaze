@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import AppImage from '@/components/ui/AppImage';
@@ -36,6 +36,30 @@ interface Reaction {
   reactionType: 'like' | 'helpful' | 'insightful' | 'love';
 }
 
+type ApiReaction = {
+  id: string | number;
+  commentId: string | number;
+  userId: string | number;
+  reactionType: Reaction['reactionType'];
+};
+
+type ApiComment = {
+  id: string | number;
+  articleId: string;
+  userId: string | number;
+  parentId?: string | number | null;
+  content: string;
+  status: Comment['status'];
+  isAuthorResponse: boolean;
+  createdAt: string;
+  updatedAt: string;
+  user?: {
+    username?: string;
+    role?: Comment['userProfiles']['role'];
+  } | null;
+  reactions?: ApiReaction[];
+};
+
 interface CommentsProps {
   articleId: string;
 }
@@ -57,11 +81,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editContent, setEditContent] = useState('');
 
-  useEffect(() => {
-    fetchComments();
-  }, [articleId]);
-
-  const fetchComments = async () => {
+  const fetchComments = useCallback(async () => {
     try {
       if (!API_BASE) {
         setComments([]);
@@ -76,7 +96,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
       const data = await res.json();
 
       // Convert backend data to frontend Comment interface
-      const formattedComments = data.map((comment: any) => ({
+      const formattedComments = (data as ApiComment[]).map((comment) => ({
         id: String(comment.id),
         articleId: comment.articleId,
         userId: String(comment.userId),
@@ -92,7 +112,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
           role: comment.user?.role || 'user',
         },
         reactions:
-          comment.reactions?.map((r: any) => ({
+          comment.reactions?.map((r) => ({
             id: String(r.id),
             commentId: String(r.commentId),
             userId: String(r.userId),
@@ -122,7 +142,11 @@ export default function CommentsSection({ articleId }: CommentsProps) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [articleId]);
+
+  useEffect(() => {
+    void fetchComments();
+  }, [fetchComments]);
 
   const handleSubmitComment = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -147,7 +171,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
       trackCommentAction('post', { articleId });
 
       setNewComment('');
-      fetchComments(); // Refresh comments
+      await fetchComments();
     } catch {
       return;
     }
@@ -177,7 +201,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
 
       setReplyContent('');
       setReplyingTo(null);
-      fetchComments(); // Refresh comments
+      await fetchComments();
     } catch {
       return;
     }
@@ -205,7 +229,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
 
       setEditingId(null);
       setEditContent('');
-      fetchComments(); // Refresh comments
+      await fetchComments();
     } catch {
       return;
     }
@@ -226,7 +250,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
 
       // Track deletion
       trackCommentAction('delete', { articleId, commentId });
-      fetchComments(); // Refresh comments
+      await fetchComments();
     } catch {
       return;
     }
@@ -249,7 +273,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
 
       // Track reaction
       trackCommentAction('reaction', { articleId, commentId, reactionType });
-      fetchComments(); // Refresh comments
+      await fetchComments();
     } catch {
       return;
     }
@@ -259,7 +283,7 @@ export default function CommentsSection({ articleId }: CommentsProps) {
     const isEditing = editingId === comment.id;
     // Ensure both are strings for comparison
     const isOwner = String(user?.id) === String(comment.userId);
-    const reactionCounts = comment.reactions?.reduce((acc: any, r) => {
+    const reactionCounts = comment.reactions?.reduce<Record<string, number>>((acc, r) => {
       acc[r.reactionType] = (acc[r.reactionType] || 0) + 1;
       return acc;
     }, {});

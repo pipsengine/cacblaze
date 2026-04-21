@@ -117,14 +117,20 @@ export default function LifestylePage() {
                 Health, Wellness & Lifestyle
               </h1>
               <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-                Discover realistic guidance for healthy habits, mental wellness, parenting,
-                home routines, and travel planning. The content is designed to support better daily
+                Discover realistic guidance for healthy habits, mental wellness, parenting, home
+                routines, and travel planning. The content is designed to support better daily
                 living without overwhelming readers.
               </p>
               <div className="flex flex-wrap gap-3 text-sm font-medium text-foreground">
-                <span className="rounded-full bg-white px-4 py-2 border border-rose-100">Healthier routines</span>
-                <span className="rounded-full bg-white px-4 py-2 border border-rose-100">Family support</span>
-                <span className="rounded-full bg-white px-4 py-2 border border-rose-100">Better daily living</span>
+                <span className="rounded-full bg-white px-4 py-2 border border-rose-100">
+                  Healthier routines
+                </span>
+                <span className="rounded-full bg-white px-4 py-2 border border-rose-100">
+                  Family support
+                </span>
+                <span className="rounded-full bg-white px-4 py-2 border border-rose-100">
+                  Better daily living
+                </span>
               </div>
             </div>
           </div>
@@ -160,7 +166,7 @@ export default function LifestylePage() {
                           />
                         </div>
                         <div className="w-12 h-12 rounded-xl bg-white shadow-sm text-rose-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                          <Icon name={item.icon as any} size={24} />
+                          <Icon name={item.icon} size={24} />
                         </div>
                         <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-rose-700 transition-colors">
                           {item.label}

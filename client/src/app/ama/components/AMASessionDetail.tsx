@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import Icon from '@/components/ui/AppIcon';
 import AppImage from '@/components/ui/AppImage';
@@ -33,6 +33,29 @@ interface Answer {
   };
 }
 
+type AmaAnswerApiResponse = {
+  id: string;
+  answer: string;
+  created_at: string;
+  user_profiles?: {
+    full_name?: string;
+    avatar_url?: string | null;
+  } | null;
+};
+
+type AmaQuestionApiResponse = {
+  id: string;
+  question: string;
+  upvotes: number;
+  is_answered: boolean;
+  created_at: string;
+  user_profiles?: {
+    full_name?: string;
+    avatar_url?: string | null;
+  } | null;
+  ama_answers?: AmaAnswerApiResponse[] | null;
+};
+
 export default function AMASessionDetail({ sessionId }: AMASessionDetailProps) {
   const { user } = useAuth();
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -40,17 +63,13 @@ export default function AMASessionDetail({ sessionId }: AMASessionDetailProps) {
   const [newQuestion, setNewQuestion] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
-  useEffect(() => {
-    fetchQuestions();
-  }, [sessionId]);
-
-  const fetchQuestions = async () => {
+  const fetchQuestions = useCallback(async () => {
     try {
       const response = await fetch(`/api/ama/questions?session_id=${sessionId}`);
       const data = await response.json();
 
       if (data.success) {
-        const formatted = data.questions.map((q: any) => ({
+        const formatted = (data.questions as AmaQuestionApiResponse[]).map((q) => ({
           id: q.id,
           question: q.question,
           upvotes: q.upvotes,
@@ -58,16 +77,16 @@ export default function AMASessionDetail({ sessionId }: AMASessionDetailProps) {
           createdAt: q.created_at,
           userProfiles: {
             fullName: q.user_profiles?.full_name || 'Anonymous',
-            avatarUrl: q.user_profiles?.avatar_url,
+            avatarUrl: q.user_profiles?.avatar_url ?? null,
           },
           amaAnswers:
-            q.ama_answers?.map((a: any) => ({
+            q.ama_answers?.map((a) => ({
               id: a.id,
               answer: a.answer,
               createdAt: a.created_at,
               userProfiles: {
                 fullName: a.user_profiles?.full_name || 'Expert',
-                avatarUrl: a.user_profiles?.avatar_url,
+                avatarUrl: a.user_profiles?.avatar_url ?? null,
               },
             })) || [],
         }));
@@ -78,7 +97,11 @@ export default function AMASessionDetail({ sessionId }: AMASessionDetailProps) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [sessionId]);
+
+  useEffect(() => {
+    void fetchQuestions();
+  }, [fetchQuestions]);
 
   const submitQuestion = async () => {
     if (!user || !newQuestion.trim()) return;
@@ -95,7 +118,7 @@ export default function AMASessionDetail({ sessionId }: AMASessionDetailProps) {
       });
 
       setNewQuestion('');
-      fetchQuestions();
+      await fetchQuestions();
     } catch (error) {
       console.error('Submit question error:', error);
     } finally {

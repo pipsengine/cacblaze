@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
@@ -21,6 +21,22 @@ interface ReadingListItem {
   articleCategory: string;
 }
 
+type ReadingListItemRecord = {
+  id: string;
+  article_id: string;
+  article_title: string;
+  article_category: string;
+};
+
+type ReadingListRecord = {
+  id: string;
+  name: string;
+  description: string | null;
+  is_public: boolean;
+  created_at: string;
+  reading_list_items?: ReadingListItemRecord[];
+};
+
 export default function ReadingListsManager() {
   const { user } = useAuth();
   const [lists, setLists] = useState<ReadingList[]>([]);
@@ -29,26 +45,20 @@ export default function ReadingListsManager() {
   const [newListName, setNewListName] = useState('');
   const [newListDescription, setNewListDescription] = useState('');
 
-  useEffect(() => {
-    if (user) {
-      fetchLists();
-    }
-  }, [user]);
-
-  const fetchLists = async () => {
+  const fetchLists = useCallback(async () => {
     try {
       const response = await fetch('/api/reading-lists');
       const data = await response.json();
 
       if (data.success) {
-        const formatted = data.lists.map((list: any) => ({
+        const formatted = (data.lists as ReadingListRecord[]).map((list) => ({
           id: list.id,
           name: list.name,
           description: list.description,
           isPublic: list.is_public,
           createdAt: list.created_at,
           items:
-            list.reading_list_items?.map((item: any) => ({
+            list.reading_list_items?.map((item) => ({
               id: item.id,
               articleId: item.article_id,
               articleTitle: item.article_title,
@@ -62,7 +72,13 @@ export default function ReadingListsManager() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      void fetchLists();
+    }
+  }, [fetchLists, user]);
 
   const createList = async () => {
     if (!newListName.trim()) return;
@@ -81,7 +97,7 @@ export default function ReadingListsManager() {
       setNewListName('');
       setNewListDescription('');
       setShowCreateModal(false);
-      fetchLists();
+      await fetchLists();
     } catch (error) {
       console.error('Create list error:', error);
     }

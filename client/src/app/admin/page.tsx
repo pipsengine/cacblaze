@@ -18,7 +18,11 @@ export default function AdminOverviewPage() {
     adminCardThemes.amber,
     adminCardThemes.emerald,
   ] as const;
-  const rhythmThemes = [adminCardThemes.indigo, adminCardThemes.rose, adminCardThemes.cyan] as const;
+  const rhythmThemes = [
+    adminCardThemes.indigo,
+    adminCardThemes.rose,
+    adminCardThemes.cyan,
+  ] as const;
   const moduleThemes = [
     adminCardThemes.sky,
     adminCardThemes.emerald,
@@ -96,17 +100,17 @@ export default function AdminOverviewPage() {
 
               return (
                 <div key={metric.label} className={`rounded-3xl border p-5 ${theme.surface}`}>
-                <div className="flex items-center justify-between gap-4">
-                  <p className="text-sm text-gray-600">{metric.label}</p>
-                  <div
-                    className={`flex h-10 w-10 items-center justify-center rounded-2xl ${theme.iconWrap} ${theme.iconColor}`}
-                  >
-                    <Icon name={metric.icon} size={18} />
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="text-sm text-gray-600">{metric.label}</p>
+                    <div
+                      className={`flex h-10 w-10 items-center justify-center rounded-2xl ${theme.iconWrap} ${theme.iconColor}`}
+                    >
+                      <Icon name={metric.icon} size={18} />
+                    </div>
                   </div>
+                  <p className={`mt-6 text-3xl font-semibold ${theme.value}`}>{metric.value}</p>
+                  <p className="mt-2 text-xs leading-5 text-gray-500">{metric.meta}</p>
                 </div>
-                <p className={`mt-6 text-3xl font-semibold ${theme.value}`}>{metric.value}</p>
-                <p className="mt-2 text-xs leading-5 text-gray-500">{metric.meta}</p>
-              </div>
               );
             })}
           </div>
@@ -177,19 +181,19 @@ export default function AdminOverviewPage() {
                 const theme = moduleThemes[index % moduleThemes.length];
 
                 return (
-                <Link
-                  key={item.id}
-                  href={item.href}
-                  className={`rounded-3xl border p-5 transition hover:bg-white ${theme.surface}`}
-                >
-                  <div
-                    className={`flex h-11 w-11 items-center justify-center rounded-2xl ${theme.iconWrap} ${theme.iconColor}`}
+                  <Link
+                    key={item.id}
+                    href={item.href}
+                    className={`rounded-3xl border p-5 transition hover:bg-white ${theme.surface}`}
                   >
-                    <Icon name={item.icon} size={18} />
-                  </div>
-                  <h4 className="mt-4 text-lg font-semibold text-gray-900">{item.label}</h4>
-                  <p className="mt-2 text-sm leading-6 text-gray-600">{item.description}</p>
-                </Link>
+                    <div
+                      className={`flex h-11 w-11 items-center justify-center rounded-2xl ${theme.iconWrap} ${theme.iconColor}`}
+                    >
+                      <Icon name={item.icon} size={18} />
+                    </div>
+                    <h4 className="mt-4 text-lg font-semibold text-gray-900">{item.label}</h4>
+                    <p className="mt-2 text-sm leading-6 text-gray-600">{item.description}</p>
+                  </Link>
                 );
               })}
           </div>
@@ -204,22 +208,22 @@ export default function AdminOverviewPage() {
               const theme = moduleThemes[index % moduleThemes.length];
 
               return (
-              <div key={item.id} className={`rounded-3xl border p-5 ${theme.surface}`}>
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="font-semibold text-gray-900">{item.title}</p>
-                    <p className="mt-1 text-sm text-gray-600">
-                      {item.category} • {item.word_count} words
-                    </p>
+                <div key={item.id} className={`rounded-3xl border p-5 ${theme.surface}`}>
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="font-semibold text-gray-900">{item.title}</p>
+                      <p className="mt-1 text-sm text-gray-600">
+                        {item.category} • {item.word_count} words
+                      </p>
+                    </div>
+                    <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
+                      {item.status}
+                    </span>
                   </div>
-                  <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
-                    {item.status}
-                  </span>
+                  <p className="mt-3 text-xs text-gray-500">
+                    Published {new Date(item.published_at).toLocaleString()}
+                  </p>
                 </div>
-                <p className="mt-3 text-xs text-gray-500">
-                  Published {new Date(item.published_at).toLocaleString()}
-                </p>
-              </div>
               );
             })}
           </div>

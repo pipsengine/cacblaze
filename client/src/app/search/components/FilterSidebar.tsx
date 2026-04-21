@@ -2,8 +2,15 @@
 
 import { useState, useEffect, useRef } from 'react';
 
+type SearchFilters = {
+  categories: string[];
+  difficulty: string;
+  readTime: string;
+  publishedDate: string;
+};
+
 interface FilterSidebarProps {
-  onFilterChange: (filters: any) => void;
+  onFilterChange: (filters: SearchFilters) => void;
   initialCategories?: string[];
   contextType?: string;
 }
@@ -187,7 +194,7 @@ const FilterSidebar = ({
                     categories: selectedCategories,
                     difficulty: selectedDifficulty,
                     readTime: e.target.value,
-                      publishedDate: publishedDateRange,
+                    publishedDate: publishedDateRange,
                   });
                 }}
                 className="w-5 h-5 border-2 border-gray-300 text-primary focus:ring-primary focus:ring-offset-0"

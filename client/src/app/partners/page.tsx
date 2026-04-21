@@ -111,7 +111,7 @@ export default function PartnersPage() {
                   className="p-8 rounded-2xl bg-white border border-gray-200 hover:border-teal-500 hover:shadow-xl transition-all group flex flex-col h-full"
                 >
                   <div className="w-16 h-16 rounded-full bg-teal-50 text-teal-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <Icon name={program.icon as any} size={32} />
+                    <Icon name={program.icon} size={32} />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">{program.title}</h3>
                   <p className="text-gray-600 leading-relaxed mb-6 flex-grow">

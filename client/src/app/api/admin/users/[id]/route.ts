@@ -65,8 +65,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   }
 
   const nextRole = body.role ?? targetUser.role;
-  const nextIsActive =
-    typeof body.is_active === 'boolean' ? body.is_active : targetUser.is_active;
+  const nextIsActive = typeof body.is_active === 'boolean' ? body.is_active : targetUser.is_active;
 
   if (!allowedRoles.has(nextRole)) {
     return NextResponse.json({ error: 'Invalid user role.' }, { status: 400 });

@@ -2,22 +2,17 @@
 
 import React, { useState } from 'react';
 
-interface AppImageProps {
+interface AppImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   alt: string;
   width?: number;
   height?: number;
   className?: string;
   priority?: boolean;
-  quality?: number;
-  placeholder?: 'blur' | 'empty';
-  blurDataURL?: string;
   fill?: boolean;
-  sizes?: string;
   onClick?: () => void;
   fallbackSrc?: string;
   secondaryFallbackSrc?: string;
-  [key: string]: any;
 }
 
 function AppImage({
@@ -27,11 +22,7 @@ function AppImage({
   height,
   className = '',
   priority = false,
-  quality = 75,
-  placeholder = 'empty',
-  blurDataURL,
   fill = false,
-  sizes,
   onClick,
   fallbackSrc = '/assets/images/no_image.png',
   secondaryFallbackSrc = '/assets/images/no_image.png',
@@ -39,31 +30,18 @@ function AppImage({
 }: AppImageProps) {
   const [imageSrc, setImageSrc] = useState(src);
   const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
   const [triedProxy, setTriedProxy] = useState(false);
   const [triedRawFromProxy, setTriedRawFromProxy] = useState(false);
 
   // Sync state when src prop changes
   React.useEffect(() => {
     setImageSrc(src);
-    setHasError(false);
     setIsLoading(true);
   }, [src]);
 
   // More reliable external URL detection
   const isExternal =
     imageSrc && (imageSrc.startsWith('http://') || imageSrc.startsWith('https://'));
-  const isLocal =
-    imageSrc &&
-    (imageSrc.startsWith('/') || imageSrc.startsWith('./') || imageSrc.startsWith('data:'));
-
-  // Check if the domain is allowed in next.config.mjs for optimization
-  const isOptimizedDomain =
-    imageSrc &&
-    (imageSrc.includes('images.unsplash.com') ||
-      imageSrc.includes('images.pexels.com') ||
-      imageSrc.includes('images.pixabay.com') ||
-      imageSrc.includes('img.rocket.new'));
 
   const handleError = () => {
     const isCurrentlyProxied = imageSrc && imageSrc.startsWith('/api/image-proxy?url=');
@@ -92,12 +70,10 @@ function AppImage({
     }
     if (fallbackSrc && imageSrc !== fallbackSrc) {
       setImageSrc(fallbackSrc);
-      setHasError(true);
       return;
     }
     if (secondaryFallbackSrc && imageSrc !== secondaryFallbackSrc) {
       setImageSrc(secondaryFallbackSrc);
-      setHasError(true);
       return;
     }
     setIsLoading(false);
@@ -105,19 +81,11 @@ function AppImage({
 
   const handleLoad = () => {
     setIsLoading(false);
-    setHasError(false);
   };
 
   const commonClassName = `${className} ${isLoading ? 'bg-gray-200' : ''} ${onClick ? 'cursor-pointer hover:opacity-90 transition-opacity' : ''}`;
 
-  const {
-    priority: _priority,
-    quality: _quality,
-    placeholder: _placeholder,
-    blurDataURL: _blurDataURL,
-    unoptimized: _unoptimized,
-    ...validImgProps
-  } = props;
+  const validImgProps = props;
 
   if (fill) {
     return (
@@ -127,6 +95,7 @@ function AppImage({
           const resolvedSrc =
             baseSrc && baseSrc.startsWith('/api/image-proxy?url=') ? baseSrc : baseSrc;
           return (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={resolvedSrc}
               alt={alt}
@@ -147,6 +116,7 @@ function AppImage({
     const baseSrc = imageSrc && imageSrc.length > 0 ? imageSrc : fallbackSrc;
     const resolvedSrc = baseSrc && baseSrc.startsWith('/api/image-proxy?url=') ? baseSrc : baseSrc;
     return (
+      // eslint-disable-next-line @next/next/no-img-element
       <img
         src={resolvedSrc}
         alt={alt}

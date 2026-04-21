@@ -247,8 +247,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return;
     } catch (error) {
       const normalizedError = normalizeAuthError(error);
-      const shouldTryDevFallback =
-        canUseDevAdminFallback() && isSupabaseConnectivityError(error);
+      const shouldTryDevFallback = canUseDevAdminFallback() && isSupabaseConnectivityError(error);
 
       if (!shouldTryDevFallback) {
         throw normalizedError;
@@ -257,7 +256,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const response = await fetch('/api/dev-auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({
+          email,
+          password,
+        }),
       });
 
       const payload = (await response.json().catch(() => null)) as {

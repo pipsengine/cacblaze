@@ -146,7 +146,7 @@ const PreferencesManager = () => {
                   : 'border-gray-200 text-secondary hover:border-gray-300'
               }`}
             >
-              <Icon name={category.icon as any} size={20} />
+              <Icon name={category.icon} size={20} />
               <span className="text-sm font-medium">{category.label}</span>
             </button>
           ))}

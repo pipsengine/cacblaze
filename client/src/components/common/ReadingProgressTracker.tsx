@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import Icon from '@/components/ui/AppIcon';
 
@@ -13,6 +13,57 @@ const ReadingProgressTracker = ({ articleId, category }: ReadingProgressTrackerP
   const { user } = useAuth();
   const [progress, setProgress] = useState(0);
   const [lastSaved, setLastSaved] = useState(0);
+
+  const fetchProgress = useCallback(async () => {
+    try {
+      const response = await fetch(`/api/reading-progress?article_id=${articleId}`);
+      if (!response.ok) return;
+
+      const data = await response.json();
+      if (data.progress) {
+        setProgress(data.progress.progress_percentage);
+        setLastSaved(data.progress.progress_percentage);
+
+        if (!data.progress.completed && data.progress.last_position > 0) {
+          setTimeout(() => {
+            window.scrollTo({ top: data.progress.last_position, behavior: 'smooth' });
+          }, 500);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching progress:', error);
+    }
+  }, [articleId]);
+
+  const saveProgress = useCallback(async () => {
+    try {
+      await fetch('/api/reading-progress', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          article_id: articleId,
+          progress_percentage: progress,
+          last_position: window.scrollY,
+          completed: progress >= 95,
+        }),
+      });
+
+      setLastSaved(progress);
+
+      if (progress >= 95) {
+        await fetch('/api/preferences', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            article_id: articleId,
+            category,
+          }),
+        });
+      }
+    } catch (error) {
+      console.error('Error saving progress:', error);
+    }
+  }, [articleId, category, progress]);
 
   useEffect(() => {
     if (!user) return;
@@ -32,69 +83,16 @@ const ReadingProgressTracker = ({ articleId, category }: ReadingProgressTrackerP
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [user, articleId]);
+  }, [articleId, fetchProgress, user]);
 
   useEffect(() => {
     if (!user || progress === lastSaved) return;
 
     // Debounce save - only save every 5% change
     if (Math.abs(progress - lastSaved) >= 5) {
-      saveProgress();
+      void saveProgress();
     }
-  }, [progress, user]);
-
-  const fetchProgress = async () => {
-    try {
-      const response = await fetch(`/api/reading-progress?article_id=${articleId}`);
-      if (!response.ok) return;
-
-      const data = await response.json();
-      if (data.progress) {
-        setProgress(data.progress.progress_percentage);
-        setLastSaved(data.progress.progress_percentage);
-
-        // Scroll to last position if not completed
-        if (!data.progress.completed && data.progress.last_position > 0) {
-          setTimeout(() => {
-            window.scrollTo({ top: data.progress.last_position, behavior: 'smooth' });
-          }, 500);
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching progress:', error);
-    }
-  };
-
-  const saveProgress = async () => {
-    try {
-      await fetch('/api/reading-progress', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          article_id: articleId,
-          progress_percentage: progress,
-          last_position: window.scrollY,
-          completed: progress >= 95,
-        }),
-      });
-
-      setLastSaved(progress);
-
-      // Update reading history
-      if (progress >= 95) {
-        await fetch('/api/preferences', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            article_id: articleId,
-            category,
-          }),
-        });
-      }
-    } catch (error) {
-      console.error('Error saving progress:', error);
-    }
-  };
+  }, [lastSaved, progress, saveProgress, user]);
 
   if (!user) return null;
 

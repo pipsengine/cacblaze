@@ -127,7 +127,9 @@ export function sanitizeAnalyticsParams<T extends AnalyticsParams>(params?: T): 
   }
 
   return Object.fromEntries(
-    Object.entries(params).filter(([, value]) => value !== undefined && value !== null && value !== '')
+    Object.entries(params).filter(
+      ([, value]) => value !== undefined && value !== null && value !== ''
+    )
   ) as Partial<T>;
 }
 
@@ -136,11 +138,20 @@ export function getPageType(pathname: string): PageType {
   if (pathname.startsWith('/search')) return 'search';
   if (pathname.startsWith('/contact')) return 'contact';
   if (pathname.startsWith('/support')) return 'support';
-  if (pathname.startsWith('/privacy') || pathname.startsWith('/terms') || pathname.startsWith('/cookies')) {
+  if (
+    pathname.startsWith('/privacy') ||
+    pathname.startsWith('/terms') ||
+    pathname.startsWith('/cookies')
+  ) {
     return 'legal';
   }
   if (pathname.startsWith('/guides/') || pathname.startsWith('/howto/')) return 'article';
-  if (pathname === '/guides' || pathname === '/howto' || pathname === '/reviews' || pathname === '/technology') {
+  if (
+    pathname === '/guides' ||
+    pathname === '/howto' ||
+    pathname === '/reviews' ||
+    pathname === '/technology'
+  ) {
     return 'category';
   }
   if (pathname.startsWith('/topics')) return 'topic';
@@ -247,7 +258,11 @@ export function trackArticleView(articleData: {
   });
 }
 
-export function trackEngagement(articleId: string, timeSpent: number, params?: CACBLAZEAnalyticsParams) {
+export function trackEngagement(
+  articleId: string,
+  timeSpent: number,
+  params?: CACBLAZEAnalyticsParams
+) {
   trackEvent('engaged_reading_session', {
     article_id: articleId,
     page_type: 'article',
@@ -257,7 +272,11 @@ export function trackEngagement(articleId: string, timeSpent: number, params?: C
   });
 }
 
-export function trackScrollDepth(articleId: string, depth: number, params?: CACBLAZEAnalyticsParams) {
+export function trackScrollDepth(
+  articleId: string,
+  depth: number,
+  params?: CACBLAZEAnalyticsParams
+) {
   trackEvent('scroll_depth', {
     article_id: articleId,
     page_type: 'article',
@@ -284,7 +303,10 @@ export function trackCommentAction(
   });
 }
 
-export function trackContentInteraction(interactionType: string, data: CACBLAZEAnalyticsParams = {}) {
+export function trackContentInteraction(
+  interactionType: string,
+  data: CACBLAZEAnalyticsParams = {}
+) {
   trackEvent('content_interaction', {
     interaction_type: interactionType,
     ...data,
@@ -332,8 +354,7 @@ export const CACBLAZE_EVENT_EXAMPLES = {
     }),
   featuredArticleClick: (params: CACBLAZEAnalyticsParams = {}) =>
     trackEvent('featured_article_click', params),
-  topGuideClick: (params: CACBLAZEAnalyticsParams = {}) =>
-    trackEvent('top_guide_click', params),
+  topGuideClick: (params: CACBLAZEAnalyticsParams = {}) => trackEvent('top_guide_click', params),
   newsletterStarted: (params: CACBLAZEAnalyticsParams = {}) =>
     trackEvent('newsletter_signup_started', {
       page_type: 'newsletter',

@@ -1,18 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import Icon from '@/components/ui/AppIcon';
-
-interface Bookmark {
-  id: string;
-  articleId: string;
-  articleTitle: string;
-  articleCategory: string;
-  notes: string | null;
-  createdAt: string;
-}
 
 interface BookmarkButtonProps {
   articleId: string;
@@ -28,30 +19,32 @@ export default function BookmarkButton({
   const { user } = useAuth();
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [loading, setLoading] = useState(false);
-  const supabase = createClient();
+  const supabase = useMemo(() => createClient(), []);
 
-  useEffect(() => {
-    if (user) {
-      checkBookmarkStatus();
-    }
-  }, [user, articleId]);
+  const checkBookmarkStatus = useCallback(async () => {
+    if (!user) return;
 
-  const checkBookmarkStatus = async () => {
     try {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('bookmarks')
         .select('id')
-        .eq('user_id', user?.id)
+        .eq('user_id', user.id)
         .eq('article_id', articleId)
         .single();
 
-      if (data) {
-        setIsBookmarked(true);
-      }
-    } catch (error) {
-      // Not bookmarked
+      setIsBookmarked(Boolean(data));
+    } catch {
+      setIsBookmarked(false);
     }
-  };
+  }, [articleId, supabase, user]);
+
+  useEffect(() => {
+    if (user) {
+      void checkBookmarkStatus();
+    } else {
+      setIsBookmarked(false);
+    }
+  }, [checkBookmarkStatus, user]);
 
   const toggleBookmark = async () => {
     if (!user) {

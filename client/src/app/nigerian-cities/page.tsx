@@ -5,6 +5,6 @@ import NigerianCitiesPage, {
 
 export const metadata: Metadata = localMetadata;
 
-export default function Page(props: any) {
-  return <NigerianCitiesPage {...props} />;
+export default function Page() {
+  return <NigerianCitiesPage />;
 }

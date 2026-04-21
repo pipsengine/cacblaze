@@ -130,6 +130,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/admin/social-keys/route.js"
+    ],
+    "/account/profile/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/account/profile/page.js"
     ]
   }
 }

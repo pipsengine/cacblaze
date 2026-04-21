@@ -4,6 +4,12 @@ import { createClient } from '@/lib/supabase/server';
 const allowedFrequencies = new Set(['daily', 'weekly', 'monthly']);
 const requestStore = new Map<string, { count: number; resetAt: number }>();
 
+type NewsletterSubscriptionUpdate = {
+  subscribed_topics?: string[];
+  frequency?: string;
+  status?: string;
+};
+
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -45,7 +51,12 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!rawEmail || !isValidEmail(rawEmail) || topics.length === 0 || !allowedFrequencies.has(frequency)) {
+    if (
+      !rawEmail ||
+      !isValidEmail(rawEmail) ||
+      topics.length === 0 ||
+      !allowedFrequencies.has(frequency)
+    ) {
       return NextResponse.json(
         { error: 'Please enter a valid email, topic choice, and delivery frequency' },
         { status: 400 }
@@ -132,7 +143,7 @@ export async function PATCH(request: Request) {
     }
 
     // Update subscription
-    const updateData: any = {};
+    const updateData: NewsletterSubscriptionUpdate = {};
     if (topics) updateData.subscribed_topics = topics;
     if (frequency) updateData.frequency = frequency;
     if (status) updateData.status = status;

@@ -5,7 +5,7 @@ import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import AppImage from '@/components/ui/AppImage';
-import { getContextualImage, getCuratedImagesForCategory } from '@/utils/imageService';
+import { getContextualImage } from '@/utils/imageService';
 
 export const metadata: Metadata = {
   title: 'Technology - CACBLAZE',
@@ -348,9 +348,15 @@ export default function TechnologyPage() {
                 tools. The focus is clarity, safety, and usable solutions.
               </p>
               <div className="flex flex-wrap gap-3 text-sm font-medium text-foreground">
-                <span className="rounded-full bg-white px-4 py-2 border border-blue-100">Device troubleshooting</span>
-                <span className="rounded-full bg-white px-4 py-2 border border-blue-100">Digital safety</span>
-                <span className="rounded-full bg-white px-4 py-2 border border-blue-100">Practical tech help</span>
+                <span className="rounded-full bg-white px-4 py-2 border border-blue-100">
+                  Device troubleshooting
+                </span>
+                <span className="rounded-full bg-white px-4 py-2 border border-blue-100">
+                  Digital safety
+                </span>
+                <span className="rounded-full bg-white px-4 py-2 border border-blue-100">
+                  Practical tech help
+                </span>
               </div>
             </div>
           </div>
@@ -409,7 +415,7 @@ export default function TechnologyPage() {
                             );
                           })()}
                           <div className="w-12 h-12 rounded-xl bg-white shadow-sm text-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <Icon name={item.icon as any} size={24} />
+                            <Icon name={item.icon} size={24} />
                           </div>
                           <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">
                             {item.label}

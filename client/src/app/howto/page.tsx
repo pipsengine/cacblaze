@@ -285,9 +285,15 @@ export default function HowToPage() {
                 and confident execution from start to finish.
               </p>
               <div className="flex flex-wrap gap-3 text-sm font-medium text-foreground">
-                <span className="rounded-full bg-white px-4 py-2 border border-green-100">Step-by-step flow</span>
-                <span className="rounded-full bg-white px-4 py-2 border border-green-100">Beginner-friendly help</span>
-                <span className="rounded-full bg-white px-4 py-2 border border-green-100">Practical outcomes</span>
+                <span className="rounded-full bg-white px-4 py-2 border border-green-100">
+                  Step-by-step flow
+                </span>
+                <span className="rounded-full bg-white px-4 py-2 border border-green-100">
+                  Beginner-friendly help
+                </span>
+                <span className="rounded-full bg-white px-4 py-2 border border-green-100">
+                  Practical outcomes
+                </span>
               </div>
             </div>
           </div>
@@ -337,7 +343,7 @@ export default function HowToPage() {
                           );
                         })()}
                         <div className="w-12 h-12 rounded-xl bg-white shadow-sm text-green-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                          <Icon name={item.icon as any} size={24} />
+                          <Icon name={item.icon} size={24} />
                         </div>
                         <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-700 transition-colors">
                           {item.label}

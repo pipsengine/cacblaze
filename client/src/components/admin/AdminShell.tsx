@@ -225,9 +225,7 @@ export default function AdminShell({ children, identity }: AdminShellProps) {
                         </div>
                         <div>
                           <p className="font-semibold">{item.label}</p>
-                          <p className="mt-1 text-xs leading-5 text-gray-500">
-                            {item.description}
-                          </p>
+                          <p className="mt-1 text-xs leading-5 text-gray-500">{item.description}</p>
                         </div>
                       </Link>
                     ))}

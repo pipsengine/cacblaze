@@ -179,7 +179,7 @@ export default function CareersPage() {
                   className="p-8 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center mb-6">
-                    <Icon name={benefit.icon as any} size={24} />
+                    <Icon name={benefit.icon} size={24} />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">{benefit.title}</h3>
                   <p className="text-gray-600 leading-relaxed">{benefit.description}</p>

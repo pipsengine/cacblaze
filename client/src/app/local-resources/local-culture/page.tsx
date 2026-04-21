@@ -6,7 +6,6 @@ import Breadcrumb from '@/components/common/Breadcrumb';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import StateFilterSidebar from '@/components/common/StateFilterSidebar';
-import { getContextualImage } from '@/utils/imageService';
 
 export const metadata: Metadata = {
   title: 'Local Culture in Nigeria - CACBLAZE',

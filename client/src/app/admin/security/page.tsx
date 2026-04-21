@@ -59,9 +59,12 @@ export default function AdminSecurityPage() {
               ] as const;
 
               return (
-              <div key={item} className={`rounded-3xl border p-5 text-sm leading-7 text-gray-600 ${themes[index].surface}`}>
-                {item}
-              </div>
+                <div
+                  key={item}
+                  className={`rounded-3xl border p-5 text-sm leading-7 text-gray-600 ${themes[index].surface}`}
+                >
+                  {item}
+                </div>
               );
             })}
           </div>

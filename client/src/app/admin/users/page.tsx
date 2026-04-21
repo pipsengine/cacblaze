@@ -22,7 +22,9 @@ export default function AdminUsersPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
               Identity Governance
             </p>
-            <h3 className="mt-3 text-3xl font-semibold text-gray-900">Users and access management</h3>
+            <h3 className="mt-3 text-3xl font-semibold text-gray-900">
+              Users and access management
+            </h3>
             <p className="mt-3 max-w-3xl text-sm leading-7 text-gray-600">
               Control role assignment, activation state, user detail records, and auditable
               lifecycle changes from one section built around server-authorized administration APIs.
