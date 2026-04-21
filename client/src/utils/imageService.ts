@@ -14,6 +14,12 @@ export interface ImageConfig {
   preferCurated?: boolean;
 }
 
+interface CuratedImage {
+  src: string;
+  alt: string;
+  keywords?: string[];
+}
+
 // Curated image library organized by category with Nigerian/African context
 const curatedImages = {
   technology: [
@@ -381,7 +387,6 @@ const curatedImages = {
       alt: 'Student deals and discounts',
       keywords: ['student deals', 'discounts', 'learners', 'education'],
     },
-    {},
     {
       src: 'https://images.pexels.com/photos/6332/people-hand-smartphone-technology.jpg?auto=compress&cs=tinysrgb&w=1200&q=80',
       alt: 'Smartphone close-up for device reviews',
@@ -482,7 +487,7 @@ const curatedImages = {
       keywords: ['services', 'business', 'local', 'providers'],
     },
   ],
-};
+} satisfies Record<string, CuratedImage[]>;
 
 const titleImages: Record<string, { src: string; alt: string }> = {
   accommodationguides: {
@@ -1134,7 +1139,11 @@ function resolveCuratedCategory(category: string): keyof typeof curatedImages {
   ) {
     return 'guides';
   }
-  if (compact.includes('business') || compact.includes('entrepreneur') || compact.includes('strategy')) {
+  if (
+    compact.includes('business') ||
+    compact.includes('entrepreneur') ||
+    compact.includes('strategy')
+  ) {
     return 'business';
   }
 
@@ -1157,7 +1166,7 @@ function findBestCuratedImage(
   // If no title provided, return random image from category
   if (!title) {
     const randomIndex = Math.floor(Math.random() * categoryImages.length);
-    const img = categoryImages[randomIndex] as any;
+    const img = categoryImages[randomIndex];
     return img && img.src && img.alt ? { src: img.src, alt: img.alt } : null;
   }
 
@@ -1166,7 +1175,7 @@ function findBestCuratedImage(
   let bestMatch = categoryImages[0];
   let bestScore = 0;
 
-  for (const image of categoryImages as any[]) {
+  for (const image of categoryImages) {
     let score = 0;
     const kws: string[] = Array.isArray(image.keywords) ? image.keywords : [];
     for (const keyword of kws) {
@@ -1183,11 +1192,11 @@ function findBestCuratedImage(
   if (bestScore === 0) {
     const hash = titleLower.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
     const idx = hash % categoryImages.length;
-    const img = categoryImages[idx] as any;
+    const img = categoryImages[idx];
     return img && img.src && img.alt ? { src: img.src, alt: img.alt } : null;
   }
 
-  const bm = bestMatch as any;
+  const bm = bestMatch;
   return bm && bm.src && bm.alt ? { src: bm.src, alt: bm.alt } : null;
 }
 

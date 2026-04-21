@@ -1,10 +1,11 @@
 type WithContext<T> = T & { '@context': string };
-type Article = Record<string, any>;
-type FAQPage = Record<string, any>;
-type BreadcrumbList = Record<string, any>;
-type Organization = Record<string, any>;
-type Review = Record<string, any>;
-type HowTo = Record<string, any>;
+type JsonLdObject = Record<string, unknown>;
+type Article = JsonLdObject;
+type FAQPage = JsonLdObject;
+type BreadcrumbList = JsonLdObject;
+type Organization = JsonLdObject;
+type Review = JsonLdObject;
+type HowTo = JsonLdObject;
 
 interface ArticleData {
   title: string;
