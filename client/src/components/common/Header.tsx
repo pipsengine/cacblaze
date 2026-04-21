@@ -16,6 +16,7 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const { user, userRole } = useAuth();
+  const navItems = menuData?.mainMenu ?? [];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,8 +35,8 @@ const Header = () => {
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 gap-4">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 xl:px-8 2xl:px-10">
+        <div className="flex h-20 items-center gap-4 xl:gap-6 2xl:gap-8">
           {/* Logo */}
           <Link
             href="/"
@@ -47,7 +48,7 @@ const Header = () => {
                 destination_url: '/',
               })
             }
-            className="flex items-center gap-2 group shrink-0"
+            className="group flex shrink-0 items-center gap-2"
           >
             <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
               <Icon name="BookOpenIcon" size={24} className="text-white" />
@@ -56,68 +57,109 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex h-full gap-5">
-            {menuData?.mainMenu?.map((item) => (
-              <MegaMenu key={item?.id} item={item} isActive={pathname === item?.href} />
-            ))}
-          </nav>
+          <div className="hidden min-w-0 flex-1 xl:flex xl:justify-center">
+            <nav className="flex h-full min-w-0 items-stretch justify-center gap-1 2xl:gap-3">
+              {navItems.map((item) => (
+                <MegaMenu key={item?.id} item={item} isActive={pathname === item?.href} />
+              ))}
+            </nav>
+          </div>
 
           {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-4">
-            {user && <NotificationCenter />}
-            <Link
-              href="/search"
-              onClick={() =>
-                trackEvent('search_content_click', {
-                  page_type: 'home',
-                  section_name: 'header',
-                  link_text: 'Search',
-                  destination_url: '/search',
-                })
-              }
-              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-secondary hover:text-foreground transition-colors"
-            >
-              {!user && (
+          <div className="hidden shrink-0 items-center gap-2 xl:flex 2xl:gap-3">
+            {!user ? (
+              <>
+                <div className="flex items-center gap-2 2xl:gap-3">
+                  <Link
+                    href="/login"
+                    className="inline-flex whitespace-nowrap px-3 py-2 text-sm font-semibold text-secondary transition-colors hover:text-foreground"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    href="/register"
+                    className="inline-flex whitespace-nowrap rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-gray-300 hover:bg-white 2xl:px-5"
+                  >
+                    Create Account
+                  </Link>
+                </div>
                 <Link
-                  href="/login"
-                  className="px-4 py-2 text-sm font-medium text-secondary transition-colors hover:text-foreground"
+                  href="/search"
+                  onClick={() =>
+                    trackEvent('search_content_click', {
+                      page_type: 'home',
+                      section_name: 'header',
+                      link_text: 'Search',
+                      destination_url: '/search',
+                    })
+                  }
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-transparent text-secondary transition-colors hover:border-gray-200 hover:bg-white hover:text-foreground 2xl:w-auto 2xl:gap-2 2xl:px-4"
+                  aria-label="Search"
                 >
-                  Sign In
+                  <Icon name="MagnifyingGlassIcon" size={20} />
+                  <span className="hidden text-sm font-medium 2xl:inline">Search</span>
                 </Link>
-              )}
-              {!user && (
                 <Link
-                  href="/register"
-                  className="rounded-full border border-gray-200 px-5 py-2 text-sm font-semibold text-foreground transition-colors hover:border-gray-300 hover:bg-white"
+                  href="/guides"
+                  onClick={() =>
+                    CACBLAZE_EVENT_EXAMPLES.exploreGuidesClick({
+                      cta_location: 'header',
+                      section_name: 'header',
+                      link_text: 'Start Exploring',
+                      destination_url: '/guides',
+                    })
+                  }
+                  className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary/90 2xl:px-5"
                 >
-                  Create Account
+                  <span className="2xl:hidden">Explore</span>
+                  <span className="hidden 2xl:inline">Start Exploring</span>
+                  <Icon name="ArrowRightIcon" size={16} className="text-white" />
                 </Link>
-              )}
-              <Icon name="MagnifyingGlassIcon" size={20} />
-              Search
-            </Link>
-            <Link
-              href="/guides"
-              onClick={() =>
-                CACBLAZE_EVENT_EXAMPLES.exploreGuidesClick({
-                  cta_location: 'header',
-                  section_name: 'header',
-                  link_text: 'Start Exploring',
-                  destination_url: '/guides',
-                })
-              }
-              className="px-5 py-2 bg-primary text-white rounded-full text-sm font-semibold hover:bg-primary/90 transition-colors flex items-center gap-2 whitespace-nowrap"
-            >
-              Start Exploring
-              <Icon name="ArrowRightIcon" size={16} className="text-white" />
-            </Link>
-            {user && <UserAccountMenu />}
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/search"
+                  onClick={() =>
+                    trackEvent('search_content_click', {
+                      page_type: 'home',
+                      section_name: 'header',
+                      link_text: 'Search',
+                      destination_url: '/search',
+                    })
+                  }
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-transparent text-secondary transition-colors hover:border-gray-200 hover:bg-white hover:text-foreground 2xl:w-auto 2xl:gap-2 2xl:px-4"
+                  aria-label="Search"
+                >
+                  <Icon name="MagnifyingGlassIcon" size={20} />
+                  <span className="hidden text-sm font-medium 2xl:inline">Search</span>
+                </Link>
+                <NotificationCenter />
+                <Link
+                  href="/guides"
+                  onClick={() =>
+                    CACBLAZE_EVENT_EXAMPLES.exploreGuidesClick({
+                      cta_location: 'header',
+                      section_name: 'header',
+                      link_text: 'Start Exploring',
+                      destination_url: '/guides',
+                    })
+                  }
+                  className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary/90 2xl:px-5"
+                >
+                  <span className="2xl:hidden">Explore</span>
+                  <span className="hidden 2xl:inline">Start Exploring</span>
+                  <Icon name="ArrowRightIcon" size={16} className="text-white" />
+                </Link>
+                <UserAccountMenu />
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-foreground"
+            className="xl:hidden p-2 text-foreground"
             aria-label="Toggle mobile menu"
           >
             <Icon name={mobileMenuOpen ? 'XMarkIcon' : 'Bars3Icon'} size={24} />
@@ -126,9 +168,9 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-6 border-t border-gray-200 bg-white max-h-[80vh] overflow-y-auto">
+          <div className="max-h-[80vh] overflow-y-auto border-t border-gray-200 bg-white py-6 xl:hidden">
             <nav className="flex flex-col gap-4">
-              {menuData?.mainMenu?.map((item) => (
+              {navItems.map((item) => (
                 <div key={item?.id} className="space-y-2">
                   <Link
                     href={item?.href}

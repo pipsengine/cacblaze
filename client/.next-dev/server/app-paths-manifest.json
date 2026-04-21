@@ -1,7 +1,9 @@
 {
-  "/guides/[slug]/page": "app/guides/[slug]/page.js",
+  "/api/ai-publishing/[...path]/route": "app/api/ai-publishing/[...path]/route.js",
+  "/api/dev-auth/login/route": "app/api/dev-auth/login/route.js",
   "/login/page": "app/login/page.js",
   "/register/page": "app/register/page.js",
+  "/page": "app/page.js",
   "/admin/page": "app/admin/page.js",
   "/admin/settings/social-keys/page": "app/admin/settings/social-keys/page.js"
 }
