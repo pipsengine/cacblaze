@@ -52,7 +52,16 @@ export async function POST(req: NextRequest) {
       if (data?.user?.id) {
         await supabase
           .from('user_profiles')
-          .upsert({ id: data.user.id, full_name: fullName || null }, { onConflict: 'id' });
+          .upsert(
+            {
+              id: data.user.id,
+              email: normalizedEmail,
+              full_name: fullName || null,
+              role: 'user',
+              is_active: true,
+            },
+            { onConflict: 'id' }
+          );
       }
     } catch {
       // ignore; profile can be created on first login

@@ -1,57 +1,61 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { createClient } from '@/lib/supabase/client';
+import { UserStats } from '@/types/user';
 import Icon from '@/components/ui/AppIcon';
 
 interface UserProfile {
   id: string;
   email: string;
   full_name: string;
+  bio?: string | null;
   role: 'admin' | 'author' | 'user';
   is_active: boolean;
   created_at: string;
+  updated_at?: string;
 }
 
 interface UserListProps {
   onUserSelect: (userId: string) => void;
+  onStatsChange?: (stats: UserStats) => void;
+  selectedUserId?: string | null;
 }
 
-export default function UserList({ onUserSelect }: UserListProps) {
+interface UsersResponse {
+  users: UserProfile[];
+  stats: UserStats;
+}
+
+export default function UserList({ onUserSelect, onStatsChange, selectedUserId }: UserListProps) {
   const [users, setUsers] = useState<UserProfile[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [roleFilter, setRoleFilter] = useState<'all' | 'admin' | 'author' | 'user'>('all');
   const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'inactive'>('all');
-  const supabase = createClient();
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchUsers();
-  }, [roleFilter, statusFilter]);
+    void fetchUsers();
+  }, []);
 
   const fetchUsers = async () => {
+    setLoading(true);
     try {
-      let query = supabase
-        .from('user_profiles')
-        .select('*')
-        .order('created_at', { ascending: false });
+      setError(null);
+      const response = await fetch('/api/admin/users', { cache: 'no-store' });
+      const payload = (await response.json().catch(() => null)) as UsersResponse | { error?: string } | null;
 
-      if (roleFilter !== 'all') {
-        query = query.eq('role', roleFilter);
+      if (!response.ok || !payload || !('users' in payload)) {
+        throw new Error((payload && 'error' in payload && payload.error) || 'Failed to load users');
       }
 
-      if (statusFilter === 'active') {
-        query = query.eq('is_active', true);
-      } else if (statusFilter === 'inactive') {
-        query = query.eq('is_active', false);
-      }
-
-      const { data, error } = await query;
-
-      if (error) throw error;
-      setUsers(data || []);
+      setUsers(payload.users || []);
+      onStatsChange?.(payload.stats);
     } catch (error) {
+      const message = error instanceof Error ? error.message : 'Failed to load users';
       console.error('Error fetching users:', error);
+      setError(message);
+      setUsers([]);
     } finally {
       setLoading(false);
     }
@@ -59,53 +63,56 @@ export default function UserList({ onUserSelect }: UserListProps) {
 
   const handleRoleChange = async (userId: string, newRole: 'admin' | 'author' | 'user') => {
     try {
-      const { error } = await supabase
-        .from('user_profiles')
-        .update({ role: newRole })
-        .eq('id', userId);
-
-      if (error) throw error;
-
-      // Log admin action
-      await supabase.rpc('log_admin_action', {
-        p_action_type: 'user_role_changed',
-        p_target_user_id: userId,
-        p_details: { new_role: newRole },
+      const response = await fetch(`/api/admin/users/${userId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ role: newRole }),
       });
 
-      fetchUsers();
+      const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Failed to update user role');
+      }
+
+      await fetchUsers();
     } catch (error) {
       console.error('Error updating user role:', error);
+      setError(error instanceof Error ? error.message : 'Failed to update user role');
     }
   };
 
   const handleStatusToggle = async (userId: string, currentStatus: boolean) => {
     try {
-      const { error } = await supabase
-        .from('user_profiles')
-        .update({ is_active: !currentStatus })
-        .eq('id', userId);
-
-      if (error) throw error;
-
-      // Log admin action
-      await supabase.rpc('log_admin_action', {
-        p_action_type: 'user_status_changed',
-        p_target_user_id: userId,
-        p_details: { new_status: !currentStatus },
+      const response = await fetch(`/api/admin/users/${userId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ is_active: !currentStatus }),
       });
 
-      fetchUsers();
+      const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Failed to update user status');
+      }
+
+      await fetchUsers();
     } catch (error) {
       console.error('Error updating user status:', error);
+      setError(error instanceof Error ? error.message : 'Failed to update user status');
     }
   };
 
-  const filteredUsers = users.filter(
-    (user) =>
+  const filteredUsers = users.filter((user) => {
+    const matchesSearch =
       user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.full_name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+      user.full_name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesRole = roleFilter === 'all' || user.role === roleFilter;
+    const matchesStatus =
+      statusFilter === 'all' ||
+      (statusFilter === 'active' && user.is_active) ||
+      (statusFilter === 'inactive' && !user.is_active);
+
+    return matchesSearch && matchesRole && matchesStatus;
+  });
 
   const getRoleBadgeColor = (role: string) => {
     switch (role) {
@@ -128,6 +135,12 @@ export default function UserList({ onUserSelect }: UserListProps) {
 
   return (
     <div className="space-y-6">
+      {error && (
+        <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+
       {/* Filters */}
       <div className="flex flex-col md:flex-row gap-4">
         <div className="flex-1">
@@ -188,7 +201,10 @@ export default function UserList({ onUserSelect }: UserListProps) {
               </tr>
             ) : (
               filteredUsers.map((user) => (
-                <tr key={user.id} className="border-b border-gray-100 hover:bg-gray-50">
+                <tr
+                  key={user.id}
+                  className={`border-b border-gray-100 hover:bg-gray-50 ${selectedUserId === user.id ? 'bg-blue-50/60' : ''}`}
+                >
                   <td className="py-4 px-4">
                     <div>
                       <p className="font-medium text-foreground">{user.full_name}</p>

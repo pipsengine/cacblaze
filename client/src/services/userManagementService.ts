@@ -80,17 +80,6 @@ const ROLE_PERMISSIONS: RolePermissions[] = [
     permissions: PERMISSIONS.map((p) => p.id), // All permissions
   },
   {
-    role: 'editor',
-    permissions: [
-      'content.create',
-      'content.edit',
-      'content.delete',
-      'content.publish',
-      'users.view',
-      'analytics.view',
-    ],
-  },
-  {
     role: 'author',
     permissions: ['content.create', 'content.edit', 'analytics.view'],
   },
@@ -387,7 +376,6 @@ class UserManagementService {
       activeUsers: users.filter((u) => u.isActive).length,
       adminCount: users.filter((u) => u.role === 'admin').length,
       authorCount: users.filter((u) => u.role === 'author').length,
-      editorCount: users.filter((u) => u.role === 'editor').length,
       regularUserCount: users.filter((u) => u.role === 'user').length,
       newUsersThisMonth: users.filter((u) => new Date(u.createdAt) >= firstDayOfMonth).length,
     };

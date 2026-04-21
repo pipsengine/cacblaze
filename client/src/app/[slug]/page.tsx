@@ -25,8 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const isFallback =
-    (content as any).category === 'Guides' && (content as any).authorName === 'CACBLAZE Editors';
+  const isFallback = content.category === 'Guides' && content.authorName === 'CACBLAZE Editors';
 
   return {
     title: content.seoTitle ?? content.title,

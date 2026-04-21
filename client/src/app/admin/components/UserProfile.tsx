@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { createClient } from '@/lib/supabase/client';
 import Icon from '@/components/ui/AppIcon';
 
 interface UserProfile {
@@ -23,6 +22,7 @@ export default function UserProfile({ userId }: UserProfileProps) {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState<{
     full_name: string;
     bio: string;
@@ -34,11 +34,9 @@ export default function UserProfile({ userId }: UserProfileProps) {
     role: 'user',
     is_active: true,
   });
-  const supabase = createClient();
-
   useEffect(() => {
     if (userId) {
-      fetchUserProfile();
+      void fetchUserProfile();
     }
   }, [userId]);
 
@@ -47,23 +45,27 @@ export default function UserProfile({ userId }: UserProfileProps) {
 
     setLoading(true);
     try {
-      const { data, error } = await supabase
-        .from('user_profiles')
-        .select('*')
-        .eq('id', userId)
-        .single();
+      setError(null);
+      const response = await fetch(`/api/admin/users/${userId}`, { cache: 'no-store' });
+      const payload = (await response.json().catch(() => null)) as
+        | { user?: UserProfile; error?: string }
+        | null;
 
-      if (error) throw error;
+      if (!response.ok || !payload?.user) {
+        throw new Error(payload?.error || 'Failed to load user profile');
+      }
 
-      setUser(data);
+      setUser(payload.user);
       setFormData({
-        full_name: data.full_name,
-        bio: data.bio || '',
-        role: data.role,
-        is_active: data.is_active,
+        full_name: payload.user.full_name,
+        bio: payload.user.bio || '',
+        role: payload.user.role,
+        is_active: payload.user.is_active,
       });
     } catch (error) {
       console.error('Error fetching user profile:', error);
+      setError(error instanceof Error ? error.message : 'Failed to load user profile');
+      setUser(null);
     } finally {
       setLoading(false);
     }
@@ -73,29 +75,21 @@ export default function UserProfile({ userId }: UserProfileProps) {
     if (!userId) return;
 
     try {
-      const { error } = await supabase
-        .from('user_profiles')
-        .update({
-          full_name: formData.full_name,
-          bio: formData.bio,
-          role: formData.role,
-          is_active: formData.is_active,
-        })
-        .eq('id', userId);
-
-      if (error) throw error;
-
-      // Log admin action
-      await supabase.rpc('log_admin_action', {
-        p_action_type: 'user_updated',
-        p_target_user_id: userId,
-        p_details: { fields_updated: Object.keys(formData) },
+      setError(null);
+      const response = await fetch(`/api/admin/users/${userId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
 
+      const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+      if (!response.ok) throw new Error(payload?.error || 'Failed to update user profile');
+
       setEditing(false);
-      fetchUserProfile();
+      await fetchUserProfile();
     } catch (error) {
       console.error('Error updating user profile:', error);
+      setError(error instanceof Error ? error.message : 'Failed to update user profile');
     }
   };
 
@@ -126,6 +120,12 @@ export default function UserProfile({ userId }: UserProfileProps) {
 
   return (
     <div className="space-y-6">
+      {error && (
+        <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-bold text-foreground">User Profile</h3>

@@ -1956,6 +1956,10 @@ video {
 .border-white\/50 {
   border-color: rgb(255 255 255 / 0.5);
 }
+.border-red-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(254 202 202 / var(--tw-border-opacity));
+}
 .border-t-emerald-500 {
   --tw-border-opacity: 1;
   border-top-color: rgb(16 185 129 / var(--tw-border-opacity));
@@ -2410,6 +2414,9 @@ video {
 }
 .bg-white\/95 {
   background-color: rgb(255 255 255 / 0.95);
+}
+.bg-blue-50\/60 {
+  background-color: rgb(239 246 255 / 0.6);
 }
 .bg-\[radial-gradient\(\#0ea5e9_1px\2c transparent_1px\)\] {
   background-image: radial-gradient(#0ea5e9 1px,transparent 1px);
@@ -5067,6 +5074,14 @@ video {
 
   .xl\:grid-cols-6 {
     grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-\[1\.4fr_1fr\] {
+    grid-template-columns: 1.4fr 1fr;
   }
 }
 

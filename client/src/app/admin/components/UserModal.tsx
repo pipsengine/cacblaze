@@ -109,12 +109,10 @@ export default function UserModal({ user, onClose, onSave }: UserModalProps) {
             >
               <option value="user">User - Basic access</option>
               <option value="author">Author - Can create and edit content</option>
-              <option value="editor">Editor - Can publish and manage content</option>
               <option value="admin">Admin - Full system access</option>
             </select>
             <p className="mt-2 text-xs text-secondary">
               {formData.role === 'admin' && 'Full access to all features including user management'}
-              {formData.role === 'editor' && 'Can create, edit, delete, and publish content'}
               {formData.role === 'author' && 'Can create and edit own content'}
               {formData.role === 'user' && 'Basic read access to content'}
             </p>

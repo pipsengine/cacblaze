@@ -5,6 +5,12 @@ import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import Icon from '@/components/ui/AppIcon';
+import UserList from '@/app/admin/components/UserList';
+import UserProfile from '@/app/admin/components/UserProfile';
+import ActivityLog from '@/app/admin/components/ActivityLog';
+import StatsCards from '@/app/admin/components/StatsCards';
+import PermissionsView from '@/app/admin/components/PermissionsView';
+import { UserStats } from '@/types/user';
 
 interface OverviewResponse {
   totals: {
@@ -62,6 +68,9 @@ export default function AdminDashboard() {
   const [scheduler, setScheduler] = useState<SchedulerStatus | null>(null);
   const [stats, setStats] = useState<StatsResponse | null>(null);
   const [pageLoading, setPageLoading] = useState(true);
+  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+  const [userStats, setUserStats] = useState<UserStats | null>(null);
+  const [showPermissions, setShowPermissions] = useState(false);
 
   useEffect(() => {
     const loadDashboard = async () => {
@@ -247,11 +256,51 @@ export default function AdminDashboard() {
                   </div>
                 </div>
               </div>
+
+              <section className="mt-10 space-y-6">
+                <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                  <div>
+                    <h2 className="text-2xl font-bold text-foreground">User Administration</h2>
+                    <p className="text-secondary">
+                      Manage roles, activation state, and audit visibility through server-protected admin APIs.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setShowPermissions(true)}
+                    className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-foreground hover:bg-gray-50"
+                  >
+                    <Icon name="ShieldCheckIcon" size={18} />
+                    View Roles & Permissions
+                  </button>
+                </div>
+
+                {userStats && <StatsCards stats={userStats} />}
+
+                <div className="grid grid-cols-1 gap-6 xl:grid-cols-[1.4fr_1fr]">
+                  <div className="rounded-2xl border border-gray-200 bg-white p-6">
+                    <h3 className="mb-4 text-xl font-bold text-foreground">Users</h3>
+                    <UserList
+                      onUserSelect={setSelectedUserId}
+                      onStatsChange={setUserStats}
+                      selectedUserId={selectedUserId}
+                    />
+                  </div>
+
+                  <div className="rounded-2xl border border-gray-200 bg-white p-6">
+                    <UserProfile userId={selectedUserId} />
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-gray-200 bg-white p-6">
+                  <ActivityLog />
+                </div>
+              </section>
             </>
           )}
         </div>
       </main>
       <Footer />
+      {showPermissions && <PermissionsView onClose={() => setShowPermissions(false)} />}
     </>
   );
 }

@@ -7,7 +7,12 @@ interface PermissionsViewProps {
 }
 
 export default function PermissionsView({ onClose }: PermissionsViewProps) {
-  const rolePermissions = [
+  const rolePermissions: Array<{
+    role: string;
+    color: string;
+    icon: string;
+    permissions: string[];
+  }> = [
     {
       role: 'Admin',
       color: 'bg-red-100 text-red-700',
@@ -20,19 +25,6 @@ export default function PermissionsView({ onClose }: PermissionsViewProps) {
         'View analytics and reports',
         'System settings',
         'Activity log access',
-      ],
-    },
-    {
-      role: 'Editor',
-      color: 'bg-purple-100 text-purple-700',
-      icon: 'PencilSquareIcon',
-      permissions: [
-        'Create and edit content',
-        'Delete content',
-        'Publish content',
-        'View user list',
-        'View analytics',
-        'Cannot manage users or system settings',
       ],
     },
     {
@@ -82,7 +74,7 @@ export default function PermissionsView({ onClose }: PermissionsViewProps) {
                 <div
                   className={`w-10 h-10 rounded-lg ${item.color} flex items-center justify-center`}
                 >
-                  <Icon name={item.icon as any} size={20} />
+                  <Icon name={item.icon} size={20} />
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-foreground">{item.role}</h3>

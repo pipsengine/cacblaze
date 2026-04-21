@@ -71,6 +71,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const supabase = useMemo(() => createClient(), []);
 
+  const loadDevSessionFromServer = useCallback(async () => {
+    if (!DEV_ADMIN_AUTH_ENABLED) return null;
+
+    try {
+      const response = await fetch('/api/dev-auth/session', { cache: 'no-store' });
+      const payload = (await response.json().catch(() => null)) as
+        | { user?: User; token?: string | null }
+        | null;
+
+      if (!response.ok || !payload?.user || !payload?.token) {
+        return null;
+      }
+
+      storeDevSession({ user: payload.user, token: payload.token });
+      return { user: payload.user, token: payload.token };
+    } catch {
+      return null;
+    }
+  }, []);
+
   const loadCurrentUser = useCallback(async () => {
     const storedDevSession = getStoredDevSession();
     if (storedDevSession) {
@@ -81,10 +101,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    if (DEV_ADMIN_AUTH_ENABLED) {
-      setUser(null);
-      setToken(null);
-      setIsDevAuthSession(false);
+    const serverDevSession = await loadDevSessionFromServer();
+    if (serverDevSession) {
+      setUser(serverDevSession.user);
+      setToken(serverDevSession.token);
+      setIsDevAuthSession(true);
       setLoading(false);
       return;
     }
@@ -93,6 +114,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const { data: u } = await supabase.auth.getUser();
       if (!u.user) {
         setUser(null);
+        setToken(null);
         return;
       }
 
@@ -122,11 +144,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch (error) {
       console.error('Failed to load current user', error);
       setUser(null);
+      setToken(null);
       setIsDevAuthSession(false);
     } finally {
       setLoading(false);
     }
-  }, [supabase]);
+  }, [loadDevSessionFromServer, supabase]);
 
   useEffect(() => {
     const init = async () => {
@@ -139,10 +162,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return;
       }
 
-      if (DEV_ADMIN_AUTH_ENABLED) {
-        setUser(null);
-        setToken(null);
-        setIsDevAuthSession(false);
+      const serverDevSession = await loadDevSessionFromServer();
+      if (serverDevSession) {
+        setUser(serverDevSession.user);
+        setToken(serverDevSession.token);
+        setIsDevAuthSession(true);
         setLoading(false);
         return;
       }
@@ -163,13 +187,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     void init();
 
-    if (DEV_ADMIN_AUTH_ENABLED) {
-      return;
-    }
-
     const { data: sub } = supabase.auth.onAuthStateChange(async (_e, session) => {
       setToken(session?.access_token || null);
       if (session) {
+        storeDevSession(null);
         setIsDevAuthSession(false);
         await loadCurrentUser();
       } else {
@@ -185,30 +206,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [loadCurrentUser, supabase]);
 
   const signIn = async (email: string, password: string) => {
-    if (DEV_ADMIN_AUTH_ENABLED) {
-      const response = await fetch('/api/dev-auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const payload = (await response.json().catch(() => null)) as
-        | { user?: User; token?: string; error?: string }
-        | null;
-
-      if (!response.ok || !payload?.user || !payload?.token) {
-        throw new Error(payload?.error || 'Login failed');
-      }
-
-      setUser(payload.user);
-      setToken(payload.token);
-      setLoading(false);
-      setIsDevAuthSession(true);
-      storeDevSession({ user: payload.user, token: payload.token });
-      router.refresh();
-      return;
-    }
-
     try {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw new Error(error.message || 'Login failed');
@@ -218,7 +215,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return;
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Login failed';
-      const shouldTryDevFallback = /failed to fetch|name_not_resolved|dns/i.test(message);
+      const shouldTryDevFallback =
+        DEV_ADMIN_AUTH_ENABLED && /failed to fetch|name_not_resolved|dns/i.test(message);
 
       if (!shouldTryDevFallback) {
         throw error instanceof Error ? error : new Error(message);
@@ -265,10 +263,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signOut = async () => {
     storeDevSession(null);
-    try {
-      await supabase.auth.signOut();
-    } catch {
-      // Ignore Supabase sign-out failures when using development fallback auth.
+    if (isDevAuthSession) {
+      try {
+        await fetch('/api/dev-auth/logout', { method: 'POST' });
+      } catch {
+        // Ignore cookie cleanup failures during local development.
+      }
+    } else {
+      try {
+        await supabase.auth.signOut();
+      } catch {
+        // Ignore Supabase sign-out failures when using development fallback auth.
+      }
     }
     setToken(null);
     setUser(null);

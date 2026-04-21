@@ -34,14 +34,6 @@ export default function StatsCards({ stats }: StatsCardsProps) {
       textColor: 'text-red-600',
     },
     {
-      label: 'Editors',
-      value: stats.editorCount,
-      icon: 'PencilSquareIcon',
-      color: 'bg-purple-500',
-      bgColor: 'bg-purple-50',
-      textColor: 'text-purple-600',
-    },
-    {
       label: 'Authors',
       value: stats.authorCount,
       icon: 'DocumentTextIcon',
@@ -60,7 +52,7 @@ export default function StatsCards({ stats }: StatsCardsProps) {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mb-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-8">
       {cards.map((card, index) => (
         <div
           key={index}

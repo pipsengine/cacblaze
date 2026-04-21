@@ -1,4 +1,4 @@
-export type UserRole = 'admin' | 'author' | 'editor' | 'user';
+export type UserRole = 'admin' | 'author' | 'user';
 
 export interface Permission {
   id: string;
@@ -45,7 +45,6 @@ export interface UserStats {
   activeUsers: number;
   adminCount: number;
   authorCount: number;
-  editorCount: number;
   regularUserCount: number;
   newUsersThisMonth: number;
 }

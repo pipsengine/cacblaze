@@ -13,6 +13,12 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  type ValueCard = {
+    title: string;
+    description: string;
+    icon: string;
+  };
+
   const breadcrumbItems = [
     { name: 'Home', href: '/homepage' },
     { name: 'About', href: '/about' },
@@ -25,7 +31,7 @@ export default function AboutPage() {
     { label: 'Team Members', value: '45' },
   ];
 
-  const values = [
+  const values: ValueCard[] = [
     {
       title: 'Human-Centered',
       description:
@@ -149,7 +155,7 @@ export default function AboutPage() {
                     className="bg-white p-6 rounded-2xl shadow-sm flex items-start gap-4"
                   >
                     <div className="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
-                      <Icon name={value.icon as any} size={24} />
+                      <Icon name={value.icon} size={24} />
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-gray-900 mb-2">{value.title}</h3>

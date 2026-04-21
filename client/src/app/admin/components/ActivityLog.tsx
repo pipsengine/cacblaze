@@ -1,42 +1,46 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { createClient } from '@/lib/supabase/client';
+import { useCallback, useEffect, useState } from 'react';
 import { ActivityLog as ActivityLogType } from '@/types/user';
 import Icon from '@/components/ui/AppIcon';
+
+type AuditLogProfile = {
+  full_name?: string | null;
+  email?: string | null;
+};
+
+type AuditLogRow = {
+  id: string;
+  admin_user_id?: string | null;
+  action_type: string;
+  details?: unknown;
+  created_at: string;
+  admin_profiles?: AuditLogProfile | null;
+  target_profiles?: AuditLogProfile | null;
+};
 
 export default function ActivityLog() {
   const [logs, setLogs] = useState<ActivityLogType[]>([]);
   const [limit, setLimit] = useState(50);
   const [loading, setLoading] = useState(true);
-  const supabase = createClient();
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchLogs();
-  }, [limit]);
-
-  const fetchLogs = async () => {
+  const fetchLogs = useCallback(async () => {
     setLoading(true);
     try {
-      const { data, error } = await supabase
-        .from('audit_logs')
-        .select(
-          `
-          id,
-          action_type,
-          details,
-          created_at,
-          admin_profiles:admin_user_id(full_name,email),
-          target_profiles:target_user_id(full_name,email)
-        `
-        )
-        .order('created_at', { ascending: false })
-        .limit(limit);
+      setError(null);
+      const response = await fetch(`/api/admin/audit-logs?limit=${limit}`, { cache: 'no-store' });
+      const payload = (await response.json().catch(() => null)) as {
+        logs?: AuditLogRow[];
+        error?: string;
+      } | null;
 
-      if (error) throw error;
+      if (!response.ok || !payload?.logs) {
+        throw new Error(payload?.error || 'Failed to load audit logs');
+      }
 
       const mapped: ActivityLogType[] =
-        (data || []).map((row: any) => ({
+        payload.logs.map((row) => ({
           id: row.id,
           userId: row.admin_user_id || '',
           userName: row.admin_profiles?.full_name || row.admin_profiles?.email || 'Admin',
@@ -58,11 +62,16 @@ export default function ActivityLog() {
       setLogs(mapped);
     } catch (e) {
       console.error('Failed to load audit logs:', e);
+      setError(e instanceof Error ? e.message : 'Failed to load audit logs');
       setLogs([]);
     } finally {
       setLoading(false);
     }
-  };
+  }, [limit]);
+
+  useEffect(() => {
+    void fetchLogs();
+  }, [fetchLogs]);
 
   const getActionIcon = (action: string) => {
     if (action.includes('Created')) return 'PlusCircleIcon';
@@ -113,16 +122,25 @@ export default function ActivityLog() {
       return;
     }
     try {
-      const { error } = await supabase.from('audit_logs').delete().neq('id', '');
-      if (error) throw error;
-      fetchLogs();
+      setError(null);
+      const response = await fetch('/api/admin/audit-logs', { method: 'DELETE' });
+      const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+      if (!response.ok) throw new Error(payload?.error || 'Failed to clear audit logs');
+      await fetchLogs();
     } catch (e) {
       console.error('Failed to clear audit logs:', e);
+      setError(e instanceof Error ? e.message : 'Failed to clear audit logs');
     }
   };
 
   return (
     <div>
+      {error && (
+        <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -168,7 +186,7 @@ export default function ActivityLog() {
             >
               {/* Icon */}
               <div className={`mt-1 ${getActionColor(log.action)}`}>
-                <Icon name={getActionIcon(log.action) as any} size={20} />
+                <Icon name={getActionIcon(log.action)} size={20} />
               </div>
 
               {/* Content */}

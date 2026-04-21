@@ -1,13 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import Icon from '@/components/ui/AppIcon';
+
+type AuditDetails = Record<string, unknown> | null;
 
 interface AuditLog {
   id: string;
   action_type: string;
-  details: any;
+  details: AuditDetails;
   created_at: string;
   admin_profiles: {
     full_name: string;
@@ -25,11 +27,7 @@ export default function AuditLog() {
   const [filter, setFilter] = useState<'all' | 'user_actions' | 'content_actions'>('all');
   const supabase = createClient();
 
-  useEffect(() => {
-    fetchAuditLogs();
-  }, [filter]);
-
-  const fetchAuditLogs = async () => {
+  const fetchAuditLogs = useCallback(async () => {
     try {
       let query = supabase
         .from('admin_audit_logs')
@@ -70,7 +68,11 @@ export default function AuditLog() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filter, supabase]);
+
+  useEffect(() => {
+    void fetchAuditLogs();
+  }, [fetchAuditLogs]);
 
   const getActionIcon = (actionType: string) => {
     if (actionType.includes('user')) return 'UserIcon';
@@ -149,7 +151,7 @@ export default function AuditLog() {
             <div key={log.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
               <div className="flex items-start gap-4">
                 <Icon
-                  name={getActionIcon(log.action_type) as any}
+                  name={getActionIcon(log.action_type)}
                   size={24}
                   className={getActionColor(log.action_type)}
                 />

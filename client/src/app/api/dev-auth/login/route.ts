@@ -1,5 +1,9 @@
-import { createHash } from 'crypto';
 import { NextResponse } from 'next/server';
+import {
+  buildDevAdminIdentity,
+  buildExpectedDevAdminToken,
+  DEV_ADMIN_COOKIE_NAME,
+} from '@/lib/auth/adminAccess';
 
 function isDevAdminEnabled() {
   return process.env.NODE_ENV !== 'production' && process.env.DEV_ADMIN_ENABLED === 'true';
@@ -13,8 +17,10 @@ export async function POST(request: Request) {
   const configuredEmail = process.env.DEV_ADMIN_EMAIL;
   const configuredPassword = process.env.DEV_ADMIN_PASSWORD;
   const configuredName = process.env.DEV_ADMIN_NAME || 'Local Admin';
+  const expectedToken = buildExpectedDevAdminToken();
+  const identity = buildDevAdminIdentity();
 
-  if (!configuredEmail || !configuredPassword) {
+  if (!configuredEmail || !configuredPassword || !expectedToken || !identity) {
     return NextResponse.json(
       { error: 'Development admin credentials are not configured.' },
       { status: 500 }
@@ -33,17 +39,21 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid email or password.' }, { status: 401 });
   }
 
-  const user = {
-    id: 'dev-admin',
-    email: configuredEmail,
-    username: configuredEmail.split('@')[0] || 'admin',
-    role: 'admin' as const,
-    full_name: configuredName,
-  };
+  const response = NextResponse.json({
+    user: {
+      ...identity,
+      username: configuredEmail.split('@')[0] || 'admin',
+    },
+    token: expectedToken,
+  });
 
-  const token = createHash('sha256')
-    .update(`${configuredEmail}:${configuredPassword}:${process.env.NODE_ENV}`)
-    .digest('hex');
+  response.cookies.set(DEV_ADMIN_COOKIE_NAME, expectedToken, {
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: false,
+    path: '/',
+    maxAge: 60 * 60 * 8,
+  });
 
-  return NextResponse.json({ user, token });
+  return response;
 }
