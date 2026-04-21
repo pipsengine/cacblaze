@@ -35,23 +35,25 @@ export default function UserAccountMenu() {
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
-        className="flex items-center gap-3 rounded-full border border-gray-200 bg-white px-3 py-2 shadow-sm transition hover:border-gray-300 hover:shadow-md"
+        className="flex h-14 items-center gap-3 rounded-full border border-gray-200 bg-white px-3.5 py-2 shadow-sm transition hover:border-gray-300 hover:shadow-md"
       >
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
           {initial}
         </div>
-        <div className="hidden text-left xl:block">
-          <p className="max-w-[10rem] truncate text-sm font-semibold text-foreground">
+        <div className="hidden min-w-0 text-left xl:block">
+          <p className="max-w-[8.5rem] truncate text-sm font-semibold leading-5 text-foreground 2xl:max-w-[10rem]">
             {displayName}
           </p>
-          <p className="text-xs uppercase tracking-[0.18em] text-secondary">
-            {formatRole(user.role)}
-          </p>
+          <div className="mt-0.5 hidden 2xl:flex">
+            <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-600">
+              {formatRole(user.role)}
+            </span>
+          </div>
         </div>
         <Icon
           name={open ? 'ChevronUpIcon' : 'ChevronDownIcon'}
           size={16}
-          className="text-secondary"
+          className="shrink-0 text-secondary"
         />
       </button>
 

@@ -1324,6 +1324,9 @@ video {
 .max-w-\[1440px\] {
   max-width: 1440px;
 }
+.max-w-\[8\.5rem\] {
+  max-width: 8.5rem;
+}
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -3015,6 +3018,14 @@ video {
 .py-10 {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
+}
+.px-2\.5 {
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+.px-3\.5 {
+  padding-left: 0.875rem;
+  padding-right: 0.875rem;
 }
 .pb-12 {
   padding-bottom: 3rem;
@@ -5431,12 +5442,20 @@ video {
     display: inline;
   }
 
+  .\32xl\:flex {
+    display: flex;
+  }
+
   .\32xl\:hidden {
     display: none;
   }
 
   .\32xl\:w-auto {
     width: auto;
+  }
+
+  .\32xl\:max-w-\[10rem\] {
+    max-width: 10rem;
   }
 
   .\32xl\:gap-2 {
