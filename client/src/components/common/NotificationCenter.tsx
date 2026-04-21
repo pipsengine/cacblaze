@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
@@ -24,27 +24,6 @@ const NotificationCenter = () => {
   const [loading, setLoading] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (user && !isDevAuthSession) {
-      fetchNotifications();
-      // Poll for new notifications every 30 seconds
-      const interval = setInterval(fetchNotifications, 30000);
-      return () => clearInterval(interval);
-    }
-  }, [user, isDevAuthSession]);
-  if (!user || isDevAuthSession) return null;
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
   const fetchNotifications = async () => {
     try {
       const response = await fetch('/api/notifications');
@@ -57,6 +36,26 @@ const NotificationCenter = () => {
       console.error('Error fetching notifications:', error);
     }
   };
+
+  useEffect(() => {
+    if (user && !isDevAuthSession) {
+      fetchNotifications();
+      // Poll for new notifications every 30 seconds
+      const interval = setInterval(fetchNotifications, 30000);
+      return () => clearInterval(interval);
+    }
+  }, [user, isDevAuthSession]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const markAsRead = async (notificationId: string) => {
     try {
@@ -133,6 +132,7 @@ const NotificationCenter = () => {
   };
 
   if (!user) return null;
+  if (isDevAuthSession) return null;
 
   return (
     <div className="relative" ref={dropdownRef}>
@@ -193,10 +193,7 @@ const NotificationCenter = () => {
                           : 'bg-gray-100 text-muted-foreground'
                       }`}
                     >
-                      <Icon
-                        name={getNotificationIcon(notification.notification_type) as any}
-                        size={20}
-                      />
+                      <Icon name={getNotificationIcon(notification.notification_type)} size={20} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h4 className="text-sm font-semibold text-foreground mb-1">
