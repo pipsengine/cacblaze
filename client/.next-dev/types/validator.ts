@@ -1388,6 +1388,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../src/app/api/dev-auth/login/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/dev-auth/login">> = Specific
+  const handler = {} as typeof import("../../src/app/api/dev-auth/login/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../src/app/api/health/supabase/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/health/supabase">> = Specific

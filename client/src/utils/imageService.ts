@@ -1071,6 +1071,76 @@ const titleImages: Record<string, { src: string; alt: string }> = {
   },
 };
 
+const categoryAliasMap: Record<string, keyof typeof curatedImages> = {
+  business: 'business',
+  careerdevelopment: 'guides',
+  careerproductivity: 'guides',
+  careerwork: 'guides',
+  default: 'guides',
+  education: 'education',
+  entrepreneurship: 'business',
+  explainers: 'guides',
+  gettingstarted: 'howto',
+  guides: 'guides',
+  howto: 'howto',
+  income: 'business',
+  lifehacks: 'lifestyle',
+  lifestyle: 'lifestyle',
+  localresources: 'local-resources',
+  personalfinance: 'business',
+  productivity: 'guides',
+  reviews: 'reviews',
+  strategy: 'business',
+  technology: 'technology',
+  technologydigitallife: 'technology',
+  wellness: 'lifestyle',
+  workplaceculture: 'guides',
+};
+
+function compactCategoryLabel(value: string): string {
+  return (value || '')
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '');
+}
+
+function resolveCuratedCategory(category: string): keyof typeof curatedImages {
+  const compact = compactCategoryLabel(category);
+
+  if (compact in categoryAliasMap) {
+    return categoryAliasMap[compact];
+  }
+
+  if (compact.includes('review')) return 'reviews';
+  if (compact.includes('tech') || compact.includes('digital')) return 'technology';
+  if (compact.includes('educ') || compact.includes('learn') || compact.includes('study')) {
+    return 'education';
+  }
+  if (compact.includes('howto') || compact.includes('tutorial') || compact.includes('step')) {
+    return 'howto';
+  }
+  if (compact.includes('local') || compact.includes('resource') || compact.includes('city')) {
+    return 'local-resources';
+  }
+  if (compact.includes('life') || compact.includes('wellness')) return 'lifestyle';
+  if (
+    compact.includes('finance') ||
+    compact.includes('money') ||
+    compact.includes('income') ||
+    compact.includes('career') ||
+    compact.includes('work') ||
+    compact.includes('job') ||
+    compact.includes('productivity')
+  ) {
+    return 'guides';
+  }
+  if (compact.includes('business') || compact.includes('entrepreneur') || compact.includes('strategy')) {
+    return 'business';
+  }
+
+  return 'guides';
+}
+
 /**
  * Find best matching curated image based on keywords
  */
@@ -1134,7 +1204,7 @@ export function getContextualImage(config: ImageConfig): { src: string; alt: str
     preferCurated = true,
   } = config;
 
-  const normalizedCategory = category.toLowerCase().replace(/-/g, '');
+  const resolvedCategory = resolveCuratedCategory(category);
 
   const titleKey = (title || '')
     .toLowerCase()
@@ -1150,7 +1220,7 @@ export function getContextualImage(config: ImageConfig): { src: string; alt: str
 
   // Try to get curated image first if preferred
   if (preferCurated) {
-    const curatedImage = findBestCuratedImage(normalizedCategory, title);
+    const curatedImage = findBestCuratedImage(resolvedCategory, title);
     if (curatedImage) {
       const isExternal =
         curatedImage.src.startsWith('http://') || curatedImage.src.startsWith('https://');
@@ -1215,7 +1285,7 @@ export function getContextualImage(config: ImageConfig): { src: string; alt: str
   const placeholderSrc = getPlaceholderDataURL({
     width,
     height,
-    category: normalizedCategory,
+    category: resolvedCategory,
     text: title || category,
     seed: title || category,
     icon: storyIconForTitle(title || category),
@@ -1288,14 +1358,14 @@ export function getAuthorAvatar(authorName: string): string {
  * Check if image exists in curated library
  */
 export function hasCuratedImage(category: string): boolean {
-  const normalizedCategory = category.toLowerCase().replace(/-/g, '');
-  return normalizedCategory in curatedImages;
+  const resolvedCategory = resolveCuratedCategory(category);
+  return resolvedCategory in curatedImages;
 }
 
 /**
  * Get all curated images for a category
  */
 export function getCuratedImagesForCategory(category: string) {
-  const normalizedCategory = category.toLowerCase().replace(/-/g, '');
-  return curatedImages[normalizedCategory as keyof typeof curatedImages] || [];
+  const resolvedCategory = resolveCuratedCategory(category);
+  return curatedImages[resolvedCategory] || [];
 }

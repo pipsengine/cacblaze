@@ -3,6 +3,8 @@ export interface RecentArticleView {
   title: string;
   category: string;
   readTime?: string;
+  imageSrc?: string;
+  imageAlt?: string;
   viewedAt: string;
 }
 
@@ -30,6 +32,10 @@ export function getRecentArticleViews(): RecentArticleView[] {
         typeof (item as RecentArticleView).slug === 'string' &&
         typeof (item as RecentArticleView).title === 'string' &&
         typeof (item as RecentArticleView).category === 'string' &&
+        (typeof (item as RecentArticleView).imageSrc === 'undefined' ||
+          typeof (item as RecentArticleView).imageSrc === 'string') &&
+        (typeof (item as RecentArticleView).imageAlt === 'undefined' ||
+          typeof (item as RecentArticleView).imageAlt === 'string') &&
         typeof (item as RecentArticleView).viewedAt === 'string'
     );
   } catch {

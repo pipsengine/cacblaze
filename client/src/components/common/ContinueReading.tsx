@@ -7,6 +7,7 @@ import Icon from '@/components/ui/AppIcon';
 import Link from 'next/link';
 import { getContextualImage } from '@/utils/imageService';
 import { getRecentArticleViews, type RecentArticleView } from '@/utils/personalizationStorage';
+import { articles as localArticles } from '@/data/articles';
 
 interface ReadingProgressItem {
   id: string;
@@ -23,6 +24,47 @@ interface DisplayItem {
   category: string;
   progressPercentage: number;
   helperText: string;
+  imageSrc?: string;
+  imageAlt?: string;
+}
+
+function getDisplayImage(item: DisplayItem) {
+  const localArticle = localArticles[item.slug];
+  const primarySrc = item.imageSrc || localArticle?.heroImage;
+  const primaryAlt = item.imageAlt || localArticle?.heroImageAlt || item.title;
+
+  if (primarySrc) {
+    return {
+      primary: { src: primarySrc, alt: primaryAlt },
+      fallback: getContextualImage({
+        category: item.category,
+        title: item.title,
+        alt: primaryAlt,
+        width: 400,
+        height: 250,
+        preferCurated: false,
+      }),
+    };
+  }
+
+  return {
+    primary: getContextualImage({
+      category: item.category,
+      title: item.title,
+      alt: 'Article thumbnail',
+      width: 400,
+      height: 250,
+      preferCurated: true,
+    }),
+    fallback: getContextualImage({
+      category: item.category,
+      title: item.title,
+      alt: 'Article thumbnail',
+      width: 400,
+      height: 250,
+      preferCurated: false,
+    }),
+  };
 }
 
 const ContinueReading = () => {
@@ -82,6 +124,8 @@ const ContinueReading = () => {
     category: item.category,
     progressPercentage: 100,
     helperText: 'Viewed recently',
+    imageSrc: item.imageSrc,
+    imageAlt: item.imageAlt,
   }));
 
   const displayItems = user ? signedInItems : guestItems;
@@ -102,22 +146,7 @@ const ContinueReading = () => {
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
           {displayItems.map((item) => {
-            const contextualImage = getContextualImage({
-              category: item.category,
-              title: item.title,
-              alt: 'Article thumbnail',
-              width: 400,
-              height: 250,
-              preferCurated: true,
-            });
-            const contextualFallbackImage = getContextualImage({
-              category: item.category,
-              title: item.title,
-              alt: 'Article thumbnail',
-              width: 400,
-              height: 250,
-              preferCurated: false,
-            });
+            const { primary, fallback } = getDisplayImage(item);
 
             return (
               <Link
@@ -127,10 +156,10 @@ const ContinueReading = () => {
               >
                 <div className="relative h-32 overflow-hidden">
                   <AppImage
-                    src={contextualImage.src}
-                    alt={contextualImage.alt}
+                    src={primary.src}
+                    alt={primary.alt}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    fallbackSrc={contextualFallbackImage.src}
+                    fallbackSrc={fallback.src}
                     secondaryFallbackSrc="/assets/images/no_image.png"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />

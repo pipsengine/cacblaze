@@ -4,6 +4,8 @@ import React, { createContext, useCallback, useContext, useEffect, useMemo, useS
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 
+const DEV_SESSION_KEY = 'cacblaze_dev_admin_session';
+
 export interface User {
   id: string;
   email: string;
@@ -23,6 +25,40 @@ interface AuthContextType {
   signOut: () => Promise<void>;
 }
 
+function isBrowser() {
+  return typeof window !== 'undefined';
+}
+
+function getStoredDevSession(): { user: User; token: string } | null {
+  if (!isBrowser()) return null;
+
+  try {
+    const raw = window.localStorage.getItem(DEV_SESSION_KEY);
+    if (!raw) return null;
+
+    const parsed = JSON.parse(raw) as { user?: User; token?: string };
+    if (!parsed?.user || !parsed?.token) return null;
+
+    return {
+      user: parsed.user,
+      token: parsed.token,
+    };
+  } catch {
+    return null;
+  }
+}
+
+function storeDevSession(session: { user: User; token: string } | null) {
+  if (!isBrowser()) return;
+
+  if (!session) {
+    window.localStorage.removeItem(DEV_SESSION_KEY);
+    return;
+  }
+
+  window.localStorage.setItem(DEV_SESSION_KEY, JSON.stringify(session));
+}
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -33,6 +69,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const supabase = useMemo(() => createClient(), []);
 
   const loadCurrentUser = useCallback(async () => {
+    const storedDevSession = getStoredDevSession();
+    if (storedDevSession) {
+      setUser(storedDevSession.user);
+      setToken(storedDevSession.token);
+      setLoading(false);
+      return;
+    }
+
     try {
       const { data: u } = await supabase.auth.getUser();
       if (!u.user) {
@@ -72,6 +116,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const init = async () => {
+      const storedDevSession = getStoredDevSession();
+      if (storedDevSession) {
+        setUser(storedDevSession.user);
+        setToken(storedDevSession.token);
+        setLoading(false);
+        return;
+      }
+
       try {
         const { data } = await supabase.auth.getSession();
         if (data.session) {
@@ -104,10 +156,41 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [loadCurrentUser, supabase]);
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) throw new Error(error.message || 'Login failed');
-    await loadCurrentUser();
-    router.refresh();
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw new Error(error.message || 'Login failed');
+      storeDevSession(null);
+      await loadCurrentUser();
+      router.refresh();
+      return;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Login failed';
+      const shouldTryDevFallback = /failed to fetch|name_not_resolved|dns/i.test(message);
+
+      if (!shouldTryDevFallback) {
+        throw error instanceof Error ? error : new Error(message);
+      }
+
+      const response = await fetch('/api/dev-auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const payload = (await response.json().catch(() => null)) as
+        | { user?: User; token?: string; error?: string }
+        | null;
+
+      if (!response.ok || !payload?.user || !payload?.token) {
+        throw new Error(payload?.error || message || 'Login failed');
+      }
+
+      setUser(payload.user);
+      setToken(payload.token);
+      setLoading(false);
+      storeDevSession({ user: payload.user, token: payload.token });
+      router.refresh();
+    }
   };
 
   const signUp = async (email: string, password: string, fullName: string) => {
@@ -127,7 +210,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signOut = async () => {
-    await supabase.auth.signOut();
+    storeDevSession(null);
+    try {
+      await supabase.auth.signOut();
+    } catch {
+      // Ignore Supabase sign-out failures when using development fallback auth.
+    }
     setToken(null);
     setUser(null);
     router.push('/');

@@ -8,6 +8,10 @@ interface ArticleAnalyticsProps {
     id: string;
     title: string;
     category: string;
+    heroImage?: string;
+    heroImageAlt?: string;
+    featured_image_url?: string;
+    image_alt?: string;
     author: {
       name: string;
     };
@@ -44,6 +48,8 @@ export default function ArticleAnalytics({ article }: ArticleAnalyticsProps) {
       title: article.title,
       category: article.category,
       readTime: article.readTime,
+      imageSrc: article.heroImage || article.featured_image_url,
+      imageAlt: article.heroImageAlt || article.image_alt,
     });
 
     // Track scroll depth
