@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 
 const DEV_SESSION_KEY = 'cacblaze_dev_admin_session';
+const DEV_ADMIN_AUTH_ENABLED = process.env.NEXT_PUBLIC_DEV_ADMIN_ENABLED === 'true';
 
 export interface User {
   id: string;
@@ -77,6 +78,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
+    if (DEV_ADMIN_AUTH_ENABLED) {
+      setUser(null);
+      setToken(null);
+      setLoading(false);
+      return;
+    }
+
     try {
       const { data: u } = await supabase.auth.getUser();
       if (!u.user) {
@@ -124,6 +132,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return;
       }
 
+      if (DEV_ADMIN_AUTH_ENABLED) {
+        setUser(null);
+        setToken(null);
+        setLoading(false);
+        return;
+      }
+
       try {
         const { data } = await supabase.auth.getSession();
         if (data.session) {
@@ -139,6 +154,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     void init();
+
+    if (DEV_ADMIN_AUTH_ENABLED) {
+      return;
+    }
 
     const { data: sub } = supabase.auth.onAuthStateChange(async (_e, session) => {
       setToken(session?.access_token || null);
@@ -156,6 +175,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [loadCurrentUser, supabase]);
 
   const signIn = async (email: string, password: string) => {
+    if (DEV_ADMIN_AUTH_ENABLED) {
+      const response = await fetch('/api/dev-auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const payload = (await response.json().catch(() => null)) as
+        | { user?: User; token?: string; error?: string }
+        | null;
+
+      if (!response.ok || !payload?.user || !payload?.token) {
+        throw new Error(payload?.error || 'Login failed');
+      }
+
+      setUser(payload.user);
+      setToken(payload.token);
+      setLoading(false);
+      storeDevSession({ user: payload.user, token: payload.token });
+      router.refresh();
+      return;
+    }
+
     try {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw new Error(error.message || 'Login failed');
