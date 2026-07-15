@@ -9,3 +9,7 @@ build
 *.log
 .vscode
 coverage
+check-images.zip
+.vercel/
+.vercel
+.env*

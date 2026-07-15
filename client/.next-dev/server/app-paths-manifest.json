@@ -1,7 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/admin/settings/social-keys/page": "app/admin/settings/social-keys/page.js",
-  "/admin/content/page": "app/admin/content/page.js",
-  "/admin/analytics/page": "app/admin/analytics/page.js"
-}
