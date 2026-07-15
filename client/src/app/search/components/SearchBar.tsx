@@ -48,7 +48,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
             setShowSuggestions(true);
           }}
           onFocus={() => setShowSuggestions(true)}
-          placeholder="Search 10,000+ articles across all domains..."
+          placeholder="Search articles across all topics..."
           className="w-full pl-20 pr-32 py-6 rounded-3xl border-2 border-gray-200 bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-all text-xl"
         />
         <button

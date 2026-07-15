@@ -21,7 +21,7 @@ import { localVendorReviews } from '@/data/local-vendors';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:4028');
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://cacblaze.com');
   const currentDate = new Date();
 
   // Static pages with high priority

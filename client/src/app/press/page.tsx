@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import Breadcrumb from '@/components/common/Breadcrumb';
-import Icon from '@/components/ui/AppIcon';
 
 export const metadata: Metadata = {
   title: 'Press & Media - CACBLAZE',
@@ -18,38 +17,19 @@ export default function PressPage() {
 
   const pressReleases = [
     {
-      date: 'Oct 15, 2025',
-      title: 'CACBLAZE Reaches 2 Million Monthly Active Users',
-      source: 'Business Wire',
+      date: '2026',
+      title: 'CACBLAZE Expands Its Practical Knowledge Library',
+      source: 'CACBLAZE Newsroom',
       summary:
-        'Milestone achievement highlights rapid growth in the digital education sector, driven by new personalized learning features and global expansion.',
-    },
-    {
-      date: 'Aug 02, 2025',
-      title: 'Launching the New Education Hub: A New Era for Online Learning',
-      source: 'CACBLAZE Blog',
-      summary:
-        'Introducing a comprehensive suite of tools designed to empower self-directed learners and educators with AI-driven recommendations.',
-    },
-    {
-      date: 'May 10, 2025',
-      title: 'CACBLAZE Raises Series A to Expand Global Content Operations',
-      source: 'TechCrunch',
-      summary:
-        'Investment led by Future Ventures will fuel content acquisition and platform development to serve emerging markets.',
+        'The platform continues to add Nigeria-focused guides across technology, education, careers, finance, lifestyle, and local resources.',
     },
   ];
 
   const spokespeople = [
     {
-      name: 'Dr. Adewale Okafor',
-      role: 'Chief Executive Officer',
-      bio: 'Expert in EdTech scaling, digital literacy, and the future of work. Available for commentary on global education trends.',
-    },
-    {
-      name: 'Sarah Jenkins',
-      role: 'Chief Content Officer',
-      bio: 'Veteran journalist available to discuss content strategy, media integrity, and the evolving landscape of digital publishing.',
+      name: 'CACBLAZE Communications',
+      role: 'Media contact',
+      bio: 'Available for verified information about CACBLAZE, its publishing approach, and its public resources.',
     },
   ];
 
@@ -89,9 +69,7 @@ export default function PressPage() {
                           {item.title}
                         </h3>
                         <p className="text-gray-600 mb-4 leading-relaxed">{item.summary}</p>
-                        <div className="text-indigo-600 font-medium flex items-center gap-1 text-sm group-hover:translate-x-1 transition-transform">
-                          Read Full Story <Icon name="ArrowRightIcon" size={16} />
-                        </div>
+                        <div className="text-indigo-600 font-medium text-sm">Platform update</div>
                       </div>
                     ))}
                   </div>
@@ -104,16 +82,14 @@ export default function PressPage() {
                   </h2>
                   <div className="prose prose-lg text-gray-600">
                     <p>
-                      CACBLAZE is a leading global digital knowledge platform dedicated to
-                      empowering individuals through accessible, high-quality education and
-                      information. Founded in 2023, the company has rapidly grown to serve over 2
-                      million monthly active users across 150 countries.
+                      CACBLAZE is a digital knowledge platform publishing accessible guides,
+                      explainers, reviews, and practical resources, with a primary focus on the
+                      needs and context of readers in Nigeria.
                     </p>
                     <p className="mt-4">
-                      Our mission is to democratize access to expert knowledge, bridging the gap
-                      between traditional education and the needs of the modern workforce. Through
-                      our proprietary AI-driven recommendation engine, we connect learners with the
-                      resources they need to succeed in their careers and personal lives.
+                      Our mission is to make useful knowledge easier to understand and act on. We
+                      use publishing automation alongside quality checks, sourcing requirements,
+                      and reader feedback to improve the library over time.
                     </p>
                   </div>
                 </div>
@@ -147,29 +123,16 @@ export default function PressPage() {
                     communications team.
                   </p>
                   <a
-                    href="mailto:press@cacsms.com"
+                    href="mailto:press@cacblaze.com"
                     className="block w-full py-3 bg-white border border-gray-200 text-gray-900 font-semibold rounded-lg text-center hover:border-indigo-600 hover:text-indigo-600 transition-colors mb-8"
                   >
-                    press@cacsms.com
+                    press@cacblaze.com
                   </a>
 
                   <h3 className="text-xl font-bold text-gray-900 mb-4">Brand Assets</h3>
-                  <div className="space-y-3">
-                    <button className="flex items-center justify-between w-full p-3 bg-white rounded-lg border border-gray-200 hover:border-indigo-300 transition-colors">
-                      <span className="text-sm font-medium text-gray-700">
-                        Logo Pack (SVG, PNG)
-                      </span>
-                      <Icon name="ArrowDownTrayIcon" size={16} className="text-gray-400" />
-                    </button>
-                    <button className="flex items-center justify-between w-full p-3 bg-white rounded-lg border border-gray-200 hover:border-indigo-300 transition-colors">
-                      <span className="text-sm font-medium text-gray-700">Brand Guidelines</span>
-                      <Icon name="ArrowDownTrayIcon" size={16} className="text-gray-400" />
-                    </button>
-                    <button className="flex items-center justify-between w-full p-3 bg-white rounded-lg border border-gray-200 hover:border-indigo-300 transition-colors">
-                      <span className="text-sm font-medium text-gray-700">Executive Headshots</span>
-                      <Icon name="ArrowDownTrayIcon" size={16} className="text-gray-400" />
-                    </button>
-                  </div>
+                  <p className="text-sm text-gray-600">
+                    Request current logos and approved brand information from the media contact.
+                  </p>
                 </div>
               </div>
             </div>

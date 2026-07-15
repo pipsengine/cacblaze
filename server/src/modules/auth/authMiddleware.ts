@@ -1,6 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { ensureLocalUserFromIdentity, verifySupabaseAccessToken } from '../../services/supabase';
+import {
+  ensureLocalUserFromIdentity,
+  getUserProfileByEmail,
+  verifySupabaseAccessToken,
+} from '../../services/supabase';
+import { User } from '../../models';
 
 type AuthenticatedRequest = Request & {
   user?: {
@@ -62,7 +67,22 @@ export const authenticateToken = async (
     return res.status(500).json({ message: 'Server misconfigured' });
   }
   if (localResult?.user) {
-    req.user = localResult.user;
+    const localUser = await User.findByPk(localResult.user.id);
+    if (!localUser) {
+      return res.status(403).json({ message: 'Invalid token' });
+    }
+
+    const profile = localUser.email ? await getUserProfileByEmail(localUser.email) : null;
+    if (profile?.is_active === false) {
+      return res.status(403).json({ message: 'Account is inactive. Contact administrator.' });
+    }
+
+    req.user = {
+      id: Number(localUser.id),
+      email: localUser.email || null,
+      role: (profile?.role || localUser.role || 'user') as 'admin' | 'author' | 'user',
+      authProvider: 'local',
+    };
     return next();
   }
 
@@ -91,3 +111,16 @@ export const authenticateToken = async (
     return res.status(500).json({ message: 'Authentication failed' });
   }
 };
+
+export const authorizeRoles = (...allowedRoles: Array<'admin' | 'author' | 'user'>) =>
+  (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+    if (!req.user) {
+      return res.status(401).json({ message: 'Authentication required' });
+    }
+
+    if (!allowedRoles.includes(req.user.role)) {
+      return res.status(403).json({ message: 'Insufficient permissions' });
+    }
+
+    return next();
+  };

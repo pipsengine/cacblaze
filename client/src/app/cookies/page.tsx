@@ -122,6 +122,31 @@ export default function CookiePolicyPage() {
 
             <section>
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                Google AdSense Cookies and Personalization
+              </h2>
+              <p>
+                Google and other third-party vendors may place and read cookies, use web beacons,
+                or collect IP addresses when ads are served on CACBLAZE. These technologies support
+                ad delivery, frequency controls, fraud prevention, measurement, and—where permitted
+                by your choices—personalized advertising.
+              </p>
+              <p className="mt-4">
+                You may manage personalized advertising in{' '}
+                <a
+                  href="https://adssettings.google.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  Google Ads Settings
+                </a>
+                . Visitors in regions where consent is required will be presented with the
+                applicable consent choices through our certified consent management mechanism.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
                 5. How You Can Control Cookies
               </h2>
               <p>
@@ -163,7 +188,7 @@ export default function CookiePolicyPage() {
                 email us at:
               </p>
               <p className="mt-2">
-                <strong>Email:</strong> privacy@cacsms.com
+                <strong>Email:</strong> privacy@cacblaze.com
               </p>
             </section>
           </div>

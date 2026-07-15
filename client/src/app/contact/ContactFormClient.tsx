@@ -16,6 +16,8 @@ export default function ContactFormClient({ reason = 'general' }: ContactFormCli
     message: '',
   });
   const hasTrackedStartRef = useRef(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
 
   const subjectOptions = useMemo(
     () =>
@@ -65,7 +67,7 @@ export default function ContactFormClient({ reason = 'general' }: ContactFormCli
     }
   };
 
-  const handleSubmitClick = () => {
+  const handleSubmitClick = async () => {
     const baseParams = {
       section_name: 'contact_form',
       cta_location: 'contact_page',
@@ -101,6 +103,31 @@ export default function ContactFormClient({ reason = 'general' }: ContactFormCli
         cta_location: 'contact_page',
         content_type: 'contact_request',
       });
+    }
+
+    if (!isValid || submitting) {
+      setStatusMessage('Please complete your name, email, and message.');
+      return;
+    }
+
+    setSubmitting(true);
+    setStatusMessage('');
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const result = (await response.json().catch(() => null)) as { error?: string } | null;
+      if (!response.ok) throw new Error(result?.error || 'Unable to send your message.');
+      setStatusMessage('Your message has been sent. We will respond as soon as possible.');
+      setFormData((previous) => ({ ...previous, name: '', email: '', message: '' }));
+    } catch (error) {
+      setStatusMessage(
+        `${error instanceof Error ? error.message : 'Unable to send your message.'} You can also email support@cacblaze.com.`
+      );
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -180,10 +207,20 @@ export default function ContactFormClient({ reason = 'general' }: ContactFormCli
         <button
           type="button"
           onClick={handleSubmitClick}
+          disabled={submitting}
           className="w-full py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
         >
-          {isContributorFlow ? 'Submit Contributor Interest' : 'Send Message'}
+          {submitting
+            ? 'Sending…'
+            : isContributorFlow
+              ? 'Submit Contributor Interest'
+              : 'Send Message'}
         </button>
+        {statusMessage ? (
+          <p className="text-sm text-gray-700" role="status" aria-live="polite">
+            {statusMessage}
+          </p>
+        ) : null}
       </form>
     </div>
   );

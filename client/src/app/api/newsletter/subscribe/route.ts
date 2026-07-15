@@ -132,6 +132,17 @@ export async function PATCH(request: Request) {
   try {
     const body = await request.json();
     const { topics, frequency, status } = body;
+    const validTopics = Array.isArray(topics)
+      ? topics.filter((topic: unknown): topic is string => typeof topic === 'string').slice(0, 6)
+      : undefined;
+
+    if (
+      (topics !== undefined && (!validTopics || validTopics.length === 0)) ||
+      (frequency !== undefined && !allowedFrequencies.has(frequency)) ||
+      (status !== undefined && status !== 'active' && status !== 'unsubscribed')
+    ) {
+      return NextResponse.json({ error: 'Invalid subscription update' }, { status: 400 });
+    }
 
     const supabase = await createClient();
     const {
@@ -144,7 +155,7 @@ export async function PATCH(request: Request) {
 
     // Update subscription
     const updateData: NewsletterSubscriptionUpdate = {};
-    if (topics) updateData.subscribed_topics = topics;
+    if (validTopics) updateData.subscribed_topics = validTopics;
     if (frequency) updateData.frequency = frequency;
     if (status) updateData.status = status;
 

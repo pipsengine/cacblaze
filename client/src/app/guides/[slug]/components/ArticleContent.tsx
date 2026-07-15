@@ -6,6 +6,22 @@ interface ArticleContentProps {
   sections: ArticleSection[];
 }
 
+function htmlToSafeText(value: string) {
+  return value
+    .replace(/<\s*br\s*\/?>/gi, '\n')
+    .replace(/<\s*\/p\s*>/gi, '\n\n')
+    .replace(/<\s*li(?:\s[^>]*)?>/gi, '• ')
+    .replace(/<\s*\/li\s*>/gi, '\n')
+    .replace(/<[^>]*>/g, '')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+    .trim();
+}
+
 const ArticleContent = ({ sections }: ArticleContentProps) => {
   return (
     <div className="space-y-8">
@@ -29,10 +45,9 @@ const ArticleContent = ({ sections }: ArticleContentProps) => {
             <h4 className="text-xl font-bold text-gray-900 mb-3 text-left">{section.title}</h4>
           )}
 
-          <div
-            className="prose prose-lg md:prose-xl prose-neutral max-w-none text-gray-700 leading-8 prose-headings:scroll-mt-28 prose-p:my-5 prose-li:my-2 prose-ul:list-disc prose-ol:list-decimal prose-a:text-blue-600 hover:prose-a:underline prose-img:rounded-xl"
-            dangerouslySetInnerHTML={{ __html: section.content }}
-          />
+          <div className="whitespace-pre-wrap text-lg leading-8 text-gray-700 md:text-xl">
+            {htmlToSafeText(section.content)}
+          </div>
         </div>
       ))}
     </div>

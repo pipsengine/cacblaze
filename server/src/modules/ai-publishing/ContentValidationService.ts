@@ -1,5 +1,6 @@
 import { Article } from '../articles/Article';
 import { Tip } from '../tips/Tip';
+import { Op } from 'sequelize';
 
 interface ValidationResult {
   isValid: boolean;
@@ -50,6 +51,29 @@ export class ContentValidationService {
     const structureAnalysis = this.validateStructure(article.content);
     if (structureAnalysis.errors.length > 0) {
       errors.push(...structureAnalysis.errors);
+    }
+
+    if (process.env.OPENAI_API_KEY) {
+      if (!/https?:\/\/[^\s)]+/i.test(article.content)) {
+        errors.push('Research-backed articles must include authoritative source links');
+      }
+
+      const recentArticles = await Article.findAll({
+        where: { id: { [Op.ne]: article.id }, status: 'published' },
+        attributes: ['content'],
+        order: [['published_at', 'DESC']],
+        limit: 100,
+      });
+      const highestSimilarity = recentArticles.reduce(
+        (highest, existing) =>
+          Math.max(highest, this.calculateShingleSimilarity(article.content, existing.content)),
+        0
+      );
+      if (highestSimilarity > 0.55) {
+        errors.push(
+          `Article is too similar to existing published content (${Math.round(highestSimilarity * 100)}%)`
+        );
+      }
     }
     
     const isValid = errors.length === 0;
@@ -235,6 +259,28 @@ export class ContentValidationService {
     
     // Ensure score is within bounds
     return Math.max(0, Math.min(100, Math.round(score)));
+  }
+
+  private calculateShingleSimilarity(left: string, right: string): number {
+    const shingles = (value: string) => {
+      const words = value
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, ' ')
+        .split(/\s+/)
+        .filter(Boolean);
+      const result = new Set<string>();
+      for (let index = 0; index <= words.length - 5; index += 1) {
+        result.add(words.slice(index, index + 5).join(' '));
+      }
+      return result;
+    };
+
+    const leftSet = shingles(left);
+    const rightSet = shingles(right);
+    if (leftSet.size === 0 || rightSet.size === 0) return 0;
+    let intersection = 0;
+    for (const item of leftSet) if (rightSet.has(item)) intersection += 1;
+    return intersection / (leftSet.size + rightSet.size - intersection);
   }
 
   // Bulk validation methods

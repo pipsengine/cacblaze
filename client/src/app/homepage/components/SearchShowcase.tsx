@@ -52,8 +52,7 @@ const SearchShowcase = () => {
               Find What You Need in <span className="gradient-text">Milliseconds</span>
             </h2>
             <p className="text-xl text-secondary mb-8 leading-relaxed">
-              Our AI-powered search engine understands context and delivers precise results from
-              10,000+ articles instantly.
+              Search across CACBLAZE guides, tutorials, reviews, and resources from one place.
             </p>
 
             {/* Search Bar Demo */}
@@ -153,7 +152,7 @@ const SearchShowcase = () => {
               </div>
               <h3 className="text-xl font-bold text-foreground mb-2">Lightning Fast</h3>
               <p className="text-secondary">
-                Search 10,000+ articles in under 50ms with our optimized search engine.
+                Find relevant pages quickly with our streamlined search experience.
               </p>
             </div>
 
@@ -161,9 +160,9 @@ const SearchShowcase = () => {
               <div className="w-12 h-12 rounded-xl bg-success/10 text-success flex items-center justify-center mb-4">
                 <Icon name="CheckBadgeIcon" size={24} />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2">Verified Results</h3>
+              <h3 className="text-xl font-bold text-foreground mb-2">Useful Results</h3>
               <p className="text-secondary">
-                Every result is verified by domain experts for accuracy and relevance.
+                Results link directly to articles you can assess, source, and share.
               </p>
             </div>
 

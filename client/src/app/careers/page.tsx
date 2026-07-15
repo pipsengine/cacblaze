@@ -254,7 +254,7 @@ export default function CareersPage() {
               <p className="text-gray-600">
                 Don't see your role?{' '}
                 <a
-                  href="mailto:careers@cacsms.com"
+                  href="mailto:careers@cacblaze.com"
                   className="text-indigo-600 font-semibold hover:underline"
                 >
                   Email us

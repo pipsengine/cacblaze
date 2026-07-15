@@ -10,7 +10,7 @@ const HeroSection = () => {
     {
       id: 'hero_guides',
       title: 'Guides',
-      count: '2,400+',
+      count: 'Practical guides',
       icon: 'BookOpenIcon' as const,
       color: 'bg-blue-50 text-blue-600',
       image: 'https://images.unsplash.com/photo-1604882736764-6152df6dc4eb',
@@ -19,7 +19,7 @@ const HeroSection = () => {
     {
       id: 'hero_howto',
       title: 'How-To',
-      count: '850+',
+      count: 'Step-by-step help',
       icon: 'WrenchScrewdriverIcon' as const,
       color: 'bg-green-50 text-green-600',
       image: 'https://images.unsplash.com/photo-1570175246718-ec2090f75140',
@@ -28,7 +28,7 @@ const HeroSection = () => {
     {
       id: 'hero_reviews',
       title: 'Reviews',
-      count: '320+',
+      count: 'Balanced reviews',
       icon: 'StarIcon' as const,
       color: 'bg-amber-50 text-amber-600',
       image: 'https://img.rocket.new/generatedImages/rocket_gen_img_1a59bb181-1766478860027.png',
@@ -37,7 +37,7 @@ const HeroSection = () => {
     {
       id: 'hero_education',
       title: 'Education',
-      count: '1,100+',
+      count: 'Learning resources',
       icon: 'AcademicCapIcon' as const,
       color: 'bg-purple-50 text-purple-600',
       image: 'https://images.unsplash.com/photo-1719447001949-a1116c90c5fd',
@@ -61,7 +61,7 @@ const HeroSection = () => {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-success"></span>
               </span>
               <span className="text-xs font-medium text-foreground uppercase tracking-wide">
-                10,000+ Articles Live
+                New practical articles published regularly
               </span>
             </div>
 
@@ -72,8 +72,8 @@ const HeroSection = () => {
 
             {/* Subheadline */}
             <p className="text-xl lg:text-2xl font-medium text-secondary leading-relaxed max-w-lg">
-              Human-centered content for the AI era. Discover verified guides, tutorials, and
-              insights across every domain.
+              Human-centered content for the AI era. Discover practical guides, tutorials, and
+              carefully reviewed insights across everyday topics.
             </p>
 
             {/* CTA Buttons */}
@@ -125,9 +125,7 @@ const HeroSection = () => {
                     className="w-10 h-10 rounded-full border-2 border-white bg-gradient-to-br from-primary to-accent"
                   />
                 ))}
-                <div className="w-10 h-10 rounded-full border-2 border-white bg-muted flex items-center justify-center text-xs font-semibold text-foreground">
-                  +200
-                </div>
+                <div className="w-10 h-10 rounded-full border-2 border-white bg-muted" />
               </div>
               <div>
                 <div className="flex items-center gap-1 text-warning">
@@ -140,7 +138,7 @@ const HeroSection = () => {
                     />
                   ))}
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">Verified by domain experts</p>
+                <p className="text-sm text-muted-foreground mt-1">Reviewed for clarity and usefulness</p>
               </div>
             </div>
           </div>
@@ -181,7 +179,7 @@ const HeroSection = () => {
                     </div>
                     <div>
                       <h3 className="text-white text-2xl font-bold mb-1">{category.title}</h3>
-                      <p className="text-white/80 text-sm font-medium">{category.count} Articles</p>
+                      <p className="text-white/80 text-sm font-medium">{category.count}</p>
                     </div>
                   </div>
                 </Link>

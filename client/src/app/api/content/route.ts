@@ -5,8 +5,10 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const category = searchParams.get('category');
-    const limit = parseInt(searchParams.get('limit') || '20');
-    const offset = parseInt(searchParams.get('offset') || '0');
+    const requestedLimit = Number.parseInt(searchParams.get('limit') || '20', 10);
+    const requestedOffset = Number.parseInt(searchParams.get('offset') || '0', 10);
+    const limit = Number.isFinite(requestedLimit) ? Math.min(Math.max(requestedLimit, 1), 100) : 20;
+    const offset = Number.isFinite(requestedOffset) ? Math.max(requestedOffset, 0) : 0;
     const featured = searchParams.get('featured') === 'true';
 
     const supabase = await createClient();
@@ -86,12 +88,22 @@ export async function POST(request: Request) {
     // Check if user is admin or author
     const { data: profile } = await supabase
       .from('user_profiles')
-      .select('role')
+      .select('role,is_active')
       .eq('id', user.id)
       .single();
 
-    if (!profile || !['admin', 'author'].includes(profile.role)) {
+    if (!profile?.is_active || !['admin', 'author'].includes(profile.role)) {
       return NextResponse.json({ error: 'Forbidden: Insufficient permissions' }, { status: 403 });
+    }
+
+    const { data: existing } = await supabase
+      .from('content_metadata')
+      .select('author_id')
+      .eq('article_id', article_id)
+      .maybeSingle();
+
+    if (existing && profile.role !== 'admin' && existing.author_id !== user.id) {
+      return NextResponse.json({ error: 'Forbidden: You can only edit your own content' }, { status: 403 });
     }
 
     // Create content metadata

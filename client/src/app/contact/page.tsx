@@ -53,10 +53,10 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                     For help with our guides or your account.
                   </p>
                   <a
-                    href="mailto:support@cacsms.com"
+                    href="mailto:support@cacblaze.com"
                     className="text-primary font-semibold hover:underline"
                   >
-                    support@cacsms.com
+                    support@cacblaze.com
                   </a>
                 </div>
 
@@ -69,10 +69,10 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                     For partnerships and advertising inquiries.
                   </p>
                   <a
-                    href="mailto:partners@cacsms.com"
+                    href="mailto:partners@cacblaze.com"
                     className="text-primary font-semibold hover:underline"
                   >
-                    partners@cacsms.com
+                    partners@cacblaze.com
                   </a>
                 </div>
 
@@ -82,11 +82,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 mb-2">Office</h3>
                   <p className="text-gray-600 text-sm">
-                    123 Innovation Drive
+                    Lagos, Nigeria
                     <br />
-                    Lekki Phase 1, Lagos
-                    <br />
-                    Nigeria
+                    Online editorial and support operations
                   </p>
                 </div>
               </div>

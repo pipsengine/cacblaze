@@ -6,11 +6,13 @@ import { Article } from '../articles/Article';
 import { Tip } from '../tips/Tip';
 import { CronJob } from 'cron';
 import { Op } from 'sequelize';
+import crypto from 'crypto';
 
 export class AIPublishingScheduler {
   private aiService: AIContentService;
   private validationService: ContentValidationService;
   private adminUser: User | null = null;
+  private schedulesStarted = false;
   private readonly weeklyArticleTarget = Math.max(
     1,
     Math.min(Number(process.env.AI_WEEKLY_ARTICLE_TARGET || 7), 7)
@@ -29,21 +31,40 @@ export class AIPublishingScheduler {
   private async initializeScheduler(): Promise<void> {
     try {
       this.adminUser = await this.getAdminUser();
-      await this.ensureContentInventory(
-        Number(process.env.AI_MIN_PUBLISHED_ARTICLES || Math.max(this.weeklyArticleTarget * 4, 21))
-      );
-      await this.refreshLegacyPublishedContent(Number(process.env.AI_MIN_PUBLISHED_WORDS || 2000));
-      await this.repairInvalidGeneratedImages();
-      await this.ensureWeeklyFreshContent();
-
-      this.scheduleArticleGeneration();
-      this.scheduleTipGeneration();
-      this.scheduleContentValidation();
-      this.scheduleAutoPublishing();
+      if (!this.schedulesStarted) {
+        this.scheduleArticleGeneration();
+        this.scheduleTipGeneration();
+        this.scheduleContentValidation();
+        this.scheduleAutoPublishing();
+        this.schedulesStarted = true;
+      }
 
       console.log('AI Publishing Scheduler initialized successfully');
+
+      const maintenanceTasks = [
+        () =>
+          this.ensureContentInventory(
+            Number(
+              process.env.AI_MIN_PUBLISHED_ARTICLES ||
+                Math.max(this.weeklyArticleTarget * 4, 21)
+            )
+          ),
+        () =>
+          this.refreshLegacyPublishedContent(Number(process.env.AI_MIN_PUBLISHED_WORDS || 2000)),
+        () => this.repairInvalidGeneratedImages(),
+        () => this.ensureWeeklyFreshContent(),
+      ];
+
+      for (const [index, task] of maintenanceTasks.entries()) {
+        try {
+          await task();
+        } catch (error) {
+          console.error(`AI publishing maintenance task ${index + 1} failed:`, error);
+        }
+      }
     } catch (error) {
       console.error('Failed to initialize AI Publishing Scheduler:', error);
+      setTimeout(() => void this.initializeScheduler(), 5 * 60 * 1000).unref();
     }
   }
 
@@ -58,20 +79,17 @@ export class AIPublishingScheduler {
     }
 
     if (!adminUser) {
-      if (process.env.ALLOW_AI_PUBLISHER_AUTO_CREATE !== 'true') {
+      if (process.env.ALLOW_AI_PUBLISHER_AUTO_CREATE === 'false') {
         throw new Error('AI publisher user not found');
       }
 
-      const password = process.env.AI_PUBLISHER_PASSWORD;
-      if (!password) {
-        throw new Error('AI_PUBLISHER_PASSWORD is required when auto-creating the AI publisher user');
-      }
+      const password = process.env.AI_PUBLISHER_PASSWORD || crypto.randomBytes(48).toString('base64url');
 
       adminUser = await User.create({
         username,
         email,
         password,
-        role: 'admin',
+        role: 'author',
       });
     }
 
@@ -270,7 +288,19 @@ export class AIPublishingScheduler {
     article: Article,
     publishMode: 'immediate' | 'scheduled' = 'immediate'
   ): Promise<boolean> {
-    const validationResult = await this.validationService.validateArticle(article);
+    let validationResult = await this.validationService.validateArticle(article);
+
+    for (
+      let regenerationAttempt = 1;
+      !validationResult.isValid && process.env.OPENAI_API_KEY && regenerationAttempt <= 2;
+      regenerationAttempt += 1
+    ) {
+      console.warn(
+        `Regenerating ${article.title} after quality review attempt ${regenerationAttempt}.`
+      );
+      await this.aiService.refreshArticleContent(article);
+      validationResult = await this.validationService.validateArticle(article);
+    }
 
     if (!validationResult.isValid) {
       await article.update({
@@ -343,6 +373,14 @@ export class AIPublishingScheduler {
         }
 
         const tip = await this.aiService.generateDailyTip(this.getDailyCategory());
+        const validation = await this.validationService.validateTip(tip);
+        if (!validation.isValid) {
+          await tip.update({
+            validation_passed: false,
+            validation_errors: validation.errors || ['Tip self-review failed'],
+          });
+          throw new Error(`Generated tip failed self-review: ${(validation.errors || []).join('; ')}`);
+        }
         await tip.update({
           status: 'published',
           published_at: new Date(),

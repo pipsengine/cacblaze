@@ -41,7 +41,7 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
 export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id: articleId } = await params;
-    const body = await request.json();
+    const body = (await request.json()) as Record<string, unknown>;
 
     const supabase = await createClient();
     const {
@@ -55,18 +55,51 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     // Check permissions
     const { data: profile } = await supabase
       .from('user_profiles')
-      .select('role')
+      .select('role,is_active')
       .eq('id', user.id)
       .single();
 
-    if (!profile || !['admin', 'author'].includes(profile.role)) {
+    if (!profile?.is_active || !['admin', 'author'].includes(profile.role)) {
       return NextResponse.json({ error: 'Forbidden: Insufficient permissions' }, { status: 403 });
     }
 
-    // Update content metadata
+    const { data: existing, error: existingError } = await supabase
+      .from('content_metadata')
+      .select('article_id,author_id')
+      .eq('article_id', articleId)
+      .single();
+
+    if (existingError || !existing) {
+      return NextResponse.json({ error: 'Content not found' }, { status: 404 });
+    }
+
+    if (profile.role === 'author' && existing.author_id !== user.id) {
+      return NextResponse.json({ error: 'Forbidden: You can only edit your own content' }, { status: 403 });
+    }
+
+    const updates: Record<string, unknown> = {};
+    const stringFields = ['title', 'excerpt', 'category', 'author_name'] as const;
+    for (const field of stringFields) {
+      if (typeof body[field] === 'string') updates[field] = body[field].trim();
+    }
+    if (Array.isArray(body.tags) && body.tags.every((tag) => typeof tag === 'string')) {
+      updates.tags = body.tags.slice(0, 20).map((tag) => tag.trim()).filter(Boolean);
+    }
+    if (typeof body.read_time === 'number' && body.read_time >= 0 && body.read_time <= 600) {
+      updates.read_time = body.read_time;
+    }
+    if (typeof body.featured === 'boolean') updates.featured = body.featured;
+    if (profile.role === 'admin' && typeof body.syndication_enabled === 'boolean') {
+      updates.syndication_enabled = body.syndication_enabled;
+    }
+
+    if (Object.keys(updates).length === 0) {
+      return NextResponse.json({ error: 'No valid fields to update' }, { status: 400 });
+    }
+
     const { data, error } = await supabase
       .from('content_metadata')
-      .update(body)
+      .update(updates)
       .eq('article_id', articleId)
       .select()
       .single();

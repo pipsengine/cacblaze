@@ -1,13 +1,19 @@
-import { NextResponse } from 'next/server';
+import { proxyServerApi } from '@/lib/serverApiProxy';
 
-export async function GET() {
-  return NextResponse.json([], { status: 200, headers: { 'Cache-Control': 'no-store' } });
+export async function GET(request: Request, { params }: { params: Promise<{ articleId: string }> }) {
+  const { articleId } = await params;
+  return proxyServerApi(request, `comments/${encodeURIComponent(articleId)}`);
 }
 
-export async function PUT() {
-  return NextResponse.json({ ok: true }, { status: 200 });
+export async function PUT(request: Request, { params }: { params: Promise<{ articleId: string }> }) {
+  const { articleId } = await params;
+  return proxyServerApi(request, `comments/${encodeURIComponent(articleId)}`);
 }
 
-export async function DELETE() {
-  return NextResponse.json({ ok: true }, { status: 200 });
+export async function DELETE(
+  request: Request,
+  { params }: { params: Promise<{ articleId: string }> }
+) {
+  const { articleId } = await params;
+  return proxyServerApi(request, `comments/${encodeURIComponent(articleId)}`);
 }

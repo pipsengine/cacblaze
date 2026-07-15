@@ -15,7 +15,8 @@ export const viewport: Viewport = {
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:4028');
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://cacblaze.com');
+const adsensePublisherId = 'ca-pub-6119965623563321';
 
 export const metadata: Metadata = {
   title: {
@@ -36,6 +37,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'CACBLAZE Team' }],
   creator: 'CACBLAZE',
   publisher: 'CACBLAZE',
+  other: {
+    'google-adsense-account': adsensePublisherId,
+  },
   metadataBase: new URL(siteUrl),
   openGraph: {
     type: 'website',
@@ -44,13 +48,13 @@ export const metadata: Metadata = {
     siteName: 'CACBLAZE',
     title: 'CACBLAZE - Nigerian Knowledge Platform',
     description: 'Comprehensive guides across technology, education, lifestyle, finance, and more.',
-    images: ['/assets/images/og-image.png'],
+    images: ['/assets/images/no_image.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'CACBLAZE - Nigerian Knowledge Platform',
     description: 'Comprehensive guides across technology, education, lifestyle, finance, and more.',
-    images: ['/assets/images/twitter-image.png'],
+    images: ['/assets/images/no_image.png'],
   },
   robots: {
     index: true,
@@ -79,6 +83,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsensePublisherId}`}
+          crossOrigin="anonymous"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

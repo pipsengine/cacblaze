@@ -8,8 +8,8 @@ const TrustAuthority = () => {
   const stats = [
     {
       id: 'stat_1',
-      value: '10,000+',
-      label: 'Verified Articles',
+      value: 'Useful',
+      label: 'Practical Articles',
       description:
         'In-depth guides, reviews, and explainers built to answer practical questions with clarity.',
       icon: 'DocumentCheckIcon' as const,
@@ -17,10 +17,10 @@ const TrustAuthority = () => {
     },
     {
       id: 'stat_2',
-      value: '200+',
-      label: 'Expert Contributors',
+      value: 'Clear',
+      label: 'Reader-first Writing',
       description:
-        'Writers, researchers, and specialists helping shape content readers can rely on.',
+        'Straightforward explanations designed to help readers act on what they learn.',
       icon: 'UserGroupIcon' as const,
       color: 'bg-green-50 text-green-600',
     },
@@ -35,10 +35,10 @@ const TrustAuthority = () => {
     },
     {
       id: 'stat_4',
-      value: 'Trusted',
-      label: 'Reader Confidence',
+      value: 'Open',
+      label: 'Corrections Welcome',
       description:
-        'Content is organized to support confident decisions, better comparisons, and clear next steps.',
+        'Readers can contact us when information needs clarification, correction, or updating.',
       icon: 'StarIcon' as const,
       color: 'bg-purple-50 text-purple-600',
     },
@@ -47,9 +47,9 @@ const TrustAuthority = () => {
   const trustBadges = [
     {
       id: 'badge_1',
-      title: 'Expert Reviewed',
+      title: 'Quality Reviewed',
       description:
-        'Important content is checked for usefulness, accuracy, and real-world relevance before it reaches readers.',
+        'Automated checks and editorial review assess usefulness, sourcing, and readability before publication.',
       icon: 'CheckBadgeIcon' as const,
     },
     {

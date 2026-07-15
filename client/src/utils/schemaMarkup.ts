@@ -129,7 +129,7 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]): WithContext<B
 export function generateOrganizationSchema(): WithContext<Organization> {
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:4028');
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://cacblaze.com');
 
   return {
     '@context': 'https://schema.org',
@@ -158,7 +158,7 @@ export function generateOrganizationSchema(): WithContext<Organization> {
 export function generateWebSiteSchema() {
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:4028');
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://cacblaze.com');
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',

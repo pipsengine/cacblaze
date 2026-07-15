@@ -34,6 +34,13 @@ Reaction.init(
   {
     sequelize,
     tableName: 'reactions',
+    indexes: [
+      {
+        unique: true,
+        fields: ['comment_id', 'user_id', 'reaction_type'],
+        name: 'reactions_comment_user_type_unique',
+      },
+    ],
   }
 );
 

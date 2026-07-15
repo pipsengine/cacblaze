@@ -9,6 +9,35 @@ type AuthenticatedRequest = Request & {
   };
 };
 
+async function isCommentAllowed(content: string) {
+  const obviousAbuse =
+    /(buy\s+followers|guaranteed\s+profit|click\s+my\s+profile|free\s+money|porn|casino\s+bonus)/i.test(
+      content
+    ) || (content.match(/https?:\/\//gi) || []).length > 2;
+  if (obviousAbuse) return false;
+
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) return true;
+
+  try {
+    const response = await fetch('https://api.openai.com/v1/moderations', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ model: 'omni-moderation-latest', input: content }),
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (!response.ok) return false;
+    const result = (await response.json()) as { results?: Array<{ flagged?: boolean }> };
+    return result.results?.[0]?.flagged === false;
+  } catch {
+    // Hold content when the configured moderation service cannot make a decision.
+    return false;
+  }
+}
+
 export const getComments = async (req: Request, res: Response) => {
   try {
     const { articleId } = req.params;
@@ -49,6 +78,21 @@ export const createComment = async (req: AuthenticatedRequest, res: Response) =>
       return res.status(400).json({ message: 'articleId and content are required' });
     }
 
+    if (content.trim().length > 5_000) {
+      return res.status(400).json({ message: 'Comment must be 5,000 characters or fewer' });
+    }
+
+    if (parentId) {
+      const parent = await Comment.findOne({ where: { id: parentId, articleId } });
+      if (!parent) {
+        return res.status(400).json({ message: 'Parent comment does not belong to this article' });
+      }
+    }
+
+    if (!(await isCommentAllowed(content.trim()))) {
+      return res.status(422).json({ message: 'Comment requires moderation before it can be posted' });
+    }
+
     const comment = await Comment.create({
       articleId,
       userId,
@@ -86,6 +130,10 @@ export const updateComment = async (req: AuthenticatedRequest, res: Response) =>
 
     if (typeof content !== 'string' || !content.trim()) {
       return res.status(400).json({ message: 'Content is required' });
+    }
+
+    if (content.trim().length > 5_000) {
+      return res.status(400).json({ message: 'Comment must be 5,000 characters or fewer' });
     }
 
     const comment = await Comment.findOne({ where: { id, userId } });
@@ -141,6 +189,11 @@ export const toggleReaction = async (req: AuthenticatedRequest, res: Response) =
 
     if (typeof reactionType !== 'string' || !allowedReactions.has(reactionType)) {
       return res.status(400).json({ message: 'Invalid reaction type' });
+    }
+
+    const comment = await Comment.findByPk(id);
+    if (!comment) {
+      return res.status(404).json({ message: 'Comment not found' });
     }
 
     const existingReaction = await Reaction.findOne({

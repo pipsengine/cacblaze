@@ -8,7 +8,7 @@ import Icon from '@/components/ui/AppIcon';
 import { getAuthorAvatar } from '@/utils/imageService';
 import { trackCommentAction } from '@/lib/analytics';
 
-const API_BASE = (process.env.NEXT_PUBLIC_API_URL || '/api').replace(/\/$/, '');
+const API_BASE = '/api';
 
 interface Comment {
   id: string;

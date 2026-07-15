@@ -1,10 +1,15 @@
 import { NextResponse } from 'next/server';
 import { articles as localArticles } from '@/data/articles';
+import { requireAdminAccess } from '@/lib/auth/adminAccess';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-const EXPLICIT_BASE = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/+$/, '');
+const EXPLICIT_BASE = (
+  process.env.SERVER_API_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  ''
+).replace(/\/+$/, '');
 const DEV_BASE_CANDIDATES = Array.from(
   { length: 10 },
   (_, index) => `http://localhost:${3001 + index}/api`
@@ -46,6 +51,11 @@ async function resolveBaseUrl(pathWithSearch: string, init: RequestInit) {
 async function proxy(request: Request, params: { path?: string[] }) {
   const url = new URL(request.url);
   const path = params?.path?.join('/') || '';
+  const isPublicRead =
+    request.method === 'GET' &&
+    (path === 'tips/published' ||
+      path === 'articles/published' ||
+      path.startsWith('articles/slug/'));
   const search = url.search ? url.search : '';
   const qs = url.searchParams;
   const limitParam = Number(qs.get('limit') || '');
@@ -225,6 +235,23 @@ async function proxy(request: Request, params: { path?: string[] }) {
 
   const headers = new Headers(request.headers);
   headers.delete('host');
+
+  if (!isPublicRead) {
+    const { session, errorResponse } = await requireAdminAccess();
+    if (errorResponse || !session) return errorResponse!;
+
+    if (!session.identity.isDevAuthSession && session.supabase) {
+      const {
+        data: { session: supabaseSession },
+      } = await session.supabase.auth.getSession();
+
+      if (!supabaseSession?.access_token) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      }
+
+      headers.set('authorization', `Bearer ${supabaseSession.access_token}`);
+    }
+  }
 
   const init: RequestInit = {
     method: request.method,

@@ -5,10 +5,12 @@ import { ContentValidationService } from './ContentValidationService';
 import { Article } from '../articles/Article';
 import { Tip } from '../tips/Tip';
 import User from '../users/User';
+import { authenticateToken, authorizeRoles } from '../auth/authMiddleware';
 
 const router = express.Router();
 const aiService = new AIContentService();
 const validationService = new ContentValidationService();
+const adminOnly = [authenticateToken, authorizeRoles('admin')];
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 const getWeekStart = (input = new Date()) => {
@@ -84,7 +86,7 @@ const selectWeeklyFeaturedArticles = (
 };
 
 // Get AI publishing statistics
-router.get('/stats', async (req, res) => {
+router.get('/stats', ...adminOnly, async (req, res) => {
   try {
     const [articleCount, tipCount, publishedCount, draftCount] = await Promise.all([
       Article.count({ where: { ai_generated: true } }),
@@ -142,7 +144,7 @@ router.get('/stats', async (req, res) => {
 });
 
 // Generate a new article
-router.post('/generate/article', async (req, res) => {
+router.post('/generate/article', ...adminOnly, async (req, res) => {
   try {
     const { category, type, geo_focus, autoPublish } = req.body || {};
     const adminUser =
@@ -195,7 +197,7 @@ router.post('/generate/article', async (req, res) => {
 });
 
 // Generate a daily tip
-router.post('/generate/tip', async (req, res) => {
+router.post('/generate/tip', ...adminOnly, async (req, res) => {
   try {
     const tip = await aiService.generateDailyTip();
     
@@ -217,7 +219,7 @@ router.post('/generate/tip', async (req, res) => {
 });
 
 // Validate specific content
-router.post('/validate/:type/:id', async (req, res) => {
+router.post('/validate/:type/:id', ...adminOnly, async (req, res) => {
   try {
     const { type, id } = req.params;
 
@@ -263,7 +265,7 @@ router.post('/validate/:type/:id', async (req, res) => {
 });
 
 // Bulk validate all drafts
-router.post('/validate-all', async (req, res) => {
+router.post('/validate-all', ...adminOnly, async (req, res) => {
   try {
     const [draftArticles, draftTips] = await Promise.all([
       Article.findAll({ 
@@ -355,7 +357,7 @@ router.get('/tips/published', async (req, res) => {
 });
 
 // Get validation report
-router.get('/validation-report', async (req, res) => {
+router.get('/validation-report', ...adminOnly, async (req, res) => {
   try {
     const [articles, tips] = await Promise.all([
       Article.findAll({ where: { ai_generated: true } }),
@@ -389,7 +391,7 @@ router.get('/validation-report', async (req, res) => {
 });
 
 // Manual publishing
-router.post('/publish/:type/:id', async (req, res) => {
+router.post('/publish/:type/:id', ...adminOnly, async (req, res) => {
   try {
     const { type, id } = req.params;
 
@@ -454,7 +456,7 @@ router.post('/publish/:type/:id', async (req, res) => {
 });
 
 // Quick validation endpoint for UI
-router.post('/quick-validate', async (req, res) => {
+router.post('/quick-validate', ...adminOnly, async (req, res) => {
   try {
     const { content, type } = req.body;
 
@@ -481,7 +483,7 @@ router.post('/quick-validate', async (req, res) => {
 });
 
 // Get scheduler status
-router.get('/scheduler/status', async (_req, res) => {
+router.get('/scheduler/status', ...adminOnly, async (_req, res) => {
   try {
     const weeklyArticleTarget = Math.max(1, Math.min(Number(process.env.AI_WEEKLY_ARTICLE_TARGET || 7), 7));
     const weeklyTipTarget = Math.max(1, Math.min(Number(process.env.AI_WEEKLY_TIP_TARGET || 7), 7));
@@ -511,7 +513,7 @@ router.get('/scheduler/status', async (_req, res) => {
   }
 });
 
-router.post('/generate/batch', async (req, res) => {
+router.post('/generate/batch', ...adminOnly, async (req, res) => {
   try {
     const { categories, articlesPerCategory, autoPublish, geo_focus } = req.body || {};
     const adminUser =
@@ -559,7 +561,7 @@ router.post('/generate/batch', async (req, res) => {
   }
 });
 
-router.get('/report/overview', async (_req, res) => {
+router.get('/report/overview', ...adminOnly, async (_req, res) => {
   try {
     const weeklyArticleTarget = Math.max(1, Math.min(Number(process.env.AI_WEEKLY_ARTICLE_TARGET || 7), 7));
     const weeklyTipTarget = Math.max(1, Math.min(Number(process.env.AI_WEEKLY_TIP_TARGET || 7), 7));

@@ -15,16 +15,6 @@ type Entry = {
 const requestStore = new Map<string, Entry>();
 
 function getClientIp(req: Request): string {
-  const forwarded = req.headers['x-forwarded-for'];
-
-  if (typeof forwarded === 'string' && forwarded.length > 0) {
-    return forwarded.split(',')[0]?.trim() || 'unknown';
-  }
-
-  if (Array.isArray(forwarded) && forwarded.length > 0) {
-    return forwarded[0] || 'unknown';
-  }
-
   return req.ip || req.socket.remoteAddress || 'unknown';
 }
 
@@ -36,6 +26,11 @@ export function createRateLimiter({
 }: RateLimitOptions) {
   return (req: Request, res: Response, next: NextFunction) => {
     const now = Date.now();
+    if (requestStore.size > 10_000) {
+      for (const [storedKey, entry] of requestStore) {
+        if (entry.resetAt <= now) requestStore.delete(storedKey);
+      }
+    }
     const key = `${keyPrefix}:${getClientIp(req)}`;
     const current = requestStore.get(key);
 

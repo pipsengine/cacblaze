@@ -25,23 +25,23 @@ export default function AboutPage() {
   ];
 
   const stats = [
-    { label: 'Monthly Readers', value: '2M+' },
-    { label: 'Expert Guides', value: '2,400+' },
-    { label: 'Countries Served', value: '150+' },
-    { label: 'Team Members', value: '45' },
+    { label: 'Core Access', value: 'Free' },
+    { label: 'Publishing', value: 'Regular' },
+    { label: 'Primary Focus', value: 'Nigeria' },
+    { label: 'Corrections', value: 'Open' },
   ];
 
   const values: ValueCard[] = [
     {
       title: 'Human-Centered',
       description:
-        'We believe technology should serve people, not the other way around. Our content is written for humans, by humans, prioritizing clarity and empathy over algorithms.',
+        'We believe technology should serve people, not the other way around. Our publishing system uses automation responsibly while prioritizing clarity, evidence, and reader needs.',
       icon: 'UserGroupIcon',
     },
     {
-      title: 'Verified Accuracy',
+      title: 'Accuracy and Sources',
       description:
-        'In an era of misinformation, we stand for truth. Every guide is vetted by industry experts before publication, ensuring you get advice you can trust.',
+        'Articles pass automated quality checks and editorial review. We use authoritative sources for changing facts and welcome corrections from readers.',
       icon: 'CheckBadgeIcon',
     },
     {

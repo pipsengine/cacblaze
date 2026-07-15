@@ -8,7 +8,7 @@ import Icon from '@/components/ui/AppIcon';
 export const metadata: Metadata = {
   title: 'Partners - CACBLAZE',
   description:
-    'Partner with CACBLAZE to reach millions of engaged users. Explore our partnership programs.',
+    'Explore responsible content, resource, and advertising partnerships with CACBLAZE.',
   alternates: { canonical: '/partners' },
 };
 
@@ -19,26 +19,26 @@ export default function PartnersPage() {
   ];
 
   const stats = [
-    { label: 'Monthly Active Users', value: '2M+' },
-    { label: 'Countries Served', value: '150+' },
-    { label: 'Content Views / Mo', value: '15M+' },
-    { label: 'Partner Payouts', value: '$5M+' },
+    { label: 'Primary Audience', value: 'Nigeria' },
+    { label: 'Content Access', value: 'Free' },
+    { label: 'Topics', value: 'Broad' },
+    { label: 'Inquiries', value: 'Open' },
   ];
 
   const programs = [
     {
       title: 'Content Syndication',
       description:
-        'Expand your audience by distributing your high-quality articles, videos, and courses to our global community of learners. Benefit from our SEO authority and recommendation engine.',
+        'Propose useful, original resources that fit our editorial standards and clearly disclose any commercial relationship.',
       icon: 'DocumentDuplicateIcon',
       benefits: ['Global Reach', 'Brand Authority', 'Traffic Backlinks'],
     },
     {
-      title: 'Affiliate Program',
+      title: 'Resource Partnerships',
       description:
-        'Monetize your traffic by recommending our premium courses and tools. We offer competitive commission rates, real-time tracking, and dedicated support to help you succeed.',
+        'Work with us on public-interest guides, educational resources, or tools that provide clear value to readers.',
       icon: 'CurrencyDollarIcon',
-      benefits: ['High Commission', '30-Day Cookie', 'Marketing Assets'],
+      benefits: ['Useful Resources', 'Clear Attribution', 'Reader Value'],
     },
     {
       title: 'Advertising',
@@ -46,21 +46,6 @@ export default function PartnersPage() {
         'Reach our high-intent audience of professionals and students with native advertising solutions. Place your brand in a context where users are actively seeking knowledge.',
       icon: 'MegaphoneIcon',
       benefits: ['Targeted Reach', 'Native Formats', 'Performance Analytics'],
-    },
-  ];
-
-  const testimonials = [
-    {
-      quote:
-        'Partnering with CACBLAZE has doubled our course enrollments in just six months. The audience is highly engaged and eager to learn.',
-      author: 'TechSkills Academy',
-      role: 'Education Partner',
-    },
-    {
-      quote:
-        "The affiliate program is transparent and profitable. It's rare to find a platform that values its partners this much.",
-      author: 'Digital Growth Blog',
-      role: 'Affiliate Partner',
     },
   ];
 
@@ -77,7 +62,7 @@ export default function PartnersPage() {
             <Breadcrumb items={breadcrumbItems} className="mb-8 justify-center text-white/80" />
             <h1 className="text-5xl lg:text-6xl font-bold mb-6">Grow with Us</h1>
             <p className="text-xl text-teal-100 max-w-2xl mx-auto mb-12">
-              Join forces with the fastest-growing knowledge platform. Let's create value together.
+              Work with us on useful, transparent projects that create value for readers.
             </p>
 
             {/* Stats Grid */}
@@ -127,33 +112,11 @@ export default function PartnersPage() {
                     ))}
                   </ul>
 
-                  <button className="w-full py-3 rounded-lg border border-teal-600 text-teal-600 font-bold hover:bg-teal-50 transition-colors">
+                  <Link href="/contact?reason=partnership" className="w-full py-3 rounded-lg border border-teal-600 text-teal-600 font-bold hover:bg-teal-50 transition-colors text-center">
                     Learn More
-                  </button>
+                  </Link>
                 </div>
               ))}
-            </div>
-
-            {/* Success Stories */}
-            <div className="bg-teal-900 rounded-3xl p-12 mb-20 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-teal-700 rounded-full blur-3xl opacity-50 -mr-16 -mt-16"></div>
-              <div className="relative z-10">
-                <h2 className="text-3xl font-bold text-white mb-12 text-center">Success Stories</h2>
-                <div className="grid md:grid-cols-2 gap-8">
-                  {testimonials.map((t, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-teal-800/50 p-8 rounded-2xl border border-teal-700 backdrop-blur-sm"
-                    >
-                      <p className="text-teal-50 text-lg italic mb-6">"{t.quote}"</p>
-                      <div>
-                        <div className="font-bold text-white">{t.author}</div>
-                        <div className="text-teal-300 text-sm">{t.role}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
 
             {/* CTA */}
@@ -161,7 +124,7 @@ export default function PartnersPage() {
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to get started?</h2>
               <p className="text-lg text-gray-600 mb-8 max-w-xl mx-auto">
                 Fill out our partnership inquiry form and a member of our business development team
-                will get back to you within 24 hours.
+                will respond as soon as possible.
               </p>
               <Link
                 href="/contact"

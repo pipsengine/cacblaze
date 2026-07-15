@@ -174,10 +174,10 @@ export default async function AdvertisePage() {
             </p>
             <div className="flex flex-wrap gap-3">
               <a
-                href="mailto:advertise@cacsms.com?subject=Advertise%20with%20CACBLAZE"
+                href="mailto:advertise@cacblaze.com?subject=Advertise%20with%20CACBLAZE"
                 className="px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-colors"
               >
-                Email advertise@cacsms.com
+                Email advertise@cacblaze.com
               </a>
               <Link
                 href="/contact"

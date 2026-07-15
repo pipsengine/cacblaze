@@ -158,6 +158,92 @@ export class AIContentService {
   private imageService: AIImageIntegrationService;
   private topicCursor = 0;
 
+  private extractResponseText(payload: unknown): string {
+    if (!payload || typeof payload !== 'object') return '';
+    const output = (payload as { output?: unknown[] }).output;
+    if (!Array.isArray(output)) return '';
+
+    return output
+      .flatMap((item) => {
+        if (!item || typeof item !== 'object') return [];
+        const content = (item as { content?: unknown[] }).content;
+        return Array.isArray(content) ? content : [];
+      })
+      .map((item) => {
+        if (!item || typeof item !== 'object') return '';
+        return (item as { type?: string; text?: string }).type === 'output_text'
+          ? (item as { text?: string }).text || ''
+          : '';
+      })
+      .join('\n')
+      .trim();
+  }
+
+  private async generateOriginalArticleContent(
+    topic: Topic,
+    contentType: ContentType
+  ): Promise<string | null> {
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) return null;
+
+    const model = process.env.OPENAI_CONTENT_MODEL || 'gpt-5.4-mini';
+    const prompt = `Write an original, publication-ready ${contentType} article for CACBLAZE.
+
+Title: ${topic.title}
+Category: ${topic.category}
+Primary audience: ${topic.audience}
+Geographic focus: ${topic.geo_focus}
+Reader intent: ${topic.intent}
+
+Requirements:
+- Produce 1,800-2,800 words in clean Markdown.
+- Start with one H1 matching the title, then use descriptive H2/H3 headings.
+- Give topic-specific analysis, concrete examples, practical steps, limitations, and decision criteria.
+- For Nigeria or Africa, account for local pricing volatility, infrastructure, regulation, data costs, and accessibility only where relevant.
+- Use web research for current factual claims. Never invent prices, statistics, laws, quotations, products, or sources.
+- Cite factual claims with inline Markdown links to primary or authoritative sources.
+- End with a short "Sources and further reading" section containing 3-8 authoritative links actually used.
+- Do not mention AI, content generation, SEO, CACBLAZE's publishing engine, or editorial checklists.
+- Avoid generic filler, repeated advice, exaggerated promises, and medical/legal/financial directives.
+- The article must provide substantial value that could not be created by swapping only the title of a generic template.`;
+
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      try {
+        const response = await fetch('https://api.openai.com/v1/responses', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            model,
+            input: prompt,
+            tools: [{ type: 'web_search' }],
+            max_output_tokens: 8_000,
+          }),
+          signal: AbortSignal.timeout(180_000),
+        });
+
+        if (!response.ok) {
+          throw new Error(`OpenAI content request failed with status ${response.status}`);
+        }
+
+        const content = this.extractResponseText(await response.json());
+        if (this.countWords(content) >= 1_800 && /##\s+.+/m.test(content)) {
+          return content;
+        }
+        throw new Error('OpenAI content response did not meet minimum structure requirements');
+      } catch (error) {
+        console.error(`Original content generation attempt ${attempt} failed:`, error);
+        if (attempt < 3) {
+          await new Promise((resolve) => setTimeout(resolve, attempt * 5_000));
+        }
+      }
+    }
+
+    return null;
+  }
+
   constructor() {
     this.imageService = new AIImageIntegrationService();
   }
@@ -390,7 +476,9 @@ The strongest content systems do not only generate pages. They generate pages th
   async generateArticle(adminUser: User, options: GenerateArticleOptions = {}): Promise<Article> {
     const topic = this.selectTopic(options);
     const contentType = options.type || topic.type || this.getContentTypeByDay(topic.category);
-    const draftedContent = this.buildRichArticleContent(topic, contentType);
+    const draftedContent =
+      (await this.generateOriginalArticleContent(topic, contentType)) ||
+      this.buildRichArticleContent(topic, contentType);
     const selfEditedContent = this.selfEditAndExpandContent(draftedContent, topic, contentType);
     const content = this.reviewGeneratedContent(selfEditedContent);
 
@@ -447,7 +535,9 @@ The strongest content systems do not only generate pages. They generate pages th
       tags: article.tags,
     });
 
-    const draftedContent = this.buildRichArticleContent(topic, contentType);
+    const draftedContent =
+      (await this.generateOriginalArticleContent(topic, contentType)) ||
+      this.buildRichArticleContent(topic, contentType);
     const selfEditedContent = this.selfEditAndExpandContent(draftedContent, topic, contentType);
     const content = this.reviewGeneratedContent(selfEditedContent);
 
@@ -515,12 +605,26 @@ The strongest content systems do not only generate pages. They generate pages th
       : ['Technology', 'Education', 'Lifestyle', 'Finance', 'Career', 'Business'];
     const selected = categories[Math.floor(Date.now() / (1000 * 60 * 60)) % categories.length];
 
-    const content = `**Daily ${selected} Tip:** Pick one small improvement you can apply today, document what worked, and repeat only what proves useful. Stronger systems are built through small, clear actions that can be sustained over time.`;
+    const guidance: Record<string, string> = {
+      Technology: 'Choose one account that matters to you and strengthen it today. First, replace any reused password with a unique passphrase. Next, enable two-factor authentication using an authenticator app where it is available. Then review active sessions and sign out devices you do not recognise. Finally, save your recovery codes somewhere offline and private. This fifteen-minute check reduces the risk that one leaked password will expose your email, banking alerts, work files, or social accounts. Repeat the same process for one account each week. If a service sends an unexpected login link or verification request, open the official app yourself instead of following the message.',
+      Education: 'Use a short recall session instead of rereading the same notes. Close your book, write five questions about today’s topic, and answer them from memory. Check each answer against a reliable textbook or your lecturer’s material, then mark what you missed. Spend the final ten minutes explaining the hardest idea aloud in plain language. This method shows exactly where your understanding is weak and turns revision into active practice. Keep the questions and test yourself again after two days and one week. If you cannot explain an idea without copying the definition, break it into a smaller concept and try another example before moving on.',
+      Lifestyle: 'Plan tomorrow around one realistic priority before the day becomes busy. Write down the single task that would make the day useful, the first physical action it requires, and a specific time to begin. Prepare anything you need tonight, such as documents, clothes, ingredients, or transport money. When the time arrives, work on that first action for twenty focused minutes before checking social media. This simple routine removes several morning decisions and makes follow-through easier. At the end of the day, note what helped or interrupted you, then adjust the next plan. Sustainable routines grow from small actions you can repeat, not perfect schedules.',
+      Finance: 'Track every expense you make today, including transfers, cash purchases, delivery fees, data, and small subscriptions. Group them into needs, commitments, and optional spending. At the end of the day, choose one optional cost to reduce this week and move that amount into a separate savings balance immediately. Do not rely on remembering what remains after spending; make the transfer first and treat it like a bill. Review bank alerts for unfamiliar charges and cancel any subscription you no longer use. This exercise gives you a truthful starting point for a budget. Repeat it for seven days before setting targets, because a plan based on real behaviour is easier to maintain.',
+      Career: 'Improve one piece of evidence that proves what you can do. Pick a recent project and write three concise lines: the problem, the action you personally took, and the measurable result. Add the strongest version to your CV, portfolio, or professional profile. Remove vague phrases such as “hard-working” when a concrete example can demonstrate the same quality. Then ask one trusted colleague to check whether the result is clear to someone outside your team. Employers and clients assess evidence more easily than broad claims. Keep a private achievement log and update it monthly so that applications, performance reviews, and interviews do not depend on memory at the last minute.',
+      Business: 'Speak with one real customer before changing your offer. Ask what outcome they wanted, what nearly stopped them from buying, and what part of the experience caused the most effort. Listen without defending the business or turning the conversation into a sales pitch. Write their exact concern, then compare it with recent complaints, abandoned orders, or support messages. Choose one small improvement you can complete this week, assign an owner, and decide how you will measure the result. A faster response, clearer price, simpler payment step, or better delivery update can matter more than adding another feature. Follow up with the customer after the change to learn whether it solved the problem.',
+    };
+    const content = `Daily ${selected} tip: ${guidance[selected] || guidance.Business}`;
+    const dateLabel = new Intl.DateTimeFormat('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      timeZone: 'Africa/Lagos',
+    }).format(new Date());
 
     const imageRequest: AIImageRequest = {
       prompt: `Generate image for daily tip about ${selected}`,
       category: selected.toLowerCase(),
-      title: `Daily ${selected} Tip`,
+      title: `${selected} Action Tip — ${dateLabel}`,
       content,
       geoFocus: 'Nigeria',
       contentType: 'tip',
@@ -529,7 +633,7 @@ The strongest content systems do not only generate pages. They generate pages th
     const imageResponse = await AIImageIntegrationService.getImageForContent(imageRequest);
 
     const tipData: TipCreationAttributes = {
-      title: `Daily ${selected} Tip`,
+      title: `${selected} Action Tip — ${dateLabel}`,
       content,
       category: selected,
       status: 'draft',

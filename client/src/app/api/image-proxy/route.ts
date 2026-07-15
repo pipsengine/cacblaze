@@ -20,6 +20,35 @@ function buildAllowedHosts() {
 }
 
 const ALLOWED_HOSTS = buildAllowedHosts();
+const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
+
+async function readLimitedBody(response: Response) {
+  const contentLength = Number(response.headers.get('content-length') || 0);
+  if (contentLength > MAX_IMAGE_BYTES) throw new Error('Image is too large');
+  if (!response.body) return new ArrayBuffer(0);
+
+  const reader = response.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let total = 0;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > MAX_IMAGE_BYTES) {
+      await reader.cancel();
+      throw new Error('Image is too large');
+    }
+    chunks.push(value);
+  }
+
+  const result = new Uint8Array(total);
+  let offset = 0;
+  for (const chunk of chunks) {
+    result.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return result.buffer;
+}
 
 export async function GET(request: Request) {
   try {
@@ -61,6 +90,8 @@ export async function GET(request: Request) {
         Referer: mappedReferer,
       },
       cache: 'no-store',
+      redirect: 'error',
+      signal: AbortSignal.timeout(10_000),
     });
 
     if (!resp.ok) {
@@ -68,7 +99,10 @@ export async function GET(request: Request) {
     }
 
     const contentType = resp.headers.get('content-type') || 'application/octet-stream';
-    const arrayBuf = await resp.arrayBuffer();
+    if (!contentType.toLowerCase().startsWith('image/')) {
+      return NextResponse.json({ error: 'Upstream did not return an image' }, { status: 415 });
+    }
+    const arrayBuf = await readLimitedBody(resp);
 
     return new Response(arrayBuf, {
       status: 200,

@@ -29,7 +29,7 @@ const DomainShowcase = () => {
       title: 'Guides',
       description:
         'Deep, practical explainers for money, work, business, and everyday decisions, written to help readers understand the why, the how, and the next best step.',
-      count: '2,400+',
+      count: 'Practical explainers',
       highlights: ['Money and work', 'Actionable explainers'],
       icon: 'BookOpenIcon',
       color: 'bg-blue-50 text-blue-600 border-blue-200',
@@ -40,7 +40,7 @@ const DomainShowcase = () => {
       title: 'How-To',
       description:
         'Clear step-by-step tutorials, walkthroughs, and practical fixes for real tasks, from getting started quickly to solving common problems with confidence.',
-      count: '850+',
+      count: 'Clear walkthroughs',
       highlights: ['Beginner-friendly steps', 'Practical solutions'],
       icon: 'WrenchScrewdriverIcon',
       color: 'bg-green-50 text-green-600 border-green-200',
@@ -51,7 +51,7 @@ const DomainShowcase = () => {
       title: 'Reviews',
       description:
         'Balanced reviews of products, tools, apps, and services that show real strengths, trade-offs, value for money, and who each option is best for.',
-      count: '320+',
+      count: 'Decision support',
       highlights: ['Honest pros and cons', 'Smarter buying'],
       icon: 'StarIcon',
       color: 'bg-amber-50 text-amber-600 border-amber-200',
@@ -62,7 +62,7 @@ const DomainShowcase = () => {
       title: 'Education',
       description:
         'Study resources, exam preparation help, digital learning strategies, and skill-building content for students, professionals, and lifelong learners.',
-      count: '1,100+',
+      count: 'Learning resources',
       highlights: ['Study success', 'Learning roadmaps'],
       icon: 'AcademicCapIcon',
       color: 'bg-purple-50 text-purple-600 border-purple-200',
@@ -73,7 +73,7 @@ const DomainShowcase = () => {
       title: 'Technology',
       description:
         'Useful tech guidance covering devices, apps, digital safety, troubleshooting, connectivity, and online tools that make modern life easier to manage.',
-      count: '940+',
+      count: 'Digital guidance',
       highlights: ['Digital safety', 'Device help'],
       icon: 'CodeBracketIcon',
       color: 'bg-indigo-50 text-indigo-600 border-indigo-200',
@@ -84,7 +84,7 @@ const DomainShowcase = () => {
       title: 'Lifestyle',
       description:
         'Trusted advice for wellness, routines, productivity, self-development, and better daily living, with grounded tips people can realistically apply.',
-      count: '680+',
+      count: 'Everyday advice',
       highlights: ['Wellness habits', 'Better routines'],
       icon: 'HeartIcon',
       color: 'bg-pink-50 text-pink-600 border-pink-200',
@@ -95,7 +95,7 @@ const DomainShowcase = () => {
       title: 'Local Resources',
       description:
         'City guides, local directories, and location-aware recommendations to help readers discover useful services, opportunities, and trusted places nearby.',
-      count: '420+',
+      count: 'Nigeria-focused help',
       highlights: ['City guidance', 'Local discoveries'],
       icon: 'MapPinIcon',
       color: 'bg-teal-50 text-teal-600 border-teal-200',
@@ -159,7 +159,7 @@ const DomainShowcase = () => {
               </div>
               <div className="mt-auto flex items-center justify-between">
                 <span className="text-sm font-semibold text-muted-foreground">
-                  {domain.count} Articles
+                  {domain.count}
                 </span>
                 <Icon
                   name="ArrowRightIcon"

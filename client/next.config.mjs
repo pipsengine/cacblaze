@@ -11,6 +11,24 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
 
+  async headers() {
+    const privatePageHeaders = [
+      '/admin/:path*',
+      '/account/:path*',
+      '/auth/:path*',
+      '/bookmarks/:path*',
+      '/preferences/:path*',
+      '/login',
+      '/register',
+      '/search',
+    ];
+
+    return privatePageHeaders.map((source) => ({
+      source,
+      headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }],
+    }));
+  },
+
   images: {
     unoptimized: true,
     remotePatterns: [

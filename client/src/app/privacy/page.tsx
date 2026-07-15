@@ -56,7 +56,7 @@ export default function PrivacyPolicyPage() {
                 <br />
                 Lagos, Nigeria
                 <br />
-                Email: privacy@cacsms.com
+                Email: privacy@cacblaze.com
               </p>
             </section>
 
@@ -179,8 +179,8 @@ export default function PrivacyPolicyPage() {
               </ul>
               <p className="mt-4">
                 To exercise any of these rights, please contact us at{' '}
-                <a href="mailto:privacy@cacsms.com" className="text-primary hover:underline">
-                  privacy@cacsms.com
+                <a href="mailto:privacy@cacblaze.com" className="text-primary hover:underline">
+                  privacy@cacblaze.com
                 </a>
                 . We will respond to your request within 30 days.
               </p>
@@ -253,6 +253,41 @@ export default function PrivacyPolicyPage() {
 
             <section>
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                Google Advertising and Third-Party Cookies
+              </h2>
+              <p>
+                Third-party vendors, including Google, use cookies to serve ads based on a user's
+                prior visits to CACBLAZE or other websites. Google's use of advertising cookies
+                enables Google and its partners to serve ads based on visits to this site and other
+                sites on the Internet.
+              </p>
+              <p className="mt-4">
+                You can opt out of personalized advertising through{' '}
+                <a
+                  href="https://adssettings.google.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  Google Ads Settings
+                </a>
+                . You can also learn how Google uses information from sites that use its services
+                on the{' '}
+                <a
+                  href="https://policies.google.com/technologies/partner-sites"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  Google partner sites privacy page
+                </a>
+                . Other advertising partners may use cookies or similar technologies subject to
+                their own privacy policies and opt-out mechanisms.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
                 10. Changes to This Privacy Policy
               </h2>
               <p>
@@ -271,7 +306,7 @@ export default function PrivacyPolicyPage() {
                 practices, please contact us:
               </p>
               <p className="mt-2">
-                <strong>Email:</strong> privacy@cacsms.com
+                <strong>Email:</strong> privacy@cacblaze.com
                 <br />
                 <strong>Address:</strong> Lagos, Nigeria
               </p>
