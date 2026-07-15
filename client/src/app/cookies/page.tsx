@@ -9,19 +9,13 @@ export const metadata: Metadata = {
 };
 
 export default function CookiePolicyPage() {
-  const currentDate = new Date().toLocaleDateString('en-NG', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-
   return (
     <main className="min-h-screen bg-gray-50 py-12 md:py-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12">
           <header className="mb-12 border-b border-gray-100 pb-8">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Cookie Policy</h1>
-            <p className="text-gray-500">Last Updated: {currentDate}</p>
+            <p className="text-gray-500">Last Updated: 15 July 2026</p>
           </header>
 
           <div className="prose prose-lg max-w-none text-gray-700 space-y-8">
@@ -34,9 +28,9 @@ export default function CookiePolicyPage() {
                 to control our use of them.
               </p>
               <p>
-                This policy is designed to be compliant with the{' '}
-                <strong>Nigeria Data Protection Regulation (NDPR)</strong>, which requires
-                transparent information about data collection technologies.
+                This policy supports our transparency obligations under the{' '}
+                <strong>Nigeria Data Protection Act 2023</strong> and explains the choices
+                available to visitors in regions with additional consent requirements.
               </p>
             </section>
 
@@ -150,9 +144,11 @@ export default function CookiePolicyPage() {
                 5. How You Can Control Cookies
               </h2>
               <p>
-                You have the right to decide whether to accept or reject cookies. You can exercise
-                your cookie rights by setting your preferences in the Cookie Consent Manager (if
-                available) or by amending your web browser controls.
+                You have the right to decide whether to accept or reject non-essential cookies.
+                Where required, you can exercise your choices through our Google-certified consent
+                message by selecting Consent, Do not consent, or Manage options. You can revisit
+                those choices when the privacy-options control is available or amend your browser
+                controls.
               </p>
               <p>
                 <strong>Browser Controls:</strong> You can set or amend your web browser controls to
@@ -163,9 +159,9 @@ export default function CookiePolicyPage() {
                 more information.
               </p>
               <p>
-                Under the <strong>NDPR</strong>, your continued use of our website after being
-                notified of our cookie usage constitutes valid consent, provided you have been given
-                the option to manage such consent.
+                We do not treat continued browsing as consent where applicable law requires an
+                affirmative choice. Rejecting non-essential cookies does not prevent access to the
+                main editorial content of CACBLAZE.
               </p>
             </section>
 
