@@ -96,7 +96,7 @@ class UserManagementService {
     if (users.length === 0) {
       const defaultAdmin: User = {
         id: 'admin-001',
-        email: 'admin@cacsms.com',
+        email: 'admin@cacblaze.com',
         fullName: 'Admin User',
         role: 'admin',
         isActive: true,

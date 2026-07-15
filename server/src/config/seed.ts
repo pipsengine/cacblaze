@@ -8,7 +8,7 @@ export const seedAdmin = async () => {
 
     const username = process.env.ADMIN_SEED_USERNAME || 'cacblaze';
     const password = process.env.ADMIN_SEED_PASSWORD;
-    const email = process.env.ADMIN_SEED_EMAIL || 'admin@cacsms.com';
+    const email = process.env.ADMIN_SEED_EMAIL || 'admin@cacblaze.com';
 
     if (!password) {
       throw new Error('ADMIN_SEED_PASSWORD is required when SEED_ADMIN=true');

@@ -147,7 +147,7 @@ export function generateOrganizationSchema(): WithContext<Organization> {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Service',
-      email: 'support@cacsms.com',
+      email: 'support@cacblaze.com',
     },
   };
 }
